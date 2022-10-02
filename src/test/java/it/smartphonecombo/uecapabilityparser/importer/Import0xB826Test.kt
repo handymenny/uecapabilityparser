@@ -35,13 +35,13 @@ internal class Import0xB826Test {
         Assertions.assertNotNull(comboNR)
         Assertions.assertEquals(numCombos, comboNR!!.size)
 
-        comboNR.stream().map { x: ComboNr -> comboToString(x) }.forEach { y: String -> println(y) }
+        comboNR.map { x: ComboNr -> comboToString(x) }.forEach { y: String -> println(y) }
         if (combos != null) {
             for (i in combos.indices) {
                 Assertions.assertEquals(combos[i], comboToString(comboNR[i]))
             }
         }
-        Assertions.assertEquals(combos, comboNR.stream().parallel().map { x: ComboNr -> comboToString(x) }
+        Assertions.assertEquals(combos, comboNR.map { x: ComboNr -> comboToString(x) }
             .toList())
     }
 
