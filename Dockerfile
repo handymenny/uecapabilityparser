@@ -11,6 +11,7 @@ RUN groupadd -r -g 2000 java && useradd -m -d /home/java/ -s /bin/bash -u 2000 -
     && apt upgrade -y \
     && echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections \
     && DEBIAN_FRONTEND=noninteractive apt install -y tshark \
+    && rm -rf /var/lib/apt/lists/* \
     && tshark -v
 
 COPY --from=build /home/gradle/build/libs/*.jar /app/uecapabilityparser.jar
