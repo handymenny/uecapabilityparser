@@ -40,3 +40,26 @@ usage: ueCapabilityParser
                            M (MEDIATEK CA_COMB_INFO).
  -T,--TsharkPath <arg>     Custom tshark path. (Tshark is used for H type)
 ```
+
+## Run in Docker
+
+Create data directory and place log files in directory. This directory will be mounted inside of container.
+
+```bash
+$ mkdir data
+$ docker run -it --rm -v ${PWD}/data:/home/java ghcr.io/HandyMenny/uecapabilityparser
+```
+
+Example:
+
+```bash
+$ docker run -it --rm -v ${PWD}/data:/home/java  ghcr.io/HandyMenny/uecapabilityparser -t H -i "uecapability.txt" --multi -c uecapability-parsed.txt
+```
+
+## Run in locally
+
+Install latest Java 1.8 or newer and download latest release from Release page.
+
+```bash
+$ java -jar uecapabilityparser.jar
+```
