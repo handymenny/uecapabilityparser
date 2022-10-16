@@ -731,7 +731,9 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         }
         while (matcher.find()) {
             val comboNumber = matcher.group(1).toInt()
-            print("found combo $comboNumber:\t\t\t")
+            if (debug) {
+                print("found combo $comboNumber:\t\t\t")
+            }
             val bands = ArrayList<IComponent>()
             val nrbands = ArrayList<IComponent>()
             var i = 2
@@ -778,7 +780,9 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         val features = ArrayList<ArrayList<Feature>>()
         while (featureMatcher.find()) {
             val comboNumber = featureMatcher.group(1).toInt()
-            print("found feature $comboNumber: \t\t")
+            if (debug) {
+                print("found feature $comboNumber: \t\t")
+            }
             var i = 2
             val featuresInt = ArrayList<Feature>()
             while (featureMatcher.group(i) != null) {
