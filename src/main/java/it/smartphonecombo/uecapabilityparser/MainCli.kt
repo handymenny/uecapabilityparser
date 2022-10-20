@@ -129,10 +129,10 @@ internal object MainCli {
                         val rat = if (cmd.hasOption("defaultNR")) Rat.nr else Rat.eutra
                         input = tshark.startDecoder(input, "lte-rrc.ul.dcch", rat)
                         if (inputENDC.isNotBlank()) {
-                            input += tshark.startDecoder(input, "lte-rrc.ul.dcch", Rat.eutra_nr)
+                            input += tshark.startDecoder(inputENDC, "lte-rrc.ul.dcch", Rat.eutra_nr)
                         }
                         if (inputNR.isNotBlank()) {
-                            input += tshark.startDecoder(input, "lte-rrc.ul.dcch", Rat.nr)
+                            input += tshark.startDecoder(inputNR, "lte-rrc.ul.dcch", Rat.nr)
                         }
                         imports = ImportWireshark()
                     }
