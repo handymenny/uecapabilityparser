@@ -1,5 +1,4 @@
-FROM gradle:7-jdk11 AS build
-
+FROM --platform=$BUILDPLATFORM gradle:7-jdk11 AS build
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
 RUN bash ./gradlew shadowJar --no-daemon
