@@ -161,7 +161,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
             }
             regex = regexCA_MIMO_ParametersDL
             if (regex.isNotEmpty()
-                && caBandCombosString.contains( // Workaround Samsung S20 5G (exynos) bug
+                && !caBandCombosString.contains( // Workaround Samsung S20 5G (exynos) bug
                     mimo4BandCombination, ignoreCase = true
                 )
             ) {
