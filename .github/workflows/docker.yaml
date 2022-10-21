@@ -9,7 +9,7 @@ on:
   push:
     branches: [ main ]
     # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
 
@@ -44,10 +44,10 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'main') }}
+            type=ref,event=branch
             type=ref,event=tag
-          flavor: |
-            latest=false
+            type=ref,event=pr
+            type=semver,pattern={{version}}
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
