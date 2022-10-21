@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = "parser"
-version = "0.0.2-alpha"
+version = "0.0.3-alpha"
 description = "uecapabilityparser"
 
 java {
