@@ -1,9 +1,9 @@
-FROM --platform=$BUILDPLATFORM gradle:7-jdk11 AS build
+FROM --platform=$BUILDPLATFORM gradle:7-jdk17 AS build
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
 RUN bash ./gradlew shadowJar --no-daemon
 
-FROM openjdk:11 AS deploy
+FROM eclipse-temurin:17-jre AS deploy
 
 RUN groupadd -r -g 2000 java && useradd -m -d /home/java/ -s /bin/bash -u 2000 -r -g java java \
     && apt update \
