@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - "main"
+    paths:
+      - '**.java'
+      - '**.kt'
+      - '**.kts'
+      - '**.yaml'
 
 jobs:
   pre-release:
