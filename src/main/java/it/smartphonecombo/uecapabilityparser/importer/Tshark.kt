@@ -14,7 +14,7 @@ class Tshark {
         }
         val strData = Utility.preformatHexData(strEncodedData)
         val strBuilder: StringBuilder?
-        if (!(strData[0] == '3' && strData[1] < 'D' && strData[1] >= '8')) {
+        if (!(strData[0] == '3' && strData[1] < 'F' && strData[1] >= '8')) {
             val length = String.format("%X", strData.length / 2 + 32768)
             strBuilder = StringBuilder("3A01").append(ratType.id)
             strBuilder!!.append(length).append(strData)
