@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.7.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("org.graalvm.buildtools.native") version "0.9.11"
 }
 
 repositories {
@@ -22,7 +23,7 @@ dependencies {
 }
 
 group = "parser"
-version = "0.0.3-alpha"
+version = "0.0.4-alpha"
 description = "uecapabilityparser"
 
 java {
@@ -51,3 +52,25 @@ tasks{
         minimize()
     }
 }
+
+graalvmNative {
+    binaries {
+        named("main") {
+            mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli")
+
+            fallback.set(false)
+            verbose.set(true)
+
+            buildArgs.add("--initialize-at-build-time=kotlin")
+
+            buildArgs.add("-H:+InstallExitHandlers")
+            buildArgs.add("-H:+ReportUnsupportedElementsAtRuntime")
+            buildArgs.add("-H:+ReportExceptionStackTraces")
+
+
+            imageName.set("graal-main")
+        }
+    }
+}
+
+
