@@ -661,7 +661,14 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 temp.channelBW90mhz = true
             }
             temp.mimo = Utility.convertNumber(matcherPerCC.group(5))
-            temp.qam = matcherPerCC.group(6)
+
+            val modulation = matcherPerCC.group(6).lowercase()
+            temp.qam = if (modulation.startsWith("qam")) {
+                modulation.removePrefix("qam") + "qam"
+            } else {
+                modulation
+            }
+
             if (matcherPerCC.group(1) != null) typeDL = matcherPerCC.group(1) == "Downlink"
             if (typeDL) {
                 temp.type = FeaturePerCCNr.DOWNlINK
@@ -993,13 +1000,13 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
             }
             if (dl) {
                 temp.type = FeaturePerCCLte.DOWNlINK
-                temp.qam = "256QAM"
+                temp.qam = "256qam"
             } else {
                 temp.type = FeaturePerCCLte.UPLINK
-                temp.qam = "64QAM"
+                temp.qam = "64qam"
             }
             featuresPerCC.add(temp)
-            if (matcherPerCC.group(3) != null) temp.qam = matcherPerCC.group(3)
+            if (matcherPerCC.group(3) != null) temp.qam = matcherPerCC.group(3).lowercase()
         }
         while (mainMatcher.find()) {
             val temp: FeatureSet
