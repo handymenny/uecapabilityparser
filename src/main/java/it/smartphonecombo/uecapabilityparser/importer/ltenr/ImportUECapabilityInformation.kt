@@ -394,8 +394,8 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         var count = 0
         var bcsIndex = 0
         var mimoIndex = 0
-        var Qam256ulIndex = 0
-        var Qam1024dlIndex = 0
+        var Qam256ulIndex = matcherQam256ul?.regionStart() ?: 0
+        var Qam1024dlIndex = matcherQam1024dl?.regionStart() ?: 0
         var resetBcs = false
         var resetMimo = false
         val matcher = matcherBandCombination
