@@ -2,7 +2,7 @@ package it.smartphonecombo.uecapabilityparser.bean.nr
 
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 
-class ComponentNr(
+data class ComponentNr(
     override var band: Int,
     override var classDL: Char,
     override var classUL: Char,
