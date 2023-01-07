@@ -475,4 +475,31 @@ object Utility {
     enum class OsTypes {
         WINDOWS, LINUX, MAC, SOLARIS, OTHER
     }
+
+    fun String.repeat(n: Int, separator: String) = plus(separator).repeat(n).dropLast(separator.length)
+
+    fun JsonElement.getInt(key: String) = ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.intOrNull
+
+    fun JsonElement.getString(key: String) = ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.contentOrNull
+
+    fun JsonElement.getObject(key: String) = (this as? JsonObject)?.get(key) as? JsonObject
+
+    fun JsonElement.getArray(key: String) = (this as? JsonObject)?.get(key) as? JsonArray
+
+    fun JsonElement.getObjectAtPath(path: String): JsonObject? {
+        var obj = this as? JsonObject
+        path.split(".").forEach {
+            obj = obj?.getObject(it)
+        }
+        return obj
+    }
+
+    fun JsonElement.getArrayAtPath(path: String): JsonArray? {
+        val split = path.split(".")
+        var obj = this as? JsonObject
+        for (i in 0 until split.size - 1) {
+            obj = obj?.getObject(split[i])
+        }
+        return obj?.getArray(split.last())
+    }
 }
