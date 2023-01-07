@@ -7,6 +7,7 @@ import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.CompactedCombo
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
+import kotlinx.serialization.json.*
 import java.io.*
 import java.nio.charset.Charset
 import java.nio.file.Files
@@ -280,10 +281,10 @@ object Utility {
         var bcs = bcs
         if (bcs == -1) return IntArray(0)
         if (bcs == 0) return intArrayOf(0)
-        val bcsArray = IntArray(Integer.bitCount(bcs))
         var x = 0
         var y = 0
-        if (qualcomm) {
+        return if (qualcomm) {
+            val bcsArray = IntArray(Integer.bitCount(bcs))
             while (bcs > 0) {
                 if (bcs and 1 == 1) {
                     bcsArray[y++] = x
@@ -291,16 +292,21 @@ object Utility {
                 bcs = bcs shr 1
                 x++
             }
+            bcsArray
         } else {
             val binary = Integer.toBinaryString(bcs)
-            while (x < binary.length) {
-                if (binary[x] == '1') {
-                    bcsArray[y++] = x
-                }
-                x++
+            binaryStringToBcsArray(binary)
+        }
+    }
+
+    fun binaryStringToBcsArray(bcs: String): IntArray {
+        val bcsArray = mutableListOf<Int>()
+        for (x in bcs.indices) {
+            if (bcs[x] == '1') {
+                bcsArray.add(x)
             }
         }
-        return bcsArray
+        return bcsArray.toIntArray()
     }
 
     fun arrayToQcomBcs(bcs: IntArray): String {
