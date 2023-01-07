@@ -17,7 +17,7 @@ jobs:
       - name: "Build & test"
         run: |
           gradle --no-daemon shadowJar
-          cp build/libs/*.jar .
+          cp build/libs/*-all.jar .
 
       - uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
