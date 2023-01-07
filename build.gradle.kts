@@ -54,21 +54,16 @@ tasks{
 }
 
 graalvmNative {
+    agent {
+        enabled.set(true) // Enables the agent
+    }
+
     binaries {
         named("main") {
             mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli")
-
             fallback.set(false)
-            verbose.set(true)
-
-            buildArgs.add("--initialize-at-build-time=kotlin")
-
-            buildArgs.add("-H:+InstallExitHandlers")
-            buildArgs.add("-H:+ReportUnsupportedElementsAtRuntime")
-            buildArgs.add("-H:+ReportExceptionStackTraces")
-
-
-            imageName.set("graal-main")
+            verbose.set(false)
+            imageName.set("uecapabilityparser")
         }
     }
 }
