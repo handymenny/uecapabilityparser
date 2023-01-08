@@ -49,9 +49,9 @@ class ImportCapabilityInformationJson : ImportCapabilities {
 
             val bandList = getLteBands(eutra).associateBy({ it.band }, { it })
             comboList.nrNSAbands =
-                getNrBands(eutra, true).sortedWith(Comparator.comparing { obj: ComponentNr -> obj.band })
+                getNrBands(eutra, true).sortedWith(compareBy { it.band })
             comboList.nrSAbands =
-                getNrBands(eutra, false).sortedWith(Comparator.comparing { obj: ComponentNr -> obj.band })
+                getNrBands(eutra, false).sortedWith(compareBy { it.band })
 
             val listCombo = getBandCombinations(eutra, bandList)
             val listComboAdd = getBandCombinationsAdd(eutra, bandList)
@@ -61,7 +61,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
             updateLteBandsCapabilities(bandList, totalLteCombos)
 
             comboList.lteCombos = totalLteCombos
-            comboList.lteBands = bandList.values.sortedWith(Comparator.comparing { obj: ComponentLte -> obj.band })
+            comboList.lteBands = bandList.values.sortedWith(compareBy { it.band })
         }
         return comboList
     }
