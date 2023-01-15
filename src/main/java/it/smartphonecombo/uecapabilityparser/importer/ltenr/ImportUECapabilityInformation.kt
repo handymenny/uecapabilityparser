@@ -96,8 +96,8 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         val allCombos: MutableList<ComboNr> = ArrayList(enDC)
         allCombos.addAll(nrSA)
         addOptionalBWs(nrBands, allCombos)
+        comboList.nrBands = nrBands
         nrBands.forEach { it ->
-            it as ComponentNr
             if (debug) {
                 println(
                     "n" + it.band.toString() + it.bandwidthsDL?.entries?.joinToString(
@@ -809,8 +809,8 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         return listCombo
     }
 
-    private fun parseNRbands(uecapabilityinfo: String): List<IComponent> {
-        val nrBands: MutableList<IComponent> = ArrayList()
+    private fun parseNRbands(uecapabilityinfo: String): List<ComponentNr> {
+        val nrBands: MutableList<ComponentNr> = ArrayList()
         val regex = regexSupportedBandListNR
         if (!ratTypeIndex!!.containsKey(rat_type_nr) || regex.isEmpty()) {
             return nrBands

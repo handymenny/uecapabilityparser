@@ -17,6 +17,7 @@ class Capabilities(
     var lteBands: List<ComponentLte>? = null
     var nrNSAbands: List<ComponentNr>? = null
     var nrSAbands: List<ComponentNr>? = null
+    var nrBands: List<ComponentNr>? = null
     var lteCategoryDL = 0
     var lteCategoryUL = 0
     private val metadata = HashMap<String, Any?>()
