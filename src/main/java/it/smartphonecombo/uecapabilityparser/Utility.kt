@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.bean.ICombo
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.CompactedCombo
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
+import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import kotlinx.serialization.json.*
 import java.io.*
@@ -501,5 +502,18 @@ object Utility {
             obj = obj?.getObject(split[i])
         }
         return obj?.getArray(split.last())
+    }
+
+    fun ComponentNr.toBwString(): String {
+        val bws = if (isSUL) bandwidthsUL else bandwidthsDL
+        val bwString = bws?.entries
+            ?.filter { it.value.isNotEmpty() }
+            ?.joinToString(
+                prefix = "[",
+                postfix = "]",
+                transform = { "${it.key}kHz: ${it.value.joinToString()}" },
+                separator = "; ",
+            )
+        return "n$band $bwString"
     }
 }

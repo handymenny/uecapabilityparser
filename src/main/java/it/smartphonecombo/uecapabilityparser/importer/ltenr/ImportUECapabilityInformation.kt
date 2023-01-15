@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer.ltenr
 
 import it.smartphonecombo.uecapabilityparser.Utility
+import it.smartphonecombo.uecapabilityparser.Utility.toBwString
 import it.smartphonecombo.uecapabilityparser.bean.*
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
@@ -97,24 +98,9 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         allCombos.addAll(nrSA)
         addOptionalBWs(nrBands, allCombos)
         comboList.nrBands = nrBands
-        nrBands.forEach { it ->
-            if (debug) {
-                println(
-                    "n" + it.band.toString() + it.bandwidthsDL?.entries?.joinToString(
-                        prefix = " [",
-                        postfix = "]",
-                        transform = {
-                            if (it.value.isEmpty()) {
-                                return@joinToString ""
-                            }
-                            it.key.toString() + "kHz: " + it.value.joinToString()
-                        },
-                        separator = " "
-                    )?.replace("\\s+".toRegex(), " ")
-                )
-            }
+        if (debug) {
+            nrBands.forEach { println(it.toBwString()) }
         }
-        // println(nrBands)
         return comboList
     }
 
