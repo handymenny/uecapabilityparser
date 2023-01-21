@@ -11,8 +11,6 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import kotlinx.serialization.json.*
 import java.io.*
 import java.nio.charset.Charset
-import java.nio.file.Files
-import java.nio.file.Paths
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -132,11 +130,9 @@ object Utility {
         return CompactedCapabilities(list.flags, emptyArray())
     }
 
-
     @Throws(IOException::class)
     fun readFile(path: String, encoding: Charset): String {
-        val encoded = Files.readAllBytes(Paths.get(path))
-        return String(encoded, encoding)
+        return File(path).readText(encoding)
     }
 
     /**
