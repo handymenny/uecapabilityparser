@@ -7,17 +7,28 @@ import it.smartphonecombo.uecapabilityparser.Utility.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.Utility.getInt
 import it.smartphonecombo.uecapabilityparser.Utility.getObject
 import it.smartphonecombo.uecapabilityparser.Utility.getString
+import it.smartphonecombo.uecapabilityparser.Utility.toBwString
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
+import it.smartphonecombo.uecapabilityparser.bean.Feature
+import it.smartphonecombo.uecapabilityparser.bean.FeatureSet
+import it.smartphonecombo.uecapabilityparser.bean.FeatureSets
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.bean.lte.FeaturePerCCLte
+import it.smartphonecombo.uecapabilityparser.bean.nr.BwTableNr
+import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
+import it.smartphonecombo.uecapabilityparser.bean.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.contentOrNull
+import kotlinx.serialization.json.intOrNull
 
 class ImportCapabilityInformationJson : ImportCapabilities {
     private val ratTypeEutra = "eutra"
@@ -42,6 +53,9 @@ class ImportCapabilityInformationJson : ImportCapabilities {
         eutraCapability: JsonObject? = null, eutraNrCapability: JsonObject? = null, nrCapability: JsonObject? = null
     ): Capabilities {
         val comboList = Capabilities()
+        var lteFeatures: FeatureSets? = null
+        var nrFeatures: FeatureSets? = null
+
         eutraCapability?.let { UEEutraCapabilityJson(it) }?.let { eutra ->
             val (lteCategoryDL, lteCategoryUL) = getLTECategory(eutra)
             comboList.lteCategoryDL = lteCategoryDL
@@ -62,6 +76,31 @@ class ImportCapabilityInformationJson : ImportCapabilities {
 
             comboList.lteCombos = totalLteCombos
             comboList.lteBands = bandList.values.sortedWith(compareBy { it.band })
+
+            if (eutraNrCapability != null) {
+                // Don't parse lte features if no mrdc capability is available
+                lteFeatures = getLteFeatureSet(eutra)
+            }
+        }
+        nrCapability?.let { UENrCapabilityJson(it) }?.let { nr ->
+            val bandList = getNrBands(nr)
+            if (debug) {
+                bandList.forEach {
+                    println(it.toBwString())
+                }
+            }
+            comboList.nrBands = bandList
+            nrFeatures = getNRFeatureSet(nr)
+            val featureSetCombination = getFeatureSetCombinations(nr)
+            val saCombos = getNrBandCombinations(nr)
+            comboList.nrCombos =
+                linkFeaturesAndCarrier(saCombos, featureSetCombination, null, nrFeatures)
+        }
+        eutraNrCapability?.let { UEMrdcCapabilityJsonUE(it) }?.let { mrdc ->
+            val featureSetCombination = getFeatureSetCombinations(mrdc)
+            val nsaCombos = getNrBandCombinations(mrdc)
+            comboList.enDcCombos =
+                linkFeaturesAndCarrier(nsaCombos, featureSetCombination, lteFeatures, nrFeatures)
         }
         return comboList
     }
@@ -438,5 +477,449 @@ class ImportCapabilityInformationJson : ImportCapabilities {
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) = zip(bcsList) { bands, bcs ->
         val bandArray = bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray<IComponent>()
         ComboLte(bandArray, bcs)
+    }
+
+    private fun linkFeaturesAndCarrier(
+        combos: List<ComboNr>,
+        featureSetCombinations: List<List<List<Feature>>>,
+        lteFeatures: FeatureSets?,
+        nrFeatures: FeatureSets?
+    ): List<ComboNr> {
+        val list = mutableListOf<ComboNr>()
+
+        for (combo in combos) {
+            val featureSetsPerBand = featureSetCombinations.getOrNull(combo.featureSet) ?: continue
+            val indices = featureSetsPerBand.firstOrNull()?.indices ?: IntRange.EMPTY
+
+            for (index in indices) {
+                val newNrComponents = mutableListOf<ComponentNr>()
+                val newLteComponents = mutableListOf<ComponentLte>()
+
+                val lteComponents = combo.componentsLte.iterator()
+                val nrComponents = combo.componentsNr.iterator()
+
+                for (featureSetBand in featureSetsPerBand) {
+                    val featureSet = featureSetBand[index]
+
+                    // Index starts from 1
+                    val downlinkIndex = featureSet.downlink - 1
+                    val uplinkIndex = featureSet.uplink - 1
+
+                    if (downlinkIndex < 0 && uplinkIndex < 0) {
+                        // Fallback combination
+                        continue
+                    }
+
+                    if (featureSet.isNR) {
+                        val oldComponentNr = nrComponents.next() as ComponentNr
+                        val componentNr = ComponentNr(
+                            oldComponentNr.band,
+                            oldComponentNr.classDL,
+                            oldComponentNr.classUL
+                        )
+
+                        // TODO: Features per CC
+                        if (downlinkIndex >= 0) {
+                            val dlFeature = nrFeatures?.downlink
+                                ?.get(downlinkIndex)
+                                ?.featureSetsPerCC?.get(0) as? FeaturePerCCNr
+                            if (dlFeature != null) {
+                                componentNr.mimoDL = dlFeature.mimo
+                                componentNr.modDL = dlFeature.qam
+                                componentNr.maxBandwidth = dlFeature.bw
+                                componentNr.channelBW90mhz = dlFeature.bw >= 80 &&
+                                        dlFeature.channelBW90mhz
+                                componentNr.scs = dlFeature.scs
+                            }
+                        } else {
+                            // only UL
+                            componentNr.classDL = '0'
+                            componentNr.mimoDL = 0
+                        }
+
+                        if (uplinkIndex >= 0) {
+                            val ulFeature = nrFeatures?.uplink
+                                ?.get(uplinkIndex)
+                                ?.featureSetsPerCC?.get(0) as? FeaturePerCCNr
+                            if (ulFeature != null) {
+                                componentNr.mimoUL = ulFeature.mimo
+                                componentNr.modUL = ulFeature.qam
+                            }
+                        } else {
+                            // only DL
+                            componentNr.classUL = '0'
+                            componentNr.mimoUL = 0
+                        }
+                        newNrComponents.add(componentNr)
+                    } else {
+                        val oldComponentLte = lteComponents.next() as ComponentLte
+                        val componentLte = ComponentLte(
+                            oldComponentLte.band,
+                            oldComponentLte.classDL,
+                            oldComponentLte.classUL
+                        )
+
+                        // TODO: Features per CC
+                        if (downlinkIndex >= 0) {
+                            val dlFeature = lteFeatures?.downlink
+                                ?.get(downlinkIndex)
+                                ?.featureSetsPerCC?.get(0)
+                            if (dlFeature != null) {
+                                componentLte.mimoDL = dlFeature.mimo
+                            }
+                        } else {
+                            // only UL
+                            componentLte.classDL = '0'
+                            componentLte.mimoDL = 0
+                        }
+
+                        if (uplinkIndex >= 0) {
+                            val ulFeature = lteFeatures?.uplink
+                                ?.get(uplinkIndex)
+                                ?.featureSetsPerCC?.get(0)
+                            if (ulFeature != null) {
+                                componentLte.mimoUL = ulFeature.mimo
+                                componentLte.modUL = ulFeature.qam
+                            }
+                        } else {
+                            // only DL
+                            componentLte.classUL = '0'
+                            componentLte.mimoUL = 0
+                        }
+                        newLteComponents.add(componentLte)
+                    }
+                }
+
+                val nrArray = newNrComponents
+                    .sortedWith(IComponent.defaultComparator.reversed())
+                    .toTypedArray<IComponent>()
+
+                val comboNr = if (newLteComponents.isNotEmpty()) {
+                    val lteArray = newLteComponents
+                        .sortedWith(IComponent.defaultComparator.reversed())
+                        .toTypedArray<IComponent>()
+                    ComboNr(lteArray, nrArray, combo.featureSet)
+                } else {
+                    ComboNr(nrArray, combo.featureSet)
+                }
+
+                list.add(comboNr)
+            }
+        }
+        return list
+    }
+    private fun getFeatureSetCombinations(nrCapability: UENrRrcCapabilityJson): List<List<List<Feature>>> {
+        val featureSetCombinations = nrCapability.rootJson.getArray("featureSetCombinations")
+        val list = featureSetCombinations?.mapNotNull { featureSetCombination ->
+            (featureSetCombination as? JsonArray)?.mapNotNull { featureSetsPerBand ->
+                (featureSetsPerBand as? JsonArray)?.mapNotNull { featureSet ->
+                    val eutra = featureSet.getObject("eutra")
+                    val nr = featureSet.getObject("nr")
+                    if (nr != null) {
+                        val dl = nr.getInt("downlinkSetNR") ?: 0
+                        val ul = nr.getInt("uplinkSetNR") ?: 0
+
+                        Feature(true, dl, ul)
+                    } else if (eutra != null) {
+                        val dl = eutra.getInt("downlinkSetEUTRA") ?: 0
+                        val ul = eutra.getInt("uplinkSetEUTRA") ?: 0
+
+                        Feature(false, dl, ul)
+                    } else {
+                        null
+                    }
+                }
+            }
+        }
+        return list ?: emptyList()
+    }
+
+    private fun getNrBandCombinations(nrCapability: UENrRrcCapabilityJson): List<ComboNr> {
+        val endc = nrCapability is UEMrdcCapabilityJsonUE
+        val bandCombinationsPath = if (endc) {
+            "rf-ParametersMRDC.supportedBandCombinationList"
+        } else {
+            "rf-Parameters.supportedBandCombinationList"
+        }
+        val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
+        val list = bandCombinationsList?.mapNotNull { bandCombination ->
+            val bandList = bandCombination.getArray("bandList")
+            if (bandList is JsonArray) {
+                val lteBands = mutableListOf<ComponentLte>()
+                val nrBands = mutableListOf<ComponentNr>()
+                bandList.forEach { bandParameters ->
+                    val nr = bandParameters.getObject("nr")
+                    val lte = if (endc) bandParameters.getObject("eutra") else null
+                    if (nr != null) {
+                        val band = nr.getInt("bandNR") ?: 0
+                        val dlClass = nr.getString("ca-BandwidthClassDL-NR")?.first()?.uppercaseChar() ?: '0'
+                        val ulClass = nr.getString("ca-BandwidthClassUL-NR")?.first()?.uppercaseChar() ?: '0'
+                        nrBands.add(ComponentNr(band, dlClass, ulClass))
+                    } else if (endc && lte != null) {
+                        val band = lte.getInt("bandEUTRA") ?: 0
+                        val dlClass = lte.getString("ca-BandwidthClassDL-EUTRA")?.first()?.uppercaseChar() ?: '0'
+                        val ulClass = lte.getString("ca-BandwidthClassUL-EUTRA")?.first()?.uppercaseChar() ?: '0'
+                        lteBands.add(ComponentLte(band, dlClass, ulClass))
+                    }
+                }
+                val featureSetCombination = bandCombination.getInt("featureSetCombination") ?: 0
+                if (endc) {
+                    ComboNr(lteBands.toTypedArray(), nrBands.toTypedArray(), featureSetCombination)
+                } else {
+                    ComboNr(nrBands.toTypedArray(), featureSetCombination)
+                }
+            } else {
+                null
+            }
+        }?.toList()
+
+        return list ?: emptyList()
+    }
+
+    private fun getNrBands(nrCapability: UENrCapabilityJson): List<ComponentNr> {
+        return nrCapability.rootJson.getArrayAtPath("rf-Parameters.supportedBandListNR")
+            ?.mapNotNull { supportedBandNr ->
+                val componentNr = supportedBandNr.getInt("bandNR")?.let {
+                    ComponentNr(it)
+                } ?: return@mapNotNull null
+
+                if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") != null) {
+                    componentNr.modDL = "256qam"
+                }
+
+                if (supportedBandNr.getString("pusch-256QAM") != null) {
+                    componentNr.modUL = "256qam"
+                }
+
+                supportedBandNr.getString("ue-PowerClass")?.removePrefix("pc")?.toInt()?.let {
+                    componentNr.powerClass = it
+                }
+
+                if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {
+                    componentNr.rateMatchingLTEcrs = true
+                }
+
+                val maxUplinkDutyCycleKey = if (componentNr.isFR2) {
+                    "maxUplinkDutyCycle-FR2"
+                } else {
+                    "maxUplinkDutyCycle-PC2-FR1"
+                }
+                supportedBandNr.getString(maxUplinkDutyCycleKey)?.removePrefix("n")?.toInt()?.let {
+                    componentNr.maxUplinkDutyCycle = it
+                }
+
+                parseNRChannelBWs(supportedBandNr, componentNr)
+
+                componentNr
+            }?.toList() ?: emptyList()
+    }
+
+    private fun parseNRChannelBWs(supportedBandNr: JsonElement, componentNr: ComponentNr) {
+        val channelBWsDL = supportedBandNr.getObject("channelBWs-DL")
+        val channelBWsUL = supportedBandNr.getObject("channelBWs-UL")
+        val channelBWsDlV1590 = supportedBandNr.getObject("channelBWs-DL-v1590")
+        val channelBWsUlV1590 = supportedBandNr.getObject("channelBWs-UL-v1590")
+
+        val bandwidthsDL = parseNrBw(channelBWsDL, componentNr, false)
+            .merge(parseNrBw(channelBWsDlV1590, componentNr, true))
+        val bandwidthsUL = parseNrBw(channelBWsUL, componentNr, false)
+            .merge(parseNrBw(channelBWsUlV1590, componentNr, true))
+
+        val scsRange = if (componentNr.isFR2) {
+            60..120 step { it * 2 }
+        } else {
+            15..60 step { it * 2 }
+        }
+
+        /*
+         * According to TS 38.306 v16.6.0, the UE can omit channelBWs or specific SCS in channelBWs
+         * if it supports all BWs defined in 38.101-1 and 38.101-2 v15.7.0.
+         * So we add default BWs here when a specific SCS is missing.
+         */
+        for (scs in scsRange) {
+            val bws = BwTableNr.getDLBws(componentNr.band, scs)
+            if (!bandwidthsDL.containsKey(scs)) {
+                bandwidthsDL[scs] = bws.bwsDL
+            }
+            if (!bandwidthsUL.containsKey(scs)) {
+                bandwidthsUL[scs] = bws.bwsUL
+            }
+        }
+        componentNr.bandwidthsDL = bandwidthsDL
+        componentNr.bandwidthsUL = bandwidthsUL
+    }
+
+    private fun parseNrBw(
+        channelBWsDL: JsonObject?,
+        componentNr: ComponentNr,
+        isV1590: Boolean = false
+    ): Map<Int, IntArray> {
+        /*
+        * According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
+        * So we assume that it's supported by default.
+        */
+        val default100MHz = componentNr.band in listOf(41, 48, 77, 78, 79, 90)
+        val freqRange = if (componentNr.isFR2) "fr2" else "fr1"
+
+        val bandWidthMap = mutableMapOf<Int, IntArray>()
+        channelBWsDL?.getObject(freqRange)?.forEach { (scsKey, element) ->
+            val scs = scsKey.removePrefix("scs-").removeSuffix("kHz").toInt()
+            (element as? JsonPrimitive)?.contentOrNull?.let { bwString ->
+                var bws = Utility.bwStringToArray(bwString, componentNr.isFR2, isV1590)
+                if (scs != 15 && default100MHz && bws.isNotEmpty()) {
+                    bws += 100
+                }
+                bandWidthMap[scs] = bws
+            }
+        } ?: return emptyMap()
+        return bandWidthMap
+    }
+
+    private fun getLteFeatureSet(eutraCapability: UEEutraCapabilityJson): FeatureSets {
+        var downlink = emptyList<FeatureSet>()
+        var uplink = emptyList<FeatureSet>()
+
+        eutraCapability.eutraCapabilityV1510?.getObject("featureSetsEUTRA-r15")?.let { featureSets ->
+            val downlinkPerCC = featureSets.getArray("featureSetsDL-PerCC-r15")?.map {
+                val qam = "256qam"
+                val mimoLayers = it.getString("supportedMIMO-CapabilityDL-MRDC-r15")
+                val mimo = maxOf(Utility.convertNumber(mimoLayers?.removeSuffix("Layers")), 2)
+                FeaturePerCCLte(mimo = mimo, qam = qam)
+            }
+
+            downlink = featureSets.getArray("featureSetsDL-r15")?.mapNotNull { featureSetPerCCList ->
+                val list = featureSetPerCCList.getArray("featureSetPerCC-ListDL-r15")?.mapNotNull { index ->
+                    (index as? JsonPrimitive)
+                        ?.intOrNull
+                        ?.let {
+                            downlinkPerCC?.getOrNull(it)
+                        }
+                }
+                FeatureSet(list, FeatureSet.DOWNlINK)
+            } ?: downlink
+
+            val uplinkPerCC = featureSets.getArray("featureSetsUL-PerCC-r15")?.map {
+                val qam = if (it.getString("ul-256QAM-r15") != null) {
+                    "256qam"
+                } else {
+                    "64qam"
+                }
+                val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
+                val mimo = maxOf(Utility.convertNumber(mimoLayers?.removeSuffix("Layers")), 1)
+                FeaturePerCCLte(FeaturePerCCLte.UPLINK, mimo = mimo, qam = qam)
+            }
+
+            // featureSets.getArray("featureSetsDL-v1550") - Never seen on the wild
+            uplink = featureSets.getArray("featureSetsUL-r15")?.mapNotNull { featureSetPerCCList ->
+                val list = featureSetPerCCList.getArray("featureSetPerCC-ListUL-r15")?.mapNotNull { index ->
+                    (index as? JsonPrimitive)
+                        ?.intOrNull
+                        ?.let {
+                            uplinkPerCC?.getOrNull(it)
+                        }
+                }
+                FeatureSet(list, FeatureSet.UPLINK)
+            } ?: uplink
+        }
+
+        if (debug) {
+            println("\nLTE FeatureSets")
+            println(downlink.joinToString(separator = "\n"))
+            println(uplink.joinToString(separator = "\n"))
+        }
+        return FeatureSets(downlink, uplink)
+    }
+
+    private fun getNRFeatureSet(nrCapability: UENrCapabilityJson): FeatureSets {
+        var downlink = emptyList<FeatureSet>()
+        var uplink = emptyList<FeatureSet>()
+
+        nrCapability.rootJson.getObject("featureSets")?.let { featureSets ->
+            val downlinkPerCC = featureSets.getArray("featureSetsDownlinkPerCC")?.map {
+                val scs = it.getString("supportedSubcarrierSpacingDL")
+                    ?.removePrefix("kHz")
+                    ?.split("-")
+                    ?.first()?.toIntOrNull() ?: 0
+                val supportedBandwidthDL = it.getObject("supportedBandwidthDL")
+                val bwFr1OrFr2 = supportedBandwidthDL?.getString("fr1")
+                    ?: supportedBandwidthDL?.getString("fr2")
+                val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
+                val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
+                val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
+                val mimo = maxOf(Utility.convertNumber(mimoLayers?.removeSuffix("Layers")), 2)
+                val qam = it.getString("supportedModulationOrderDL")?.removePrefix("qam").plus("qam")
+
+                FeaturePerCCNr(mimo = mimo, qam = qam, scs = scs, bw = bw, channelBW90mhz = channelBW90mhz)
+            }
+
+            downlink = featureSets.getArray("featureSetsDownlink")?.mapNotNull { featureSetPerCCList ->
+                val list = featureSetPerCCList.getArray("featureSetListPerDownlinkCC")?.mapNotNull { index ->
+                    (index as? JsonPrimitive)
+                        ?.intOrNull
+                        ?.let {
+                            // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
+                            downlinkPerCC?.getOrNull(it - 1)
+                        }
+                }
+                FeatureSet(list, FeatureSet.DOWNlINK)
+            } ?: downlink
+
+            val uplinkPerCC = featureSets.getArray("featureSetsUplinkPerCC")?.map {
+                val scs = it.getString("supportedSubcarrierSpacingUL")
+                    ?.removePrefix("kHz")
+                    ?.split("-")
+                    ?.first()?.toIntOrNull() ?: 0
+                val supportedBandwidthUL = it.getObject("supportedBandwidthUL")
+                val bwFr1OrFr2 = supportedBandwidthUL?.getString("fr1")
+                    ?: supportedBandwidthUL?.getString("fr2")
+                val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
+                val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
+
+                val mimoCbLayers = it.getObject("mimo-CB-PUSCH")
+                    ?.getString("maxNumberMIMO-LayersCB-PUSCH")
+                    ?.removeSuffix("Layers")
+                val mimoNonCbLayers = it.getString("maxNumberMIMO-LayersNonCB-PUSCH")?.removeSuffix("Layers")
+
+                val mimo = maxOf(Utility.convertNumber(mimoCbLayers), Utility.convertNumber(mimoNonCbLayers), 1)
+                val qam = it.getString("supportedModulationOrderUL")?.removePrefix("qam").plus("qam")
+                FeaturePerCCNr(
+                    type = FeatureSet.UPLINK,
+                    mimo = mimo,
+                    qam = qam,
+                    scs = scs,
+                    bw = bw,
+                    channelBW90mhz = channelBW90mhz
+                )
+            }
+
+            uplink = featureSets.getArray("featureSetsUplink")?.mapNotNull { featureSetPerCCList ->
+                val list = featureSetPerCCList.getArray("featureSetListPerUplinkCC")?.mapNotNull { index ->
+                    (index as? JsonPrimitive)
+                        ?.intOrNull
+                        ?.let {
+                            // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
+                            uplinkPerCC?.getOrNull(it - 1)
+                        }
+                }
+                FeatureSet(list, FeatureSet.UPLINK)
+            } ?: uplink
+        }
+
+        if (debug) {
+            println("\nNr FeatureSets")
+            println(downlink.joinToString(separator = "\n"))
+            println(uplink.joinToString(separator = "\n"))
+        }
+        return FeatureSets(downlink, uplink)
+    }
+
+    private infix fun IntRange.step(next: (Int) -> Int) =
+        generateSequence(first, next).takeWhile { if (first < last) it <= last else it >= last }
+    private fun Map<Int, IntArray>.merge(map: Map<Int, IntArray>): MutableMap<Int, IntArray> {
+        val mutableMap = this.toMutableMap()
+        map.entries.forEach { (key, value) ->
+            mutableMap.getOrDefault(key, intArrayOf()).plus(value)
+        }
+        return mutableMap
     }
 }
