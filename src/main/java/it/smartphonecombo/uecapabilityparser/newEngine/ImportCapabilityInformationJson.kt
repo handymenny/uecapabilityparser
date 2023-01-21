@@ -96,7 +96,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
             comboList.nrCombos =
                 linkFeaturesAndCarrier(saCombos, featureSetCombination, null, nrFeatures)
         }
-        eutraNrCapability?.let { UEMrdcCapabilityJsonUE(it) }?.let { mrdc ->
+        eutraNrCapability?.let { UEMrdcCapabilityJson(it) }?.let { mrdc ->
             val featureSetCombination = getFeatureSetCombinations(mrdc)
             val nsaCombos = getNrBandCombinations(mrdc)
             comboList.enDcCombos =
@@ -635,7 +635,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
     }
 
     private fun getNrBandCombinations(nrCapability: UENrRrcCapabilityJson): List<ComboNr> {
-        val endc = nrCapability is UEMrdcCapabilityJsonUE
+        val endc = nrCapability is UEMrdcCapabilityJson
         val bandCombinationsPath = if (endc) {
             "rf-ParametersMRDC.supportedBandCombinationList"
         } else {

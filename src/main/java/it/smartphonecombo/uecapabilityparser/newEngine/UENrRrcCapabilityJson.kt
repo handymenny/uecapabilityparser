@@ -7,5 +7,5 @@ sealed interface UENrRrcCapabilityJson {
     val rootJson: JsonElement
 }
 
-class UEMrdcCapabilityJsonUE(override val rootJson: JsonObject) : UENrRrcCapabilityJson
+class UEMrdcCapabilityJson(override val rootJson: JsonObject) : UENrRrcCapabilityJson
 class UENrCapabilityJson(override val rootJson: JsonObject) : UENrRrcCapabilityJson
