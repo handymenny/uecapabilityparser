@@ -1,8 +1,14 @@
 package it.smartphonecombo.uecapabilityparser
 
+import com.ericsson.mts.asn1.ASN1Converter
+import com.ericsson.mts.asn1.ASN1Translator
+import com.ericsson.mts.asn1.KotlinJsonFormatWriter
+import com.ericsson.mts.asn1.PERTranslatorFactory
+import com.ericsson.mts.asn1.converter.AbstractConverter
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.CompactedCapabilities
 import it.smartphonecombo.uecapabilityparser.bean.ICombo
+import it.smartphonecombo.uecapabilityparser.bean.Rat
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.CompactedCombo
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
@@ -511,5 +517,95 @@ object Utility {
                 separator = "; ",
             )
         return "n$band $bwString"
+    }
+
+    private fun getResourceAsStream(path: String): InputStream? =
+        object {}.javaClass.getResourceAsStream(path)
+
+    val asn1TranslatorLte by lazy {
+        val definition = getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
+        ASN1Translator(PERTranslatorFactory(false), listOf(definition))
+    }
+
+    val asn1TranslatorNr by lazy {
+        val definition = getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
+        ASN1Translator(PERTranslatorFactory(false), listOf(definition))
+    }
+
+    fun getAsn1Converter(rat: Rat, converter: AbstractConverter): ASN1Converter {
+        val definition = if (rat == Rat.eutra) {
+            getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
+        } else {
+            getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
+        }
+        return ASN1Converter(converter, listOf(definition))
+    }
+
+    private fun ratContainerToJson(rat: Rat, bytes: ByteArray): JsonObject {
+        val jsonWriter = KotlinJsonFormatWriter()
+        val json = buildJsonObject {
+            when (rat) {
+                Rat.eutra -> {
+                    asn1TranslatorLte.decode(
+                        rat.ratCapabilityIdentifier,
+                        bytes.inputStream(),
+                        jsonWriter
+                    )
+                    jsonWriter.jsonNode?.let { put(rat.toString(), it) }
+                }
+                Rat.eutra_nr -> {
+                    asn1TranslatorNr.decode(
+                        rat.ratCapabilityIdentifier,
+                        bytes.inputStream(),
+                        jsonWriter
+                    )
+                    jsonWriter.jsonNode?.let { put(rat.toString(), it) }
+                }
+                Rat.nr -> {
+                    asn1TranslatorNr.decode(
+                        rat.ratCapabilityIdentifier,
+                        bytes.inputStream(),
+                        jsonWriter
+                    )
+                    jsonWriter.jsonNode?.let { put(rat.toString(), it) }
+                }
+                else -> {}
+            }
+        }
+        return json
+    }
+
+    fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
+        if (hexString.length < 2) {
+            return buildJsonObject { }
+        }
+        val jsonWriter = KotlinJsonFormatWriter()
+        if (hexString[0] == '3' && hexString[1] < 'F' && hexString[1] >= '8') {
+            asn1TranslatorLte.decode(
+                "UL-DCCH-Message",
+                hexStringToByteArray(hexString).inputStream(),
+                jsonWriter
+            )
+            val ueCap = jsonWriter.jsonNode?.getArrayAtPath(
+                "message.c1.ueCapabilityInformation" +
+                    ".criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
+            )
+            val map = mutableMapOf<String, JsonElement>()
+            if (ueCap != null) {
+                for (ueCapContainer in ueCap) {
+                    val ratType = Rat.of(ueCapContainer.getString("rat-Type"))
+                    val octetString = ueCapContainer.getString("ueCapabilityRAT-Container")
+                    if (ratType != null && octetString != null) {
+                        map += ratContainerToJson(ratType, hexStringToByteArray(octetString))
+                    }
+                }
+            }
+            return JsonObject(map)
+        } else {
+            return ratContainerToJson(defaultRat, hexStringToByteArray(hexString))
+        }
+    }
+    fun String.indexOf(regex: Regex): Int {
+        return regex.find(this)?.range?.first ?: -1
     }
 }
