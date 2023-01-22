@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser
 
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.converter.ConverterNSG
+import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterWireshark
 import it.smartphonecombo.uecapabilityparser.Utility.getAsn1Converter
 import it.smartphonecombo.uecapabilityparser.Utility.indexOf
@@ -67,7 +68,7 @@ internal object MainCli {
             "t",
             "type",
             true,
-            "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)."
+            "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
         )
         type.isRequired = true
         options.addOption(type)
@@ -100,7 +101,7 @@ internal object MainCli {
             "n",
             "newEngine",
             false,
-            "Use the new experimental engine. It works only with type H, W, N."
+            "Use the new experimental engine. It works only with type H, W, N, O."
         )
         options.addOption(newEngine)
 
@@ -122,7 +123,8 @@ internal object MainCli {
             }
             val typeLog = cmd.getOptionValue("type")
             val comboList: Capabilities
-            if (cmd.hasOption("newEngine") && (typeLog == "H" || typeLog == "N" || typeLog == "W")) {
+            if (cmd.hasOption("newEngine") &&
+                (typeLog == "H" || typeLog == "N" || typeLog == "W" || typeLog == "O")) {
                 comboList = newEngine(cmd, typeLog)
             } else {
                 comboList = oldEngine(cmd, typeLog)
@@ -130,7 +132,8 @@ internal object MainCli {
 
             if (cmd.hasOption("csv")) {
                 val fileName: String? = cmd.getOptionValue("csv")
-                if (typeLog == "W" || typeLog == "N" || typeLog == "H" || typeLog == "P" || typeLog == "QNR") {
+                if (typeLog == "W" || typeLog == "N" || typeLog == "H" || typeLog == "P" || typeLog == "QNR"
+                    || typeLog == "O") {
                     val lteCombos = comboList.lteCombos
                     if (!lteCombos.isNullOrEmpty()) {
                         outputFile(
@@ -247,6 +250,13 @@ internal object MainCli {
                 "Q" -> imports = Import0xB0CD()
                 "M" -> imports = ImportMTKLte()
                 "QNR" -> imports = Import0xB826()
+                "O" -> {
+                    System.err.println(
+                        "Type O (Osix) is supported only by the new experimental engine.\n" +
+                                "You can enable it with --newEngine."
+                    )
+                    exitProcess(1)
+                }
                 else -> {
                     System.err.println(
                         "Only type W (wireshark), N (NSG), H (Hex Dump), P (CellularPro), " +
@@ -322,10 +332,16 @@ internal object MainCli {
                     mrdcIdentifier = "rat-Type : ${Rat.eutra_nr}\\s".toRegex()
                     ConverterNSG()
                 }
+                "O" -> {
+                    eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
+                    nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
+                    mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
+                    ConverterOsix()
+                }
                 "H" -> null
                 else -> {
                     System.err.println(
-                        "Only type W (wireshark), N (NSG), H (Hex Dump) are supported " +
+                        "Only type W (wireshark), N (NSG), H (Hex Dump), O (Osix) are supported " +
                             "by the new Engine!"
                     )
                     exitProcess(1)
