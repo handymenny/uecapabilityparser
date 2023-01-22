@@ -55,8 +55,8 @@ tasks{
 }
 
 graalvmNative {
-    agent {
-        enabled.set(true) // Enables the agent
+    binaries.all {
+        resources.autodetect()
     }
 
     binaries {
@@ -68,5 +68,3 @@ graalvmNative {
         }
     }
 }
-
-
