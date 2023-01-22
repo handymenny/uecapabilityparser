@@ -13,6 +13,7 @@ import it.smartphonecombo.uecapabilityparser.bean.Feature
 import it.smartphonecombo.uecapabilityparser.bean.FeatureSet
 import it.smartphonecombo.uecapabilityparser.bean.FeatureSets
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
+import it.smartphonecombo.uecapabilityparser.bean.Rat
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.FeaturePerCCLte
@@ -31,10 +32,6 @@ import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.intOrNull
 
 class ImportCapabilityInformationJson : ImportCapabilities {
-    private val ratTypeEutra = "eutra"
-    private val ratEutraNr = "eutra-nr"
-    private val ratNr = "nr"
-
     override fun parse(caBandCombosString: String): Capabilities {
         val caBandCombosJson = try {
             Json.parseToJsonElement(caBandCombosString) as? JsonObject
@@ -42,9 +39,9 @@ class ImportCapabilityInformationJson : ImportCapabilities {
             null
         }
 
-        val eutraCapability = caBandCombosJson?.get(ratTypeEutra) as? JsonObject
-        val eutraNrCapability = caBandCombosJson?.get(ratEutraNr) as? JsonObject
-        val nrCapability = caBandCombosJson?.get(ratNr) as? JsonObject
+        val eutraCapability = caBandCombosJson?.get(Rat.eutra.toString()) as? JsonObject
+        val eutraNrCapability = caBandCombosJson?.get(Rat.eutra_nr.toString()) as? JsonObject
+        val nrCapability = caBandCombosJson?.get(Rat.nr.toString()) as? JsonObject
 
         return parse(eutraCapability, eutraNrCapability, nrCapability)
     }
