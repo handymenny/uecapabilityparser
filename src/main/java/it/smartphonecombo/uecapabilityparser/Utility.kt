@@ -149,11 +149,11 @@ object Utility {
         val enDcCombos = list.enDcCombos
         val nrCombos = list.nrCombos
 
-        return if (!lteCombos.isNullOrEmpty())  {
+        return if (!lteCombos.isNullOrEmpty()) {
             toCsv(lteCombos)
         } else if (!enDcCombos.isNullOrEmpty()) {
             toCsv(enDcCombos)
-        } else if(!nrCombos.isNullOrEmpty()) {
+        } else if (!nrCombos.isNullOrEmpty()) {
             toCsv(nrCombos)
         } else {
             ""
@@ -256,14 +256,22 @@ object Utility {
     }
 
     fun hexStringToByteArray(s: String): ByteArray {
-        val len = s.length
-        val data = ByteArray(len / 2)
         var i = 0
-        while (i < len) {
-            data[i / 2] = ((s[i].digitToInt(16) shl 4) + s[i + 1].digitToInt(16)).toByte()
-            i += 2
+
+        try {
+            val len = s.length
+            val data = ByteArray(len / 2)
+            while (i < len) {
+                data[i / 2] = ((s[i].digitToInt(16) shl 4) + s[i + 1].digitToInt(16)).toByte()
+                i += 2
+            }
+            return data
+        } catch (err: IllegalArgumentException) {
+            throw IllegalArgumentException(
+                "Invalid hexdump: invalid char at position $i of whitespace-trimmed input file.\n\nUse flag '--multiple0xB826' if you are parsing multiple hexdumps.",
+                err
+            )
         }
-        return data
     }
 
     fun preformatHexData(strEncodedData: String?): String {
@@ -605,6 +613,7 @@ object Utility {
             return ratContainerToJson(defaultRat, hexStringToByteArray(hexString))
         }
     }
+
     fun String.indexOf(regex: Regex): Int {
         return regex.find(this)?.range?.first ?: -1
     }
