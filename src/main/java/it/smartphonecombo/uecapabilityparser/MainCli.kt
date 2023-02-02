@@ -134,7 +134,7 @@ internal object MainCli {
             if (cmd.hasOption("csv")) {
                 val fileName: String? = cmd.getOptionValue("csv")
                 if (typeLog == "W" || typeLog == "N" || typeLog == "H" || typeLog == "P" || typeLog == "QNR"
-                    || typeLog == "O"
+                    || typeLog == "O" || typeLog == "QALL"
                 ) {
                     val lteCombos = comboList.lteCombos
                     if (!lteCombos.isNullOrEmpty()) {
@@ -211,11 +211,12 @@ internal object MainCli {
             } else {
                 input = Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
 
-                if (typeLog == "H" || typeLog == "P" || typeLog == "N" || typeLog == "W") {
+                if (typeLog == "H" || typeLog == "P" || typeLog == "N" || typeLog == "W" || typeLog == "QALL") {
                     if (cmd.hasOption("inputNR")) {
                         inputNR =
                             Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
                     }
+
                     if (cmd.hasOption("inputENDC")) {
                         inputENDC = Utility.readFile(
                             cmd.getOptionValue("inputENDC"),
@@ -223,7 +224,7 @@ internal object MainCli {
                         )
                     }
 
-                    if (typeLog != "H") {
+                    if (typeLog != "H" && typeLog != "QALL") {
                         input += inputENDC + inputNR
                     }
                 }
@@ -290,9 +291,9 @@ internal object MainCli {
 
                 // Merge the two capabilities together
                 if (lteCapabilities != null && nrCapabilities != null) {
-                    return nrCapabilities.also {
-                        it.lteCombos = lteCapabilities.lteCombos
-                    }
+                    nrCapabilities.lteCombos = lteCapabilities.lteCombos
+
+                    return nrCapabilities
                 }
 
                 // One or none contains data
