@@ -61,14 +61,14 @@ internal object MainCli {
             "multi",
             "multiple0xB826",
             false,
-            "Use this option if input contains several 0xB826 hexdumps separated by blank lines and optionally prefixed with \"Payload :\"."
+            "Use this option if input contains several 0xB826 hexdumps separated by blank lines and optionally prefixed with \"Payload :\". (For types QNR and QALL.)"
         )
         options.addOption(multiple0xB826)
         val type = Option(
             "t",
             "type",
             true,
-            "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
+            "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nQALL (0xB0CD and 0xB826 dumps)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
         )
         type.isRequired = true
         options.addOption(type)
@@ -124,7 +124,8 @@ internal object MainCli {
             val typeLog = cmd.getOptionValue("type")
             val comboList: Capabilities
             if (cmd.hasOption("newEngine") &&
-                (typeLog == "H" || typeLog == "N" || typeLog == "W" || typeLog == "O")) {
+                (typeLog == "H" || typeLog == "N" || typeLog == "W" || typeLog == "O")
+            ) {
                 comboList = newEngine(cmd, typeLog)
             } else {
                 comboList = oldEngine(cmd, typeLog)
@@ -133,7 +134,8 @@ internal object MainCli {
             if (cmd.hasOption("csv")) {
                 val fileName: String? = cmd.getOptionValue("csv")
                 if (typeLog == "W" || typeLog == "N" || typeLog == "H" || typeLog == "P" || typeLog == "QNR"
-                    || typeLog == "O") {
+                    || typeLog == "O"
+                ) {
                     val lteCombos = comboList.lteCombos
                     if (!lteCombos.isNullOrEmpty()) {
                         outputFile(
@@ -250,6 +252,7 @@ internal object MainCli {
                 "Q" -> imports = Import0xB0CD()
                 "M" -> imports = ImportMTKLte()
                 "QNR" -> imports = Import0xB826()
+                "QALL" -> imports = Import0xB0CD()
                 "O" -> {
                     System.err.println(
                         "Type O (Osix) is supported only by the new experimental engine.\n" +
@@ -257,11 +260,13 @@ internal object MainCli {
                     )
                     exitProcess(1)
                 }
+
                 else -> {
                     System.err.println(
                         "Only type W (wireshark), N (NSG), H (Hex Dump), P (CellularPro), " +
-                            "C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem), " +
-                            "Q (0xB0CD text), M (CA_COMB_INFO), QNR (0xB826 hexdump) are supported!"
+                                "C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem), " +
+                                "Q (0xB0CD text), M (CA_COMB_INFO), QNR (0xB826 hexdump), " +
+                                "QALL (0xB0CD and 0xB826) are supported!"
                     )
                     exitProcess(1)
                 }
@@ -272,11 +277,34 @@ internal object MainCli {
                 outputFile(input, outputFile)
             }
 
-            return if (typeLog == "QNR") {
-                multipleParser(input, cmd.hasOption("multi"), imports)
-            } else {
-                imports.parse(input)
+            if (typeLog == "QALL") {
+                // Error-check first
+                if (inputENDC.isNotBlank()) {
+                    throw IllegalArgumentException("QALL parser is not compatible with the -inputENDC option.\n\nProvide the 0xB0CD hexdump to -input and the 0xB826 hexdump to -inputNR.")
+                }
+
+                // Run both the 0xB0CD and 0xB826 hexdump parsers
+                val lteCapabilities = if (input.isBlank()) null else imports.parse(input)
+                val nrCapabilities =
+                    if (inputNR.isBlank()) null else multipleParser(inputNR, cmd.hasOption("multi"), Import0xB826())
+
+                // Merge the two capabilities together
+                if (lteCapabilities != null && nrCapabilities != null) {
+                    return nrCapabilities.also {
+                        it.lteCombos = lteCapabilities.lteCombos
+                    }
+                }
+
+                // One or none contains data
+                return lteCapabilities ?: nrCapabilities ?: Capabilities()
             }
+
+            if (typeLog == "QNR") {
+                return multipleParser(input, cmd.hasOption("multi"), imports)
+            }
+
+            return imports.parse(input)
+
         } catch (e: Exception) {
             System.err.println("Error")
             e.printStackTrace()
@@ -326,23 +354,26 @@ internal object MainCli {
                     mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
                     ConverterWireshark()
                 }
+
                 "N" -> {
                     eutraIdentifier = "rat-Type : ${Rat.eutra}\\s".toRegex()
                     nrIdentifier = "rat-Type : ${Rat.nr}\\s".toRegex()
                     mrdcIdentifier = "rat-Type : ${Rat.eutra_nr}\\s".toRegex()
                     ConverterNSG()
                 }
+
                 "O" -> {
                     eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
                     nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
                     mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
                     ConverterOsix()
                 }
+
                 "H" -> null
                 else -> {
                     System.err.println(
                         "Only type W (wireshark), N (NSG), H (Hex Dump), O (Osix) are supported " +
-                            "by the new Engine!"
+                                "by the new Engine!"
                     )
                     exitProcess(1)
                 }
@@ -384,7 +415,11 @@ internal object MainCli {
                 if (eutraNr.isNotBlank() || nr.isNotBlank()) {
                     val nrConverter = getAsn1Converter(Rat.nr, converter!!)
                     if (eutraNr.isNotBlank()) {
-                        nrConverter.convert(Rat.eutra_nr.ratCapabilityIdentifier, eutraNr.byteInputStream(), formatWriter)
+                        nrConverter.convert(
+                            Rat.eutra_nr.ratCapabilityIdentifier,
+                            eutraNr.byteInputStream(),
+                            formatWriter
+                        )
                         formatWriter.jsonNode?.let { ratContainerMap.put(Rat.eutra_nr.toString(), it) }
                     }
                     if (nr.isNotBlank()) {
