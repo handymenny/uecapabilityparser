@@ -4,6 +4,7 @@ import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.converter.ConverterNSG
 import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterWireshark
+import com.github.holgerbrandl.jsonbuilder.json
 import it.smartphonecombo.uecapabilityparser.Utility.getAsn1Converter
 import it.smartphonecombo.uecapabilityparser.Utility.indexOf
 import it.smartphonecombo.uecapabilityparser.Utility.multipleParser
@@ -46,64 +47,85 @@ internal object MainCli {
     @JvmStatic
     fun main(args: Array<String>) {
         val options = Options()
-        val help = Option("h", "help", false, "Print this help message.")
-        options.addOption(help)
-        val inputFile = Option("i", "input", true, "Main capability file.")
-        inputFile.isRequired = true
-        options.addOption(inputFile)
-        val inputFileNR = Option("inputNR", true, "NR UE Capability file.")
-        options.addOption(inputFileNR)
-        val inputFileENDC = Option("inputENDC", true, "ENDC UE Capability file.")
-        options.addOption(inputFileENDC)
-        val defaultInputIsNR = Option("nr", "defaultNR", false, "Main capability input is NR (otherwise LTE).")
-        options.addOption(defaultInputIsNR)
-        val multiple0xB826 = Option(
+
+        Option("h", "help", false, "Print this help message.").also {
+            options.addOption(it)
+        }
+
+        Option("i", "input", true, "Main capability file.").also {
+            it.isRequired = true
+            options.addOption(it)
+        }
+
+        Option("inputNR", true, "NR UE Capability file.").also {
+            options.addOption(it)
+        }
+
+        Option("inputENDC", true, "ENDC UE Capability file.").also {
+            options.addOption(it)
+        }
+
+        Option("nr", "defaultNR", false, "Main capability input is NR (otherwise LTE).").also {
+            options.addOption(it)
+        }
+
+        Option(
             "multi",
             "multiple0xB826",
             false,
             "Use this option if input contains several 0xB826 hexdumps separated by blank lines and optionally prefixed with \"Payload :\"."
-        )
-        options.addOption(multiple0xB826)
-        val type = Option(
+        ).also {
+            options.addOption(it)
+        }
+
+        Option(
             "t",
             "type",
             true,
             "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
-        )
-        type.isRequired = true
-        options.addOption(type)
-        val json = Option(
-            "j", "compactJson", true,
-            "Output a Compact Json (used by smartphonecombo.it), if no file specified the json will be output to standard output."
-        )
-        json.setOptionalArg(true)
-        options.addOption(json)
-        val csv = Option(
-            "c", "csv", true,
-            "Output a csv, if no file specified the csv will be output to standard output.\nSome parsers output multiple CSVs, in these cases \"-LTE\", \"-NR\", \"-EN-DC\", \"-generic\" will be added before the extension."
-        )
-        csv.setOptionalArg(true)
-        options.addOption(csv)
-        val uelog = Option(
-            "l", "uelog", true,
-            "Output the uelog, if no file specified the uelog will be output to standard output."
-        )
-        uelog.setOptionalArg(true)
-        options.addOption(uelog)
-        val debug = Option("d", "debug", false, "Print debug info.")
-        options.addOption(debug)
-        val tsharkPath = Option(
-            "T", "TsharkPath", true,
-            "Set tshark path. (Tshark is used for H type)"
-        )
-        options.addOption(tsharkPath)
-        val newEngine = Option(
-            "n",
-            "newEngine",
+        ).also {
+            it.isRequired = true
+            options.addOption(it)
+        }
+
+        Option(
+            "l", "uelog", true, "Output the uelog, if no file specified the uelog will be output to standard output."
+        ).also {
+            it.setOptionalArg(true)
+            options.addOption(it)
+        }
+
+        Option("d", "debug", false, "Print debug info.").also {
+            options.addOption(it)
+        }
+
+        Option(
+            "T", "TsharkPath", true, "Set tshark path. (Tshark is used for H type)"
+        ).also {
+            options.addOption(it)
+        }
+
+        Option(
+            "n", "newEngine", false, "Use the new experimental engine. It works only with type H, W, N, O."
+        ).also {
+            options.addOption(it)
+        }
+
+        Option(
+            "f", "format", true, "Output format to use. Valid options are: csv, json-csv, json-compact. (Default: csv)"
+        ).also {
+            it.args = 1
+            options.addOption(it)
+        }
+
+        Option(
+            "o",
+            "out-file",
             false,
-            "Use the new experimental engine. It works only with type H, W, N, O."
-        )
-        options.addOption(newEngine)
+            "Optional filename to output to, otherwise outputs to stdout. Don't include an extension: this is decided by the '--format' option."
+        ).also {
+            options.addOption(it)
+        }
 
         val parser: CommandLineParser = DefaultParser()
         val formatter = HelpFormatter()
@@ -122,70 +144,125 @@ internal object MainCli {
                 flags["TsharkPath"] = cmd.getOptionValue("TsharkPath")
             }
             val typeLog = cmd.getOptionValue("type")
-            val comboList: Capabilities
-            if (cmd.hasOption("newEngine") &&
-                (typeLog == "H" || typeLog == "N" || typeLog == "W" || typeLog == "O")) {
-                comboList = newEngine(cmd, typeLog)
-            } else {
-                comboList = oldEngine(cmd, typeLog)
-            }
 
-            if (cmd.hasOption("csv")) {
-                val fileName: String? = cmd.getOptionValue("csv")
-                if (typeLog == "W" || typeLog == "N" || typeLog == "H" || typeLog == "P" || typeLog == "QNR"
-                    || typeLog == "O") {
-                    val lteCombos = comboList.lteCombos
-                    if (!lteCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(lteCombos),
-                            fileName?.let {
-                                Utility.appendBeforeExtension(it, "-LTE")
-                            }
-                        )
-                    }
-                    val nrCombos = comboList.nrCombos
-                    if (!nrCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(nrCombos),
-                            fileName?.let {
-                                Utility.appendBeforeExtension(it, "-NR")
-                            }
-                        )
-                    }
-                    val enDcCombos = comboList.enDcCombos
-                    if (!enDcCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(enDcCombos),
-                            fileName?.let {
-                                Utility.appendBeforeExtension(it, "-EN-DC")
-                            }
-                        )
-                    }
+            val comboList: Capabilities =
+                if (cmd.hasOption("newEngine") && (typeLog == "H" || typeLog == "N" || typeLog == "W" || typeLog == "O")) {
+                    newEngine(cmd, typeLog)
                 } else {
-                    outputFile(
-                        Utility.toCsv(comboList),
-                        fileName
-                    )
+                    oldEngine(cmd, typeLog)
                 }
-            }
-            var list = comboList.lteCombos
-            if (list != null) {
-                list =
-                    list.sortedWith(
-                        Comparator.comparing({ obj: ComboLte -> obj.masterComponents }) { s1: Array<IComponent>, s2: Array<IComponent> ->
-                            var i = 0
-                            while (i < s1.size && i < s2.size) {
-                                val result = s1[i].compareTo(s2[i])
-                                if (result != 0) return@comparing result
-                                i++
-                            }
-                            s1.size.compareTo(s2.size)
+
+
+            val baseOutputFileName: String? = cmd.getOptionValue("out-file");
+            val outputFormat: String? = cmd.getOptionValue("format")
+
+            when ((outputFormat ?: "").lowercase()) {
+                "", "csv" -> {
+                    val fileName = if (baseOutputFileName == null) null else "$baseOutputFileName.csv"
+
+                    if (!(arrayOf("W", "N", "H", "P", "QNR", "O").contains(typeLog))) {
+                        outputFile(
+                            Utility.toCsv(comboList), fileName
+                        )
+                    } else {
+                        val lteCombos = comboList.lteCombos
+                        if (!lteCombos.isNullOrEmpty()) {
+                            outputFile(Utility.toCsv(lteCombos), fileName?.let {
+                                Utility.appendBeforeExtension(it, "-LTE")
+                            })
                         }
-                    )
-            }
-            if (cmd.hasOption("compactJson")) {
-                val outputFile = cmd.getOptionValue("compactJson")
-                outputFile(Utility.compact(Capabilities(list)).combosToString(), outputFile)
+
+                        val nrCombos = comboList.nrCombos
+                        if (!nrCombos.isNullOrEmpty()) {
+                            outputFile(Utility.toCsv(nrCombos), fileName?.let {
+                                Utility.appendBeforeExtension(it, "-NR")
+                            })
+                        }
+
+                        val enDcCombos = comboList.enDcCombos
+                        if (!enDcCombos.isNullOrEmpty()) {
+                            outputFile(Utility.toCsv(enDcCombos), fileName?.let {
+                                Utility.appendBeforeExtension(it, "-EN-DC")
+                            })
+                        }
+                    }
+                }
+
+                "json-csv" -> {
+                    var outputJson = json { }
+
+                    if (!(arrayOf("W", "N", "H", "P", "QNR", "O").contains(typeLog))) {
+                        var key = "generic"
+                        var combos: List<ComboLte>? = null
+
+                        if (!comboList.lteCombos.isNullOrEmpty()) {
+                            key = "lte"
+                            combos = comboList.lteCombos
+                        } else if (!comboList.nrCombos.isNullOrEmpty()) {
+                            key = "nr"
+                            combos = comboList.lteCombos
+                        } else if (!comboList.enDcCombos.isNullOrEmpty()) {
+                            key = "endc"
+                            combos = comboList.lteCombos
+                        }
+
+                        if (combos != null) {
+                            outputJson = outputJson.append(
+                                key,
+                                Utility.toCsv(combos),
+                            )
+                        }
+                    } else {
+                        val lteCombos = comboList.lteCombos
+                        if (!lteCombos.isNullOrEmpty()) {
+                            outputJson = outputJson.append(
+                                "lte", Utility.toCsv(lteCombos)
+                            )
+                        }
+
+                        val nrCombos = comboList.nrCombos
+                        if (!nrCombos.isNullOrEmpty()) {
+                            outputJson = outputJson.append(
+                                "nr", Utility.toCsv(nrCombos)
+                            )
+                        }
+
+                        val enDcCombos = comboList.enDcCombos
+                        if (!enDcCombos.isNullOrEmpty()) {
+                            outputJson = outputJson.append(
+                                "endc", Utility.toCsv(enDcCombos)
+                            )
+                        }
+                    }
+
+
+                    val fileName = if (baseOutputFileName == null) null else "$baseOutputFileName.json"
+
+                    Utility.outputFile(outputJson.toString(), fileName)
+                }
+
+                "json-compact" -> {
+                    var list = comboList.lteCombos
+                    if (list != null) {
+                        list =
+                            list.sortedWith(Comparator.comparing({ obj: ComboLte -> obj.masterComponents }) { s1: Array<IComponent>, s2: Array<IComponent> ->
+                                var i = 0
+                                while (i < s1.size && i < s2.size) {
+                                    val result = s1[i].compareTo(s2[i])
+                                    if (result != 0) return@comparing result
+                                    i++
+                                }
+                                s1.size.compareTo(s2.size)
+                            })
+                    }
+
+                    val fileName = if (baseOutputFileName == null) null else "$baseOutputFileName.json"
+                    Utility.outputFile(Utility.compact(Capabilities(list)).combosToString(), fileName)
+                }
+
+                else -> {
+                    throw ParseException("Invalid output format provided: $outputFormat")
+                }
             }
         } catch (e: ParseException) {
             if (!args.contains("-h") && !args.contains("--help")) {
@@ -197,8 +274,7 @@ internal object MainCli {
     }
 
     private fun oldEngine(
-        cmd: CommandLine,
-        typeLog: String
+        cmd: CommandLine, typeLog: String
     ): Capabilities {
         try {
             var input: String
@@ -211,13 +287,11 @@ internal object MainCli {
 
                 if (typeLog == "H" || typeLog == "P" || typeLog == "N" || typeLog == "W") {
                     if (cmd.hasOption("inputNR")) {
-                        inputNR =
-                            Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
+                        inputNR = Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
                     }
                     if (cmd.hasOption("inputENDC")) {
                         inputENDC = Utility.readFile(
-                            cmd.getOptionValue("inputENDC"),
-                            StandardCharsets.UTF_8
+                            cmd.getOptionValue("inputENDC"), StandardCharsets.UTF_8
                         )
                     }
 
@@ -252,16 +326,14 @@ internal object MainCli {
                 "QNR" -> imports = Import0xB826()
                 "O" -> {
                     System.err.println(
-                        "Type O (Osix) is supported only by the new experimental engine.\n" +
-                                "You can enable it with --newEngine."
+                        "Type O (Osix) is supported only by the new experimental engine.\n" + "You can enable it with --newEngine."
                     )
                     exitProcess(1)
                 }
+
                 else -> {
                     System.err.println(
-                        "Only type W (wireshark), N (NSG), H (Hex Dump), P (CellularPro), " +
-                            "C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem), " +
-                            "Q (0xB0CD text), M (CA_COMB_INFO), QNR (0xB826 hexdump) are supported!"
+                        "Only type W (wireshark), N (NSG), H (Hex Dump), P (CellularPro), " + "C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem), " + "Q (0xB0CD text), M (CA_COMB_INFO), QNR (0xB826 hexdump) are supported!"
                     )
                     exitProcess(1)
                 }
@@ -285,8 +357,7 @@ internal object MainCli {
     }
 
     private fun newEngine(
-        cmd: CommandLine,
-        typeLog: String
+        cmd: CommandLine, typeLog: String
     ): Capabilities {
         try {
             var input: String
@@ -295,13 +366,11 @@ internal object MainCli {
             input = Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
             if (typeLog == "H" || typeLog == "N" || typeLog == "W") {
                 if (cmd.hasOption("inputNR")) {
-                    inputNR =
-                        Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
+                    inputNR = Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
                 }
                 if (cmd.hasOption("inputENDC")) {
                     inputENDC = Utility.readFile(
-                        cmd.getOptionValue("inputENDC"),
-                        StandardCharsets.UTF_8
+                        cmd.getOptionValue("inputENDC"), StandardCharsets.UTF_8
                     )
                 }
                 if (typeLog == "H") {
@@ -326,23 +395,25 @@ internal object MainCli {
                     mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
                     ConverterWireshark()
                 }
+
                 "N" -> {
                     eutraIdentifier = "rat-Type : ${Rat.eutra}\\s".toRegex()
                     nrIdentifier = "rat-Type : ${Rat.nr}\\s".toRegex()
                     mrdcIdentifier = "rat-Type : ${Rat.eutra_nr}\\s".toRegex()
                     ConverterNSG()
                 }
+
                 "O" -> {
                     eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
                     nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
                     mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
                     ConverterOsix()
                 }
+
                 "H" -> null
                 else -> {
                     System.err.println(
-                        "Only type W (wireshark), N (NSG), H (Hex Dump), O (Osix) are supported " +
-                            "by the new Engine!"
+                        "Only type W (wireshark), N (NSG), H (Hex Dump), O (Osix) are supported " + "by the new Engine!"
                     )
                     exitProcess(1)
                 }
@@ -377,14 +448,17 @@ internal object MainCli {
                     }
                 }
                 if (eutra.isNotBlank()) {
-                    getAsn1Converter(Rat.eutra, converter!!)
-                        .convert(Rat.eutra.ratCapabilityIdentifier, eutra.byteInputStream(), formatWriter)
+                    getAsn1Converter(Rat.eutra, converter!!).convert(
+                        Rat.eutra.ratCapabilityIdentifier, eutra.byteInputStream(), formatWriter
+                    )
                     formatWriter.jsonNode?.let { ratContainerMap.put(Rat.eutra.toString(), it) }
                 }
                 if (eutraNr.isNotBlank() || nr.isNotBlank()) {
                     val nrConverter = getAsn1Converter(Rat.nr, converter!!)
                     if (eutraNr.isNotBlank()) {
-                        nrConverter.convert(Rat.eutra_nr.ratCapabilityIdentifier, eutraNr.byteInputStream(), formatWriter)
+                        nrConverter.convert(
+                            Rat.eutra_nr.ratCapabilityIdentifier, eutraNr.byteInputStream(), formatWriter
+                        )
                         formatWriter.jsonNode?.let { ratContainerMap.put(Rat.eutra_nr.toString(), it) }
                     }
                     if (nr.isNotBlank()) {

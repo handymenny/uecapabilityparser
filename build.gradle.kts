@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.8.0"
-    kotlin("plugin.serialization") version "1.8.0"
+    kotlin("plugin.serialization") version "1.8.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.graalvm.buildtools.native") version "0.9.19"
 }
@@ -23,6 +23,7 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:d9687dc")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:d9687dc")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:d9687dc")
+    implementation("com.github.holgerbrandl:jsonbuilder:0.10")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
     implementation("org.slf4j:slf4j-nop:2.0.5")
 }
