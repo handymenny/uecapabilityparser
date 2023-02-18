@@ -84,6 +84,9 @@ class Import0xB826 : ImportCapabilities {
                         if (version >= 9) {
                             `in`.skipBytes(8)
                         }
+                        if (version >= 14) {
+                            `in`.skipBytes(16)
+                        }
                     }
                     for (i in 0 until numBands) {
                         var band: Int
@@ -261,8 +264,8 @@ class Import0xB826 : ImportCapabilities {
             12, 13 -> 50
             17 -> 60
             18 -> 70
-            19 -> 80
-            21, 22, 23, 24, 25, 26, 27, 28, 29 -> 100
+            19, 20 -> 80
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 -> 100
             else -> index
         }
     }
