@@ -365,7 +365,7 @@ object Utility {
         val bwsArray = IntArray(Integer.bitCount(bws))
         val fr2 = intArrayOf(50, 100, 200)
         val fr1 = intArrayOf(5, 10, 15, 20, 25, 30, 40, 50, 60, 80)
-        val fr1v1590 = intArrayOf(70, 45, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        val fr1v1590 = intArrayOf(70, 45, 35, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         var x = 1
         var y = 0
         var arrayMap = fr1
