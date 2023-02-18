@@ -201,8 +201,12 @@ class Import0xB826 : ImportCapabilities {
                             bands.add(lteband)
                         }
                     }
-                    val bandArray = bands.toTypedArray()
-                    val nrbandsArray = nrbands.toTypedArray()
+                    val bandArray = bands
+                        .sortedWith(IComponent.defaultComparator.reversed())
+                        .toTypedArray()
+                    val nrbandsArray = nrbands
+                        .sortedWith(IComponent.defaultComparator.reversed())
+                        .toTypedArray()
                     val newCombo = if (bandArray.isEmpty()) {
                         ComboNr(nrbandsArray)
                     } else {
