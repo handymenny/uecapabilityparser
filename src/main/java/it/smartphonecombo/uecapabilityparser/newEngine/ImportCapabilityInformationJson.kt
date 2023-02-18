@@ -915,7 +915,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
     private fun Map<Int, IntArray>.merge(map: Map<Int, IntArray>): MutableMap<Int, IntArray> {
         val mutableMap = this.toMutableMap()
         map.entries.forEach { (key, value) ->
-            mutableMap.getOrDefault(key, intArrayOf()).plus(value)
+            mutableMap[key] = mutableMap[key]?.plus(value) ?: value
         }
         return mutableMap
     }
