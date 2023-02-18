@@ -754,8 +754,9 @@ class ImportCapabilityInformationJson : ImportCapabilities {
         /*
         * According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
         * So we assume that it's supported by default.
+        * Add 100 MHz only for channelBWs (not for its extensions), to avoid duplicates
         */
-        val default100MHz = componentNr.band in listOf(41, 48, 77, 78, 79, 90)
+        val default100MHz = !isV1590 && componentNr.band in listOf(41, 48, 77, 78, 79, 90)
         val freqRange = if (componentNr.isFR2) "fr2" else "fr1"
 
         val bandWidthMap = mutableMapOf<Int, IntArray>()
