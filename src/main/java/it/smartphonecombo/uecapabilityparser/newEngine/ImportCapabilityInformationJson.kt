@@ -732,14 +732,22 @@ class ImportCapabilityInformationJson : ImportCapabilities {
          * According to TS 38.306 v16.6.0, the UE can omit channelBWs or specific SCS in channelBWs
          * if it supports all BWs defined in 38.101-1 and 38.101-2 v15.7.0.
          * So we add default BWs here when a specific SCS is missing.
+         *
+         * We also use this cycle to sort bws array.
          */
         for (scs in scsRange) {
             val bws = BwTableNr.getDLBws(componentNr.band, scs)
             if (!bandwidthsDL.containsKey(scs)) {
                 bandwidthsDL[scs] = bws.bwsDL
+            } else {
+                // Sort bws array
+                bandwidthsDL[scs] = bandwidthsDL[scs]!!.sortedArrayDescending()
             }
             if (!bandwidthsUL.containsKey(scs)) {
                 bandwidthsUL[scs] = bws.bwsUL
+            } else {
+                // Sort bws array
+                bandwidthsUL[scs] = bandwidthsUL[scs]!!.sortedArrayDescending()
             }
         }
         componentNr.bandwidthsDL = bandwidthsDL
