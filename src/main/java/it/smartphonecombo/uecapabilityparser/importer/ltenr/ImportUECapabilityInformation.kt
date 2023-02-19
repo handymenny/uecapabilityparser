@@ -1009,7 +1009,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         val endString = if (dl) featureSetsUL else pdcp_ParametersNR_r15
         val indexPerCC = caBandCombosString.indexOf(startStringPerCC, ignoreCase = true)
         var end = caBandCombosString.indexOf(endString, ignoreCase = true)
-        if (end < 0) end = caBandCombosString.length
+        if (end < 0 || end < index) end = caBandCombosString.length
         var matcherPerCC: Matcher? = null
         var mainMatcher: Matcher? = null
         val regex = regexLTEFeatureSetPerCC
