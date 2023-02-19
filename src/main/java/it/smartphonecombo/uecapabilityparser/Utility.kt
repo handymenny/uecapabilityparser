@@ -18,6 +18,7 @@ import kotlinx.serialization.json.*
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*
+import kotlin.math.ceil
 import kotlin.system.exitProcess
 
 /**
@@ -305,7 +306,8 @@ object Utility {
             }
             bcsArray
         } else {
-            val binary = Integer.toBinaryString(bcs)
+            var binary = Integer.toBinaryString(bcs)
+            binary = binary.padStart(binary.length.roundToN(4), '0')
             binaryStringToBcsArray(binary)
         }
     }
@@ -617,4 +619,9 @@ object Utility {
     fun String.indexOf(regex: Regex): Int {
         return regex.find(this)?.range?.first ?: -1
     }
+
+    /**
+     * Return the smallest multiple of [n] greater than this integer
+     */
+    private fun Int.roundToN(n: Int): Int = ceil(this / n.toDouble()).toInt() * n
 }
