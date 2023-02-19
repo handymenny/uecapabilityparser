@@ -446,12 +446,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                     }
                 }
             }
-            if (matcherQam256ul != null) {
-                Qam256ulIndex = setAdvancedModulation(bands, listBands, count, Qam256ulIndex, add = false, dl = false)
-            }
-            if (matcherQam1024dl != null) {
-                Qam1024dlIndex = setAdvancedModulation(bands, listBands, count, Qam1024dlIndex, add = false, dl = true)
-            }
+
             if (matcherBandsExt != null && matcherBandsExt!!.find()) {
                 val bandsExt: Int = try {
                     matcherBandsExt!!.group(1).toInt()
@@ -469,11 +464,22 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                             }
                             val extBand = bands[j]
                             extBand.band = band
+                            // Re-set basic mod
+                            listBands[band]?.let {
+                                extBand.modDL = it.modDL
+                                extBand.modUL = it.modUL
+                            }
                         }
                     }
                 }
             }
 
+            if (matcherQam256ul != null) {
+                Qam256ulIndex = setAdvancedModulation(bands, listBands, count, Qam256ulIndex, add = false, dl = false)
+            }
+            if (matcherQam1024dl != null) {
+                Qam1024dlIndex = setAdvancedModulation(bands, listBands, count, Qam1024dlIndex, add = false, dl = true)
+            }
 
             // Update mimo in listBands
             if (listBands.size > 0 && bands.size == 1) {
