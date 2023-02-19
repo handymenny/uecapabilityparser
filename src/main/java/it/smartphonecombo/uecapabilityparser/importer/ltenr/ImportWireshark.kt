@@ -140,8 +140,8 @@ class ImportWireshark : ImportUECapabilityInformation() {
                 "(?:\\s*Item \\\\d" +
                     "\\s*BandParameters: (?:eutra|nr) \\(\\d\\)\\s*(eutra|nr)" +
                     "\\s*band(?:EUTRA|NR): (\\d{1,3})" +
-                    "\\s*ca-BandwidthClassDL-(?:EUTRA|NR): ([a-z]) \\(\\d\\)" +
-                    "(?:\\s*ca-BandwidthClassUL-(?:EUTRA|NR): ([a-z]) \\(\\d\\))?)"
+                    "\\s*ca-BandwidthClassDL-(?:EUTRA|NR): ([a-z]) \\(\\d+\\)" +
+                    "(?:\\s*ca-BandwidthClassUL-(?:EUTRA|NR): ([a-z]) \\(\\d+\\))?)"
                 )
             regex.append(baseRegex.replace("\\\\d", "0"))
             for (i in 1 until ImportCapabilities.nrDlCC) {
