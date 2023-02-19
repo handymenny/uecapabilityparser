@@ -121,7 +121,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
             }
             hashmap[rat] = Range(
                 start,
-                uecapability.length - 1
+                uecapability.length
             )
         }
         return hashmap
