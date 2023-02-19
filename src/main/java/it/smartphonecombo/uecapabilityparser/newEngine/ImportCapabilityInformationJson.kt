@@ -504,6 +504,11 @@ class ImportCapabilityInformationJson : ImportCapabilities {
 
                     if (downlinkIndex < 0 && uplinkIndex < 0) {
                         // Fallback combination
+                        if (featureSet.isNR) {
+                            nrComponents.next()
+                        } else {
+                            lteComponents.next()
+                        }
                         continue
                     }
 
