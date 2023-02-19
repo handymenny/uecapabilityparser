@@ -609,6 +609,22 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                     )
                 )
             }
+
+            if (matcherMimo != null && matcherMimo!!.find()) {
+                if (matcherMimo!!.group(1).toInt() == count) {
+                    var j = 0
+                    var o = 2
+                    while (j < bands.size) {
+                        val result = matcherMimo!!.group(j + o + 1)
+                        if (result != null && result == "supported") {
+                            bands[j].mimoDL = 4
+                        }
+                        j++
+                        o++
+                    }
+                }
+            }
+
             if (matcherQam256ul != null) {
                 Qam256ulIndex = setAdvancedModulation(bands, listBands, count, Qam256ulIndex, add = true, dl = false)
             }
