@@ -171,13 +171,24 @@ class ImportNsg : ImportUECapabilityInformation() {
             val regex = StringBuilder(
                 "(?:featureSetCombinations)?\\[(\\d{1,3})\\]"
             )
-            val baseRegexFeature = ("(?:[\\v\\h]*\\[\\\\d]" + "[\\v\\h]*\\[0](?: -> )?" + "[\\v\\h]*(eutra|nr)"
+
+            val regexFeature = StringBuilder("(?:[\\v\\h]*\\[\\\\d]")
+
+            val baseRegexFeature = ("(?:[\\v\\h]*\\[\\\\d](?: -> )?" + "[\\v\\h]*(eutra|nr)"
                     + "[\\v\\h]*downlinkSet(?:EUTRA|NR) : (\\d{1,3})"
-                    + "[\\v\\h]*uplinkSet(?:EUTRA|NR) : (\\d{1,3})(?:[\\v\\h]*\\[\\d\\](?: -> )?[\\v\\h]*(?:eutra|nr)" +
-                    "[\\v\\h]*downlinkSet(?:EUTRA|NR) : \\d{1,3}[\\v\\h]*uplinkSet(?:EUTRA|NR) : \\d{1,3})*)")
-            regex.append(baseRegexFeature.replace("\\\\d", "0"))
+                    + "[\\v\\h]*uplinkSet(?:EUTRA|NR) : (\\d{1,3}))")
+
+            // The real max is 128, but that would be too slow...
+            regexFeature.append(baseRegexFeature.replace("\\\\d", "0"))
+            for (i in 1 until 32) {
+                val baseRegex = baseRegexFeature.replace("\\\\d", i.toString() + "")
+                regexFeature.append(baseRegex).append("?")
+            }
+
+            regex.append(regexFeature.toString().replace("\\\\d", "0")).append(")")
             for (i in 1 until ImportCapabilities.nrDlCC) {
-                regex.append(baseRegexFeature.replace("\\\\d", i.toString() + "")).append("?")
+                val baseRegex = regexFeature.toString().replace("\\\\d", i.toString() + "")
+                regex.append(baseRegex).append(")?")
             }
             return regex.toString()
         }
