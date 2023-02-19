@@ -380,8 +380,8 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         var count = 0
         var bcsIndex = 0
         var mimoIndex = 0
-        var Qam256ulIndex = matcherQam256ul?.regionStart() ?: 0
-        var Qam1024dlIndex = matcherQam1024dl?.regionStart() ?: 0
+        var Qam256ulIndex = 0
+        var Qam1024dlIndex = 0
         var resetBcs = false
         var resetMimo = false
         val matcher = matcherBandCombination
@@ -414,6 +414,14 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 val temp = listBands.getOrDefault(baseBand, ComponentLte())
                 dlMod = temp.modDL
                 ulMod = temp.modUL
+                if (dlMod == "1024qam") {
+                    // Avoid advanced modulation
+                    dlMod = "256qam"
+                }
+                if (ulMod == "256qam") {
+                    // Avoid advanced modulation
+                    ulMod = "64qam"
+                }
                 bands.add(
                     ComponentLte(
                         baseBand, bandwidthClass, uplink, mimo, dlMod,
@@ -538,8 +546,16 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         reduced: Boolean
     ) {
         var count = 0
-        var Qam256ulIndex = 0
-        var Qam1024dlIndex = 0
+        var Qam256ulIndex = try {
+            matcherQam256ul!!.end()
+        } catch (_: Exception) {
+            0
+        }
+        var Qam1024dlIndex = try {
+            matcherQam1024dl!!.end()
+        } catch (_: Exception) {
+            0
+        }
         val matcher = if (reduced) matcherReduced else matcherAdd
         while (matcher!!.find()) {
             val bands = ArrayList<IComponent>()
@@ -565,6 +581,14 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 val temp = listBands.getOrDefault(baseBand, ComponentLte())
                 dlMod = temp.modDL
                 ulMod = temp.modUL
+                if (dlMod == "1024qam") {
+                    // Avoid advanced modulation
+                    dlMod = "256qam"
+                }
+                if (ulMod == "256qam") {
+                    // Avoid advanced modulation
+                    ulMod = "64qam"
+                }
 
                 // Update mimo only for bandCombination Reduced
                 if (reduced) {
@@ -916,7 +940,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
     ): Int {
         val res: Boolean
         val matcher = if (dl) matcherQam1024dl else matcherQam256ul
-        res = if (index >= 0) {
+        res = if (index > 0) {
             matcher!!.find(index)
         } else {
             matcher!!.find()
@@ -926,12 +950,6 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 matcher.group(1).toInt()
             } catch (ex: Exception) {
                 count
-            }
-            if (matchCount < count) {
-                while (matcher.group(1).toInt() == count
-                    && (matcher.find()
-                            || !add && matcher.group(1).toInt() == 127)
-                );
             }
             if (matchCount == count) {
                 var j = 0
