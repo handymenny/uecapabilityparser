@@ -13,7 +13,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexSupportedBandCombination: String
         get() {
             val regex = StringBuilder()
-            val startRegex = "[\\v\\h](?:SupportedBandCombination-r10)?[\\v\\h]*\\[(\\d{1,3})]"
+            val startRegex = "[\\v\\h]*(?:SupportedBandCombination-r10)?[\\v\\h]*\\[(\\d{1,3})]"
             regex.append(startRegex)
             val baseRegex = ("(?:[\\v\\h]*(?:BandCombinationParameters-r10)?\\[\\d]"
                     + "[\\v\\h]*bandEUTRA-r10 : (\\d{1,3})"
@@ -46,7 +46,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexBandCombinationParameters_v1090: String
         get() {
             val regexadd = StringBuilder()
-            val startRegexAdd = "[\\v\\h](?:SupportedBandCombination-v1090)?[\\v\\h]*\\[(\\d{1,3})\\]"
+            val startRegexAdd = "[\\v\\h]*(?:SupportedBandCombination-v1090)?[\\v\\h]*\\[(\\d{1,3})\\]"
             regexadd.append(startRegexAdd)
                 .append("(?:[\\v\\h]*(?:BandCombinationParameters-v1090)?\\[0](?:[\\v\\h]*bandEUTRA-v1090 *: *(\\d{1,3}))?)")
             val baseRegexAdd =
@@ -59,7 +59,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexSupportedBandCombinationAdd: String
         get() {
             val regexadd = StringBuilder()
-            val startRegexAdd = "[\\v\\h](?:SupportedBandCombinationAdd-r11)?[\\v\\h]*\\[(\\d{1,3})\\]"
+            val startRegexAdd = "[\\v\\h]*(?:SupportedBandCombinationAdd-r11)?[\\v\\h]*\\[(\\d{1,3})\\]"
             regexadd.append(startRegexAdd)
             val baseRegexAdd = ("(?:[\\v\\h]*(?:bandParameterList-r11)?[\\v\\h]*\\[\\d\\]"
                     + "[\\v\\h]*bandEUTRA-r11 : (\\d{1,3})"
@@ -104,7 +104,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexBandCombinationReduced: String
         get() {
             val regexReduced = StringBuilder()
-            val startRegexReduced = "[\\v\\h](?:supportedBandCombinationReduced-r13)?[\\v\\h]*\\[(\\d{1,3})\\]"
+            val startRegexReduced = "[\\v\\h]*(?:supportedBandCombinationReduced-r13)?[\\v\\h]*\\[(\\d{1,3})\\]"
             regexReduced.append(startRegexReduced)
             val baseRegexReduced =
                 ("(?:[\\v\\h]*(?:differentFallbackSupported-r13[\\v\\h]*:[\\v\\h]*true[\\v\\h]*)?(?:bandParameterList-r13)?[\\v\\h]*\\[\\d\\]"
