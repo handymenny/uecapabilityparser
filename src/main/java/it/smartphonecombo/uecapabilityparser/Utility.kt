@@ -334,7 +334,7 @@ object Utility {
         try {
             if (isHex) {
                 if (bcsString.isNotEmpty()) {
-                    return bcsString.substring(0, 2).toInt(16)
+                    return bcsString.substring(0, minOf(2, bcsString.length)).toInt(16)
                 }
             } else {
                 return if (bcsString.length > 7) {
