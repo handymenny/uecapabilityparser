@@ -113,8 +113,8 @@ class ImportNsg : ImportUECapabilityInformation() {
                         + "[\\v\\h]*ca-BandwidthClassUL-r10 : ([a-z]))?"
                         + "[\\v\\h]*bandParametersDL-r13"
                         + "[\\v\\h]*ca-BandwidthClassDL-r13 : ([a-z])"
-                        + "[\\v\\h]*supportedMIMO-CapabilityDL-r13 : (two|four|eight)Layers"
-                        + "(?:[\\v\\h]*fourLayerTM3-TM4-r13 : supported)?"
+                        + "(?:[\\v\\h]*supportedMIMO-CapabilityDL-r13 : (two|four|eight)Layers)?"
+                        + "(?:[\\v\\h]*fourLayerTM3-TM4-r13 : (supported))?"
                         + "(?:[\\v\\h]*(?:intraBandContiguousCC-InfoList-r13)?[\\v\\h]*\\[[0-7]\\](?![\\v\\h]*bandEUTRA-r13|[\\v\\h]*bandParameterList)[\\v\\h]*){0,7})")
             regexReduced.append(baseRegexReduced)
             for (i in 1 until ImportCapabilities.lteDlCC) {

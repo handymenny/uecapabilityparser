@@ -572,11 +572,18 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                     '0'
                 }
                 val bandwidthClass = matcher.group(i++).uppercase()[0]
-                val mimo: Int = try {
-                    Utility.convertNumber(matcher.group(i++))
-                } catch (ex: NullPointerException) {
-                    0
+                var mimo: Int = Utility.convertNumber(matcher.group(i++))
+
+                // Some devices only reports fourLayerTM3-TM4-r13
+                if (reduced && matcher.group(i++) == "supported" && mimo < 4) {
+                    mimo = 4
                 }
+
+                // Some devices don't report supportedMIMO-CapabilityDL for twoLayers
+                if (mimo == 0 && bandwidthClass != '0') {
+                    mimo = 2
+                }
+
                 // Basic Mod
                 val temp = listBands.getOrDefault(baseBand, ComponentLte())
                 dlMod = temp.modDL
@@ -610,7 +617,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 )
             }
 
-            if (matcherMimo != null && matcherMimo!!.find()) {
+            if (!reduced && matcherMimo != null && matcherMimo!!.find()) {
                 if (matcherMimo!!.group(1).toInt() == count) {
                     var j = 0
                     var o = 2

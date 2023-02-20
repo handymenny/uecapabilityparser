@@ -95,8 +95,9 @@ class ImportWireshark : ImportUECapabilityInformation() {
                 "[\\v\\h]*Item (\\d{1,3})[\\v\\h]*BandCombinationParameters-r13[\\v\\h]*(?:differentFallbackSupported-r13:[\\v\\h]*true[\\v\\h]*\\(0\\)[\\v\\h]*)?bandParameterList-r13: \\d items?"
             regexReduced.append(startRegexReduced)
             val baseRegexReduced =
-                ("(?:[\\v\\h]*item[\\v\\h]*\\d{1,3}[\\v\\h]*BandParameters-r13[\\v\\h]*bandEUTRA-r13[\\v\\h]*:[\\v\\h]*(\\d{1,3})(?:[\\v\\h]*bandParametersUL-r13[\\v\\h]*ca-BandwidthClassUL-r10[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\))?[\\v\\h]*bandParametersDL-r13[\\v\\h]*ca-BandwidthClassDL-r13[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\)[\\v\\h]*supportedMIMO-CapabilityDL-r13[\\v\\h]*:[\\v\\h]*(two|four|eight)Layers[\\v\\h]*\\(\\d\\)(?:[\\v\\h]*fourLayerTM3-TM4-r13: supported \\(0\\))?"
-                        + "[\\v\\h]*intraBandContiguousCC-InfoList-r13: \\d items?(?:[\\v\\h]*item \\d[\\v\\h]*IntraBandContiguousCC-Info-r12)+)")
+                ("(?:[\\v\\h]*item[\\v\\h]*\\d{1,3}[\\v\\h]*BandParameters-r13[\\v\\h]*bandEUTRA-r13[\\v\\h]*:[\\v\\h]*(\\d{1,3})(?:[\\v\\h]*bandParametersUL-r13[\\v\\h]*ca-BandwidthClassUL-r10[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\))?[\\v\\h]*bandParametersDL-r13[\\v\\h]*ca-BandwidthClassDL-r13[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\)"
+                    + "(?:[\\v\\h]*supportedMIMO-CapabilityDL-r13[\\v\\h]*:[\\v\\h]*(two|four|eight)Layers[\\v\\h]*\\(\\d\\))?(?:[\\v\\h]*fourLayerTM3-TM4-r13: (supported) \\(0\\))?"
+                        + "[\\v\\h]*intraBandContiguousCC-InfoList-r13: \\d items?(?:[\\v\\h]*item \\d[\\v\\h]*IntraBandContiguousCC-Info-r12(?:[\\v\\h]*fourLayerTM3-TM4-perCC-r12: supported \\(0\\))?(?:[\\v\\h]*supportedMIMO-CapabilityDL-r12[\\v\\h]*:[\\v\\h]*(?:two|four|eight)Layers[\\v\\h]*\\(\\d\\))?)+)")
             regexReduced.append(baseRegexReduced)
             for (i in 1 until ImportCapabilities.lteDlCC) {
                 regexReduced.append(baseRegexReduced).append("?")
