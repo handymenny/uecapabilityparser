@@ -342,7 +342,7 @@ object Utility {
                 return if (bcsString.length > 7) {
                     bcsString.substring(0, 8).toInt(2)
                 } else {
-                    bcsString.toInt(2)
+                    bcsString.padEnd(bcsString.length.roundToN(4), '0').toInt(2)
                 }
             }
         } catch (ignored: NumberFormatException) {
