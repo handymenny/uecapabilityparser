@@ -20,7 +20,7 @@ import it.smartphonecombo.uecapabilityparser.importer.lte.ImportMTKLte
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.nr.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.nr.ImportCapPrune
-import it.smartphonecombo.uecapabilityparser.newEngine.ImportCapabilityInformationJson
+import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformationJson
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import org.apache.commons.cli.CommandLine

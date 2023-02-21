@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsText
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
+import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformationJson
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
