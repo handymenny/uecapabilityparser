@@ -95,8 +95,9 @@ class ImportWireshark : ImportUECapabilityInformation() {
                 "[\\v\\h]*Item (\\d{1,3})[\\v\\h]*BandCombinationParameters-r13[\\v\\h]*(?:differentFallbackSupported-r13:[\\v\\h]*true[\\v\\h]*\\(0\\)[\\v\\h]*)?bandParameterList-r13: \\d items?"
             regexReduced.append(startRegexReduced)
             val baseRegexReduced =
-                ("(?:[\\v\\h]*item[\\v\\h]*\\d{1,3}[\\v\\h]*BandParameters-r13[\\v\\h]*bandEUTRA-r13[\\v\\h]*:[\\v\\h]*(\\d{1,3})(?:[\\v\\h]*bandParametersUL-r13[\\v\\h]*ca-BandwidthClassUL-r10[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\))?[\\v\\h]*bandParametersDL-r13[\\v\\h]*ca-BandwidthClassDL-r13[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\)[\\v\\h]*supportedMIMO-CapabilityDL-r13[\\v\\h]*:[\\v\\h]*(two|four|eight)Layers[\\v\\h]*\\(\\d\\)(?:[\\v\\h]*fourLayerTM3-TM4-r13: supported \\(0\\))?"
-                        + "[\\v\\h]*intraBandContiguousCC-InfoList-r13: \\d items?(?:[\\v\\h]*item \\d[\\v\\h]*IntraBandContiguousCC-Info-r12)+)")
+                ("(?:[\\v\\h]*item[\\v\\h]*\\d{1,3}[\\v\\h]*BandParameters-r13[\\v\\h]*bandEUTRA-r13[\\v\\h]*:[\\v\\h]*(\\d{1,3})(?:[\\v\\h]*bandParametersUL-r13[\\v\\h]*ca-BandwidthClassUL-r10[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\))?[\\v\\h]*bandParametersDL-r13[\\v\\h]*ca-BandwidthClassDL-r13[\\v\\h]*:[\\v\\h]*([a-z]) \\(\\d\\)"
+                    + "(?:[\\v\\h]*supportedMIMO-CapabilityDL-r13[\\v\\h]*:[\\v\\h]*(two|four|eight)Layers[\\v\\h]*\\(\\d\\))?(?:[\\v\\h]*fourLayerTM3-TM4-r13: (supported) \\(0\\))?"
+                        + "[\\v\\h]*intraBandContiguousCC-InfoList-r13: \\d items?(?:[\\v\\h]*item \\d[\\v\\h]*IntraBandContiguousCC-Info-r12(?:[\\v\\h]*fourLayerTM3-TM4-perCC-r12: supported \\(0\\))?(?:[\\v\\h]*supportedMIMO-CapabilityDL-r12[\\v\\h]*:[\\v\\h]*(?:two|four|eight)Layers[\\v\\h]*\\(\\d\\))?)+)")
             regexReduced.append(baseRegexReduced)
             for (i in 1 until ImportCapabilities.lteDlCC) {
                 regexReduced.append(baseRegexReduced).append("?")
@@ -136,11 +137,13 @@ class ImportWireshark : ImportUECapabilityInformation() {
             val regex = StringBuilder(
                 "Item (\\d{1,3})\\s*BandCombination\\s*bandList: \\d items?"
             )
-            val baseRegex = ("(?:\\s*Item \\\\d"
-                    + "\\s*BandParameters: (?:eutra|nr) \\(\\d\\)\\s*(eutra|nr)"
-                    + "\\s*band(?:EUTRA|NR): (\\d{1,3})"
-                    + "\\s*ca-BandwidthClassDL-(?:EUTRA|NR): ([a-z]) \\(\\d\\)"
-                    + "(?:\\s*ca-BandwidthClassUL-(?:EUTRA|NR): ([a-z]) \\(\\d\\))?)")
+            val baseRegex = (
+                "(?:\\s*Item \\\\d" +
+                    "\\s*BandParameters: (?:eutra|nr) \\(\\d\\)\\s*(eutra|nr)" +
+                    "\\s*band(?:EUTRA|NR): (\\d{1,3})" +
+                    "(?:\\s*ca-BandwidthClassDL-(?:EUTRA|NR): ([a-z]) \\(\\d+\\))?" +
+                    "(?:\\s*ca-BandwidthClassUL-(?:EUTRA|NR): ([a-z]) \\(\\d+\\))?)"
+                )
             regex.append(baseRegex.replace("\\\\d", "0"))
             for (i in 1 until ImportCapabilities.nrDlCC) {
                 regex.append(baseRegex.replace("\\\\d", i.toString() + "")).append("?")
@@ -153,14 +156,26 @@ class ImportWireshark : ImportUECapabilityInformation() {
             val regex = StringBuilder(
                 "Item (\\d{1,3})\\s*FeatureSetCombination: \\d items?"
             )
-            val baseRegexFeature = ("(?:\\s*Item \\\\d\\s*FeatureSetsPerBand: \\d* items?\\s*Item \\d*"
-                    + "\\s*FeatureSet: (?:eutra|nr) \\(\\d\\)\\s*(eutra|nr)"
-                    + "\\s*downlinkSet(?:EUTRA|NR): (\\d{1,3})"
-                    + "\\s*uplinkSet(?:EUTRA|NR): (\\d{1,3})"
-                    + "(?:\\s*Item \\d*\\s*FeatureSet: (?:eutra|nr) \\(\\d\\)\\s*(?:eutra|nr)\\s*downlinkSet(?:EUTRA|NR): (?:\\d{1,3})\\s*uplinkSet(?:EUTRA|NR): (?:\\d{1,3}))*)")
-            regex.append(baseRegexFeature.replace("\\\\d", "0"))
+            val regexFeature = StringBuilder("(?:\\s*Item \\\\d\\s*FeatureSetsPerBand: \\d* items?")
+
+            val baseRegexFeature = (
+                "(?:\\s*Item \\\\d*" +
+                    "\\s*FeatureSet: (?:eutra|nr) \\(\\d\\)\\s*(eutra|nr)" +
+                    "\\s*downlinkSet(?:EUTRA|NR): (\\d{1,3})" +
+                    "\\s*uplinkSet(?:EUTRA|NR): (\\d{1,3})" +
+                    ")"
+                )
+
+            // The real max is 128, but that would be too slow...
+            for (i in 0 until 32) {
+                val baseRegex = baseRegexFeature.replace("\\\\d", i.toString() + "")
+                regexFeature.append(baseRegex).append("?")
+            }
+
+            regex.append(regexFeature.toString().replace("\\\\d", "0")).append(")")
             for (i in 1 until ImportCapabilities.nrDlCC) {
-                regex.append(baseRegexFeature.replace("\\\\d", i.toString() + "")).append("?")
+                val baseRegex = regexFeature.toString().replace("\\\\d", i.toString() + "")
+                regex.append(baseRegex).append(")?")
             }
             return regex.toString()
         }

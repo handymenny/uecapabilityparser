@@ -121,7 +121,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
             }
             hashmap[rat] = Range(
                 start,
-                uecapability.length - 1
+                uecapability.length
             )
         }
         return hashmap
@@ -380,8 +380,8 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         var count = 0
         var bcsIndex = 0
         var mimoIndex = 0
-        var Qam256ulIndex = matcherQam256ul?.regionStart() ?: 0
-        var Qam1024dlIndex = matcherQam1024dl?.regionStart() ?: 0
+        var Qam256ulIndex = 0
+        var Qam1024dlIndex = 0
         var resetBcs = false
         var resetMimo = false
         val matcher = matcherBandCombination
@@ -414,6 +414,14 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 val temp = listBands.getOrDefault(baseBand, ComponentLte())
                 dlMod = temp.modDL
                 ulMod = temp.modUL
+                if (dlMod == "1024qam") {
+                    // Avoid advanced modulation
+                    dlMod = "256qam"
+                }
+                if (ulMod == "256qam") {
+                    // Avoid advanced modulation
+                    ulMod = "64qam"
+                }
                 bands.add(
                     ComponentLte(
                         baseBand, bandwidthClass, uplink, mimo, dlMod,
@@ -538,8 +546,16 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         reduced: Boolean
     ) {
         var count = 0
-        var Qam256ulIndex = 0
-        var Qam1024dlIndex = 0
+        var Qam256ulIndex = try {
+            matcherQam256ul!!.end()
+        } catch (_: Exception) {
+            0
+        }
+        var Qam1024dlIndex = try {
+            matcherQam1024dl!!.end()
+        } catch (_: Exception) {
+            0
+        }
         val matcher = if (reduced) matcherReduced else matcherAdd
         while (matcher!!.find()) {
             val bands = ArrayList<IComponent>()
@@ -556,15 +572,30 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                     '0'
                 }
                 val bandwidthClass = matcher.group(i++).uppercase()[0]
-                val mimo: Int = try {
-                    Utility.convertNumber(matcher.group(i++))
-                } catch (ex: NullPointerException) {
-                    0
+                var mimo: Int = Utility.convertNumber(matcher.group(i++))
+
+                // Some devices only reports fourLayerTM3-TM4-r13
+                if (reduced && matcher.group(i++) == "supported" && mimo < 4) {
+                    mimo = 4
                 }
+
+                // Some devices don't report supportedMIMO-CapabilityDL for twoLayers
+                if (mimo == 0 && bandwidthClass != '0') {
+                    mimo = 2
+                }
+
                 // Basic Mod
                 val temp = listBands.getOrDefault(baseBand, ComponentLte())
                 dlMod = temp.modDL
                 ulMod = temp.modUL
+                if (dlMod == "1024qam") {
+                    // Avoid advanced modulation
+                    dlMod = "256qam"
+                }
+                if (ulMod == "256qam") {
+                    // Avoid advanced modulation
+                    ulMod = "64qam"
+                }
 
                 // Update mimo only for bandCombination Reduced
                 if (reduced) {
@@ -585,6 +616,22 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                     )
                 )
             }
+
+            if (!reduced && matcherMimo != null && matcherMimo!!.find()) {
+                if (matcherMimo!!.group(1).toInt() == count) {
+                    var j = 0
+                    var o = 2
+                    while (j < bands.size) {
+                        val result = matcherMimo!!.group(j + o + 1)
+                        if (result != null && result == "supported") {
+                            bands[j].mimoDL = 4
+                        }
+                        j++
+                        o++
+                    }
+                }
+            }
+
             if (matcherQam256ul != null) {
                 Qam256ulIndex = setAdvancedModulation(bands, listBands, count, Qam256ulIndex, add = true, dl = false)
             }
@@ -776,29 +823,38 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 println(newCombo)
             }
         }
-        val features = ArrayList<ArrayList<Feature>>()
+        val features = ArrayList<ArrayList<ArrayList<Feature>>>()
         while (featureMatcher.find()) {
             val comboNumber = featureMatcher.group(1).toInt()
             if (debug) {
                 print("found feature $comboNumber: \t\t")
             }
             var i = 2
-            val featuresInt = ArrayList<Feature>()
+            val featuresInt = ArrayList<ArrayList<Feature>>()
+            var ccIndex = 0
             while (featureMatcher.group(i) != null) {
-                val feature = Feature(
-                    featureMatcher.group(i++) == "nr",
-                    featureMatcher.group(i++).toInt(),
-                    featureMatcher.group(i++).toInt()
-                )
-                featuresInt.add(feature)
+                val list = ArrayList<Feature>()
+                while (featureMatcher.group(i) != null) {
+                    val feature = Feature(
+                        featureMatcher.group(i++) == "nr",
+                        featureMatcher.group(i++).toInt(),
+                        featureMatcher.group(i++).toInt()
+                    )
+                    list.add(feature)
+                }
+                featuresInt.add(list)
+                if (++ccIndex >= ImportCapabilities.nrDlCC) {
+                    break
+                }
+                // The real max is 128 (not 32), but that would be too slow...
+                while (++i < 32 * 3 * ccIndex + 2);
             }
             if (debug) {
                 println(featuresInt)
             }
             features.add(featuresInt)
         }
-        linkFeaturesAndCarrier(listCombo, features, lteFeatures, nrFeatures)
-        return listCombo
+        return linkFeaturesAndCarrier(listCombo, features, lteFeatures, nrFeatures)
     }
 
     private fun parseNRbands(uecapabilityinfo: String): List<ComponentNr> {
@@ -907,7 +963,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
     ): Int {
         val res: Boolean
         val matcher = if (dl) matcherQam1024dl else matcherQam256ul
-        res = if (index >= 0) {
+        res = if (index > 0) {
             matcher!!.find(index)
         } else {
             matcher!!.find()
@@ -917,12 +973,6 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
                 matcher.group(1).toInt()
             } catch (ex: Exception) {
                 count
-            }
-            if (matchCount < count) {
-                while (matcher.group(1).toInt() == count
-                    && (matcher.find()
-                            || !add && matcher.group(1).toInt() == 127)
-                );
             }
             if (matchCount == count) {
                 var j = 0
@@ -966,7 +1016,7 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
         val endString = if (dl) featureSetsUL else pdcp_ParametersNR_r15
         val indexPerCC = caBandCombosString.indexOf(startStringPerCC, ignoreCase = true)
         var end = caBandCombosString.indexOf(endString, ignoreCase = true)
-        if (end < 0) end = caBandCombosString.length
+        if (end < 0 || end < index) end = caBandCombosString.length
         var matcherPerCC: Matcher? = null
         var mainMatcher: Matcher? = null
         val regex = regexLTEFeatureSetPerCC
@@ -1025,84 +1075,115 @@ abstract class ImportUECapabilityInformation : ImportCapabilities {
     protected abstract val regexFeatureSetCombinations: String
     private fun linkFeaturesAndCarrier(
         combos: List<ComboNr>,
-        featureSets: ArrayList<ArrayList<Feature>>, lteFeatures: FeatureSets?,
+        featureSets: ArrayList<ArrayList<ArrayList<Feature>>>,
+        lteFeatures: FeatureSets?,
         nrFeatures: FeatureSets
-    ) {
+    ): List<ComboNr> {
+        val list = mutableListOf<ComboNr>()
         for (combo in combos) {
-            val featureSet: List<Feature> = featureSets[combo.featureSet]
-            val lteComponents = combo.componentsLte
-            var j = 0
-            if (lteFeatures != null) {
-                while (j < lteComponents.size) {
-                    try {
-                        val band = lteComponents[j]
-                        val downLinkFeature = lteFeatures.downlink?.get(featureSet[j].downlink - 1)
-                            ?.featureSetsPerCC?.get(0)
-                        if (downLinkFeature != null) {
-                            band.mimoDL = downLinkFeature.mimo
-                        }
-                        if (band.classUL != '0') {
-                            val uplinkFeature =
-                                lteFeatures.uplink?.get(featureSet[j].uplink - 1)?.featureSetsPerCC?.get(0)
-                            if (uplinkFeature != null) {
-                                band.modUL = uplinkFeature.qam
+            val featureSet = featureSets.getOrNull(combo.featureSet) ?: continue
+            val indices = featureSet.firstOrNull()?.indices ?: IntRange.EMPTY
+
+            for (index in indices) {
+                val lteComponents = combo.componentsLte
+                val newLteComponents = mutableListOf<IComponent>()
+                var j = 0
+                if (lteFeatures != null) {
+                    while (j < lteComponents.size) {
+                        try {
+                            val oldComponentLte = lteComponents[j]
+                            val band = ComponentLte(
+                                oldComponentLte.band,
+                                oldComponentLte.classDL,
+                                oldComponentLte.classUL
+                            )
+                            if (featureSet[j][index].downlink == 0) {
+                                // fallback combo
+                                j++
+                                continue
                             }
+                            val downLinkFeature =
+                                lteFeatures.downlink?.get(featureSet[j][index].downlink - 1)
+                                    ?.featureSetsPerCC?.get(0)
+                            if (downLinkFeature != null) {
+                                band.mimoDL = downLinkFeature.mimo
+                            }
+                            if (featureSet[j][index].uplink != 0) {
+                                val uplinkFeature =
+                                    lteFeatures.uplink?.get(featureSet[j][index].uplink - 1)?.featureSetsPerCC?.get(
+                                        0
+                                    )
+                                if (uplinkFeature != null) {
+                                    band.modUL = uplinkFeature.qam
+                                }
+                            }
+                            newLteComponents.add(band)
+                        } catch (ex: Exception) {
+                            ex.printStackTrace()
+                        }
+                        j++
+                    }
+                }
+                val nrComponents = combo.componentsNr
+                val newNrComponents = mutableListOf<IComponent>()
+                for (m in nrComponents.indices) {
+                    val oldComponent = nrComponents[m] as ComponentNr
+                    val nrComponent = ComponentNr(
+                        oldComponent.band,
+                        oldComponent.classDL,
+                        oldComponent.classUL
+                    )
+                    try {
+                        val downLinkFeature =
+                            nrFeatures.downlink?.get(featureSet[j + m][index].downlink - 1)?.featureSetsPerCC?.get(
+                                0
+                            ) as FeaturePerCCNr?
+                        if (downLinkFeature != null) {
+                            nrComponent.mimoDL = downLinkFeature.mimo
+                            nrComponent.modDL = downLinkFeature.qam
+                            nrComponent.maxBandwidth = downLinkFeature.bw
+                            if (downLinkFeature.bw >= 80) {
+                                nrComponent.channelBW90mhz = downLinkFeature.channelBW90mhz
+                            }
+                            nrComponent.scs = downLinkFeature.scs
                         }
                     } catch (ex: Exception) {
-                        ex.printStackTrace()
+                        // ex.printStackTrace();
                     }
-                    j++
-                }
-            }
-            val nrComponents = combo.componentsNr
-            for (m in nrComponents.indices) {
-                val nrComponent = nrComponents[m] as ComponentNr
-                try {
-                    val downLinkFeature =
-                        nrFeatures.downlink?.get(featureSet[j + m].downlink - 1)?.featureSetsPerCC?.get(0) as FeaturePerCCNr?
-                    if (downLinkFeature != null) {
-                        nrComponent.mimoDL = downLinkFeature.mimo
-                        nrComponent.modDL = downLinkFeature.qam
-                        nrComponent.maxBandwidth = downLinkFeature.bw
-                        if (downLinkFeature.bw >= 80) {
-                            nrComponent.channelBW90mhz = downLinkFeature.channelBW90mhz
-                        }
-                        nrComponent.scs = downLinkFeature.scs
-                    }
-                } catch (ex: Exception) {
-                    // ex.printStackTrace();
-                }
-                val uplink = featureSet[j + m].uplink
-                if (uplink > 0) {
-                    val uplinkFeature = nrFeatures.uplink?.get(uplink - 1)?.featureSetsPerCC?.get(0) as FeaturePerCCNr?
+                    val uplink = featureSet[j + m][index].uplink
+                    if (uplink > 0) {
+                        val uplinkFeature =
+                            nrFeatures.uplink?.get(uplink - 1)?.featureSetsPerCC?.get(0) as FeaturePerCCNr?
 
-                    if (uplinkFeature != null) {
-                        nrComponent.mimoUL = uplinkFeature.mimo
-                        nrComponent.modUL = uplinkFeature.qam
-                        if (uplinkFeature.mimo == 0) {
-                            nrComponent.mimoUL = 1
-                        }
-                        /*
-                         * Try to work around a MTK bug.
-                         * It happens that the uplink has the right scs, while downlink doesn't.
-                         */
-                        if (uplinkFeature.scs > nrComponent.scs) {
-                            nrComponent.maxBandwidth = uplinkFeature.bw
-                            if (uplinkFeature.bw >= 80) {
-                                nrComponent.channelBW90mhz = uplinkFeature.channelBW90mhz
+                        if (uplinkFeature != null) {
+                            nrComponent.mimoUL = uplinkFeature.mimo
+                            nrComponent.modUL = uplinkFeature.qam
+                            if (uplinkFeature.mimo == 0) {
+                                nrComponent.mimoUL = 1
                             }
-                            nrComponent.scs = uplinkFeature.scs
                         }
                     }
-
-
+                    newNrComponents.add(nrComponent)
                 }
-            }
 
-            //Sort
-            lteComponents.sortWith(IComponent.defaultComparator.reversed())
-            nrComponents.sortWith(IComponent.defaultComparator.reversed())
+                // Sort
+                val lteArray = newLteComponents
+                    .sortedWith(IComponent.defaultComparator.reversed())
+                    .toTypedArray()
+                val nrArray = newNrComponents
+                    .sortedWith(IComponent.defaultComparator.reversed())
+                    .toTypedArray()
+
+                val comboNr = if (newLteComponents.isNotEmpty()) {
+                    ComboNr(lteArray, nrArray, combo.featureSet)
+                } else {
+                    ComboNr(nrArray, combo.featureSet)
+                }
+
+                list.add(comboNr)
+            }
         }
+        return list
     }
 
     protected abstract val regexSupportedBandListNR: String

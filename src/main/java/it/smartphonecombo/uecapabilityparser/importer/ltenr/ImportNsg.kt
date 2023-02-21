@@ -13,7 +13,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexSupportedBandCombination: String
         get() {
             val regex = StringBuilder()
-            val startRegex = "[\\v\\h](?:SupportedBandCombination-r10)?[\\v\\h]*\\[(\\d{1,3})]"
+            val startRegex = "[\\v\\h]*(?:SupportedBandCombination-r10)?[\\v\\h]*\\[(\\d{1,3})]"
             regex.append(startRegex)
             val baseRegex = ("(?:[\\v\\h]*(?:BandCombinationParameters-r10)?\\[\\d]"
                     + "[\\v\\h]*bandEUTRA-r10 : (\\d{1,3})"
@@ -46,7 +46,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexBandCombinationParameters_v1090: String
         get() {
             val regexadd = StringBuilder()
-            val startRegexAdd = "[\\v\\h](?:SupportedBandCombination-v1090)?[\\v\\h]*\\[(\\d{1,3})\\]"
+            val startRegexAdd = "[\\v\\h]*(?:SupportedBandCombination-v1090)?[\\v\\h]*\\[(\\d{1,3})\\]"
             regexadd.append(startRegexAdd)
                 .append("(?:[\\v\\h]*(?:BandCombinationParameters-v1090)?\\[0](?:[\\v\\h]*bandEUTRA-v1090 *: *(\\d{1,3}))?)")
             val baseRegexAdd =
@@ -59,7 +59,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexSupportedBandCombinationAdd: String
         get() {
             val regexadd = StringBuilder()
-            val startRegexAdd = "[\\v\\h](?:SupportedBandCombinationAdd-r11)?[\\v\\h]*\\[(\\d{1,3})\\]"
+            val startRegexAdd = "[\\v\\h]*(?:SupportedBandCombinationAdd-r11)?[\\v\\h]*\\[(\\d{1,3})\\]"
             regexadd.append(startRegexAdd)
             val baseRegexAdd = ("(?:[\\v\\h]*(?:bandParameterList-r11)?[\\v\\h]*\\[\\d\\]"
                     + "[\\v\\h]*bandEUTRA-r11 : (\\d{1,3})"
@@ -73,7 +73,7 @@ class ImportNsg : ImportUECapabilityInformation() {
                 regexadd.append(baseRegexAdd).append("?")
             }
             val bcsRegex2 =
-                "(?:[\\v\\h]*supportedBandwidthCombinationSet-r11 : '?(?<bcs>[\\w]{1,4})'?(?<bcsUnit>\\w)?)?"
+                "(?:[\\v\\h]*supportedBandwidthCombinationSet-r11 : '?(?<bcs>[\\w]{1,8})'?(?<bcsUnit>\\w)?)?"
             regexadd.append(bcsRegex2)
             return regexadd.toString()
         }
@@ -104,7 +104,7 @@ class ImportNsg : ImportUECapabilityInformation() {
     override val regexBandCombinationReduced: String
         get() {
             val regexReduced = StringBuilder()
-            val startRegexReduced = "[\\v\\h](?:supportedBandCombinationReduced-r13)?[\\v\\h]*\\[(\\d{1,3})\\]"
+            val startRegexReduced = "[\\v\\h]*(?:supportedBandCombinationReduced-r13)?[\\v\\h]*\\[(\\d{1,3})\\]"
             regexReduced.append(startRegexReduced)
             val baseRegexReduced =
                 ("(?:[\\v\\h]*(?:differentFallbackSupported-r13[\\v\\h]*:[\\v\\h]*true[\\v\\h]*)?(?:bandParameterList-r13)?[\\v\\h]*\\[\\d\\]"
@@ -113,15 +113,15 @@ class ImportNsg : ImportUECapabilityInformation() {
                         + "[\\v\\h]*ca-BandwidthClassUL-r10 : ([a-z]))?"
                         + "[\\v\\h]*bandParametersDL-r13"
                         + "[\\v\\h]*ca-BandwidthClassDL-r13 : ([a-z])"
-                        + "[\\v\\h]*supportedMIMO-CapabilityDL-r13 : (two|four|eight)Layers"
-                        + "(?:[\\v\\h]*fourLayerTM3-TM4-r13 : supported)?"
-                        + "(?:[\\v\\h]*(?:intraBandContiguousCC-InfoList-r13)?[\\v\\h]*\\[[0-7]\\](?![\\v\\h]*bandEUTRA-r13|[\\v\\h]*bandParameterList)[\\v\\h]*){0,7})")
+                        + "(?:[\\v\\h]*supportedMIMO-CapabilityDL-r13 : (two|four|eight)Layers)?"
+                        + "(?:[\\v\\h]*fourLayerTM3-TM4-r13 : (supported))?"
+                        + "(?:[\\v\\h]*(?:intraBandContiguousCC-InfoList-r13)?[\\v\\h]*\\[[0-7]\\](?![\\v\\h]*bandEUTRA-r13|bandParameterList)[\\v\\h]*){0,7})")
             regexReduced.append(baseRegexReduced)
             for (i in 1 until ImportCapabilities.lteDlCC) {
                 regexReduced.append(baseRegexReduced).append("?")
             }
             val bcsRegex3 =
-                "(?:[\\v\\h]*supportedBandwidthCombinationSet-r13 : '?(?<bcs>[\\w]{1,4})'?(?<bcsUnit>\\w)?)?"
+                "(?:[\\v\\h]*supportedBandwidthCombinationSet-r13 : '?(?<bcs>[\\w]{1,8})'?(?<bcsUnit>\\w)?)?"
             regexReduced.append(bcsRegex3)
             return regexReduced.toString()
         }
@@ -171,13 +171,24 @@ class ImportNsg : ImportUECapabilityInformation() {
             val regex = StringBuilder(
                 "(?:featureSetCombinations)?\\[(\\d{1,3})\\]"
             )
-            val baseRegexFeature = ("(?:[\\v\\h]*\\[\\\\d]" + "[\\v\\h]*\\[0](?: -> )?" + "[\\v\\h]*(eutra|nr)"
+
+            val regexFeature = StringBuilder("(?:[\\v\\h]*\\[\\\\d]")
+
+            val baseRegexFeature = ("(?:[\\v\\h]*\\[\\\\d](?: -> )?" + "[\\v\\h]*(eutra|nr)"
                     + "[\\v\\h]*downlinkSet(?:EUTRA|NR) : (\\d{1,3})"
-                    + "[\\v\\h]*uplinkSet(?:EUTRA|NR) : (\\d{1,3})(?:[\\v\\h]*\\[\\d\\](?: -> )?[\\v\\h]*(?:eutra|nr)" +
-                    "[\\v\\h]*downlinkSet(?:EUTRA|NR) : \\d{1,3}[\\v\\h]*uplinkSet(?:EUTRA|NR) : \\d{1,3})*)")
-            regex.append(baseRegexFeature.replace("\\\\d", "0"))
+                    + "[\\v\\h]*uplinkSet(?:EUTRA|NR) : (\\d{1,3}))")
+
+            // The real max is 128, but that would be too slow...
+            regexFeature.append(baseRegexFeature.replace("\\\\d", "0"))
+            for (i in 1 until 32) {
+                val baseRegex = baseRegexFeature.replace("\\\\d", i.toString() + "")
+                regexFeature.append(baseRegex).append("?")
+            }
+
+            regex.append(regexFeature.toString().replace("\\\\d", "0")).append(")")
             for (i in 1 until ImportCapabilities.nrDlCC) {
-                regex.append(baseRegexFeature.replace("\\\\d", i.toString() + "")).append("?")
+                val baseRegex = regexFeature.toString().replace("\\\\d", i.toString() + "")
+                regex.append(baseRegex).append(")?")
             }
             return regex.toString()
         }
