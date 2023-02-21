@@ -116,7 +116,12 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                             val dlClass =
                                 bandParametersDL?.getString("ca-BandwidthClassDL-r10")?.first()?.uppercaseChar() ?: '0'
                             val mimoLayers = bandParametersDL?.getString("supportedMIMO-CapabilityDL-r10")
-                            val dlMimo = Utility.convertNumber(mimoLayers?.removeSuffix("Layers"))
+                            var dlMimo = Utility.convertNumber(mimoLayers?.removeSuffix("Layers"))
+
+                            // Some devices don't report supportedMIMO-CapabilityDL-r10 for twoLayers
+                            if (dlClass != '0' && dlMimo == 0) {
+                                dlMimo = 2
+                            }
 
                             val bandParametersUL = bandParameters.getArrayAtPath("bandParametersUL-r10")?.get(0)
                             val ulClass =
@@ -194,7 +199,12 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                         val dlClass =
                             bandParametersDL?.getString("ca-BandwidthClassDL-r10")?.first()?.uppercaseChar() ?: '0'
                         val mimoLayers = bandParametersDL?.getString("supportedMIMO-CapabilityDL-r10")
-                        val dlMimo = Utility.convertNumber(mimoLayers?.removeSuffix("Layers"))
+                        var dlMimo = Utility.convertNumber(mimoLayers?.removeSuffix("Layers"))
+
+                        // Some devices don't report supportedMIMO-CapabilityDL-r10 for twoLayers
+                        if (dlClass != '0' && dlMimo == 0) {
+                            dlMimo = 2
+                        }
 
                         val bandParametersUL = bandParameters.getArrayAtPath("bandParametersUL-r11")?.get(0)
                         val ulClass =
@@ -248,8 +258,14 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                             bandParametersDL?.getString("ca-BandwidthClassDL-r13")?.first()?.uppercaseChar() ?: '0'
                         val mimoLayers = bandParametersDL?.getString("supportedMIMO-CapabilityDL-r13")
                         var dlMimo = Utility.convertNumber(mimoLayers?.removeSuffix("Layers"))
+
+                        // Some devices only reports fourLayerTM3-TM4-r13 or only reports 4rx in fourLayerTM3-TM4-r13
                         if (dlMimo < 4 && bandParametersDL?.getString("fourLayerTM3-TM4-r13") != null) {
                             dlMimo = 4
+                        }
+                        // Some devices don't report supportedMIMO-CapabilityDL-r13 for twoLayers
+                        if (dlClass != '0' && dlMimo == 0) {
+                            dlMimo = 2
                         }
                         val bandParametersUL = bandParameters.getObject("bandParametersUL-r13")
                         val ulClass =
@@ -504,6 +520,11 @@ class ImportCapabilityInformationJson : ImportCapabilities {
 
                     if (downlinkIndex < 0 && uplinkIndex < 0) {
                         // Fallback combination
+                        if (featureSet.isNR) {
+                            nrComponents.next()
+                        } else {
+                            lteComponents.next()
+                        }
                         continue
                     }
 
