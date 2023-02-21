@@ -20,8 +20,6 @@ dependencies {
 
     implementation("commons-cli:commons-cli:1.5.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("com.github.cvb941:kotlin-parallel-operations:1.5.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:7784a9f")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:7784a9f")
