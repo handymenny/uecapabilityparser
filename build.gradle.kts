@@ -20,9 +20,9 @@ dependencies {
     implementation("com.github.cvb941:kotlin-parallel-operations:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-    implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:d9687dc")
-    implementation("com.github.handymenny.mts-asn1:mts-asn1-per:d9687dc")
-    implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:d9687dc")
+    implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:7784a9f")
+    implementation("com.github.handymenny.mts-asn1:mts-asn1-per:7784a9f")
+    implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:7784a9f")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
     implementation("org.slf4j:slf4j-nop:2.0.5")
 }
