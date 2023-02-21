@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("org.graalvm.buildtools.native") version "0.9.19"
+    id("org.graalvm.buildtools.native") version "0.9.20"
 }
 
 repositories {
@@ -26,8 +26,8 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:7784a9f")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:7784a9f")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:7784a9f")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
-    implementation("org.slf4j:slf4j-nop:2.0.5")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    implementation("org.slf4j:slf4j-nop:2.0.6")
 }
 
 group = "parser"
