@@ -297,10 +297,10 @@ internal object MainCli {
             val defaultRat = if (cmd.hasOption("defaultNR")) Rat.nr else Rat.eutra
             ratContainerMap += Utility.getUeCapabilityJsonFromHex(defaultRat, input)
             if (inputNR.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.nr, input)
+                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.nr, inputNR)
             }
             if (inputENDC.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.eutra_nr, input)
+                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.eutra_nr, inputENDC)
             }
         } else {
             val list = listOf(
