@@ -84,3 +84,32 @@ spotless {
 }
 
 application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
+
+distributions {
+    named("shadow") {
+        distributionBaseName.set(project.name)
+        contents {
+            from("src/main/dist")
+            from("LICENSE")
+            from("README.md")
+            eachFile {
+                // Move all files to root and rename jar to uecapabilityparser.jar
+                this.path =
+                    this.path
+                        .replace("${project.name}-${project.version}/", "")
+                        .replace(""".*\.jar""".toRegex(), "${project.name}.jar")
+            }
+        }
+    }
+}
+
+tasks {
+    // Disable default dist zip
+    distZip { enabled = false }
+    // Disable default dist tar
+    distTar { enabled = false }
+    // Disable shadow dist tar (zip is enough)
+    shadowDistTar { enabled = false }
+    // Disable shadow default startScript
+    startShadowScripts { enabled = false }
+}
