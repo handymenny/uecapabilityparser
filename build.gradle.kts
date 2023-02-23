@@ -7,6 +7,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.graalvm.buildtools.native") version "0.9.20"
     id("com.diffplug.spotless") version "6.15.0"
+    application
 }
 
 repositories {
@@ -48,19 +49,13 @@ compileTestKotlin.kotlinOptions { jvmTarget = "1.8" }
 
 tasks.named<Test>("test") { useJUnitPlatform() }
 
-tasks {
-    shadowJar {
-        manifest { attributes(Pair("Main-Class", "it.smartphonecombo.uecapabilityparser.MainCli")) }
-        minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) }
-    }
-}
+tasks.shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
 
 graalvmNative {
     binaries.all { resources.autodetect() }
 
     binaries {
         named("main") {
-            mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli")
             fallback.set(false)
             verbose.set(false)
             imageName.set("uecapabilityparser")
@@ -87,3 +82,5 @@ spotless {
 
     kotlinGradle { ktfmt().kotlinlangStyle() }
 }
+
+application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
