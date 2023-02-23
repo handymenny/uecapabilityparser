@@ -53,7 +53,7 @@ tasks {
 
 application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
 
-kotlin { jvmToolchain(8) }
+kotlin { jvmToolchain(11) }
 
 graalvmNative {
     binaries.all { resources.autodetect() }
