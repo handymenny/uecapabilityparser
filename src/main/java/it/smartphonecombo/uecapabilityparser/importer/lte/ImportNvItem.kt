@@ -10,8 +10,8 @@ import java.io.EOFException
 import java.io.IOException
 
 class ImportNvItem : ImportCapabilities {
-    //private int maxstr = 0;
-    //private static final //LOGGER //LOGGER = LogManager.get//LOGGER();
+    // private int maxstr = 0;
+    // private static final //LOGGER //LOGGER = LogManager.get//LOGGER();
     private var `in`: LERandomAccessFile? = null
 
     override fun parse(filename: String): Capabilities {
@@ -21,9 +21,9 @@ class ImportNvItem : ImportCapabilities {
         try {
             `in` = LERandomAccessFile(filename, "r")
 
-            //System.out.println("Input file size: " + in.length() + " bytes");
-            //System.out.println("Format version: " + in.readUnsignedShort());
-            //System.out.println("Number of descriptors: " + in.readUnsignedShort() + "\n");
+            // System.out.println("Input file size: " + in.length() + " bytes");
+            // System.out.println("Format version: " + in.readUnsignedShort());
+            // System.out.println("Number of descriptors: " + in.readUnsignedShort() + "\n");
             `in`!!.skipBytes(4)
             while (true) {
                 try {
@@ -31,63 +31,60 @@ class ImportNvItem : ImportCapabilities {
                         333 -> {
                             lteComponents = readDLbands(true, 7)
                             if (lteComponents.isEmpty()) {
-                                //LOGGER.error("Incorrect format: no any downlink carrier in combo "+ format);
+                                // LOGGER.error("Incorrect format: no any downlink carrier in combo
+                                // "+ format);
                                 return Capabilities()
                             }
                         }
-
                         334 -> {
                             val combo = readULbands(lteComponents, true, 7)
-                            //System.out.println(combo);
+                            // System.out.println(combo);
                             listCombo.add(combo)
                         }
-
                         201 -> {
                             lteComponents = readDLbands(true, 0)
                             if (lteComponents.isEmpty()) {
-                                //LOGGER.error("Incorrect format: no any downlink carrier in combo "+ format);
+                                // LOGGER.error("Incorrect format: no any downlink carrier in combo
+                                // "+ format);
                                 return Capabilities()
                             }
                         }
-
                         202 -> {
                             val combo = readULbands(lteComponents, true, 0)
-                            //System.out.println(combo);
+                            // System.out.println(combo);
                             listCombo.add(combo)
                         }
-
                         137 -> {
                             lteComponents = readDLbands(false, 0)
                             if (lteComponents.isEmpty()) {
-                                //LOGGER.error("Incorrect format: no any downlink carrier in combo "+ format);
+                                // LOGGER.error("Incorrect format: no any downlink carrier in combo
+                                // "+ format);
                                 return Capabilities()
                             }
                         }
-
                         138 -> {
                             val combo = readULbands(lteComponents, false, 0)
                             // System.out.println(combo);
                             listCombo.add(combo)
                         }
-
                         else -> {}
                     }
                 } catch (ex: EOFException) {
-                    //System.out.println("End of file");
+                    // System.out.println("End of file");
                     break
                 }
             }
-            //LOGGER.info("Number of combos: " + numcom);
-            ////LOGGER.info("Max streams per combo: " + maxstr);
+            // LOGGER.info("Number of combos: " + numcom);
+            //// LOGGER.info("Max streams per combo: " + maxstr);
         } catch (e: Exception) {
-            //LOGGER.fatal("Fatal error: " + e.getLocalizedMessage());
-            //System.out.println(e.getStackTrace());
+            // LOGGER.fatal("Fatal error: " + e.getLocalizedMessage());
+            // System.out.println(e.getStackTrace());
         } finally {
             try {
                 `in`!!.close()
             } catch (e: IOException) {
-                //LOGGER.fatal("Fatal error: " + e.getLocalizedMessage());
-                //e.printStackTrace();
+                // LOGGER.fatal("Fatal error: " + e.getLocalizedMessage());
+                // e.printStackTrace();
             }
         }
         // System.out.println(listCombo);
@@ -110,13 +107,14 @@ class ImportNvItem : ImportCapabilities {
             }
         }
         lteComponents.sortWith(IComponent.defaultComparator.reversed())
-        //System.out.println(Arrays.toString(bandArray));
+        // System.out.println(Arrays.toString(bandArray));
         return lteComponents.toTypedArray()
     }
 
     @Throws(IOException::class)
     private fun readULbands(
-        dlBands: Array<IComponent>, mimoPresent: Boolean,
+        dlBands: Array<IComponent>,
+        mimoPresent: Boolean,
         additionalBytes: Int
     ): ComboLte {
         val copyBand = emptyArray<IComponent>()

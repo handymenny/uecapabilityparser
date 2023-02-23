@@ -3,9 +3,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.Config
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 
-/**
- * The Interface ImportCA.
- */
+/** The Interface ImportCA. */
 interface ImportCapabilities {
     val debug
         get() = Config.getOrDefault("debug", "false").toBoolean()

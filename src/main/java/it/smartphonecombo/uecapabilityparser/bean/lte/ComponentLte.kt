@@ -2,9 +2,7 @@ package it.smartphonecombo.uecapabilityparser.bean.lte
 
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 
-/**
- * The Class LteBandAndBandwidth.
- */
+/** The Class LteBandAndBandwidth. */
 data class ComponentLte(
     override var band: Int,
     override var classDL: Char,
@@ -22,15 +20,12 @@ data class ComponentLte(
     override var mimoUL = 1
         set(value) = Unit
 
-
-    constructor(band: Int, classDL: Char, classUL: Char, mimoDL: Int) : this(
-        band,
-        classDL,
-        classUL,
-        mimoDL,
-        "64qam",
-        "16qam"
-    )
+    constructor(
+        band: Int,
+        classDL: Char,
+        classUL: Char,
+        mimoDL: Int
+    ) : this(band, classDL, classUL, mimoDL, "64qam", "16qam")
 
     constructor(band: Int, classDL: Char, mimoDL: Int) : this(band, classDL, '0', mimoDL)
 
@@ -39,7 +34,6 @@ data class ComponentLte(
     constructor(band: Int) : this(band, 'A', '0')
 
     constructor() : this(0)
-
 
     override fun compareTo(other: ComponentLte): Int {
         return IComponent.defaultComparator.compare(this, other)
@@ -83,8 +77,12 @@ data class ComponentLte(
 
     companion object {
         fun lteComponentsToArrays(
-            band: IntArray, bandwidth: CharArray, mimo: IntArray,
-            upload: CharArray, modUL: Array<String?>, inputArray: Array<IComponent>
+            band: IntArray,
+            bandwidth: CharArray,
+            mimo: IntArray,
+            upload: CharArray,
+            modUL: Array<String?>,
+            inputArray: Array<IComponent>
         ) {
             for (i in inputArray.indices) {
                 band[i] = inputArray[i].band

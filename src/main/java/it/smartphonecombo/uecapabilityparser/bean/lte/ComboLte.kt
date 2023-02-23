@@ -5,13 +5,8 @@ import it.smartphonecombo.uecapabilityparser.bean.ICombo
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 
-/**
- * The Class Combo.
- */
-data class ComboLte(
-    override var masterComponents: Array<IComponent>,
-    var bcs: IntArray
-) : ICombo {
+/** The Class Combo. */
+data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: IntArray) : ICombo {
     override var secondaryComponents: Array<IComponent>
         get() = emptyArray()
         set(value) = Unit

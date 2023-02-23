@@ -6,13 +6,12 @@ plugins {
     kotlin("plugin.serialization") version kotlinVersion
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.graalvm.buildtools.native") version "0.9.20"
+    id("com.diffplug.spotless") version "6.15.0"
 }
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://jitpack.io")
-    }
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -29,7 +28,9 @@ dependencies {
 }
 
 group = "parser"
+
 version = "0.0.5-alpha"
+
 description = "uecapabilityparser"
 
 java {
@@ -38,33 +39,24 @@ java {
 }
 
 val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
-}
+
+compileKotlin.kotlinOptions { jvmTarget = "1.8" }
+
 val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
-}
 
-tasks.named<Test>("test") {
-    useJUnitPlatform()
-}
+compileTestKotlin.kotlinOptions { jvmTarget = "1.8" }
 
-tasks{
+tasks.named<Test>("test") { useJUnitPlatform() }
+
+tasks {
     shadowJar {
-        manifest {
-            attributes(Pair("Main-Class", "it.smartphonecombo.uecapabilityparser.MainCli"))
-        }
-        minimize {
-            exclude(dependency("org.slf4j:slf4j-nop:.*"))
-        }
+        manifest { attributes(Pair("Main-Class", "it.smartphonecombo.uecapabilityparser.MainCli")) }
+        minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) }
     }
 }
 
 graalvmNative {
-    binaries.all {
-        resources.autodetect()
-    }
+    binaries.all { resources.autodetect() }
 
     binaries {
         named("main") {
@@ -74,4 +66,24 @@ graalvmNative {
             imageName.set("uecapabilityparser")
         }
     }
+}
+
+spotless {
+    format("misc") {
+        target("*.md", ".gitignore", "**/*.csv")
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    java {
+        importOrder()
+        removeUnusedImports()
+        googleJavaFormat().aosp().reflowLongStrings()
+        formatAnnotations()
+    }
+
+    kotlin { ktfmt().kotlinlangStyle() }
+
+    kotlinGradle { ktfmt().kotlinlangStyle() }
 }

@@ -21,7 +21,11 @@ data class ComponentNr(
     var rateMatchingLTEcrs = false
 
     constructor(band: Int) : this(band, 'A', '0', 0, 0, "256qam", "64qam")
-    constructor(band: Int, classDL: Char, classUL: Char) : this(band, classDL, classUL, 0, 0, "256qam", "64qam")
+    constructor(
+        band: Int,
+        classDL: Char,
+        classUL: Char
+    ) : this(band, classDL, classUL, 0, 0, "256qam", "64qam")
 
     override fun compareTo(iComponent: IComponent): Int {
         TODO("Not yet implemented")

@@ -1,34 +1,28 @@
-name: "pre-release"
-
+name: pre-release
 on:
   push:
     branches:
-      - "main"
+      - main
     paths:
       - '**.java'
       - '**.kt'
       - '**.kts'
       - '**.yaml'
-
 jobs:
   pre-release:
-    name: "Pre Release"
-    runs-on: "ubuntu-latest"
-
+    name: Pre Release
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-      
-      - name: "Build & test"
+      - name: Build & test
         run: |
           gradle --no-daemon shadowJar
           cp build/libs/*-all.jar uecapabilityparser-nightly.jar
-
-      - uses: "marvinpinto/action-automatic-releases@v1.2.1"
+      - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "nightly-${{ steps.date.outputs.date }}"

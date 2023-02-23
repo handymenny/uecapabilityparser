@@ -5,13 +5,9 @@ import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 
-/**
- * The Class ComboList.
- */
+/** The Class ComboList. */
 class Capabilities(
-    /**
-     * The combo list.
-     */
+/** The combo list. */
 ) {
     var lteCombos: List<ComboLte>? = null
     var lteBands: List<ComponentLte>? = null
@@ -22,15 +18,14 @@ class Capabilities(
     var lteCategoryUL = 0
     private val metadata = HashMap<String, Any?>()
 
-    /**
-     * The flags.
-     */
+    /** The flags. */
     var flags = 0
     var enDcCombos: List<ComboNr>? = null
     var nrCombos: List<ComboNr>? = null
 
     constructor(
-        comboList: List<ComboLte>?, enDCcomboList: List<ComboNr>?,
+        comboList: List<ComboLte>?,
+        enDCcomboList: List<ComboNr>?,
         flags: Int
     ) : this(comboList, flags) {
         enDcCombos = enDCcomboList
@@ -39,8 +34,8 @@ class Capabilities(
     /**
      * Instantiates a new combo list.
      *
-     * @param comboList   the combo list
-     * @param flags       the flags
+     * @param comboList the combo list
+     * @param flags the flags
      */
     constructor(comboList: List<ComboLte>?, flags: Int) : this(comboList) {
         this.flags = flags

@@ -26,9 +26,7 @@ class Tshark {
         }
         try {
             val tempfile = File.createTempFile("UECAP-", ".pcap")
-            val writer = BufferedOutputStream(
-                FileOutputStream(tempfile)
-            )
+            val writer = BufferedOutputStream(FileOutputStream(tempfile))
             val pcap = PcapWriter()
             writer.write(Utility.hexStringToByteArray(pcap.all))
             val length = String.format("%08X", strBuilder.length / 2)
@@ -45,34 +43,26 @@ class Tshark {
         return ""
     }
 
-    /**
-     * Call Tshark to decode the PCAP file.
-     **/
+    /** Call Tshark to decode the PCAP file. */
     private fun callTshark(
-        strTsharkPath: String, strProtocol: String,
+        strTsharkPath: String,
+        strProtocol: String,
         pcapFileName: String
     ): String {
         val tsharkCmd = strTsharkPath + "tshark"
-        var userdltsString = ("uat:user_dlts:\"User 0 (DLT=147)\",\"" + strProtocol
-                + "\",\"0\",\"\",\"0\",\"\"")
+        var userdltsString =
+            ("uat:user_dlts:\"User 0 (DLT=147)\",\"" + strProtocol + "\",\"0\",\"\",\"0\",\"\"")
         if (Utility.osType == Utility.OsTypes.WINDOWS) {
             userdltsString = userdltsString.replace("\"".toRegex(), "\\\\\"")
         }
         val str = StringBuilder()
         var line: String?
         try {
-            val p = Runtime.getRuntime().exec(
-                arrayOf(
-                    tsharkCmd, "-o", userdltsString, "-r", pcapFileName,
-                    "-V", "-l"
-                )
-            )
-            val bri = BufferedReader(
-                InputStreamReader(p.inputStream)
-            )
-            val bre = BufferedReader(
-                InputStreamReader(p.errorStream)
-            )
+            val p =
+                Runtime.getRuntime()
+                    .exec(arrayOf(tsharkCmd, "-o", userdltsString, "-r", pcapFileName, "-V", "-l"))
+            val bri = BufferedReader(InputStreamReader(p.inputStream))
+            val bre = BufferedReader(InputStreamReader(p.errorStream))
             var i = 0
             while (bri.readLine().also { line = it } != null) {
                 i++
@@ -107,12 +97,15 @@ class Tshark {
         private val network = 147
         private val tsSec = 0
         private val tsUsec = 0
-        val all = String.format("%08x", magicNumber) + String.format("%04x", versionMajor) + String.format(
-            "%04x",
-            versionMinor
-        ) + String.format("%08x", zone) + String.format("%08x", sigFigs) + String.format(
-            "%08x",
-            snapLen
-        ) + String.format("%08x", network) + String.format("%08x", tsSec) + String.format("%08x", tsUsec)
+        val all =
+            String.format("%08x", magicNumber) +
+                String.format("%04x", versionMajor) +
+                String.format("%04x", versionMinor) +
+                String.format("%08x", zone) +
+                String.format("%08x", sigFigs) +
+                String.format("%08x", snapLen) +
+                String.format("%08x", network) +
+                String.format("%08x", tsSec) +
+                String.format("%08x", tsUsec)
     }
 }

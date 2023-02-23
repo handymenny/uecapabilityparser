@@ -14,16 +14,14 @@ import it.smartphonecombo.uecapabilityparser.bean.lte.CompactedCombo
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
-import kotlinx.serialization.json.*
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*
 import kotlin.math.ceil
 import kotlin.system.exitProcess
+import kotlinx.serialization.json.*
 
-/**
- * The Class Utility.
- */
+/** The Class Utility. */
 object Utility {
     /**
      * Compact. This works only for ordered ComboList!
@@ -55,7 +53,7 @@ object Utility {
                     uplinkConf.append(band.classUL)
                 }
 
-                //Flag 3 = mixed
+                // Flag 3 = mixed
                 val mimo =
                     if ((list.flags != 3 || mimoConf.contains("0")) && !keepMimo) {
                         mutableListOf()
@@ -63,35 +61,34 @@ object Utility {
                         mutableListOf(mimoConf.toString())
                     }
 
-                val compactCombo = CompactedCombo(
-                    compactBands.toTypedArray(),
-                    mimo,
-                    mutableListOf(uplinkConf.toString())
-                )
+                val compactCombo =
+                    CompactedCombo(
+                        compactBands.toTypedArray(),
+                        mimo,
+                        mutableListOf(uplinkConf.toString())
+                    )
 
-                map.getOrPut(compactBands) {
-                    mutableListOf()
-                }.add(compactCombo)
+                map.getOrPut(compactBands) { mutableListOf() }.add(compactCombo)
             }
 
-            val flatMap = map.values.flatMap { items ->
-                val mimoMap: MutableMap<String?, CompactedCombo> = HashMap()
-                items.forEach { combo ->
-                    val key = combo.mimo.getOrNull(0)
-                    mimoMap.putIfAbsent(key, combo)
-                        ?.addUpload(combo.upload[0])
-                }
-
-                val ulMap: MutableMap<List<String>, CompactedCombo> = HashMap()
-                mimoMap.values.forEach { combo ->
-                    val key = combo.upload
-                    val res = ulMap.putIfAbsent(key, combo)
-                    if (res != null && combo.mimo.isNotEmpty()) {
-                        res.addMimo(combo.mimo[0])
+            val flatMap =
+                map.values.flatMap { items ->
+                    val mimoMap: MutableMap<String?, CompactedCombo> = HashMap()
+                    items.forEach { combo ->
+                        val key = combo.mimo.getOrNull(0)
+                        mimoMap.putIfAbsent(key, combo)?.addUpload(combo.upload[0])
                     }
+
+                    val ulMap: MutableMap<List<String>, CompactedCombo> = HashMap()
+                    mimoMap.values.forEach { combo ->
+                        val key = combo.upload
+                        val res = ulMap.putIfAbsent(key, combo)
+                        if (res != null && combo.mimo.isNotEmpty()) {
+                            res.addMimo(combo.mimo[0])
+                        }
+                    }
+                    ulMap.values
                 }
-                ulMap.values
-            }
 
             val compareMimoUpload = { s1: List<String>, s2: List<String> ->
                 var result = s1.size.compareTo(s2.size)
@@ -105,33 +102,39 @@ object Utility {
                 }
                 result * -1
             }
-            val compactedCombos = flatMap.sortedWith(
-                Comparator.comparing(CompactedCombo::bands) { s1: Array<Pair<Int, Char>>, s2: Array<Pair<Int, Char>> ->
-                    var result: Int
-                    val min = minOf(s1.size, s2.size)
+            val compactedCombos =
+                flatMap
+                    .sortedWith(
+                        Comparator.comparing(CompactedCombo::bands) {
+                                s1: Array<Pair<Int, Char>>,
+                                s2: Array<Pair<Int, Char>> ->
+                                var result: Int
+                                val min = minOf(s1.size, s2.size)
 
-                    for (i in 0 until min) {
-                        result = s1[i].first.compareTo(s2[i].first)
-                        if (result != 0) {
-                            return@comparing result
-                        }
-                    }
+                                for (i in 0 until min) {
+                                    result = s1[i].first.compareTo(s2[i].first)
+                                    if (result != 0) {
+                                        return@comparing result
+                                    }
+                                }
 
-                    result = s1.size.compareTo(s2.size)
+                                result = s1.size.compareTo(s2.size)
 
-                    if (result == 0) {
-                        for (i in 0 until min) {
-                            result = s1[i].second.compareTo(s2[i].second)
-                            if (result != 0) {
-                                break
+                                if (result == 0) {
+                                    for (i in 0 until min) {
+                                        result = s1[i].second.compareTo(s2[i].second)
+                                        if (result != 0) {
+                                            break
+                                        }
+                                    }
+                                }
+
+                                result
                             }
-                        }
-                    }
-
-                    result
-                }.thenComparing(CompactedCombo::mimo, compareMimoUpload)
-                    .thenComparing(CompactedCombo::upload, compareMimoUpload)
-            ).toTypedArray()
+                            .thenComparing(CompactedCombo::mimo, compareMimoUpload)
+                            .thenComparing(CompactedCombo::upload, compareMimoUpload)
+                    )
+                    .toTypedArray()
             return CompactedCapabilities(list.flags, compactedCombos)
         }
         return CompactedCapabilities(list.flags, emptyArray())
@@ -142,9 +145,7 @@ object Utility {
         return File(path).readText(encoding)
     }
 
-    /**
-     *  outputs lteCombos or enDcCombos or nrCombos, the first non-null and non-empty
-     **/
+    /** outputs lteCombos or enDcCombos or nrCombos, the first non-null and non-empty */
     fun toCsv(list: Capabilities): String {
         val lteCombos = list.lteCombos
         val enDcCombos = list.enDcCombos
@@ -164,11 +165,12 @@ object Utility {
     fun toCsv(lists: List<ICombo>): String {
         if (lists.isEmpty()) return ""
         val standalone = lists.none { it.secondaryComponents.isNotEmpty() }
-        val contentFile: StringBuilder = if (lists[0] is ComboNr) {
-            StringBuilder(getNrCsvHeader(standalone))
-        } else {
-            StringBuilder(getLteCsvHeader())
-        }
+        val contentFile: StringBuilder =
+            if (lists[0] is ComboNr) {
+                StringBuilder(getNrCsvHeader(standalone))
+            } else {
+                StringBuilder(getLteCsvHeader())
+            }
         for (x in lists) {
             contentFile.append(x.toCsv(";", standalone)).append("\n")
         }
@@ -178,16 +180,18 @@ object Utility {
     private fun getNrCsvHeader(standalone: Boolean): String {
         val separator = ";"
         val header = StringBuilder("combo;")
-        val lteDlCC = if (standalone) {
-            0
-        } else {
-            ImportCapabilities.lteDlCC
-        }
-        val lteUlCC = if (standalone) {
-            0
-        } else {
-            ImportCapabilities.lteUlCC
-        }
+        val lteDlCC =
+            if (standalone) {
+                0
+            } else {
+                ImportCapabilities.lteDlCC
+            }
+        val lteUlCC =
+            if (standalone) {
+                0
+            } else {
+                ImportCapabilities.lteUlCC
+            }
         val nrDlCC = ImportCapabilities.nrDlCC
         val nrUlCC = ImportCapabilities.nrUlCC
 
@@ -195,17 +199,34 @@ object Utility {
             header.append("DL").append(i).append(separator)
         }
         for (i in 1..lteUlCC) {
-            header.append("UL").append(i).append(separator)
-                .append("MOD UL").append(i).append(separator)
+            header
+                .append("UL")
+                .append(i)
+                .append(separator)
+                .append("MOD UL")
+                .append(i)
+                .append(separator)
         }
         for (i in 1..nrDlCC) {
-            header.append("NR DL").append(i).append(separator)
-                .append("NR BW").append(i).append(separator)
-                .append("NR SCS").append(i).append(separator)
+            header
+                .append("NR DL")
+                .append(i)
+                .append(separator)
+                .append("NR BW")
+                .append(i)
+                .append(separator)
+                .append("NR SCS")
+                .append(i)
+                .append(separator)
         }
         for (i in 1..nrUlCC) {
-            header.append("NR UL").append(i).append(separator)
-                .append("NR UL MOD").append(i).append(separator)
+            header
+                .append("NR UL")
+                .append(i)
+                .append(separator)
+                .append("NR UL MOD")
+                .append(i)
+                .append(separator)
         }
         for (i in 1..lteDlCC) {
             header.append("mimo DL").append(i).append(separator)
@@ -345,8 +366,7 @@ object Utility {
                     bcsString.padEnd(bcsString.length.roundToN(4), '0').toInt(2)
                 }
             }
-        } catch (ignored: NumberFormatException) {
-        }
+        } catch (ignored: NumberFormatException) {}
         return 0
     }
 
@@ -361,9 +381,7 @@ object Utility {
 
         return if (input.contains("Payload:")) {
             input.split("Payload:").drop(1).map { x ->
-                preformatHexData(
-                    x.substring(0, minOf(x.emptyLineIndex(), x.notHexLineIndex()))
-                )
+                preformatHexData(x.substring(0, minOf(x.emptyLineIndex(), x.notHexLineIndex())))
             }
         } else {
             input.split(Regex("^\\s*$", RegexOption.MULTILINE))
@@ -396,30 +414,25 @@ object Utility {
 
     val osType: OsTypes by lazy {
         with(System.getProperty("os.name").lowercase(Locale.getDefault())) {
-            if (contains("win"))
-                OsTypes.WINDOWS
-            else if (listOf("nix", "nux", "aix").any { contains(it) })
-                OsTypes.LINUX
-            else if (contains("mac"))
-                OsTypes.MAC
-            else if (contains("sunos"))
-                OsTypes.SOLARIS
-            else
-                OsTypes.OTHER
+            if (contains("win")) OsTypes.WINDOWS
+            else if (listOf("nix", "nux", "aix").any { contains(it) }) OsTypes.LINUX
+            else if (contains("mac")) OsTypes.MAC
+            else if (contains("sunos")) OsTypes.SOLARIS else OsTypes.OTHER
         }
     }
 
     /**
-     * Appends the given string before the last dot in the filename.
-     * If there isn't any dot, it appends it to the end of the string.
-     *
-     **/
+     * Appends the given string before the last dot in the filename. If there isn't any dot, it
+     * appends it to the end of the string.
+     */
     fun appendBeforeExtension(fileName: String, stringToAppend: String): String {
         val split = fileName.split(".")
         return if (split.size < 2) {
             fileName + stringToAppend
         } else {
-            split.dropLast(1).joinToString(separator = ".", postfix = stringToAppend + "." + split.last())
+            split
+                .dropLast(1)
+                .joinToString(separator = ".", postfix = stringToAppend + "." + split.last())
         }
     }
 
@@ -427,9 +440,7 @@ object Utility {
         var writer: PrintWriter? = null
         try {
             if (!outputFile.isNullOrBlank()) {
-                writer = PrintWriter(
-                    BufferedWriter(FileWriter(outputFile))
-                )
+                writer = PrintWriter(BufferedWriter(FileWriter(outputFile)))
                 writer.write(text)
             } else {
                 println(text)
@@ -459,25 +470,28 @@ object Utility {
 
     fun multipleParser(input: String, split: Boolean, importer: ImportCapabilities): Capabilities {
         val tempfile = File.createTempFile("0xB826-", ".bin")
-        val inputArray = if (split) {
-            split0xB826hex(input)
-        } else {
-            listOf(input)
-        }
+        val inputArray =
+            if (split) {
+                split0xB826hex(input)
+            } else {
+                listOf(input)
+            }
         val list = mutableListOf<Capabilities>()
         inputArray.forEach {
             outputBinFile(hexStringToByteArray(preformatHexData(it)), tempfile.path)
             list.add(importer.parse(tempfile.path))
             tempfile.delete()
         }
-        val enDcCombos = list.fold(mutableListOf<ComboNr>()) { sum, x ->
-            x.enDcCombos?.let { sum.addAll(it) }
-            sum
-        }
-        val nrCombos = list.fold(mutableListOf<ComboNr>()) { sum, x ->
-            x.nrCombos?.let { sum.addAll(it) }
-            sum
-        }
+        val enDcCombos =
+            list.fold(mutableListOf<ComboNr>()) { sum, x ->
+                x.enDcCombos?.let { sum.addAll(it) }
+                sum
+            }
+        val nrCombos =
+            list.fold(mutableListOf<ComboNr>()) { sum, x ->
+                x.nrCombos?.let { sum.addAll(it) }
+                sum
+            }
 
         return Capabilities().also {
             it.enDcCombos = enDcCombos
@@ -486,14 +500,21 @@ object Utility {
     }
 
     enum class OsTypes {
-        WINDOWS, LINUX, MAC, SOLARIS, OTHER
+        WINDOWS,
+        LINUX,
+        MAC,
+        SOLARIS,
+        OTHER
     }
 
-    fun String.repeat(n: Int, separator: String) = plus(separator).repeat(n).dropLast(separator.length)
+    fun String.repeat(n: Int, separator: String) =
+        plus(separator).repeat(n).dropLast(separator.length)
 
-    fun JsonElement.getInt(key: String) = ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.intOrNull
+    fun JsonElement.getInt(key: String) =
+        ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.intOrNull
 
-    fun JsonElement.getString(key: String) = ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.contentOrNull
+    fun JsonElement.getString(key: String) =
+        ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.contentOrNull
 
     fun JsonElement.getObject(key: String) = (this as? JsonObject)?.get(key) as? JsonObject
 
@@ -501,9 +522,7 @@ object Utility {
 
     fun JsonElement.getObjectAtPath(path: String): JsonObject? {
         var obj = this as? JsonObject
-        path.split(".").forEach {
-            obj = obj?.getObject(it)
-        }
+        path.split(".").forEach { obj = obj?.getObject(it) }
         return obj
     }
 
@@ -518,14 +537,15 @@ object Utility {
 
     fun ComponentNr.toBwString(): String {
         val bws = if (isSUL) bandwidthsUL else bandwidthsDL
-        val bwString = bws?.entries
-            ?.filter { it.value.isNotEmpty() }
-            ?.joinToString(
-                prefix = "[",
-                postfix = "]",
-                transform = { "${it.key}kHz: ${it.value.joinToString()}" },
-                separator = "; ",
-            )
+        val bwString =
+            bws?.entries
+                ?.filter { it.value.isNotEmpty() }
+                ?.joinToString(
+                    prefix = "[",
+                    postfix = "]",
+                    transform = { "${it.key}kHz: ${it.value.joinToString()}" },
+                    separator = "; ",
+                )
         return "n$band $bwString"
     }
 
@@ -543,11 +563,12 @@ object Utility {
     }
 
     fun getAsn1Converter(rat: Rat, converter: AbstractConverter): ASN1Converter {
-        val definition = if (rat == Rat.eutra) {
-            getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
-        } else {
-            getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
-        }
+        val definition =
+            if (rat == Rat.eutra) {
+                getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
+            } else {
+                getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
+            }
         return ASN1Converter(converter, listOf(definition))
     }
 
@@ -587,7 +608,7 @@ object Utility {
 
     fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
         if (hexString.length < 2) {
-            return buildJsonObject { }
+            return buildJsonObject {}
         }
         val jsonWriter = KotlinJsonFormatWriter()
         if (hexString[0] == '3' && hexString[1] < 'F' && hexString[1] >= '8') {
@@ -596,10 +617,11 @@ object Utility {
                 hexStringToByteArray(hexString).inputStream(),
                 jsonWriter
             )
-            val ueCap = jsonWriter.jsonNode?.getArrayAtPath(
-                "message.c1.ueCapabilityInformation" +
-                    ".criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
-            )
+            val ueCap =
+                jsonWriter.jsonNode?.getArrayAtPath(
+                    "message.c1.ueCapabilityInformation" +
+                        ".criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
+                )
             val map = mutableMapOf<String, JsonElement>()
             if (ueCap != null) {
                 for (ueCapContainer in ueCap) {
@@ -620,8 +642,6 @@ object Utility {
         return regex.find(this)?.range?.first ?: -1
     }
 
-    /**
-     * Return the smallest multiple of [n] greater than this integer
-     */
+    /** Return the smallest multiple of [n] greater than this integer */
     private fun Int.roundToN(n: Int): Int = ceil(this / n.toDouble()).toInt() * n
 }
