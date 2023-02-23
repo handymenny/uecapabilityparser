@@ -13,7 +13,7 @@ jobs:
       - name: Build & test
         run: |
           gradle --no-daemon build
-          cp build/libs/*-all.jar .
+          cp build/distributions/*.zip .
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
