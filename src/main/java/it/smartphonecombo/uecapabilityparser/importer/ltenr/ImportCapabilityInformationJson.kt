@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.newEngine
+package it.smartphonecombo.uecapabilityparser.importer.ltenr
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.Utility.binaryStringToBcsArray
