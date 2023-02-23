@@ -32,11 +32,28 @@ version = "0.0.5-alpha"
 
 description = "uecapabilityparser"
 
+tasks {
+    // Disable default dist zip
+    distZip { enabled = false }
+    // Disable default dist tar
+    distTar { enabled = false }
+    // Disable shadow dist tar (zip is enough)
+    shadowDistTar { enabled = false }
+    // Disable shadow default startScript
+    startShadowScripts { enabled = false }
+    // Disable default startScript
+    startScripts { enabled = false }
+
+    // Enable Junit test
+    test { useJUnitPlatform() }
+
+    // Enable shadow minify
+    shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
+}
+
+application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
+
 kotlin { jvmToolchain(8) }
-
-tasks.named<Test>("test") { useJUnitPlatform() }
-
-tasks.shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
 
 graalvmNative {
     binaries.all { resources.autodetect() }
@@ -70,8 +87,6 @@ spotless {
     kotlinGradle { ktfmt().kotlinlangStyle() }
 }
 
-application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
-
 distributions {
     named("shadow") {
         distributionBaseName.set(project.name)
@@ -88,15 +103,4 @@ distributions {
             }
         }
     }
-}
-
-tasks {
-    // Disable default dist zip
-    distZip { enabled = false }
-    // Disable default dist tar
-    distTar { enabled = false }
-    // Disable shadow dist tar (zip is enough)
-    shadowDistTar { enabled = false }
-    // Disable shadow default startScript
-    startShadowScripts { enabled = false }
 }
