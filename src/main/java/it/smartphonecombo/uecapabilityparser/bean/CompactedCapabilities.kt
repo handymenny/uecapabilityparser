@@ -3,13 +3,9 @@ package it.smartphonecombo.uecapabilityparser.bean
 import it.smartphonecombo.uecapabilityparser.bean.lte.CompactedCombo
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class CompactedComboList.
- */
+/** The Class CompactedComboList. */
 data class CompactedCapabilities(
-    /**
-     * The flags.
-     */
+    /** The flags. */
     val flags: Int = 0,
     val combos: Array<CompactedCombo>? = null
 ) {
@@ -21,8 +17,7 @@ data class CompactedCapabilities(
      * @see java.lang.Object.toString
      */
     override fun toString(): String {
-        return ("{" + "\"combo\":" + combosToString()
-                + "," + "\"flags\":" + flags + "}")
+        return ("{" + "\"combo\":" + combosToString() + "," + "\"flags\":" + flags + "}")
     }
 
     fun combosToString(): String {

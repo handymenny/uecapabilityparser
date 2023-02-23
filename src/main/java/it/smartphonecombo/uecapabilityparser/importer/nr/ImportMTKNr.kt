@@ -29,25 +29,28 @@ class ImportMTKNr : ImportCapabilities {
             matchRes = scanUntilMatch(lines, pattern, index)
             if (matchRes != null) {
                 index = matchRes.index
-                total = try {
-                    matchRes.matcher.group(1).toInt(16)
-                } catch (ex: NumberFormatException) {
-                    0
-                }
+                total =
+                    try {
+                        matchRes.matcher.group(1).toInt(16)
+                    } catch (ex: NumberFormatException) {
+                        0
+                    }
             }
             pattern = Pattern.compile("bc = Array\\[(\\d*)]", Pattern.CASE_INSENSITIVE)
             matchRes = scanUntilMatch(lines, pattern, ++index)
             if (matchRes != null) {
                 index = matchRes.index
-                arraySize = try {
-                    matchRes.matcher.group(1).toInt()
-                } catch (ex: NumberFormatException) {
-                    0
-                }
+                arraySize =
+                    try {
+                        matchRes.matcher.group(1).toInt()
+                    } catch (ex: NumberFormatException) {
+                        0
+                    }
             }
             pattern = Pattern.compile("bc\\[(\\d*)] = \\(struct\\)", Pattern.CASE_INSENSITIVE)
             val integer = Pattern.compile("\\(enum (\\d*)\\)", Pattern.CASE_INSENSITIVE)
-            val bandPattern = Pattern.compile("(LTE)*_Band_?(\\d+)\\s\\(enum (\\d+)\\)", Pattern.CASE_INSENSITIVE)
+            val bandPattern =
+                Pattern.compile("(LTE)*_Band_?(\\d+)\\s\\(enum (\\d+)\\)", Pattern.CASE_INSENSITIVE)
             while (scanUntilMatch(lines, pattern, ++index).also { matchRes = it } != null) {
                 index = matchRes!!.index
                 try {
@@ -58,15 +61,16 @@ class ImportMTKNr : ImportCapabilities {
                     var str = lines[index].trim { it <= ' ' }
                     if (str.length < 20) continue
                     str = str.substring(20)
-                    val numCCs: Int = try {
-                        str.toInt(16)
-                    } catch (ex: NumberFormatException) {
-                        System.err.println("error at index: $index")
-                        //ex.printStackTrace();
-                        continue
-                    }
+                    val numCCs: Int =
+                        try {
+                            str.toInt(16)
+                        } catch (ex: NumberFormatException) {
+                            System.err.println("error at index: $index")
+                            // ex.printStackTrace();
+                            continue
+                        }
 
-                    //Sanity check
+                    // Sanity check
                     if (numCCs < 1 || numCCs > 10) {
                         continue
                     }
@@ -79,7 +83,7 @@ class ImportMTKNr : ImportCapabilities {
                     while (i < arrayLength && i < numCCs) {
                         index++
 
-                        //Check if NR or LTE
+                        // Check if NR or LTE
                         str = lines[++index].trim { it <= ' ' }
                         matcher = integer.matcher(str)
                         matcher.find()
@@ -90,30 +94,31 @@ class ImportMTKNr : ImportCapabilities {
                             continue
                         }
                         index += 2
-                        //Band
+                        // Band
                         str = lines[++index].trim { it <= ' ' }
                         matcher = bandPattern.matcher(str)
                         if (!matcher.find()) {
                             i++
                             continue
                         }
-                        //Check if rat != type of band
-                        str = if (rat == 1 && matcher.group(1) != null) {
-                            //if rat != type of band use raw data
-                            matcher.group(3)
-                        } else {
-                            matcher.group(2)
-                        }
+                        // Check if rat != type of band
+                        str =
+                            if (rat == 1 && matcher.group(1) != null) {
+                                // if rat != type of band use raw data
+                                matcher.group(3)
+                            } else {
+                                matcher.group(2)
+                            }
                         val band = str.toInt()
 
-                        //DL BW Class
+                        // DL BW Class
                         str = lines[++index].trim { it <= ' ' }
                         matcher = integer.matcher(str)
                         matcher.find()
                         str = matcher.group(1)
                         val dlBWClass = 'A' + str.toInt()
 
-                        //UL BW Class
+                        // UL BW Class
                         str = lines[++index].trim { it <= ' ' }
                         matcher = integer.matcher(str)
                         matcher.find()
@@ -140,11 +145,12 @@ class ImportMTKNr : ImportCapabilities {
                     componentNrs.sortWith(IComponent.defaultComparator.reversed())
                     val bandArray = lteComponents.toTypedArray()
                     val nrbandsArray = componentNrs.toTypedArray()
-                    val newCombo = if (bandArray.isEmpty()) {
-                        ComboNr(nrbandsArray)
-                    } else {
-                        ComboNr(bandArray, nrbandsArray)
-                    }
+                    val newCombo =
+                        if (bandArray.isEmpty()) {
+                            ComboNr(nrbandsArray)
+                        } else {
+                            ComboNr(bandArray, nrbandsArray)
+                        }
                     listCombos.add(newCombo)
                 } catch (ex: NumberFormatException) {
                     System.err.println("error at index: $index")

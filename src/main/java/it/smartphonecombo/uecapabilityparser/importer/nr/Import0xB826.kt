@@ -201,17 +201,16 @@ class Import0xB826 : ImportCapabilities {
                             bands.add(lteband)
                         }
                     }
-                    val bandArray = bands
-                        .sortedWith(IComponent.defaultComparator.reversed())
-                        .toTypedArray()
-                    val nrbandsArray = nrbands
-                        .sortedWith(IComponent.defaultComparator.reversed())
-                        .toTypedArray()
-                    val newCombo = if (bandArray.isEmpty()) {
-                        ComboNr(nrbandsArray)
-                    } else {
-                        ComboNr(bandArray, nrbandsArray)
-                    }
+                    val bandArray =
+                        bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+                    val nrbandsArray =
+                        nrbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+                    val newCombo =
+                        if (bandArray.isEmpty()) {
+                            ComboNr(nrbandsArray)
+                        } else {
+                            ComboNr(bandArray, nrbandsArray)
+                        }
                     listCombo.add(newCombo)
                     comboN++
                 } catch (ex: EOFException) {
@@ -241,17 +240,54 @@ class Import0xB826 : ImportCapabilities {
     private fun getMimoFromIndex(index: Int): Int {
         return when (index) {
             0 -> 0
-            1, 25, 16, 9, 4 -> 1
-            2, 42, 56, 72, 26, 27, 28, 29, 30, 17, 18, 19, 20, 10, 11, 12, 5, 6 -> 2
-            3, 31, 32, 33, 34, 35, 21, 22, 23, 24, 13, 14, 15, 7, 8 -> 4
+            1,
+            25,
+            16,
+            9,
+            4 -> 1
+            2,
+            42,
+            56,
+            72,
+            26,
+            27,
+            28,
+            29,
+            30,
+            17,
+            18,
+            19,
+            20,
+            10,
+            11,
+            12,
+            5,
+            6 -> 2
+            3,
+            31,
+            32,
+            33,
+            34,
+            35,
+            21,
+            22,
+            23,
+            24,
+            13,
+            14,
+            15,
+            7,
+            8 -> 4
             else -> index
         }
     }
 
     private fun getQamFromIndex(index: Int): String {
         return when (index) {
-            2, 5 -> "256qam"
-            3, 6 -> "1024qam"
+            2,
+            5 -> "256qam"
+            3,
+            6 -> "1024qam"
             else -> "64qam"
         }
     }
@@ -259,17 +295,32 @@ class Import0xB826 : ImportCapabilities {
     private fun getBWFromIndexV8(index: Int): Int {
         return when (index) {
             0 -> 5
-            1, 2 -> 10
+            1,
+            2 -> 10
             3 -> 15
-            4, 5 -> 20
-            8, 9 -> 25
+            4,
+            5 -> 20
+            8,
+            9 -> 25
             10 -> 30
             11 -> 40
-            12, 13 -> 50
+            12,
+            13 -> 50
             17 -> 60
             18 -> 70
-            19, 20 -> 80
-            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 -> 100
+            19,
+            20 -> 80
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31 -> 100
             else -> index
         }
     }
@@ -283,10 +334,18 @@ class Import0xB826 : ImportCapabilities {
             8 -> 25
             9 -> 30
             10 -> 40
-            11, 15 -> 50
+            11,
+            15 -> 50
             12 -> 60
             13 -> 80
-            14, 20, 21, 22, 23, 24, 25, 26 -> 100
+            14,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26 -> 100
             else -> index
         }
     }

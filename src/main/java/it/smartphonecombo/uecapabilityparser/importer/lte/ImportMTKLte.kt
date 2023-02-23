@@ -27,31 +27,35 @@ class ImportMTKLte : ImportCapabilities {
             matchRes = scanUntilMatch(lines, pattern, index)
             if (matchRes != null) {
                 index = matchRes.index
-                total = try {
-                    matchRes.matcher.group(1).toInt(16)
-                } catch (ex: NumberFormatException) {
-                    0
-                }
+                total =
+                    try {
+                        matchRes.matcher.group(1).toInt(16)
+                    } catch (ex: NumberFormatException) {
+                        0
+                    }
             }
             pattern = Pattern.compile("band_comb = Array\\[(\\d*)]", Pattern.CASE_INSENSITIVE)
             matchRes = scanUntilMatch(lines, pattern, ++index)
             if (matchRes != null) {
                 index = matchRes.index
-                arraySize = try {
-                    matchRes.matcher.group(1).toInt()
-                } catch (ex: NumberFormatException) {
-                    0
-                }
+                arraySize =
+                    try {
+                        matchRes.matcher.group(1).toInt()
+                    } catch (ex: NumberFormatException) {
+                        0
+                    }
             }
-            pattern = Pattern.compile("band_comb\\[(\\d*)] = \\(struct\\)", Pattern.CASE_INSENSITIVE)
-            val patternMimo = Pattern.compile("band_mimo = Array\\[(\\d*)]", Pattern.CASE_INSENSITIVE)
+            pattern =
+                Pattern.compile("band_comb\\[(\\d*)] = \\(struct\\)", Pattern.CASE_INSENSITIVE)
+            val patternMimo =
+                Pattern.compile("band_mimo = Array\\[(\\d*)]", Pattern.CASE_INSENSITIVE)
             while (scanUntilMatch(lines, pattern, ++index).also { matchRes = it } != null) {
                 index = matchRes!!.index
                 try {
                     val comboNum = matchRes!!.matcher.group(1).toInt()
                     var str = lines[++index].trim { it <= ' ' }.substring(19)
                     val numCCs = str.toInt(16)
-                    //Sanity check
+                    // Sanity check
                     if (numCCs < 1 || numCCs > 10) {
                         continue
                     }
@@ -85,7 +89,7 @@ class ImportMTKLte : ImportCapabilities {
                         val length = matchRes!!.matcher.group(1).toInt()
                         var k = 0
                         while (k < length && k < numCCs) {
-                            while (!lines[++index].trim { it <= ' ' }.startsWith("band_mimo[$k]"));
+                            while (!lines[++index].trim { it <= ' ' }.startsWith("band_mimo[$k]")) ;
                             str = lines[++index].trim { it <= ' ' }.substring(18)
                             if (str.startsWith("ERRC_CAPA_CA_MIMO_CAPA_FOUR_LAYERS")) {
                                 bands[k].mimoDL = 4

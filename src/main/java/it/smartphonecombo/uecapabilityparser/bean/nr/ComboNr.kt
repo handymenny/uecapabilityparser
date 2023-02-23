@@ -5,16 +5,16 @@ import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 
-/**
- * The Class Combo.
- */
+/** The Class Combo. */
 data class ComboNr(
     override var masterComponents: Array<IComponent>,
     override var secondaryComponents: Array<IComponent>,
     val featureSet: Int = 0
-) :
-    ICombo {
-    constructor(master: Array<IComponent>, secondary: Array<IComponent>) : this(master, secondary, 0)
+) : ICombo {
+    constructor(
+        master: Array<IComponent>,
+        secondary: Array<IComponent>
+    ) : this(master, secondary, 0)
     constructor(master: Array<IComponent>, featureSet: Int) : this(master, emptyArray(), featureSet)
     constructor(master: Array<IComponent>) : this(master, emptyArray())
 
@@ -43,16 +43,18 @@ data class ComboNr(
     }
 
     override fun toCsv(separator: String, standalone: Boolean): String {
-        val lteDlCC = if (standalone) {
-            0
-        } else {
-            ImportCapabilities.lteDlCC
-        }
-        val lteUlCC = if (standalone) {
-            0
-        } else {
-            ImportCapabilities.lteUlCC
-        }
+        val lteDlCC =
+            if (standalone) {
+                0
+            } else {
+                ImportCapabilities.lteDlCC
+            }
+        val lteUlCC =
+            if (standalone) {
+                0
+            } else {
+                ImportCapabilities.lteUlCC
+            }
         val band = IntArray(lteDlCC)
         val bandwidth = CharArray(lteDlCC)
         val mimo = IntArray(lteDlCC)
@@ -164,7 +166,8 @@ data class ComboNr(
     }
 
     private val isEnDc: Boolean
-        get() = (masterComponents.isNotEmpty() && (masterComponents[0] is ComponentLte)) &&
+        get() =
+            (masterComponents.isNotEmpty() && (masterComponents[0] is ComponentLte)) &&
                 (secondaryComponents.isNotEmpty() && (secondaryComponents[0] is ComponentNr))
 
     val componentsNr: Array<IComponent>

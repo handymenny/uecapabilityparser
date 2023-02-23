@@ -16,11 +16,12 @@ class FeaturePerCCNr(
     }
 
     override fun toString(): String {
-        val typeString = when (type) {
-            DOWNlINK -> "DL"
-            UPLINK -> "UL"
-            else -> "Unknown"
-        }
+        val typeString =
+            when (type) {
+                DOWNlINK -> "DL"
+                UPLINK -> "UL"
+                else -> "Unknown"
+            }
         return "FeaturePerCCNr(type=$typeString, mimo=$mimo, qam=$qam, bw=$bw, scs=$scs, bw90MHz=$channelBW90mhz)"
     }
 }

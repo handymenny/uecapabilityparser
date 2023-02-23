@@ -12,9 +12,7 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://jitpack.io")
-    }
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -31,7 +29,9 @@ dependencies {
 }
 
 group = "parser"
+
 version = "0.0.5-alpha"
+
 description = "uecapabilityparser"
 
 java {
@@ -40,33 +40,24 @@ java {
 }
 
 val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
-}
+
+compileKotlin.kotlinOptions { jvmTarget = "1.8" }
+
 val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
-}
 
-tasks.named<Test>("test") {
-    useJUnitPlatform()
-}
+compileTestKotlin.kotlinOptions { jvmTarget = "1.8" }
 
-tasks{
+tasks.named<Test>("test") { useJUnitPlatform() }
+
+tasks {
     shadowJar {
-        manifest {
-            attributes(Pair("Main-Class", "it.smartphonecombo.uecapabilityparser.MainCli"))
-        }
-        minimize {
-            exclude(dependency("org.slf4j:slf4j-nop:.*"))
-        }
+        manifest { attributes(Pair("Main-Class", "it.smartphonecombo.uecapabilityparser.MainCli")) }
+        minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) }
     }
 }
 
 graalvmNative {
-    binaries.all {
-        resources.autodetect()
-    }
+    binaries.all { resources.autodetect() }
 
     binaries {
         named("main") {
@@ -93,13 +84,9 @@ spotless {
         formatAnnotations()
     }
 
-    kotlin {
-        ktfmt().kotlinlangStyle()
-    }
+    kotlin { ktfmt().kotlinlangStyle() }
 
-    kotlinGradle {
-        ktfmt().kotlinlangStyle()
-    }
+    kotlinGradle { ktfmt().kotlinlangStyle() }
 
     yaml {
         target("**/*.yaml")

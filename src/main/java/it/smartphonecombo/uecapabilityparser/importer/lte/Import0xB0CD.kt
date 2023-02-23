@@ -7,9 +7,7 @@ import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.util.regex.Pattern
 
-/**
- * The Class ImportCarrierPolicy.
- */
+/** The Class ImportCarrierPolicy. */
 class Import0xB0CD : ImportCapabilities {
     /**
      * Convert to java class.
@@ -20,18 +18,16 @@ class Import0xB0CD : ImportCapabilities {
     override fun parse(caBandCombosString: String): Capabilities {
         // V41 has two columns reversed
 
-        val isV41 = caBandCombosString.contains(
-            "UL BW Class         |DL Max Antennas Index"
-        )
+        val isV41 = caBandCombosString.contains("UL BW Class         |DL Max Antennas Index")
         var regex =
             "^\\|\\s*\\d{1,3}\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?.*(\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?.*)?(\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?.*)?(\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?.*)?(\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?.*)?(\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?.*)?"
         if (isV41) {
             regex =
-                ("^\\|\\s*\\d{1,3}\\|\\s*\\d\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*"
-                        + "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?"
-                        + "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?"
-                        + "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?"
-                        + "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?")
+                ("^\\|\\s*\\d{1,3}\\|\\s*\\d\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*" +
+                    "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?" +
+                    "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?" +
+                    "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?" +
+                    "(\\s*\\|\\s*\\|\\s*\\|\\s*\\d\\|\\s*(\\d{1,3})\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CA_BW_CLASS_)?([A-Ia-i1-5])?(?:NONE)?0?\\|\\s*(?:CLASS_[A-z]{1,3}_)?(\\d)(?:_\\d){0,3}(?:_ANT)?.*)?")
         }
         val pattern = Pattern.compile(regex, Pattern.MULTILINE)
         val listCombo = ArrayList<ComboLte>()
@@ -56,21 +52,18 @@ class Import0xB0CD : ImportCapabilities {
                         if (uplink < '9') {
                             uplink += 16.toChar().code
                         }
-                    } catch (ignored: NullPointerException) {
-                    }
+                    } catch (ignored: NullPointerException) {}
                 }
                 try {
                     mimo = matcher.group(i++).toInt()
-                } catch (ignored: NumberFormatException) {
-                }
+                } catch (ignored: NumberFormatException) {}
                 if (!isV41) {
                     try {
                         uplink = matcher.group(i++)[0]
                         if (uplink < '9') {
                             uplink += 16.toChar().code
                         }
-                    } catch (ignored: NullPointerException) {
-                    }
+                    } catch (ignored: NullPointerException) {}
                 }
                 bands.add(ComponentLte(baseBand, bandwidthClass, uplink, mimo, "64qam", "16qam"))
                 i++

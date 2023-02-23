@@ -1,28 +1,24 @@
-name: "release"
-
-on:
+name: release
+"on":
   push:
-    tags: 
-      - 'v*'
-
+    tags:
+      - v*
 jobs:
   pre-release:
-    name: "Release"
-    runs-on: "ubuntu-latest"
-
+    name: Release
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: "Build & test"
+      - name: Build & test
         run: |
           gradle --no-daemon shadowJar
           cp build/libs/*-all.jar .
-
-      - uses: "marvinpinto/action-automatic-releases@v1.2.1"
+      - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: ${{ endsWith(GitHub.ref, 'alpha') || endsWith(GitHub.ref, 'beta') }}
-          files: |
+          prerelease: "${{ endsWith(GitHub.ref, 'alpha') || endsWith(GitHub.ref, 'beta')\
+            \ }}"
+          files: |-
             LICENSE
             *.jar

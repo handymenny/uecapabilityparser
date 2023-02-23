@@ -18,9 +18,11 @@ import it.smartphonecombo.uecapabilityparser.importer.lte.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportCarrierPolicy
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportMTKLte
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportNvItem
+import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformationJson
 import it.smartphonecombo.uecapabilityparser.importer.nr.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.nr.ImportCapPrune
-import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformationJson
+import java.nio.charset.StandardCharsets
+import kotlin.system.exitProcess
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import org.apache.commons.cli.CommandLine
@@ -30,8 +32,6 @@ import org.apache.commons.cli.HelpFormatter
 import org.apache.commons.cli.Option
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.ParseException
-import java.nio.charset.StandardCharsets
-import kotlin.system.exitProcess
 
 /**
  * The Class Main.
@@ -51,54 +51,59 @@ internal object MainCli {
         options.addOption(inputFileNR)
         val inputFileENDC = Option("inputENDC", true, "ENDC UE Capability file.")
         options.addOption(inputFileENDC)
-        val defaultInputIsNR = Option("nr", "defaultNR", false, "Main capability input is NR (otherwise LTE).")
+        val defaultInputIsNR =
+            Option("nr", "defaultNR", false, "Main capability input is NR (otherwise LTE).")
         options.addOption(defaultInputIsNR)
-        val multiple0xB826 = Option(
-            "multi",
-            "multiple0xB826",
-            false,
-            "Use this option if input contains several 0xB826 hexdumps separated by blank lines and optionally prefixed with \"Payload :\"."
-        )
+        val multiple0xB826 =
+            Option(
+                "multi",
+                "multiple0xB826",
+                false,
+                "Use this option if input contains several 0xB826 hexdumps separated by blank lines and optionally prefixed with \"Payload :\"."
+            )
         options.addOption(multiple0xB826)
-        val type = Option(
-            "t",
-            "type",
-            true,
-            "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
-        )
+        val type =
+            Option(
+                "t",
+                "type",
+                true,
+                "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
+            )
         type.isRequired = true
         options.addOption(type)
-        val json = Option(
-            "j", "compactJson", true,
-            "Output a Compact Json (used by smartphonecombo.it), if no file specified the json will be output to standard output."
-        )
+        val json =
+            Option(
+                "j",
+                "compactJson",
+                true,
+                "Output a Compact Json (used by smartphonecombo.it), if no file specified the json will be output to standard output."
+            )
         json.setOptionalArg(true)
         options.addOption(json)
-        val csv = Option(
-            "c", "csv", true,
-            "Output a csv, if no file specified the csv will be output to standard output.\nSome parsers output multiple CSVs, in these cases \"-LTE\", \"-NR\", \"-EN-DC\", \"-generic\" will be added before the extension."
-        )
+        val csv =
+            Option(
+                "c",
+                "csv",
+                true,
+                "Output a csv, if no file specified the csv will be output to standard output.\nSome parsers output multiple CSVs, in these cases \"-LTE\", \"-NR\", \"-EN-DC\", \"-generic\" will be added before the extension."
+            )
         csv.setOptionalArg(true)
         options.addOption(csv)
-        val uelog = Option(
-            "l", "uelog", true,
-            "Output the uelog, if no file specified the uelog will be output to standard output."
-        )
+        val uelog =
+            Option(
+                "l",
+                "uelog",
+                true,
+                "Output the uelog, if no file specified the uelog will be output to standard output."
+            )
         uelog.setOptionalArg(true)
         options.addOption(uelog)
         val debug = Option("d", "debug", false, "Print debug info.")
         options.addOption(debug)
-        val tsharkPath = Option(
-            "T", "TsharkPath", true,
-            "Set tshark path. (Tshark is used for H type)"
-        )
+        val tsharkPath =
+            Option("T", "TsharkPath", true, "Set tshark path. (Tshark is used for H type)")
         options.addOption(tsharkPath)
-        val newEngine = Option(
-            "n",
-            "newEngine",
-            false,
-            "Use the new engine (default)"
-        )
+        val newEngine = Option("n", "newEngine", false, "Use the new engine (default)")
         options.addOption(newEngine)
 
         val parser: CommandLineParser = DefaultParser()
@@ -122,48 +127,46 @@ internal object MainCli {
 
             if (cmd.hasOption("csv")) {
                 val fileName: String? = cmd.getOptionValue("csv")
-                if (typeLog == "W" || typeLog == "N" || typeLog == "H" || typeLog == "P" || typeLog == "QNR" ||
-                    typeLog == "O"
+                if (
+                    typeLog == "W" ||
+                        typeLog == "N" ||
+                        typeLog == "H" ||
+                        typeLog == "P" ||
+                        typeLog == "QNR" ||
+                        typeLog == "O"
                 ) {
                     val lteCombos = comboList.lteCombos
                     if (!lteCombos.isNullOrEmpty()) {
                         outputFile(
                             Utility.toCsv(lteCombos),
-                            fileName?.let {
-                                Utility.appendBeforeExtension(it, "-LTE")
-                            }
+                            fileName?.let { Utility.appendBeforeExtension(it, "-LTE") }
                         )
                     }
                     val nrCombos = comboList.nrCombos
                     if (!nrCombos.isNullOrEmpty()) {
                         outputFile(
                             Utility.toCsv(nrCombos),
-                            fileName?.let {
-                                Utility.appendBeforeExtension(it, "-NR")
-                            }
+                            fileName?.let { Utility.appendBeforeExtension(it, "-NR") }
                         )
                     }
                     val enDcCombos = comboList.enDcCombos
                     if (!enDcCombos.isNullOrEmpty()) {
                         outputFile(
                             Utility.toCsv(enDcCombos),
-                            fileName?.let {
-                                Utility.appendBeforeExtension(it, "-EN-DC")
-                            }
+                            fileName?.let { Utility.appendBeforeExtension(it, "-EN-DC") }
                         )
                     }
                 } else {
-                    outputFile(
-                        Utility.toCsv(comboList),
-                        fileName
-                    )
+                    outputFile(Utility.toCsv(comboList), fileName)
                 }
             }
             var list = comboList.lteCombos
             if (list != null) {
                 list =
                     list.sortedWith(
-                        Comparator.comparing({ obj: ComboLte -> obj.masterComponents }) { s1: Array<IComponent>, s2: Array<IComponent> ->
+                        Comparator.comparing({ obj: ComboLte -> obj.masterComponents }) {
+                            s1: Array<IComponent>,
+                            s2: Array<IComponent> ->
                             var i = 0
                             while (i < s1.size && i < s2.size) {
                                 val result = s1[i].compareTo(s2[i])
@@ -187,16 +190,14 @@ internal object MainCli {
         }
     }
 
-    private fun parsing(
-        cmd: CommandLine,
-        typeLog: String
-    ): Capabilities {
+    private fun parsing(cmd: CommandLine, typeLog: String): Capabilities {
         try {
-            val input = if (typeLog == "E" || typeLog == "M") {
-                cmd.getOptionValue("input")
-            } else {
-                Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
-            }
+            val input =
+                if (typeLog == "E" || typeLog == "M") {
+                    cmd.getOptionValue("input")
+                } else {
+                    Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
+                }
             val imports: ImportCapabilities?
             when (typeLog) {
                 "E" -> imports = ImportNvItem()
@@ -205,7 +206,10 @@ internal object MainCli {
                 "Q" -> imports = Import0xB0CD()
                 "M" -> imports = ImportMTKLte()
                 "QNR" -> imports = Import0xB826()
-                "W", "N", "O", "H" -> return ueCapabilityHandling(cmd, typeLog)
+                "W",
+                "N",
+                "O",
+                "H" -> return ueCapabilityHandling(cmd, typeLog)
                 else -> {
                     System.err.println(
                         "Only type W (wireshark), N (NSG), H (Hex Dump), Osix (CellularPro), " +
@@ -233,24 +237,18 @@ internal object MainCli {
         }
     }
 
-    private fun ueCapabilityHandling(
-        cmd: CommandLine,
-        typeLog: String
-    ): Capabilities {
+    private fun ueCapabilityHandling(cmd: CommandLine, typeLog: String): Capabilities {
         var input: String
         var inputNR = ""
         var inputENDC = ""
         input = Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
         if (typeLog == "H" || typeLog == "N" || typeLog == "W") {
             if (cmd.hasOption("inputNR")) {
-                inputNR =
-                    Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
+                inputNR = Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
             }
             if (cmd.hasOption("inputENDC")) {
-                inputENDC = Utility.readFile(
-                    cmd.getOptionValue("inputENDC"),
-                    StandardCharsets.UTF_8
-                )
+                inputENDC =
+                    Utility.readFile(cmd.getOptionValue("inputENDC"), StandardCharsets.UTF_8)
             }
             if (typeLog == "H") {
                 input = preformatHexData(input)
@@ -267,31 +265,29 @@ internal object MainCli {
         lateinit var nrIdentifier: Regex
         lateinit var mrdcIdentifier: Regex
 
-        val converter = when (typeLog) {
-            "W" -> {
-                eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
-                nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
-                mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
-                ConverterWireshark()
+        val converter =
+            when (typeLog) {
+                "W" -> {
+                    eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
+                    nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
+                    mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
+                    ConverterWireshark()
+                }
+                "N" -> {
+                    eutraIdentifier = "rat-Type : ${Rat.eutra}\\s".toRegex()
+                    nrIdentifier = "rat-Type : ${Rat.nr}\\s".toRegex()
+                    mrdcIdentifier = "rat-Type : ${Rat.eutra_nr}\\s".toRegex()
+                    ConverterNSG()
+                }
+                "O" -> {
+                    eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
+                    nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
+                    mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
+                    ConverterOsix()
+                }
+                "H" -> null
+                else -> null
             }
-
-            "N" -> {
-                eutraIdentifier = "rat-Type : ${Rat.eutra}\\s".toRegex()
-                nrIdentifier = "rat-Type : ${Rat.nr}\\s".toRegex()
-                mrdcIdentifier = "rat-Type : ${Rat.eutra_nr}\\s".toRegex()
-                ConverterNSG()
-            }
-
-            "O" -> {
-                eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
-                nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
-                mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
-                ConverterOsix()
-            }
-
-            "H" -> null
-            else -> null
-        }
 
         if (typeLog == "H") {
             val defaultRat = if (cmd.hasOption("defaultNR")) Rat.nr else Rat.eutra
@@ -303,11 +299,14 @@ internal object MainCli {
                 ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.eutra_nr, inputENDC)
             }
         } else {
-            val list = listOf(
-                Rat.eutra to input.indexOf(eutraIdentifier),
-                Rat.eutra_nr to input.indexOf(mrdcIdentifier),
-                Rat.nr to input.indexOf(nrIdentifier)
-            ).filter { it.second != -1 }.sortedBy { it.second }
+            val list =
+                listOf(
+                        Rat.eutra to input.indexOf(eutraIdentifier),
+                        Rat.eutra_nr to input.indexOf(mrdcIdentifier),
+                        Rat.nr to input.indexOf(nrIdentifier)
+                    )
+                    .filter { it.second != -1 }
+                    .sortedBy { it.second }
             var eutra = ""
             var eutraNr = ""
             var nr = ""
@@ -316,13 +315,9 @@ internal object MainCli {
                 val end = list.getOrNull(i + 1)?.second ?: input.length
                 when (rat) {
                     Rat.eutra ->
-                        eutra =
-                            input.substring(start + eutraIdentifier.toString().length - 1, end)
-
+                        eutra = input.substring(start + eutraIdentifier.toString().length - 1, end)
                     Rat.eutra_nr ->
-                        eutraNr =
-                            input.substring(start + mrdcIdentifier.toString().length - 1, end)
-
+                        eutraNr = input.substring(start + mrdcIdentifier.toString().length - 1, end)
                     Rat.nr -> nr = input.substring(start + nrIdentifier.toString().length - 1, end)
                     else -> {}
                 }

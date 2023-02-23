@@ -33,9 +33,16 @@ data class CompactedCombo(
      * @see java.lang.Object.toString
      */
     override fun toString(): String {
-        return "{" + "\"dl\":" + bandToString() + "," + "\"mimo\":" + listToString(
-            mimo
-        ) + "," + "\"ul\":" + listToString(upload) + "}"
+        return "{" +
+            "\"dl\":" +
+            bandToString() +
+            "," +
+            "\"mimo\":" +
+            listToString(mimo) +
+            "," +
+            "\"ul\":" +
+            listToString(upload) +
+            "}"
     }
 
     /**
@@ -66,9 +73,9 @@ data class CompactedCombo(
      * List to string.
      *
      * @param <E> the element type
-     * @param a   the a
-     * @return the string
-    </E> */
+     * @param a the a
+     * @return the string </E>
+     */
     private fun <E> listToString(a: List<E>?): String {
         if (a == null) {
             return "null"
