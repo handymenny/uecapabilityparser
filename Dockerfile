@@ -13,7 +13,7 @@ RUN groupadd -r -g 2000 java && useradd -m -d /home/java/ -s /bin/bash -u 2000 -
     && rm -rf /var/lib/apt/lists/* \
     && tshark -v
 
-COPY --from=build /home/gradle/build/libs/*.jar /app/uecapabilityparser.jar
+COPY --from=build /home/gradle/build/libs/*-all.jar /app/uecapabilityparser.jar
 
 USER java
 WORKDIR /home/java
