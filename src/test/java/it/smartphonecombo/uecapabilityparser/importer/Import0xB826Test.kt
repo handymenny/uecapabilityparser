@@ -67,15 +67,15 @@ internal class Import0xB826Test {
         val combos =
             listOf(
                 "3A4A^64qam_n41A4A^100-30",
-                "1A4A^64qam-3C2_n78A4A^100-30",
-                "1A2A^64qam-3C4_n78A4A^100-30",
-                "1A4-3C2A^64qam_n78A4A^100-30",
-                "1A2-3C4A^64qam_n78A4A^100-30",
-                "1A4-3A2A^64qam-3A2_n78A4A^100-30",
-                "1A4A^64qam-3A2-3A2_n78A4A^100-30",
-                "1A4A^64qam-3A4-8A2_n78A4A^100-30",
-                "1A4-3A4A^64qam-8A2_n78A4A^100-30",
-                "1A4-3A4-8A2A^64qam_n78A4A^100-30"
+                "3C2-1A4A^64qam_n78A4A^100-30",
+                "3C4-1A2A^64qam_n78A4A^100-30",
+                "3C2A^64qam-1A4_n78A4A^100-30",
+                "3C4A^64qam-1A2_n78A4A^100-30",
+                "3A2A^64qam-3A2-1A4_n78A4A^100-30",
+                "3A2-3A2-1A4A^64qam_n78A4A^100-30",
+                "8A2-3A4-1A4A^64qam_n78A4A^100-30",
+                "8A2-3A4A^64qam-1A4_n78A4A^100-30",
+                "8A2A^64qam-3A4-1A4_n78A4A^100-30"
             )
         parse("0xB826-v2-NSA.bin", 2, 356, 10, null, null, true, combos)
     }
