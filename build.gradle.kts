@@ -1,4 +1,3 @@
-import com.diffplug.gradle.spotless.YamlExtension.JacksonYamlGradleConfig
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -87,14 +86,4 @@ spotless {
     kotlin { ktfmt().kotlinlangStyle() }
 
     kotlinGradle { ktfmt().kotlinlangStyle() }
-
-    yaml {
-        target("**/*.yaml")
-        JacksonYamlGradleConfig(this).apply {
-            yamlFeature("MINIMIZE_QUOTES", true)
-            yamlFeature("WRITE_DOC_START_MARKER", false)
-            yamlFeature("INDENT_ARRAYS", true)
-            yamlFeature("INDENT_ARRAYS_WITH_INDICATOR", true)
-        }
-    }
 }
