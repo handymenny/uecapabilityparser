@@ -18,7 +18,7 @@ jobs:
           cache: 'gradle'
       - name: Build & test
         run: |
-          gradle --no-daemon build
+          ./gradlew --no-daemon build
           cp build/distributions/*.zip .
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
