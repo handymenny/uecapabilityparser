@@ -15,6 +15,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
+          cache: 'gradle'
       - name: Build & test
         run: |
           gradle --no-daemon build
