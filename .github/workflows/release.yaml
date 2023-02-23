@@ -10,10 +10,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Setup jdk11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
       - name: Build & test
         run: |
-          gradle --no-daemon shadowJar
-          cp build/libs/*-all.jar .
+          ./gradlew --no-daemon build
+          cp build/distributions/*.zip .
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"

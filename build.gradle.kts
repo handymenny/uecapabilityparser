@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     val kotlinVersion = "1.8.10"
     kotlin("jvm") version kotlinVersion
@@ -7,6 +5,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.graalvm.buildtools.native") version "0.9.20"
     id("com.diffplug.spotless") version "6.15.0"
+    application
 }
 
 repositories {
@@ -33,34 +32,34 @@ version = "0.0.5-alpha"
 
 description = "uecapabilityparser"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-val compileKotlin: KotlinCompile by tasks
-
-compileKotlin.kotlinOptions { jvmTarget = "1.8" }
-
-val compileTestKotlin: KotlinCompile by tasks
-
-compileTestKotlin.kotlinOptions { jvmTarget = "1.8" }
-
-tasks.named<Test>("test") { useJUnitPlatform() }
-
 tasks {
-    shadowJar {
-        manifest { attributes(Pair("Main-Class", "it.smartphonecombo.uecapabilityparser.MainCli")) }
-        minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) }
-    }
+    // Disable default dist zip
+    distZip { enabled = false }
+    // Disable default dist tar
+    distTar { enabled = false }
+    // Disable shadow dist tar (zip is enough)
+    shadowDistTar { enabled = false }
+    // Disable shadow default startScript
+    startShadowScripts { enabled = false }
+    // Disable default startScript
+    startScripts { enabled = false }
+
+    // Enable Junit test
+    test { useJUnitPlatform() }
+
+    // Enable shadow minify
+    shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
 }
+
+application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
+
+kotlin { jvmToolchain(11) }
 
 graalvmNative {
     binaries.all { resources.autodetect() }
 
     binaries {
         named("main") {
-            mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli")
             fallback.set(false)
             verbose.set(false)
             imageName.set("uecapabilityparser")
@@ -86,4 +85,22 @@ spotless {
     kotlin { ktfmt().kotlinlangStyle() }
 
     kotlinGradle { ktfmt().kotlinlangStyle() }
+}
+
+distributions {
+    named("shadow") {
+        distributionBaseName.set(project.name)
+        contents {
+            from("src/main/dist")
+            from("LICENSE")
+            from("README.md")
+            eachFile {
+                // Move all files to root and rename jar to uecapabilityparser.jar
+                this.path =
+                    this.path
+                        .replace("${project.name}-${project.version}/", "")
+                        .replace(""".*\.jar""".toRegex(), "${project.name}.jar")
+            }
+        }
+    }
 }

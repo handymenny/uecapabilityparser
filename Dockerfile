@@ -1,7 +1,7 @@
-FROM --platform=$BUILDPLATFORM gradle:7-jdk17 AS build
+FROM --platform=$BUILDPLATFORM gradle:8-jdk11 AS build
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
-RUN bash ./gradlew shadowJar --no-daemon
+RUN gradle build --no-daemon
 
 FROM eclipse-temurin:17-jre AS deploy
 
@@ -13,7 +13,7 @@ RUN groupadd -r -g 2000 java && useradd -m -d /home/java/ -s /bin/bash -u 2000 -
     && rm -rf /var/lib/apt/lists/* \
     && tshark -v
 
-COPY --from=build /home/gradle/build/libs/*.jar /app/uecapabilityparser.jar
+COPY --from=build /home/gradle/build/libs/*-all.jar /app/uecapabilityparser.jar
 
 USER java
 WORKDIR /home/java
