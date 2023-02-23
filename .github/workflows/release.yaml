@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Build & test
         run: |
-          gradle --no-daemon shadowJar
+          gradle --no-daemon build
           cp build/libs/*-all.jar .
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:

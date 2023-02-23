@@ -20,7 +20,7 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Build & test
         run: |
-          gradle --no-daemon shadowJar
+          gradle --no-daemon build
           cp build/libs/*-all.jar uecapabilityparser-nightly.jar
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:

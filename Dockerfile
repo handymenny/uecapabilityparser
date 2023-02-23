@@ -1,7 +1,7 @@
 FROM --platform=$BUILDPLATFORM gradle:7-jdk17 AS build
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
-RUN bash ./gradlew shadowJar --no-daemon
+RUN bash ./gradlew build --no-daemon
 
 FROM eclipse-temurin:17-jre AS deploy
 
