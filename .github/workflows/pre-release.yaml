@@ -1,5 +1,5 @@
 name: pre-release
-"on":
+on:
   push:
     branches:
       - main
@@ -28,6 +28,6 @@ jobs:
           automatic_release_tag: "nightly-${{ steps.date.outputs.date }}"
           title: "Nightly ${{ steps.date.outputs.date }}"
           prerelease: true
-          files: |-
+          files: |
             LICENSE
             *.jar
