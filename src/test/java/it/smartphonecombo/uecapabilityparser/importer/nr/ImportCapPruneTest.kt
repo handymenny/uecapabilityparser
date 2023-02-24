@@ -1,6 +1,5 @@
-package it.smartphonecombo.uecapabilityparser.importer
+package it.smartphonecombo.uecapabilityparser.importer.nr
 
-import it.smartphonecombo.uecapabilityparser.importer.nr.ImportCapPrune
 import org.junit.jupiter.api.Test
 
 internal class ImportCapPruneTest {
