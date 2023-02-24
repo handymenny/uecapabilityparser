@@ -11,9 +11,11 @@ import org.junit.jupiter.api.Test
 internal class ImportCapabilityInformationJsonTest {
 
     @Test
-    fun ueCapAddJson() {
+    fun ueCapEutraCombinationAdd() {
         val capabilities =
-            importerJson.parse(getResourceAsText("/newEngine/input/json/ueCapAdd.json")!!)
+            importerJson.parse(
+                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!
+            )
 
         // LTE Category
         assertEquals(18, capabilities.lteCategoryDL)
@@ -21,7 +23,7 @@ internal class ImportCapabilityInformationJsonTest {
 
         // LTE Combos
         val expectedCsv =
-            getResourceAsStream("/newEngine/oracle/ueCapAdd.csv")!!
+            getResourceAsStream("/newEngine/oracle/ueCapEutraCombinationAdd.csv")!!
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
@@ -78,9 +80,11 @@ internal class ImportCapabilityInformationJsonTest {
     }
 
     @Test
-    fun ueCapReducedJson() {
+    fun ueCapEutraCombinationReduced() {
         val capabilities =
-            importerJson.parse(getResourceAsText("/newEngine/input/json/ueCapReduced.json")!!)
+            importerJson.parse(
+                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!
+            )
 
         // LTE Category
         assertEquals(20, capabilities.lteCategoryDL)
@@ -88,7 +92,7 @@ internal class ImportCapabilityInformationJsonTest {
 
         // LTE Combos
         val expectedCsv =
-            getResourceAsStream("/newEngine/oracle/ueCapReduced.csv")!!
+            getResourceAsStream("/newEngine/oracle/ueCapEutraCombinationReduced.csv")!!
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
@@ -124,9 +128,9 @@ internal class ImportCapabilityInformationJsonTest {
     }
 
     @Test
-    fun ueCap1024qam() {
+    fun ueCapEutra1024qam() {
         val capabilities =
-            importerJson.parse(getResourceAsText("/newEngine/input/json/ueCap1024qam.json")!!)
+            importerJson.parse(getResourceAsText("/newEngine/input/json/ueCapEutra1024qam.json")!!)
 
         // LTE Category
         assertEquals(20, capabilities.lteCategoryDL)
@@ -134,7 +138,7 @@ internal class ImportCapabilityInformationJsonTest {
 
         // LTE Combos
         val expectedCsv =
-            getResourceAsStream("/newEngine/oracle/ueCap1024qam.csv")!!
+            getResourceAsStream("/newEngine/oracle/ueCapEutra1024qam.csv")!!
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
@@ -168,10 +172,12 @@ internal class ImportCapabilityInformationJsonTest {
     }
 
     @Test
-    fun ueCapReduced1024qam() {
+    fun ueCapEutraCombinationReduced1024qam() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText("/newEngine/input/json/ueCapReduced1024qam.json")!!
+                getResourceAsText(
+                    "/newEngine/input/json/ueCapEutraCombinationReduced1024qam.json"
+                )!!
             )
 
         // LTE Category
@@ -180,7 +186,7 @@ internal class ImportCapabilityInformationJsonTest {
 
         // LTE Combos
         val expectedCsv =
-            getResourceAsStream("/newEngine/oracle/ueCapReduced1024qam.csv")!!
+            getResourceAsStream("/newEngine/oracle/ueCapEutraCombinationReduced1024qam.csv")!!
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
