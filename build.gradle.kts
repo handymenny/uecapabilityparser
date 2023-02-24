@@ -45,8 +45,12 @@ tasks {
     // Disable default startScript
     startScripts { enabled = false }
 
-    // Enable Junit test
-    test { useJUnitPlatform() }
+    test {
+        // Enable Junit test
+        useJUnitPlatform()
+        // generate jacoco reports
+        finalizedBy(jacocoTestReport)
+    }
 
     // Configure jacoco reports
     jacocoTestReport {

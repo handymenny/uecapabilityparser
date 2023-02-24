@@ -20,6 +20,6 @@ jobs:
           java-version: '11'
           cache: 'gradle'
       - name: Test
-        run: ./gradlew jacocoTestReport
+        run: ./gradlew test
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
