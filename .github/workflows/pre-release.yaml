@@ -1,13 +1,7 @@
 name: pre-release
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '**.java'
-      - '**.kt'
-      - '**.kts'
-      - '**.yaml'
+  schedule:
+    - cron: '23 59 * * *' # runs daily at 23:59
 jobs:
   pre-release:
     name: Pre Release
@@ -15,20 +9,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Required to count the commits
       - name: Setup jdk11
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
           cache: 'gradle'
+      - name: Get new commits
+        run: echo "NEW_COMMIT_COUNT=$(git log --oneline --since '24 hours ago' | wc -l)" >> $GITHUB_ENV
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Build & test
+        if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         run: |
           ./gradlew --no-daemon build
           cp build/distributions/*.zip uecapabilityparser-nightly.zip
       - uses: marvinpinto/action-automatic-releases@v1.2.1
+        if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "nightly-${{ steps.date.outputs.date }}"
