@@ -11,15 +11,6 @@ on:
       - 'Dockerfile'
     tags:
       - v*
-  pull_request:
-    branches:
-      - main
-    paths:
-      - '**.java'
-      - '**.kt'
-      - '**.kts'
-      - '**.yaml'
-      - 'Dockerfile'
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
