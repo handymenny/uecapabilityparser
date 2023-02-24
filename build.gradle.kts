@@ -6,6 +6,7 @@ plugins {
     id("org.graalvm.buildtools.native") version "0.9.20"
     id("com.diffplug.spotless") version "6.15.0"
     application
+    jacoco
 }
 
 repositories {
@@ -46,6 +47,16 @@ tasks {
 
     // Enable Junit test
     test { useJUnitPlatform() }
+
+    // Configure jacoco reports
+    jacocoTestReport {
+        dependsOn(test)
+        reports {
+            xml.required.set(true)
+            csv.required.set(false)
+            html.required.set(false)
+        }
+    }
 
     // Enable shadow minify
     shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
