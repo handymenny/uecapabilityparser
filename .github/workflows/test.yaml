@@ -1,0 +1,25 @@
+name: tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  tests:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup jdk11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
+      - name: Test
+        run: ./gradlew jacocoTestReport
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
