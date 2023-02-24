@@ -1,7 +1,7 @@
 name: pre-release
 on:
   schedule:
-    - cron: '23 59 * * *' # runs daily at 23:59
+    - cron: '59 23 * * *' # runs daily at 23:59
 jobs:
   pre-release:
     name: Pre Release
