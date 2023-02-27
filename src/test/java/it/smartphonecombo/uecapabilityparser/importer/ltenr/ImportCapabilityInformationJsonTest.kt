@@ -5,7 +5,9 @@ import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsText
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertLinesMatch
 import org.junit.jupiter.api.Test
 
 internal class ImportCapabilityInformationJsonTest {
@@ -14,7 +16,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapEutraCombinationAdd() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!
+                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!,
             )
 
         // LTE Category
@@ -70,7 +72,7 @@ internal class ImportCapabilityInformationJsonTest {
                 ComponentNr(41),
                 ComponentNr(66),
                 ComponentNr(77),
-                ComponentNr(78)
+                ComponentNr(78),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
@@ -83,7 +85,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapEutraCombinationReduced() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!
+                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!,
             )
 
         // LTE Category
@@ -176,8 +178,8 @@ internal class ImportCapabilityInformationJsonTest {
         val capabilities =
             importerJson.parse(
                 getResourceAsText(
-                    "/newEngine/input/json/ueCapEutraCombinationReduced1024qam.json"
-                )!!
+                    "/newEngine/input/json/ueCapEutraCombinationReduced1024qam.json",
+                )!!,
             )
 
         // LTE Category
@@ -225,7 +227,7 @@ internal class ImportCapabilityInformationJsonTest {
                 ComponentLte(46, 'A', '0', 2, "1024qam", "64qam"),
                 ComponentLte(48, 'A', '0', 4, "1024qam", "256qam"),
                 ComponentLte(66, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(71, 'A', '0', 2, "1024qam", "256qam")
+                ComponentLte(71, 'A', '0', 2, "1024qam", "256qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -251,13 +253,594 @@ internal class ImportCapabilityInformationJsonTest {
                 ComponentNr(71),
                 ComponentNr(77),
                 ComponentNr(78),
-                ComponentNr(79)
+                ComponentNr(79),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
         assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+    }
+
+    @Test
+    fun ueCapNrOneCC() {
+        val capabilities =
+            importerJson.parse(
+                getResourceAsText(
+                    "/newEngine/input/json/ueCapNrOneCC.json",
+                )!!,
+            )
+
+        // NR bands in nr capability
+        val actualNrBands = capabilities.nrBands
+        val expectedNrBands =
+            listOf(
+                ComponentNr(1).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(2).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(3).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(5).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(7).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(8).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(12).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(20).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(25).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(28).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(38).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(40).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(80, 40),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(41).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 80, 60, 40, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(48).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 40, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(66).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(71).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(77).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(78).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 80, 60, 50, 40, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(79).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(258).apply {
+                    modDL = "64qam"
+                    modUL = "64qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            60 to intArrayOf(),
+                            120 to intArrayOf(100),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(260).apply {
+                    modDL = "64qam"
+                    modUL = "64qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            60 to intArrayOf(),
+                            120 to intArrayOf(100, 50),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(261).apply {
+                    modDL = "64qam"
+                    modUL = "64qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            60 to intArrayOf(),
+                            120 to intArrayOf(100, 50),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+            )
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+
+        // NR Combos
+        val expectedCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapNrOneCC.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedCsv, actualCsv)
+    }
+
+    @Test
+    fun ueCapNrThreeCC() {
+        val capabilities =
+            importerJson.parse(
+                getResourceAsText(
+                    "/newEngine/input/json/ueCapNrThreeCC.json",
+                )!!,
+            )
+
+        // NR bands in nr capability
+        val actualNrBands = capabilities.nrBands
+        val expectedNrBands =
+            listOf(
+                ComponentNr(1).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(40, 30, 25, 20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(2).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(3).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(5).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(7).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(8).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(12).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(20).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(25).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(28).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(30, 20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(30).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(10),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(38).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(40, 30, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(41).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                    powerClass = 2
+                },
+                ComponentNr(48).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 80, 60, 50, 40, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 40, 20),
+                            60 to intArrayOf(),
+                        )
+                },
+                ComponentNr(66).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(30, 20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(71).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = true
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(20, 15, 10, 5),
+                            30 to intArrayOf(),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(77).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 80, 60, 40, 30, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                    powerClass = 2
+                },
+                ComponentNr(78).apply {
+                    modDL = "256qam"
+                    modUL = "256qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            15 to intArrayOf(),
+                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20),
+                            60 to intArrayOf(),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(257).apply {
+                    modDL = "64qam"
+                    modUL = "64qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            60 to intArrayOf(),
+                            120 to intArrayOf(100),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(258).apply {
+                    modDL = "64qam"
+                    modUL = "64qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            60 to intArrayOf(),
+                            120 to intArrayOf(100),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(260).apply {
+                    modDL = "64qam"
+                    modUL = "64qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            60 to intArrayOf(),
+                            120 to intArrayOf(100, 50),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+                ComponentNr(261).apply {
+                    modDL = "64qam"
+                    modUL = "64qam"
+                    rateMatchingLTEcrs = false
+                    bandwidthsDL =
+                        mutableMapOf(
+                            60 to intArrayOf(),
+                            120 to intArrayOf(100, 50),
+                        )
+                    bandwidthsUL = bandwidthsDL
+                },
+            )
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+
+        // NR Combos
+        val expectedCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapNrThreeCC.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        println(actualCsv.joinToString("\n"))
+        assertLinesMatch(expectedCsv, actualCsv)
     }
 
     companion object {
