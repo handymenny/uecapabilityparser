@@ -82,8 +82,6 @@ data class ComponentNr(
         return str
     }
 
-    val isSUL: Boolean
-        get() = classUL <= '0'
     val isFR2: Boolean
         get() = band > 256
 }
