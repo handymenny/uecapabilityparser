@@ -536,17 +536,27 @@ object Utility {
     }
 
     fun ComponentNr.toBwString(): String {
-        val bws = if (isSUL) bandwidthsUL else bandwidthsDL
-        val bwString =
-            bws?.entries
+        val dlString =
+            bandwidthsDL
+                ?.entries
                 ?.filter { it.value.isNotEmpty() }
                 ?.joinToString(
-                    prefix = "[",
+                    prefix = "BwDL:[",
                     postfix = "]",
                     transform = { "${it.key}kHz: ${it.value.joinToString()}" },
                     separator = "; ",
                 )
-        return "n$band $bwString"
+        val ulString =
+            bandwidthsUL
+                ?.entries
+                ?.filter { it.value.isNotEmpty() }
+                ?.joinToString(
+                    prefix = "BwUL:[",
+                    postfix = "]",
+                    transform = { "${it.key}kHz: ${it.value.joinToString()}" },
+                    separator = "; ",
+                )
+        return "n$band $dlString $ulString"
     }
 
     private fun getResourceAsStream(path: String): InputStream? =
