@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.bean.nr
 
+import it.smartphonecombo.uecapabilityparser.Utility.toBwString
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 
 data class ComponentNr(
@@ -80,6 +81,48 @@ data class ComponentNr(
         }
         str += "^$maxBandwidth-$scs"
         return str
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ComponentNr) return false
+
+        if (band != other.band) return false
+        if (classDL != other.classDL) return false
+        if (classUL != other.classUL) return false
+        if (mimoDL != other.mimoDL) return false
+        if (mimoUL != other.mimoUL) return false
+        if (modDL != other.modDL) return false
+        if (modUL != other.modUL) return false
+        if (maxBandwidth != other.maxBandwidth) return false
+        if (channelBW90mhz != other.channelBW90mhz) return false
+        if (scs != other.scs) return false
+        // TODO: customize equals
+        if (toBwString() != other.toBwString()) return false
+        if (maxUplinkDutyCycle != other.maxUplinkDutyCycle) return false
+        if (powerClass != other.powerClass) return false
+        if (rateMatchingLTEcrs != other.rateMatchingLTEcrs) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = band
+        result = 31 * result + classDL.hashCode()
+        result = 31 * result + classUL.hashCode()
+        result = 31 * result + mimoDL
+        result = 31 * result + mimoUL
+        result = 31 * result + (modDL?.hashCode() ?: 0)
+        result = 31 * result + (modUL?.hashCode() ?: 0)
+        result = 31 * result + maxBandwidth
+        result = 31 * result + channelBW90mhz.hashCode()
+        result = 31 * result + scs
+        // TODO: customize hashcode
+        result = 31 * result + toBwString().hashCode()
+        result = 31 * result + maxUplinkDutyCycle
+        result = 31 * result + powerClass
+        result = 31 * result + rateMatchingLTEcrs.hashCode()
+        return result
     }
 
     val isFR2: Boolean
