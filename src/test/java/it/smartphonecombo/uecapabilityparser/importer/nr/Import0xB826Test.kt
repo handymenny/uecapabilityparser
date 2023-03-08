@@ -1,7 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.importer
+package it.smartphonecombo.uecapabilityparser.importer.nr
 
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.importer.nr.Import0xB826
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
