@@ -10,20 +10,20 @@ package it.smartphonecombo.uecapabilityparser.bean.nr
 object BwTableNr {
     private val fr1Common =
         arrayOf(
-            BwNr(15, intArrayOf(5, 10, 15, 20)),
-            BwNr(30, intArrayOf(10, 15, 20)),
-            BwNr(60, intArrayOf(10, 15, 20))
+            BwNr(15, intArrayOf(20, 15, 10, 5)),
+            BwNr(30, intArrayOf(20, 15, 10)),
+            BwNr(60, intArrayOf(20, 15, 10))
         )
     private val fr1LowBandCommon =
-        arrayOf(BwNr(15, intArrayOf(5, 10, 15, 20)), BwNr(30, intArrayOf(10, 15, 20)))
+        arrayOf(BwNr(15, intArrayOf(20, 15, 10, 5)), BwNr(30, intArrayOf(20, 15, 10)))
     private val fr1HighBandCommon =
         arrayOf(
-            BwNr(15, intArrayOf(10, 15, 20, 40, 50)),
-            BwNr(30, intArrayOf(10, 15, 20, 40, 50, 60, 80, 100)),
-            BwNr(60, intArrayOf(10, 15, 20, 40, 50, 60, 80, 100))
+            BwNr(15, intArrayOf(50, 40, 20, 15, 10)),
+            BwNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)),
+            BwNr(60, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10))
         )
     private val fr2Common =
-        arrayOf(BwNr(60, intArrayOf(50, 100, 200)), BwNr(120, intArrayOf(50, 100, 200)))
+        arrayOf(BwNr(60, intArrayOf(200, 100, 50)), BwNr(120, intArrayOf(200, 100, 50)))
     private val data =
         mapOf(
             Pair(1, fr1Common),
@@ -31,57 +31,57 @@ object BwTableNr {
             Pair(
                 3,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15, 20, 25, 30)),
-                    BwNr(30, intArrayOf(10, 15, 20, 25, 30)),
-                    BwNr(60, intArrayOf(10, 15, 20, 25, 30))
+                    BwNr(15, intArrayOf(30, 25, 20, 15, 10, 5)),
+                    BwNr(30, intArrayOf(30, 25, 20, 15, 10)),
+                    BwNr(60, intArrayOf(30, 25, 20, 15, 10))
                 )
             ),
             Pair(5, fr1LowBandCommon),
             Pair(7, fr1Common),
             Pair(8, fr1LowBandCommon),
-            Pair(12, arrayOf(BwNr(15, intArrayOf(5, 10, 15)), BwNr(30, intArrayOf(10, 15)))),
+            Pair(12, arrayOf(BwNr(15, intArrayOf(15, 10, 5)), BwNr(30, intArrayOf(15, 10)))),
             Pair(20, fr1LowBandCommon),
             Pair(25, fr1Common),
             Pair(28, fr1LowBandCommon),
             Pair(
                 34,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15)),
-                    BwNr(30, intArrayOf(10, 15)),
-                    BwNr(60, intArrayOf(10, 15))
+                    BwNr(15, intArrayOf(15, 10, 5)),
+                    BwNr(30, intArrayOf(15, 10)),
+                    BwNr(60, intArrayOf(15, 10))
                 )
             ),
             Pair(38, fr1Common),
             Pair(
                 39,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15, 20, 25, 30, 40)),
-                    BwNr(30, intArrayOf(10, 15, 20, 25, 30, 40)),
-                    BwNr(60, intArrayOf(10, 15, 20, 25, 30, 40))
+                    BwNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)),
+                    BwNr(30, intArrayOf(40, 30, 25, 20, 15, 10)),
+                    BwNr(60, intArrayOf(40, 30, 25, 20, 15, 10))
                 )
             ),
             Pair(
                 40,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15, 20, 25, 30, 40, 50)),
-                    BwNr(30, intArrayOf(10, 15, 20, 25, 30, 40, 50, 60, 80)),
-                    BwNr(60, intArrayOf(10, 15, 20, 25, 30, 40, 50, 60, 80))
+                    BwNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
+                    BwNr(30, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10)),
+                    BwNr(60, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10))
                 )
             ),
             Pair(41, fr1HighBandCommon),
             Pair(
                 50,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15, 20, 40, 50)),
+                    BwNr(15, intArrayOf(50, 40, 20, 15, 10, 5)),
                     BwNr(
                         30,
-                        intArrayOf(10, 15, 20, 40, 50, 60, 80),
-                        intArrayOf(10, 15, 20, 40, 50, 60)
+                        intArrayOf(80, 60, 50, 40, 20, 15, 10),
+                        intArrayOf(60, 50, 40, 20, 15, 10)
                     ),
                     BwNr(
                         60,
-                        intArrayOf(10, 15, 20, 40, 50, 60, 80),
-                        intArrayOf(10, 15, 20, 40, 50, 60)
+                        intArrayOf(80, 60, 50, 40, 20, 15, 10),
+                        intArrayOf(60, 50, 40, 20, 15, 10)
                     )
                 )
             ),
@@ -89,17 +89,17 @@ object BwTableNr {
             Pair(
                 66,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15, 20, 40)),
-                    BwNr(30, intArrayOf(10, 15, 20, 40)),
-                    BwNr(60, intArrayOf(10, 15, 20, 40))
+                    BwNr(15, intArrayOf(40, 20, 15, 10, 5)),
+                    BwNr(30, intArrayOf(40, 20, 15, 10)),
+                    BwNr(60, intArrayOf(40, 20, 15, 10))
                 )
             ),
             Pair(
                 70,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15, 20, 25), intArrayOf(5, 10, 15)),
-                    BwNr(30, intArrayOf(10, 15, 20, 25), intArrayOf(10, 15)),
-                    BwNr(60, intArrayOf(10, 15, 20, 25), intArrayOf(10, 15))
+                    BwNr(15, intArrayOf(25, 20, 15, 10, 5), intArrayOf(15, 10, 5)),
+                    BwNr(30, intArrayOf(25, 20, 15, 10), intArrayOf(15, 10)),
+                    BwNr(60, intArrayOf(25, 20, 15, 10), intArrayOf(15, 10))
                 )
             ),
             Pair(71, fr1LowBandCommon),
@@ -107,9 +107,9 @@ object BwTableNr {
             Pair(
                 75,
                 arrayOf(
-                    BwNr(15, intArrayOf(5, 10, 15, 20), IntArray(0)),
-                    BwNr(30, intArrayOf(10, 15, 20), IntArray(0)),
-                    BwNr(60, intArrayOf(10, 15, 20), IntArray(0))
+                    BwNr(15, intArrayOf(20, 15, 10, 5), IntArray(0)),
+                    BwNr(30, intArrayOf(20, 15, 10), IntArray(0)),
+                    BwNr(60, intArrayOf(20, 15, 10), IntArray(0))
                 )
             ),
             Pair(76, arrayOf(BwNr(15, intArrayOf(5), IntArray(0)))),
@@ -118,54 +118,54 @@ object BwTableNr {
             Pair(
                 79,
                 arrayOf(
-                    BwNr(15, intArrayOf(40, 50)),
-                    BwNr(30, intArrayOf(40, 50, 60, 80, 100)),
-                    BwNr(60, intArrayOf(40, 50, 60, 80, 100))
+                    BwNr(15, intArrayOf(50, 40)),
+                    BwNr(30, intArrayOf(100, 80, 60, 50, 40)),
+                    BwNr(60, intArrayOf(100, 80, 60, 50, 40))
                 )
             ),
             Pair(
                 80,
                 arrayOf(
-                    BwNr(15, IntArray(0), intArrayOf(5, 10, 15, 20, 25, 30)),
-                    BwNr(30, IntArray(0), intArrayOf(10, 15, 20, 25, 30)),
-                    BwNr(60, IntArray(0), intArrayOf(10, 15, 20, 25, 30))
+                    BwNr(15, IntArray(0), intArrayOf(30, 25, 20, 15, 10, 5)),
+                    BwNr(30, IntArray(0), intArrayOf(30, 25, 20, 15, 10)),
+                    BwNr(60, IntArray(0), intArrayOf(30, 25, 20, 15, 10))
                 )
             ),
             Pair(
                 81,
                 arrayOf(
-                    BwNr(15, IntArray(0), intArrayOf(5, 10, 15, 20)),
-                    BwNr(30, IntArray(0), intArrayOf(10, 15, 20))
+                    BwNr(15, IntArray(0), intArrayOf(20, 15, 10, 5)),
+                    BwNr(30, IntArray(0), intArrayOf(20, 15, 10))
                 )
             ),
             Pair(
                 82,
                 arrayOf(
-                    BwNr(15, IntArray(0), intArrayOf(5, 10, 15, 20)),
-                    BwNr(30, IntArray(0), intArrayOf(10, 15, 20))
+                    BwNr(15, IntArray(0), intArrayOf(20, 15, 10, 5)),
+                    BwNr(30, IntArray(0), intArrayOf(20, 15, 10))
                 )
             ),
             Pair(
                 83,
                 arrayOf(
-                    BwNr(15, IntArray(0), intArrayOf(5, 10, 15, 20)),
-                    BwNr(30, IntArray(0), intArrayOf(10, 15, 20))
+                    BwNr(15, IntArray(0), intArrayOf(20, 15, 10, 5)),
+                    BwNr(30, IntArray(0), intArrayOf(20, 15, 10))
                 )
             ),
             Pair(
                 84,
                 arrayOf(
-                    BwNr(15, IntArray(0), intArrayOf(5, 10, 15, 20)),
-                    BwNr(30, IntArray(0), intArrayOf(10, 15, 20)),
-                    BwNr(60, IntArray(0), intArrayOf(10, 15, 20))
+                    BwNr(15, IntArray(0), intArrayOf(20, 15, 10, 5)),
+                    BwNr(30, IntArray(0), intArrayOf(20, 15, 10)),
+                    BwNr(60, IntArray(0), intArrayOf(20, 15, 10))
                 )
             ),
             Pair(
                 86,
                 arrayOf(
-                    BwNr(15, IntArray(0), intArrayOf(5, 10, 15, 20, 40)),
-                    BwNr(30, IntArray(0), intArrayOf(10, 15, 20, 40)),
-                    BwNr(60, IntArray(0), intArrayOf(10, 15, 20, 40))
+                    BwNr(15, IntArray(0), intArrayOf(40, 20, 15, 10, 5)),
+                    BwNr(30, IntArray(0), intArrayOf(40, 20, 15, 10)),
+                    BwNr(60, IntArray(0), intArrayOf(40, 20, 15, 10))
                 )
             ),
             Pair(257, fr2Common),
