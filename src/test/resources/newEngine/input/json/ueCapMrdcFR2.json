@@ -1,0 +1,2681 @@
+{
+  "eutra": {
+    "accessStratumRelease": "rel13",
+    "ue-Category": 4,
+    "pdcp-Parameters": {
+      "supportedROHC-Profiles": {
+        "profile0x0001-r15": true,
+        "profile0x0002-r15": true,
+        "profile0x0003-r15": false,
+        "profile0x0004-r15": false,
+        "profile0x0006-r15": false,
+        "profile0x0101-r15": false,
+        "profile0x0102-r15": false,
+        "profile0x0103-r15": false,
+        "profile0x0104-r15": false
+      },
+      "maxNumberROHC-ContextSessions": "cs16"
+    },
+    "phyLayerParameters": {
+      "ue-TxAntennaSelectionSupported": false,
+      "ue-SpecificRefSigsSupported": false
+    },
+    "rf-Parameters": {
+      "supportedBandListEUTRA": [
+        {
+          "bandEUTRA": 1,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 3,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 8,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 18,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 19,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 21,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 26,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 28,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 41,
+          "halfDuplex": true
+        },
+        {
+          "bandEUTRA": 42,
+          "halfDuplex": true
+        }
+      ]
+    },
+    "measParameters": {
+      "bandListEUTRA": [
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        }
+      ]
+    },
+    "featureGroupIndicators": "11111111110011111111111010111110",
+    "interRAT-Parameters": {
+      "utraFDD": {
+        "supportedBandListUTRA-FDD": [
+          "bandI",
+          "bandII",
+          "bandIV",
+          "bandV",
+          "bandVI",
+          "bandVIII",
+          "bandXIX-8a0"
+        ]
+      },
+      "geran": {
+        "supportedBandListGERAN": [
+          "gsm850",
+          "gsm900E",
+          "gsm1800",
+          "gsm1900"
+        ],
+        "interRAT-PS-HO-ToGERAN": false
+      }
+    },
+    "nonCriticalExtension": {
+      "phyLayerParameters-v920": {
+        "enhancedDualLayerTDD-r9": "supported"
+      },
+      "interRAT-ParametersGERAN-v920": {
+        "e-RedirectionGERAN-r9": "supported"
+      },
+      "interRAT-ParametersUTRA-v920": {
+        "e-RedirectionUTRA-r9": "supported"
+      },
+      "csg-ProximityIndicationParameters-r9": {},
+      "neighCellSI-AcquisitionParameters-r9": {},
+      "son-Parameters-r9": {
+        "rach-Report-r9": "supported"
+      },
+      "nonCriticalExtension": {
+        "lateNonCriticalExtension": {
+          "featureGroupIndRel9Add-r9": "11000111100000000000000000000000",
+          "nonCriticalExtension": {
+            "nonCriticalExtension": {
+              "nonCriticalExtension": {
+                "nonCriticalExtension": {
+                  "nonCriticalExtension": {
+                    "otdoa-PositioningCapabilities-r10": {
+                      "otdoa-UE-Assisted-r10": "supported",
+                      "interFreqRSTD-Measurement-r10": "supported"
+                    },
+                    "nonCriticalExtension": {
+                      "rf-Parameters-v10f0": {
+                        "modifiedMPR-Behavior-r10": "11000000000000000000000000000000"
+                      },
+                      "nonCriticalExtension": {
+                        "rf-Parameters-v10i0": {
+                          "supportedBandCombination-v10i0": [
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "nonCriticalExtension": {
+          "ue-Category-v1020": 7,
+          "phyLayerParameters-v1020": {},
+          "rf-Parameters-v1020": {
+            "supportedBandCombination-r10": [
+              [
+                {
+                  "bandEUTRA-r10": 3,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 3,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 3,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          "measParameters-v1020": {
+            "bandCombinationListEUTRA-r10": [
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              }
+            ]
+          },
+          "featureGroupIndRel10-r10": "01111010001111000000000000000000",
+          "nonCriticalExtension": {
+            "fdd-Add-UE-EUTRA-Capabilities-v1060": {
+              "phyLayerParameters-v1060": {},
+              "featureGroupIndRel10-v1060": "01111010001111000000000000000000"
+            },
+            "tdd-Add-UE-EUTRA-Capabilities-v1060": {
+              "featureGroupIndRel10-v1060": "01111111111111000000000000000000"
+            },
+            "rf-Parameters-v1060": {
+              "supportedBandCombinationExt-r10": [
+                {},
+                {
+                  "supportedBandwidthCombinationSet-r10": "11000000000000000000000000000000"
+                },
+                {
+                  "supportedBandwidthCombinationSet-r10": "11000000000000000000000000000000"
+                }
+              ]
+            },
+            "nonCriticalExtension": {
+              "nonCriticalExtension": {
+                "pdcp-Parameters-v1130": {
+                  "pdcp-SN-Extension-r11": "supported"
+                },
+                "phyLayerParameters-v1130": {
+                  "multiACK-CSI-Reporting-r11": "supported",
+                  "tdd-SpecialSubframe-r11": "supported"
+                },
+                "rf-Parameters-v1130": {},
+                "measParameters-v1130": {},
+                "interRAT-ParametersCDMA2000-v1130": {},
+                "otherParameters-r11": {},
+                "nonCriticalExtension": {
+                  "ue-Category-v1170": 10,
+                  "nonCriticalExtension": {
+                    "rf-Parameters-v1180": {
+                      "freqBandRetrieval-r11": "supported",
+                      "requestedBands-r11": [
+                        1,
+                        3,
+                        7,
+                        8,
+                        20,
+                        28,
+                        38,
+                        40,
+                        46
+                      ]
+                    },
+                    "nonCriticalExtension": {
+                      "ue-Category-v11a0": 12,
+                      "nonCriticalExtension": {
+                        "phyLayerParameters-v1250": {
+                          "tdd-FDD-CA-PCellDuplex-r12": "11"
+                        },
+                        "rf-Parameters-v1250": {
+                          "supportedBandListEUTRA-v1250": [
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            }
+                          ]
+                        },
+                        "ue-CategoryDL-r12": 12,
+                        "ue-CategoryUL-r12": 13,
+                        "nonCriticalExtension": {
+                          "ue-CategoryDL-v1260": 16,
+                          "nonCriticalExtension": {
+                            "nonCriticalExtension": {
+                              "nonCriticalExtension": {
+                                "pdcp-Parameters-v1310": {},
+                                "rlc-Parameters-v1310": {},
+                                "interRAT-ParametersWLAN-r13": {},
+                                "wlan-IW-Parameters-v1310": {},
+                                "lwip-Parameters-r13": {},
+                                "nonCriticalExtension": {
+                                  "nonCriticalExtension": {
+                                    "ue-CategoryDL-v1330": 19,
+                                    "nonCriticalExtension": {
+                                      "nonCriticalExtension": {
+                                        "ce-Parameters-v1350": {},
+                                        "nonCriticalExtension": {
+                                          "nonCriticalExtension": {
+                                            "phyLayerParameters-v1430": {},
+                                            "rlc-Parameters-v1430": {},
+                                            "otherParameters-v1430": {},
+                                            "ce-Parameters-v1430": {},
+                                            "nonCriticalExtension": {
+                                              "lwa-Parameters-v1440": {},
+                                              "mac-Parameters-v1440": {},
+                                              "nonCriticalExtension": {
+                                                "otherParameters-v1450": {},
+                                                "nonCriticalExtension": {
+                                                  "otherParameters-v1460": {},
+                                                  "nonCriticalExtension": {
+                                                    "irat-ParametersNR-r15": {
+                                                      "en-DC-r15": "supported",
+                                                      "supportedBandListEN-DC-r15": [
+                                                        {
+                                                          "bandNR-r15": 77
+                                                        },
+                                                        {
+                                                          "bandNR-r15": 78
+                                                        },
+                                                        {
+                                                          "bandNR-r15": 79
+                                                        },
+                                                        {
+                                                          "bandNR-r15": 257
+                                                        }
+                                                      ]
+                                                    },
+                                                    "featureSetsEUTRA-r15": {
+                                                      "featureSetsDL-r15": [
+                                                        {
+                                                          "featureSetPerCC-ListDL-r15": [
+                                                            0
+                                                          ]
+                                                        },
+                                                        {
+                                                          "featureSetPerCC-ListDL-r15": [
+                                                            1
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "featureSetsDL-PerCC-r15": [
+                                                        {
+                                                          "fourLayerTM3-TM4-r15": "supported",
+                                                          "supportedMIMO-CapabilityDL-MRDC-r15": "fourLayers"
+                                                        },
+                                                        {
+                                                          "supportedMIMO-CapabilityDL-MRDC-r15": "twoLayers"
+                                                        }
+                                                      ],
+                                                      "featureSetsUL-r15": [
+                                                        {
+                                                          "featureSetPerCC-ListUL-r15": [
+                                                            0
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "featureSetsUL-PerCC-r15": [
+                                                        {}
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "eutra-nr": {
+    "measAndMobParametersMRDC": {
+      "measAndMobParametersMRDC-XDD-Diff": {
+        "sftd-MeasPSCell": "supported",
+        "sftd-MeasNR-Cell": "supported"
+      }
+    },
+    "rf-ParametersMRDC": {
+      "supportedBandCombinationList": [
+        {
+          "bandList": [
+            {
+              "eutra": {
+                "bandEUTRA": 3,
+                "ca-BandwidthClassDL-EUTRA": "a",
+                "ca-BandwidthClassUL-EUTRA": "a"
+              }
+            },
+            {
+              "nr": {
+                "bandNR": 257,
+                "ca-BandwidthClassDL-NR": "f",
+                "ca-BandwidthClassUL-NR": "d"
+              }
+            }
+          ],
+          "featureSetCombination": 0,
+          "ca-ParametersEUTRA": {
+            "simultaneousRx-Tx": "supported"
+          },
+          "ca-ParametersNR": {
+            "diffNumerologyWithinPUCCH-GroupSmallerSCS": "supported"
+          },
+          "mrdc-Parameters": {
+            "tdm-Pattern": "supported",
+            "simultaneousRxTxInterBandENDC": "supported",
+            "dualPA-Architecture": "supported",
+            "ul-TimingAlignmentEUTRA-NR": "required"
+          },
+          "supportedBandwidthCombinationSet": "1"
+        },
+        {
+          "bandList": [
+            {
+              "eutra": {
+                "bandEUTRA": 1,
+                "ca-BandwidthClassDL-EUTRA": "a",
+                "ca-BandwidthClassUL-EUTRA": "a"
+              }
+            },
+            {
+              "nr": {
+                "bandNR": 257,
+                "ca-BandwidthClassDL-NR": "f",
+                "ca-BandwidthClassUL-NR": "d"
+              }
+            }
+          ],
+          "featureSetCombination": 1,
+          "ca-ParametersEUTRA": {
+            "simultaneousRx-Tx": "supported"
+          },
+          "ca-ParametersNR": {
+            "diffNumerologyWithinPUCCH-GroupSmallerSCS": "supported"
+          },
+          "mrdc-Parameters": {
+            "tdm-Pattern": "supported",
+            "simultaneousRxTxInterBandENDC": "supported",
+            "dualPA-Architecture": "supported",
+            "ul-TimingAlignmentEUTRA-NR": "required"
+          },
+          "supportedBandwidthCombinationSet": "1"
+        },
+        {
+          "bandList": [
+            {
+              "eutra": {
+                "bandEUTRA": 3,
+                "ca-BandwidthClassDL-EUTRA": "a",
+                "ca-BandwidthClassUL-EUTRA": "a"
+              }
+            },
+            {
+              "nr": {
+                "bandNR": 257,
+                "ca-BandwidthClassDL-NR": "i",
+                "ca-BandwidthClassUL-NR": "g"
+              }
+            }
+          ],
+          "featureSetCombination": 2,
+          "ca-ParametersEUTRA": {
+            "simultaneousRx-Tx": "supported"
+          },
+          "ca-ParametersNR": {
+            "diffNumerologyWithinPUCCH-GroupSmallerSCS": "supported"
+          },
+          "mrdc-Parameters": {
+            "tdm-Pattern": "supported",
+            "simultaneousRxTxInterBandENDC": "supported",
+            "dualPA-Architecture": "supported",
+            "ul-TimingAlignmentEUTRA-NR": "required"
+          },
+          "supportedBandwidthCombinationSet": "1"
+        },
+        {
+          "bandList": [
+            {
+              "eutra": {
+                "bandEUTRA": 1,
+                "ca-BandwidthClassDL-EUTRA": "a",
+                "ca-BandwidthClassUL-EUTRA": "a"
+              }
+            },
+            {
+              "nr": {
+                "bandNR": 257,
+                "ca-BandwidthClassDL-NR": "i",
+                "ca-BandwidthClassUL-NR": "g"
+              }
+            }
+          ],
+          "featureSetCombination": 3,
+          "ca-ParametersEUTRA": {
+            "simultaneousRx-Tx": "supported"
+          },
+          "ca-ParametersNR": {
+            "diffNumerologyWithinPUCCH-GroupSmallerSCS": "supported"
+          },
+          "mrdc-Parameters": {
+            "tdm-Pattern": "supported",
+            "simultaneousRxTxInterBandENDC": "supported",
+            "dualPA-Architecture": "supported",
+            "ul-TimingAlignmentEUTRA-NR": "required"
+          },
+          "supportedBandwidthCombinationSet": "1"
+        }
+      ],
+      "appliedFreqBandListFilter": [
+        {
+          "bandInformationNR": {
+            "bandNR": 1
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 3
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 5
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 7
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 8
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 20
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 28
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 38
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 40
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 41
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 77
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 78
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 79
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 80
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 84
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 257
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 258
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 260
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 261
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 1
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 3
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 7
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 8
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 20
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 28
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 38
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 40
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 46
+          }
+        }
+      ],
+      "supportedBandCombinationList-v1540": [
+        {
+          "bandList-v1540": [
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "notSupported"
+              }
+            },
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "t2r2"
+              }
+            }
+          ],
+          "ca-ParametersNR-v1540": {
+            "csi-RS-IM-ReceptionForFeedbackPerBandComb": {
+              "maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC": 8,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC": 16
+            },
+            "simultaneousCSI-ReportsAllCC": 5
+          }
+        },
+        {
+          "bandList-v1540": [
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "notSupported"
+              }
+            },
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "t2r2"
+              }
+            }
+          ],
+          "ca-ParametersNR-v1540": {
+            "csi-RS-IM-ReceptionForFeedbackPerBandComb": {
+              "maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC": 8,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC": 16
+            },
+            "simultaneousCSI-ReportsAllCC": 5
+          }
+        },
+        {
+          "bandList-v1540": [
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "notSupported"
+              }
+            },
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "t2r2"
+              }
+            }
+          ],
+          "ca-ParametersNR-v1540": {
+            "csi-RS-IM-ReceptionForFeedbackPerBandComb": {
+              "maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC": 8,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC": 16
+            },
+            "simultaneousCSI-ReportsAllCC": 5
+          }
+        },
+        {
+          "bandList-v1540": [
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "notSupported"
+              }
+            },
+            {
+              "srs-TxSwitch": {
+                "supportedSRS-TxPortSwitch": "t2r2"
+              }
+            }
+          ],
+          "ca-ParametersNR-v1540": {
+            "csi-RS-IM-ReceptionForFeedbackPerBandComb": {
+              "maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC": 8,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC": 16
+            },
+            "simultaneousCSI-ReportsAllCC": 5
+          }
+        }
+      ]
+    },
+    "fr1-Add-UE-MRDC-Capabilities": {
+      "measAndMobParametersMRDC-FRX-Diff": {
+        "simultaneousRxDataSSB-DiffNumerology": "supported"
+      }
+    },
+    "featureSetCombinations": [
+      [
+        [
+          {
+            "eutra": {
+              "downlinkSetEUTRA": 1,
+              "uplinkSetEUTRA": 1
+            }
+          }
+        ],
+        [
+          {
+            "nr": {
+              "downlinkSetNR": 1,
+              "uplinkSetNR": 1
+            }
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "eutra": {
+              "downlinkSetEUTRA": 2,
+              "uplinkSetEUTRA": 1
+            }
+          }
+        ],
+        [
+          {
+            "nr": {
+              "downlinkSetNR": 1,
+              "uplinkSetNR": 1
+            }
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "eutra": {
+              "downlinkSetEUTRA": 1,
+              "uplinkSetEUTRA": 1
+            }
+          }
+        ],
+        [
+          {
+            "nr": {
+              "downlinkSetNR": 2,
+              "uplinkSetNR": 2
+            }
+          }
+        ]
+      ],
+      [
+        [
+          {
+            "eutra": {
+              "downlinkSetEUTRA": 2,
+              "uplinkSetEUTRA": 1
+            }
+          }
+        ],
+        [
+          {
+            "nr": {
+              "downlinkSetNR": 2,
+              "uplinkSetNR": 2
+            }
+          }
+        ]
+      ]
+    ]
+  },
+  "nr": {
+    "accessStratumRelease": "rel15",
+    "pdcp-Parameters": {
+      "supportedROHC-Profiles": {
+        "profile0x0000": true,
+        "profile0x0001": true,
+        "profile0x0002": false,
+        "profile0x0003": false,
+        "profile0x0004": false,
+        "profile0x0006": false,
+        "profile0x0101": false,
+        "profile0x0102": false,
+        "profile0x0103": false,
+        "profile0x0104": false
+      },
+      "maxNumberROHC-ContextSessions": "cs4",
+      "shortSN": "supported"
+    },
+    "rlc-Parameters": {
+      "am-WithShortSN": "supported",
+      "um-WithShortSN": "supported",
+      "um-WithLongSN": "supported"
+    },
+    "mac-Parameters": {
+      "mac-ParametersCommon": {
+        "lcp-Restriction": "supported",
+        "lch-ToSCellRestriction": "supported"
+      },
+      "mac-ParametersXDD-Diff": {
+        "logicalChannelSR-DelayTimer": "supported",
+        "longDRX-Cycle": "supported",
+        "shortDRX-Cycle": "supported",
+        "multipleSR-Configurations": "supported"
+      }
+    },
+    "phy-Parameters": {
+      "phy-ParametersCommon": {
+        "dynamicPRB-BundlingDL": "supported",
+        "nzp-CSI-RS-IntefMgmt": "supported",
+        "precoderGranularityCORESET": "supported",
+        "dynamicHARQ-ACK-Codebook": "supported",
+        "semiStaticHARQ-ACK-Codebook": "supported",
+        "dynamicBetaOffsetInd-HARQ-ACK-CSI": "supported",
+        "pucch-Repetition-F1-3-4": "supported",
+        "ra-Type0-PUSCH": "supported",
+        "dynamicSwitchRA-Type0-1-PDSCH": "supported",
+        "dynamicSwitchRA-Type0-1-PUSCH": "supported",
+        "pdsch-MappingTypeA": "supported",
+        "pdsch-MappingTypeB": "supported",
+        "interleavingVRB-ToPRB-PDSCH": "supported",
+        "interSlotFreqHopping-PUSCH": "supported",
+        "type1-PUSCH-RepetitionMultiSlots": "supported",
+        "type2-PUSCH-RepetitionMultiSlots": "supported",
+        "pusch-RepetitionMultiSlots": "supported",
+        "pdsch-RepetitionMultiSlots": "supported",
+        "downlinkSPS": "supported",
+        "configuredUL-GrantType1": "supported",
+        "configuredUL-GrantType2": "supported",
+        "pre-EmptIndication-DL": "supported",
+        "cbg-TransIndication-DL": "supported",
+        "cbg-TransIndication-UL": "supported",
+        "cbg-FlushIndication-DL": "supported",
+        "dynamicHARQ-ACK-CodeB-CBG-Retx-DL": "supported",
+        "rateMatchingResrcSetSemi-Static": "supported",
+        "rateMatchingResrcSetDynamic": "supported",
+        "bwp-SwitchingDelay": "type1",
+        "maxNumberSearchSpaces": "n10",
+        "rateMatchingCtrlResrcSetDynamic": "supported",
+        "maxLayersMIMO-Indication": "supported"
+      },
+      "phy-ParametersXDD-Diff": {
+        "dynamicSFI": "supported",
+        "twoPUCCH-F0-2-ConsecSymbols": "supported",
+        "twoDifferentTPC-Loop-PUSCH": "supported",
+        "twoDifferentTPC-Loop-PUCCH": "supported",
+        "dl-SchedulingOffset-PDSCH-TypeA": "supported",
+        "ul-SchedulingOffset": "supported"
+      },
+      "phy-ParametersFRX-Diff": {
+        "dynamicSFI": "supported",
+        "twoFL-DMRS": "11",
+        "supportedDMRS-TypeDL": "type1And2",
+        "supportedDMRS-TypeUL": "type1And2",
+        "csi-ReportWithoutPMI": "supported",
+        "onePortsPTRS": "11",
+        "twoPUCCH-F0-2-ConsecSymbols": "supported",
+        "pucch-F2-WithFH": "supported",
+        "pucch-F3-WithFH": "supported",
+        "pucch-F4-WithFH": "supported",
+        "uci-CodeBlockSegmentation": "supported",
+        "twoPUCCH-AnyOthersInSlot": "supported",
+        "intraSlotFreqHopping-PUSCH": "supported",
+        "pusch-LBRM": "supported",
+        "tpc-PUSCH-RNTI": "supported",
+        "tpc-PUCCH-RNTI": "supported",
+        "tpc-SRS-RNTI": "supported",
+        "absoluteTPC-Command": "supported",
+        "twoDifferentTPC-Loop-PUSCH": "supported",
+        "twoDifferentTPC-Loop-PUCCH": "supported",
+        "pusch-HalfPi-BPSK": "supported",
+        "pucch-F3-4-HalfPi-BPSK": "supported",
+        "almostContiguousCP-OFDM-UL": "supported",
+        "multipleCORESET": "supported",
+        "csi-RS-IM-ReceptionForFeedback": {
+          "maxConfigNumberNZP-CSI-RS-PerCC": 8,
+          "maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC": 16,
+          "maxConfigNumberCSI-IM-PerCC": "n4",
+          "maxNumberSimultaneousNZP-CSI-RS-PerCC": 4,
+          "totalNumberPortsSimultaneousNZP-CSI-RS-PerCC": 16
+        },
+        "mux-SR-HARQ-ACK-CSI-PUCCH-OncePerSlot": {
+          "sameSymbol": "supported",
+          "diffSymbol": "supported"
+        },
+        "mux-SR-HARQ-ACK-PUCCH": "supported",
+        "dl-SchedulingOffset-PDSCH-TypeA": "supported",
+        "ul-SchedulingOffset": "supported",
+        "oneFL-DMRS-TwoAdditionalDMRS-UL": "supported",
+        "twoFL-DMRS-TwoAdditionalDMRS-UL": "supported",
+        "oneFL-DMRS-ThreeAdditionalDMRS-UL": "supported"
+      },
+      "phy-ParametersFR1": {
+        "pdcch-MonitoringSingleOccasion": "supported",
+        "scs-60kHz": "supported",
+        "pdsch-256QAM-FR1": "supported",
+        "pdsch-RE-MappingFR1-PerSymbol": "n10",
+        "pdsch-RE-MappingFR1-PerSlot": "n16"
+      },
+      "phy-ParametersFR2": {
+        "pdsch-RE-MappingFR2-PerSymbol": "n6",
+        "pdsch-RE-MappingFR2-PerSlot": "n16"
+      }
+    },
+    "rf-Parameters": {
+      "supportedBandListNR": [
+        {
+          "bandNR": 77,
+          "mimo-ParametersPerBand": {
+            "tci-StatePDSCH": {
+              "maxNumberConfiguredTCIstatesPerCC": "n16",
+              "maxNumberActiveTCI-PerBWP": "n1"
+            },
+            "pusch-TransCoherence": "nonCoherent",
+            "periodicBeamReport": "supported",
+            "aperiodicBeamReport": "supported",
+            "maxNumberNonGroupBeamReporting": "n1",
+            "dummy5": {
+              "maxNumberAperiodicSRS-PerBWP": "n16",
+              "maxNumberAperiodicSRS-PerBWP-PerSlot": 6,
+              "maxNumberPeriodicSRS-PerBWP": "n16",
+              "maxNumberPeriodicSRS-PerBWP-PerSlot": 6,
+              "maxNumberSemiPersistentSRS-PerBWP": "n16",
+              "maxNumberSemiPersistentSRS-PerBWP-PerSlot": 6,
+              "maxNumberSRS-Ports-PerResource": "n1"
+            },
+            "beamReportTiming": {
+              "scs-30kHz": "sym28"
+            },
+            "beamManagementSSB-CSI-RS": {
+              "maxNumberSSB-CSI-RS-ResourceOneTx": "n8",
+              "maxNumberCSI-RS-Resource": "n0",
+              "maxNumberCSI-RS-ResourceTwoTx": "n0",
+              "maxNumberAperiodicCSI-RS-Resource": "n4"
+            },
+            "codebookParameters": {
+              "type1": {
+                "singlePanel": {
+                  "supportedCSI-RS-ResourceList": [
+                    {
+                      "maxNumberTxPortsPerResource": "p16",
+                      "maxNumberResourcesPerBand": 8,
+                      "totalNumberTxPortsPerBand": 16
+                    }
+                  ],
+                  "modes": "mode1andMode2",
+                  "maxNumberCSI-RS-PerResourceSet": 8
+                }
+              }
+            },
+            "csi-RS-IM-ReceptionForFeedback": {
+              "maxConfigNumberNZP-CSI-RS-PerCC": 8,
+              "maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC": 16,
+              "maxConfigNumberCSI-IM-PerCC": "n4",
+              "maxNumberSimultaneousNZP-CSI-RS-PerCC": 4,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-PerCC": 16
+            },
+            "csi-ReportFramework": {
+              "maxNumberPeriodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report": 0,
+              "maxNumberPeriodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-triggeringStatePerCC": "n15",
+              "maxNumberSemiPersistentCSI-PerBWP-ForBeamReport": 0,
+              "simultaneousCSI-ReportsPerCC": 2
+            },
+            "csi-RS-ForTracking": {
+              "maxBurstLength": 2,
+              "maxSimultaneousResourceSetsPerCC": 2,
+              "maxConfiguredResourceSetsPerCC": 16,
+              "maxConfiguredResourceSetsAllCC": 32
+            }
+          },
+          "multipleTCI": "supported",
+          "bwp-SameNumerology": "upto4",
+          "pusch-256QAM": "supported",
+          "ue-PowerClass": "pc2",
+          "channelBWs-DL": {
+            "fr1": {
+              "scs-15kHz": "0000000000",
+              "scs-30kHz": "0001001111",
+              "scs-60kHz": "0000000000"
+            }
+          },
+          "channelBWs-UL": {
+            "fr1": {
+              "scs-15kHz": "0000000000",
+              "scs-30kHz": "0001001111",
+              "scs-60kHz": "0000000000"
+            }
+          }
+        },
+        {
+          "bandNR": 78,
+          "mimo-ParametersPerBand": {
+            "tci-StatePDSCH": {
+              "maxNumberConfiguredTCIstatesPerCC": "n16",
+              "maxNumberActiveTCI-PerBWP": "n1"
+            },
+            "pusch-TransCoherence": "nonCoherent",
+            "periodicBeamReport": "supported",
+            "aperiodicBeamReport": "supported",
+            "maxNumberNonGroupBeamReporting": "n1",
+            "dummy5": {
+              "maxNumberAperiodicSRS-PerBWP": "n16",
+              "maxNumberAperiodicSRS-PerBWP-PerSlot": 6,
+              "maxNumberPeriodicSRS-PerBWP": "n16",
+              "maxNumberPeriodicSRS-PerBWP-PerSlot": 6,
+              "maxNumberSemiPersistentSRS-PerBWP": "n16",
+              "maxNumberSemiPersistentSRS-PerBWP-PerSlot": 6,
+              "maxNumberSRS-Ports-PerResource": "n1"
+            },
+            "beamReportTiming": {
+              "scs-30kHz": "sym28"
+            },
+            "beamManagementSSB-CSI-RS": {
+              "maxNumberSSB-CSI-RS-ResourceOneTx": "n8",
+              "maxNumberCSI-RS-Resource": "n0",
+              "maxNumberCSI-RS-ResourceTwoTx": "n0",
+              "maxNumberAperiodicCSI-RS-Resource": "n4"
+            },
+            "codebookParameters": {
+              "type1": {
+                "singlePanel": {
+                  "supportedCSI-RS-ResourceList": [
+                    {
+                      "maxNumberTxPortsPerResource": "p16",
+                      "maxNumberResourcesPerBand": 8,
+                      "totalNumberTxPortsPerBand": 16
+                    }
+                  ],
+                  "modes": "mode1andMode2",
+                  "maxNumberCSI-RS-PerResourceSet": 8
+                }
+              }
+            },
+            "csi-RS-IM-ReceptionForFeedback": {
+              "maxConfigNumberNZP-CSI-RS-PerCC": 8,
+              "maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC": 16,
+              "maxConfigNumberCSI-IM-PerCC": "n4",
+              "maxNumberSimultaneousNZP-CSI-RS-PerCC": 4,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-PerCC": 16
+            },
+            "csi-ReportFramework": {
+              "maxNumberPeriodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report": 0,
+              "maxNumberPeriodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-triggeringStatePerCC": "n15",
+              "maxNumberSemiPersistentCSI-PerBWP-ForBeamReport": 0,
+              "simultaneousCSI-ReportsPerCC": 2
+            },
+            "csi-RS-ForTracking": {
+              "maxBurstLength": 2,
+              "maxSimultaneousResourceSetsPerCC": 2,
+              "maxConfiguredResourceSetsPerCC": 16,
+              "maxConfiguredResourceSetsAllCC": 32
+            }
+          },
+          "multipleTCI": "supported",
+          "bwp-SameNumerology": "upto4",
+          "pusch-256QAM": "supported",
+          "ue-PowerClass": "pc2",
+          "channelBWs-DL": {
+            "fr1": {
+              "scs-15kHz": "0000000000",
+              "scs-30kHz": "0001001111",
+              "scs-60kHz": "0000000000"
+            }
+          },
+          "channelBWs-UL": {
+            "fr1": {
+              "scs-15kHz": "0000000000",
+              "scs-30kHz": "0001001111",
+              "scs-60kHz": "0000000000"
+            }
+          }
+        },
+        {
+          "bandNR": 79,
+          "mimo-ParametersPerBand": {
+            "tci-StatePDSCH": {
+              "maxNumberConfiguredTCIstatesPerCC": "n16",
+              "maxNumberActiveTCI-PerBWP": "n1"
+            },
+            "pusch-TransCoherence": "nonCoherent",
+            "periodicBeamReport": "supported",
+            "aperiodicBeamReport": "supported",
+            "maxNumberNonGroupBeamReporting": "n1",
+            "dummy5": {
+              "maxNumberAperiodicSRS-PerBWP": "n16",
+              "maxNumberAperiodicSRS-PerBWP-PerSlot": 6,
+              "maxNumberPeriodicSRS-PerBWP": "n16",
+              "maxNumberPeriodicSRS-PerBWP-PerSlot": 6,
+              "maxNumberSemiPersistentSRS-PerBWP": "n16",
+              "maxNumberSemiPersistentSRS-PerBWP-PerSlot": 6,
+              "maxNumberSRS-Ports-PerResource": "n1"
+            },
+            "beamReportTiming": {
+              "scs-30kHz": "sym28"
+            },
+            "beamManagementSSB-CSI-RS": {
+              "maxNumberSSB-CSI-RS-ResourceOneTx": "n8",
+              "maxNumberCSI-RS-Resource": "n0",
+              "maxNumberCSI-RS-ResourceTwoTx": "n0",
+              "maxNumberAperiodicCSI-RS-Resource": "n4"
+            },
+            "codebookParameters": {
+              "type1": {
+                "singlePanel": {
+                  "supportedCSI-RS-ResourceList": [
+                    {
+                      "maxNumberTxPortsPerResource": "p16",
+                      "maxNumberResourcesPerBand": 8,
+                      "totalNumberTxPortsPerBand": 16
+                    }
+                  ],
+                  "modes": "mode1andMode2",
+                  "maxNumberCSI-RS-PerResourceSet": 8
+                }
+              }
+            },
+            "csi-RS-IM-ReceptionForFeedback": {
+              "maxConfigNumberNZP-CSI-RS-PerCC": 8,
+              "maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC": 16,
+              "maxConfigNumberCSI-IM-PerCC": "n4",
+              "maxNumberSimultaneousNZP-CSI-RS-PerCC": 4,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-PerCC": 16
+            },
+            "csi-ReportFramework": {
+              "maxNumberPeriodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report": 0,
+              "maxNumberPeriodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-triggeringStatePerCC": "n15",
+              "maxNumberSemiPersistentCSI-PerBWP-ForBeamReport": 0,
+              "simultaneousCSI-ReportsPerCC": 2
+            },
+            "csi-RS-ForTracking": {
+              "maxBurstLength": 2,
+              "maxSimultaneousResourceSetsPerCC": 2,
+              "maxConfiguredResourceSetsPerCC": 16,
+              "maxConfiguredResourceSetsAllCC": 32
+            }
+          },
+          "multipleTCI": "supported",
+          "bwp-SameNumerology": "upto4",
+          "pusch-256QAM": "supported",
+          "ue-PowerClass": "pc2",
+          "channelBWs-DL": {
+            "fr1": {
+              "scs-15kHz": "0000000000",
+              "scs-60kHz": "0000000000"
+            }
+          },
+          "channelBWs-UL": {
+            "fr1": {
+              "scs-15kHz": "0000000000",
+              "scs-60kHz": "0000000000"
+            }
+          }
+        },
+        {
+          "bandNR": 257,
+          "mimo-ParametersPerBand": {
+            "tci-StatePDSCH": {
+              "maxNumberConfiguredTCIstatesPerCC": "n64",
+              "maxNumberActiveTCI-PerBWP": "n4"
+            },
+            "pusch-TransCoherence": "nonCoherent",
+            "periodicBeamReport": "supported",
+            "aperiodicBeamReport": "supported",
+            "maxNumberRxBeam": 6,
+            "maxNumberRxTxBeamSwitchDL": {
+              "scs-60kHz": "n14",
+              "scs-120kHz": "n14"
+            },
+            "maxNumberNonGroupBeamReporting": "n4",
+            "uplinkBeamManagement": {
+              "maxNumberSRS-ResourcePerSet-BM": "n16",
+              "maxNumberSRS-ResourceSet": 1
+            },
+            "maxNumberCSI-RS-BFD": 2,
+            "maxNumberSSB-BFD": 2,
+            "maxNumberCSI-RS-SSB-CBD": 32,
+            "twoPortsPTRS-UL": "supported",
+            "beamReportTiming": {
+              "scs-60kHz": "sym28",
+              "scs-120kHz": "sym56"
+            },
+            "ptrs-DensityRecommendationSetDL": {
+              "scs-120kHz": {
+                "frequencyDensity1": 1,
+                "frequencyDensity2": 81,
+                "timeDensity1": 17,
+                "timeDensity2": 21,
+                "timeDensity3": 25
+              }
+            },
+            "aperiodicTRS": "supported",
+            "beamManagementSSB-CSI-RS": {
+              "maxNumberSSB-CSI-RS-ResourceOneTx": "n16",
+              "maxNumberCSI-RS-Resource": "n64",
+              "maxNumberCSI-RS-ResourceTwoTx": "n8",
+              "supportedCSI-RS-Density": "oneAndThree",
+              "maxNumberAperiodicCSI-RS-Resource": "n8"
+            },
+            "beamSwitchTiming": {
+              "scs-60kHz": "sym224",
+              "scs-120kHz": "sym224"
+            },
+            "codebookParameters": {
+              "type1": {
+                "singlePanel": {
+                  "supportedCSI-RS-ResourceList": [
+                    {
+                      "maxNumberTxPortsPerResource": "p16",
+                      "maxNumberResourcesPerBand": 8,
+                      "totalNumberTxPortsPerBand": 16
+                    }
+                  ],
+                  "modes": "mode1andMode2",
+                  "maxNumberCSI-RS-PerResourceSet": 8
+                }
+              },
+              "type2": {
+                "supportedCSI-RS-ResourceList": [
+                  {
+                    "maxNumberTxPortsPerResource": "p16",
+                    "maxNumberResourcesPerBand": 8,
+                    "totalNumberTxPortsPerBand": 16
+                  }
+                ],
+                "parameterLx": 2,
+                "amplitudeScalingType": "widebandAndSubband"
+              }
+            },
+            "csi-RS-IM-ReceptionForFeedback": {
+              "maxConfigNumberNZP-CSI-RS-PerCC": 8,
+              "maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC": 16,
+              "maxConfigNumberCSI-IM-PerCC": "n4",
+              "maxNumberSimultaneousNZP-CSI-RS-PerCC": 4,
+              "totalNumberPortsSimultaneousNZP-CSI-RS-PerCC": 16
+            },
+            "csi-ReportFramework": {
+              "maxNumberPeriodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForCSI-Report": 1,
+              "maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report": 0,
+              "maxNumberPeriodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-PerBWP-ForBeamReport": 1,
+              "maxNumberAperiodicCSI-triggeringStatePerCC": "n15",
+              "maxNumberSemiPersistentCSI-PerBWP-ForBeamReport": 0,
+              "simultaneousCSI-ReportsPerCC": 2
+            },
+            "csi-RS-ForTracking": {
+              "maxBurstLength": 2,
+              "maxSimultaneousResourceSetsPerCC": 4,
+              "maxConfiguredResourceSetsPerCC": 16,
+              "maxConfiguredResourceSetsAllCC": 64
+            },
+            "spatialRelations": {
+              "maxNumberConfiguredSpatialRelations": "n16",
+              "maxNumberActiveSpatialRelations": "n2",
+              "maxNumberDL-RS-QCL-TypeD": "n4"
+            }
+          },
+          "multipleTCI": "supported",
+          "bwp-WithoutRestriction": "supported",
+          "bwp-SameNumerology": "upto4",
+          "bwp-DiffNumerology": "upto4",
+          "ue-PowerClass": "pc3",
+          "rateMatchingLTE-CRS": "supported",
+          "pucch-SpatialRelInfoMAC-CE": "supported"
+        }
+      ],
+      "appliedFreqBandListFilter": [
+        {
+          "bandInformationNR": {
+            "bandNR": 1
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 3
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 5
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 7
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 8
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 20
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 28
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 38
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 40
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 41
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 77
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 78
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 79
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 80
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 84
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 257
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 258
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 260
+          }
+        },
+        {
+          "bandInformationNR": {
+            "bandNR": 261
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 1
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 3
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 7
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 8
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 20
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 28
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 38
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 40
+          }
+        },
+        {
+          "bandInformationEUTRA": {
+            "bandEUTRA": 46
+          }
+        }
+      ]
+    },
+    "measAndMobParameters": {
+      "measAndMobParametersCommon": {
+        "ssb-RLM": "supported",
+        "ssb-AndCSI-RS-RLM": "supported",
+        "eventB-MeasAndReport": "supported",
+        "eutra-CGI-Reporting": "supported",
+        "nr-CGI-Reporting": "supported",
+        "periodicEUTRA-MeasAndReport": "supported"
+      },
+      "measAndMobParametersXDD-Diff": {
+        "intraAndInterF-MeasAndReport": "supported",
+        "eventA-MeasAndReport": "supported",
+        "handoverInterF": "supported",
+        "handoverLTE-EPC": "supported"
+      },
+      "measAndMobParametersFRX-Diff": {
+        "ss-SINR-Meas": "supported",
+        "csi-RS-RLM": "supported"
+      }
+    },
+    "fr1-Add-UE-NR-Capabilities": {
+      "phy-ParametersFRX-Diff": {
+        "csi-ReportFramework": {
+          "maxNumberPeriodicCSI-PerBWP-ForCSI-Report": 1,
+          "maxNumberAperiodicCSI-PerBWP-ForCSI-Report": 1,
+          "maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report": 0,
+          "maxNumberPeriodicCSI-PerBWP-ForBeamReport": 1,
+          "maxNumberAperiodicCSI-PerBWP-ForBeamReport": 1,
+          "maxNumberAperiodicCSI-triggeringStatePerCC": "n15",
+          "maxNumberSemiPersistentCSI-PerBWP-ForBeamReport": 0,
+          "simultaneousCSI-ReportsPerCC": 2
+        }
+      },
+      "measAndMobParametersFRX-Diff": {
+        "handoverInterF": "supported",
+        "handoverLTE-EPC": "supported",
+        "maxNumberResource-CSI-RS-RLM": "n4"
+      }
+    },
+    "fr2-Add-UE-NR-Capabilities": {
+      "phy-ParametersFRX-Diff": {
+        "mux-SR-HARQ-ACK-CSI-PUCCH-MultiPerSlot": "supported",
+        "onePUCCH-LongAndShortFormat": "supported",
+        "sp-CSI-RS": "supported",
+        "csi-ReportFramework": {
+          "maxNumberPeriodicCSI-PerBWP-ForCSI-Report": 1,
+          "maxNumberAperiodicCSI-PerBWP-ForCSI-Report": 1,
+          "maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report": 0,
+          "maxNumberPeriodicCSI-PerBWP-ForBeamReport": 3,
+          "maxNumberAperiodicCSI-PerBWP-ForBeamReport": 3,
+          "maxNumberAperiodicCSI-triggeringStatePerCC": "n7",
+          "maxNumberSemiPersistentCSI-PerBWP-ForBeamReport": 0,
+          "simultaneousCSI-ReportsPerCC": 2
+        }
+      },
+      "measAndMobParametersFRX-Diff": {
+        "maxNumberResource-CSI-RS-RLM": "n2"
+      }
+    },
+    "featureSets": {
+      "featureSetsDownlink": [
+        {
+          "featureSetListPerDownlinkCC": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "scellWithoutSSB": "supported",
+          "type1-3-CSS": "supported",
+          "pdcch-MonitoringAnyOccasions": "withDCI-Gap",
+          "ue-SpecificUL-DL-Assignment": "supported",
+          "timeDurationForQCL": {
+            "scs-60kHz": "s14",
+            "scs-120kHz": "s28"
+          },
+          "pdsch-ProcessingType1-DifferentTB-PerSlot": {
+            "scs-60kHz": "upto2"
+          }
+        },
+        {
+          "featureSetListPerDownlinkCC": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "scellWithoutSSB": "supported",
+          "type1-3-CSS": "supported",
+          "pdcch-MonitoringAnyOccasions": "withDCI-Gap",
+          "ue-SpecificUL-DL-Assignment": "supported",
+          "timeDurationForQCL": {
+            "scs-60kHz": "s14",
+            "scs-120kHz": "s28"
+          },
+          "pdsch-ProcessingType1-DifferentTB-PerSlot": {
+            "scs-60kHz": "upto2"
+          }
+        }
+      ],
+      "featureSetsDownlinkPerCC": [
+        {
+          "supportedSubcarrierSpacingDL": "kHz120",
+          "supportedBandwidthDL": {
+            "fr2": "mhz200"
+          },
+          "maxNumberMIMO-LayersPDSCH": "twoLayers",
+          "supportedModulationOrderDL": "qam64"
+        },
+        {
+          "supportedSubcarrierSpacingDL": "kHz120",
+          "supportedBandwidthDL": {
+            "fr2": "mhz100"
+          },
+          "maxNumberMIMO-LayersPDSCH": "twoLayers",
+          "supportedModulationOrderDL": "qam64"
+        }
+      ],
+      "featureSetsUplink": [
+        {
+          "featureSetListPerUplinkCC": [
+            1,
+            1
+          ],
+          "supportedSRS-Resources": {
+            "maxNumberAperiodicSRS-PerBWP": "n16",
+            "maxNumberAperiodicSRS-PerBWP-PerSlot": 6,
+            "maxNumberPeriodicSRS-PerBWP": "n16",
+            "maxNumberPeriodicSRS-PerBWP-PerSlot": 6,
+            "maxNumberSemiPersistentSRS-PerBWP": "n16",
+            "maxNumberSemiPersistentSRS-PerBWP-PerSlot": 6,
+            "maxNumberSRS-Ports-PerResource": "n2"
+          }
+        },
+        {
+          "featureSetListPerUplinkCC": [
+            2,
+            2
+          ],
+          "supportedSRS-Resources": {
+            "maxNumberAperiodicSRS-PerBWP": "n16",
+            "maxNumberAperiodicSRS-PerBWP-PerSlot": 6,
+            "maxNumberPeriodicSRS-PerBWP": "n16",
+            "maxNumberPeriodicSRS-PerBWP-PerSlot": 6,
+            "maxNumberSemiPersistentSRS-PerBWP": "n16",
+            "maxNumberSemiPersistentSRS-PerBWP-PerSlot": 6,
+            "maxNumberSRS-Ports-PerResource": "n2"
+          }
+        }
+      ],
+      "featureSetsUplinkPerCC": [
+        {
+          "supportedSubcarrierSpacingUL": "kHz120",
+          "supportedBandwidthUL": {
+            "fr2": "mhz200"
+          },
+          "mimo-CB-PUSCH": {
+            "maxNumberMIMO-LayersCB-PUSCH": "twoLayers",
+            "maxNumberSRS-ResourcePerSet": 1
+          },
+          "supportedModulationOrderUL": "qam64"
+        },
+        {
+          "supportedSubcarrierSpacingUL": "kHz120",
+          "supportedBandwidthUL": {
+            "fr2": "mhz100"
+          },
+          "mimo-CB-PUSCH": {
+            "maxNumberMIMO-LayersCB-PUSCH": "twoLayers",
+            "maxNumberSRS-ResourcePerSet": 1
+          },
+          "supportedModulationOrderUL": "qam64"
+        }
+      ],
+      "featureSetsDownlink-v1540": [
+        {
+          "oneFL-DMRS-TwoAdditionalDMRS-DL": "supported",
+          "twoFL-DMRS-TwoAdditionalDMRS-DL": "supported",
+          "oneFL-DMRS-ThreeAdditionalDMRS-DL": "supported",
+          "pdcch-MonitoringAnyOccasionsWithSpanGap": {
+            "scs-60kHz": "set1"
+          },
+          "pdsch-SeparationWithGap": "supported"
+        },
+        {
+          "oneFL-DMRS-TwoAdditionalDMRS-DL": "supported",
+          "twoFL-DMRS-TwoAdditionalDMRS-DL": "supported",
+          "oneFL-DMRS-ThreeAdditionalDMRS-DL": "supported",
+          "pdcch-MonitoringAnyOccasionsWithSpanGap": {
+            "scs-60kHz": "set1"
+          },
+          "pdsch-SeparationWithGap": "supported"
+        }
+      ]
+    },
+    "nonCriticalExtension": {
+      "interRAT-Parameters": {
+        "eutra": {
+          "supportedBandListEUTRA": [
+            1,
+            3,
+            8,
+            18,
+            19,
+            21,
+            26,
+            28,
+            41,
+            42
+          ],
+          "eutra-ParametersCommon": {
+            "mfbi-EUTRA": "supported",
+            "rs-SINR-MeasEUTRA": "supported"
+          },
+          "eutra-ParametersXDD-Diff": {
+            "rsrqMeasWidebandEUTRA": "supported"
+          }
+        }
+      },
+      "inactiveState": "supported"
+    }
+  }
+}
