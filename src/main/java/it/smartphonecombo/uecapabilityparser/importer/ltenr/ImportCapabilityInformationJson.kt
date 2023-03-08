@@ -85,7 +85,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
         nrCapability
             ?.let { UENrCapabilityJson(it) }
             ?.let { nr ->
-                val bandList = getNrBands(nr)
+                val bandList = getNrBands(nr).sortedWith(compareBy { it.band })
                 if (debug) {
                     bandList.forEach { println(it.toBwString()) }
                 }
