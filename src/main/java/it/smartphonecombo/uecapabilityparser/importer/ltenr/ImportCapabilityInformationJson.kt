@@ -85,7 +85,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
         nrCapability
             ?.let { UENrCapabilityJson(it) }
             ?.let { nr ->
-                val bandList = getNrBands(nr)
+                val bandList = getNrBands(nr).sortedWith(compareBy { it.band })
                 if (debug) {
                     bandList.forEach { println(it.toBwString()) }
                 }
@@ -809,8 +809,8 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                     supportedBandNr.getInt("bandNR")?.let { ComponentNr(it) }
                         ?: return@mapNotNull null
 
-                if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") != null) {
-                    componentNr.modDL = "256qam"
+                if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
+                    componentNr.modDL = "64qam"
                 }
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
@@ -896,7 +896,8 @@ class ImportCapabilityInformationJson : ImportCapabilities {
     ): Map<Int, IntArray> {
         /*
          * According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
-         * So we assume that it's supported by default.
+         * So we assume that it's supported by default for 30kHz and supported for 60kHz
+         * if 60kHz bws isn't empy.
          * Add 100 MHz only for channelBWs (not for its extensions), to avoid duplicates
          */
         val default100MHz = !isV1590 && componentNr.band in listOf(41, 48, 77, 78, 79, 90)
@@ -907,7 +908,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
             val scs = scsKey.removePrefix("scs-").removeSuffix("kHz").toInt()
             (element as? JsonPrimitive)?.contentOrNull?.let { bwString ->
                 var bws = Utility.bwStringToArray(bwString, componentNr.isFR2, isV1590)
-                if (scs != 15 && default100MHz && bws.isNotEmpty()) {
+                if (default100MHz && (scs == 30 || scs == 60 && bws.isNotEmpty())) {
                     bws += 100
                 }
                 bandWidthMap[scs] = bws
