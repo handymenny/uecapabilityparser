@@ -809,8 +809,8 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                     supportedBandNr.getInt("bandNR")?.let { ComponentNr(it) }
                         ?: return@mapNotNull null
 
-                if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") != null) {
-                    componentNr.modDL = "256qam"
+                if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
+                    componentNr.modDL = "64qam"
                 }
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
