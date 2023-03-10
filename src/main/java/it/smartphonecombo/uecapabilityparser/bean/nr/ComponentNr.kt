@@ -57,32 +57,6 @@ data class ComponentNr(
         return str
     }
 
-    override fun toStringExtended(): String {
-        var str = "n$band"
-        if (classDL <= '0') {
-            str += '*'
-        } else {
-            str += classDL
-            if (mimoDL > 0) {
-                str += mimoDL
-            }
-            if ("256qam" != modDL) {
-                str += "^$modDL"
-            }
-        }
-        if (classUL > '0') {
-            str += classUL
-            if (mimoUL > 1) {
-                str += mimoUL
-            }
-            if ("64qam" != modUL) {
-                str += "^$modUL"
-            }
-        }
-        str += "^$maxBandwidth-$scs"
-        return str
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is ComponentNr) return false

@@ -57,24 +57,6 @@ data class ComponentLte(
         return str
     }
 
-    override fun toStringExtended(): String {
-        var str = band.toString() + ""
-        str += classDL
-        if ("64qam" != modDL) {
-            str += "^$modDL"
-        }
-        if (mimoDL > 0) {
-            str += mimoDL
-        }
-        if (classUL > '0') {
-            str += classUL
-            if ("16qam" != modUL) {
-                str += "^$modUL"
-            }
-        }
-        return str
-    }
-
     companion object {
         fun lteComponentsToArrays(
             band: IntArray,
