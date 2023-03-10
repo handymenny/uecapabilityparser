@@ -18,7 +18,7 @@ internal class Import0xB826Test {
         endc: Boolean,
         oracleFilename: String?
     ) {
-        val filePath = path + srcFilename
+        val filePath = "$path/input/$srcFilename"
         val comboList = Import0xB826().parse(filePath)
         Assertions.assertEquals(version, comboList.getMetadata("version"))
         Assertions.assertEquals(logSize, comboList.getMetadata("logSize"))
