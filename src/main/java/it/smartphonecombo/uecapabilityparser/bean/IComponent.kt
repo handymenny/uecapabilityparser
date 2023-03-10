@@ -2,7 +2,6 @@ package it.smartphonecombo.uecapabilityparser.bean
 
 interface IComponent {
     fun compareTo(iComponent: IComponent): Int
-    fun toStringExtended(): String
 
     var band: Int
     var classDL: Char
