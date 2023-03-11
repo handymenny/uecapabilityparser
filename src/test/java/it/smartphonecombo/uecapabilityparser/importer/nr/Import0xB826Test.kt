@@ -238,4 +238,34 @@ internal class Import0xB826Test {
     fun parseV10SAmmWave() {
         parse("0xB826-v10-SAmmWave.bin", 10, 359, 12, 12, 0, false, "0xB826-v10-SAmmWave.csv")
     }
+
+    @Test
+    fun parseV13NSA() {
+        parse("0xB826-v13-NSA.bin", 13, 5323, 100, 884, 0, true, "0xB826-v13-NSA.csv")
+    }
+
+    @Test
+    fun parseV13NSA2() {
+        parse("0xB826-v13-NSA2.bin", 13, 4963, 100, 1721, 600, true, "0xB826-v13-NSA2.csv")
+    }
+
+    @Test
+    fun parseV13SA() {
+        parse("0xB826-v13-SA.bin", 13, 4491, 100, 717, 0, false, "0xB826-v13-SA.csv")
+    }
+
+    @Test
+    fun parseV13SA2() {
+        parse("0xB826-v13-SA2.bin", 13, 3531, 100, 518, 300, false, "0xB826-v13-SA2.csv")
+    }
+
+    @Test
+    fun parseV14NSA() {
+        parse("0xB826-v14-NSA.bin", 14, 3889, 65, 4965, 4900, true, "0xB826-v14-NSA.csv")
+    }
+
+    @Test
+    fun parseV14SA() {
+        parse("0xB826-v14-SA.bin", 14, 4963, 100, 405, 300, false, "0xB826-v14-SA.csv")
+    }
 }
