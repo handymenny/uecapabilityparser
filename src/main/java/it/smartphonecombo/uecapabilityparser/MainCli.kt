@@ -71,15 +71,6 @@ internal object MainCli {
             )
         type.isRequired = true
         options.addOption(type)
-        val json =
-            Option(
-                "j",
-                "compactJson",
-                true,
-                "Output a Compact Json (used by smartphonecombo.it), if no file specified the json will be output to standard output."
-            )
-        json.setOptionalArg(true)
-        options.addOption(json)
         val csv =
             Option(
                 "c",
@@ -176,10 +167,6 @@ internal object MainCli {
                             s1.size.compareTo(s2.size)
                         }
                     )
-            }
-            if (cmd.hasOption("compactJson")) {
-                val outputFile = cmd.getOptionValue("compactJson")
-                outputFile(Utility.compact(Capabilities(list)).combosToString(), outputFile)
             }
         } catch (e: ParseException) {
             if (!args.contains("-h") && !args.contains("--help")) {
