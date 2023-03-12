@@ -440,7 +440,7 @@ object Utility {
         var writer: PrintWriter? = null
         try {
             if (!outputFile.isNullOrBlank()) {
-                writer = PrintWriter(BufferedWriter(FileWriter(outputFile)))
+                writer = PrintWriter(BufferedWriter(FileWriter(outputFile, Charsets.UTF_8)))
                 writer.write(text)
             } else {
                 println(text)
