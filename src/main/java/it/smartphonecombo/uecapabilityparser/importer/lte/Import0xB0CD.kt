@@ -49,9 +49,6 @@ class Import0xB0CD : ImportCapabilities {
                 if (isV41) {
                     try {
                         uplink = matcher.group(i++)[0]
-                        if (uplink < '9') {
-                            uplink += 16.toChar().code
-                        }
                     } catch (ignored: NullPointerException) {}
                 }
                 try {
@@ -65,7 +62,8 @@ class Import0xB0CD : ImportCapabilities {
                         }
                     } catch (ignored: NullPointerException) {}
                 }
-                bands.add(ComponentLte(baseBand, bandwidthClass, uplink, mimo, "64qam", "16qam"))
+                // TODO: parse 64/256qam UL
+                bands.add(ComponentLte(baseBand, bandwidthClass, uplink, mimo, null, null))
                 i++
             }
             bands.sortWith(IComponent.defaultComparator.reversed())
