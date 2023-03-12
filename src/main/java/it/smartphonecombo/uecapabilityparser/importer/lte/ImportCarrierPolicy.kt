@@ -52,7 +52,7 @@ class ImportCarrierPolicy : ImportCapabilities {
                     if (bcsString.isNotEmpty() && bcsString != "mAll") {
                         try {
                             if (bcsString.startsWith('m')) {
-                                val bcs = bcsString.substring(1).toInt()
+                                val bcs = bcsString.substring(1).toInt(16)
                                 combo.bcs = Utility.bcsToArray(bcs, true)
                             } else {
                                 val bcs = bcsString.toInt()
