@@ -53,7 +53,7 @@ class ImportCarrierPolicy : ImportCapabilities {
                         try {
                             if (bcsString.startsWith('m')) {
                                 val bcs = bcsString.substring(1).toInt(16)
-                                combo.bcs = Utility.bcsToArray(bcs, true)
+                                combo.bcs = Utility.qcomBcsToArray(bcs)
                             } else {
                                 val bcs = bcsString.toInt()
                                 combo.setSingleBcs(bcs)

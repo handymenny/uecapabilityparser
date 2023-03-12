@@ -17,7 +17,6 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*
-import kotlin.math.ceil
 import kotlin.system.exitProcess
 import kotlinx.serialization.json.*
 
@@ -310,27 +309,21 @@ object Utility {
         } else t
     }
 
-    fun bcsToArray(bcs: Int, qualcomm: Boolean): IntArray {
+    fun qcomBcsToArray(bcs: Int): IntArray {
         var bcs = bcs
         if (bcs == -1) return IntArray(0)
         if (bcs == 0) return intArrayOf(0)
         var x = 0
         var y = 0
-        return if (qualcomm) {
-            val bcsArray = IntArray(Integer.bitCount(bcs))
-            while (bcs > 0) {
-                if (bcs and 1 == 1) {
-                    bcsArray[y++] = x
-                }
-                bcs = bcs shr 1
-                x++
+        val bcsArray = IntArray(Integer.bitCount(bcs))
+        while (bcs > 0) {
+            if (bcs and 1 == 1) {
+                bcsArray[y++] = x
             }
-            bcsArray
-        } else {
-            var binary = Integer.toBinaryString(bcs)
-            binary = binary.padStart(binary.length.roundToN(4), '0')
-            binaryStringToBcsArray(binary)
+            bcs = bcs shr 1
+            x++
         }
+        return bcsArray
     }
 
     fun binaryStringToBcsArray(bcs: String): IntArray {
@@ -634,7 +627,4 @@ object Utility {
     fun String.indexOf(regex: Regex): Int {
         return regex.find(this)?.range?.first ?: -1
     }
-
-    /** Return the smallest multiple of [n] greater than this integer */
-    private fun Int.roundToN(n: Int): Int = ceil(this / n.toDouble()).toInt() * n
 }
