@@ -49,9 +49,6 @@ class Import0xB0CD : ImportCapabilities {
                 if (isV41) {
                     try {
                         uplink = matcher.group(i++)[0]
-                        if (uplink < '9') {
-                            uplink += 16.toChar().code
-                        }
                     } catch (ignored: NullPointerException) {}
                 }
                 try {
