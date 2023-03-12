@@ -6,11 +6,8 @@ import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.PERTranslatorFactory
 import com.ericsson.mts.asn1.converter.AbstractConverter
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
-import it.smartphonecombo.uecapabilityparser.bean.CompactedCapabilities
 import it.smartphonecombo.uecapabilityparser.bean.ICombo
 import it.smartphonecombo.uecapabilityparser.bean.Rat
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
-import it.smartphonecombo.uecapabilityparser.bean.lte.CompactedCombo
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
@@ -22,123 +19,6 @@ import kotlinx.serialization.json.*
 
 /** The Class Utility. */
 object Utility {
-    /**
-     * Compact. This works only for ordered ComboList!
-     *
-     * @param list the list
-     * @return the compacted combo list
-     */
-    fun compact(list: Capabilities): CompactedCapabilities {
-        val lteCombos = list.lteCombos
-        if (lteCombos != null) {
-            // Try to reduce re-hashing
-            val initialCapacity = maxOf(lteCombos.size / 2, 16)
-            val map: MutableMap<List<Pair<Int, Char>>, MutableList<CompactedCombo>> =
-                HashMap(initialCapacity)
-
-            lteCombos.forEach { combo: ComboLte ->
-                val compactBands: MutableList<Pair<Int, Char>> = ArrayList()
-                val mimoConf = StringBuilder()
-                val uplinkConf = StringBuilder()
-                var keepMimo = false
-
-                combo.masterComponents.forEach { band ->
-                    val bandNumber = band.band
-                    compactBands.add(Pair(bandNumber, band.classDL))
-                    mimoConf.append(band.mimoDL)
-                    if (!keepMimo && band.mimoDL > 2) {
-                        keepMimo = true
-                    }
-                    uplinkConf.append(band.classUL)
-                }
-
-                // Flag 3 = mixed
-                val mimo =
-                    if ((list.flags != 3 || mimoConf.contains("0")) && !keepMimo) {
-                        mutableListOf()
-                    } else {
-                        mutableListOf(mimoConf.toString())
-                    }
-
-                val compactCombo =
-                    CompactedCombo(
-                        compactBands.toTypedArray(),
-                        mimo,
-                        mutableListOf(uplinkConf.toString())
-                    )
-
-                map.getOrPut(compactBands) { mutableListOf() }.add(compactCombo)
-            }
-
-            val flatMap =
-                map.values.flatMap { items ->
-                    val mimoMap: MutableMap<String?, CompactedCombo> = HashMap()
-                    items.forEach { combo ->
-                        val key = combo.mimo.getOrNull(0)
-                        mimoMap.putIfAbsent(key, combo)?.addUpload(combo.upload[0])
-                    }
-
-                    val ulMap: MutableMap<List<String>, CompactedCombo> = HashMap()
-                    mimoMap.values.forEach { combo ->
-                        val key = combo.upload
-                        val res = ulMap.putIfAbsent(key, combo)
-                        if (res != null && combo.mimo.isNotEmpty()) {
-                            res.addMimo(combo.mimo[0])
-                        }
-                    }
-                    ulMap.values
-                }
-
-            val compareMimoUpload = { s1: List<String>, s2: List<String> ->
-                var result = s1.size.compareTo(s2.size)
-                if (result == 0) {
-                    for (i in s1.indices) {
-                        result = s1[i].compareTo(s2[i])
-                        if (result != 0) {
-                            break
-                        }
-                    }
-                }
-                result * -1
-            }
-            val compactedCombos =
-                flatMap
-                    .sortedWith(
-                        Comparator.comparing(CompactedCombo::bands) {
-                                s1: Array<Pair<Int, Char>>,
-                                s2: Array<Pair<Int, Char>> ->
-                                var result: Int
-                                val min = minOf(s1.size, s2.size)
-
-                                for (i in 0 until min) {
-                                    result = s1[i].first.compareTo(s2[i].first)
-                                    if (result != 0) {
-                                        return@comparing result
-                                    }
-                                }
-
-                                result = s1.size.compareTo(s2.size)
-
-                                if (result == 0) {
-                                    for (i in 0 until min) {
-                                        result = s1[i].second.compareTo(s2[i].second)
-                                        if (result != 0) {
-                                            break
-                                        }
-                                    }
-                                }
-
-                                result
-                            }
-                            .thenComparing(CompactedCombo::mimo, compareMimoUpload)
-                            .thenComparing(CompactedCombo::upload, compareMimoUpload)
-                    )
-                    .toTypedArray()
-            return CompactedCapabilities(list.flags, compactedCombos)
-        }
-        return CompactedCapabilities(list.flags, emptyArray())
-    }
-
     @Throws(IOException::class)
     fun readFile(path: String, encoding: Charset): String {
         return File(path).readText(encoding)

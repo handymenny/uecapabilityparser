@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser
 
-import it.smartphonecombo.uecapabilityparser.Utility.compact
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
@@ -11,14 +10,6 @@ import org.junit.jupiter.api.Test
 
 internal class UtilityTest {
     private var output = ""
-
-    // @Test
-    fun compact1() {
-        var i = 0
-        while (i++ < 1) {
-            output = compact(cap).toString()
-        }
-    }
 
     @Test
     fun parse1() {
