@@ -309,26 +309,21 @@ object Utility {
         } else t
     }
 
-    fun bcsToArray(bcs: Int, qualcomm: Boolean): IntArray {
+    fun qcomBcsToArray(bcs: Int): IntArray {
         var bcs = bcs
         if (bcs == -1) return IntArray(0)
         if (bcs == 0) return intArrayOf(0)
         var x = 0
         var y = 0
-        return if (qualcomm) {
-            val bcsArray = IntArray(Integer.bitCount(bcs))
-            while (bcs > 0) {
-                if (bcs and 1 == 1) {
-                    bcsArray[y++] = x
-                }
-                bcs = bcs shr 1
-                x++
+        val bcsArray = IntArray(Integer.bitCount(bcs))
+        while (bcs > 0) {
+            if (bcs and 1 == 1) {
+                bcsArray[y++] = x
             }
-            bcsArray
-        } else {
-            val binary = Integer.toBinaryString(bcs)
-            binaryStringToBcsArray(binary)
+            bcs = bcs shr 1
+            x++
         }
+        return bcsArray
     }
 
     fun binaryStringToBcsArray(bcs: String): IntArray {
