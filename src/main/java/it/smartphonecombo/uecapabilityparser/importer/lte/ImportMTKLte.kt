@@ -80,6 +80,8 @@ class ImportMTKLte : ImportCapabilities {
                         str = lines[++index].trim { it <= ' ' }.substring(18)
                         bwClass = 'A' + str.toInt(16)
                         val band = ComponentLte(baseBand, bwClass, classUL)
+                        band.modDL = null
+                        band.modUL = null
                         bands.add(band)
                         i++
                     }
