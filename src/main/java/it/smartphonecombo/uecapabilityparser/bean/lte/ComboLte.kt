@@ -23,7 +23,7 @@ data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: I
      * @param bcs the bcs to set
      */
     fun setSingleBcs(bcs: Int) {
-        this.bcs = Utility.bcsToArray(bcs, false)
+        this.bcs = intArrayOf(bcs)
     }
 
     /**
