@@ -343,7 +343,8 @@ object Utility {
         for (i in bcs) {
             count += 1 shl i
         }
-        return "m$count"
+        val hex = count.toString(16).uppercase()
+        return "m$hex"
     }
 
     fun split0xB826hex(input: String): List<String> {
