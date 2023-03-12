@@ -353,23 +353,6 @@ object Utility {
         return "m$count"
     }
 
-    fun convertBCStoInt(bcsString: String, isHex: Boolean): Int {
-        try {
-            if (isHex) {
-                if (bcsString.isNotEmpty()) {
-                    return bcsString.substring(0, minOf(2, bcsString.length)).toInt(16)
-                }
-            } else {
-                return if (bcsString.length > 7) {
-                    bcsString.substring(0, 8).toInt(2)
-                } else {
-                    bcsString.padEnd(bcsString.length.roundToN(4), '0').toInt(2)
-                }
-            }
-        } catch (ignored: NumberFormatException) {}
-        return 0
-    }
-
     fun split0xB826hex(input: String): List<String> {
         fun String.emptyLineIndex(): Int {
             return Regex("^\\s*$", RegexOption.MULTILINE).find(this)?.range?.first ?: this.length
