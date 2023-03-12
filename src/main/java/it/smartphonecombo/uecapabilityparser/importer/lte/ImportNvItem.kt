@@ -117,10 +117,10 @@ class ImportNvItem : ImportCapabilities {
         mimoPresent: Boolean,
         additionalBytes: Int
     ): ComboLte {
-        val copyBand = emptyArray<IComponent>()
+        val copyBand = mutableListOf<IComponent>()
         var i = 0
         while (i < dlBands.size) {
-            copyBand[i] = (dlBands[i] as ComponentLte).copy()
+            copyBand.add((dlBands[i] as ComponentLte).copy())
             i++
         }
         val numberOfDLbands = copyBand.size
@@ -147,6 +147,6 @@ class ImportNvItem : ImportCapabilities {
             `in`!!.skipBytes(additionalBytes + 3 + if (mimoPresent) 1 else 0)
             i++
         }
-        return ComboLte(copyBand)
+        return ComboLte(copyBand.toTypedArray())
     }
 }
