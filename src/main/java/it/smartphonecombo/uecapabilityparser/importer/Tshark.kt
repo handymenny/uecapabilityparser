@@ -61,8 +61,8 @@ class Tshark {
             val p =
                 Runtime.getRuntime()
                     .exec(arrayOf(tsharkCmd, "-o", userdltsString, "-r", pcapFileName, "-V", "-l"))
-            val bri = BufferedReader(InputStreamReader(p.inputStream))
-            val bre = BufferedReader(InputStreamReader(p.errorStream))
+            val bri = BufferedReader(InputStreamReader(p.inputStream, Charsets.UTF_8))
+            val bre = BufferedReader(InputStreamReader(p.errorStream, Charsets.UTF_8))
             var i = 0
             while (bri.readLine().also { line = it } != null) {
                 i++
