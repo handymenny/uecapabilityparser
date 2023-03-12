@@ -19,9 +19,9 @@ class ImportCarrierPolicy : ImportCapabilities {
     override fun parse(caBandCombosString: String): Capabilities {
         val listCombo =
             caBandCombosString
-                .split(';')
+                .split(';', '"')
                 .filter(String::isNotBlank)
-                .map { x: String ->
+                .mapNotNull { x: String ->
                     val bands = ArrayList<IComponent>()
                     val components = x.split('-')
                     val lastIndex = components.size - 1
@@ -41,16 +41,25 @@ class ImportCarrierPolicy : ImportCapabilities {
                             )
                         }
                     }
+
+                    if (bands.isEmpty()) {
+                        return@mapNotNull null
+                    }
+
                     bands.sortWith(IComponent.defaultComparator.reversed())
                     val combo = ComboLte(bands.toTypedArray())
                     val bcsString = components[lastIndex].trim()
                     if (bcsString.isNotEmpty() && bcsString != "mAll") {
-                        if (bcsString.startsWith('m')) {
-                            val bcs = bcsString.substring(1).toInt()
-                            combo.bcs = Utility.bcsToArray(bcs, true)
-                        } else {
-                            val bcs = bcsString.toInt()
-                            combo.setSingleBcs(bcs)
+                        try {
+                            if (bcsString.startsWith('m')) {
+                                val bcs = bcsString.substring(1).toInt()
+                                combo.bcs = Utility.bcsToArray(bcs, true)
+                            } else {
+                                val bcs = bcsString.toInt()
+                                combo.setSingleBcs(bcs)
+                            }
+                        } catch (ignored: NumberFormatException) {
+                            return@mapNotNull null
                         }
                     }
                     combo
