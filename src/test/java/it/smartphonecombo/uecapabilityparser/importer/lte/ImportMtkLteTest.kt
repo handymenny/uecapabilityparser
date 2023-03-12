@@ -19,7 +19,6 @@ internal class ImportMtkLteTest {
 
         val capabilities = importMtkLte.parse(inputPath)
         val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
-        Utility.outputFile(actualCsv.joinToString("\n") + "\n", oraclePath)
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
 
