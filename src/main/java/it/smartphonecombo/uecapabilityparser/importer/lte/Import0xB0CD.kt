@@ -65,7 +65,8 @@ class Import0xB0CD : ImportCapabilities {
                         }
                     } catch (ignored: NullPointerException) {}
                 }
-                bands.add(ComponentLte(baseBand, bandwidthClass, uplink, mimo, "64qam", "16qam"))
+                // TODO: parse 64/256qam UL
+                bands.add(ComponentLte(baseBand, bandwidthClass, uplink, mimo, null, null))
                 i++
             }
             bands.sortWith(IComponent.defaultComparator.reversed())
