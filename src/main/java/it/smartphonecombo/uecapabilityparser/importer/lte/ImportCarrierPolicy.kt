@@ -26,7 +26,7 @@ class ImportCarrierPolicy : ImportCapabilities {
                     val components = x.split('-')
                     val lastIndex = components.size - 1
                     for (i in 0 until lastIndex) {
-                        val y = components[i]
+                        val y = components[i].filterNot { it.isWhitespace() }
                         val matchResult = regex.find(y)
                         if (matchResult != null) {
                             val groups = matchResult.groupValues
@@ -48,7 +48,7 @@ class ImportCarrierPolicy : ImportCapabilities {
 
                     bands.sortWith(IComponent.defaultComparator.reversed())
                     val combo = ComboLte(bands.toTypedArray())
-                    val bcsString = components[lastIndex].trim()
+                    val bcsString = components[lastIndex].filterNot { it.isWhitespace() }
                     if (bcsString.isNotEmpty() && bcsString != "mAll") {
                         try {
                             if (bcsString.startsWith('m')) {
