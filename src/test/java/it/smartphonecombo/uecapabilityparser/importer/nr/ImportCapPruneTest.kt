@@ -1,21 +1,64 @@
 package it.smartphonecombo.uecapabilityparser.importer.nr
 
+import it.smartphonecombo.uecapabilityparser.Utility
+import java.io.File
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class ImportCapPruneTest {
-    @Test
-    fun parse() {
-        val cap =
-            "b2A[4]A[1]-b2A[4]-b30A[4]-b66A[4]-n5A[2]A[1];b2A[4]-b2A[4]-b30A[4]A[1]-b66A[4]-n5A[2]A[1];b2A[4]-b2A[4]-b30A[4]-b66A[4]A[1]-n5A[2]A[1];b2A[4]A[1]-b30A[4]-b66A[4]-b66A[4]-n5A[2]A[1];b2A[4]-b30A[4]A[1]-b66A[4]-b66A[4]-n5A[2]A[1];b2A[4]-b30A[4]-b66A[4]A[1]-b66A[4]-n5A[2]A[1];b2A[4]A[1]-b2A[4]-b66A[4]-b66A[4]-n5A[2]A[1];b2A[4]-b2A[4]-b66A[4]A[1]-b66A[4]-n5A[2]A[1];b2A[4]A[1]-b46D[2,2,2]-n5A[2]A[1];b2A[4]A[1]-b2A[4]-n260I[2,2,2,2]A[2];b2A[4]A[1]-b5A[2]-n260I[2,2,2,2]A[2];b2A[4]-b5A[2]A[1]-n260I[2,2,2,2]A[2];b2A[4]A[1]-b12A[2]-n260I[2,2,2,2]A[2];b2A[4]-b12A[2]A[1]-n260I[2,2,2,2]A[2];b2A[4]A[1]-b29A[2]-n260I[2,2,2,2]A[2];b2A[4]A[1]-b30A[4]-n260I[2,2,2,2]A[2];b2A[4]-b30A[4]A[1]-n260I[2,2,2,2]A[2];b2A[4]A[1]-b66A[4]-n260I[2,2,2,2]A[2];b2A[4]-b66A[4]A[1]-n260I[2,2,2,2]A[2];b5A[2]A[1]-b30A[4]-n260I[2,2,2,2]A[2];b5A[2]-b30A[4]A[1]-n260I[2,2,2,2]A[2];b5A[2]A[1]-b66A[4]-n260I[2,2,2,2]A[2];b5A[2]-b66A[4]A[1]-n260I[2,2,2,2]A[2];b12A[2]A[1]-b30A[4]-n260I[2,2,2,2]A[2];b12A[2]-b30A[4]A[1]-n260I[2,2,2,2]A[2];b12A[2]-b66A[4]A[1]-n260I[2,2,2,2]A[2];b30A[4]A[1]-b66A[4]-n260I[2,2,2,2]A[2];b30A[4]-b66A[4]A[1]-n260I[2,2,2,2]A[2];b66A[4]A[1]-b66A[4]-n260I[2,2,2,2]A[2];"
-        val output: String = ImportCapPrune().parse(cap).enDcCombos.toString()
-        println(output)
+
+    companion object {
+        val importCapPrune = ImportCapPrune()
+    }
+
+    private fun parse(
+        inputFilename: String,
+        oracleEnDcFilename: String,
+        oracleNrCaFilename: String
+    ) {
+        val path = "src/test/resources/nrCapPrune/"
+
+        val inputPath = "$path/input/$inputFilename"
+        val oracleEnDcPath = "$path/oracle/$oracleEnDcFilename"
+        val oracleNrCaPath = "$path/oracle/$oracleNrCaFilename"
+
+        val capabilities = importCapPrune.parse(File(inputPath).readText())
+
+        val actualEnDcCsv =
+            Utility.toCsv(capabilities.enDcCombos ?: emptyList()).lines().dropLastWhile {
+                it.isBlank()
+            }
+        val expectedEnDcCsv =
+            File(oracleEnDcPath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
+        Assertions.assertLinesMatch(expectedEnDcCsv, actualEnDcCsv)
+
+        val actualNrCaCsv =
+            Utility.toCsv(capabilities.nrCombos ?: emptyList()).lines().dropLastWhile {
+                it.isBlank()
+            }
+        val expectedNrCaCsv =
+            File(oracleNrCaPath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
+
+        Assertions.assertLinesMatch(expectedNrCaCsv, actualNrCaCsv)
     }
 
     @Test
-    fun parse2() {
-        val cap =
-            "b2AA-b46D-b66A-n71AA;b2A-b46D-b66AA-n71AA;b2AA-b66C-b71A-n71AA;b2A-b66CA-b71A-n71AA;b2AA-b66A-n41AA;b2A-b66AA-n41AA;b2AA-b66A-n260AA-n260A;b2A-b66AA-n260AA-n260A;b2AA-b66A-n261AA-n261A;b2A-b66AA-n261AA-n261A;b66AA-n260AA-n260A-n260A-n260A;b66AA-n261AA-n261A-n261A-n261A;b2AA-n260AA-n260A-n260A-n260A;b2AA-n261AA-n261A-n261A-n261A"
-        val output: String = ImportCapPrune().parse(cap).enDcCombos.toString()
-        println(output)
+    fun parseNoMimoFR1() {
+        parse("noMimoFR1.txt", "noMimoFR1-EN-DC.csv", "noMimoFR1-NR.csv")
+    }
+
+    @Test
+    fun parseNoMimoFR2() {
+        parse("noMimoFR2.txt", "noMimoFR2-EN-DC.csv", "noMimoFR2-NR.csv")
+    }
+
+    @Test
+    fun parseMimoFR1() {
+        parse("mimoFR1.txt", "mimoFR1-EN-DC.csv", "mimoFR1-NR.csv")
+    }
+
+    @Test
+    fun parseMimoFR2() {
+        parse("mimoFR2.txt", "mimoFR2-EN-DC.csv", "mimoFR2-NR.csv")
     }
 }
