@@ -151,23 +151,6 @@ internal object MainCli {
                     outputFile(Utility.toCsv(comboList), fileName)
                 }
             }
-            var list = comboList.lteCombos
-            if (list != null) {
-                list =
-                    list.sortedWith(
-                        Comparator.comparing({ obj: ComboLte -> obj.masterComponents }) {
-                            s1: Array<IComponent>,
-                            s2: Array<IComponent> ->
-                            var i = 0
-                            while (i < s1.size && i < s2.size) {
-                                val result = s1[i].compareTo(s2[i])
-                                if (result != 0) return@comparing result
-                                i++
-                            }
-                            s1.size.compareTo(s2.size)
-                        }
-                    )
-            }
         } catch (e: ParseException) {
             if (!args.contains("-h") && !args.contains("--help")) {
                 System.err.println(e.localizedMessage)
