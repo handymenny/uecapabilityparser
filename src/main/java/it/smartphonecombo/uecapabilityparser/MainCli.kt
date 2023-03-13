@@ -122,6 +122,7 @@ internal object MainCli {
                         typeLog == "H" ||
                         typeLog == "P" ||
                         typeLog == "QNR" ||
+                        typeLog == "CNR" ||
                         typeLog == "O"
                 ) {
                     val lteCombos = comboList.lteCombos
