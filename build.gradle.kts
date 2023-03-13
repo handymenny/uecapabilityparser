@@ -4,7 +4,7 @@ plugins {
     kotlin("plugin.serialization") version kotlinVersion
     id("com.github.johnrengelman.shadow") version "8.1.0"
     id("org.graalvm.buildtools.native") version "0.9.20"
-    id("com.diffplug.spotless") version "6.16.0"
+    id("com.diffplug.spotless") version "6.17.0"
     application
     jacoco
 }
