@@ -49,4 +49,14 @@ internal class ImportCarrierPolicyTest {
     fun parseFullCarrierPolicy() {
         parse("fullCarrierPolicy.xml", "fullCarrierPolicy.csv")
     }
+
+    @Test
+    fun parseLteCapPrune() {
+        parse("lteCapPrune.txt", "lteCapPrune.csv")
+    }
+
+    @Test
+    fun parseLteCapPruneWithSpaces() {
+        parse("lteCapPruneWithSpaces.txt", "lteCapPruneWithSpaces.csv")
+    }
 }
