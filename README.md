@@ -17,14 +17,12 @@ usage: ueCapabilityParser
  -i,--input <arg>          Main capability file.
  -inputENDC <arg>          ENDC UE Capability file.
  -inputNR <arg>            NR UE Capability file.
- -j,--compactJson <arg>    Output a Compact Json (used by
-                           smartphonecombo.it), if no file specified the
-                           json will be output to standard output.
  -l,--uelog <arg>          Output the uelog, if no file specified the
                            uelog will be output to standard output.
  -multi,--multiple0xB826   Use this option if input contains several
                            0xB826 hexdumps separated by blank lines and
                            optionally prefixed with "Payload :".
+ -n,--newEngine            Use the new engine (default)
  -nr,--defaultNR           Main capability input is NR (otherwise LTE).
  -t,--type <arg>           Type of capability.
                            Valid values are:
@@ -37,6 +35,7 @@ usage: ueCapabilityParser
                            E (28874 nvitem binary, decompressed)
                            Q (QCAT 0xB0CD)
                            QNR (0xB826 hexdump)
-                           M (MEDIATEK CA_COMB_INFO).
- -T,--TsharkPath <arg>     Custom tshark path. (Tshark is used for H type)
+                           M (MEDIATEK CA_COMB_INFO)
+                           O (OSIX UE Capability Information).
+ -T,--TsharkPath <arg>     Set tshark path. (Tshark is used for H type)
 ```
