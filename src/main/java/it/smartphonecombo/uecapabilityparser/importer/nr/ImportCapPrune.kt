@@ -74,7 +74,8 @@ class ImportCapPrune : ImportCapabilities {
                 }
                 .toList()
         val cap = Capabilities()
-        cap.enDcCombos = listCombo
+        cap.enDcCombos = listCombo.filter { it.componentsLte.isNotEmpty() }
+        cap.nrCombos = listCombo.filter { it.componentsLte.isEmpty() }
         return cap
     }
 
