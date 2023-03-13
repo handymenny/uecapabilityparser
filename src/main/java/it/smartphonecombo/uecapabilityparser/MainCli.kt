@@ -10,9 +10,7 @@ import it.smartphonecombo.uecapabilityparser.Utility.multipleParser
 import it.smartphonecombo.uecapabilityparser.Utility.outputFile
 import it.smartphonecombo.uecapabilityparser.Utility.preformatHexData
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
-import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.Rat
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.importer.lte.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportCarrierPolicy
@@ -152,11 +150,14 @@ internal object MainCli {
                 }
             }
         } catch (e: ParseException) {
-            if (!args.contains("-h") && !args.contains("--help")) {
+            val helpArgs = args.contains("-h") || args.contains("--help")
+            if (!helpArgs) {
                 System.err.println(e.localizedMessage)
             }
             formatter.printHelp("ueCapabilityParser", options)
-            exitProcess(1)
+            if (!helpArgs) {
+                exitProcess(1)
+            }
         }
     }
 
