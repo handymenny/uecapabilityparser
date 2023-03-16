@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class MainCliTest {
@@ -11,6 +12,11 @@ internal class MainCliTest {
     private val originalOut = System.out
     private val path = "src/test/resources/mainCli"
     private val main = MainCli
+
+    @BeforeEach
+    fun resetConfig() {
+        Config.clear()
+    }
 
     private fun setUpStreams() {
         System.setOut(PrintStream(out))
