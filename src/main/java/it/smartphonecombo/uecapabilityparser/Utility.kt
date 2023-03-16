@@ -477,32 +477,49 @@ object Utility {
         if (hexString.length < 2) {
             return buildJsonObject {}
         }
-        val jsonWriter = KotlinJsonFormatWriter()
-        if (hexString[0] == '3' && hexString[1] < 'F' && hexString[1] >= '8') {
-            asn1TranslatorLte.decode(
-                "UL-DCCH-Message",
-                hexStringToByteArray(hexString).inputStream(),
-                jsonWriter
-            )
-            val ueCap =
-                jsonWriter.jsonNode?.getArrayAtPath(
-                    "message.c1.ueCapabilityInformation" +
-                        ".criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
-                )
-            val map = mutableMapOf<String, JsonElement>()
-            if (ueCap != null) {
-                for (ueCapContainer in ueCap) {
-                    val ratType = Rat.of(ueCapContainer.getString("rat-Type"))
-                    val octetString = ueCapContainer.getString("ueCapabilityRAT-Container")
-                    if (ratType != null && octetString != null) {
-                        map += ratContainerToJson(ratType, hexStringToByteArray(octetString))
-                    }
-                }
-            }
-            return JsonObject(map)
-        } else {
+
+        val isLteCapInfo = hexString[0] == '3' && hexString[1] in '8'..'E'
+        val isNrCapInfo = hexString[0] == '4' && hexString[1] in '8'..'E'
+
+        if (!isLteCapInfo && !isNrCapInfo) {
             return ratContainerToJson(defaultRat, hexStringToByteArray(hexString))
         }
+
+        val jsonWriter = KotlinJsonFormatWriter()
+        val translator: ASN1Translator
+        val ratContainerListPath: String
+        val octetStringKey: String
+
+        if (isLteCapInfo) {
+            translator = asn1TranslatorLte
+            ratContainerListPath =
+                "message.c1.ueCapabilityInformation.criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
+            octetStringKey = "ueCapabilityRAT-Container"
+        } else {
+            translator = asn1TranslatorNr
+            ratContainerListPath =
+                "message.c1.ueCapabilityInformation.criticalExtensions.ueCapabilityInformation.ue-CapabilityRAT-ContainerList"
+            octetStringKey = "ue-CapabilityRAT-Container"
+        }
+
+        translator.decode(
+            "UL-DCCH-Message",
+            hexStringToByteArray(hexString).inputStream(),
+            jsonWriter
+        )
+
+        val ueCap = jsonWriter.jsonNode?.getArrayAtPath(ratContainerListPath)
+        val map = mutableMapOf<String, JsonElement>()
+        if (ueCap != null) {
+            for (ueCapContainer in ueCap) {
+                val ratType = Rat.of(ueCapContainer.getString("rat-Type"))
+                val octetString = ueCapContainer.getString(octetStringKey)
+                if (ratType != null && octetString != null) {
+                    map += ratContainerToJson(ratType, hexStringToByteArray(octetString))
+                }
+            }
+        }
+        return JsonObject(map)
     }
 
     fun String.indexOf(regex: Regex): Int {
