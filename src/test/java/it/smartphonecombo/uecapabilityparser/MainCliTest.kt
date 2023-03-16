@@ -8,20 +8,16 @@ import org.junit.jupiter.api.Test
 
 internal class MainCliTest {
     private val out: ByteArrayOutputStream = ByteArrayOutputStream()
-    private val err: ByteArrayOutputStream = ByteArrayOutputStream()
     private val originalOut = System.out
-    private val originalErr = System.err
     private val path = "src/test/resources/mainCli"
     private val main = MainCli
 
     private fun setUpStreams() {
         System.setOut(PrintStream(out))
-        System.setErr(PrintStream(err))
     }
 
     private fun restoreStreams() {
         System.setOut(originalOut)
-        System.setErr(originalErr)
     }
 
     @Test
