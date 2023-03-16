@@ -268,6 +268,22 @@ internal class MainCliTest {
     }
 
     @Test
+    fun mainUeCapHexNrCsv() {
+        mainTest(
+            arrayOf("-i", "$path/input/ueCapHexNr.hex", "-t", "H", "-defaultNR", "-c"),
+            "ueCapHexNrCsv.txt",
+        )
+    }
+
+    @Test
+    fun mainUeCapHexNrJson() {
+        mainTest(
+            arrayOf("-i", "$path/input/ueCapHexNr.hex", "-t", "H", "-defaultNR", "-l"),
+            "ueCapHexNrJson.txt",
+        )
+    }
+
+    @Test
     fun mainUeCapHexMrdcSplitCsv() {
         mainTest(
             arrayOf(
