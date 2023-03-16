@@ -65,7 +65,7 @@ internal object MainCli {
                 "t",
                 "type",
                 true,
-                "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nP (CellularPro UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
+                "Type of capability.\nValid values are:\nH (UE Capability Hex Dump)\nW (Wireshark UE Capability Information)\nN (NSG UE Capability Information)\nC (Carrier policy)\nCNR (NR Cap Prune)\nE (28874 nvitem binary, decompressed)\nQ (QCAT 0xB0CD)\nQNR (0xB826 hexdump)\nM (MEDIATEK CA_COMB_INFO)\nO (OSIX UE Capability Information)."
             )
         type.isRequired = true
         options.addOption(type)
@@ -74,7 +74,7 @@ internal object MainCli {
                 "c",
                 "csv",
                 true,
-                "Output a csv, if no file specified the csv will be output to standard output.\nSome parsers output multiple CSVs, in these cases \"-LTE\", \"-NR\", \"-EN-DC\", \"-generic\" will be added before the extension."
+                "Output a csv, if no file specified the csv will be output to standard output.\nSome parsers output multiple CSVs, in these cases \"-LTE\", \"-NR\", \"-EN-DC\" will be added before the extension."
             )
         csv.setOptionalArg(true)
         options.addOption(csv)
@@ -89,11 +89,6 @@ internal object MainCli {
         options.addOption(uelog)
         val debug = Option("d", "debug", false, "Print debug info.")
         options.addOption(debug)
-        val tsharkPath =
-            Option("T", "TsharkPath", true, "Set tshark path. (Tshark is used for H type)")
-        options.addOption(tsharkPath)
-        val newEngine = Option("n", "newEngine", false, "Use the new engine (default)")
-        options.addOption(newEngine)
 
         val parser: CommandLineParser = DefaultParser()
         val formatter = HelpFormatter()
@@ -108,9 +103,6 @@ internal object MainCli {
             if (cmd.hasOption("debug")) {
                 flags["debug"] = "true"
             }
-            if (cmd.hasOption("TsharkPath")) {
-                flags["TsharkPath"] = cmd.getOptionValue("TsharkPath")
-            }
             val typeLog = cmd.getOptionValue("type")
             val comboList = parsing(cmd, typeLog)
 
@@ -120,7 +112,6 @@ internal object MainCli {
                     typeLog == "W" ||
                         typeLog == "N" ||
                         typeLog == "H" ||
-                        typeLog == "P" ||
                         typeLog == "QNR" ||
                         typeLog == "CNR" ||
                         typeLog == "O"
@@ -184,7 +175,7 @@ internal object MainCli {
                 "H" -> return ueCapabilityHandling(cmd, typeLog)
                 else -> {
                     System.err.println(
-                        "Only type W (wireshark), N (NSG), H (Hex Dump), Osix (CellularPro), " +
+                        "Only type W (wireshark), N (NSG), H (Hex Dump), Osix (OSIX UE Capability Informationn), " +
                             "C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem), " +
                             "Q (0xB0CD text), M (CA_COMB_INFO), QNR (0xB826 hexdump) are supported!"
                     )
