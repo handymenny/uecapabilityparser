@@ -4,24 +4,26 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class MainCliTest {
     private val out: ByteArrayOutputStream = ByteArrayOutputStream()
-    private val err: ByteArrayOutputStream = ByteArrayOutputStream()
     private val originalOut = System.out
-    private val originalErr = System.err
     private val path = "src/test/resources/mainCli"
     private val main = MainCli
 
+    @BeforeEach
+    fun resetConfig() {
+        Config.clear()
+    }
+
     private fun setUpStreams() {
         System.setOut(PrintStream(out))
-        System.setErr(PrintStream(err))
     }
 
     private fun restoreStreams() {
         System.setOut(originalOut)
-        System.setErr(originalErr)
     }
 
     @Test
