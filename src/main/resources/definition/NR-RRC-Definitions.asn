@@ -929,7 +929,7 @@ RRCReconfigurationComplete-v1530-IEs ::=    SEQUENCE {
 
 RRCReconfigurationComplete-v1560-IEs ::=    SEQUENCE {
     scg-Response                                CHOICE {
-        nr-SCG-Response                             OCTET STRING,
+        nr-SCG-Response                             OCTET STRING (CONTAINING RRCReconfigurationComplete),
         eutra-SCG-Response                          OCTET STRING
     }                                                                                                                       OPTIONAL,
     nonCriticalExtension                        RRCReconfigurationComplete-v1610-IEs                                    OPTIONAL

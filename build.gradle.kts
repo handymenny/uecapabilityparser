@@ -16,13 +16,14 @@ repositories {
 
 dependencies {
     val kotlinVersion = "1.8.0"
+    val mtsAsn1Version = "1125e38"
 
     implementation("commons-cli:commons-cli:1.5.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-    implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:7784a9f")
-    implementation("com.github.handymenny.mts-asn1:mts-asn1-per:7784a9f")
-    implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:7784a9f")
+    implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
+    implementation("com.github.handymenny.mts-asn1:mts-asn1-per:$mtsAsn1Version")
+    implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     implementation("org.slf4j:slf4j-nop:2.0.6")
 }
