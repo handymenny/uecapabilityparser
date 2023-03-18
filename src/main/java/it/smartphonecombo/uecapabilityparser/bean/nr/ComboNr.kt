@@ -170,9 +170,17 @@ data class ComboNr(
             (masterComponents.isNotEmpty() && (masterComponents[0] is ComponentLte)) &&
                 (secondaryComponents.isNotEmpty() && (secondaryComponents[0] is ComponentNr))
 
+    private val isNrDc: Boolean
+        get() =
+            (masterComponents.isNotEmpty() && (masterComponents[0] is ComponentNr)) &&
+                (secondaryComponents.isNotEmpty() && (secondaryComponents[0] is ComponentNr))
+
     val componentsNr: Array<IComponent>
         get() = if (isEnDc) secondaryComponents else masterComponents
 
+    val componentsNrDc: Array<IComponent>
+        get() = if (isNrDc) secondaryComponents else emptyArray()
+
     val componentsLte: Array<IComponent>
-        get() = if (isEnDc) masterComponents else secondaryComponents
+        get() = if (isEnDc) masterComponents else emptyArray()
 }
