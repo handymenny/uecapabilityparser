@@ -3,7 +3,6 @@ package it.smartphonecombo.uecapabilityparser.bean.nr
 import it.smartphonecombo.uecapabilityparser.bean.ICombo
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 
 /** The Class Combo. */
 data class ComboNr(
@@ -50,44 +49,28 @@ data class ComboNr(
         return str.toString()
     }
 
-    override fun toCsv(separator: String, standalone: Boolean, nrDc: Boolean): String {
-        val lteDlCC =
-            if (standalone || nrDc) {
-                0
-            } else {
-                ImportCapabilities.lteDlCC
-            }
-        val lteUlCC =
-            if (standalone || nrDc) {
-                0
-            } else {
-                ImportCapabilities.lteUlCC
-            }
-        val nrDcDlCC =
-            if (nrDc) {
-                ImportCapabilities.nrDlCC
-            } else {
-                0
-            }
-        val nrDcUlCC =
-            if (nrDc) {
-                ImportCapabilities.nrUlCC
-            } else {
-                0
-            }
+    override fun toCsv(
+        separator: String,
+        lteDlCC: Int,
+        lteUlCC: Int,
+        nrDlCC: Int,
+        nrUlCC: Int,
+        nrDcDlCC: Int,
+        nrDcUlCC: Int
+    ): String {
         val band = IntArray(lteDlCC)
         val bandwidth = CharArray(lteDlCC)
         val mimo = IntArray(lteDlCC)
         val upload = CharArray(lteDlCC)
-        val nrband = IntArray(ImportCapabilities.nrDlCC)
-        val nrbandwidth = CharArray(ImportCapabilities.nrDlCC)
-        val nrmimo = IntArray(ImportCapabilities.nrDlCC)
-        val nrupload = CharArray(ImportCapabilities.nrDlCC)
-        val nrmimoUL = IntArray(ImportCapabilities.nrDlCC)
-        val nrmaxbandwidth = IntArray(ImportCapabilities.nrDlCC)
-        val nrscs = IntArray(ImportCapabilities.nrDlCC)
+        val nrband = IntArray(nrDlCC)
+        val nrbandwidth = CharArray(nrDlCC)
+        val nrmimo = IntArray(nrDlCC)
+        val nrupload = CharArray(nrDlCC)
+        val nrmimoUL = IntArray(nrDlCC)
+        val nrmaxbandwidth = IntArray(nrDlCC)
+        val nrscs = IntArray(nrDlCC)
         val lteModUL = arrayOfNulls<String>(lteDlCC)
-        val nrModUL = arrayOfNulls<String>(ImportCapabilities.nrDlCC)
+        val nrModUL = arrayOfNulls<String>(nrDlCC)
         val nrbandDc = IntArray(nrDcDlCC)
         val nrbandwidthDc = CharArray(nrDcDlCC)
         val nrmimoDc = IntArray(nrDcDlCC)
@@ -153,7 +136,7 @@ data class ComboNr(
         if (lteUlCC > 0) {
             str.append(lteUL)
         }
-        for (i in 0 until ImportCapabilities.nrDlCC) {
+        for (i in 0 until nrDlCC) {
             val b = nrband[i]
             val bw = nrbandwidth[i]
             if (b != 0 && bw != '0') {
@@ -175,7 +158,7 @@ data class ComboNr(
             str.append(separator)
             val ul = nrupload[i]
             if (ul != '0' && ul != '\u0000') {
-                if (nrUL.count { it == ';' } / 2 < ImportCapabilities.nrUlCC) {
+                if (nrUL.count { it == ';' } / 2 < nrUlCC) {
                     nrUL += "" + b + ul + separator + nrModUL[i] + separator
                     nrmimoULstring += "" + nrmimoUL[i] + separator
                 }
@@ -203,14 +186,14 @@ data class ComboNr(
             str.append(separator)
             val ul = nruploadDc[i]
             if (ul != '0' && ul != '\u0000') {
-                if (nrULDc.count { it == ';' } / 2 < ImportCapabilities.nrUlCC) {
+                if (nrULDc.count { it == ';' } / 2 < nrDcUlCC) {
                     nrULDc += "" + b + ul + separator + nrModULDc[i] + separator
                     nrmimoULstringDc += "" + nrmimoULDc[i] + separator
                 }
             }
         }
 
-        while (nrUL.count { it == ';' } / 2 < ImportCapabilities.nrUlCC) {
+        while (nrUL.count { it == ';' } / 2 < nrUlCC) {
             nrUL += ";;"
         }
         str.append(nrUL)
@@ -240,7 +223,7 @@ data class ComboNr(
             str.append(separator)
         }
 
-        while (nrmimoULstring.count { it == ';' } < ImportCapabilities.nrUlCC) {
+        while (nrmimoULstring.count { it == ';' } < nrUlCC) {
             nrmimoULstring += ";"
         }
         str.append(nrmimoULstring)

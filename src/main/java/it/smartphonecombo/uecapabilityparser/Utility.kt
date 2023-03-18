@@ -43,49 +43,62 @@ object Utility {
 
     fun toCsv(lists: List<ICombo>): String {
         if (lists.isEmpty()) return ""
-        val standalone = lists.none { (it as? ComboNr)?.componentsLte?.isNotEmpty() ?: false }
-        val nrDc = lists.any { (it as? ComboNr)?.componentsNrDc?.isNotEmpty() ?: false }
-        val contentFile: StringBuilder =
-            if (lists[0] is ComboNr) {
-                StringBuilder(getNrCsvHeader(standalone, nrDc))
-            } else {
-                StringBuilder(getLteCsvHeader())
+        val isNr = lists.any { it is ComboNr }
+        val standalone =
+            isNr && lists.none { (it as? ComboNr)?.componentsLte?.isNotEmpty() ?: false }
+        val nrDc = isNr && lists.any { (it as? ComboNr)?.componentsNrDc?.isNotEmpty() ?: false }
+        val enDc = isNr && !standalone && !nrDc
+
+        var lteDlCC = 0
+        var lteUlCC = 0
+        var nrDlCC = 0
+        var nrUlCC = 0
+        var nrDcDlCC = 0
+        var nrDcUlCC = 0
+
+        if (!isNr || enDc) {
+            lteDlCC = maxDlCC(lists)
+        } else {
+            nrDlCC = maxDlCC(lists)
+            nrUlCC = maxUlCC(lists)
+            if (nrDc) {
+                nrDcDlCC = maxDlCC(lists, true)
+                nrDcUlCC = maxUlCC(lists, true)
             }
+        }
+
+        if (enDc) {
+            // LTE csv doesn't use UL CC
+            lteUlCC = maxUlCC(lists)
+            nrDlCC = maxDlCC(lists, true)
+            nrUlCC = maxUlCC(lists, true)
+        }
+
+        val contentFile: StringBuilder =
+            if (isNr) {
+                StringBuilder(getNrCsvHeader(lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
+            } else {
+                StringBuilder(getLteCsvHeader(lteDlCC))
+            }
+
         for (x in lists) {
-            contentFile.append(x.toCsv(";", standalone, nrDc)).append("\n")
+            contentFile
+                .append(x.toCsv(";", lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
+                .append("\n")
         }
         return contentFile.toString()
     }
 
-    private fun getNrCsvHeader(standalone: Boolean, nrDc: Boolean): String {
+    private fun getNrCsvHeader(
+        lteDlCC: Int,
+        lteUlCC: Int,
+        nrDlCC: Int,
+        nrUlCC: Int,
+        nrDcDlCC: Int,
+        nrDcUlCC: Int
+    ): String {
         val separator = ";"
         val header = StringBuilder("combo;")
-        val lteDlCC =
-            if (standalone || nrDc) {
-                0
-            } else {
-                ImportCapabilities.lteDlCC
-            }
-        val lteUlCC =
-            if (standalone || nrDc) {
-                0
-            } else {
-                ImportCapabilities.lteUlCC
-            }
-        val nrDlCC = ImportCapabilities.nrDlCC
-        val nrUlCC = ImportCapabilities.nrUlCC
-        val nrDlCCfr2 =
-            if (nrDc) {
-                ImportCapabilities.nrDlCC
-            } else {
-                0
-            }
-        val nrUlCCfr2 =
-            if (nrDc) {
-                ImportCapabilities.nrUlCC
-            } else {
-                0
-            }
 
         for (i in 1..lteDlCC) {
             header.append("DL").append(i).append(separator)
@@ -111,7 +124,7 @@ object Utility {
                 .append(i)
                 .append(separator)
         }
-        for (i in 1..nrDlCCfr2) {
+        for (i in 1..nrDcDlCC) {
             header
                 .append("FR2 DL")
                 .append(i)
@@ -132,7 +145,7 @@ object Utility {
                 .append(i)
                 .append(separator)
         }
-        for (i in 1..nrUlCCfr2) {
+        for (i in 1..nrDcUlCC) {
             header
                 .append("FR2 UL")
                 .append(i)
@@ -147,44 +160,32 @@ object Utility {
         for (i in 1..nrDlCC) {
             header.append("mimo NR DL").append(i).append(separator)
         }
-        for (i in 1..nrDlCCfr2) {
+        for (i in 1..nrDcDlCC) {
             header.append("mimo FR2 DL").append(i).append(separator)
         }
         for (i in 1..nrUlCC) {
             header.append("mimo NR UL").append(i).append(separator)
         }
-        for (i in 1..nrUlCCfr2) {
+        for (i in 1..nrDcUlCC) {
             header.append("mimo FR2 UL").append(i).append(separator)
         }
         header.append("\n")
 
-        return if (nrDc) {
+        return if (nrDcDlCC > 0) {
             header.toString().replace("NR", "FR1")
         } else {
             header.toString()
         }
     }
 
-    private fun getLteCsvHeader(): String {
+    private fun getLteCsvHeader(lteDlCC: Int): String {
         val separator = ";"
         val header = StringBuilder("combo;")
-        for (i in 1..ImportCapabilities.lteDlCC) {
-            header.append("band").append(i).append(separator)
-        }
-        for (i in 1..ImportCapabilities.lteDlCC) {
-            header.append("class").append(i).append(separator)
-        }
-        for (i in 1..ImportCapabilities.lteDlCC) {
-            header.append("mimo").append(i).append(separator)
-        }
-        for (i in 1..ImportCapabilities.lteDlCC) {
-            header.append("ul").append(i).append(separator)
-        }
-        for (i in 1..ImportCapabilities.lteDlCC) {
-            header.append("DLmod").append(i).append(separator)
-        }
-        for (i in 1..ImportCapabilities.lteDlCC) {
-            header.append("ULmod").append(i).append(separator)
+        val columns = arrayOf("band", "class", "mimo", "ul", "DLmod", "ULmod")
+        for (column in columns) {
+            for (i in 1..lteDlCC) {
+                header.append(column).append(i).append(separator)
+            }
         }
         header.append("bsc\n")
         return header.toString()
@@ -575,5 +576,25 @@ object Utility {
 
     fun String.indexOf(regex: Regex): Int {
         return regex.find(this)?.range?.first ?: -1
+    }
+
+    private fun maxDlCC(list: List<ICombo>, secondary: Boolean = false): Int {
+        return if (secondary) {
+            list.fold(0) { acc, it -> maxOf(acc, it.secondaryComponents.size) }
+        } else {
+            list.fold(0) { acc, it -> maxOf(acc, it.masterComponents.size) }
+        }
+    }
+
+    private fun maxUlCC(list: List<ICombo>, secondary: Boolean = false): Int {
+        return if (secondary) {
+            list.fold(0) { acc, it ->
+                maxOf(acc, it.secondaryComponents.filter { it.classUL != '0' }.size)
+            }
+        } else {
+            list.fold(0) { acc, it ->
+                maxOf(acc, it.masterComponents.filter { it.classUL != '0' }.size)
+            }
+        }
     }
 }

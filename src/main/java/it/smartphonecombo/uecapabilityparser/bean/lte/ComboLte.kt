@@ -3,7 +3,6 @@ package it.smartphonecombo.uecapabilityparser.bean.lte
 import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.bean.ICombo
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 
 /** The Class Combo. */
 data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: IntArray) : ICombo {
@@ -42,7 +41,15 @@ data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: I
         return str.toString()
     }
 
-    override fun toCsv(separator: String, standalone: Boolean, nrDc: Boolean): String {
+    override fun toCsv(
+        separator: String,
+        lteDlCC: Int,
+        lteUlCC: Int,
+        nrDlCC: Int,
+        nrUlCC: Int,
+        nrDcDlCC: Int,
+        nrDcUlCC: Int
+    ): String {
         val str = StringBuilder(this.toString() + separator)
         val strBw = StringBuilder()
         val strMimo = StringBuilder()
@@ -73,7 +80,7 @@ data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: I
             strULmod.append(separator)
             i++
         }
-        while (i < ImportCapabilities.lteDlCC) {
+        while (i < lteDlCC) {
             str.append(separator)
             strMimo.append(separator)
             strBw.append(separator)

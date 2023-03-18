@@ -839,7 +839,6 @@ internal class ImportCapabilityInformationJsonTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
-        println(actualCsv.joinToString("\n"))
         assertLinesMatch(expectedCsv, actualCsv)
     }
 
