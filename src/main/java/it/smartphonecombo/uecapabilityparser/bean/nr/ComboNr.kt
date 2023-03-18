@@ -38,22 +38,42 @@ data class ComboNr(
             str.append(x.toString())
             str.append("-")
         }
+        if (isNrDc && str.length > 1) {
+            str.deleteCharAt(str.length - 1)
+            str.append("_")
+        }
+        for (x in componentsNrDc) {
+            str.append(x.toString())
+            str.append("-")
+        }
         str.append(featureSet)
         return str.toString()
     }
 
-    override fun toCsv(separator: String, standalone: Boolean): String {
+    override fun toCsv(separator: String, standalone: Boolean, nrDc: Boolean): String {
         val lteDlCC =
-            if (standalone) {
+            if (standalone || nrDc) {
                 0
             } else {
                 ImportCapabilities.lteDlCC
             }
         val lteUlCC =
-            if (standalone) {
+            if (standalone || nrDc) {
                 0
             } else {
                 ImportCapabilities.lteUlCC
+            }
+        val nrDcDlCC =
+            if (nrDc) {
+                ImportCapabilities.nrDlCC
+            } else {
+                0
+            }
+        val nrDcUlCC =
+            if (nrDc) {
+                ImportCapabilities.nrUlCC
+            } else {
+                0
             }
         val band = IntArray(lteDlCC)
         val bandwidth = CharArray(lteDlCC)
@@ -68,9 +88,19 @@ data class ComboNr(
         val nrscs = IntArray(ImportCapabilities.nrDlCC)
         val lteModUL = arrayOfNulls<String>(lteDlCC)
         val nrModUL = arrayOfNulls<String>(ImportCapabilities.nrDlCC)
+        val nrbandDc = IntArray(nrDcDlCC)
+        val nrbandwidthDc = CharArray(nrDcDlCC)
+        val nrmimoDc = IntArray(nrDcDlCC)
+        val nruploadDc = CharArray(nrDcDlCC)
+        val nrmimoULDc = IntArray(nrDcDlCC)
+        val nrmaxbandwidthDc = IntArray(nrDcDlCC)
+        val nrscsDc = IntArray(nrDcDlCC)
+        val nrModULDc = arrayOfNulls<String>(nrDcDlCC)
         var lteUL = ""
         var nrUL = ""
         var nrmimoULstring = ""
+        var nrULDc = ""
+        var nrmimoULstringDc = ""
         val bands = componentsLte
         if (lteDlCC > 0)
             ComponentLte.lteComponentsToArrays(band, bandwidth, mimo, upload, lteModUL, bands)
@@ -85,6 +115,18 @@ data class ComboNr(
             nrmimoUL[i] = nr.mimoUL
             nrscs[i] = nr.scs
             nrModUL[i] = nr.modUL
+        }
+        val nrbandsDc = componentsNrDc
+        for (i in nrbandsDc.indices) {
+            val nr = nrbandsDc[i] as ComponentNr
+            nrbandDc[i] = nr.band
+            nrmimoDc[i] = nr.mimoDL
+            nrbandwidthDc[i] = nr.classDL
+            nrmaxbandwidthDc[i] = nr.maxBandwidth
+            nruploadDc[i] = nr.classUL
+            nrmimoULDc[i] = nr.mimoUL
+            nrscsDc[i] = nr.scs
+            nrModULDc[i] = nr.modUL
         }
         val str = StringBuilder(this.toString() + separator)
         for (i in 0 until lteDlCC) {
@@ -139,11 +181,44 @@ data class ComboNr(
                 }
             }
         }
+        for (i in 0 until nrDcDlCC) {
+            val b = nrbandDc[i]
+            val bw = nrbandwidthDc[i]
+            if (b != 0 && bw != '0') {
+                str.append(b)
+            }
+            if (bw != '0' && bw != '\u0000') {
+                str.append(bw)
+            }
+            str.append(separator)
+            val maxbw = nrmaxbandwidthDc[i]
+            if (maxbw != 0) {
+                str.append(maxbw)
+            }
+            str.append(separator)
+            val scs = nrscsDc[i]
+            if (scs != 0) {
+                str.append(scs)
+            }
+            str.append(separator)
+            val ul = nruploadDc[i]
+            if (ul != '0' && ul != '\u0000') {
+                if (nrULDc.count { it == ';' } / 2 < ImportCapabilities.nrUlCC) {
+                    nrULDc += "" + b + ul + separator + nrModULDc[i] + separator
+                    nrmimoULstringDc += "" + nrmimoULDc[i] + separator
+                }
+            }
+        }
 
         while (nrUL.count { it == ';' } / 2 < ImportCapabilities.nrUlCC) {
             nrUL += ";;"
         }
         str.append(nrUL)
+
+        while (nrULDc.count { it == ';' } / 2 < nrDcUlCC) {
+            nrULDc += ";;"
+        }
+        str.append(nrULDc)
 
         for (value in mimo) {
             if (value != 0) {
@@ -158,10 +233,22 @@ data class ComboNr(
             str.append(separator)
         }
 
+        for (c in nrmimoDc) {
+            if (c != 0) {
+                str.append(c)
+            }
+            str.append(separator)
+        }
+
         while (nrmimoULstring.count { it == ';' } < ImportCapabilities.nrUlCC) {
             nrmimoULstring += ";"
         }
         str.append(nrmimoULstring)
+
+        while (nrmimoULstringDc.count { it == ';' } < nrDcUlCC) {
+            nrmimoULstringDc += ";"
+        }
+        str.append(nrmimoULstringDc)
         return str.toString()
     }
 

@@ -4,5 +4,5 @@ interface ICombo {
     var masterComponents: Array<IComponent>
     var secondaryComponents: Array<IComponent>
 
-    fun toCsv(separator: String, standalone: Boolean = true): String
+    fun toCsv(separator: String, standalone: Boolean = true, nrDc: Boolean = false): String
 }

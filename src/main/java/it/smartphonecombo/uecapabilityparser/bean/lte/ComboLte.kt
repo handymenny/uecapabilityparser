@@ -42,7 +42,7 @@ data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: I
         return str.toString()
     }
 
-    override fun toCsv(separator: String, standalone: Boolean): String {
+    override fun toCsv(separator: String, standalone: Boolean, nrDc: Boolean): String {
         val str = StringBuilder(this.toString() + separator)
         val strBw = StringBuilder()
         val strMimo = StringBuilder()
