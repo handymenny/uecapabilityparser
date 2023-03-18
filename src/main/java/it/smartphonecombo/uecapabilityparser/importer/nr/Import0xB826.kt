@@ -55,12 +55,22 @@ class Import0xB826 : ImportCapabilities {
                     println("Index $index\n")
                 }
                 numCombos = `in`.readUnsignedShort()
-                `in`.skipBytes(1)
             }
             if (debug) {
                 println("Num Combos $numCombos\n")
             }
             combos.setMetadata("numCombos", numCombos)
+
+            if (version > 3) {
+                // Parse source field
+                val sourceIndex = `in`.readUnsignedByte()
+                val source = getSourceFromIndex(sourceIndex)
+                combos.setMetadata("source", source)
+                if (debug) {
+                    println("source $source")
+                }
+            }
+
             var comboN = 0
             while (comboN < numCombos) {
                 try {
@@ -366,6 +376,17 @@ class Import0xB826 : ImportCapabilities {
             25,
             26 -> 100
             else -> index
+        }
+    }
+
+    private fun getSourceFromIndex(index: Int): String {
+        return when (index) {
+            0 -> "RF"
+            1 -> "PM"
+            3 -> "RF_ENDC"
+            4 -> "RF_NRCA"
+            5 -> "RF_NRDC"
+            else -> index.toString()
         }
     }
 }
