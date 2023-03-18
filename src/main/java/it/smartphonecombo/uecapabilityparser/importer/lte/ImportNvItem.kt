@@ -9,6 +9,8 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.EOFException
 import java.io.IOException
 
+private const val MAX_CC = 5
+
 class ImportNvItem : ImportCapabilities {
     // private int maxstr = 0;
     // private static final //LOGGER //LOGGER = LogManager.get//LOGGER();
@@ -94,7 +96,7 @@ class ImportNvItem : ImportCapabilities {
     @Throws(IOException::class)
     private fun readDLbands(mimoPresent: Boolean, additionalBytes: Int): Array<IComponent> {
         val lteComponents: MutableList<ComponentLte> = ArrayList()
-        for (i in 0 until ImportCapabilities.lteDlCC) {
+        for (i in 0..MAX_CC) {
             val band = `in`!!.readUnsignedShort()
             val bclass = (`in`!!.readUnsignedByte() + 0x40).toChar()
             var ant = 2
@@ -143,7 +145,7 @@ class ImportNvItem : ImportCapabilities {
             }
             i++
         }
-        while (i < ImportCapabilities.lteDlCC) {
+        while (i <= MAX_CC) {
             `in`!!.skipBytes(additionalBytes + 3 + if (mimoPresent) 1 else 0)
             i++
         }
