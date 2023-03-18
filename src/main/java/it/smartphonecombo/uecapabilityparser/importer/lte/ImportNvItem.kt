@@ -12,8 +12,6 @@ import java.io.IOException
 private const val MAX_CC = 5
 
 class ImportNvItem : ImportCapabilities {
-    // private int maxstr = 0;
-    // private static final //LOGGER //LOGGER = LogManager.get//LOGGER();
     private var `in`: LERandomAccessFile? = null
 
     override fun parse(filename: String): Capabilities {
@@ -22,10 +20,6 @@ class ImportNvItem : ImportCapabilities {
         val listCombo = ArrayList<ComboLte>()
         try {
             `in` = LERandomAccessFile(filename, "r")
-
-            // System.out.println("Input file size: " + in.length() + " bytes");
-            // System.out.println("Format version: " + in.readUnsignedShort());
-            // System.out.println("Number of descriptors: " + in.readUnsignedShort() + "\n");
             `in`!!.skipBytes(4)
             while (true) {
                 try {
@@ -33,63 +27,44 @@ class ImportNvItem : ImportCapabilities {
                         333 -> {
                             lteComponents = readDLbands(true, 7)
                             if (lteComponents.isEmpty()) {
-                                // LOGGER.error("Incorrect format: no any downlink carrier in combo
-                                // "+ format);
                                 return Capabilities()
                             }
                         }
                         334 -> {
                             val combo = readULbands(lteComponents, true, 7)
-                            // System.out.println(combo);
                             listCombo.add(combo)
                         }
                         201 -> {
                             lteComponents = readDLbands(true, 0)
                             if (lteComponents.isEmpty()) {
-                                // LOGGER.error("Incorrect format: no any downlink carrier in combo
-                                // "+ format);
                                 return Capabilities()
                             }
                         }
                         202 -> {
                             val combo = readULbands(lteComponents, true, 0)
-                            // System.out.println(combo);
                             listCombo.add(combo)
                         }
                         137 -> {
                             lteComponents = readDLbands(false, 0)
                             if (lteComponents.isEmpty()) {
-                                // LOGGER.error("Incorrect format: no any downlink carrier in combo
-                                // "+ format);
                                 return Capabilities()
                             }
                         }
                         138 -> {
                             val combo = readULbands(lteComponents, false, 0)
-                            // System.out.println(combo);
                             listCombo.add(combo)
                         }
                         else -> {}
                     }
                 } catch (ex: EOFException) {
-                    // System.out.println("End of file");
                     break
                 }
             }
-            // LOGGER.info("Number of combos: " + numcom);
-            //// LOGGER.info("Max streams per combo: " + maxstr);
-        } catch (e: Exception) {
-            // LOGGER.fatal("Fatal error: " + e.getLocalizedMessage());
-            // System.out.println(e.getStackTrace());
-        } finally {
+        } catch (e: Exception) {} finally {
             try {
                 `in`!!.close()
-            } catch (e: IOException) {
-                // LOGGER.fatal("Fatal error: " + e.getLocalizedMessage());
-                // e.printStackTrace();
-            }
+            } catch (e: IOException) {}
         }
-        // System.out.println(listCombo);
         return Capabilities(listCombo)
     }
 
@@ -109,7 +84,6 @@ class ImportNvItem : ImportCapabilities {
             }
         }
         lteComponents.sortWith(IComponent.defaultComparator.reversed())
-        // System.out.println(Arrays.toString(bandArray));
         return lteComponents.toTypedArray()
     }
 
