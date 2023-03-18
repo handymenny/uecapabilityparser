@@ -353,6 +353,22 @@ internal class Import0xB826Test {
     }
 
     @Test
+    fun parseV13NRDC() {
+        parse(
+            "0xB826-v13-NRDC.bin",
+            13,
+            3805,
+            99,
+            99,
+            0,
+            "RF_NRDC",
+            false,
+            "0xB826-v13-NRDC.csv",
+            true
+        )
+    }
+
+    @Test
     fun parseV14NSA() {
         parse("0xB826-v14-NSA.bin", 14, 3889, 65, 4965, 4900, "RF_ENDC", true, "0xB826-v14-NSA.csv")
     }
