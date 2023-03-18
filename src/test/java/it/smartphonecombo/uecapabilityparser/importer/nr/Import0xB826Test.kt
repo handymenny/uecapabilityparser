@@ -16,7 +16,8 @@ internal class Import0xB826Test {
         totalCombos: Int?,
         index: Int?,
         endc: Boolean,
-        oracleFilename: String?
+        oracleFilename: String?,
+        nrdc: Boolean = false,
     ) {
         val filePath = "$path/input/$srcFilename"
         val comboList = Import0xB826().parse(filePath)
@@ -29,9 +30,15 @@ internal class Import0xB826Test {
         if (endc) {
             comboNR = comboList.enDcCombos
             Assertions.assertNull(comboList.nrCombos)
+            Assertions.assertNull(comboList.nrDcCombos)
+        } else if (nrdc) {
+            comboNR = comboList.nrDcCombos
+            Assertions.assertNull(comboList.enDcCombos)
+            Assertions.assertNull(comboList.nrCombos)
         } else {
             comboNR = comboList.nrCombos
             Assertions.assertNull(comboList.enDcCombos)
+            Assertions.assertNull(comboList.nrDcCombos)
         }
         Assertions.assertNotNull(comboNR)
         Assertions.assertEquals(numCombos, comboNR!!.size)
@@ -216,8 +223,8 @@ internal class Import0xB826Test {
     }
 
     @Test
-    fun parseV9SAmmWave() {
-        parse("0xB826-v9-SAmmWave.bin", 9, 3264, 97, 97, 0, false, "0xB826-v9-SAmmWave.csv")
+    fun parseV9NrDc() {
+        parse("0xB826-v9-NRDC.bin", 9, 3264, 97, 97, 0, false, "0xB826-v9-NRDC.csv", true)
     }
 
     @Test
@@ -235,8 +242,8 @@ internal class Import0xB826Test {
     }
 
     @Test
-    fun parseV10SAmmWave() {
-        parse("0xB826-v10-SAmmWave.bin", 10, 359, 12, 12, 0, false, "0xB826-v10-SAmmWave.csv")
+    fun parseV10NrDc() {
+        parse("0xB826-v10-NRDC.bin", 10, 359, 12, 12, 0, false, "0xB826-v10-NRDC.csv", true)
     }
 
     @Test
