@@ -61,10 +61,11 @@ class Import0xB826 : ImportCapabilities {
             }
             combos.setMetadata("numCombos", numCombos)
 
+            var source: String? = null
             if (version > 3) {
                 // Parse source field
                 val sourceIndex = `in`.readUnsignedByte()
-                val source = getSourceFromIndex(sourceIndex)
+                source = getSourceFromIndex(sourceIndex)
                 combos.setMetadata("source", source)
                 if (debug) {
                     println("source $source\n")
@@ -213,8 +214,11 @@ class Import0xB826 : ImportCapabilities {
                             bands.add(lteband)
                         }
                     }
-                    // We assume that device with 0xb826 < 13 don't support NR CA FR1-FR2
-                    if ((version < 13 && !endc) || nrdc) {
+                    /*
+                     * We assume that 0xb826 without explicit combo type in source
+                     * don't support NR CA FR1-FR2.
+                     */
+                    if (!endc && !source.equals("RF_NRCA")) {
                         val (fr2bands, fr1bands) = nrbands.partition { (it as ComponentNr).isFR2 }
 
                         if (fr2bands.isNotEmpty() && fr1bands.isNotEmpty()) {
