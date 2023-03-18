@@ -1,5 +1,5 @@
 plugins {
-    val kotlinVersion = "1.8.0"
+    val kotlinVersion = "1.8.10"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("com.github.johnrengelman.shadow") version "8.1.0"
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    val kotlinVersion = "1.8.0"
+    val kotlinVersion = "1.8.10"
     val mtsAsn1Version = "1125e38"
 
     implementation("commons-cli:commons-cli:1.5.0")
