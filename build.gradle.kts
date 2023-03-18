@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     val kotlinVersion = "1.8.10"
-    val mtsAsn1Version = "1125e38"
+    val mtsAsn1Version = "b83205d"
 
     implementation("commons-cli:commons-cli:1.5.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
