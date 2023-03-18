@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.converter.ConverterNSG
 import com.ericsson.mts.asn1.converter.ConverterOsix
+import com.ericsson.mts.asn1.converter.ConverterQcat
 import com.ericsson.mts.asn1.converter.ConverterWireshark
 import it.smartphonecombo.uecapabilityparser.Utility.getAsn1Converter
 import it.smartphonecombo.uecapabilityparser.Utility.indexOf
@@ -114,6 +115,7 @@ internal object MainCli {
                         typeLog == "H" ||
                         typeLog == "QNR" ||
                         typeLog == "CNR" ||
+                        typeLog == "QC" ||
                         typeLog == "O"
                 ) {
                     val lteCombos = comboList.lteCombos
@@ -172,11 +174,12 @@ internal object MainCli {
                 "W",
                 "N",
                 "O",
+                "QC",
                 "H" -> return ueCapabilityHandling(cmd, typeLog)
                 else -> {
                     System.err.println(
                         "Only type W (wireshark), N (NSG), H (Hex Dump), Osix (OSIX UE Capability Informationn), " +
-                            "C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem), " +
+                            "QC (QCAT UE Capability Information), C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem), " +
                             "Q (0xB0CD text), M (CA_COMB_INFO), QNR (0xB826 hexdump) are supported!"
                     )
                     exitProcess(1)
@@ -247,6 +250,13 @@ internal object MainCli {
                     nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
                     mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
                     ConverterOsix()
+                }
+                "QC" -> {
+                    eutraIdentifier = "value ${Rat.eutra.ratCapabilityIdentifier} ::=\\s".toRegex()
+                    nrIdentifier = "value ${Rat.nr.ratCapabilityIdentifier} ::=\\s".toRegex()
+                    mrdcIdentifier =
+                        "value ${Rat.eutra_nr.ratCapabilityIdentifier} ::=\\s".toRegex()
+                    ConverterQcat()
                 }
                 "H" -> null
                 else -> null
