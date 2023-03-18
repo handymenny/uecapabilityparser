@@ -394,10 +394,16 @@ object Utility {
                 x.nrCombos?.let { sum.addAll(it) }
                 sum
             }
+        val nrDcCombos =
+            list.fold(mutableListOf<ComboNr>()) { sum, x ->
+                x.nrDcCombos?.let { sum.addAll(it) }
+                sum
+            }
 
         return Capabilities().also {
             it.enDcCombos = enDcCombos
             it.nrCombos = nrCombos
+            it.nrDcCombos = nrDcCombos
         }
     }
 
