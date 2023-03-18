@@ -67,7 +67,7 @@ class Import0xB826 : ImportCapabilities {
                 val source = getSourceFromIndex(sourceIndex)
                 combos.setMetadata("source", source)
                 if (debug) {
-                    println("source $source")
+                    println("source $source\n")
                 }
             }
 
