@@ -243,12 +243,12 @@ internal class MainCliTest {
 
     @Test
     fun mainOsixMrdcCsv() {
-        mainTest(arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "N", "-c"), "osixMrdcCsv.txt")
+        mainTest(arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "O", "-c"), "osixMrdcCsv.txt")
     }
 
     @Test
     fun mainOsixMrdcJson() {
-        mainTest(arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "N", "-l"), "osixMrdcJson.txt")
+        mainTest(arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "O", "-l"), "osixMrdcJson.txt")
     }
 
     @Test
