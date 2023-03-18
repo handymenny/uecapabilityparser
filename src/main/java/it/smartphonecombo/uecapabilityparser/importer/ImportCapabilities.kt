@@ -15,11 +15,4 @@ interface ImportCapabilities {
      * @return the combo list
      */
     fun parse(caBandCombosString: String): Capabilities
-
-    companion object {
-        const val lteDlCC = 6
-        const val lteUlCC = 2
-        const val nrDlCC = 9
-        const val nrUlCC = 4
-    }
 }
