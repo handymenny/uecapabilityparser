@@ -43,36 +43,49 @@ object Utility {
 
     fun toCsv(lists: List<ICombo>): String {
         if (lists.isEmpty()) return ""
-        val standalone = lists.none { it.secondaryComponents.isNotEmpty() }
+        val standalone = lists.none { (it as? ComboNr)?.componentsLte?.isNotEmpty() ?: false }
+        val nrDc = lists.any { (it as? ComboNr)?.componentsNrDc?.isNotEmpty() ?: false }
         val contentFile: StringBuilder =
             if (lists[0] is ComboNr) {
-                StringBuilder(getNrCsvHeader(standalone))
+                StringBuilder(getNrCsvHeader(standalone, nrDc))
             } else {
                 StringBuilder(getLteCsvHeader())
             }
         for (x in lists) {
-            contentFile.append(x.toCsv(";", standalone)).append("\n")
+            contentFile.append(x.toCsv(";", standalone, nrDc)).append("\n")
         }
         return contentFile.toString()
     }
 
-    private fun getNrCsvHeader(standalone: Boolean): String {
+    private fun getNrCsvHeader(standalone: Boolean, nrDc: Boolean): String {
         val separator = ";"
         val header = StringBuilder("combo;")
         val lteDlCC =
-            if (standalone) {
+            if (standalone || nrDc) {
                 0
             } else {
                 ImportCapabilities.lteDlCC
             }
         val lteUlCC =
-            if (standalone) {
+            if (standalone || nrDc) {
                 0
             } else {
                 ImportCapabilities.lteUlCC
             }
         val nrDlCC = ImportCapabilities.nrDlCC
         val nrUlCC = ImportCapabilities.nrUlCC
+        val nrDlCCfr2 =
+            if (nrDc) {
+                ImportCapabilities.nrDlCC
+            } else {
+                0
+            }
+        val nrUlCCfr2 =
+            if (nrDc) {
+                ImportCapabilities.nrUlCC
+            } else {
+                0
+            }
 
         for (i in 1..lteDlCC) {
             header.append("DL").append(i).append(separator)
@@ -98,6 +111,18 @@ object Utility {
                 .append(i)
                 .append(separator)
         }
+        for (i in 1..nrDlCCfr2) {
+            header
+                .append("FR2 DL")
+                .append(i)
+                .append(separator)
+                .append("FR2 BW")
+                .append(i)
+                .append(separator)
+                .append("FR2 SCS")
+                .append(i)
+                .append(separator)
+        }
         for (i in 1..nrUlCC) {
             header
                 .append("NR UL")
@@ -107,17 +132,37 @@ object Utility {
                 .append(i)
                 .append(separator)
         }
+        for (i in 1..nrUlCCfr2) {
+            header
+                .append("FR2 UL")
+                .append(i)
+                .append(separator)
+                .append("FR2 UL MOD")
+                .append(i)
+                .append(separator)
+        }
         for (i in 1..lteDlCC) {
             header.append("mimo DL").append(i).append(separator)
         }
         for (i in 1..nrDlCC) {
             header.append("mimo NR DL").append(i).append(separator)
         }
+        for (i in 1..nrDlCCfr2) {
+            header.append("mimo FR2 DL").append(i).append(separator)
+        }
         for (i in 1..nrUlCC) {
             header.append("mimo NR UL").append(i).append(separator)
         }
+        for (i in 1..nrUlCCfr2) {
+            header.append("mimo FR2 UL").append(i).append(separator)
+        }
         header.append("\n")
-        return header.toString()
+
+        return if (nrDc) {
+            header.toString().replace("NR", "FR1")
+        } else {
+            header.toString()
+        }
     }
 
     private fun getLteCsvHeader(): String {
@@ -349,10 +394,16 @@ object Utility {
                 x.nrCombos?.let { sum.addAll(it) }
                 sum
             }
+        val nrDcCombos =
+            list.fold(mutableListOf<ComboNr>()) { sum, x ->
+                x.nrDcCombos?.let { sum.addAll(it) }
+                sum
+            }
 
         return Capabilities().also {
             it.enDcCombos = enDcCombos
             it.nrCombos = nrCombos
+            it.nrDcCombos = nrDcCombos
         }
     }
 

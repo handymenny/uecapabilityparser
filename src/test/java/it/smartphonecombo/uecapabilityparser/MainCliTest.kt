@@ -329,6 +329,16 @@ internal class MainCliTest {
         mainTest(arrayOf("-i", "$path/input/qcatMrdc.txt", "-t", "QC", "-l"), "qcatMrdcJson.txt")
     }
 
+    @Test
+    fun mainQcatNrdcCsv() {
+        mainTest(arrayOf("-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-c"), "qcatNrdcCsv.txt")
+    }
+
+    @Test
+    fun mainQcatNrdcJson() {
+        mainTest(arrayOf("-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-l"), "qcatNrdcJson.txt")
+    }
+
     private fun mainTest(args: Array<String>, oracleFilename: String) {
         setUpStreams()
         main.main(args)

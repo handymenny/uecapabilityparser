@@ -22,6 +22,7 @@ class Capabilities(
     var flags = 0
     var enDcCombos: List<ComboNr>? = null
     var nrCombos: List<ComboNr>? = null
+    var nrDcCombos: List<ComboNr>? = null
 
     constructor(
         comboList: List<ComboLte>?,

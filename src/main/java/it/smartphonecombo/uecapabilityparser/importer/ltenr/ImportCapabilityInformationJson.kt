@@ -95,6 +95,15 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                 val saCombos = getNrBandCombinations(nr)
                 comboList.nrCombos =
                     linkFeaturesAndCarrier(saCombos, featureSetCombination, null, nrFeatures)
+                val nrDcCombos = getNrDcBandCombinations(nr, saCombos)
+                val nrDcComboWithFeatures =
+                    linkFeaturesAndCarrier(nrDcCombos, featureSetCombination, null, nrFeatures)
+                comboList.nrDcCombos =
+                    nrDcComboWithFeatures.map { combo ->
+                        val fr1 = combo.masterComponents.filter { !(it as ComponentNr).isFR2 }
+                        val fr2 = combo.masterComponents.filter { (it as ComponentNr).isFR2 }
+                        ComboNr(fr1.toTypedArray(), fr2.toTypedArray(), combo.featureSet)
+                    }
             }
         eutraNrCapability
             ?.let { UEMrdcCapabilityJson(it) }
@@ -799,6 +808,30 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                 ?.toList()
 
         return list ?: emptyList()
+    }
+
+    private fun getNrDcBandCombinations(
+        nrCapability: UENrCapabilityJson,
+        nrCombos: List<ComboNr>
+    ): List<ComboNr> {
+        val bandCombinationsPath = "rf-Parameters.supportedBandCombinationList-v1560"
+        val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
+
+        val list =
+            bandCombinationsList?.mapIndexedNotNull { i, bandCombination ->
+                val nrCombo = nrCombos.getOrNull(i)
+                val featureSet =
+                    bandCombination
+                        .getObject("ca-ParametersNRDC")
+                        ?.getInt("featureSetCombinationDC")
+
+                if (nrCombo == null || featureSet == null) {
+                    return@mapIndexedNotNull null
+                }
+                ComboNr(nrCombo.masterComponents, nrCombo.secondaryComponents, featureSet)
+            }
+                ?: emptyList()
+        return list
     }
 
     private fun getNrBands(nrCapability: UENrCapabilityJson): List<ComponentNr> {

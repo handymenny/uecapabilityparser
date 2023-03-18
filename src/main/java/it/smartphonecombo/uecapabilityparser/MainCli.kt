@@ -75,7 +75,7 @@ internal object MainCli {
                 "c",
                 "csv",
                 true,
-                "Output a csv, if no file specified the csv will be output to standard output.\nSome parsers output multiple CSVs, in these cases \"-LTE\", \"-NR\", \"-EN-DC\" will be added before the extension."
+                "Output a csv, if no file specified the csv will be output to standard output.\nSome parsers output multiple CSVs, in these cases \"-LTE\", \"-NR\", \"-EN-DC\", \"-NR-DC\" will be added before the extension."
             )
         csv.setOptionalArg(true)
         options.addOption(csv)
@@ -137,6 +137,13 @@ internal object MainCli {
                         outputFile(
                             Utility.toCsv(enDcCombos),
                             fileName?.let { Utility.appendBeforeExtension(it, "-EN-DC") }
+                        )
+                    }
+                    val nrDcCombos = comboList.nrDcCombos
+                    if (!nrDcCombos.isNullOrEmpty()) {
+                        outputFile(
+                            Utility.toCsv(nrDcCombos),
+                            fileName?.let { Utility.appendBeforeExtension(it, "-NR-DC") }
                         )
                     }
                 } else {

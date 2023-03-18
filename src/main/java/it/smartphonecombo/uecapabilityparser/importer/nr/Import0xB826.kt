@@ -16,6 +16,7 @@ class Import0xB826 : ImportCapabilities {
         val combos = Capabilities()
         val listCombo = ArrayList<ComboNr>()
         var endc = false
+        var nrdc = false
         try {
             `in` = LERandomAccessFile(filename, "r")
             var fileSize = `in`.readUnsignedShort().toLong()
@@ -54,12 +55,23 @@ class Import0xB826 : ImportCapabilities {
                     println("Index $index\n")
                 }
                 numCombos = `in`.readUnsignedShort()
-                `in`.skipBytes(1)
             }
             if (debug) {
                 println("Num Combos $numCombos\n")
             }
             combos.setMetadata("numCombos", numCombos)
+
+            var source: String? = null
+            if (version > 3) {
+                // Parse source field
+                val sourceIndex = `in`.readUnsignedByte()
+                source = getSourceFromIndex(sourceIndex)
+                combos.setMetadata("source", source)
+                if (debug) {
+                    println("source $source\n")
+                }
+            }
+
             var comboN = 0
             while (comboN < numCombos) {
                 try {
@@ -74,8 +86,9 @@ class Import0xB826 : ImportCapabilities {
                         numBands = numBands ushr 2
                         numBands = numBands and 0x0F
                     }
-                    val bands = ArrayList<IComponent>()
-                    val nrbands = ArrayList<IComponent>()
+                    val bands = mutableListOf<IComponent>()
+                    var nrbands = mutableListOf<IComponent>()
+                    var nrdcbands = mutableListOf<IComponent>()
                     if (version >= 6) {
                         `in`.skipBytes(1)
                         if (version == 7) {
@@ -201,15 +214,33 @@ class Import0xB826 : ImportCapabilities {
                             bands.add(lteband)
                         }
                     }
+                    /*
+                     * We assume that 0xb826 without explicit combo type in source
+                     * don't support NR CA FR1-FR2.
+                     */
+                    if (!endc && !source.equals("RF_NRCA")) {
+                        val (fr2bands, fr1bands) = nrbands.partition { (it as ComponentNr).isFR2 }
+
+                        if (fr2bands.isNotEmpty() && fr1bands.isNotEmpty()) {
+                            nrdc = true
+                            nrbands = fr1bands.toMutableList()
+                            nrdcbands = fr2bands.toMutableList()
+                        }
+                    }
+
                     val bandArray =
                         bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
                     val nrbandsArray =
                         nrbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+                    val nrdcbandsArray =
+                        nrdcbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
                     val newCombo =
-                        if (bandArray.isEmpty()) {
-                            ComboNr(nrbandsArray)
-                        } else {
+                        if (endc) {
                             ComboNr(bandArray, nrbandsArray)
+                        } else if (nrdc) {
+                            ComboNr(nrbandsArray, nrdcbandsArray)
+                        } else {
+                            ComboNr(nrbandsArray)
                         }
                     listCombo.add(newCombo)
                     comboN++
@@ -231,6 +262,8 @@ class Import0xB826 : ImportCapabilities {
         }
         if (endc) {
             combos.enDcCombos = listCombo
+        } else if (nrdc) {
+            combos.nrDcCombos = listCombo
         } else {
             combos.nrCombos = listCombo
         }
@@ -347,6 +380,17 @@ class Import0xB826 : ImportCapabilities {
             25,
             26 -> 100
             else -> index
+        }
+    }
+
+    private fun getSourceFromIndex(index: Int): String {
+        return when (index) {
+            0 -> "RF"
+            1 -> "PM"
+            3 -> "RF_ENDC"
+            4 -> "RF_NRCA"
+            5 -> "RF_NRDC"
+            else -> index.toString()
         }
     }
 }
