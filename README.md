@@ -7,7 +7,7 @@ Despite its alpha/beta quality, it's the source of sites such as smartphonecombo
 ## Run locally
 
 1. Install Java Runtime (JRE) 11 or above
-2. Download last archive (the right archive starts with uecapabilityparser-) from [release page](https://github.com/HandyMenny/uecapabilityparser/releases)
+2. Download last archive (the right archive starts with uecapabilityparser-) from [release page](https://github.com/HandyMenny/uecapabilityparser/releases?q=v0)
 3. Decompress the archive
 4. Open a terminal in the folder where the archive was extracted
 5. If you're using Linux make the uecapabilityparser script executable:
