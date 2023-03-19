@@ -1,13 +1,16 @@
 package it.smartphonecombo.uecapabilityparser.importer.lte
 
-import com.mindprod.ledatastream.LERandomAccessFile
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
+import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
+import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
-import java.io.EOFException
-import java.io.IOException
+import java.io.File
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 private const val MAX_CC = 5
 
@@ -15,60 +18,53 @@ class ImportNvItem : ImportCapabilities {
     override fun parse(filename: String): Capabilities {
         var lteComponents = emptyArray<IComponent>()
         val listCombo = ArrayList<ComboLte>()
-        var input: LERandomAccessFile? = null
         try {
-            input = LERandomAccessFile(filename, "r")
+            val file = File(filename)
+            val byteArray = file.inputStream().use { it.readAllBytes() }
+            val input = ByteBuffer.wrap(byteArray)
+            input.order(ByteOrder.LITTLE_ENDIAN)
             input.skipBytes(4)
-            while (true) {
-                try {
-                    when (input.readUnsignedShort()) {
-                        333 -> {
-                            lteComponents = readDLbands(input, true, 7)
-                            if (lteComponents.isEmpty()) {
-                                return Capabilities()
-                            }
+            while (input.remaining() > 0) {
+                when (input.readUnsignedShort()) {
+                    333 -> {
+                        lteComponents = readDLbands(input, true, 7)
+                        if (lteComponents.isEmpty()) {
+                            return Capabilities()
                         }
-                        334 -> {
-                            val combo = readULbands(input, lteComponents, true, 7)
-                            listCombo.add(combo)
-                        }
-                        201 -> {
-                            lteComponents = readDLbands(input, true, 0)
-                            if (lteComponents.isEmpty()) {
-                                return Capabilities()
-                            }
-                        }
-                        202 -> {
-                            val combo = readULbands(input, lteComponents, true, 0)
-                            listCombo.add(combo)
-                        }
-                        137 -> {
-                            lteComponents = readDLbands(input, false, 0)
-                            if (lteComponents.isEmpty()) {
-                                return Capabilities()
-                            }
-                        }
-                        138 -> {
-                            val combo = readULbands(input, lteComponents, false, 0)
-                            listCombo.add(combo)
-                        }
-                        else -> {}
                     }
-                } catch (ex: EOFException) {
-                    break
+                    334 -> {
+                        val combo = readULbands(input, lteComponents, true, 7)
+                        listCombo.add(combo)
+                    }
+                    201 -> {
+                        lteComponents = readDLbands(input, true, 0)
+                        if (lteComponents.isEmpty()) {
+                            return Capabilities()
+                        }
+                    }
+                    202 -> {
+                        val combo = readULbands(input, lteComponents, true, 0)
+                        listCombo.add(combo)
+                    }
+                    137 -> {
+                        lteComponents = readDLbands(input, false, 0)
+                        if (lteComponents.isEmpty()) {
+                            return Capabilities()
+                        }
+                    }
+                    138 -> {
+                        val combo = readULbands(input, lteComponents, false, 0)
+                        listCombo.add(combo)
+                    }
+                    else -> {}
                 }
             }
-        } catch (e: Exception) {} finally {
-            try {
-                input?.close()
-            } catch (e: IOException) {}
-        }
+        } catch (e: Exception) {}
         return Capabilities(listCombo)
     }
 
-    @Throws(IOException::class)
     private fun readDLbands(
-        input: LERandomAccessFile,
+        input: ByteBuffer,
         mimoPresent: Boolean,
         additionalBytes: Int
     ): Array<IComponent> {
@@ -89,9 +85,8 @@ class ImportNvItem : ImportCapabilities {
         return lteComponents.toTypedArray()
     }
 
-    @Throws(IOException::class)
     private fun readULbands(
-        input: LERandomAccessFile,
+        input: ByteBuffer,
         dlBands: Array<IComponent>,
         mimoPresent: Boolean,
         additionalBytes: Int
