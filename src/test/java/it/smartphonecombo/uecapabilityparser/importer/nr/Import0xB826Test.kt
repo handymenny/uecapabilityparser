@@ -11,7 +11,7 @@ internal class Import0xB826Test {
     private fun parse(
         srcFilename: String,
         version: Int,
-        logSize: Long,
+        logSize: Int,
         numCombos: Int,
         totalCombos: Int?,
         index: Int?,
