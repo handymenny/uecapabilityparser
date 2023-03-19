@@ -35,5 +35,4 @@ jobs:
           title: "Nightly ${{ steps.date.outputs.date }}"
           prerelease: true
           files: |
-            LICENSE
             *.zip
