@@ -12,46 +12,44 @@ import java.io.IOException
 private const val MAX_CC = 5
 
 class ImportNvItem : ImportCapabilities {
-    private var `in`: LERandomAccessFile? = null
-
     override fun parse(filename: String): Capabilities {
-        `in` = null
         var lteComponents = emptyArray<IComponent>()
         val listCombo = ArrayList<ComboLte>()
+        var input: LERandomAccessFile? = null
         try {
-            `in` = LERandomAccessFile(filename, "r")
-            `in`!!.skipBytes(4)
+            input = LERandomAccessFile(filename, "r")
+            input.skipBytes(4)
             while (true) {
                 try {
-                    when (`in`!!.readUnsignedShort()) {
+                    when (input.readUnsignedShort()) {
                         333 -> {
-                            lteComponents = readDLbands(true, 7)
+                            lteComponents = readDLbands(input, true, 7)
                             if (lteComponents.isEmpty()) {
                                 return Capabilities()
                             }
                         }
                         334 -> {
-                            val combo = readULbands(lteComponents, true, 7)
+                            val combo = readULbands(input, lteComponents, true, 7)
                             listCombo.add(combo)
                         }
                         201 -> {
-                            lteComponents = readDLbands(true, 0)
+                            lteComponents = readDLbands(input, true, 0)
                             if (lteComponents.isEmpty()) {
                                 return Capabilities()
                             }
                         }
                         202 -> {
-                            val combo = readULbands(lteComponents, true, 0)
+                            val combo = readULbands(input, lteComponents, true, 0)
                             listCombo.add(combo)
                         }
                         137 -> {
-                            lteComponents = readDLbands(false, 0)
+                            lteComponents = readDLbands(input, false, 0)
                             if (lteComponents.isEmpty()) {
                                 return Capabilities()
                             }
                         }
                         138 -> {
-                            val combo = readULbands(lteComponents, false, 0)
+                            val combo = readULbands(input, lteComponents, false, 0)
                             listCombo.add(combo)
                         }
                         else -> {}
@@ -62,23 +60,27 @@ class ImportNvItem : ImportCapabilities {
             }
         } catch (e: Exception) {} finally {
             try {
-                `in`!!.close()
+                input?.close()
             } catch (e: IOException) {}
         }
         return Capabilities(listCombo)
     }
 
     @Throws(IOException::class)
-    private fun readDLbands(mimoPresent: Boolean, additionalBytes: Int): Array<IComponent> {
+    private fun readDLbands(
+        input: LERandomAccessFile,
+        mimoPresent: Boolean,
+        additionalBytes: Int
+    ): Array<IComponent> {
         val lteComponents: MutableList<ComponentLte> = ArrayList()
         for (i in 0..MAX_CC) {
-            val band = `in`!!.readUnsignedShort()
-            val bclass = (`in`!!.readUnsignedByte() + 0x40).toChar()
+            val band = input.readUnsignedShort()
+            val bclass = (input.readUnsignedByte() + 0x40).toChar()
             var ant = 2
             if (mimoPresent) {
-                ant = `in`!!.readUnsignedByte()
+                ant = input.readUnsignedByte()
             }
-            `in`!!.skipBytes(additionalBytes)
+            input.skipBytes(additionalBytes)
             if (band != 0) {
                 lteComponents.add(ComponentLte(band, bclass, '0', ant, null, null))
             }
@@ -89,6 +91,7 @@ class ImportNvItem : ImportCapabilities {
 
     @Throws(IOException::class)
     private fun readULbands(
+        input: LERandomAccessFile,
         dlBands: Array<IComponent>,
         mimoPresent: Boolean,
         additionalBytes: Int
@@ -102,13 +105,13 @@ class ImportNvItem : ImportCapabilities {
         val numberOfDLbands = copyBand.size
         i = 0
         while (i < numberOfDLbands) {
-            val band = `in`!!.readUnsignedShort()
-            val ulClass = (`in`!!.readUnsignedByte() + 0x40).toChar()
+            val band = input.readUnsignedShort()
+            val ulClass = (input.readUnsignedByte() + 0x40).toChar()
             var ant = 1
             if (mimoPresent) {
-                ant = `in`!!.readUnsignedByte()
+                ant = input.readUnsignedByte()
             }
-            `in`!!.skipBytes(additionalBytes)
+            input.skipBytes(additionalBytes)
             if (band != 0) {
                 for (dlBand in copyBand) {
                     if (band == dlBand.band) {
@@ -120,7 +123,7 @@ class ImportNvItem : ImportCapabilities {
             i++
         }
         while (i <= MAX_CC) {
-            `in`!!.skipBytes(additionalBytes + 3 + if (mimoPresent) 1 else 0)
+            input.skipBytes(additionalBytes + 3 + if (mimoPresent) 1 else 0)
             i++
         }
         return ComboLte(copyBand.toTypedArray())
