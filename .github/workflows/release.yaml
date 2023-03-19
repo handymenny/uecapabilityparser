@@ -23,7 +23,6 @@ jobs:
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: ${{ endsWith(GitHub.ref, 'alpha') || endsWith(GitHub.ref, 'beta')\
-            \ }}
+          prerelease: ${{ endsWith(GitHub.ref, 'alpha') || endsWith(GitHub.ref, 'beta') }}
           files: |
             *.zip
