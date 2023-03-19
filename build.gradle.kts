@@ -30,7 +30,7 @@ dependencies {
 
 group = "parser"
 
-version = "0.0.5-alpha"
+version = "0.0.6"
 
 description = "uecapabilityparser"
 
