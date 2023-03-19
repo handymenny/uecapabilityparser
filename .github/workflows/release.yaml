@@ -26,5 +26,4 @@ jobs:
           prerelease: ${{ endsWith(GitHub.ref, 'alpha') || endsWith(GitHub.ref, 'beta')\
             \ }}
           files: |
-            LICENSE
             *.zip
