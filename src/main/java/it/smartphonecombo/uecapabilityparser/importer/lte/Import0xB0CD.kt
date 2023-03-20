@@ -129,9 +129,8 @@ object Import0xB0CD : ImportCapabilities {
             val dlMimo = extractMimo(values[6])
             // LTE UL Mimo is ignored at the moment
             extractMimo(values[7])
-            // LTE UL modulation is ignored at the moment
-            extractModUL(values[8])
-            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, null))
+            val ulMod = extractModUL(values[8])
+            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, ulMod))
             index++
         }
 
@@ -157,9 +156,8 @@ object Import0xB0CD : ImportCapabilities {
             val ulClass = extractBwClass(values[5])
             // LTE UL Mimo is ignored at the moment
             extractMimo(values[6])
-            // LTE UL modulation is ignored at the moment
-            extractModUL(values[7])
-            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, null))
+            val ulMod = extractModUL(values[7])
+            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, ulMod))
         }
 
         return bands
