@@ -3,7 +3,6 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("com.github.johnrengelman.shadow") version "8.1.0"
-    id("org.graalvm.buildtools.native") version "0.9.20"
     id("com.diffplug.spotless") version "6.17.0"
     application
     jacoco
@@ -70,18 +69,6 @@ tasks {
 application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
 
 kotlin { jvmToolchain(11) }
-
-graalvmNative {
-    binaries.all { resources.autodetect() }
-
-    binaries {
-        named("main") {
-            fallback.set(false)
-            verbose.set(false)
-            imageName.set("uecapabilityparser")
-        }
-    }
-}
 
 spotless {
     format("misc") {
