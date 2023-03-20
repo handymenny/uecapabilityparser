@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal class Import0xB0CDTest {
 
     companion object {
-        val import0xB0CD = Import0xB0CD()
+        val import0xB0CD = Import0xB0CD
     }
 
     private fun parse(inputFilename: String, oracleFilename: String) {
