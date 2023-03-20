@@ -8,58 +8,55 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
-import java.io.File
+import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 private const val MAX_CC = 5
 
 class ImportNvItem : ImportCapabilities {
-    override fun parse(filename: String): Capabilities {
+    override fun parse(input: InputStream): Capabilities {
         var lteComponents = emptyArray<IComponent>()
         val listCombo = ArrayList<ComboLte>()
-        try {
-            val file = File(filename)
-            val byteArray = file.inputStream().use { it.readAllBytes() }
-            val input = ByteBuffer.wrap(byteArray)
-            input.order(ByteOrder.LITTLE_ENDIAN)
-            input.skipBytes(4)
-            while (input.remaining() > 0) {
-                when (input.readUnsignedShort()) {
-                    333 -> {
-                        lteComponents = readDLbands(input, true, 7)
-                        if (lteComponents.isEmpty()) {
-                            return Capabilities()
-                        }
+        val byteArray = input.use(InputStream::readBytes)
+        val byteBuffer = ByteBuffer.wrap(byteArray)
+        byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
+        byteBuffer.skipBytes(4)
+        while (byteBuffer.remaining() > 0) {
+            when (byteBuffer.readUnsignedShort()) {
+                333 -> {
+                    lteComponents = readDLbands(byteBuffer, true, 7)
+                    if (lteComponents.isEmpty()) {
+                        return Capabilities()
                     }
-                    334 -> {
-                        val combo = readULbands(input, lteComponents, true, 7)
-                        listCombo.add(combo)
-                    }
-                    201 -> {
-                        lteComponents = readDLbands(input, true, 0)
-                        if (lteComponents.isEmpty()) {
-                            return Capabilities()
-                        }
-                    }
-                    202 -> {
-                        val combo = readULbands(input, lteComponents, true, 0)
-                        listCombo.add(combo)
-                    }
-                    137 -> {
-                        lteComponents = readDLbands(input, false, 0)
-                        if (lteComponents.isEmpty()) {
-                            return Capabilities()
-                        }
-                    }
-                    138 -> {
-                        val combo = readULbands(input, lteComponents, false, 0)
-                        listCombo.add(combo)
-                    }
-                    else -> {}
                 }
+                334 -> {
+                    val combo = readULbands(byteBuffer, lteComponents, true, 7)
+                    listCombo.add(combo)
+                }
+                201 -> {
+                    lteComponents = readDLbands(byteBuffer, true, 0)
+                    if (lteComponents.isEmpty()) {
+                        return Capabilities()
+                    }
+                }
+                202 -> {
+                    val combo = readULbands(byteBuffer, lteComponents, true, 0)
+                    listCombo.add(combo)
+                }
+                137 -> {
+                    lteComponents = readDLbands(byteBuffer, false, 0)
+                    if (lteComponents.isEmpty()) {
+                        return Capabilities()
+                    }
+                }
+                138 -> {
+                    val combo = readULbands(byteBuffer, lteComponents, false, 0)
+                    listCombo.add(combo)
+                }
+                else -> {}
             }
-        } catch (e: Exception) {}
+        }
         return Capabilities(listCombo)
     }
 

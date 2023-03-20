@@ -20,6 +20,8 @@ import it.smartphonecombo.uecapabilityparser.importer.lte.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformationJson
 import it.smartphonecombo.uecapabilityparser.importer.nr.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.nr.ImportCapPrune
+import java.io.File
+import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import kotlin.system.exitProcess
 import kotlinx.serialization.json.JsonElement
@@ -164,12 +166,8 @@ internal object MainCli {
 
     private fun parsing(cmd: CommandLine, typeLog: String): Capabilities {
         try {
-            val input =
-                if (typeLog == "E" || typeLog == "M") {
-                    cmd.getOptionValue("input")
-                } else {
-                    Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
-                }
+            val filePath = cmd.getOptionValue("input")
+            val file = File(filePath)
             val imports: ImportCapabilities?
             when (typeLog) {
                 "E" -> imports = ImportNvItem()
@@ -195,13 +193,17 @@ internal object MainCli {
 
             if (cmd.hasOption("uelog")) {
                 val outputFile = cmd.getOptionValue("uelog")
-                outputFile(input, outputFile)
+                outputFile(file.reader().use(InputStreamReader::readText), outputFile)
             }
 
             return if (typeLog == "QNR") {
-                multipleParser(input, cmd.hasOption("multi"), imports)
+                multipleParser(
+                    file.reader().use(InputStreamReader::readText),
+                    cmd.hasOption("multi"),
+                    imports
+                )
             } else {
-                imports.parse(input)
+                file.inputStream().use { imports.parse(it) }
             }
         } catch (e: Exception) {
             System.err.println("Error")

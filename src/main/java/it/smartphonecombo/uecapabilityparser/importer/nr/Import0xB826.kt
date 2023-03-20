@@ -9,251 +9,245 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
-import java.io.File
+import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class Import0xB826 : ImportCapabilities {
-    override fun parse(filename: String): Capabilities {
+    override fun parse(input: InputStream): Capabilities {
         val combos = Capabilities()
         val listCombo = ArrayList<ComboNr>()
         var endc = false
         var nrdc = false
-        try {
-            val file = File(filename)
-            val byteArray = file.inputStream().use { it.readAllBytes() }
-            val input = ByteBuffer.wrap(byteArray)
-            input.order(ByteOrder.LITTLE_ENDIAN)
-            var fileSize = input.readUnsignedShort()
-            if (fileSize == input.limit()) {
-                val logItem = "0x" + Integer.toHexString(input.readUnsignedShort()).uppercase()
-                combos.setMetadata("logItem", logItem)
-                if (debug) {
-                    println("Log Item: $logItem")
-                }
-                input.skipBytes(8)
-            } else {
-                fileSize = input.limit()
-                input.rewind()
-            }
-            combos.setMetadata("logSize", fileSize)
+        val byteArray = input.use(InputStream::readBytes)
+        val byteBuffer = ByteBuffer.wrap(byteArray)
+        byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
+        var fileSize = byteBuffer.readUnsignedShort()
+        if (fileSize == byteBuffer.limit()) {
+            val logItem = "0x" + Integer.toHexString(byteBuffer.readUnsignedShort()).uppercase()
+            combos.setMetadata("logItem", logItem)
             if (debug) {
-                println("Log file size: $fileSize bytes")
+                println("Log Item: $logItem")
             }
+            byteBuffer.skipBytes(8)
+        } else {
+            fileSize = byteBuffer.limit()
+            byteBuffer.rewind()
+        }
+        combos.setMetadata("logSize", fileSize)
+        if (debug) {
+            println("Log file size: $fileSize bytes")
+        }
 
-            val version = input.readUnsignedShort()
-            combos.setMetadata("version", version)
+        val version = byteBuffer.readUnsignedShort()
+        combos.setMetadata("version", version)
+        if (debug) {
+            println("Version $version\n")
+        }
+
+        byteBuffer.skipBytes(2)
+        var numCombos = byteBuffer.readUnsignedShort()
+        if (version > 3) {
             if (debug) {
-                println("Version $version\n")
+                println("Total Numb Combos $numCombos\n")
             }
-
-            input.skipBytes(2)
-            var numCombos = input.readUnsignedShort()
-            if (version > 3) {
-                if (debug) {
-                    println("Total Numb Combos $numCombos\n")
-                }
-                combos.setMetadata("totalCombos", numCombos)
-                val index = input.readUnsignedShort()
-                combos.setMetadata("index", index)
-                if (debug) {
-                    println("Index $index\n")
-                }
-                numCombos = input.readUnsignedShort()
-            }
+            combos.setMetadata("totalCombos", numCombos)
+            val index = byteBuffer.readUnsignedShort()
+            combos.setMetadata("index", index)
             if (debug) {
-                println("Num Combos $numCombos\n")
+                println("Index $index\n")
             }
-            combos.setMetadata("numCombos", numCombos)
+            numCombos = byteBuffer.readUnsignedShort()
+        }
+        if (debug) {
+            println("Num Combos $numCombos\n")
+        }
+        combos.setMetadata("numCombos", numCombos)
 
-            var source: String? = null
-            if (version > 3) {
-                // Parse source field
-                val sourceIndex = input.readUnsignedByte()
-                source = getSourceFromIndex(sourceIndex)
-                combos.setMetadata("source", source)
-                if (debug) {
-                    println("source $source\n")
+        var source: String? = null
+        if (version > 3) {
+            // Parse source field
+            val sourceIndex = byteBuffer.readUnsignedByte()
+            source = getSourceFromIndex(sourceIndex)
+            combos.setMetadata("source", source)
+            if (debug) {
+                println("source $source\n")
+            }
+        }
+
+        var comboN = 0
+        while (comboN < numCombos && byteBuffer.remaining() > 0) {
+            if (version >= 8) {
+                byteBuffer.skipBytes(3)
+            }
+            var numBands = byteBuffer.readUnsignedByte()
+            if (version > 2) {
+                numBands = numBands ushr 1
+            }
+            if (version >= 8) {
+                numBands = numBands ushr 2
+                numBands = numBands and 0x0F
+            }
+            val bands = mutableListOf<IComponent>()
+            var nrbands = mutableListOf<IComponent>()
+            var nrdcbands = mutableListOf<IComponent>()
+            if (version >= 6) {
+                byteBuffer.skipBytes(1)
+                if (version == 7) {
+                    byteBuffer.skipBytes(2)
+                }
+                if (version >= 9) {
+                    byteBuffer.skipBytes(8)
+                }
+                if (version >= 14) {
+                    byteBuffer.skipBytes(16)
                 }
             }
-
-            var comboN = 0
-            while (comboN < numCombos && input.remaining() > 0) {
+            for (i in 0 until numBands) {
+                var band: Int
+                val mixed = byteBuffer.readUnsignedShort()
+                var temp: Int
                 if (version >= 8) {
-                    input.skipBytes(3)
+                    temp = mixed ushr 9 and 0x1F
+                    band = mixed and 0x1FF
+                } else {
+                    band = mixed
+                    temp = byteBuffer.readUnsignedByte()
                 }
-                var numBands = input.readUnsignedByte()
-                if (version > 2) {
-                    numBands = numBands ushr 1
-                }
-                if (version >= 8) {
-                    numBands = numBands ushr 2
-                    numBands = numBands and 0x0F
-                }
-                val bands = mutableListOf<IComponent>()
-                var nrbands = mutableListOf<IComponent>()
-                var nrdcbands = mutableListOf<IComponent>()
-                if (version >= 6) {
-                    input.skipBytes(1)
-                    if (version == 7) {
-                        input.skipBytes(2)
-                    }
-                    if (version >= 9) {
-                        input.skipBytes(8)
-                    }
-                    if (version >= 14) {
-                        input.skipBytes(16)
-                    }
-                }
-                for (i in 0 until numBands) {
-                    var band: Int
-                    val mixed = input.readUnsignedShort()
-                    var temp: Int
+                var bwclass = ((temp ushr 1) + 0x40).toChar()
+                if (bwclass < 'A') bwclass = '\u0000'
+                if (temp % 2 == 1) {
+                    val nrband = ComponentNr(band)
+                    nrband.classDL = bwclass
                     if (version >= 8) {
-                        temp = mixed ushr 9 and 0x1F
-                        band = mixed and 0x1FF
+                        temp = byteBuffer.readUnsignedByte()
+                        var mimo = temp shl 1
+                        mimo = mimo and 0x7F
+                        mimo += mixed ushr 15
+                        nrband.mimoDL = getMimoFromIndex(mimo)
                     } else {
-                        band = mixed
-                        temp = input.readUnsignedByte()
+                        nrband.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
                     }
-                    var bwclass = ((temp ushr 1) + 0x40).toChar()
-                    if (bwclass < 'A') bwclass = '\u0000'
-                    if (temp % 2 == 1) {
-                        val nrband = ComponentNr(band)
-                        nrband.classDL = bwclass
-                        if (version >= 8) {
-                            temp = input.readUnsignedByte()
-                            var mimo = temp shl 1
-                            mimo = mimo and 0x7F
-                            mimo += mixed ushr 15
-                            nrband.mimoDL = getMimoFromIndex(mimo)
-                        } else {
-                            nrband.mimoDL = getMimoFromIndex(input.readUnsignedByte())
-                        }
-                        var mimoUL = 0
-                        if (version >= 8) {
-                            temp = temp ushr 6
-                            val temp2 = input.readUnsignedByte()
-                            temp += temp2 shl 2
-                            temp = temp and 0x1F
-                            mimoUL = (temp2 ushr 3) and 0x7F
-                        } else {
-                            temp = input.readUnsignedByte() ushr 1
-                        }
-                        if (temp > 0) nrband.classUL = (temp + 0x40).toChar()
-                        if (version < 8) {
-                            mimoUL = input.readUnsignedByte()
-                        }
-                        nrband.mimoUL = getMimoFromIndex(mimoUL)
-                        temp = input.readUnsignedByte()
-                        var modUL = temp
-                        if (version >= 8) {
-                            modUL = modUL shr 1
-                            modUL = modUL and 0x3
-                        }
-                        nrband.modUL = getQamFromIndex(modUL)
-                        if (version < 8) input.skipBytes(1)
-                        if (version >= 6) {
-                            var scsIndex = temp
-                            if (version >= 8) {
-                                temp = input.readUnsignedByte()
-                                scsIndex = scsIndex ushr 7
-                                scsIndex += temp and 3 shl 1
-                            } else {
-                                temp = input.readUnsignedShort()
-                                scsIndex = temp
-                            }
-                            nrband.scs = 15 * (1 shl (scsIndex and 0x000F) - 1)
-                            if (version >= 8) {
-                                val maxBWindex = temp shr 2 and 0x1F
-                                nrband.maxBandwidth = getBWFromIndexV8(maxBWindex)
-                                input.skipBytes(2)
-                            } else {
-                                nrband.maxBandwidth = getBWFromIndex(temp ushr 6 and 0x1F)
-                            }
-                        } else {
-                            if (version > 2) {
-                                nrband.scs = 15 * (1 shl input.readUnsignedByte() - 1)
-                            } else {
-                                nrband.scs = 15 * (1 + input.readUnsignedByte())
-                            }
-                            nrband.maxBandwidth = input.readUnsignedByte() shl 2
-                        }
-                        nrbands.add(nrband)
+                    var mimoUL = 0
+                    if (version >= 8) {
+                        temp = temp ushr 6
+                        val temp2 = byteBuffer.readUnsignedByte()
+                        temp += temp2 shl 2
+                        temp = temp and 0x1F
+                        mimoUL = (temp2 ushr 3) and 0x7F
                     } else {
-                        endc = true
-                        val lteband = ComponentLte()
-                        lteband.band = band
-                        lteband.classDL = bwclass
-                        if (version >= 8) {
-                            temp = input.readUnsignedByte()
-                            var mimo = temp shl 1
-                            mimo = mimo and 0x7F
-                            mimo += mixed ushr 15
-                            lteband.mimoDL = getMimoFromIndex(mimo)
-                        } else {
-                            lteband.mimoDL = getMimoFromIndex(input.readUnsignedByte())
-                        }
-                        if (version >= 8) {
-                            temp = temp ushr 6
-                            val temp2 = input.readUnsignedByte()
-                            temp += temp2 shl 2
-                            temp = temp and 0x1F
-                        } else {
-                            temp = input.readUnsignedByte() ushr 1
-                        }
-                        if (temp > 0) lteband.classUL = (temp + 0x40).toChar()
-                        if (version < 8) {
-                            /* LTE UL MIMO isn't useful */
-                            input.skipBytes(1)
-                        }
-                        temp = input.readUnsignedByte()
-                        var modUL = temp
-                        if (version >= 8) {
-                            modUL = modUL shr 1
-                            modUL = modUL and 0x3
-                        }
-                        lteband.modUL = getQamFromIndex(modUL)
-                        input.skipBytes(3)
-                        bands.add(lteband)
+                        temp = byteBuffer.readUnsignedByte() ushr 1
                     }
+                    if (temp > 0) nrband.classUL = (temp + 0x40).toChar()
+                    if (version < 8) {
+                        mimoUL = byteBuffer.readUnsignedByte()
+                    }
+                    nrband.mimoUL = getMimoFromIndex(mimoUL)
+                    temp = byteBuffer.readUnsignedByte()
+                    var modUL = temp
+                    if (version >= 8) {
+                        modUL = modUL shr 1
+                        modUL = modUL and 0x3
+                    }
+                    nrband.modUL = getQamFromIndex(modUL)
+                    if (version < 8) byteBuffer.skipBytes(1)
+                    if (version >= 6) {
+                        var scsIndex = temp
+                        if (version >= 8) {
+                            temp = byteBuffer.readUnsignedByte()
+                            scsIndex = scsIndex ushr 7
+                            scsIndex += temp and 3 shl 1
+                        } else {
+                            temp = byteBuffer.readUnsignedShort()
+                            scsIndex = temp
+                        }
+                        nrband.scs = 15 * (1 shl (scsIndex and 0x000F) - 1)
+                        if (version >= 8) {
+                            val maxBWindex = temp shr 2 and 0x1F
+                            nrband.maxBandwidth = getBWFromIndexV8(maxBWindex)
+                            byteBuffer.skipBytes(2)
+                        } else {
+                            nrband.maxBandwidth = getBWFromIndex(temp ushr 6 and 0x1F)
+                        }
+                    } else {
+                        if (version > 2) {
+                            nrband.scs = 15 * (1 shl byteBuffer.readUnsignedByte() - 1)
+                        } else {
+                            nrband.scs = 15 * (1 + byteBuffer.readUnsignedByte())
+                        }
+                        nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
+                    }
+                    nrbands.add(nrband)
+                } else {
+                    endc = true
+                    val lteband = ComponentLte()
+                    lteband.band = band
+                    lteband.classDL = bwclass
+                    if (version >= 8) {
+                        temp = byteBuffer.readUnsignedByte()
+                        var mimo = temp shl 1
+                        mimo = mimo and 0x7F
+                        mimo += mixed ushr 15
+                        lteband.mimoDL = getMimoFromIndex(mimo)
+                    } else {
+                        lteband.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
+                    }
+                    if (version >= 8) {
+                        temp = temp ushr 6
+                        val temp2 = byteBuffer.readUnsignedByte()
+                        temp += temp2 shl 2
+                        temp = temp and 0x1F
+                    } else {
+                        temp = byteBuffer.readUnsignedByte() ushr 1
+                    }
+                    if (temp > 0) lteband.classUL = (temp + 0x40).toChar()
+                    if (version < 8) {
+                        /* LTE UL MIMO isn't useful */
+                        byteBuffer.skipBytes(1)
+                    }
+                    temp = byteBuffer.readUnsignedByte()
+                    var modUL = temp
+                    if (version >= 8) {
+                        modUL = modUL shr 1
+                        modUL = modUL and 0x3
+                    }
+                    lteband.modUL = getQamFromIndex(modUL)
+                    byteBuffer.skipBytes(3)
+                    bands.add(lteband)
                 }
-                /*
-                 * We assume that 0xb826 without explicit combo type in source
-                 * don't support NR CA FR1-FR2.
-                 */
-                if (!endc && !source.equals("RF_NRCA")) {
-                    val (fr2bands, fr1bands) = nrbands.partition { (it as ComponentNr).isFR2 }
+            }
+            /*
+             * We assume that 0xb826 without explicit combo type in source
+             * don't support NR CA FR1-FR2.
+             */
+            if (!endc && !source.equals("RF_NRCA")) {
+                val (fr2bands, fr1bands) = nrbands.partition { (it as ComponentNr).isFR2 }
 
-                    if (fr2bands.isNotEmpty() && fr1bands.isNotEmpty()) {
-                        nrdc = true
-                        nrbands = fr1bands.toMutableList()
-                        nrdcbands = fr2bands.toMutableList()
-                    }
+                if (fr2bands.isNotEmpty() && fr1bands.isNotEmpty()) {
+                    nrdc = true
+                    nrbands = fr1bands.toMutableList()
+                    nrdcbands = fr2bands.toMutableList()
                 }
+            }
 
-                val bandArray =
-                    bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
-                val nrbandsArray =
-                    nrbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
-                val nrdcbandsArray =
-                    nrdcbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
-                val newCombo =
-                    if (endc) {
-                        ComboNr(bandArray, nrbandsArray)
-                    } else if (nrdc) {
-                        ComboNr(nrbandsArray, nrdcbandsArray)
-                    } else {
-                        ComboNr(nrbandsArray)
-                    }
-                listCombo.add(newCombo)
-                comboN++
-            }
-            if (debug) {
-                println(listCombo)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+            val bandArray = bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+            val nrbandsArray =
+                nrbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+            val nrdcbandsArray =
+                nrdcbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+            val newCombo =
+                if (endc) {
+                    ComboNr(bandArray, nrbandsArray)
+                } else if (nrdc) {
+                    ComboNr(nrbandsArray, nrdcbandsArray)
+                } else {
+                    ComboNr(nrbandsArray)
+                }
+            listCombo.add(newCombo)
+            comboN++
+        }
+        if (debug) {
+            println(listCombo)
         }
         if (endc) {
             combos.enDcCombos = listCombo

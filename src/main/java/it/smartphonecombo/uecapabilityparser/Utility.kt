@@ -356,23 +356,7 @@ object Utility {
         }
     }
 
-    private fun outputBinFile(text: ByteArray, outputFile: String?) {
-        var writer: FileOutputStream? = null
-        try {
-            if (!outputFile.isNullOrBlank()) {
-                writer = FileOutputStream(outputFile)
-            }
-            writer?.write(text)
-        } catch (ex: Exception) {
-            System.err.println("Error ${ex.localizedMessage}")
-            exitProcess(1)
-        } finally {
-            writer?.close()
-        }
-    }
-
     fun multipleParser(input: String, split: Boolean, importer: ImportCapabilities): Capabilities {
-        val tempfile = File.createTempFile("0xB826-", ".bin")
         val inputArray =
             if (split) {
                 split0xB826hex(input)
@@ -381,9 +365,8 @@ object Utility {
             }
         val list = mutableListOf<Capabilities>()
         inputArray.forEach {
-            outputBinFile(hexStringToByteArray(preformatHexData(it)), tempfile.path)
-            list.add(importer.parse(tempfile.path))
-            tempfile.delete()
+            val inputStream = hexStringToByteArray(preformatHexData(it)).inputStream()
+            list.add(importer.parse(inputStream))
         }
         val enDcCombos =
             list.fold(mutableListOf<ComboNr>()) { sum, x ->

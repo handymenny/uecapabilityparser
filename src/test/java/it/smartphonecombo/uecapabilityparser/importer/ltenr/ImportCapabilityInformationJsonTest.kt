@@ -2,7 +2,6 @@ package it.smartphonecombo.uecapabilityparser.importer.ltenr
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
-import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsText
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import org.junit.jupiter.api.Assertions.assertArrayEquals
@@ -16,7 +15,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapEutraCombinationAdd() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!,
+                getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!,
             )
 
         // LTE Category
@@ -85,7 +84,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapEutraCombinationReduced() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!,
+                getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!,
             )
 
         // LTE Category
@@ -132,7 +131,9 @@ internal class ImportCapabilityInformationJsonTest {
     @Test
     fun ueCapEutra1024qam() {
         val capabilities =
-            importerJson.parse(getResourceAsText("/newEngine/input/json/ueCapEutra1024qam.json")!!)
+            importerJson.parse(
+                getResourceAsStream("/newEngine/input/json/ueCapEutra1024qam.json")!!
+            )
 
         // LTE Category
         assertEquals(20, capabilities.lteCategoryDL)
@@ -177,7 +178,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapEutraCombinationReduced1024qam() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText(
+                getResourceAsStream(
                     "/newEngine/input/json/ueCapEutraCombinationReduced1024qam.json",
                 )!!,
             )
@@ -266,7 +267,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapNrOneCC() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText(
+                getResourceAsStream(
                     "/newEngine/input/json/ueCapNrOneCC.json",
                 )!!,
             )
@@ -553,7 +554,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapNrThreeCC() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText(
+                getResourceAsStream(
                     "/newEngine/input/json/ueCapNrThreeCC.json",
                 )!!,
             )
@@ -846,7 +847,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapMrdcDefaultBws() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText(
+                getResourceAsStream(
                     "/newEngine/input/json/ueCapMrdcDefaultBws.json",
                 )!!,
             )
@@ -1090,7 +1091,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapMrdcFR2() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText(
+                getResourceAsStream(
                     "/newEngine/input/json/ueCapMrdcFR2.json",
                 )!!,
             )
@@ -1228,7 +1229,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapMrdcExynos() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText(
+                getResourceAsStream(
                     "/newEngine/input/json/ueCapMrdcExynos.json",
                 )!!,
             )
@@ -1479,7 +1480,7 @@ internal class ImportCapabilityInformationJsonTest {
     fun ueCapNrDc() {
         val capabilities =
             importerJson.parse(
-                getResourceAsText(
+                getResourceAsStream(
                     "/newEngine/input/json/ueCapNrdc.json",
                 )!!,
             )
