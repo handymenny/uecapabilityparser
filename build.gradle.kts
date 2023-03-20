@@ -24,7 +24,7 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-    implementation("org.slf4j:slf4j-nop:2.0.6")
+    implementation("org.slf4j:slf4j-nop:2.0.7")
 }
 
 group = "parser"
