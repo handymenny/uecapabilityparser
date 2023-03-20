@@ -17,7 +17,7 @@ internal class ImportNvItemTest {
         val inputPath = "$path/input/$inputFilename"
         val oraclePath = "$path/oracle/$oracleFilename"
 
-        val capabilities = importerNvItem.parse(inputPath)
+        val capabilities = importerNvItem.parse(File(inputPath).inputStream())
         val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }

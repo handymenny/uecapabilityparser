@@ -6,17 +6,15 @@ import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
+import java.io.InputStream
+import java.io.InputStreamReader
 
-/** The Class ImportCarrierPolicy. */
 class ImportCarrierPolicy : ImportCapabilities {
 
     private val regex = Regex("(\\d{1,3})([A-F])([24]{0,5})([A-F]?)", RegexOption.IGNORE_CASE)
 
-    /**
-     * @param caBandCombosString the ca band combos string
-     * @return the combo list
-     */
-    override fun parse(caBandCombosString: String): Capabilities {
+    override fun parse(input: InputStream): Capabilities {
+        val caBandCombosString = input.reader().use(InputStreamReader::readText)
         val listCombo =
             caBandCombosString
                 .split(';', '"')

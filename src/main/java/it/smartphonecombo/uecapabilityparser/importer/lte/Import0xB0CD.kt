@@ -5,17 +5,13 @@ import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
+import java.io.InputStream
+import java.io.InputStreamReader
 import java.util.regex.Pattern
 
-/** The Class ImportCarrierPolicy. */
 class Import0xB0CD : ImportCapabilities {
-    /**
-     * Convert to java class.
-     *
-     * @param caBandCombosString the ca band combos string
-     * @return the combo list
-     */
-    override fun parse(caBandCombosString: String): Capabilities {
+    override fun parse(input: InputStream): Capabilities {
+        val caBandCombosString = input.reader().use(InputStreamReader::readText)
         // V41 has two columns reversed
 
         val isV41 = caBandCombosString.contains("UL BW Class         |DL Max Antennas Index")

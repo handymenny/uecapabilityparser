@@ -22,6 +22,8 @@ import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
+import java.io.InputStream
+import java.io.InputStreamReader
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -32,7 +34,8 @@ import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.intOrNull
 
 class ImportCapabilityInformationJson : ImportCapabilities {
-    override fun parse(caBandCombosString: String): Capabilities {
+    override fun parse(input: InputStream): Capabilities {
+        val caBandCombosString = input.reader().use(InputStreamReader::readText)
         val caBandCombosJson =
             try {
                 Json.parseToJsonElement(caBandCombosString) as? JsonObject

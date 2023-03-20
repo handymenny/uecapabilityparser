@@ -6,8 +6,9 @@ import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
+import java.io.InputStream
+import java.io.InputStreamReader
 
-/** The Class ImportCarrierPolicy. */
 class ImportCapPrune : ImportCapabilities {
 
     private val regex =
@@ -16,13 +17,8 @@ class ImportCapPrune : ImportCapabilities {
             RegexOption.IGNORE_CASE
         )
 
-    /**
-     * Convert to java class.
-     *
-     * @param caBandCombosString the ca band combos string
-     * @return the combo list
-     */
-    override fun parse(caBandCombosString: String): Capabilities {
+    override fun parse(input: InputStream): Capabilities {
+        val caBandCombosString = input.reader().use(InputStreamReader::readText)
         val listCombo =
             caBandCombosString
                 .split(';')
