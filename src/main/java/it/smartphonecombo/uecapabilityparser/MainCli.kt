@@ -171,7 +171,7 @@ internal object MainCli {
             val imports: ImportCapabilities?
             when (typeLog) {
                 "E" -> imports = ImportNvItem()
-                "C" -> imports = ImportCarrierPolicy()
+                "C" -> imports = ImportCarrierPolicy
                 "CNR" -> imports = ImportCapPrune()
                 "Q" -> imports = Import0xB0CD
                 "M" -> imports = ImportMTKLte()

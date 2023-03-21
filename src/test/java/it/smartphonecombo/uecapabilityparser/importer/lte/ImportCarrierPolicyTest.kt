@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal class ImportCarrierPolicyTest {
 
     companion object {
-        val importCarrierPolicy = ImportCarrierPolicy()
+        val importCarrierPolicy = ImportCarrierPolicy
     }
 
     private fun parse(inputFilename: String, oracleFilename: String) {
