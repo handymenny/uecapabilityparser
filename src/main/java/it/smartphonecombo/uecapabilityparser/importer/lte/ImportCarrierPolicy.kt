@@ -9,8 +9,34 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.io.InputStreamReader
 
+/** A parser for LTE Combinations as found in Qualcomm Carrier Policies */
 object ImportCarrierPolicy : ImportCapabilities {
 
+    /**
+     * This parser take as [input] an [InputStream] containing LTE Combinations using the same
+     * format used in Qualcomm Carrier Policies.
+     *
+     * In this format each combination is separated from the other by a ";".
+     *
+     * This combination consists of carrier components separated by "-", at the end of which there's
+     * a string representing the supported BCSs (prefixed with "-"). The combination can be prefixed
+     * with "e-"
+     *
+     * Each carrier component is composed of the number representing the LTE band, followed by a
+     * character representing the downlink bandwidth class, followed by a number representing the
+     * number of RX antennas, followed by a character representing the uplink bandwidth class.
+     *
+     * The number of RX antennas and the uplink bandwidth class are optional.
+     *
+     * The BCS can consist of:
+     * - an integer representing a single supported bcs
+     * - an integer prefixed with "m" representing the set of supported BCSs (it's the summation of
+     *   2 elevated to the bcs for all supported bcs)
+     * - the string "mAll" indicating that all BCSs are supported
+     *
+     * The output is a [Capabilities] with the list of parsed LTE combos stored in
+     * [lteCombos][Capabilities.lteCombos].
+     */
     override fun parse(input: InputStream): Capabilities {
         val caBandCombosString = input.reader().use(InputStreamReader::readText)
 
