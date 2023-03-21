@@ -11,7 +11,7 @@ import java.io.InputStreamReader
 
 class ImportCarrierPolicy : ImportCapabilities {
 
-    private val regex = Regex("(\\d{1,3})([A-F])([24]{0,5})([A-F]?)", RegexOption.IGNORE_CASE)
+    private val regex = """(\d{1,3})([A-F])([24]{0,5})([A-F]?)""".toRegex()
 
     override fun parse(input: InputStream): Capabilities {
         val caBandCombosString = input.reader().use(InputStreamReader::readText)
