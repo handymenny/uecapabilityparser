@@ -7,6 +7,7 @@ import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
+import it.smartphonecombo.uecapabilityparser.extension.toBwClass
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.nio.ByteBuffer
@@ -14,110 +15,109 @@ import java.nio.ByteOrder
 
 private const val MAX_CC = 5
 
-class ImportNvItem : ImportCapabilities {
+object ImportNvItem : ImportCapabilities {
+
     override fun parse(input: InputStream): Capabilities {
-        var lteComponents = emptyArray<IComponent>()
+        var dlComponents = emptyList<ComponentLte>()
         val listCombo = ArrayList<ComboLte>()
         val byteArray = input.use(InputStream::readBytes)
         val byteBuffer = ByteBuffer.wrap(byteArray)
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
         byteBuffer.skipBytes(4)
+
         while (byteBuffer.remaining() > 0) {
-            when (byteBuffer.readUnsignedShort()) {
-                333 -> {
-                    lteComponents = readDLbands(byteBuffer, true, 7)
-                    if (lteComponents.isEmpty()) {
-                        return Capabilities()
-                    }
-                }
-                334 -> {
-                    val combo = readULbands(byteBuffer, lteComponents, true, 7)
-                    listCombo.add(combo)
-                }
-                201 -> {
-                    lteComponents = readDLbands(byteBuffer, true, 0)
-                    if (lteComponents.isEmpty()) {
-                        return Capabilities()
-                    }
-                }
-                202 -> {
-                    val combo = readULbands(byteBuffer, lteComponents, true, 0)
-                    listCombo.add(combo)
-                }
+            when (val itemType = byteBuffer.readUnsignedShort()) {
+                333,
+                201,
                 137 -> {
-                    lteComponents = readDLbands(byteBuffer, false, 0)
-                    if (lteComponents.isEmpty()) {
-                        return Capabilities()
-                    }
+                    dlComponents = parseItem(byteBuffer, itemType)
                 }
+                334,
+                202,
                 138 -> {
-                    val combo = readULbands(byteBuffer, lteComponents, false, 0)
-                    listCombo.add(combo)
+                    val ulComponents = parseItem(byteBuffer, itemType)
+                    val bandArray = mergeAndSort(dlComponents, ulComponents)
+                    listCombo.add(ComboLte(bandArray))
                 }
-                else -> {}
+                else -> throw IllegalArgumentException("Invalid item type")
             }
         }
         return Capabilities(listCombo)
     }
 
-    private fun readDLbands(
-        input: ByteBuffer,
-        mimoPresent: Boolean,
-        additionalBytes: Int
-    ): Array<IComponent> {
-        val lteComponents: MutableList<ComponentLte> = ArrayList()
-        for (i in 0..MAX_CC) {
-            val band = input.readUnsignedShort()
-            val bclass = (input.readUnsignedByte() + 0x40).toChar()
-            var ant = 2
-            if (mimoPresent) {
-                ant = input.readUnsignedByte()
-            }
-            input.skipBytes(additionalBytes)
-            if (band != 0) {
-                lteComponents.add(ComponentLte(band, bclass, '0', ant, null, null))
-            }
+    private fun parseItem(input: ByteBuffer, descriptorType: Int): List<ComponentLte> {
+        return when (descriptorType) {
+            334 -> readComponents(input, hasMimo = true, hasMultiMimo = true, isDL = false)
+            333 -> readComponents(input, hasMimo = true, hasMultiMimo = true)
+            202 -> readComponents(input, hasMimo = true, isDL = false)
+            201 -> readComponents(input, hasMimo = true)
+            138 -> readComponents(input, isDL = false)
+            137 -> readComponents(input)
+            else -> throw IllegalArgumentException("Invalid item type")
         }
-        lteComponents.sortWith(IComponent.defaultComparator.reversed())
-        return lteComponents.toTypedArray()
     }
 
-    private fun readULbands(
+    private fun readComponents(
         input: ByteBuffer,
-        dlBands: Array<IComponent>,
-        mimoPresent: Boolean,
-        additionalBytes: Int
-    ): ComboLte {
-        val copyBand = mutableListOf<IComponent>()
-        var i = 0
-        while (i < dlBands.size) {
-            copyBand.add((dlBands[i] as ComponentLte).copy())
-            i++
-        }
-        val numberOfDLbands = copyBand.size
-        i = 0
-        while (i < numberOfDLbands) {
+        hasMimo: Boolean = false,
+        hasMultiMimo: Boolean = false,
+        isDL: Boolean = true
+    ): List<ComponentLte> {
+        val lteComponents = mutableListOf<ComponentLte>()
+
+        for (i in 0..MAX_CC) {
+            // read band and bwClass
             val band = input.readUnsignedShort()
-            val ulClass = (input.readUnsignedByte() + 0x40).toChar()
-            var ant = 1
-            if (mimoPresent) {
+            val bwClass = input.readUnsignedByte().toBwClass()
+
+            // read mimo/multiMimo
+            var ant = if (isDL) 2 else 1
+            if (hasMimo) {
                 ant = input.readUnsignedByte()
-            }
-            input.skipBytes(additionalBytes)
-            if (band != 0) {
-                for (dlBand in copyBand) {
-                    if (band == dlBand.band) {
-                        dlBand.classUL = ulClass
-                        break
+                if (hasMultiMimo) {
+                    repeat(7) {
+                        // Ignore mimo for each component in intraband contigous CA
+                        input.readUnsignedByte()
                     }
                 }
             }
-            i++
+
+            if (band == 0) {
+                // Null/Empty component
+                continue
+            }
+
+            val component =
+                if (isDL) {
+                    ComponentLte(band, bwClass, '0', ant, null, null)
+                } else {
+                    ComponentLte(band, '0', bwClass, 0, null, null)
+                }
+
+            lteComponents.add(component)
         }
-        while (i <= MAX_CC) {
-            input.skipBytes(additionalBytes + 3 + if (mimoPresent) 1 else 0)
-            i++
-        }
-        return ComboLte(copyBand.toTypedArray())
+
+        return lteComponents
     }
+
+    private fun mergeAndSort(
+        dlComponents: List<ComponentLte>,
+        ulComponents: List<ComponentLte>
+    ): Array<IComponent> {
+        val components = dlComponents.mapToTypedArray(IComponent::clone)
+        for (ulComponent in ulComponents) {
+            val matchingComponent =
+                components
+                    .filter { it.band == ulComponent.band && it.classUL == '0' }
+                    .maxBy(IComponent::classDL)
+
+            matchingComponent.classUL = ulComponent.classUL
+        }
+
+        components.sortWith(IComponent.defaultComparator.reversed())
+        return components
+    }
+
+    private inline fun <reified T> List<T>.mapToTypedArray(transform: (T) -> T) =
+        Array(size, init = { i -> transform(this[i]) })
 }

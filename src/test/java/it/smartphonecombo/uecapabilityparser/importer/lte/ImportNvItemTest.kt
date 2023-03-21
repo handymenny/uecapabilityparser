@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal class ImportNvItemTest {
 
     companion object {
-        val importerNvItem = ImportNvItem()
+        val importerNvItem = ImportNvItem
     }
 
     private fun parse(inputFilename: String, oracleFilename: String) {
