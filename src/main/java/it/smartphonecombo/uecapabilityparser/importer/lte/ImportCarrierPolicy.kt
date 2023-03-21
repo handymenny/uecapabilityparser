@@ -9,7 +9,7 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.io.InputStreamReader
 
-class ImportCarrierPolicy : ImportCapabilities {
+object ImportCarrierPolicy : ImportCapabilities {
 
     override fun parse(input: InputStream): Capabilities {
         val caBandCombosString = input.reader().use(InputStreamReader::readText)
