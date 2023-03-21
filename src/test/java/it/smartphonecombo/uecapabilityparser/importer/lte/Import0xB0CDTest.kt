@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal class Import0xB0CDTest {
 
     companion object {
-        val import0xB0CD = Import0xB0CD()
+        val import0xB0CD = Import0xB0CD
     }
 
     private fun parse(inputFilename: String, oracleFilename: String) {
@@ -38,5 +38,20 @@ internal class Import0xB0CDTest {
     @Test
     fun parse0xB0CDv41() {
         parse("v41.txt", "v41.csv")
+    }
+
+    @Test
+    fun parse0xB0CDv32Multi() {
+        parse("v32multi.txt", "v32multi.csv")
+    }
+
+    @Test
+    fun parse0xB0CDv40Multi() {
+        parse("v40multi.txt", "v40multi.csv")
+    }
+
+    @Test
+    fun parse0xB0CDv41Multi() {
+        parse("v41multi.txt", "v41multi.csv")
     }
 }
