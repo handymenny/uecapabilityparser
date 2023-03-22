@@ -90,7 +90,7 @@ class ImportMTKLte : ImportCapabilities {
                         if (str.startsWith("ERRC_CAPA_CA_MIMO_CAPA_FOUR_LAYERS")) {
                             bands[k].mimoDL = 4
                         } else if (str.startsWith("ERRC_CAPA_CA_MIMO_CAPA_TWO_LAYERS")) {
-                            bands[k].mimoUL = 2
+                            bands[k].mimoDL = 2
                         } else {
                             if (debug) {
                                 println(str)
