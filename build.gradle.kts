@@ -4,8 +4,8 @@ plugins {
     kotlin("plugin.serialization") version kotlinVersion
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("com.diffplug.spotless") version "6.17.0"
+    id("org.jetbrains.kotlinx.kover") version "0.6.1"
     application
-    jacoco
 }
 
 repositories {
@@ -48,18 +48,8 @@ tasks {
     test {
         // Enable Junit test
         useJUnitPlatform()
-        // generate jacoco reports
-        finalizedBy(jacocoTestReport)
-    }
-
-    // Configure jacoco reports
-    jacocoTestReport {
-        dependsOn(test)
-        reports {
-            xml.required.set(true)
-            csv.required.set(false)
-            html.required.set(false)
-        }
+        // generate kover report
+        finalizedBy(koverXmlReport)
     }
 
     // Enable shadow minify
