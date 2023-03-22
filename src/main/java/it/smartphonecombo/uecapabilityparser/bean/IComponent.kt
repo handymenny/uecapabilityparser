@@ -3,6 +3,8 @@ package it.smartphonecombo.uecapabilityparser.bean
 interface IComponent {
     fun compareTo(iComponent: IComponent): Int
 
+    fun clone(): IComponent
+
     var band: Int
     var classDL: Char
     var classUL: Char
