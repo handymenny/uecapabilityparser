@@ -7,119 +7,101 @@ import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.io.InputStreamReader
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import java.lang.NumberFormatException
+import java.util.NoSuchElementException
 
-class ImportMTKLte : ImportCapabilities {
-    @Throws(IndexOutOfBoundsException::class)
+object ImportMTKLte : ImportCapabilities {
+
     override fun parse(input: InputStream): Capabilities {
-        var matchRes: MatchResult?
         val listCombos: MutableList<ComboLte> = ArrayList()
-        val total: Int
-        val arraySize: Int
-        val lines = input.reader().use(InputStreamReader::readLines)
-        var index = 0
-        var pattern = Pattern.compile("ca_total_num = 0x(\\d*)", Pattern.CASE_INSENSITIVE)
-        matchRes = scanUntilMatch(lines, pattern, index)
-        if (matchRes != null) {
-            index = matchRes.index
-            total =
-                try {
-                    matchRes.matcher.group(1).toInt(16)
-                } catch (ex: NumberFormatException) {
-                    0
-                }
-        }
-        pattern = Pattern.compile("band_comb = Array\\[(\\d*)]", Pattern.CASE_INSENSITIVE)
-        matchRes = scanUntilMatch(lines, pattern, ++index)
-        if (matchRes != null) {
-            index = matchRes.index
-            arraySize =
-                try {
-                    matchRes.matcher.group(1).toInt()
-                } catch (ex: NumberFormatException) {
-                    0
-                }
-        }
-        pattern = Pattern.compile("band_comb\\[(\\d*)] = \\(struct\\)", Pattern.CASE_INSENSITIVE)
-        val patternMimo = Pattern.compile("band_mimo = Array\\[(\\d*)]", Pattern.CASE_INSENSITIVE)
-        while (scanUntilMatch(lines, pattern, ++index).also { matchRes = it } != null) {
-            index = matchRes!!.index
-            try {
-                val comboNum = matchRes!!.matcher.group(1).toInt()
-                var str = lines[++index].trim { it <= ' ' }.substring(19)
-                val numCCs = str.toInt(16)
-                // Sanity check
-                if (numCCs < 1 || numCCs > 10) {
-                    continue
-                }
-                str = lines[++index].trim { it <= ' ' }
-                str = str.substring(19, str.length - 1)
-                val arrayLength = str.toInt()
-                val bands: MutableList<IComponent> = ArrayList()
-                var i = 0
-                while (i < arrayLength && i < numCCs) {
-                    index++
-                    do {
-                        str = lines[++index].trim { it <= ' ' }
-                    } while (!str.startsWith("band = "))
-                    str = str.substring(9)
-                    val baseBand = str.toInt(16)
-                    str = lines[++index].trim { it <= ' ' }.substring(18)
-                    var bwClass = 'A' + str.toInt(16)
-                    var classUL = '0'
-                    if (bwClass < 'F') {
-                        classUL = bwClass
-                    }
-                    str = lines[++index].trim { it <= ' ' }.substring(18)
-                    bwClass = 'A' + str.toInt(16)
-                    val band = ComponentLte(baseBand, bwClass, classUL)
-                    band.modDL = null
-                    band.modUL = null
-                    bands.add(band)
-                    i++
-                }
-                matchRes = scanUntilMatch(lines, patternMimo, ++index)
-                if (matchRes != null) {
-                    index = matchRes!!.index
-                    val length = matchRes!!.matcher.group(1).toInt()
-                    var k = 0
-                    while (k < length && k < numCCs) {
-                        while (!lines[++index].trim { it <= ' ' }.startsWith("band_mimo[$k]")) ;
-                        str = lines[++index].trim { it <= ' ' }.substring(18)
-                        if (str.startsWith("ERRC_CAPA_CA_MIMO_CAPA_FOUR_LAYERS")) {
-                            bands[k].mimoDL = 4
-                        } else if (str.startsWith("ERRC_CAPA_CA_MIMO_CAPA_TWO_LAYERS")) {
-                            bands[k].mimoDL = 2
-                        } else {
-                            if (debug) {
-                                println(str)
-                            }
-                        }
-                        k++
-                    }
-                }
-                bands.sortWith(IComponent.defaultComparator.reversed())
-                listCombos.add(ComboLte(bands.toTypedArray()))
-            } catch (ex: NumberFormatException) {
-                ex.printStackTrace()
+        val iterator = input.reader().use(InputStreamReader::readLines).map(String::trim).iterator()
+        try {
+            while (iterator.firstOrNull { it.startsWith("band_comb[") } != null) {
+                val bands = parseCombo(iterator) ?: continue
+
+                val bandArray = bands.toTypedArray<IComponent>()
+                bandArray.sortWith(IComponent.defaultComparator.reversed())
+
+                listCombos.add(ComboLte(bandArray))
             }
+        } catch (ignored: NoSuchElementException) {
+            // Do nothing
         }
         return Capabilities(listCombos)
     }
 
-    private fun scanUntilMatch(lines: List<String>, pattern: Pattern, start: Int): MatchResult? {
-        var i = start
-        while (i < lines.size) {
-            val str = lines[i].trim { it <= ' ' }
-            val match = pattern.matcher(str)
-            if (match.matches()) {
-                return MatchResult(i, match)
+    @Throws(NoSuchElementException::class)
+    private fun parseCombo(iterator: Iterator<String>): List<ComponentLte>? {
+        val numCCs = extractInt(iterator.next())
+
+        // Check if combo contains any CCs
+        if (numCCs < 1) {
+            return null
+        }
+
+        val arrayLength = extractArraySize(iterator.next())
+        val bands = parseComponents(minOf(numCCs, arrayLength), iterator)
+
+        val line = iterator.firstOrNull { it.startsWith("band_mimo = Array") } ?: return null
+        val mimoArrayLength = extractArraySize(line)
+
+        parseMimo(minOf(numCCs, mimoArrayLength), iterator, bands)
+        return bands
+    }
+
+    @Throws(NoSuchElementException::class)
+    private fun parseMimo(numCCs: Int, iterator: Iterator<String>, bands: List<ComponentLte>) {
+        for (i in 0 until numCCs) {
+            iterator.firstOrNull { it.startsWith("band_mimo[$i]") } ?: break
+            val line = extractValue(iterator.next()).split(" ").first()
+            if (line == "ERRC_CAPA_CA_MIMO_CAPA_FOUR_LAYERS") {
+                bands[i].mimoDL = 4
+            } else if (line == "ERRC_CAPA_CA_MIMO_CAPA_TWO_LAYERS") {
+                bands[i].mimoDL = 2
             }
-            i++
+        }
+    }
+
+    @Throws(NoSuchElementException::class)
+    private fun parseComponents(numCCs: Int, iterator: Iterator<String>): List<ComponentLte> {
+        val bands = mutableListOf<ComponentLte>()
+        for (i in 0 until numCCs) {
+            iterator.firstOrNull { it.startsWith("band_param[$i]") }
+            val baseBand = extractInt(iterator.next())
+            val classUL = extractInt(iterator.next()).toBwClassMtk()
+            val classDL = extractInt(iterator.next()).toBwClassMtk()
+            val band = ComponentLte(baseBand, classDL, classUL, 0, null, null)
+            bands.add(band)
+        }
+        return bands
+    }
+
+    private fun Int.toBwClassMtk(): Char {
+        val value = (this + 0x41).toChar()
+
+        return if (value in 'A'..'F') value else '0'
+    }
+
+    private fun extractValue(line: String): String {
+        return line.split("=").last().trim()
+    }
+
+    private val arrayRegex = """Array\[(\d+)]""".toRegex()
+    private fun extractArraySize(line: String): Int {
+        return arrayRegex.find(line)?.groupValues?.get(1)?.toInt() ?: 0
+    }
+
+    @Throws(NumberFormatException::class)
+    private fun extractInt(line: String): Int {
+        return Integer.decode(extractValue(line))
+    }
+
+    private inline fun Iterator<String>.firstOrNull(predicate: (String) -> Boolean): String? {
+        for (item in this) {
+            if (predicate(item)) {
+                return item
+            }
         }
         return null
     }
-
-    internal class MatchResult(val index: Int, val matcher: Matcher)
 }

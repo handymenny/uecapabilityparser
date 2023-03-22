@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal class ImportMtkLteTest {
 
     companion object {
-        val importMtkLte = ImportMTKLte()
+        val importMtkLte = ImportMTKLte
     }
 
     private fun parse(inputFilename: String, oracleFilename: String) {
