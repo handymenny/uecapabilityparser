@@ -45,7 +45,6 @@ object ImportCarrierPolicy : ImportCapabilities {
                 .split(';', '"')
                 .filter(String::isNotBlank)
                 .mapNotNull(this::parseCombo)
-                .toList()
 
         return Capabilities(listCombo)
     }
