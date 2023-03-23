@@ -12,10 +12,7 @@ import java.io.InputStreamReader
 class ImportCapPrune : ImportCapabilities {
 
     private val regex =
-        Regex(
-            "([bn])(\\d{1,3})([A-Q]?)\\[?([\\d,]{0,8})]?([A-Q]?)\\[?([\\d,]{0,8})]?",
-            RegexOption.IGNORE_CASE
-        )
+        """([bn])(\d{1,3})([A-Q]?)\[?([\d,]{0,8})]?([A-Q]?)\[?([\d,]{0,8})]?""".toRegex()
 
     override fun parse(input: InputStream): Capabilities {
         val caBandCombosString = input.reader().use(InputStreamReader::readText)
