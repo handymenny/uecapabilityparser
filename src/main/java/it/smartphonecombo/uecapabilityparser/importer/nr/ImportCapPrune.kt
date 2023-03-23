@@ -43,10 +43,7 @@ class ImportCapPrune : ImportCapabilities {
                                     ComponentLte(baseBand, bandwidthClass, uplink, mimo, null, null)
                                 )
                             } else {
-                                var ulMimo = mimoParsing(groups[6])
-                                if (uplink != '0' && ulMimo == 0) {
-                                    ulMimo = 1
-                                }
+                                val ulMimo = mimoParsing(groups[6])
                                 nrBands.add(
                                     ComponentNr(
                                         baseBand,

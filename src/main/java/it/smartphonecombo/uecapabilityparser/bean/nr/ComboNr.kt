@@ -160,7 +160,10 @@ data class ComboNr(
             if (ul != '0' && ul != '\u0000') {
                 if (nrUL.count { it == ';' } / 2 < nrUlCC) {
                     nrUL += "" + b + ul + separator + nrModUL[i] + separator
-                    nrmimoULstring += "" + nrmimoUL[i] + separator
+                    if (nrmimoUL[i] != 0) {
+                        nrmimoULstring += "" + nrmimoUL[i]
+                    }
+                    nrmimoULstring += separator
                 }
             }
         }
@@ -188,7 +191,10 @@ data class ComboNr(
             if (ul != '0' && ul != '\u0000') {
                 if (nrULDc.count { it == ';' } / 2 < nrDcUlCC) {
                     nrULDc += "" + b + ul + separator + nrModULDc[i] + separator
-                    nrmimoULstringDc += "" + nrmimoULDc[i] + separator
+                    if (nrmimoULDc[i] != 0) {
+                        nrmimoULstringDc += "" + nrmimoULDc[i]
+                    }
+                    nrmimoULstringDc + separator
                 }
             }
         }
