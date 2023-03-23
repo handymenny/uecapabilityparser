@@ -76,6 +76,6 @@ class ImportCapPrune : ImportCapabilities {
         if (mimo.isEmpty()) {
             return 0
         }
-        return mimo.replace(",", "").toInt()
+        return mimo.split(",").first().toInt()
     }
 }
