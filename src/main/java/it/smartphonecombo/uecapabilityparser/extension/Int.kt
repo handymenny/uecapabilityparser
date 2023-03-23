@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.extension
 
 /** Convert BW index to BW Class */
-fun Int.toBwClass(): Char {
+internal fun Int.toBwClass(): Char {
     if (this <= 0) {
         return '0'
     }
