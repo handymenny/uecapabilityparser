@@ -101,4 +101,6 @@ data class ComponentNr(
 
     val isFR2: Boolean
         get() = band > 256
+
+    override fun clone() = copy()
 }

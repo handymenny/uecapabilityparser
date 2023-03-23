@@ -170,7 +170,7 @@ internal object MainCli {
             val file = File(filePath)
             val imports: ImportCapabilities?
             when (typeLog) {
-                "E" -> imports = ImportNvItem()
+                "E" -> imports = ImportNvItem
                 "C" -> imports = ImportCarrierPolicy
                 "CNR" -> imports = ImportCapPrune()
                 "Q" -> imports = Import0xB0CD

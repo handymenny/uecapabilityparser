@@ -75,4 +75,6 @@ data class ComponentLte(
             }
         }
     }
+
+    override fun clone() = copy()
 }
