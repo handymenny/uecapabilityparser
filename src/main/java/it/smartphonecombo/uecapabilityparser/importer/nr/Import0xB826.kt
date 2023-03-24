@@ -160,16 +160,59 @@ class Import0xB826 : ImportCapabilities {
     }
 
     private fun parseComponent(byteBuffer: ByteBuffer, version: Int): IComponent {
-        val band: Int
-        val mixed = byteBuffer.readUnsignedShort()
-        var temp: Int
-        if (version >= 8) {
-            temp = mixed ushr 9 and 0x1F
-            band = mixed and 0x1FF
+        return if (version >= 8) {
+            parseComponentV8(byteBuffer)
         } else {
-            band = mixed
-            temp = byteBuffer.readUnsignedByte()
+            parseComponentPreV8(byteBuffer, version)
         }
+    }
+
+    private fun parseComponentPreV8(byteBuffer: ByteBuffer, version: Int): IComponent {
+        val band = byteBuffer.readUnsignedShort()
+        val bwType = byteBuffer.readUnsignedByte()
+        val bwclass = (bwType ushr 1).toBwClass()
+        val isNr = bwType % 2 == 1
+
+        val component =
+            if (isNr) {
+                ComponentNr(band)
+            } else {
+                ComponentLte(band)
+            }
+
+        component.classDL = bwclass
+        component.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
+        val ulClass = byteBuffer.readUnsignedByte() ushr 1
+        component.classUL = ulClass.toBwClass()
+        val mimoUL = byteBuffer.readUnsignedByte()
+        component.mimoUL = getMimoFromIndex(mimoUL)
+        val modUL = byteBuffer.readUnsignedByte()
+        component.modUL = getQamFromIndex(modUL)
+
+        if (isNr) {
+            val nrband = component as ComponentNr
+            byteBuffer.skipBytes(1)
+            if (version >= 6) {
+                val mixed = byteBuffer.readUnsignedShort()
+                nrband.scs = 15 * (1 shl (mixed and 0x000F) - 1)
+                nrband.maxBandwidth = getBWFromIndex(mixed ushr 6 and 0x1F)
+            } else if (version > 2) {
+                nrband.scs = 15 * (1 shl byteBuffer.readUnsignedByte() - 1)
+                nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
+            } else {
+                nrband.scs = 15 * (1 + byteBuffer.readUnsignedByte())
+                nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
+            }
+        } else {
+            byteBuffer.skipBytes(3)
+        }
+        return component
+    }
+
+    private fun parseComponentV8(byteBuffer: ByteBuffer): IComponent {
+        val mixed = byteBuffer.readUnsignedShort()
+        val band = mixed and 0x1FF
+        var temp = mixed ushr 9 and 0x1F
         val bwclass = (temp ushr 1).toBwClass()
         val isNr = temp % 2 == 1
 
@@ -180,59 +223,27 @@ class Import0xB826 : ImportCapabilities {
                 ComponentLte(band)
             }
         component.classDL = bwclass
-        if (version >= 8) {
-            temp = byteBuffer.readUnsignedByte()
-            var mimo = temp shl 1
-            mimo = mimo and 0x7F
-            mimo += mixed ushr 15
-            component.mimoDL = getMimoFromIndex(mimo)
-            temp = temp ushr 6
-            val temp2 = byteBuffer.readUnsignedByte()
-            temp += temp2 shl 2
-            temp = temp and 0x1F
-            val mimoUL = (temp2 ushr 3) and 0x7F
-            component.classUL = temp.toBwClass()
-            component.mimoUL = getMimoFromIndex(mimoUL)
-            temp = byteBuffer.readUnsignedByte()
-            val modUL = (temp shr 1) and 0x3
-            component.modUL = getQamFromIndex(modUL)
-        } else {
-            component.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
-            temp = byteBuffer.readUnsignedByte() ushr 1
-            component.classUL = temp.toBwClass()
-            val mimoUL = byteBuffer.readUnsignedByte()
-            component.mimoUL = getMimoFromIndex(mimoUL)
-            temp = byteBuffer.readUnsignedByte()
-            val modUL = temp
-            component.modUL = getQamFromIndex(modUL)
-        }
+        temp = byteBuffer.readUnsignedByte()
+        val mimo = ((temp shl 1) and 0x7F) + (mixed ushr 15)
+        component.mimoDL = getMimoFromIndex(mimo)
+        val temp2 = byteBuffer.readUnsignedByte()
+        val mimoUL = (temp2 ushr 3) and 0x7F
+        component.mimoUL = getMimoFromIndex(mimoUL)
+        val classUl = ((temp ushr 6) + (temp2 shl 2)) and 0x1F
+        component.classUL = classUl.toBwClass()
+        temp = byteBuffer.readUnsignedByte()
+        val modUL = (temp shr 1) and 0x3
+        component.modUL = getQamFromIndex(modUL)
 
         if (isNr) {
             val nrband = component as ComponentNr
-            if (version >= 8) {
-                var scsIndex = temp
-                temp = byteBuffer.readUnsignedByte()
-                scsIndex = scsIndex ushr 7
-                scsIndex += temp and 3 shl 1
-                nrband.scs = 15 * (1 shl (scsIndex and 0x000F) - 1)
-                val maxBWindex = temp shr 2 and 0x1F
-                nrband.maxBandwidth = getBWFromIndexV8(maxBWindex)
-                byteBuffer.skipBytes(2)
-            } else if (version >= 6) {
-                byteBuffer.skipBytes(1)
-                temp = byteBuffer.readUnsignedShort()
-                val scsIndex = temp
-                nrband.scs = 15 * (1 shl (scsIndex and 0x000F) - 1)
-                nrband.maxBandwidth = getBWFromIndex(temp ushr 6 and 0x1F)
-            } else if (version > 2) {
-                byteBuffer.skipBytes(1)
-                nrband.scs = 15 * (1 shl byteBuffer.readUnsignedByte() - 1)
-                nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
-            } else {
-                byteBuffer.skipBytes(1)
-                nrband.scs = 15 * (1 + byteBuffer.readUnsignedByte())
-                nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
-            }
+            var scsIndex = temp
+            temp = byteBuffer.readUnsignedByte()
+            scsIndex = 1 shl ((((scsIndex ushr 7) + (temp and 3 shl 1)) and 0x000F) - 1)
+            nrband.scs = 15 * (scsIndex)
+            val maxBWindex = temp shr 2 and 0x1F
+            nrband.maxBandwidth = getBWFromIndexV8(maxBWindex)
+            byteBuffer.skipBytes(2)
         } else {
             byteBuffer.skipBytes(3)
         }
