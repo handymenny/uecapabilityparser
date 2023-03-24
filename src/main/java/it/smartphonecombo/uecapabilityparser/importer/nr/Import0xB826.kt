@@ -116,40 +116,49 @@ class Import0xB826 : ImportCapabilities {
                 }
                 var bwclass = ((temp ushr 1) + 0x40).toChar()
                 if (bwclass < 'A') bwclass = '\u0000'
-                if (temp % 2 == 1) {
-                    val nrband = ComponentNr(band)
-                    nrband.classDL = bwclass
-                    if (version >= 8) {
-                        temp = byteBuffer.readUnsignedByte()
-                        var mimo = temp shl 1
-                        mimo = mimo and 0x7F
-                        mimo += mixed ushr 15
-                        nrband.mimoDL = getMimoFromIndex(mimo)
+                val isNr = temp % 2 == 1
+
+                val component =
+                    if (isNr) {
+                        ComponentNr(band)
                     } else {
-                        nrband.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
+                        ComponentLte(band)
                     }
-                    var mimoUL = 0
-                    if (version >= 8) {
-                        temp = temp ushr 6
-                        val temp2 = byteBuffer.readUnsignedByte()
-                        temp += temp2 shl 2
-                        temp = temp and 0x1F
-                        mimoUL = (temp2 ushr 3) and 0x7F
-                    } else {
-                        temp = byteBuffer.readUnsignedByte() ushr 1
-                    }
-                    if (temp > 0) nrband.classUL = (temp + 0x40).toChar()
-                    if (version < 8) {
-                        mimoUL = byteBuffer.readUnsignedByte()
-                    }
-                    nrband.mimoUL = getMimoFromIndex(mimoUL)
+                component.classDL = bwclass
+                if (version >= 8) {
                     temp = byteBuffer.readUnsignedByte()
-                    var modUL = temp
-                    if (version >= 8) {
-                        modUL = modUL shr 1
-                        modUL = modUL and 0x3
-                    }
-                    nrband.modUL = getQamFromIndex(modUL)
+                    var mimo = temp shl 1
+                    mimo = mimo and 0x7F
+                    mimo += mixed ushr 15
+                    component.mimoDL = getMimoFromIndex(mimo)
+                } else {
+                    component.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
+                }
+                var mimoUL = 0
+                if (version >= 8) {
+                    temp = temp ushr 6
+                    val temp2 = byteBuffer.readUnsignedByte()
+                    temp += temp2 shl 2
+                    temp = temp and 0x1F
+                    mimoUL = (temp2 ushr 3) and 0x7F
+                } else {
+                    temp = byteBuffer.readUnsignedByte() ushr 1
+                }
+                if (temp > 0) component.classUL = (temp + 0x40).toChar()
+                if (version < 8) {
+                    mimoUL = byteBuffer.readUnsignedByte()
+                }
+                component.mimoUL = getMimoFromIndex(mimoUL)
+                temp = byteBuffer.readUnsignedByte()
+                var modUL = temp
+                if (version >= 8) {
+                    modUL = modUL shr 1
+                    modUL = modUL and 0x3
+                }
+                component.modUL = getQamFromIndex(modUL)
+
+                if (isNr) {
+                    val nrband = component as ComponentNr
                     if (version < 8) byteBuffer.skipBytes(1)
                     if (version >= 6) {
                         var scsIndex = temp
@@ -177,43 +186,11 @@ class Import0xB826 : ImportCapabilities {
                         }
                         nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
                     }
-                    nrbands.add(nrband)
+                    nrbands.add(component)
                 } else {
                     endc = true
-                    val lteband = ComponentLte()
-                    lteband.band = band
-                    lteband.classDL = bwclass
-                    if (version >= 8) {
-                        temp = byteBuffer.readUnsignedByte()
-                        var mimo = temp shl 1
-                        mimo = mimo and 0x7F
-                        mimo += mixed ushr 15
-                        lteband.mimoDL = getMimoFromIndex(mimo)
-                    } else {
-                        lteband.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
-                    }
-                    if (version >= 8) {
-                        temp = temp ushr 6
-                        val temp2 = byteBuffer.readUnsignedByte()
-                        temp += temp2 shl 2
-                        temp = temp and 0x1F
-                    } else {
-                        temp = byteBuffer.readUnsignedByte() ushr 1
-                    }
-                    if (temp > 0) lteband.classUL = (temp + 0x40).toChar()
-                    if (version < 8) {
-                        /* LTE UL MIMO isn't useful */
-                        byteBuffer.skipBytes(1)
-                    }
-                    temp = byteBuffer.readUnsignedByte()
-                    var modUL = temp
-                    if (version >= 8) {
-                        modUL = modUL shr 1
-                        modUL = modUL and 0x3
-                    }
-                    lteband.modUL = getQamFromIndex(modUL)
                     byteBuffer.skipBytes(3)
-                    bands.add(lteband)
+                    bands.add(component)
                 }
             }
             /*
