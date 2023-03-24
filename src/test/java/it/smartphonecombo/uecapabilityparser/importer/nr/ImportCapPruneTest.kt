@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 internal class ImportCapPruneTest {
 
     companion object {
-        val importCapPrune = ImportCapPrune()
+        val importCapPrune = ImportCapPrune
     }
 
     private fun parse(

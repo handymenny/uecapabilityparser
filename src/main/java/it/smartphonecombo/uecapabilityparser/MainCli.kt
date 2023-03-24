@@ -172,7 +172,7 @@ internal object MainCli {
             when (typeLog) {
                 "E" -> imports = ImportNvItem
                 "C" -> imports = ImportCarrierPolicy
-                "CNR" -> imports = ImportCapPrune()
+                "CNR" -> imports = ImportCapPrune
                 "Q" -> imports = Import0xB0CD
                 "M" -> imports = ImportMTKLte
                 "QNR" -> imports = Import0xB826()
