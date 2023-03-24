@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
+import it.smartphonecombo.uecapabilityparser.extension.toBwClass
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.nio.ByteBuffer
@@ -114,8 +115,7 @@ class Import0xB826 : ImportCapabilities {
                     band = mixed
                     temp = byteBuffer.readUnsignedByte()
                 }
-                var bwclass = ((temp ushr 1) + 0x40).toChar()
-                if (bwclass < 'A') bwclass = '\u0000'
+                val bwclass = (temp ushr 1).toBwClass()
                 val isNr = temp % 2 == 1
 
                 val component =
@@ -144,7 +144,7 @@ class Import0xB826 : ImportCapabilities {
                 } else {
                     temp = byteBuffer.readUnsignedByte() ushr 1
                 }
-                if (temp > 0) component.classUL = (temp + 0x40).toChar()
+                component.classUL = temp.toBwClass()
                 if (version < 8) {
                     mimoUL = byteBuffer.readUnsignedByte()
                 }
