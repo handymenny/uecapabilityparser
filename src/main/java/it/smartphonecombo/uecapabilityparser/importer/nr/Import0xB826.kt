@@ -24,21 +24,10 @@ class Import0xB826 : ImportCapabilities {
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
 
         try {
-            var fileSize = byteBuffer.readUnsignedShort()
-            if (fileSize == byteBuffer.limit()) {
-                val logItem = "0x" + Integer.toHexString(byteBuffer.readUnsignedShort()).uppercase()
-                combos.setMetadata("logItem", logItem)
-                if (debug) {
-                    println("Log Item: $logItem")
-                }
-                byteBuffer.skipBytes(8)
-            } else {
-                fileSize = byteBuffer.limit()
-                byteBuffer.rewind()
-            }
-            combos.setMetadata("logSize", fileSize)
+            val logSize = getLogSize(byteBuffer, combos)
+            combos.setMetadata("logSize", logSize)
             if (debug) {
-                println("Log file size: $fileSize bytes")
+                println("Log file size: $logSize bytes")
             }
 
             val version = byteBuffer.readUnsignedShort()
@@ -99,6 +88,30 @@ class Import0xB826 : ImportCapabilities {
             }
         }
         return combos
+    }
+
+    private fun getLogSize(
+        byteBuffer: ByteBuffer,
+        combos: Capabilities
+    ): Int {
+        // Try to read fileSize from the header
+        val fileSize = byteBuffer.readUnsignedShort()
+
+        // if fileSize = bufferSize 0xB826 has a header
+        if (fileSize != byteBuffer.limit()) {
+            // header missing, logSize is buffer size
+            byteBuffer.rewind()
+            return byteBuffer.limit()
+        }
+
+        val logItem = byteBuffer.readUnsignedShort().toString(16).uppercase()
+        combos.setMetadata("logItem", "0x$logItem")
+        if (debug) {
+            println("Log Item: 0x$logItem")
+        }
+        // Skip the rest of the header
+        byteBuffer.skipBytes(8)
+        return fileSize
     }
 
     private fun parseCombo(
