@@ -20,7 +20,7 @@ import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-class Import0xB826 : ImportCapabilities {
+object Import0xB826 : ImportCapabilities {
     override fun parse(input: InputStream): Capabilities {
         val capabilities = Capabilities()
         val listCombo = ArrayList<ComboNr>()
