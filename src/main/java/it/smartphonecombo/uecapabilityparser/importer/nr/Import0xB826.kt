@@ -37,19 +37,7 @@ class Import0xB826 : ImportCapabilities {
             }
 
             byteBuffer.skipBytes(2)
-            var numCombos = byteBuffer.readUnsignedShort()
-            if (version > 3) {
-                if (debug) {
-                    println("Total Numb Combos $numCombos\n")
-                }
-                combos.setMetadata("totalCombos", numCombos)
-                val index = byteBuffer.readUnsignedShort()
-                combos.setMetadata("index", index)
-                if (debug) {
-                    println("Index $index\n")
-                }
-                numCombos = byteBuffer.readUnsignedShort()
-            }
+            val numCombos = getNumCombos(byteBuffer, version, combos)
             if (debug) {
                 println("Num Combos $numCombos\n")
             }
@@ -90,10 +78,25 @@ class Import0xB826 : ImportCapabilities {
         return combos
     }
 
-    private fun getLogSize(
-        byteBuffer: ByteBuffer,
-        combos: Capabilities
-    ): Int {
+    private fun getNumCombos(byteBuffer: ByteBuffer, version: Int, combos: Capabilities): Int {
+        // Version < 3 only has the num of combos of this log
+        // version > 3 also have the total combos of the series and the index of this specific log
+        if (version <= 3) {
+            return byteBuffer.readUnsignedShort()
+        }
+
+        val totalCombos = byteBuffer.readUnsignedShort()
+        combos.setMetadata("totalCombos", totalCombos)
+        val index = byteBuffer.readUnsignedShort()
+        combos.setMetadata("index", index)
+        if (debug) {
+            println("Total Numb Combos $totalCombos\n")
+            println("Index $index\n")
+        }
+        return byteBuffer.readUnsignedShort()
+    }
+
+    private fun getLogSize(byteBuffer: ByteBuffer, combos: Capabilities): Int {
         // Try to read fileSize from the header
         val fileSize = byteBuffer.readUnsignedShort()
 
