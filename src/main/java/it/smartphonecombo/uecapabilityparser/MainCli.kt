@@ -175,7 +175,7 @@ internal object MainCli {
                 "CNR" -> imports = ImportCapPrune
                 "Q" -> imports = Import0xB0CD
                 "M" -> imports = ImportMTKLte
-                "QNR" -> imports = Import0xB826()
+                "QNR" -> imports = Import0xB826
                 "W",
                 "N",
                 "O",

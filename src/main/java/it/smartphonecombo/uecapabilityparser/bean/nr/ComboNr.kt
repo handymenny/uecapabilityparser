@@ -241,12 +241,12 @@ data class ComboNr(
         return str.toString()
     }
 
-    private val isEnDc: Boolean
+    val isEnDc: Boolean
         get() =
             (masterComponents.isNotEmpty() && (masterComponents[0] is ComponentLte)) &&
                 (secondaryComponents.isNotEmpty() && (secondaryComponents[0] is ComponentNr))
 
-    private val isNrDc: Boolean
+    val isNrDc: Boolean
         get() =
             (masterComponents.isNotEmpty() && (masterComponents[0] is ComponentNr)) &&
                 (secondaryComponents.isNotEmpty() && (secondaryComponents[0] is ComponentNr))
