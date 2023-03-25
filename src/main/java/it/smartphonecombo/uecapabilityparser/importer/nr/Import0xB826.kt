@@ -37,20 +37,18 @@ class Import0xB826 : ImportCapabilities {
             }
 
             byteBuffer.skipBytes(2)
+
             val numCombos = getNumCombos(byteBuffer, version, combos)
             if (debug) {
                 println("Num Combos $numCombos\n")
             }
             combos.setMetadata("numCombos", numCombos)
 
-            var source: String? = null
-            if (version > 3) {
-                // Parse source field
-                val sourceIndex = byteBuffer.readUnsignedByte()
-                source = getSourceFromIndex(sourceIndex)
-                combos.setMetadata("source", source)
+            val source: String? = getSource(version, byteBuffer)
+            source?.let {
+                combos.setMetadata("source", it)
                 if (debug) {
-                    println("source $source\n")
+                    println("source $it\n")
                 }
             }
 
@@ -76,6 +74,19 @@ class Import0xB826 : ImportCapabilities {
             }
         }
         return combos
+    }
+
+    private fun getSource(
+        version: Int,
+        byteBuffer: ByteBuffer,
+    ): String? {
+        if (version <= 3) {
+            return null
+        }
+
+        // Parse source field
+        val sourceIndex = byteBuffer.readUnsignedByte()
+        return getSourceFromIndex(sourceIndex)
     }
 
     private fun getNumCombos(byteBuffer: ByteBuffer, version: Int, combos: Capabilities): Int {
