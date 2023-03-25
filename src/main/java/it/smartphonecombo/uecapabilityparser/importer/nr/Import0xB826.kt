@@ -1,5 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.importer.nr
 
+import com.soywiz.kmem.extract
+import com.soywiz.kmem.extract4
+import com.soywiz.kmem.extract8
+import com.soywiz.kmem.insert
+import com.soywiz.kmem.isOdd
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
@@ -186,13 +191,16 @@ class Import0xB826 : ImportCapabilities {
     private fun getNumBands(byteBuffer: ByteBuffer, version: Int): Int {
         val numBands = byteBuffer.readUnsignedByte()
 
-        return if (version < 3) {
-            numBands
-        } else if (version <= 7) {
-            numBands ushr 1
-        } else {
-            (numBands ushr 3) and 0x0F
-        }
+        val offset =
+            if (version < 3) {
+                0
+            } else if (version <= 7) {
+                1
+            } else {
+                3
+            }
+
+        return numBands.extract4(offset)
     }
 
     private fun parseComponent(byteBuffer: ByteBuffer, version: Int): IComponent {
@@ -205,9 +213,9 @@ class Import0xB826 : ImportCapabilities {
 
     private fun parseComponentPreV8(byteBuffer: ByteBuffer, version: Int): IComponent {
         val band = byteBuffer.readUnsignedShort()
-        val bwType = byteBuffer.readUnsignedByte()
-        val bwclass = (bwType ushr 1).toBwClass()
-        val isNr = bwType % 2 == 1
+        val byte = byteBuffer.readUnsignedByte()
+        val bwClass = byte.extract8(1).toBwClass()
+        val isNr = byte.isOdd
 
         val component =
             if (isNr) {
@@ -216,9 +224,9 @@ class Import0xB826 : ImportCapabilities {
                 ComponentLte(band)
             }
 
-        component.classDL = bwclass
+        component.classDL = bwClass
         component.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
-        val ulClass = byteBuffer.readUnsignedByte() ushr 1
+        val ulClass = byteBuffer.readUnsignedByte().extract8(1)
         component.classUL = ulClass.toBwClass()
         val mimoUL = byteBuffer.readUnsignedByte()
         component.mimoUL = getMimoFromIndex(mimoUL)
@@ -226,18 +234,24 @@ class Import0xB826 : ImportCapabilities {
         component.modUL = getQamFromIndex(modUL)
 
         if (isNr) {
-            val nrband = component as ComponentNr
+            val nrBand = component as ComponentNr
             byteBuffer.skipBytes(1)
+
+            val short = byteBuffer.readUnsignedShort()
+
+            var scsIndex = short.extract4(0)
+            if (version < 3) {
+                scsIndex += 1
+            }
+
+            nrBand.scs = getSCSFromIndex(scsIndex)
+
             if (version >= 6) {
-                val mixed = byteBuffer.readUnsignedShort()
-                nrband.scs = 15 * (1 shl (mixed and 0x000F) - 1)
-                nrband.maxBandwidth = getBWFromIndex(mixed ushr 6 and 0x1F)
-            } else if (version > 2) {
-                nrband.scs = 15 * (1 shl byteBuffer.readUnsignedByte() - 1)
-                nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
+                val bwIndex = short.extract(6, 5)
+                nrBand.maxBandwidth = getBWFromIndex(bwIndex)
             } else {
-                nrband.scs = 15 * (1 + byteBuffer.readUnsignedByte())
-                nrband.maxBandwidth = byteBuffer.readUnsignedByte() shl 2
+                val bwIndex = short.extract8(8)
+                nrBand.maxBandwidth = bwIndex shl 2
             }
         } else {
             byteBuffer.skipBytes(3)
@@ -246,11 +260,11 @@ class Import0xB826 : ImportCapabilities {
     }
 
     private fun parseComponentV8(byteBuffer: ByteBuffer): IComponent {
-        val mixed = byteBuffer.readUnsignedShort()
-        val band = mixed and 0x1FF
-        var temp = mixed ushr 9 and 0x1F
-        val bwclass = (temp ushr 1).toBwClass()
-        val isNr = temp % 2 == 1
+        val short = byteBuffer.readUnsignedShort()
+
+        val band = short.extract(0, 9)
+        val isNr = short.extract(9)
+        val bwClass = short.extract(10, 5).toBwClass()
 
         val component =
             if (isNr) {
@@ -258,27 +272,38 @@ class Import0xB826 : ImportCapabilities {
             } else {
                 ComponentLte(band)
             }
-        component.classDL = bwclass
-        temp = byteBuffer.readUnsignedByte()
-        val mimo = ((temp shl 1) and 0x7F) + (mixed ushr 15)
+        component.classDL = bwClass
+        val byte = byteBuffer.readUnsignedByte()
+
+        val mimoLeft = byte.extract(0, 6)
+        val mimoRight = short.extract(15, 1)
+        val mimo = mimoRight.insert(mimoLeft, 1, 6)
         component.mimoDL = getMimoFromIndex(mimo)
-        val temp2 = byteBuffer.readUnsignedByte()
-        val mimoUL = (temp2 ushr 3) and 0x7F
+
+        val byte2 = byteBuffer.readUnsignedByte()
+        val mimoUL = byte2.extract(3, 7)
         component.mimoUL = getMimoFromIndex(mimoUL)
-        val classUl = ((temp ushr 6) + (temp2 shl 2)) and 0x1F
+
+        val classUlLeft = byte2.extract(0, 3)
+        val classUlRight = byte.extract(6, 2)
+        val classUl = classUlRight.insert(classUlLeft, 2, 3)
         component.classUL = classUl.toBwClass()
-        temp = byteBuffer.readUnsignedByte()
-        val modUL = (temp shr 1) and 0x3
+
+        val byte3 = byteBuffer.readUnsignedByte()
+        val modUL = byte3.extract(1, 2)
         component.modUL = getQamFromIndex(modUL)
 
         if (isNr) {
-            val nrband = component as ComponentNr
-            var scsIndex = temp
-            temp = byteBuffer.readUnsignedByte()
-            scsIndex = 1 shl ((((scsIndex ushr 7) + (temp and 3 shl 1)) and 0x000F) - 1)
-            nrband.scs = 15 * (scsIndex)
-            val maxBWindex = temp shr 2 and 0x1F
-            nrband.maxBandwidth = getBWFromIndexV8(maxBWindex)
+            val nrBand = component as ComponentNr
+            val byte4 = byteBuffer.readUnsignedByte()
+
+            val scsLeft = byte4.extract(0, 2)
+            val scsRight = byte3.extract(7, 1)
+            val scsIndex = scsRight.insert(scsLeft, 1, 2)
+            nrBand.scs = getSCSFromIndex(scsIndex)
+
+            val maxBWindex = byte4.extract(2, 5)
+            nrBand.maxBandwidth = getBWFromIndexV8(maxBWindex)
             byteBuffer.skipBytes(2)
         } else {
             byteBuffer.skipBytes(3)
@@ -375,6 +400,16 @@ class Import0xB826 : ImportCapabilities {
             4 -> "RF_NRCA"
             5 -> "RF_NRDC"
             else -> index.toString()
+        }
+    }
+
+    private fun getSCSFromIndex(index: Int): Int {
+        return when (index) {
+            1 -> 15
+            2 -> 30
+            3 -> 60
+            4 -> 120
+            else -> index
         }
     }
 }

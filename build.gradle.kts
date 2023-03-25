@@ -16,6 +16,7 @@ repositories {
 dependencies {
     val kotlinVersion = "1.8.10"
     val mtsAsn1Version = "0.0.8"
+    val kmemVersion = "2.2.0"
 
     implementation("commons-cli:commons-cli:1.5.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
@@ -25,6 +26,7 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     implementation("org.slf4j:slf4j-nop:2.0.7")
+    implementation("com.soywiz.korlibs.kmem:kmem-jvm:$kmemVersion")
 }
 
 group = "parser"
