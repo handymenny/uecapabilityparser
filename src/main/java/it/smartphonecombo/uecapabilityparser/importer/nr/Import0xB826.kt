@@ -178,11 +178,15 @@ class Import0xB826 : ImportCapabilities {
             }
         }
 
-        val bandArray = bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
-        val nrBandsArray =
-            nrBands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
-        val nrDcBandsArray =
-            nrDcBands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+        val bandArray = bands.toTypedArray()
+        bandArray.sortWith(IComponent.defaultComparator.reversed())
+
+        val nrBandsArray = nrBands.toTypedArray()
+        nrBandsArray.sortWith(IComponent.defaultComparator.reversed())
+
+        val nrDcBandsArray = nrDcBands.toTypedArray()
+        nrDcBands.sortWith(IComponent.defaultComparator.reversed())
+
         return if (bandArray.isNotEmpty()) {
             ComboNr(bandArray, nrBandsArray)
         } else if (nrDcBandsArray.isNotEmpty()) {
