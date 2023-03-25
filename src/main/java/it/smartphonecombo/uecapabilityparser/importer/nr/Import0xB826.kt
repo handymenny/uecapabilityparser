@@ -20,7 +20,28 @@ import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
+/**
+ * A parser for Qualcomm 0xB826 Log Item (NR5G RRC Supported CA Combos).
+ *
+ * Some BW, mimo and modulation values are guessed, so they can be wrong or incomplete.
+ */
 object Import0xB826 : ImportCapabilities {
+
+    /**
+     * This parser take as [input] an [InputStream] of a 0xB826 (binary)
+     *
+     * The output is a [Capabilities] with the list of parsed NR CA combos stored in
+     * [nrCombos][Capabilities.nrCombos], the list of parsed EN DC combos stored in
+     * [enDcCombos][Capabilities.enDcCombos] and the list of parsed NR DC combos stored in
+     * [nrDcCombos][Capabilities.nrDcCombos]
+     *
+     * It supports 0xB826 with or without header.
+     *
+     * It has been tested with the following 0xB826 versions: 2, 3, 4, 6, 7, 8, 9, 10, 13, 14.
+     *
+     * If you have a 0xB826 of a different version, please share it with info at smartphonecombo dot
+     * it.
+     */
     override fun parse(input: InputStream): Capabilities {
         val capabilities = Capabilities()
         val listCombo = ArrayList<ComboNr>()
@@ -81,6 +102,13 @@ object Import0xB826 : ImportCapabilities {
         return capabilities
     }
 
+    /**
+     * Returns the source of the combos list.
+     *
+     * It can be "RF", "PM", "RF_ENDC", "RF_NRCA" or "RF_NRDC".
+     *
+     * Supported for 0xB826 v4 and above.
+     */
     private fun getSource(
         version: Int,
         byteBuffer: ByteBuffer,
@@ -94,6 +122,10 @@ object Import0xB826 : ImportCapabilities {
         return getSourceFromIndex(sourceIndex)
     }
 
+    /**
+     * Return the num of combos in this log. Also set index and totalCombos in [capabilities] if
+     * available.
+     */
     private fun getNumCombos(
         byteBuffer: ByteBuffer,
         version: Int,
@@ -116,6 +148,11 @@ object Import0xB826 : ImportCapabilities {
         return byteBuffer.readUnsignedShort()
     }
 
+    /**
+     * Return the content size of 0xB826. Also set logItem [capabilities] if available.
+     *
+     * It supports 0xB826 with or without header.
+     */
     private fun getLogSize(byteBuffer: ByteBuffer, capabilities: Capabilities): Int {
         // Try to read fileSize from the header
         val fileSize = byteBuffer.readUnsignedShort()
@@ -137,6 +174,7 @@ object Import0xB826 : ImportCapabilities {
         return fileSize
     }
 
+    /** Parses a combo */
     private fun parseCombo(
         byteBuffer: ByteBuffer,
         version: Int,
@@ -166,8 +204,7 @@ object Import0xB826 : ImportCapabilities {
         }
 
         /*
-         * We assume that 0xb826 without explicit combo type in source
-         * don't support NR CA FR1-FR2.
+         * We assume that 0xb826 without explicit combo type in source don't support NR CA FR1-FR2.
          */
         if (bands.isEmpty() && !source.equals("RF_NRCA")) {
             val (fr2bands, fr1bands) = nrBands.partition { (it as ComponentNr).isFR2 }
@@ -196,6 +233,7 @@ object Import0xB826 : ImportCapabilities {
         }
     }
 
+    /** Return the num of components of a combo. */
     private fun getNumComponents(byteBuffer: ByteBuffer, version: Int): Int {
         val numBands = byteBuffer.readUnsignedByte()
 
@@ -211,6 +249,11 @@ object Import0xB826 : ImportCapabilities {
         return numBands.extract4(offset)
     }
 
+    /**
+     * Parse a component.
+     *
+     * This just calls [parseComponentV8] if version >= 8 or [parseComponentPreV8] otherwise.
+     */
     private fun parseComponent(byteBuffer: ByteBuffer, version: Int): IComponent {
         return if (version >= 8) {
             parseComponentV8(byteBuffer)
@@ -219,6 +262,7 @@ object Import0xB826 : ImportCapabilities {
         }
     }
 
+    /** Parse a component. It only supports versions < 8 */
     private fun parseComponentPreV8(byteBuffer: ByteBuffer, version: Int): IComponent {
         val band = byteBuffer.readUnsignedShort()
         val byte = byteBuffer.readUnsignedByte()
@@ -267,6 +311,7 @@ object Import0xB826 : ImportCapabilities {
         return component
     }
 
+    /** Parse a component. It supports versions >= 8 */
     private fun parseComponentV8(byteBuffer: ByteBuffer): IComponent {
         val short = byteBuffer.readUnsignedShort()
 
@@ -319,6 +364,11 @@ object Import0xB826 : ImportCapabilities {
         return component
     }
 
+    /**
+     * Return mimo from index.
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
     private fun getMimoFromIndex(index: Int): Int {
         return when (index) {
             0 -> 0
@@ -348,6 +398,11 @@ object Import0xB826 : ImportCapabilities {
         }
     }
 
+    /**
+     * Return qam from index.
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
     private fun getQamFromIndex(index: Int): String {
         return when (index) {
             2,
@@ -358,6 +413,11 @@ object Import0xB826 : ImportCapabilities {
         }
     }
 
+    /**
+     * Return maxBw from index for 0xB826 versions >= 8.
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
     private fun getBWFromIndexV8(index: Int): Int {
         return when (index) {
             0 -> 5
@@ -381,6 +441,11 @@ object Import0xB826 : ImportCapabilities {
         }
     }
 
+    /**
+     * Return maxBw from index for 0xB826 versions < 8.
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
     private fun getBWFromIndex(index: Int): Int {
         return when (index) {
             4 -> 5
@@ -400,6 +465,11 @@ object Import0xB826 : ImportCapabilities {
         }
     }
 
+    /**
+     * Return the combo source from index.
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
     private fun getSourceFromIndex(index: Int): String {
         return when (index) {
             0 -> "RF"
@@ -411,6 +481,11 @@ object Import0xB826 : ImportCapabilities {
         }
     }
 
+    /**
+     * Return max SCS from index.
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
     private fun getSCSFromIndex(index: Int): Int {
         return when (index) {
             1 -> 15
