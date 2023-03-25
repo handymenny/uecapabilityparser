@@ -11,6 +11,7 @@ import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.extension.toBwClass
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
+import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -21,64 +22,67 @@ class Import0xB826 : ImportCapabilities {
         val byteArray = input.use(InputStream::readBytes)
         val byteBuffer = ByteBuffer.wrap(byteArray)
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
-        var fileSize = byteBuffer.readUnsignedShort()
-        if (fileSize == byteBuffer.limit()) {
-            val logItem = "0x" + Integer.toHexString(byteBuffer.readUnsignedShort()).uppercase()
-            combos.setMetadata("logItem", logItem)
-            if (debug) {
-                println("Log Item: $logItem")
-            }
-            byteBuffer.skipBytes(8)
-        } else {
-            fileSize = byteBuffer.limit()
-            byteBuffer.rewind()
-        }
-        combos.setMetadata("logSize", fileSize)
-        if (debug) {
-            println("Log file size: $fileSize bytes")
-        }
 
-        val version = byteBuffer.readUnsignedShort()
-        combos.setMetadata("version", version)
-        if (debug) {
-            println("Version $version\n")
-        }
-
-        byteBuffer.skipBytes(2)
-        var numCombos = byteBuffer.readUnsignedShort()
-        if (version > 3) {
-            if (debug) {
-                println("Total Numb Combos $numCombos\n")
+        try {
+            var fileSize = byteBuffer.readUnsignedShort()
+            if (fileSize == byteBuffer.limit()) {
+                val logItem = "0x" + Integer.toHexString(byteBuffer.readUnsignedShort()).uppercase()
+                combos.setMetadata("logItem", logItem)
+                if (debug) {
+                    println("Log Item: $logItem")
+                }
+                byteBuffer.skipBytes(8)
+            } else {
+                fileSize = byteBuffer.limit()
+                byteBuffer.rewind()
             }
-            combos.setMetadata("totalCombos", numCombos)
-            val index = byteBuffer.readUnsignedShort()
-            combos.setMetadata("index", index)
+            combos.setMetadata("logSize", fileSize)
             if (debug) {
-                println("Index $index\n")
+                println("Log file size: $fileSize bytes")
             }
-            numCombos = byteBuffer.readUnsignedShort()
-        }
-        if (debug) {
-            println("Num Combos $numCombos\n")
-        }
-        combos.setMetadata("numCombos", numCombos)
 
-        var source: String? = null
-        if (version > 3) {
-            // Parse source field
-            val sourceIndex = byteBuffer.readUnsignedByte()
-            source = getSourceFromIndex(sourceIndex)
-            combos.setMetadata("source", source)
+            val version = byteBuffer.readUnsignedShort()
+            combos.setMetadata("version", version)
             if (debug) {
-                println("source $source\n")
+                println("Version $version\n")
             }
-        }
 
-        var comboN = 0
-        while (comboN < numCombos && byteBuffer.remaining() > 0) {
-            val combo = parseCombo(byteBuffer, version, source)
-            listCombo.add(combo)
-            comboN++
+            byteBuffer.skipBytes(2)
+            var numCombos = byteBuffer.readUnsignedShort()
+            if (version > 3) {
+                if (debug) {
+                    println("Total Numb Combos $numCombos\n")
+                }
+                combos.setMetadata("totalCombos", numCombos)
+                val index = byteBuffer.readUnsignedShort()
+                combos.setMetadata("index", index)
+                if (debug) {
+                    println("Index $index\n")
+                }
+                numCombos = byteBuffer.readUnsignedShort()
+            }
+            if (debug) {
+                println("Num Combos $numCombos\n")
+            }
+            combos.setMetadata("numCombos", numCombos)
+
+            var source: String? = null
+            if (version > 3) {
+                // Parse source field
+                val sourceIndex = byteBuffer.readUnsignedByte()
+                source = getSourceFromIndex(sourceIndex)
+                combos.setMetadata("source", source)
+                if (debug) {
+                    println("source $source\n")
+                }
+            }
+
+            for (i in 1..numCombos) {
+                val combo = parseCombo(byteBuffer, version, source)
+                listCombo.add(combo)
+            }
+        } catch (ignored: BufferUnderflowException) {
+            // Do nothing
         }
 
         if (debug) {
