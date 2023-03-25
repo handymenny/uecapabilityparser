@@ -22,36 +22,36 @@ import java.nio.ByteOrder
 
 class Import0xB826 : ImportCapabilities {
     override fun parse(input: InputStream): Capabilities {
-        val combos = Capabilities()
+        val capabilities = Capabilities()
         val listCombo = ArrayList<ComboNr>()
         val byteArray = input.use(InputStream::readBytes)
         val byteBuffer = ByteBuffer.wrap(byteArray)
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
 
         try {
-            val logSize = getLogSize(byteBuffer, combos)
-            combos.setMetadata("logSize", logSize)
+            val logSize = getLogSize(byteBuffer, capabilities)
+            capabilities.setMetadata("logSize", logSize)
             if (debug) {
                 println("Log file size: $logSize bytes")
             }
 
             val version = byteBuffer.readUnsignedShort()
-            combos.setMetadata("version", version)
+            capabilities.setMetadata("version", version)
             if (debug) {
                 println("Version $version\n")
             }
 
             byteBuffer.skipBytes(2)
 
-            val numCombos = getNumCombos(byteBuffer, version, combos)
+            val numCombos = getNumCombos(byteBuffer, version, capabilities)
             if (debug) {
                 println("Num Combos $numCombos\n")
             }
-            combos.setMetadata("numCombos", numCombos)
+            capabilities.setMetadata("numCombos", numCombos)
 
             val source: String? = getSource(version, byteBuffer)
             source?.let {
-                combos.setMetadata("source", it)
+                capabilities.setMetadata("source", it)
                 if (debug) {
                     println("source $it\n")
                 }
@@ -71,14 +71,14 @@ class Import0xB826 : ImportCapabilities {
 
         if (listCombo.isNotEmpty()) {
             if (listCombo.first().isEnDc) {
-                combos.enDcCombos = listCombo
+                capabilities.enDcCombos = listCombo
             } else if (listCombo.first().isNrDc) {
-                combos.nrDcCombos = listCombo
+                capabilities.nrDcCombos = listCombo
             } else {
-                combos.nrCombos = listCombo
+                capabilities.nrCombos = listCombo
             }
         }
-        return combos
+        return capabilities
     }
 
     private fun getSource(
@@ -94,7 +94,11 @@ class Import0xB826 : ImportCapabilities {
         return getSourceFromIndex(sourceIndex)
     }
 
-    private fun getNumCombos(byteBuffer: ByteBuffer, version: Int, combos: Capabilities): Int {
+    private fun getNumCombos(
+        byteBuffer: ByteBuffer,
+        version: Int,
+        capabilities: Capabilities
+    ): Int {
         // Version < 3 only has the num of combos of this log
         // version > 3 also have the total combos of the series and the index of this specific log
         if (version <= 3) {
@@ -102,9 +106,9 @@ class Import0xB826 : ImportCapabilities {
         }
 
         val totalCombos = byteBuffer.readUnsignedShort()
-        combos.setMetadata("totalCombos", totalCombos)
+        capabilities.setMetadata("totalCombos", totalCombos)
         val index = byteBuffer.readUnsignedShort()
-        combos.setMetadata("index", index)
+        capabilities.setMetadata("index", index)
         if (debug) {
             println("Total Numb Combos $totalCombos\n")
             println("Index $index\n")
@@ -112,7 +116,7 @@ class Import0xB826 : ImportCapabilities {
         return byteBuffer.readUnsignedShort()
     }
 
-    private fun getLogSize(byteBuffer: ByteBuffer, combos: Capabilities): Int {
+    private fun getLogSize(byteBuffer: ByteBuffer, capabilities: Capabilities): Int {
         // Try to read fileSize from the header
         val fileSize = byteBuffer.readUnsignedShort()
 
@@ -124,7 +128,7 @@ class Import0xB826 : ImportCapabilities {
         }
 
         val logItem = byteBuffer.readUnsignedShort().toString(16).uppercase()
-        combos.setMetadata("logItem", "0x$logItem")
+        capabilities.setMetadata("logItem", "0x$logItem")
         if (debug) {
             println("Log Item: 0x$logItem")
         }
@@ -141,10 +145,10 @@ class Import0xB826 : ImportCapabilities {
         if (version >= 8) {
             byteBuffer.skipBytes(3)
         }
-        val numBands = getNumBands(byteBuffer, version)
+        val numComponents = getNumComponents(byteBuffer, version)
         val bands = mutableListOf<IComponent>()
-        var nrbands = mutableListOf<IComponent>()
-        var nrdcbands = mutableListOf<IComponent>()
+        var nrBands = mutableListOf<IComponent>()
+        var nrDcBands = mutableListOf<IComponent>()
         when (version) {
             6,
             8 -> byteBuffer.skipBytes(1)
@@ -152,10 +156,10 @@ class Import0xB826 : ImportCapabilities {
             in 9..13 -> byteBuffer.skipBytes(9)
             14 -> byteBuffer.skipBytes(25)
         }
-        for (i in 0 until numBands) {
+        for (i in 0 until numComponents) {
             val component = parseComponent(byteBuffer, version)
             if (component is ComponentNr) {
-                nrbands.add(component)
+                nrBands.add(component)
             } else {
                 bands.add(component)
             }
@@ -166,29 +170,29 @@ class Import0xB826 : ImportCapabilities {
          * don't support NR CA FR1-FR2.
          */
         if (bands.isEmpty() && !source.equals("RF_NRCA")) {
-            val (fr2bands, fr1bands) = nrbands.partition { (it as ComponentNr).isFR2 }
+            val (fr2bands, fr1bands) = nrBands.partition { (it as ComponentNr).isFR2 }
 
             if (fr2bands.isNotEmpty() && fr1bands.isNotEmpty()) {
-                nrbands = fr1bands.toMutableList()
-                nrdcbands = fr2bands.toMutableList()
+                nrBands = fr1bands.toMutableList()
+                nrDcBands = fr2bands.toMutableList()
             }
         }
 
         val bandArray = bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
-        val nrbandsArray =
-            nrbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
-        val nrdcbandsArray =
-            nrdcbands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+        val nrBandsArray =
+            nrBands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+        val nrDcBandsArray =
+            nrDcBands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
         return if (bandArray.isNotEmpty()) {
-            ComboNr(bandArray, nrbandsArray)
-        } else if (nrdcbandsArray.isNotEmpty()) {
-            ComboNr(nrbandsArray, nrdcbandsArray)
+            ComboNr(bandArray, nrBandsArray)
+        } else if (nrDcBandsArray.isNotEmpty()) {
+            ComboNr(nrBandsArray, nrDcBandsArray)
         } else {
-            ComboNr(nrbandsArray)
+            ComboNr(nrBandsArray)
         }
     }
 
-    private fun getNumBands(byteBuffer: ByteBuffer, version: Int): Int {
+    private fun getNumComponents(byteBuffer: ByteBuffer, version: Int): Int {
         val numBands = byteBuffer.readUnsignedByte()
 
         val offset =
