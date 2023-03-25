@@ -136,14 +136,7 @@ class Import0xB826 : ImportCapabilities {
         if (version >= 8) {
             byteBuffer.skipBytes(3)
         }
-        var numBands = byteBuffer.readUnsignedByte()
-        numBands =
-            when (version) {
-                1,
-                2 -> numBands
-                in 3..7 -> numBands ushr 1
-                else -> (numBands ushr 3) and 0x0F
-            }
+        val numBands = getNumBands(byteBuffer, version)
         val bands = mutableListOf<IComponent>()
         var nrbands = mutableListOf<IComponent>()
         var nrdcbands = mutableListOf<IComponent>()
@@ -187,6 +180,18 @@ class Import0xB826 : ImportCapabilities {
             ComboNr(nrbandsArray, nrdcbandsArray)
         } else {
             ComboNr(nrbandsArray)
+        }
+    }
+
+    private fun getNumBands(byteBuffer: ByteBuffer, version: Int): Int {
+        val numBands = byteBuffer.readUnsignedByte()
+
+        return if (version < 3) {
+            numBands
+        } else if (version <= 7) {
+            numBands ushr 1
+        } else {
+            (numBands ushr 3) and 0x0F
         }
     }
 
