@@ -425,7 +425,8 @@ object Import0xB826 : ImportCapabilities {
             2 -> 10
             3 -> 15
             4,
-            5 -> 20
+            5,
+            7 -> 20
             8,
             9 -> 25
             10 -> 30
