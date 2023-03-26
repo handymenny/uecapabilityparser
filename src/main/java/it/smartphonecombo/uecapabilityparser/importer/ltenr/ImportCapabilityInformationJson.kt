@@ -477,8 +477,8 @@ class ImportCapabilityInformationJson : ImportCapabilities {
 
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) =
         zip(bcsList) { bands, bcs ->
-            val bandArray =
-                bands.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray<IComponent>()
+            val bandArray = bands.toTypedArray<IComponent>()
+            bandArray.sortWith(IComponent.defaultComparator.reversed())
             ComboLte(bandArray, bcs)
         }
 
@@ -598,17 +598,13 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                     }
                 }
 
-                val nrArray =
-                    newNrComponents
-                        .sortedWith(IComponent.defaultComparator.reversed())
-                        .toTypedArray<IComponent>()
+                val nrArray = newNrComponents.toTypedArray<IComponent>()
+                nrArray.sortWith(IComponent.defaultComparator.reversed())
 
                 val comboNr =
                     if (newLteComponents.isNotEmpty()) {
-                        val lteArray =
-                            newLteComponents
-                                .sortedWith(IComponent.defaultComparator.reversed())
-                                .toTypedArray<IComponent>()
+                        val lteArray = newLteComponents.toTypedArray<IComponent>()
+                        lteArray.sortWith(IComponent.defaultComparator.reversed())
                         ComboNr(lteArray, nrArray, combo.featureSet)
                     } else {
                         ComboNr(nrArray, combo.featureSet)
