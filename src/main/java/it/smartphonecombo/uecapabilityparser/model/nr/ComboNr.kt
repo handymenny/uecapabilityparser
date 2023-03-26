@@ -1,8 +1,8 @@
-package it.smartphonecombo.uecapabilityparser.bean.nr
+package it.smartphonecombo.uecapabilityparser.model.nr
 
-import it.smartphonecombo.uecapabilityparser.bean.ICombo
-import it.smartphonecombo.uecapabilityparser.bean.IComponent
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.ICombo
+import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 
 /** The Class Combo. */
 data class ComboNr(

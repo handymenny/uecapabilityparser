@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.bean
+package it.smartphonecombo.uecapabilityparser.model
 
 /**
  * Enumeration of Rat types, the id represents the corresponding value in the LTE UE Capability

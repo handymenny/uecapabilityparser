@@ -1,6 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.bean.lte
+package it.smartphonecombo.uecapabilityparser.model.lte
 
-import it.smartphonecombo.uecapabilityparser.bean.IComponent
+import it.smartphonecombo.uecapabilityparser.model.IComponent
 
 /** The Class LteBandAndBandwidth. */
 data class ComponentLte(

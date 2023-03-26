@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.bean
+package it.smartphonecombo.uecapabilityparser.model
 
 data class Feature(val isNR: Boolean, val downlink: Int, val uplink: Int) {
     override fun toString(): String {

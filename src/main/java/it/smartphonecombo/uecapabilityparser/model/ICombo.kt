@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.bean
+package it.smartphonecombo.uecapabilityparser.model
 
 interface ICombo {
     var masterComponents: Array<IComponent>

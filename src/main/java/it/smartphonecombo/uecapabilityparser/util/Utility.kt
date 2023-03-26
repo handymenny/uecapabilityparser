@@ -5,12 +5,12 @@ import com.ericsson.mts.asn1.ASN1Translator
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.PERTranslatorFactory
 import com.ericsson.mts.asn1.converter.AbstractConverter
-import it.smartphonecombo.uecapabilityparser.bean.Capabilities
-import it.smartphonecombo.uecapabilityparser.bean.ICombo
-import it.smartphonecombo.uecapabilityparser.bean.Rat
-import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.ICombo
+import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*

@@ -1,7 +1,7 @@
-package it.smartphonecombo.uecapabilityparser.bean.lte
+package it.smartphonecombo.uecapabilityparser.model.lte
 
-import it.smartphonecombo.uecapabilityparser.bean.ICombo
-import it.smartphonecombo.uecapabilityparser.bean.IComponent
+import it.smartphonecombo.uecapabilityparser.model.ICombo
+import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
 
 /** The Class Combo. */

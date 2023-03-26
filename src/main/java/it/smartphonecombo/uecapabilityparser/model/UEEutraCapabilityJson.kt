@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.bean
+package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.util.Utility.getObject
 import it.smartphonecombo.uecapabilityparser.util.Utility.getObjectAtPath

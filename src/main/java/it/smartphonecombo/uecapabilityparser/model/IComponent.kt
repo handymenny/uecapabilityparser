@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.bean
+package it.smartphonecombo.uecapabilityparser.model
 
 interface IComponent {
     fun compareTo(iComponent: IComponent): Int

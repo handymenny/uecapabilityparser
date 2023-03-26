@@ -1,8 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
-import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals

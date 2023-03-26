@@ -1,8 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.bean
+package it.smartphonecombo.uecapabilityparser.model.lte
 
-import it.smartphonecombo.uecapabilityparser.bean.lte.FeaturePerCCLte
-
-data class FeatureSet(val featureSetsPerCC: List<FeaturePerCCLte>?, val type: Int) {
+open class FeaturePerCCLte(var type: Int = DOWNlINK, var mimo: Int = 0, var qam: String? = null) {
     companion object {
         const val UPLINK = 1
         const val DOWNlINK = 0
@@ -15,6 +13,6 @@ data class FeatureSet(val featureSetsPerCC: List<FeaturePerCCLte>?, val type: In
                 UPLINK -> "UL"
                 else -> "Unknown"
             }
-        return "FeatureSet(featureSetsPerCC=$featureSetsPerCC, type=$typeString)"
+        return "FeaturePerCCLte(type=$typeString, mimo=$mimo, qam=$qam)"
     }
 }

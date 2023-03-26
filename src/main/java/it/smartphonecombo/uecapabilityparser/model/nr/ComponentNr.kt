@@ -1,6 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.bean.nr
+package it.smartphonecombo.uecapabilityparser.model.nr
 
-import it.smartphonecombo.uecapabilityparser.bean.IComponent
+import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 
 data class ComponentNr(

@@ -1,9 +1,9 @@
-package it.smartphonecombo.uecapabilityparser.bean
+package it.smartphonecombo.uecapabilityparser.model
 
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
-import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
+import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 
 /** The Class ComboList. */
 class Capabilities(

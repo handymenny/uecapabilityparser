@@ -1,13 +1,13 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.bean.Capabilities
-import it.smartphonecombo.uecapabilityparser.bean.IComponent
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
-import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.extension.toBwClass
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
+import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder

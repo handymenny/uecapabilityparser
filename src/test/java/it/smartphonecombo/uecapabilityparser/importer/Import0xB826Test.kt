@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import java.io.File
 import org.junit.jupiter.api.Assertions

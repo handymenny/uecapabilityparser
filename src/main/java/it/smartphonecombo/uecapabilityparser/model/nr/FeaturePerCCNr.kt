@@ -1,6 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.bean.nr
+package it.smartphonecombo.uecapabilityparser.model.nr
 
-import it.smartphonecombo.uecapabilityparser.bean.lte.FeaturePerCCLte
+import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
 
 class FeaturePerCCNr(
     type: Int = DOWNlINK,
