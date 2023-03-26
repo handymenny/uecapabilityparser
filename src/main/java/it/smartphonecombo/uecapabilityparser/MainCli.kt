@@ -17,7 +17,7 @@ import it.smartphonecombo.uecapabilityparser.importer.lte.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportCarrierPolicy
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportMTKLte
 import it.smartphonecombo.uecapabilityparser.importer.lte.ImportNvItem
-import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformationJson
+import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformation
 import it.smartphonecombo.uecapabilityparser.importer.nr.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.nr.ImportCapPrune
 import java.io.File
@@ -233,7 +233,7 @@ internal object MainCli {
                 input += inputENDC + inputNR
             }
         }
-        val imports = ImportCapabilityInformationJson()
+        val imports = ImportCapabilityInformation
         val formatWriter = KotlinJsonFormatWriter()
         val ratContainerMap = mutableMapOf<String, JsonElement>()
         lateinit var eutraIdentifier: Regex
