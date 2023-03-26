@@ -102,8 +102,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                 linkFeaturesAndCarrier(nrDcCombos, featureSetCombination, null, nrFeatures)
             comboList.nrDcCombos =
                 nrDcComboWithFeatures.map { combo ->
-                    val fr1 = combo.masterComponents.filter { !(it as ComponentNr).isFR2 }
-                    val fr2 = combo.masterComponents.filter { (it as ComponentNr).isFR2 }
+                    val (fr2, fr1) = combo.masterComponents.partition { (it as ComponentNr).isFR2 }
                     ComboNr(fr1.toTypedArray(), fr2.toTypedArray(), combo.featureSet)
                 }
         }
