@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser
+package it.smartphonecombo.uecapabilityparser.util
 
 import com.ericsson.mts.asn1.ASN1Converter
 import com.ericsson.mts.asn1.ASN1Translator

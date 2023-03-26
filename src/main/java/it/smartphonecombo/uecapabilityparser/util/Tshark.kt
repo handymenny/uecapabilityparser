@@ -1,7 +1,5 @@
-package it.smartphonecombo.uecapabilityparser.importer
+package it.smartphonecombo.uecapabilityparser.util
 
-import it.smartphonecombo.uecapabilityparser.Config
-import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.bean.Rat
 import java.io.*
 import kotlin.system.exitProcess

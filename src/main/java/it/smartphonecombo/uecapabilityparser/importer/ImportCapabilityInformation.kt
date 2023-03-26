@@ -1,13 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.Utility
-import it.smartphonecombo.uecapabilityparser.Utility.binaryStringToBcsArray
-import it.smartphonecombo.uecapabilityparser.Utility.getArray
-import it.smartphonecombo.uecapabilityparser.Utility.getArrayAtPath
-import it.smartphonecombo.uecapabilityparser.Utility.getInt
-import it.smartphonecombo.uecapabilityparser.Utility.getObject
-import it.smartphonecombo.uecapabilityparser.Utility.getString
-import it.smartphonecombo.uecapabilityparser.Utility.toBwString
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.Feature
 import it.smartphonecombo.uecapabilityparser.bean.FeatureSet
@@ -25,6 +17,14 @@ import it.smartphonecombo.uecapabilityparser.bean.nr.BwTableNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.FeaturePerCCNr
+import it.smartphonecombo.uecapabilityparser.util.Utility
+import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
+import it.smartphonecombo.uecapabilityparser.util.Utility.getArray
+import it.smartphonecombo.uecapabilityparser.util.Utility.getArrayAtPath
+import it.smartphonecombo.uecapabilityparser.util.Utility.getInt
+import it.smartphonecombo.uecapabilityparser.util.Utility.getObject
+import it.smartphonecombo.uecapabilityparser.util.Utility.getString
+import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 import java.io.InputStream
 import java.io.InputStreamReader
 import kotlinx.serialization.SerializationException

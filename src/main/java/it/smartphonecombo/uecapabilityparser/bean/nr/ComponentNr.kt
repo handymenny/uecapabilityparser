@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.bean.nr
 
-import it.smartphonecombo.uecapabilityparser.Utility.toBwString
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
+import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 
 data class ComponentNr(
     override var band: Int,

@@ -1,8 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.bean.lte
 
-import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.bean.ICombo
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
+import it.smartphonecombo.uecapabilityparser.util.Utility
 
 /** The Class Combo. */
 data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: IntArray) : ICombo {
