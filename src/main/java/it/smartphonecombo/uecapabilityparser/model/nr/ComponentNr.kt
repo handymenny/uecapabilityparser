@@ -1,12 +1,13 @@
 package it.smartphonecombo.uecapabilityparser.model.nr
 
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 
 data class ComponentNr(
     override var band: Int,
-    override var classDL: Char,
-    override var classUL: Char,
+    override var classDL: BwClass,
+    override var classUL: BwClass,
     override var mimoDL: Int,
     override var mimoUL: Int,
     override var modDL: String?,
@@ -21,11 +22,11 @@ data class ComponentNr(
     var powerClass = 3
     var rateMatchingLTEcrs = false
 
-    constructor(band: Int) : this(band, 'A', '0', 0, 0, "256qam", "64qam")
+    constructor(band: Int) : this(band, BwClass.NONE, BwClass.NONE, 0, 0, "256qam", "64qam")
     constructor(
         band: Int,
-        classDL: Char,
-        classUL: Char
+        classDL: BwClass,
+        classUL: BwClass
     ) : this(band, classDL, classUL, 0, 0, "256qam", "64qam")
 
     override fun compareTo(iComponent: IComponent): Int {
@@ -40,7 +41,7 @@ data class ComponentNr(
      */
     override fun toString(): String {
         var str = "n$band"
-        if (classDL <= '0') {
+        if (classDL == BwClass.NONE) {
             str += '*'
         } else {
             str += classDL
@@ -48,11 +49,9 @@ data class ComponentNr(
                 str += mimoDL
             }
         }
-        if (classUL > '0') {
-            str += classUL
-            if (mimoUL > 1) {
-                str += mimoUL
-            }
+        str += classUL
+        if (mimoUL > 1) {
+            str += mimoUL
         }
         return str
     }

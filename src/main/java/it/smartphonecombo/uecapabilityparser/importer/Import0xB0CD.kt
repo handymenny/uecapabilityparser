@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.extension.toBwClass
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
@@ -175,9 +175,9 @@ object Import0xB0CD : ImportCapabilities {
             }
             index = values[1].toInt()
             val baseBand = values[2].toIntOrNull() ?: continue
-            val dlClass = values[3].toInt().toBwClass()
+            val dlClass = BwClass.valueOf(values[3].toInt())
             val dlMimo = values[4].toInt()
-            val ulClass = values[5].toInt().toBwClass()
+            val ulClass = BwClass.valueOf(values[5].toInt())
             // LTE UL Mimo is ignored at the moment
             values[6]
             bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, null))
@@ -190,11 +190,11 @@ object Import0xB0CD : ImportCapabilities {
      * Converts the given string to the corresponding BW Class It's applicable to 0xB0CD v40 and
      * v41.
      */
-    private fun extractBwClass(value: String): Char {
+    private fun extractBwClass(value: String): BwClass {
         if (value.isEmpty() || value.endsWith("NONE")) {
-            return '0'
+            return BwClass.NONE
         }
-        return value.last()
+        return BwClass(value.last())
     }
 
     /**

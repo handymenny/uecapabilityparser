@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
@@ -34,23 +35,23 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(2, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(3, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(4, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(5, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(7, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(8, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(12, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(13, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(17, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(20, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(28, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(32, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(38, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(40, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(41, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(66, 'A', '0', 4, "256qam", "64qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(2, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(12, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(13, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(17, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(66, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -103,17 +104,17 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(2, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(4, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(5, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(7, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(12, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(13, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(26, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(41, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(46, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(48, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(66, 'A', '0', 4, "256qam", "64qam"),
+                ComponentLte(2, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(12, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(13, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(26, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(46, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(48, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(66, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -151,14 +152,14 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(3, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(7, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(8, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(20, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(38, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(40, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(41, 'A', '0', 4, "1024qam", "256qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -199,36 +200,36 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(2, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(3, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(4, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(5, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(7, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(8, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(12, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(13, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(14, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(17, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(18, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(19, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(20, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(25, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(26, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(28, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(29, 'A', '0', 2, "1024qam", "64qam"),
-                ComponentLte(30, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(32, 'A', '0', 2, "1024qam", "64qam"),
-                ComponentLte(34, 'A', '0', 2, "1024qam", "256qam"),
-                ComponentLte(38, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(39, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(40, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(41, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(42, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(46, 'A', '0', 2, "1024qam", "64qam"),
-                ComponentLte(48, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(66, 'A', '0', 4, "1024qam", "256qam"),
-                ComponentLte(71, 'A', '0', 2, "1024qam", "256qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(2, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(12, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(13, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(14, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(17, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(18, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(19, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(25, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(26, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(29, BwClass('A'), BwClass.NONE, 2, "1024qam", "64qam"),
+                ComponentLte(30, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, "1024qam", "64qam"),
+                ComponentLte(34, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(39, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(42, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(46, BwClass('A'), BwClass.NONE, 2, "1024qam", "64qam"),
+                ComponentLte(48, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(66, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(71, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -885,19 +886,19 @@ internal class ImportCapabilityInformationTest {
         // Bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(3, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(5, 'A', '0', 2, "256qam", "256qam"),
-                ComponentLte(7, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(8, 'A', '0', 2, "256qam", "256qam"),
-                ComponentLte(20, 'A', '0', 2, "256qam", "256qam"),
-                ComponentLte(28, 'A', '0', 2, "256qam", "256qam"),
-                ComponentLte(32, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(38, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(40, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(41, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(42, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(43, 'A', '0', 4, "256qam", "256qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
+                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
+                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
+                ComponentLte(32, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(42, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(43, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -1129,16 +1130,16 @@ internal class ImportCapabilityInformationTest {
         // Bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(3, 'A', '0', 4, "256qam", "64qam"),
-                ComponentLte(8, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(18, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(19, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(21, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(26, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(28, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(41, 'A', '0', 2, "256qam", "64qam"),
-                ComponentLte(42, 'A', '0', 2, "256qam", "64qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(18, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(19, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(21, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(26, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(41, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(42, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -1267,13 +1268,13 @@ internal class ImportCapabilityInformationTest {
         // Bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(3, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(7, 'A', '0', 4, "256qam", "256qam"),
-                ComponentLte(20, 'A', '0', 2, "256qam", "256qam"),
-                ComponentLte(28, 'A', '0', 2, "256qam", "256qam"),
-                ComponentLte(32, 'A', '0', 2, "256qam", "16qam"),
-                ComponentLte(38, 'A', '0', 4, "256qam", "256qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
+                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
+                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, "256qam", "16qam"),
+                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())

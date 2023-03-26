@@ -6,8 +6,8 @@ interface IComponent {
     fun clone(): IComponent
 
     var band: Int
-    var classDL: Char
-    var classUL: Char
+    var classDL: BwClass
+    var classUL: BwClass
     var mimoDL: Int
     var mimoUL: Int
     var modDL: String?

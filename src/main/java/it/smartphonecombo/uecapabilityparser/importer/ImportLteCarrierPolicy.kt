@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
@@ -90,8 +91,8 @@ object ImportLteCarrierPolicy : ImportCapabilities {
 
         return ComponentLte(
             baseBand.toInt(),
-            classDL.first(),
-            classUL.firstOrNull() ?: '0',
+            BwClass.valueOf(classDL),
+            BwClass.valueOf(classUL),
             mimoDL.toIntOrNull() ?: 0,
             null,
             null

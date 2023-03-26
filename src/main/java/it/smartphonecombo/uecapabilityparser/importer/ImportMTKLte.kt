@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
@@ -92,19 +93,12 @@ object ImportMTKLte : ImportCapabilities {
         for (i in 0 until numCCs) {
             input.firstOrNull { it.startsWith("band_param[$i]") }
             val baseBand = extractInt(input.next())
-            val classUL = extractInt(input.next()).toBwClassMtk()
-            val classDL = extractInt(input.next()).toBwClassMtk()
+            val classUL = BwClass.valueOfMtkIndex(extractInt(input.next()))
+            val classDL = BwClass.valueOfMtkIndex(extractInt(input.next()))
             val band = ComponentLte(baseBand, classDL, classUL, 0, null, null)
             bands.add(band)
         }
         return bands
-    }
-
-    /** Like Int.toBwClass() but adapted for MTK logs */
-    private fun Int.toBwClassMtk(): Char {
-        val value = (this + 0x41).toChar()
-
-        return if (value in 'A'..'F') value else '0'
     }
 
     /** Extract the field value from the given line */

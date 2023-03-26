@@ -8,7 +8,7 @@ import com.soywiz.kmem.isOdd
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
-import it.smartphonecombo.uecapabilityparser.extension.toBwClass
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
@@ -265,7 +265,7 @@ object Import0xB826 : ImportCapabilities {
     private fun parseComponentPreV8(byteBuffer: ByteBuffer, version: Int): IComponent {
         val band = byteBuffer.readUnsignedShort()
         val byte = byteBuffer.readUnsignedByte()
-        val bwClass = byte.extract8(1).toBwClass()
+        val bwClass = BwClass.valueOf(byte.extract8(1))
         val isNr = byte.isOdd
 
         val component =
@@ -278,7 +278,7 @@ object Import0xB826 : ImportCapabilities {
         component.classDL = bwClass
         component.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
         val ulClass = byteBuffer.readUnsignedByte().extract8(1)
-        component.classUL = ulClass.toBwClass()
+        component.classUL = BwClass.valueOf(ulClass)
         val mimoUL = byteBuffer.readUnsignedByte()
         component.mimoUL = getMimoFromIndex(mimoUL)
         val modUL = byteBuffer.readUnsignedByte()
@@ -316,7 +316,7 @@ object Import0xB826 : ImportCapabilities {
 
         val band = short.extract(0, 9)
         val isNr = short.extract(9)
-        val bwClass = short.extract(10, 5).toBwClass()
+        val bwClass = BwClass.valueOf(short.extract(10, 5))
 
         val component =
             if (isNr) {
@@ -339,7 +339,7 @@ object Import0xB826 : ImportCapabilities {
         val classUlLeft = byte2.extract(0, 3)
         val classUlRight = byte.extract(6, 2)
         val classUl = classUlRight.insert(classUlLeft, 2, 3)
-        component.classUL = classUl.toBwClass()
+        component.classUL = BwClass.valueOf(classUl)
 
         val byte3 = byteBuffer.readUnsignedByte()
         val modUL = byte3.extract(1, 2)
