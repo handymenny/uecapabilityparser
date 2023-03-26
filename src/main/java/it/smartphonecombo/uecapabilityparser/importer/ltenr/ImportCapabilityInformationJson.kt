@@ -654,57 +654,47 @@ class ImportCapabilityInformationJson : ImportCapabilities {
             }
         val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
         val list =
-            bandCombinationsList
-                ?.mapNotNull { bandCombination ->
-                    val bandList = bandCombination.getArray("bandList")
-                    if (bandList is JsonArray) {
-                        val lteBands = mutableListOf<ComponentLte>()
-                        val nrBands = mutableListOf<ComponentNr>()
-                        bandList.forEach { bandParameters ->
-                            val nr = bandParameters.getObject("nr")
-                            val lte = if (endc) bandParameters.getObject("eutra") else null
-                            if (nr != null) {
-                                val band = nr.getInt("bandNR") ?: 0
-                                val dlClass =
-                                    nr.getString("ca-BandwidthClassDL-NR")?.first()?.uppercaseChar()
-                                        ?: '0'
-                                val ulClass =
-                                    nr.getString("ca-BandwidthClassUL-NR")?.first()?.uppercaseChar()
-                                        ?: '0'
-                                nrBands.add(ComponentNr(band, dlClass, ulClass))
-                            } else if (endc && lte != null) {
-                                val band = lte.getInt("bandEUTRA") ?: 0
-                                val dlClass =
-                                    lte.getString("ca-BandwidthClassDL-EUTRA")
-                                        ?.first()
-                                        ?.uppercaseChar()
-                                        ?: '0'
-                                val ulClass =
-                                    lte.getString("ca-BandwidthClassUL-EUTRA")
-                                        ?.first()
-                                        ?.uppercaseChar()
-                                        ?: '0'
-                                lteBands.add(ComponentLte(band, dlClass, ulClass))
-                            }
-                        }
-                        val featureSetCombination =
-                            bandCombination.getInt("featureSetCombination") ?: 0
-                        if (endc) {
-                            ComboNr(
-                                lteBands.toTypedArray(),
-                                nrBands.toTypedArray(),
-                                featureSetCombination
-                            )
-                        } else {
-                            ComboNr(nrBands.toTypedArray(), featureSetCombination)
-                        }
-                    } else {
-                        null
+            bandCombinationsList?.mapNotNull { bandCombination ->
+                val bandList = bandCombination.getArray("bandList") ?: return@mapNotNull null
+                val lteBands = mutableListOf<ComponentLte>()
+                val nrBands = mutableListOf<ComponentNr>()
+                for (bandParameters in bandList) {
+                    val component = parse5gBandParameters(bandParameters)
+                    if (component is ComponentNr) {
+                        nrBands.add(component)
+                    } else if (component is ComponentLte) {
+                        lteBands.add(component)
                     }
                 }
-                ?.toList()
-
+                val featureSetCombination = bandCombination.getInt("featureSetCombination") ?: 0
+                if (endc) {
+                    ComboNr(lteBands.toTypedArray(), nrBands.toTypedArray(), featureSetCombination)
+                } else {
+                    ComboNr(nrBands.toTypedArray(), featureSetCombination)
+                }
+            }
         return list ?: emptyList()
+    }
+
+    private fun parse5gBandParameters(bandParameters: JsonElement): IComponent? {
+        val nr = bandParameters.getObject("nr")
+        if (nr != null) {
+            val band = nr.getInt("bandNR") ?: 0
+            val dlClass = nr.getString("ca-BandwidthClassDL-NR")?.first()?.uppercaseChar() ?: '0'
+            val ulClass = nr.getString("ca-BandwidthClassUL-NR")?.first()?.uppercaseChar() ?: '0'
+            return ComponentNr(band, dlClass, ulClass)
+        }
+
+        val lte = bandParameters.getObject("eutra")
+        if (lte != null) {
+            val band = lte.getInt("bandEUTRA") ?: 0
+            val dlClass =
+                lte.getString("ca-BandwidthClassDL-EUTRA")?.first()?.uppercaseChar() ?: '0'
+            val ulClass =
+                lte.getString("ca-BandwidthClassUL-EUTRA")?.first()?.uppercaseChar() ?: '0'
+            return ComponentLte(band, dlClass, ulClass)
+        }
+        return null
     }
 
     private fun getNrDcBandCombinations(
