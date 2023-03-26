@@ -1,11 +1,10 @@
-package it.smartphonecombo.uecapabilityparser.importer.lte
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.io.InputStreamReader
 

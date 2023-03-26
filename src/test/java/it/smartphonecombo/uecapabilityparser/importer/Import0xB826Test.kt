@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.nr
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr

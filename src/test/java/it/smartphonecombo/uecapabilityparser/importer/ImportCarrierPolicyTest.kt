@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.lte
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import java.io.File
@@ -6,18 +6,13 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class ImportCarrierPolicyTest {
-
-    companion object {
-        val importCarrierPolicy = ImportCarrierPolicy
-    }
-
     private fun parse(inputFilename: String, oracleFilename: String) {
         val path = "src/test/resources/carrierPolicy/"
 
         val inputPath = "$path/input/$inputFilename"
         val oraclePath = "$path/oracle/$oracleFilename"
 
-        val capabilities = importCarrierPolicy.parse(File(inputPath).inputStream())
+        val capabilities = ImportCarrierPolicy.parse(File(inputPath).inputStream())
         val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }

@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.ltenr
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.Utility.binaryStringToBcsArray
@@ -25,7 +25,6 @@ import it.smartphonecombo.uecapabilityparser.bean.nr.BwTableNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.FeaturePerCCNr
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.io.InputStreamReader
 import kotlinx.serialization.SerializationException

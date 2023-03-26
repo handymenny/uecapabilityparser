@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.nr
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
@@ -7,7 +7,6 @@ import it.smartphonecombo.uecapabilityparser.bean.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.bean.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.extension.component6
 import it.smartphonecombo.uecapabilityparser.extension.component7
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -42,7 +41,10 @@ object ImportCapPrune : ImportCapabilities {
         val caBandCombosString = input.reader().use(InputStreamReader::readText)
 
         val listCombo =
-            caBandCombosString.split(';').filter(String::isNotBlank).mapNotNull(::parseCombo)
+            caBandCombosString
+                .split(';')
+                .filter(String::isNotBlank)
+                .mapNotNull(ImportCapPrune::parseCombo)
 
         val cap = Capabilities()
         val (enDcCombos, nrCombos) = listCombo.partition { it.componentsLte.isNotEmpty() }

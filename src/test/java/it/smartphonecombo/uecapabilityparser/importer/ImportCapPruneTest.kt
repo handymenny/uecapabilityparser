@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.nr
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import java.io.File
@@ -6,11 +6,6 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class ImportCapPruneTest {
-
-    companion object {
-        val importCapPrune = ImportCapPrune
-    }
-
     private fun parse(
         inputFilename: String,
         oracleEnDcFilename: String,
@@ -22,7 +17,7 @@ internal class ImportCapPruneTest {
         val oracleEnDcPath = "$path/oracle/$oracleEnDcFilename"
         val oracleNrCaPath = "$path/oracle/$oracleNrCaFilename"
 
-        val capabilities = importCapPrune.parse(File(inputPath).inputStream())
+        val capabilities = ImportCapPrune.parse(File(inputPath).inputStream())
 
         val actualEnDcCsv =
             Utility.toCsv(capabilities.enDcCombos ?: emptyList()).lines().dropLastWhile {

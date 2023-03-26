@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.ltenr
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
@@ -14,7 +14,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapEutraCombinationAdd() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!,
             )
 
@@ -83,7 +83,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapEutraCombinationReduced() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!,
             )
 
@@ -131,7 +131,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapEutra1024qam() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream("/newEngine/input/json/ueCapEutra1024qam.json")!!
             )
 
@@ -177,7 +177,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapEutraCombinationReduced1024qam() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream(
                     "/newEngine/input/json/ueCapEutraCombinationReduced1024qam.json",
                 )!!,
@@ -266,7 +266,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapNrOneCC() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream(
                     "/newEngine/input/json/ueCapNrOneCC.json",
                 )!!,
@@ -553,7 +553,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapNrThreeCC() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream(
                     "/newEngine/input/json/ueCapNrThreeCC.json",
                 )!!,
@@ -846,7 +846,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapMrdcDefaultBws() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream(
                     "/newEngine/input/json/ueCapMrdcDefaultBws.json",
                 )!!,
@@ -1090,7 +1090,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapMrdcFR2() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream(
                     "/newEngine/input/json/ueCapMrdcFR2.json",
                 )!!,
@@ -1228,7 +1228,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapMrdcExynos() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream(
                     "/newEngine/input/json/ueCapMrdcExynos.json",
                 )!!,
@@ -1479,7 +1479,7 @@ internal class ImportCapabilityInformationTest {
     @Test
     fun ueCapNrDc() {
         val capabilities =
-            importerJson.parse(
+            ImportCapabilityInformation.parse(
                 getResourceAsStream(
                     "/newEngine/input/json/ueCapNrdc.json",
                 )!!,
@@ -1766,9 +1766,5 @@ internal class ImportCapabilityInformationTest {
                 Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
             }
         assertLinesMatch(expectedNrDcCsv, actualNrDcCsv)
-    }
-
-    companion object {
-        val importerJson = ImportCapabilityInformation
     }
 }

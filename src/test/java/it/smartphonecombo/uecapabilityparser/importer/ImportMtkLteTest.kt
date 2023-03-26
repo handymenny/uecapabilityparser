@@ -1,23 +1,18 @@
-package it.smartphonecombo.uecapabilityparser.importer.lte
+package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.Utility
 import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class ImportNvItemTest {
-
-    companion object {
-        val importerNvItem = ImportNvItem
-    }
-
+internal class ImportMtkLteTest {
     private fun parse(inputFilename: String, oracleFilename: String) {
-        val path = "src/test/resources/nvitem/"
+        val path = "src/test/resources/mtkLte/"
 
         val inputPath = "$path/input/$inputFilename"
         val oraclePath = "$path/oracle/$oracleFilename"
 
-        val capabilities = importerNvItem.parse(File(inputPath).inputStream())
+        val capabilities = ImportMTKLte.parse(File(inputPath).inputStream())
         val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
@@ -26,22 +21,12 @@ internal class ImportNvItemTest {
     }
 
     @Test
-    fun parseNvItem137() {
-        parse("28874_137.bin", "28874_137.csv")
+    fun parsePreCaCombInfo() {
+        parse("PRE_CA_COMB_INFO.txt", "PRE_CA_COMB_INFO.csv")
     }
 
     @Test
-    fun parseNvItem137201() {
-        parse("28874_137_201.bin", "28874_137_201.csv")
-    }
-
-    @Test
-    fun parseNvItem201() {
-        parse("28874_201.bin", "28874_201.csv")
-    }
-
-    @Test
-    fun parseNvItem333() {
-        parse("28874_333.bin", "28874_333.csv")
+    fun parseUeCaCombInfo() {
+        parse("UE_CA_COMB_INFO.txt", "UE_CA_COMB_INFO.csv")
     }
 }

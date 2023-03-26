@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.nr
+package it.smartphonecombo.uecapabilityparser.importer
 
 import com.soywiz.kmem.extract
 import com.soywiz.kmem.extract4
@@ -14,7 +14,6 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.extension.toBwClass
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
