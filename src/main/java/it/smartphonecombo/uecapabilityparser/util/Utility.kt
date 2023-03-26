@@ -6,6 +6,7 @@ import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.PERTranslatorFactory
 import com.ericsson.mts.asn1.converter.AbstractConverter
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -572,11 +573,11 @@ object Utility {
     private fun maxUlCC(list: List<ICombo>, secondary: Boolean = false): Int {
         return if (secondary) {
             list.fold(0) { acc, it ->
-                maxOf(acc, it.secondaryComponents.filter { it.classUL != '0' }.size)
+                maxOf(acc, it.secondaryComponents.filter { it.classUL != BwClass.NONE }.size)
             }
         } else {
             list.fold(0) { acc, it ->
-                maxOf(acc, it.masterComponents.filter { it.classUL != '0' }.size)
+                maxOf(acc, it.masterComponents.filter { it.classUL != BwClass.NONE }.size)
             }
         }
     }

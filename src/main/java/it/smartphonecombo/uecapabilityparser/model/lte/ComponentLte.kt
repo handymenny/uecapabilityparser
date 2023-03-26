@@ -1,12 +1,13 @@
 package it.smartphonecombo.uecapabilityparser.model.lte
 
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 
 /** The Class LteBandAndBandwidth. */
 data class ComponentLte(
     override var band: Int,
-    override var classDL: Char,
-    override var classUL: Char,
+    override var classDL: BwClass,
+    override var classUL: BwClass,
     override var mimoDL: Int,
     override var modDL: String?,
     override var modUL: String?,
@@ -22,16 +23,20 @@ data class ComponentLte(
 
     constructor(
         band: Int,
-        classDL: Char,
-        classUL: Char,
+        classDL: BwClass,
+        classUL: BwClass,
         mimoDL: Int
     ) : this(band, classDL, classUL, mimoDL, "64qam", "16qam")
 
-    constructor(band: Int, classDL: Char, mimoDL: Int) : this(band, classDL, '0', mimoDL)
+    constructor(
+        band: Int,
+        classDL: BwClass,
+        mimoDL: Int
+    ) : this(band, classDL, BwClass.NONE, mimoDL)
 
-    constructor(band: Int, classDL: Char, classUL: Char) : this(band, classDL, classUL, 0)
+    constructor(band: Int, classDL: BwClass, classUL: BwClass) : this(band, classDL, classUL, 0)
 
-    constructor(band: Int) : this(band, 'A', '0')
+    constructor(band: Int) : this(band, BwClass.NONE, BwClass.NONE)
 
     constructor() : this(0)
 
@@ -47,22 +52,24 @@ data class ComponentLte(
      */
     override fun toString(): String {
         var str = band.toString() + ""
-        str += classDL
+        if (classDL == BwClass.NONE) {
+            str += "*"
+        } else {
+            str += classDL
+        }
         if (mimoDL > 0) {
             str += mimoDL
         }
-        if (classUL > '0') {
-            str += classUL
-        }
+        str += classUL
         return str
     }
 
     companion object {
         fun lteComponentsToArrays(
             band: IntArray,
-            bandwidth: CharArray,
+            bandwidth: Array<BwClass>,
             mimo: IntArray,
-            upload: CharArray,
+            upload: Array<BwClass>,
             modUL: Array<String?>,
             inputArray: Array<IComponent>
         ) {

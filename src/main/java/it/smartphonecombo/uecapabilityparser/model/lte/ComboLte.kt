@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model.lte
 
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
@@ -64,11 +65,9 @@ data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: I
                 strMimo.append(x)
             }
             var y = masterComponents[i].classDL
-            if (y != '0' && y != '\u0000') {
-                strBw.append(y)
-            }
+            strBw.append(y)
             y = masterComponents[i].classUL
-            if (y != '0' && y != '\u0000') {
+            if (y != BwClass.NONE) {
                 strUl.append(y)
                 strULmod.append(masterComponents[i].modUL)
             }

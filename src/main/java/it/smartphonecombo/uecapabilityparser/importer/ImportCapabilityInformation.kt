@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Feature
 import it.smartphonecombo.uecapabilityparser.model.FeatureSet
@@ -428,7 +429,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         val lteBands =
             supportedBandListEutra?.mapNotNull {
-                it.getInt("bandEUTRA")?.let { band -> ComponentLte(band, 'A', 2) }
+                it.getInt("bandEUTRA")?.let { band -> ComponentLte(band, BwClass('A'), 2) }
             }
                 ?: return emptyList()
 
@@ -607,7 +608,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             componentLte.mimoDL = dlFeature.mimo
         } else {
             // only UL
-            componentLte.classDL = '0'
+            componentLte.classDL = BwClass.NONE
             componentLte.mimoDL = 0
         }
 
@@ -616,7 +617,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             componentLte.modUL = ulFeature.qam
         } else {
             // only DL
-            componentLte.classUL = '0'
+            componentLte.classUL = BwClass.NONE
             componentLte.mimoUL = 0
         }
         return componentLte
@@ -636,7 +637,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             componentNr.scs = dlFeature.scs
         } else {
             // only UL
-            componentNr.classDL = '0'
+            componentNr.classDL = BwClass.NONE
             componentNr.mimoDL = 0
         }
 
@@ -645,7 +646,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             componentNr.modUL = ulFeature.qam
         } else {
             // only DL
-            componentNr.classUL = '0'
+            componentNr.classUL = BwClass.NONE
             componentNr.mimoUL = 0
         }
         return componentNr
@@ -716,18 +717,16 @@ object ImportCapabilityInformation : ImportCapabilities {
         val nr = bandParameters.getObject("nr")
         if (nr != null) {
             val band = nr.getInt("bandNR") ?: 0
-            val dlClass = nr.getString("ca-BandwidthClassDL-NR")?.first()?.uppercaseChar() ?: '0'
-            val ulClass = nr.getString("ca-BandwidthClassUL-NR")?.first()?.uppercaseChar() ?: '0'
+            val dlClass = BwClass.valueOf(nr.getString("ca-BandwidthClassDL-NR"))
+            val ulClass = BwClass.valueOf(nr.getString("ca-BandwidthClassUL-NR"))
             return ComponentNr(band, dlClass, ulClass)
         }
 
         val lte = bandParameters.getObject("eutra")
         if (lte != null) {
             val band = lte.getInt("bandEUTRA") ?: 0
-            val dlClass =
-                lte.getString("ca-BandwidthClassDL-EUTRA")?.first()?.uppercaseChar() ?: '0'
-            val ulClass =
-                lte.getString("ca-BandwidthClassUL-EUTRA")?.first()?.uppercaseChar() ?: '0'
+            val dlClass = BwClass.valueOf(lte.getString("ca-BandwidthClassDL-EUTRA"))
+            val ulClass = BwClass.valueOf(lte.getString("ca-BandwidthClassUL-EUTRA"))
             return ComponentLte(band, dlClass, ulClass)
         }
         return null
@@ -1045,7 +1044,10 @@ object ImportCapabilityInformation : ImportCapabilities {
         return FeatureSets(downlink, uplink)
     }
 
-    private fun parseBandParametersDL(bandParameters: JsonElement, release: Int): Pair<Char, Int> {
+    private fun parseBandParametersDL(
+        bandParameters: JsonElement,
+        release: Int
+    ): Pair<BwClass, Int> {
         val bandParametersDL =
             if (release == 13) {
                 bandParameters.getObject("bandParametersDL-r13")
@@ -1054,13 +1056,13 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
 
         if (bandParametersDL == null) {
-            return Pair('0', 0)
+            return Pair(BwClass.NONE, 0)
         }
 
         // both r10 and r11 uses ca-BandwidthClassDL/supportedMIMO-CapabilityDL -r10
         val subRelease = if (release == 13) "13" else "10"
         val dlClassString = bandParametersDL.getString("ca-BandwidthClassDL-r$subRelease")
-        val dlClass = dlClassString?.first()?.uppercaseChar() ?: '0'
+        val dlClass = BwClass.valueOf(dlClassString)
         val mimoLayers = bandParametersDL.getString("supportedMIMO-CapabilityDL-r$subRelease")
         var dlMimo = Utility.convertNumber(mimoLayers?.removeSuffix("Layers"))
 
@@ -1072,14 +1074,14 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         // Some devices don't report supportedMIMO-CapabilityDL-rXX for twoLayers
-        if (dlClass != '0' && dlMimo == 0) {
+        if (dlClass != BwClass.NONE && dlMimo == 0) {
             dlMimo = 2
         }
 
         return Pair(dlClass, dlMimo)
     }
 
-    private fun parseBandParametersUL(bandParameters: JsonElement, release: Int): Char {
+    private fun parseBandParametersUL(bandParameters: JsonElement, release: Int): BwClass {
         val bandParametersUL =
             if (release == 13) {
                 bandParameters.getObject("bandParametersUL-r13")
@@ -1087,7 +1089,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 bandParameters.getArrayAtPath("bandParametersUL-r$release")?.first()
             }
         val ulClassString = bandParametersUL?.getString("ca-BandwidthClassUL-r10")
-        return ulClassString?.first()?.uppercaseChar() ?: '0'
+        return BwClass.valueOf(ulClassString)
     }
 
     private fun parseBandParameters(bandParameters: JsonElement, release: Int): ComponentLte {

@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model.nr
 
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
@@ -59,22 +60,22 @@ data class ComboNr(
         nrDcUlCC: Int
     ): String {
         val band = IntArray(lteDlCC)
-        val bandwidth = CharArray(lteDlCC)
+        val bandwidth = Array(lteDlCC, init = { BwClass.NONE })
         val mimo = IntArray(lteDlCC)
-        val upload = CharArray(lteDlCC)
+        val upload = Array(lteDlCC, init = { BwClass.NONE })
         val nrband = IntArray(nrDlCC)
-        val nrbandwidth = CharArray(nrDlCC)
+        val nrbandwidth = Array(nrDlCC, init = { BwClass.NONE })
         val nrmimo = IntArray(nrDlCC)
-        val nrupload = CharArray(nrDlCC)
+        val nrupload = Array(nrDlCC, init = { BwClass.NONE })
         val nrmimoUL = IntArray(nrDlCC)
         val nrmaxbandwidth = IntArray(nrDlCC)
         val nrscs = IntArray(nrDlCC)
         val lteModUL = arrayOfNulls<String>(lteDlCC)
         val nrModUL = arrayOfNulls<String>(nrDlCC)
         val nrbandDc = IntArray(nrDcDlCC)
-        val nrbandwidthDc = CharArray(nrDcDlCC)
+        val nrbandwidthDc = Array(nrDcDlCC, init = { BwClass.NONE })
         val nrmimoDc = IntArray(nrDcDlCC)
-        val nruploadDc = CharArray(nrDcDlCC)
+        val nruploadDc = Array(nrDcDlCC, init = { BwClass.NONE })
         val nrmimoULDc = IntArray(nrDcDlCC)
         val nrmaxbandwidthDc = IntArray(nrDcDlCC)
         val nrscsDc = IntArray(nrDcDlCC)
@@ -118,15 +119,11 @@ data class ComboNr(
                 str.append(b)
             }
             val bw = bandwidth[i]
-            if (bw != '0' && bw != '\u0000') {
-                str.append(bw)
-            }
+            str.append(bw)
             str.append(separator)
             val ul = upload[i]
-            if (ul != '0' && ul != '\u0000') {
-                if (lteUL.count { it == ';' } / 2 < lteUlCC) {
-                    lteUL += "" + b + ul + separator + lteModUL[i] + separator
-                }
+            if (ul != BwClass.NONE && lteUL.count { it == ';' } / 2 < lteUlCC) {
+                lteUL += "" + b + ul + separator + lteModUL[i] + separator
             }
         }
 
@@ -139,10 +136,8 @@ data class ComboNr(
         for (i in 0 until nrDlCC) {
             val b = nrband[i]
             val bw = nrbandwidth[i]
-            if (b != 0 && bw != '0') {
+            if (b != 0 && bw != BwClass.NONE) {
                 str.append(b)
-            }
-            if (bw != '0' && bw != '\u0000') {
                 str.append(bw)
             }
             str.append(separator)
@@ -157,23 +152,19 @@ data class ComboNr(
             }
             str.append(separator)
             val ul = nrupload[i]
-            if (ul != '0' && ul != '\u0000') {
-                if (nrUL.count { it == ';' } / 2 < nrUlCC) {
-                    nrUL += "" + b + ul + separator + nrModUL[i] + separator
-                    if (nrmimoUL[i] != 0) {
-                        nrmimoULstring += "" + nrmimoUL[i]
-                    }
-                    nrmimoULstring += separator
+            if (ul != BwClass.NONE && nrUL.count { it == ';' } / 2 < nrUlCC) {
+                nrUL += "" + b + ul + separator + nrModUL[i] + separator
+                if (nrmimoUL[i] != 0) {
+                    nrmimoULstring += "" + nrmimoUL[i]
                 }
+                nrmimoULstring += separator
             }
         }
         for (i in 0 until nrDcDlCC) {
             val b = nrbandDc[i]
             val bw = nrbandwidthDc[i]
-            if (b != 0 && bw != '0') {
+            if (b != 0 && bw != BwClass.NONE) {
                 str.append(b)
-            }
-            if (bw != '0' && bw != '\u0000') {
                 str.append(bw)
             }
             str.append(separator)
@@ -188,14 +179,12 @@ data class ComboNr(
             }
             str.append(separator)
             val ul = nruploadDc[i]
-            if (ul != '0' && ul != '\u0000') {
-                if (nrULDc.count { it == ';' } / 2 < nrDcUlCC) {
-                    nrULDc += "" + b + ul + separator + nrModULDc[i] + separator
-                    if (nrmimoULDc[i] != 0) {
-                        nrmimoULstringDc += "" + nrmimoULDc[i]
-                    }
-                    nrmimoULstringDc + separator
+            if (ul != BwClass.NONE && nrULDc.count { it == ';' } / 2 < nrDcUlCC) {
+                nrULDc += "" + b + ul + separator + nrModULDc[i] + separator
+                if (nrmimoULDc[i] != 0) {
+                    nrmimoULstringDc += "" + nrmimoULDc[i]
                 }
+                nrmimoULstringDc + separator
             }
         }
 

@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.component6
 import it.smartphonecombo.uecapabilityparser.extension.component7
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
@@ -89,8 +90,8 @@ object ImportNrCapPrune : ImportCapabilities {
         if (type == "b") {
             return ComponentLte(
                 baseBand.toInt(),
-                bwClassParsing(classDL),
-                bwClassParsing(classUL),
+                BwClass.valueOf(classDL),
+                BwClass.valueOf(classUL),
                 mimoParsing(mimoDL),
                 null,
                 null
@@ -98,8 +99,8 @@ object ImportNrCapPrune : ImportCapabilities {
         } else {
             return ComponentNr(
                 baseBand.toInt(),
-                bwClassParsing(classDL),
-                bwClassParsing(classUL),
+                BwClass.valueOf(classDL),
+                BwClass.valueOf(classUL),
                 mimoParsing(mimoDL),
                 mimoParsing(mimoUL),
                 null,
@@ -114,15 +115,6 @@ object ImportNrCapPrune : ImportCapabilities {
             0
         } else {
             mimo.split(",").first().toInt()
-        }
-    }
-
-    /** Returns the first character of [bwClass] or '0' if empty. */
-    private fun bwClassParsing(bwClass: String): Char {
-        return if (bwClass.isEmpty()) {
-            '0'
-        } else {
-            bwClass[0]
         }
     }
 }

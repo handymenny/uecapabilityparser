@@ -3,7 +3,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
-import it.smartphonecombo.uecapabilityparser.extension.toBwClass
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
@@ -100,7 +100,7 @@ object ImportNvItem : ImportCapabilities {
         for (i in 0..MAX_CC) {
             // read band and bwClass
             val band = input.readUnsignedShort()
-            val bwClass = input.readUnsignedByte().toBwClass()
+            val bwClass = BwClass.valueOf(input.readUnsignedByte())
 
             // read mimo/multiMimo
             var ant = if (isDL) 2 else 1
@@ -121,9 +121,9 @@ object ImportNvItem : ImportCapabilities {
 
             val component =
                 if (isDL) {
-                    ComponentLte(band, bwClass, '0', ant, null, null)
+                    ComponentLte(band, bwClass, BwClass.NONE, ant, null, null)
                 } else {
-                    ComponentLte(band, '0', bwClass, 0, null, null)
+                    ComponentLte(band, BwClass.NONE, bwClass, 0, null, null)
                 }
 
             lteComponents.add(component)
@@ -141,7 +141,7 @@ object ImportNvItem : ImportCapabilities {
         for (ulComponent in ulComponents) {
             val matchingComponent =
                 components
-                    .filter { it.band == ulComponent.band && it.classUL == '0' }
+                    .filter { it.band == ulComponent.band && it.classUL == BwClass.NONE }
                     .maxBy(IComponent::classDL)
 
             matchingComponent.classUL = ulComponent.classUL
