@@ -129,15 +129,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                         bandCombination.map { bandParameters ->
                             val band = bandParameters.getInt("bandEUTRA-r10") ?: 0
                             val (dlClass, dlMimo) = parseBandParametersDL(bandParameters, 10)
-                            val bandParametersUL =
-                                bandParameters.getArrayAtPath("bandParametersUL-r10")?.get(0)
-                            val ulClass =
-                                bandParametersUL
-                                    ?.getString("ca-BandwidthClassUL-r10")
-                                    ?.first()
-                                    ?.uppercaseChar()
-                                    ?: '0'
-
+                            val ulClass = parseBandParametersUL(bandParameters, 10)
                             ComponentLte(band, dlClass, ulClass, dlMimo)
                         }
                     } else {
@@ -212,14 +204,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                     bandParametersList?.map { bandParameters ->
                         val band = bandParameters.getInt("bandEUTRA-r11") ?: 0
                         val (dlClass, dlMimo) = parseBandParametersDL(bandParameters, 11)
-                        val bandParametersUL =
-                            bandParameters.getArrayAtPath("bandParametersUL-r11")?.get(0)
-                        val ulClass =
-                            bandParametersUL
-                                ?.getString("ca-BandwidthClassUL-r10")
-                                ?.first()
-                                ?.uppercaseChar()
-                                ?: '0'
+                        val ulClass = parseBandParametersUL(bandParameters, 11)
                         ComponentLte(band, dlClass, ulClass, dlMimo)
                     }
                         ?: emptyList()
@@ -266,13 +251,7 @@ class ImportCapabilityInformationJson : ImportCapabilities {
                     bandParametersList?.map { bandParameters ->
                         val band = bandParameters.getInt("bandEUTRA-r13") ?: 0
                         val (dlClass, dlMimo) = parseBandParametersDL(bandParameters, 13)
-                        val bandParametersUL = bandParameters.getObject("bandParametersUL-r13")
-                        val ulClass =
-                            bandParametersUL
-                                ?.getString("ca-BandwidthClassUL-r10")
-                                ?.first()
-                                ?.uppercaseChar()
-                                ?: '0'
+                        val ulClass = parseBandParametersUL(bandParameters, 13)
                         ComponentLte(band, dlClass, ulClass, dlMimo)
                     }
                         ?: emptyList()
@@ -1093,6 +1072,17 @@ class ImportCapabilityInformationJson : ImportCapabilities {
         }
 
         return Pair(dlClass, dlMimo)
+    }
+
+    private fun parseBandParametersUL(bandParameters: JsonElement, release: Int): Char {
+        val bandParametersUL =
+            if (release == 13) {
+                bandParameters.getObject("bandParametersUL-r13")
+            } else {
+                bandParameters.getArrayAtPath("bandParametersUL-r$release")?.first()
+            }
+        val ulClassString = bandParametersUL?.getString("ca-BandwidthClassUL-r10")
+        return ulClassString?.first()?.uppercaseChar() ?: '0'
     }
 
     private infix fun IntRange.step(next: (Int) -> Int) =
