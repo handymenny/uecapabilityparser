@@ -55,9 +55,9 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     fun parse(
-        eutraCapability: JsonObject? = null,
-        eutraNrCapability: JsonObject? = null,
-        nrCapability: JsonObject? = null
+        eutraCapability: JsonObject?,
+        eutraNrCapability: JsonObject?,
+        nrCapability: JsonObject?
     ): Capabilities {
         val comboList = Capabilities()
         var lteFeatures: FeatureSets? = null
