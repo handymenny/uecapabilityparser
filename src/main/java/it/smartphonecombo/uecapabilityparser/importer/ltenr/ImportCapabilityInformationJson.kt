@@ -493,128 +493,161 @@ class ImportCapabilityInformationJson : ImportCapabilities {
         for (combo in combos) {
             val featureSetsPerBand = featureSetCombinations.getOrNull(combo.featureSet) ?: continue
             val indices = featureSetsPerBand.firstOrNull()?.indices ?: IntRange.EMPTY
-
-            for (index in indices) {
-                val newNrComponents = mutableListOf<ComponentNr>()
-                val newLteComponents = mutableListOf<ComponentLte>()
-
-                val lteComponents = combo.componentsLte.iterator()
-                val nrComponents = combo.componentsNr.iterator()
-
-                for (featureSetBand in featureSetsPerBand) {
-                    val featureSet = featureSetBand[index]
-
-                    // Index starts from 1
-                    val downlinkIndex = featureSet.downlink - 1
-                    val uplinkIndex = featureSet.uplink - 1
-
-                    if (downlinkIndex < 0 && uplinkIndex < 0) {
-                        // Fallback combination
-                        if (featureSet.isNR) {
-                            nrComponents.next()
-                        } else {
-                            lteComponents.next()
-                        }
-                        continue
-                    }
-
-                    if (featureSet.isNR) {
-                        val oldComponentNr = nrComponents.next() as ComponentNr
-                        val componentNr =
-                            ComponentNr(
-                                oldComponentNr.band,
-                                oldComponentNr.classDL,
-                                oldComponentNr.classUL
-                            )
-
-                        // TODO: Features per CC
-                        if (downlinkIndex >= 0) {
-                            val dlFeature =
-                                nrFeatures?.downlink?.get(downlinkIndex)?.featureSetsPerCC?.get(0)
-                                    as? FeaturePerCCNr
-                            if (dlFeature != null) {
-                                componentNr.mimoDL = dlFeature.mimo
-                                componentNr.modDL = dlFeature.qam
-                                componentNr.maxBandwidth = dlFeature.bw
-                                componentNr.channelBW90mhz =
-                                    dlFeature.bw >= 80 && dlFeature.channelBW90mhz
-                                componentNr.scs = dlFeature.scs
-                            }
-                        } else {
-                            // only UL
-                            componentNr.classDL = '0'
-                            componentNr.mimoDL = 0
-                        }
-
-                        if (uplinkIndex >= 0) {
-                            val ulFeature =
-                                nrFeatures?.uplink?.get(uplinkIndex)?.featureSetsPerCC?.get(0)
-                                    as? FeaturePerCCNr
-                            if (ulFeature != null) {
-                                componentNr.mimoUL = ulFeature.mimo
-                                componentNr.modUL = ulFeature.qam
-                            }
-                        } else {
-                            // only DL
-                            componentNr.classUL = '0'
-                            componentNr.mimoUL = 0
-                        }
-                        newNrComponents.add(componentNr)
-                    } else {
-                        val oldComponentLte = lteComponents.next() as ComponentLte
-                        val componentLte =
-                            ComponentLte(
-                                oldComponentLte.band,
-                                oldComponentLte.classDL,
-                                oldComponentLte.classUL
-                            )
-
-                        // TODO: Features per CC
-                        if (downlinkIndex >= 0) {
-                            val dlFeature =
-                                lteFeatures?.downlink?.get(downlinkIndex)?.featureSetsPerCC?.get(0)
-                            if (dlFeature != null) {
-                                componentLte.mimoDL = dlFeature.mimo
-                            }
-                        } else {
-                            // only UL
-                            componentLte.classDL = '0'
-                            componentLte.mimoDL = 0
-                        }
-
-                        if (uplinkIndex >= 0) {
-                            val ulFeature =
-                                lteFeatures?.uplink?.get(uplinkIndex)?.featureSetsPerCC?.get(0)
-                            if (ulFeature != null) {
-                                componentLte.mimoUL = ulFeature.mimo
-                                componentLte.modUL = ulFeature.qam
-                            }
-                        } else {
-                            // only DL
-                            componentLte.classUL = '0'
-                            componentLte.mimoUL = 0
-                        }
-                        newLteComponents.add(componentLte)
-                    }
+            val mergedCombos =
+                indices.map { index ->
+                    mergeComboNrAndIndexedFeature(
+                        combo,
+                        featureSetsPerBand,
+                        index,
+                        nrFeatures,
+                        lteFeatures
+                    )
                 }
-
-                val nrArray = newNrComponents.toTypedArray<IComponent>()
-                nrArray.sortWith(IComponent.defaultComparator.reversed())
-
-                val comboNr =
-                    if (newLteComponents.isNotEmpty()) {
-                        val lteArray = newLteComponents.toTypedArray<IComponent>()
-                        lteArray.sortWith(IComponent.defaultComparator.reversed())
-                        ComboNr(lteArray, nrArray, combo.featureSet)
-                    } else {
-                        ComboNr(nrArray, combo.featureSet)
-                    }
-
-                list.add(comboNr)
-            }
+            list.addAll(mergedCombos)
         }
         return list
     }
+
+    private fun mergeComboNrAndIndexedFeature(
+        combo: ComboNr,
+        featureSetsPerBand: List<List<Feature>>,
+        index: Int,
+        nrFeatures: FeatureSets?,
+        lteFeatures: FeatureSets?
+    ): ComboNr {
+        val newNrComponents = mutableListOf<ComponentNr>()
+        val newLteComponents = mutableListOf<ComponentLte>()
+
+        val lteComponents = combo.componentsLte.iterator()
+        val nrComponents = combo.componentsNr.iterator()
+
+        for (featureSetBand in featureSetsPerBand) {
+            val featureSet = featureSetBand[index]
+            val oldComponent: IComponent
+            val features: FeatureSets?
+
+            if (featureSet.isNR) {
+                oldComponent = nrComponents.next()
+                features = nrFeatures
+            } else {
+                oldComponent = lteComponents.next()
+                features = lteFeatures
+            }
+
+            val newComponent = mergeComponentAndFeature(featureSet, oldComponent, features)
+
+            if (newComponent is ComponentLte) {
+                newLteComponents.add(newComponent)
+            } else if (newComponent is ComponentNr) {
+                newNrComponents.add(newComponent)
+            }
+        }
+
+        val nrArray = newNrComponents.toTypedArray<IComponent>()
+        nrArray.sortWith(IComponent.defaultComparator.reversed())
+
+        return if (newLteComponents.isNotEmpty()) {
+            val lteArray = newLteComponents.toTypedArray<IComponent>()
+            lteArray.sortWith(IComponent.defaultComparator.reversed())
+            ComboNr(lteArray, nrArray, combo.featureSet)
+        } else {
+            ComboNr(nrArray, combo.featureSet)
+        }
+    }
+
+    private fun mergeComponentAndFeature(
+        featureSet: Feature,
+        component: IComponent,
+        features: FeatureSets?
+    ): IComponent? {
+        val dlIndex = featureSet.downlink - 1
+        val ulIndex = featureSet.uplink - 1
+
+        if (dlIndex < 0 && ulIndex < 0) {
+            // Fallback combination
+            return null
+        }
+
+        // TODO: Features per CC
+        val dlFeature =
+            if (dlIndex >= 0) features?.downlink?.get(dlIndex)?.featureSetsPerCC?.first() else null
+        val ulFeature =
+            if (ulIndex >= 0) features?.uplink?.get(ulIndex)?.featureSetsPerCC?.first() else null
+
+        if (
+            features == null ||
+                dlFeature == null && dlIndex >= 0 ||
+                ulFeature == null && ulIndex >= 0
+        ) {
+            // Return a copy without any editing
+            return component.clone()
+        }
+
+        return if (featureSet.isNR) {
+            mergeComponentNrAndFeature(
+                component as ComponentNr,
+                dlFeature as? FeaturePerCCNr,
+                ulFeature as? FeaturePerCCNr
+            )
+        } else {
+            mergeComponentLteAndFeature(component as ComponentLte, dlFeature, ulFeature)
+        }
+    }
+    private fun mergeComponentLteAndFeature(
+        component: ComponentLte,
+        dlFeature: FeaturePerCCLte?,
+        ulFeature: FeaturePerCCLte?
+    ): ComponentLte {
+        val componentLte = component.copy()
+
+        if (dlFeature != null) {
+            componentLte.mimoDL = dlFeature.mimo
+        } else {
+            // only UL
+            componentLte.classDL = '0'
+            componentLte.mimoDL = 0
+        }
+
+        if (ulFeature != null) {
+            componentLte.mimoUL = ulFeature.mimo
+            componentLte.modUL = ulFeature.qam
+        } else {
+            // only DL
+            componentLte.classUL = '0'
+            componentLte.mimoUL = 0
+        }
+        return componentLte
+    }
+
+    private fun mergeComponentNrAndFeature(
+        component: ComponentNr,
+        dlFeature: FeaturePerCCNr?,
+        ulFeature: FeaturePerCCNr?
+    ): ComponentNr {
+        val componentNr = component.copy()
+        if (dlFeature != null) {
+            componentNr.mimoDL = dlFeature.mimo
+            componentNr.modDL = dlFeature.qam
+            componentNr.maxBandwidth = dlFeature.bw
+            componentNr.channelBW90mhz = dlFeature.bw >= 80 && dlFeature.channelBW90mhz
+            componentNr.scs = dlFeature.scs
+        } else {
+            // only UL
+            componentNr.classDL = '0'
+            componentNr.mimoDL = 0
+        }
+
+        if (ulFeature != null) {
+            componentNr.mimoUL = ulFeature.mimo
+            componentNr.modUL = ulFeature.qam
+        } else {
+            // only DL
+            componentNr.classUL = '0'
+            componentNr.mimoUL = 0
+        }
+        return componentNr
+    }
+
     private fun getFeatureSetCombinations(
         nrCapability: UENrRrcCapabilityJson
     ): List<List<List<Feature>>> {
