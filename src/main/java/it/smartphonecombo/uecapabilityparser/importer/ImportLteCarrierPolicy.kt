@@ -9,7 +9,7 @@ import java.io.InputStream
 import java.io.InputStreamReader
 
 /** A parser for LTE Combinations as found in Qualcomm Carrier Policies */
-object ImportCarrierPolicy : ImportCapabilities {
+object ImportLteCarrierPolicy : ImportCapabilities {
 
     /**
      * This parser take as [input] an [InputStream] containing LTE Combinations using the same

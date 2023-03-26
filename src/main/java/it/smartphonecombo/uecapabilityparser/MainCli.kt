@@ -17,7 +17,7 @@ import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
-import it.smartphonecombo.uecapabilityparser.importer.ImportCarrierPolicy
+import it.smartphonecombo.uecapabilityparser.importer.ImportLteCarrierPolicy
 import it.smartphonecombo.uecapabilityparser.importer.ImportMTKLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import java.io.File
@@ -171,7 +171,7 @@ internal object MainCli {
             val imports: ImportCapabilities?
             when (typeLog) {
                 "E" -> imports = ImportNvItem
-                "C" -> imports = ImportCarrierPolicy
+                "C" -> imports = ImportLteCarrierPolicy
                 "CNR" -> imports = ImportCapPrune
                 "Q" -> imports = Import0xB0CD
                 "M" -> imports = ImportMTKLte
