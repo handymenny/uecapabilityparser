@@ -59,68 +59,62 @@ class ImportCapabilityInformationJson : ImportCapabilities {
         var lteFeatures: FeatureSets? = null
         var nrFeatures: FeatureSets? = null
 
-        eutraCapability
-            ?.let { UEEutraCapabilityJson(it) }
-            ?.let { eutra ->
-                val (lteCategoryDL, lteCategoryUL) = getLTECategory(eutra)
-                comboList.lteCategoryDL = lteCategoryDL
-                comboList.lteCategoryUL = lteCategoryUL
+        if (eutraCapability != null) {
+            val eutra = UEEutraCapabilityJson(eutraCapability)
+            val (lteCategoryDL, lteCategoryUL) = getLTECategory(eutra)
+            comboList.lteCategoryDL = lteCategoryDL
+            comboList.lteCategoryUL = lteCategoryUL
 
-                val bandList = getLteBands(eutra).associateBy({ it.band }, { it })
-                comboList.nrNSAbands = getNrBands(eutra, true).sortedWith(compareBy { it.band })
-                comboList.nrSAbands = getNrBands(eutra, false).sortedWith(compareBy { it.band })
+            val bandList = getLteBands(eutra).associateBy({ it.band }, { it })
+            comboList.nrNSAbands = getNrBands(eutra, true).sortedWith(compareBy { it.band })
+            comboList.nrSAbands = getNrBands(eutra, false).sortedWith(compareBy { it.band })
 
-                val listCombo = getBandCombinations(eutra, bandList)
-                val listComboAdd = getBandCombinationsAdd(eutra, bandList)
-                val listComboReduced = getBandCombinationsReduced(eutra, bandList)
-                val totalLteCombos = listCombo + listComboAdd + listComboReduced
+            val listCombo = getBandCombinations(eutra, bandList)
+            val listComboAdd = getBandCombinationsAdd(eutra, bandList)
+            val listComboReduced = getBandCombinationsReduced(eutra, bandList)
+            val totalLteCombos = listCombo + listComboAdd + listComboReduced
 
-                updateLteBandsCapabilities(bandList, totalLteCombos)
+            updateLteBandsCapabilities(bandList, totalLteCombos)
 
-                comboList.lteCombos = totalLteCombos
-                comboList.lteBands = bandList.values.sortedWith(compareBy { it.band })
+            comboList.lteCombos = totalLteCombos
+            comboList.lteBands = bandList.values.sortedWith(compareBy { it.band })
 
-                if (eutraNrCapability != null) {
-                    // Don't parse lte features if no mrdc capability is available
-                    lteFeatures = getLteFeatureSet(eutra)
+            if (eutraNrCapability != null) {
+                // Don't parse lte features if no mrdc capability is available
+                lteFeatures = getLteFeatureSet(eutra)
+            }
+        }
+
+        if (nrCapability != null) {
+            val nr = UENrCapabilityJson(nrCapability)
+            val bandList = getNrBands(nr).sortedWith(compareBy { it.band })
+            if (debug) {
+                bandList.forEach { println(it.toBwString()) }
+            }
+            comboList.nrBands = bandList
+            nrFeatures = getNRFeatureSet(nr)
+            val featureSetCombination = getFeatureSetCombinations(nr)
+            val saCombos = getNrBandCombinations(nr)
+            comboList.nrCombos =
+                linkFeaturesAndCarrier(saCombos, featureSetCombination, null, nrFeatures)
+            val nrDcCombos = getNrDcBandCombinations(nr, saCombos)
+            val nrDcComboWithFeatures =
+                linkFeaturesAndCarrier(nrDcCombos, featureSetCombination, null, nrFeatures)
+            comboList.nrDcCombos =
+                nrDcComboWithFeatures.map { combo ->
+                    val fr1 = combo.masterComponents.filter { !(it as ComponentNr).isFR2 }
+                    val fr2 = combo.masterComponents.filter { (it as ComponentNr).isFR2 }
+                    ComboNr(fr1.toTypedArray(), fr2.toTypedArray(), combo.featureSet)
                 }
-            }
-        nrCapability
-            ?.let { UENrCapabilityJson(it) }
-            ?.let { nr ->
-                val bandList = getNrBands(nr).sortedWith(compareBy { it.band })
-                if (debug) {
-                    bandList.forEach { println(it.toBwString()) }
-                }
-                comboList.nrBands = bandList
-                nrFeatures = getNRFeatureSet(nr)
-                val featureSetCombination = getFeatureSetCombinations(nr)
-                val saCombos = getNrBandCombinations(nr)
-                comboList.nrCombos =
-                    linkFeaturesAndCarrier(saCombos, featureSetCombination, null, nrFeatures)
-                val nrDcCombos = getNrDcBandCombinations(nr, saCombos)
-                val nrDcComboWithFeatures =
-                    linkFeaturesAndCarrier(nrDcCombos, featureSetCombination, null, nrFeatures)
-                comboList.nrDcCombos =
-                    nrDcComboWithFeatures.map { combo ->
-                        val fr1 = combo.masterComponents.filter { !(it as ComponentNr).isFR2 }
-                        val fr2 = combo.masterComponents.filter { (it as ComponentNr).isFR2 }
-                        ComboNr(fr1.toTypedArray(), fr2.toTypedArray(), combo.featureSet)
-                    }
-            }
-        eutraNrCapability
-            ?.let { UEMrdcCapabilityJson(it) }
-            ?.let { mrdc ->
-                val featureSetCombination = getFeatureSetCombinations(mrdc)
-                val nsaCombos = getNrBandCombinations(mrdc)
-                comboList.enDcCombos =
-                    linkFeaturesAndCarrier(
-                        nsaCombos,
-                        featureSetCombination,
-                        lteFeatures,
-                        nrFeatures
-                    )
-            }
+        }
+
+        if (eutraNrCapability != null) {
+            val mrdc = UEMrdcCapabilityJson(eutraNrCapability)
+            val featureSetCombination = getFeatureSetCombinations(mrdc)
+            val nsaCombos = getNrBandCombinations(mrdc)
+            comboList.enDcCombos =
+                linkFeaturesAndCarrier(nsaCombos, featureSetCombination, lteFeatures, nrFeatures)
+        }
         return comboList
     }
 
