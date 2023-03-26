@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertLinesMatch
 import org.junit.jupiter.api.Test
 
-internal class ImportCapabilityInformationJsonTest {
+internal class ImportCapabilityInformationTest {
 
     @Test
     fun ueCapEutraCombinationAdd() {
@@ -1769,6 +1769,6 @@ internal class ImportCapabilityInformationJsonTest {
     }
 
     companion object {
-        val importerJson = ImportCapabilityInformationJson()
+        val importerJson = ImportCapabilityInformation
     }
 }

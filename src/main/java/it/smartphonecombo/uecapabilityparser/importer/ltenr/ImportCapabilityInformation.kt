@@ -33,7 +33,7 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.intOrNull
 
-class ImportCapabilityInformationJson : ImportCapabilities {
+object ImportCapabilityInformation : ImportCapabilities {
     override fun parse(input: InputStream): Capabilities {
         val caBandCombosString = input.reader().use(InputStreamReader::readText)
         val caBandCombosJson =
