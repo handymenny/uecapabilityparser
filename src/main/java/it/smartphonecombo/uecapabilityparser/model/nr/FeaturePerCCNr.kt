@@ -1,11 +1,12 @@
 package it.smartphonecombo.uecapabilityparser.model.nr
 
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
 
 class FeaturePerCCNr(
     type: Int = DOWNlINK,
     mimo: Int = 2,
-    qam: String? = null,
+    qam: Modulation = Modulation.NONE,
     var bw: Int = 0,
     var scs: Int = 0,
     var channelBW90mhz: Boolean = false,

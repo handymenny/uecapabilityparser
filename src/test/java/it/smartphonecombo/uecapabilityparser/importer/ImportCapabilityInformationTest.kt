@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
 import it.smartphonecombo.uecapabilityparser.model.BwClass
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
@@ -35,23 +36,93 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(2, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(12, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(13, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(17, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(66, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(2, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(
+                    12,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    13,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    17,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    20,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    28,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    32,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    38,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    40,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    41,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    66,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -104,17 +175,66 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(2, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(12, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(13, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(26, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(46, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(48, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(66, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
+                ComponentLte(2, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(
+                    12,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    13,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    26,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    41,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    46,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    48,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    66,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -152,14 +272,70 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    8,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    20,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    38,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    40,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    41,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -200,36 +376,246 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(2, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(12, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(13, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(14, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(17, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(18, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(19, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(25, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(26, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(29, BwClass('A'), BwClass.NONE, 2, "1024qam", "64qam"),
-                ComponentLte(30, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, "1024qam", "64qam"),
-                ComponentLte(34, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
-                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(39, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(42, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(46, BwClass('A'), BwClass.NONE, 2, "1024qam", "64qam"),
-                ComponentLte(48, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(66, BwClass('A'), BwClass.NONE, 4, "1024qam", "256qam"),
-                ComponentLte(71, BwClass('A'), BwClass.NONE, 2, "1024qam", "256qam"),
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    2,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    4,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    5,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    8,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    12,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    13,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    14,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    17,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    18,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    19,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    20,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    25,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    26,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    28,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    29,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    30,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    32,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    34,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    38,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    39,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    40,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    41,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    42,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    46,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    48,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    66,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    71,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM1024,
+                    Modulation.QAM256
+                ),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -278,8 +664,8 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 ComponentNr(1).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -290,8 +676,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(2).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -302,8 +688,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(3).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -314,8 +700,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(5).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -326,8 +712,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(7).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -338,8 +724,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(8).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -350,8 +736,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(12).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -362,8 +748,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(20).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -374,8 +760,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(25).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -386,8 +772,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(28).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -398,8 +784,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(38).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -410,8 +796,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(40).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -422,8 +808,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(41).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -434,8 +820,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(48).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -446,8 +832,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(66).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -458,8 +844,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(71).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -470,8 +856,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(77).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -482,8 +868,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(78).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -494,8 +880,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(79).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -506,8 +892,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(258).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -517,8 +903,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(260).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -528,8 +914,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(261).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -565,8 +951,8 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 ComponentNr(1).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -577,8 +963,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(2).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -589,8 +975,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(3).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -601,8 +987,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(5).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -613,8 +999,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(7).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -625,8 +1011,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(8).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -637,8 +1023,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(12).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -649,8 +1035,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(20).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -661,8 +1047,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(25).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -673,8 +1059,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(28).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -685,8 +1071,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(30).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -697,8 +1083,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(38).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -709,8 +1095,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(41).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -722,8 +1108,8 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
                 ComponentNr(48).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -739,8 +1125,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 ComponentNr(66).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -751,8 +1137,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(71).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -763,8 +1149,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(77).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -776,8 +1162,8 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
                 ComponentNr(78).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -788,8 +1174,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(257).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -799,8 +1185,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(258).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -810,8 +1196,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(260).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -821,8 +1207,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(261).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -886,19 +1272,110 @@ internal class ImportCapabilityInformationTest {
         // Bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
-                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
-                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
-                ComponentLte(32, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(40, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(41, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(42, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(43, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    5,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    8,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    20,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    28,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    32,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    38,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    40,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    41,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    42,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    43,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -931,8 +1408,8 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 ComponentNr(1).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -943,8 +1420,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(3).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -955,8 +1432,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(5).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -967,8 +1444,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(7).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -979,8 +1456,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(8).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -991,8 +1468,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(20).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1003,8 +1480,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(28).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1015,8 +1492,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(38).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1027,8 +1504,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(40).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1039,8 +1516,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(41).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1052,8 +1529,8 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
                 ComponentNr(77).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1064,8 +1541,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(78).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1130,16 +1607,65 @@ internal class ImportCapabilityInformationTest {
         // Bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "64qam"),
-                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(18, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(19, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(21, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(26, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(41, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
-                ComponentLte(42, BwClass('A'), BwClass.NONE, 2, "256qam", "64qam"),
+                ComponentLte(1, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(
+                    18,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    19,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    21,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    26,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    28,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    41,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    42,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -1165,8 +1691,8 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 ComponentNr(77).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -1178,8 +1704,8 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
                 ComponentNr(78).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -1191,8 +1717,8 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
                 ComponentNr(79).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = false
                     bandwidthsDL =
                         mutableMapOf(
@@ -1204,8 +1730,8 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
                 ComponentNr(257).apply {
-                    modDL = "64qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM64
+                    modUL = Modulation.QAM64
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1268,13 +1794,62 @@ internal class ImportCapabilityInformationTest {
         // Bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
-                ComponentLte(20, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
-                ComponentLte(28, BwClass('A'), BwClass.NONE, 2, "256qam", "256qam"),
-                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, "256qam", "16qam"),
-                ComponentLte(38, BwClass('A'), BwClass.NONE, 4, "256qam", "256qam"),
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    20,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    28,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
+                ComponentLte(
+                    32,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    Modulation.QAM256,
+                    Modulation.QAM16
+                ),
+                ComponentLte(
+                    38,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    Modulation.QAM256,
+                    Modulation.QAM256
+                ),
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
@@ -1309,8 +1884,8 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 ComponentNr(1).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1321,8 +1896,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(3).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1333,8 +1908,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(5).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1345,8 +1920,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(7).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1357,8 +1932,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(8).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1369,8 +1944,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(20).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1381,8 +1956,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(28).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1393,8 +1968,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(38).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1405,8 +1980,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(40).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1417,8 +1992,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(41).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1429,8 +2004,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(75).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1441,8 +2016,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = mutableMapOf()
                 },
                 ComponentNr(77).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1453,8 +2028,8 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(78).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL =
                         mutableMapOf(
@@ -1491,253 +2066,253 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 ComponentNr(1).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(2).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(3).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(5).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(7).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(8).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(12).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(13).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(14).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(18).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(20).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(25).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(26).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(28).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(30, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(29).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = mutableMapOf()
                 },
                 ComponentNr(30).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(38).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(40, 30, 20, 15, 10))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(40).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(80, 60, 50, 40, 30, 20, 15, 10))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(41).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL =
                         mutableMapOf(30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
                 ComponentNr(48).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(100, 80, 60, 50, 40, 30, 20, 10))
                     bandwidthsUL = mutableMapOf(30 to intArrayOf(100, 40, 30, 20, 10))
                 },
                 ComponentNr(53).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(10))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(66).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(40, 30, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(70).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(25, 20, 15, 10, 5))
                     bandwidthsUL = mutableMapOf(15 to intArrayOf(15, 10, 5))
                 },
                 ComponentNr(71).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(75).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = mutableMapOf()
                 },
                 ComponentNr(76).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(5))
                     bandwidthsUL = mutableMapOf()
                 },
                 ComponentNr(77).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL =
                         mutableMapOf(30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
                 ComponentNr(78).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL =
                         mutableMapOf(30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
                 ComponentNr(79).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(100, 80, 60, 50, 40))
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
                 ComponentNr(91).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(92).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(93).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(94).apply {
-                    modDL = "256qam"
-                    modUL = "256qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
                     rateMatchingLTEcrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(257).apply {
-                    modDL = "256qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(200, 100, 50))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(258).apply {
-                    modDL = "256qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(200, 100, 50))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(260).apply {
-                    modDL = "256qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(100, 50))
                     bandwidthsUL = bandwidthsDL
                 },
                 ComponentNr(261).apply {
-                    modDL = "256qam"
-                    modUL = "64qam"
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(100, 50))
                     bandwidthsUL = bandwidthsDL
                 },

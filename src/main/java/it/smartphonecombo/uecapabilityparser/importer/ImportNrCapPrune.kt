@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.extension.component7
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
@@ -93,8 +94,8 @@ object ImportNrCapPrune : ImportCapabilities {
                 BwClass.valueOf(classDL),
                 BwClass.valueOf(classUL),
                 mimoParsing(mimoDL),
-                null,
-                null
+                Modulation.NONE,
+                Modulation.NONE
             )
         } else {
             return ComponentNr(
@@ -103,8 +104,8 @@ object ImportNrCapPrune : ImportCapabilities {
                 BwClass.valueOf(classUL),
                 mimoParsing(mimoDL),
                 mimoParsing(mimoUL),
-                null,
-                null
+                Modulation.NONE,
+                Modulation.NONE
             )
         }
     }

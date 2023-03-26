@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.model.nr
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 
 /** The Class Combo. */
@@ -70,8 +71,8 @@ data class ComboNr(
         val nrmimoUL = IntArray(nrDlCC)
         val nrmaxbandwidth = IntArray(nrDlCC)
         val nrscs = IntArray(nrDlCC)
-        val lteModUL = arrayOfNulls<String>(lteDlCC)
-        val nrModUL = arrayOfNulls<String>(nrDlCC)
+        val lteModUL = Array(lteDlCC, init = { Modulation.NONE })
+        val nrModUL = Array(nrDlCC, init = { Modulation.NONE })
         val nrbandDc = IntArray(nrDcDlCC)
         val nrbandwidthDc = Array(nrDcDlCC, init = { BwClass.NONE })
         val nrmimoDc = IntArray(nrDcDlCC)
@@ -79,7 +80,7 @@ data class ComboNr(
         val nrmimoULDc = IntArray(nrDcDlCC)
         val nrmaxbandwidthDc = IntArray(nrDcDlCC)
         val nrscsDc = IntArray(nrDcDlCC)
-        val nrModULDc = arrayOfNulls<String>(nrDcDlCC)
+        val nrModULDc = Array(nrDcDlCC, init = { Modulation.NONE })
         var lteUL = ""
         var nrUL = ""
         var nrmimoULstring = ""

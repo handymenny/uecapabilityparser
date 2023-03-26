@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import java.io.InputStream
@@ -128,8 +129,8 @@ object Import0xB0CD : ImportCapabilities {
             val dlMimo = extractMimo(values[6])
             // LTE UL Mimo is ignored at the moment
             extractMimo(values[7])
-            val ulMod = extractModUL(values[8])
-            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, ulMod))
+            val ulMod = Modulation.of(values[8])
+            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, Modulation.NONE, ulMod))
             index++
         }
 
@@ -155,8 +156,8 @@ object Import0xB0CD : ImportCapabilities {
             val ulClass = extractBwClass(values[5])
             // LTE UL Mimo is ignored at the moment
             extractMimo(values[6])
-            val ulMod = extractModUL(values[7])
-            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, ulMod))
+            val ulMod = Modulation.of(values[7])
+            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, Modulation.NONE, ulMod))
         }
 
         return bands
@@ -180,7 +181,9 @@ object Import0xB0CD : ImportCapabilities {
             val ulClass = BwClass.valueOf(values[5].toInt())
             // LTE UL Mimo is ignored at the moment
             values[6]
-            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, null, null))
+            bands.add(
+                ComponentLte(baseBand, dlClass, ulClass, dlMimo, Modulation.NONE, Modulation.NONE)
+            )
         }
 
         return bands
@@ -206,27 +209,6 @@ object Import0xB0CD : ImportCapabilities {
             return 0
         }
         return value.split('_').drop(2).dropLast(1).firstNotNullOf { it.toIntOrNull() }
-    }
-
-    /**
-     * Converts the given UL_QAM_CAP_INDEX string to the corresponding modulation. It's applicable
-     * to 0xB0CD v40 and v41.
-     */
-    private fun extractModUL(value: String): String? {
-        // Check isEmpty and invalid, which are the most common cases.
-        if (value.isEmpty() || value == "UL_INVALID_QAM_CAP") {
-            return null
-        }
-
-        return if (value.contains("256")) {
-            "256qam"
-        } else if (value.contains("64")) {
-            "64qam"
-        } else if (value.contains("16")) {
-            "16qam"
-        } else {
-            null
-        }
     }
 
     /**
