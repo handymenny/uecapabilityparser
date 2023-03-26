@@ -14,6 +14,10 @@ import it.smartphonecombo.uecapabilityparser.bean.FeatureSet
 import it.smartphonecombo.uecapabilityparser.bean.FeatureSets
 import it.smartphonecombo.uecapabilityparser.bean.IComponent
 import it.smartphonecombo.uecapabilityparser.bean.Rat
+import it.smartphonecombo.uecapabilityparser.bean.UEEutraCapabilityJson
+import it.smartphonecombo.uecapabilityparser.bean.UEMrdcCapabilityJson
+import it.smartphonecombo.uecapabilityparser.bean.UENrCapabilityJson
+import it.smartphonecombo.uecapabilityparser.bean.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.bean.lte.FeaturePerCCLte

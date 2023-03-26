@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.importer.ltenr
+package it.smartphonecombo.uecapabilityparser.bean
 
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
