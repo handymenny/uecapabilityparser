@@ -11,6 +11,7 @@ import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
@@ -402,13 +403,13 @@ object Import0xB826 : ImportCapabilities {
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getQamFromIndex(index: Int): String {
+    private fun getQamFromIndex(index: Int): Modulation {
         return when (index) {
             2,
-            5 -> "256qam"
+            5 -> Modulation.QAM256
             3,
-            6 -> "1024qam"
-            else -> "64qam"
+            6 -> Modulation.QAM1024
+            else -> Modulation.QAM64
         }
     }
 

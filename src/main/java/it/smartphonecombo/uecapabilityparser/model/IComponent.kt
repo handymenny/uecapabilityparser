@@ -10,8 +10,8 @@ interface IComponent {
     var classUL: BwClass
     var mimoDL: Int
     var mimoUL: Int
-    var modDL: String?
-    var modUL: String?
+    var modDL: Modulation
+    var modUL: Modulation
 
     companion object {
         val defaultComparator: Comparator<IComponent> by

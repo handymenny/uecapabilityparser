@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.model.lte
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 
 /** The Class LteBandAndBandwidth. */
 data class ComponentLte(
@@ -9,8 +10,8 @@ data class ComponentLte(
     override var classDL: BwClass,
     override var classUL: BwClass,
     override var mimoDL: Int,
-    override var modDL: String?,
-    override var modUL: String?,
+    override var modDL: Modulation,
+    override var modUL: Modulation,
 ) : Comparable<ComponentLte>, IComponent {
 
     override fun compareTo(iComponent: IComponent): Int {
@@ -26,7 +27,7 @@ data class ComponentLte(
         classDL: BwClass,
         classUL: BwClass,
         mimoDL: Int
-    ) : this(band, classDL, classUL, mimoDL, "64qam", "16qam")
+    ) : this(band, classDL, classUL, mimoDL, Modulation.QAM64, Modulation.QAM16)
 
     constructor(
         band: Int,
@@ -70,7 +71,7 @@ data class ComponentLte(
             bandwidth: Array<BwClass>,
             mimo: IntArray,
             upload: Array<BwClass>,
-            modUL: Array<String?>,
+            modUL: Array<Modulation>,
             inputArray: Array<IComponent>
         ) {
             for (i in inputArray.indices) {
