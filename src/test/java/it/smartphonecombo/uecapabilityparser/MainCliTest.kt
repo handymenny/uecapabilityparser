@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser
 
+import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream

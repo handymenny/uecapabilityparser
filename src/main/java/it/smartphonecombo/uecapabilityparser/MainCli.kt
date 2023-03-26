@@ -5,21 +5,23 @@ import com.ericsson.mts.asn1.converter.ConverterNSG
 import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterQcat
 import com.ericsson.mts.asn1.converter.ConverterWireshark
-import it.smartphonecombo.uecapabilityparser.Utility.getAsn1Converter
-import it.smartphonecombo.uecapabilityparser.Utility.indexOf
-import it.smartphonecombo.uecapabilityparser.Utility.multipleParser
-import it.smartphonecombo.uecapabilityparser.Utility.outputFile
-import it.smartphonecombo.uecapabilityparser.Utility.preformatHexData
-import it.smartphonecombo.uecapabilityparser.bean.Capabilities
-import it.smartphonecombo.uecapabilityparser.bean.Rat
+import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
+import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
-import it.smartphonecombo.uecapabilityparser.importer.lte.Import0xB0CD
-import it.smartphonecombo.uecapabilityparser.importer.lte.ImportCarrierPolicy
-import it.smartphonecombo.uecapabilityparser.importer.lte.ImportMTKLte
-import it.smartphonecombo.uecapabilityparser.importer.lte.ImportNvItem
-import it.smartphonecombo.uecapabilityparser.importer.ltenr.ImportCapabilityInformation
-import it.smartphonecombo.uecapabilityparser.importer.nr.Import0xB826
-import it.smartphonecombo.uecapabilityparser.importer.nr.ImportCapPrune
+import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
+import it.smartphonecombo.uecapabilityparser.importer.ImportLteCarrierPolicy
+import it.smartphonecombo.uecapabilityparser.importer.ImportMTKLte
+import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
+import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.util.Config
+import it.smartphonecombo.uecapabilityparser.util.Utility
+import it.smartphonecombo.uecapabilityparser.util.Utility.getAsn1Converter
+import it.smartphonecombo.uecapabilityparser.util.Utility.indexOf
+import it.smartphonecombo.uecapabilityparser.util.Utility.multipleParser
+import it.smartphonecombo.uecapabilityparser.util.Utility.outputFile
+import it.smartphonecombo.uecapabilityparser.util.Utility.preformatHexData
 import java.io.File
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
@@ -171,8 +173,8 @@ internal object MainCli {
             val imports: ImportCapabilities?
             when (typeLog) {
                 "E" -> imports = ImportNvItem
-                "C" -> imports = ImportCarrierPolicy
-                "CNR" -> imports = ImportCapPrune
+                "C" -> imports = ImportLteCarrierPolicy
+                "CNR" -> imports = ImportNrCapPrune
                 "Q" -> imports = Import0xB0CD
                 "M" -> imports = ImportMTKLte
                 "QNR" -> imports = Import0xB826
