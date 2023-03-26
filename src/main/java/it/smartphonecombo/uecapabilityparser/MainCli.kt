@@ -14,7 +14,7 @@ import it.smartphonecombo.uecapabilityparser.bean.Capabilities
 import it.smartphonecombo.uecapabilityparser.bean.Rat
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapPrune
+import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
 import it.smartphonecombo.uecapabilityparser.importer.ImportLteCarrierPolicy
@@ -172,7 +172,7 @@ internal object MainCli {
             when (typeLog) {
                 "E" -> imports = ImportNvItem
                 "C" -> imports = ImportLteCarrierPolicy
-                "CNR" -> imports = ImportCapPrune
+                "CNR" -> imports = ImportNrCapPrune
                 "Q" -> imports = Import0xB0CD
                 "M" -> imports = ImportMTKLte
                 "QNR" -> imports = Import0xB826

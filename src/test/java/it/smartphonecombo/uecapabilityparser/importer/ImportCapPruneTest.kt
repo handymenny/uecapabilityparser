@@ -17,7 +17,7 @@ internal class ImportCapPruneTest {
         val oracleEnDcPath = "$path/oracle/$oracleEnDcFilename"
         val oracleNrCaPath = "$path/oracle/$oracleNrCaFilename"
 
-        val capabilities = ImportCapPrune.parse(File(inputPath).inputStream())
+        val capabilities = ImportNrCapPrune.parse(File(inputPath).inputStream())
 
         val actualEnDcCsv =
             Utility.toCsv(capabilities.enDcCombos ?: emptyList()).lines().dropLastWhile {

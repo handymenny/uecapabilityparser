@@ -11,7 +11,7 @@ import java.io.InputStream
 import java.io.InputStreamReader
 
 /** A parser for NR Combinations as found in Qualcomm cap_prune */
-object ImportCapPrune : ImportCapabilities {
+object ImportNrCapPrune : ImportCapabilities {
 
     /**
      * This parser take as [input] an [InputStream] containing NR Combinations using the same format
@@ -44,7 +44,7 @@ object ImportCapPrune : ImportCapabilities {
             caBandCombosString
                 .split(';')
                 .filter(String::isNotBlank)
-                .mapNotNull(ImportCapPrune::parseCombo)
+                .mapNotNull(::parseCombo)
 
         val cap = Capabilities()
         val (enDcCombos, nrCombos) = listCombo.partition { it.componentsLte.isNotEmpty() }
