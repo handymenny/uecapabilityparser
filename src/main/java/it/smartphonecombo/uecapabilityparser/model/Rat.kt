@@ -54,9 +54,7 @@ enum class Rat {
                 "nr" -> NR
                 "eutra-nr" -> EUTRA_NR
                 "spare1" -> SPARE1
-                else -> {
-                    null
-                }
+                else -> null
             }
         }
     }
