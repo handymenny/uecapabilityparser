@@ -70,21 +70,21 @@ internal class TsharkTest {
 
     @Test
     fun parseUeCapabilityInformation() {
-        parse("UeCapabilityInformation.hex", "UeCapabilityInformation.txt", Rat.eutra)
+        parse("UeCapabilityInformation.hex", "UeCapabilityInformation.txt", Rat.EUTRA)
     }
 
     @Test
     fun parseUeEutraCapability() {
-        parse("UeEutraCapability.hex", "UeEutraCapability.txt", Rat.eutra)
+        parse("UeEutraCapability.hex", "UeEutraCapability.txt", Rat.EUTRA)
     }
 
     @Test
     fun parseUeMrdcCapability() {
-        parse("UeMrdcCapability.hex", "UeMrdcCapability.txt", Rat.eutra_nr)
+        parse("UeMrdcCapability.hex", "UeMrdcCapability.txt", Rat.EUTRA_NR)
     }
 
     @Test
     fun parseUeNrCapability() {
-        parse("UeNrCapability.hex", "UeNrCapability.txt", Rat.nr)
+        parse("UeNrCapability.hex", "UeNrCapability.txt", Rat.NR)
     }
 }
