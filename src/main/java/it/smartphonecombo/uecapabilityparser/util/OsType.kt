@@ -4,7 +4,7 @@ enum class OsType {
     WINDOWS,
     LINUX,
     MAC,
-    SOLARIS,
+    BSD,
     OTHER;
 
     companion object {
@@ -16,7 +16,7 @@ enum class OsType {
                     "nux" in this -> LINUX
                     "aix" in this -> LINUX
                     "mac" in this -> MAC
-                    "sunos" in this -> SOLARIS
+                    "bsd" in this -> BSD
                     else -> OTHER
                 }
             }
