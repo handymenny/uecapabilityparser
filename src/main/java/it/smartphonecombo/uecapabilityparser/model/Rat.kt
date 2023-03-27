@@ -4,15 +4,18 @@ package it.smartphonecombo.uecapabilityparser.model
  * Enumeration of Rat types, the id represents the corresponding value in the LTE UE Capability
  * enquiry
  */
-enum class Rat(val id: Int) {
-    EUTRA(0),
-    UTRA(1),
-    GERAN_CS(2),
-    GERAN_PS(3),
-    CDMA2000_1XRTT(4),
-    NR(5),
-    EUTRA_NR(6),
-    SPARE1(7);
+enum class Rat {
+    EUTRA,
+    UTRA,
+    GERAN_CS,
+    GERAN_PS,
+    CDMA2000_1XRTT,
+    NR,
+    EUTRA_NR,
+    SPARE1;
+
+    val id
+        get() = ordinal
 
     val ratCapabilityIdentifier
         get() =
