@@ -245,28 +245,28 @@ internal object MainCli {
         val converter =
             when (typeLog) {
                 "W" -> {
-                    eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
-                    nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
-                    mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
+                    eutraIdentifier = "${Rat.EUTRA.ratCapabilityIdentifier}\\s".toRegex()
+                    nrIdentifier = "${Rat.NR.ratCapabilityIdentifier}\\s".toRegex()
+                    mrdcIdentifier = "${Rat.EUTRA_NR.ratCapabilityIdentifier}\\s".toRegex()
                     ConverterWireshark()
                 }
                 "N" -> {
-                    eutraIdentifier = "rat-Type : ${Rat.eutra}\\s".toRegex()
-                    nrIdentifier = "rat-Type : ${Rat.nr}\\s".toRegex()
-                    mrdcIdentifier = "rat-Type : ${Rat.eutra_nr}\\s".toRegex()
+                    eutraIdentifier = "rat-Type : ${Rat.EUTRA}\\s".toRegex()
+                    nrIdentifier = "rat-Type : ${Rat.NR}\\s".toRegex()
+                    mrdcIdentifier = "rat-Type : ${Rat.EUTRA_NR}\\s".toRegex()
                     ConverterNSG()
                 }
                 "O" -> {
-                    eutraIdentifier = "${Rat.eutra.ratCapabilityIdentifier}\\s".toRegex()
-                    nrIdentifier = "${Rat.nr.ratCapabilityIdentifier}\\s".toRegex()
-                    mrdcIdentifier = "${Rat.eutra_nr.ratCapabilityIdentifier}\\s".toRegex()
+                    eutraIdentifier = "${Rat.EUTRA.ratCapabilityIdentifier}\\s".toRegex()
+                    nrIdentifier = "${Rat.NR.ratCapabilityIdentifier}\\s".toRegex()
+                    mrdcIdentifier = "${Rat.EUTRA_NR.ratCapabilityIdentifier}\\s".toRegex()
                     ConverterOsix()
                 }
                 "QC" -> {
-                    eutraIdentifier = "value ${Rat.eutra.ratCapabilityIdentifier} ::=\\s".toRegex()
-                    nrIdentifier = "value ${Rat.nr.ratCapabilityIdentifier} ::=\\s".toRegex()
+                    eutraIdentifier = "value ${Rat.EUTRA.ratCapabilityIdentifier} ::=\\s".toRegex()
+                    nrIdentifier = "value ${Rat.NR.ratCapabilityIdentifier} ::=\\s".toRegex()
                     mrdcIdentifier =
-                        "value ${Rat.eutra_nr.ratCapabilityIdentifier} ::=\\s".toRegex()
+                        "value ${Rat.EUTRA_NR.ratCapabilityIdentifier} ::=\\s".toRegex()
                     ConverterQcat()
                 }
                 "H" -> null
@@ -274,20 +274,20 @@ internal object MainCli {
             }
 
         if (typeLog == "H") {
-            val defaultRat = if (cmd.hasOption("defaultNR")) Rat.nr else Rat.eutra
+            val defaultRat = if (cmd.hasOption("defaultNR")) Rat.NR else Rat.EUTRA
             ratContainerMap += Utility.getUeCapabilityJsonFromHex(defaultRat, input)
             if (inputNR.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.nr, inputNR)
+                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.NR, inputNR)
             }
             if (inputENDC.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.eutra_nr, inputENDC)
+                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.EUTRA_NR, inputENDC)
             }
         } else {
             val list =
                 listOf(
-                        Rat.eutra to input.indexOf(eutraIdentifier),
-                        Rat.eutra_nr to input.indexOf(mrdcIdentifier),
-                        Rat.nr to input.indexOf(nrIdentifier)
+                        Rat.EUTRA to input.indexOf(eutraIdentifier),
+                        Rat.EUTRA_NR to input.indexOf(mrdcIdentifier),
+                        Rat.NR to input.indexOf(nrIdentifier)
                     )
                     .filter { it.second != -1 }
                     .sortedBy { it.second }
@@ -298,40 +298,40 @@ internal object MainCli {
                 val (rat, start) = list[i]
                 val end = list.getOrNull(i + 1)?.second ?: input.length
                 when (rat) {
-                    Rat.eutra ->
+                    Rat.EUTRA ->
                         eutra = input.substring(start + eutraIdentifier.toString().length - 1, end)
-                    Rat.eutra_nr ->
+                    Rat.EUTRA_NR ->
                         eutraNr = input.substring(start + mrdcIdentifier.toString().length - 1, end)
-                    Rat.nr -> nr = input.substring(start + nrIdentifier.toString().length - 1, end)
+                    Rat.NR -> nr = input.substring(start + nrIdentifier.toString().length - 1, end)
                     else -> {}
                 }
             }
             if (eutra.isNotBlank()) {
-                getAsn1Converter(Rat.eutra, converter!!)
+                getAsn1Converter(Rat.EUTRA, converter!!)
                     .convert(
-                        Rat.eutra.ratCapabilityIdentifier,
+                        Rat.EUTRA.ratCapabilityIdentifier,
                         eutra.byteInputStream(),
                         formatWriter
                     )
-                formatWriter.jsonNode?.let { ratContainerMap.put(Rat.eutra.toString(), it) }
+                formatWriter.jsonNode?.let { ratContainerMap.put(Rat.EUTRA.toString(), it) }
             }
             if (eutraNr.isNotBlank() || nr.isNotBlank()) {
-                val nrConverter = getAsn1Converter(Rat.nr, converter!!)
+                val nrConverter = getAsn1Converter(Rat.NR, converter!!)
                 if (eutraNr.isNotBlank()) {
                     nrConverter.convert(
-                        Rat.eutra_nr.ratCapabilityIdentifier,
+                        Rat.EUTRA_NR.ratCapabilityIdentifier,
                         eutraNr.byteInputStream(),
                         formatWriter
                     )
-                    formatWriter.jsonNode?.let { ratContainerMap.put(Rat.eutra_nr.toString(), it) }
+                    formatWriter.jsonNode?.let { ratContainerMap.put(Rat.EUTRA_NR.toString(), it) }
                 }
                 if (nr.isNotBlank()) {
                     nrConverter.convert(
-                        Rat.nr.ratCapabilityIdentifier,
+                        Rat.NR.ratCapabilityIdentifier,
                         nr.byteInputStream(),
                         formatWriter
                     )
-                    formatWriter.jsonNode?.let { ratContainerMap.put(Rat.nr.toString(), it) }
+                    formatWriter.jsonNode?.let { ratContainerMap.put(Rat.NR.toString(), it) }
                 }
             }
         }
@@ -343,9 +343,9 @@ internal object MainCli {
             outputFile(jsonOutput.toString(), outputFile)
         }
 
-        val jsonEutra = jsonOutput.getOrDefault(Rat.eutra.toString(), null) as? JsonObject
-        val jsonEutraNr = jsonOutput.getOrDefault(Rat.eutra_nr.toString(), null) as? JsonObject
-        val jsonNr = jsonOutput.getOrDefault(Rat.nr.toString(), null) as? JsonObject
+        val jsonEutra = jsonOutput.getOrDefault(Rat.EUTRA.toString(), null) as? JsonObject
+        val jsonEutraNr = jsonOutput.getOrDefault(Rat.EUTRA_NR.toString(), null) as? JsonObject
+        val jsonNr = jsonOutput.getOrDefault(Rat.NR.toString(), null) as? JsonObject
 
         return imports.parse(jsonEutra, jsonEutraNr, jsonNr)
     }

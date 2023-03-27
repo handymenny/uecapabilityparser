@@ -4,56 +4,57 @@ package it.smartphonecombo.uecapabilityparser.model
  * Enumeration of Rat types, the id represents the corresponding value in the LTE UE Capability
  * enquiry
  */
-enum class Rat(val id: Int) {
-    eutra(0),
-    utra(1),
-    geran_cs(2),
-    geran_ps(3),
-    cdma2000_1XRTT(4),
-    nr(5),
-    eutra_nr(6),
-    spare1(7);
+enum class Rat {
+    EUTRA,
+    UTRA,
+    GERAN_CS,
+    GERAN_PS,
+    CDMA2000_1XRTT,
+    NR,
+    EUTRA_NR,
+    SPARE1;
+
+    val id
+        get() = ordinal
 
     val ratCapabilityIdentifier
         get() =
             when (this) {
-                eutra -> "UE-EUTRA-Capability"
-                utra -> "InterRATHandoverInfo"
-                geran_ps -> "MS Radio Access Capability"
-                geran_cs -> "Mobile Station Classmark 2"
-                cdma2000_1XRTT -> "A21 Mobile Subscription Information"
-                nr -> "UE-NR-Capability"
-                eutra_nr -> "UE-MRDC-Capability"
-                spare1 -> "Spare 1"
+                EUTRA -> "UE-EUTRA-Capability"
+                UTRA -> "InterRATHandoverInfo"
+                GERAN_PS -> "MS Radio Access Capability"
+                GERAN_CS -> "Mobile Station Classmark 2"
+                CDMA2000_1XRTT -> "A21 Mobile Subscription Information"
+                NR -> "UE-NR-Capability"
+                EUTRA_NR -> "UE-MRDC-Capability"
+                SPARE1 -> "Spare 1"
             }
 
     override fun toString(): String {
         return when (this) {
-            eutra -> "eutra"
-            utra -> "utra"
-            geran_cs -> "geran-cs"
-            geran_ps -> "geran-ps"
-            cdma2000_1XRTT -> "cdma2000-1XRTT"
-            nr -> "nr"
-            eutra_nr -> "eutra-nr"
-            spare1 -> "spare1"
+            EUTRA -> "eutra"
+            UTRA -> "utra"
+            GERAN_CS -> "geran-cs"
+            GERAN_PS -> "geran-ps"
+            CDMA2000_1XRTT -> "cdma2000-1XRTT"
+            NR -> "nr"
+            EUTRA_NR -> "eutra-nr"
+            SPARE1 -> "spare1"
         }
     }
 
     companion object {
         fun of(string: String?): Rat? {
             return when (string) {
-                "eutra" -> eutra
-                "utra" -> utra
-                "geran-cs" -> geran_cs
-                "geran-ps" -> geran_ps
-                "cdma2000-1XRTT" -> cdma2000_1XRTT
-                "nr" -> nr
-                "eutra-nr" -> eutra_nr
-                "spare1" -> spare1
-                else -> {
-                    null
-                }
+                "eutra" -> EUTRA
+                "utra" -> UTRA
+                "geran-cs" -> GERAN_CS
+                "geran-ps" -> GERAN_PS
+                "cdma2000-1XRTT" -> CDMA2000_1XRTT
+                "nr" -> NR
+                "eutra-nr" -> EUTRA_NR
+                "spare1" -> SPARE1
+                else -> null
             }
         }
     }

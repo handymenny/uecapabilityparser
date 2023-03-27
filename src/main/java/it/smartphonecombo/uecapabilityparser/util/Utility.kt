@@ -413,7 +413,7 @@ object Utility {
 
     fun getAsn1Converter(rat: Rat, converter: AbstractConverter): ASN1Converter {
         val definition =
-            if (rat == Rat.eutra) {
+            if (rat == Rat.EUTRA) {
                 getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
             } else {
                 getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
@@ -425,7 +425,7 @@ object Utility {
         val jsonWriter = KotlinJsonFormatWriter()
         val json = buildJsonObject {
             when (rat) {
-                Rat.eutra -> {
+                Rat.EUTRA -> {
                     asn1TranslatorLte.decode(
                         rat.ratCapabilityIdentifier,
                         bytes.inputStream(),
@@ -433,7 +433,7 @@ object Utility {
                     )
                     jsonWriter.jsonNode?.let { put(rat.toString(), it) }
                 }
-                Rat.eutra_nr -> {
+                Rat.EUTRA_NR -> {
                     asn1TranslatorNr.decode(
                         rat.ratCapabilityIdentifier,
                         bytes.inputStream(),
@@ -441,7 +441,7 @@ object Utility {
                     )
                     jsonWriter.jsonNode?.let { put(rat.toString(), it) }
                 }
-                Rat.nr -> {
+                Rat.NR -> {
                     asn1TranslatorNr.decode(
                         rat.ratCapabilityIdentifier,
                         bytes.inputStream(),

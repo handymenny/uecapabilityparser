@@ -51,9 +51,9 @@ object ImportCapabilityInformation : ImportCapabilities {
                 null
             }
 
-        val eutraCapability = caBandCombosJson?.get(Rat.eutra.toString()) as? JsonObject
-        val eutraNrCapability = caBandCombosJson?.get(Rat.eutra_nr.toString()) as? JsonObject
-        val nrCapability = caBandCombosJson?.get(Rat.nr.toString()) as? JsonObject
+        val eutraCapability = caBandCombosJson?.get(Rat.EUTRA.toString()) as? JsonObject
+        val eutraNrCapability = caBandCombosJson?.get(Rat.EUTRA_NR.toString()) as? JsonObject
+        val nrCapability = caBandCombosJson?.get(Rat.NR.toString()) as? JsonObject
 
         return parse(eutraCapability, eutraNrCapability, nrCapability)
     }
