@@ -307,15 +307,6 @@ object Utility {
         return bwsArray
     }
 
-    val osType: OsTypes by lazy {
-        with(System.getProperty("os.name").lowercase(Locale.getDefault())) {
-            if (contains("win")) OsTypes.WINDOWS
-            else if (listOf("nix", "nux", "aix").any { contains(it) }) OsTypes.LINUX
-            else if (contains("mac")) OsTypes.MAC
-            else if (contains("sunos")) OsTypes.SOLARIS else OsTypes.OTHER
-        }
-    }
-
     /**
      * Appends the given string before the last dot in the filename. If there isn't any dot, it
      * appends it to the end of the string.
@@ -381,14 +372,6 @@ object Utility {
             it.nrCombos = nrCombos
             it.nrDcCombos = nrDcCombos
         }
-    }
-
-    enum class OsTypes {
-        WINDOWS,
-        LINUX,
-        MAC,
-        SOLARIS,
-        OTHER
     }
 
     fun ComponentNr.toBwString(): String {

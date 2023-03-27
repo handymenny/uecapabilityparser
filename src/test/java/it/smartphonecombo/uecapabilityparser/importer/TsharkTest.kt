@@ -2,8 +2,8 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Config
+import it.smartphonecombo.uecapabilityparser.util.OsType
 import it.smartphonecombo.uecapabilityparser.util.Tshark
-import it.smartphonecombo.uecapabilityparser.util.Utility
 import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assumptions.assumeTrue
@@ -16,7 +16,7 @@ internal class TsharkTest {
         private val tshark = Tshark()
 
         private fun detectTsharkPath() {
-            if (Utility.osType == Utility.OsTypes.WINDOWS) {
+            if (OsType.CURRENT == OsType.WINDOWS) {
                 val binary = "tshark.exe"
                 val binFolder = "Wireshark"
                 val programFiles =
