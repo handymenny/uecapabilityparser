@@ -1,8 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.model
 
-import it.smartphonecombo.uecapabilityparser.util.Utility.getObject
-import it.smartphonecombo.uecapabilityparser.util.Utility.getObjectAtPath
-import it.smartphonecombo.uecapabilityparser.util.Utility.repeat
+import it.smartphonecombo.uecapabilityparser.extension.getObject
+import it.smartphonecombo.uecapabilityparser.extension.getObjectAtPath
+import it.smartphonecombo.uecapabilityparser.extension.repeat
 import kotlinx.serialization.json.JsonObject
 
 class UEEutraCapabilityJson(val rootJson: JsonObject) {
