@@ -5,6 +5,8 @@ import com.ericsson.mts.asn1.ASN1Translator
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.PERTranslatorFactory
 import com.ericsson.mts.asn1.converter.AbstractConverter
+import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
+import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -389,34 +391,6 @@ object Utility {
         OTHER
     }
 
-    fun String.repeat(n: Int, separator: String) =
-        plus(separator).repeat(n).dropLast(separator.length)
-
-    fun JsonElement.getInt(key: String) =
-        ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.intOrNull
-
-    fun JsonElement.getString(key: String) =
-        ((this as? JsonObject)?.get(key) as? JsonPrimitive)?.contentOrNull
-
-    fun JsonElement.getObject(key: String) = (this as? JsonObject)?.get(key) as? JsonObject
-
-    fun JsonElement.getArray(key: String) = (this as? JsonObject)?.get(key) as? JsonArray
-
-    fun JsonElement.getObjectAtPath(path: String): JsonObject? {
-        var obj = this as? JsonObject
-        path.split(".").forEach { obj = obj?.getObject(it) }
-        return obj
-    }
-
-    fun JsonElement.getArrayAtPath(path: String): JsonArray? {
-        val split = path.split(".")
-        var obj = this as? JsonObject
-        for (i in 0 until split.size - 1) {
-            obj = obj?.getObject(split[i])
-        }
-        return obj?.getArray(split.last())
-    }
-
     fun ComponentNr.toBwString(): String {
         val dlString =
             bandwidthsDL
@@ -545,10 +519,6 @@ object Utility {
             }
         }
         return JsonObject(map)
-    }
-
-    fun String.indexOf(regex: Regex): Int {
-        return regex.find(this)?.range?.first ?: -1
     }
 
     private fun maxDlCC(list: List<ICombo>, secondary: Boolean = false): Int {

@@ -2,6 +2,12 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.Mimo
 import it.smartphonecombo.uecapabilityparser.extension.fromLiteral
+import it.smartphonecombo.uecapabilityparser.extension.getArray
+import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
+import it.smartphonecombo.uecapabilityparser.extension.getInt
+import it.smartphonecombo.uecapabilityparser.extension.getObject
+import it.smartphonecombo.uecapabilityparser.extension.getString
+import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Feature
@@ -23,11 +29,6 @@ import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
-import it.smartphonecombo.uecapabilityparser.util.Utility.getArray
-import it.smartphonecombo.uecapabilityparser.util.Utility.getArrayAtPath
-import it.smartphonecombo.uecapabilityparser.util.Utility.getInt
-import it.smartphonecombo.uecapabilityparser.util.Utility.getObject
-import it.smartphonecombo.uecapabilityparser.util.Utility.getString
 import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -1093,8 +1094,6 @@ object ImportCapabilityInformation : ImportCapabilities {
         return ComponentLte(band, dlClass, ulClass, dlMimo)
     }
 
-    private infix fun IntRange.step(next: (Int) -> Int) =
-        generateSequence(first, next).takeWhile { if (first < last) it <= last else it >= last }
     private fun Map<Int, IntArray>.merge(map: Map<Int, IntArray>): MutableMap<Int, IntArray> {
         val mutableMap = this.toMutableMap()
         map.entries.forEach { (key, value) ->

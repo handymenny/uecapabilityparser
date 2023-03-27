@@ -5,6 +5,7 @@ import com.ericsson.mts.asn1.converter.ConverterNSG
 import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterQcat
 import com.ericsson.mts.asn1.converter.ConverterWireshark
+import it.smartphonecombo.uecapabilityparser.extension.indexOf
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
@@ -18,7 +19,6 @@ import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.getAsn1Converter
-import it.smartphonecombo.uecapabilityparser.util.Utility.indexOf
 import it.smartphonecombo.uecapabilityparser.util.Utility.multipleParser
 import it.smartphonecombo.uecapabilityparser.util.Utility.outputFile
 import it.smartphonecombo.uecapabilityparser.util.Utility.preformatHexData
