@@ -1,5 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.Mimo
+import it.smartphonecombo.uecapabilityparser.extension.fromLiteral
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Feature
@@ -882,7 +884,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 featureSets.getArray("featureSetsDL-PerCC-r15")?.map {
                     val qam = Modulation.QAM256
                     val mimoLayers = it.getString("supportedMIMO-CapabilityDL-MRDC-r15")
-                    val mimo = maxOf(Utility.convertNumber(mimoLayers?.removeSuffix("Layers")), 2)
+                    val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 2)
                     FeaturePerCCLte(mimo = mimo, qam = qam)
                 }
 
@@ -908,7 +910,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                             Modulation.QAM64
                         }
                     val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
-                    val mimo = maxOf(Utility.convertNumber(mimoLayers?.removeSuffix("Layers")), 1)
+                    val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 1)
                     FeaturePerCCLte(FeaturePerCCLte.UPLINK, mimo = mimo, qam = qam)
                 }
 
@@ -954,7 +956,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
                     val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
                     val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
-                    val mimo = maxOf(Utility.convertNumber(mimoLayers?.removeSuffix("Layers")), 2)
+                    val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 2)
                     val qam = Modulation.of(it.getString("supportedModulationOrderDL"))
 
                     FeaturePerCCNr(
@@ -997,18 +999,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
 
                     val mimoCbLayers =
-                        it.getObject("mimo-CB-PUSCH")
-                            ?.getString("maxNumberMIMO-LayersCB-PUSCH")
-                            ?.removeSuffix("Layers")
-                    val mimoNonCbLayers =
-                        it.getString("maxNumberMIMO-LayersNonCB-PUSCH")?.removeSuffix("Layers")
+                        it.getObject("mimo-CB-PUSCH")?.getString("maxNumberMIMO-LayersCB-PUSCH")
+                    val mimoNonCbLayers = it.getString("maxNumberMIMO-LayersNonCB-PUSCH")
 
                     val mimo =
-                        maxOf(
-                            Utility.convertNumber(mimoCbLayers),
-                            Utility.convertNumber(mimoNonCbLayers),
-                            1
-                        )
+                        maxOf(Mimo.fromLiteral(mimoCbLayers), Mimo.fromLiteral(mimoNonCbLayers), 1)
                     val qam = Modulation.of(it.getString("supportedModulationOrderUL"))
                     FeaturePerCCNr(
                         type = FeatureSet.UPLINK,
@@ -1063,7 +1058,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         val dlClassString = bandParametersDL.getString("ca-BandwidthClassDL-r$subRelease")
         val dlClass = BwClass.valueOf(dlClassString)
         val mimoLayers = bandParametersDL.getString("supportedMIMO-CapabilityDL-r$subRelease")
-        var dlMimo = Utility.convertNumber(mimoLayers?.removeSuffix("Layers"))
+        var dlMimo = Mimo.fromLiteral(mimoLayers)
 
         // Some devices only reports fourLayerTM3-TM4-rXX or only reports 4rx in
         // fourLayerTM3-TM4-rXX

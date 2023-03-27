@@ -192,17 +192,6 @@ object Utility {
         return header.toString()
     }
 
-    fun convertNumber(numberAsString: String?): Int {
-        return when (numberAsString?.lowercase(Locale.getDefault())) {
-            "one" -> 1
-            "two" -> 2
-            "three" -> 3
-            "four" -> 4
-            "eight" -> 8
-            else -> 0
-        }
-    }
-
     fun hexStringToByteArray(s: String): ByteArray {
         var i = 0
 
