@@ -1,16 +1,18 @@
 package it.smartphonecombo.uecapabilityparser.model.nr
 
+import it.smartphonecombo.uecapabilityparser.extension.Band
+import it.smartphonecombo.uecapabilityparser.extension.Mimo
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 
 data class ComponentNr(
-    override var band: Int,
+    override var band: Band,
     override var classDL: BwClass,
     override var classUL: BwClass,
-    override var mimoDL: Int,
-    override var mimoUL: Int,
+    override var mimoDL: Mimo,
+    override var mimoUL: Mimo,
     override var modDL: Modulation,
     override var modUL: Modulation
 ) : IComponent {
@@ -24,10 +26,10 @@ data class ComponentNr(
     var rateMatchingLTEcrs = false
 
     constructor(
-        band: Int
+        band: Band
     ) : this(band, BwClass.NONE, BwClass.NONE, 0, 0, Modulation.QAM256, Modulation.QAM64)
     constructor(
-        band: Int,
+        band: Band,
         classDL: BwClass,
         classUL: BwClass
     ) : this(band, classDL, classUL, 0, 0, Modulation.QAM256, Modulation.QAM64)

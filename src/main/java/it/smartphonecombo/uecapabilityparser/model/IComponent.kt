@@ -1,15 +1,18 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.extension.Band
+import it.smartphonecombo.uecapabilityparser.extension.Mimo
+
 interface IComponent {
     fun compareTo(iComponent: IComponent): Int
 
     fun clone(): IComponent
 
-    var band: Int
+    var band: Band
     var classDL: BwClass
     var classUL: BwClass
-    var mimoDL: Int
-    var mimoUL: Int
+    var mimoDL: Mimo
+    var mimoUL: Mimo
     var modDL: Modulation
     var modUL: Modulation
 

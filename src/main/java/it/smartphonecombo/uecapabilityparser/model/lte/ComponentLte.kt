@@ -1,15 +1,17 @@
 package it.smartphonecombo.uecapabilityparser.model.lte
 
+import it.smartphonecombo.uecapabilityparser.extension.Band
+import it.smartphonecombo.uecapabilityparser.extension.Mimo
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 
 /** The Class LteBandAndBandwidth. */
 data class ComponentLte(
-    override var band: Int,
+    override var band: Band,
     override var classDL: BwClass,
     override var classUL: BwClass,
-    override var mimoDL: Int,
+    override var mimoDL: Mimo,
     override var modDL: Modulation,
     override var modUL: Modulation,
 ) : Comparable<ComponentLte>, IComponent {
@@ -23,21 +25,21 @@ data class ComponentLte(
         set(value) = Unit
 
     constructor(
-        band: Int,
+        band: Band,
         classDL: BwClass,
         classUL: BwClass,
-        mimoDL: Int
+        mimoDL: Mimo
     ) : this(band, classDL, classUL, mimoDL, Modulation.QAM64, Modulation.QAM16)
 
     constructor(
-        band: Int,
+        band: Band,
         classDL: BwClass,
-        mimoDL: Int
+        mimoDL: Mimo
     ) : this(band, classDL, BwClass.NONE, mimoDL)
 
-    constructor(band: Int, classDL: BwClass, classUL: BwClass) : this(band, classDL, classUL, 0)
+    constructor(band: Band, classDL: BwClass, classUL: BwClass) : this(band, classDL, classUL, 0)
 
-    constructor(band: Int) : this(band, BwClass.NONE, BwClass.NONE)
+    constructor(band: Band) : this(band, BwClass.NONE, BwClass.NONE)
 
     constructor() : this(0)
 
