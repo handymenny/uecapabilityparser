@@ -19,4 +19,4 @@ jobs:
           java-version: '11'
           cache: 'gradle'
       - name: Gradle Dependency Submission
-        uses: mikepenz/gradle-dependency-submission@v0.8.5
+        uses: mikepenz/gradle-dependency-submission@v0.8.6
