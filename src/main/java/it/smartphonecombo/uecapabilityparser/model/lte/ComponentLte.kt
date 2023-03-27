@@ -14,10 +14,18 @@ data class ComponentLte(
     override var mimoDL: Mimo,
     override var modDL: Modulation,
     override var modUL: Modulation,
-) : Comparable<ComponentLte>, IComponent {
+) : IComponent {
 
-    override fun compareTo(iComponent: IComponent): Int {
-        return IComponent.defaultComparator.compare(this, iComponent)
+    override fun compareTo(other: IComponent): Int {
+        return compareValuesBy(
+            this,
+            other,
+            { it.band },
+            { it.classDL },
+            { it.classUL },
+            { it.mimoDL },
+            { it.mimoUL }
+        )
     }
 
     // Mimo UL is constant for LTE
@@ -42,10 +50,6 @@ data class ComponentLte(
     constructor(band: Band) : this(band, BwClass.NONE, BwClass.NONE)
 
     constructor() : this(0)
-
-    override fun compareTo(other: ComponentLte): Int {
-        return IComponent.defaultComparator.compare(this, other)
-    }
 
     /**
      * To string.

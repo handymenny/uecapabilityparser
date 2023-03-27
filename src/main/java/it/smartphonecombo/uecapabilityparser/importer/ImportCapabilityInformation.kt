@@ -74,8 +74,8 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.lteCategoryUL = lteCategoryUL
 
             val bandList = getLteBands(eutra).associateBy({ it.band }, { it })
-            comboList.nrNSAbands = getNrBands(eutra, true).sortedWith(compareBy { it.band })
-            comboList.nrSAbands = getNrBands(eutra, false).sortedWith(compareBy { it.band })
+            comboList.nrNSAbands = getNrBands(eutra, true).sorted()
+            comboList.nrSAbands = getNrBands(eutra, false).sorted()
 
             val listCombo = getBandCombinations(eutra, bandList)
             val listComboAdd = getBandCombinationsAdd(eutra, bandList)
@@ -85,7 +85,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             updateLteBandsCapabilities(bandList, totalLteCombos)
 
             comboList.lteCombos = totalLteCombos
-            comboList.lteBands = bandList.values.sortedWith(compareBy { it.band })
+            comboList.lteBands = bandList.values.sorted()
 
             if (eutraNrCapability != null) {
                 // Don't parse lte features if no mrdc capability is available
@@ -95,7 +95,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (nrCapability != null) {
             val nr = UENrCapabilityJson(nrCapability)
-            val bandList = getNrBands(nr).sortedWith(compareBy { it.band })
+            val bandList = getNrBands(nr).sorted()
             if (debug) {
                 bandList.forEach { println(it.toBwString()) }
             }
@@ -486,7 +486,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) =
         zip(bcsList) { bands, bcs ->
             val bandArray = bands.toTypedArray<IComponent>()
-            bandArray.sortWith(IComponent.defaultComparator.reversed())
+            bandArray.sortDescending()
             ComboLte(bandArray, bcs)
         }
 
@@ -552,11 +552,11 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         val nrArray = newNrComponents.toTypedArray<IComponent>()
-        nrArray.sortWith(IComponent.defaultComparator.reversed())
+        nrArray.sortDescending()
 
         return if (newLteComponents.isNotEmpty()) {
             val lteArray = newLteComponents.toTypedArray<IComponent>()
-            lteArray.sortWith(IComponent.defaultComparator.reversed())
+            lteArray.sortDescending()
             ComboNr(lteArray, nrArray, combo.featureSet)
         } else {
             ComboNr(nrArray, combo.featureSet)

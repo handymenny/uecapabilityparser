@@ -216,13 +216,13 @@ object Import0xB826 : ImportCapabilities {
         }
 
         val bandArray = bands.toTypedArray()
-        bandArray.sortWith(IComponent.defaultComparator.reversed())
+        bandArray.sortDescending()
 
         val nrBandsArray = nrBands.toTypedArray()
-        nrBandsArray.sortWith(IComponent.defaultComparator.reversed())
+        nrBandsArray.sortDescending()
 
         val nrDcBandsArray = nrDcBands.toTypedArray()
-        nrDcBands.sortWith(IComponent.defaultComparator.reversed())
+        nrDcBands.sortDescending()
 
         return if (bandArray.isNotEmpty()) {
             ComboNr(bandArray, nrBandsArray)

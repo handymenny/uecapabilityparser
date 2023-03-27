@@ -34,8 +34,24 @@ data class ComponentNr(
         classUL: BwClass
     ) : this(band, classDL, classUL, 0, 0, Modulation.QAM256, Modulation.QAM64)
 
-    override fun compareTo(iComponent: IComponent): Int {
-        TODO("Not yet implemented")
+    override fun compareTo(other: IComponent): Int {
+        return if (other is ComponentNr) {
+            compareValuesBy(
+                this,
+                other,
+                { it.band },
+                { it.classDL },
+                { it.classUL },
+                { it.mimoDL },
+                { it.mimoUL },
+                { it.scs },
+                { it.maxBandwidth },
+                { it.powerClass }
+            )
+        } else {
+            // Component Nr is higher than ComponentLTE
+            1
+        }
     }
 
     /**

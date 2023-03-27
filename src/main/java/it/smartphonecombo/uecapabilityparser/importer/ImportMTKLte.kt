@@ -37,7 +37,7 @@ object ImportMTKLte : ImportCapabilities {
                 val bands = parseCombo(iterator) ?: continue
 
                 val bandArray = bands.toTypedArray<IComponent>()
-                bandArray.sortWith(IComponent.defaultComparator.reversed())
+                bandArray.sortDescending()
 
                 listCombos.add(ComboLte(bandArray))
             }

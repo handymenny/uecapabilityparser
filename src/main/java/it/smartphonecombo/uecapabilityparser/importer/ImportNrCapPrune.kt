@@ -66,9 +66,9 @@ object ImportNrCapPrune : ImportCapabilities {
         }
 
         val lteBandsArray = lteBands.toTypedArray()
-        lteBandsArray.sortWith(IComponent.defaultComparator.reversed())
+        lteBandsArray.sortDescending()
         val nrBandsArray = nrBands.toTypedArray()
-        nrBandsArray.sortWith(IComponent.defaultComparator.reversed())
+        nrBandsArray.sortDescending()
 
         return if (lteBandsArray.isEmpty() && nrBandsArray.isEmpty()) {
             null

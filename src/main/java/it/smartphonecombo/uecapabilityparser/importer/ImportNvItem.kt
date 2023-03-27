@@ -148,7 +148,7 @@ object ImportNvItem : ImportCapabilities {
             matchingComponent.classUL = ulComponent.classUL
         }
 
-        components.sortWith(IComponent.defaultComparator.reversed())
+        components.sortDescending()
         return components
     }
 

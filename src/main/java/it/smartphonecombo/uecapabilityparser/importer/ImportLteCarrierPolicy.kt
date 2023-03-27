@@ -75,8 +75,8 @@ object ImportLteCarrierPolicy : ImportCapabilities {
                 return null
             }
 
-        val componentsArray =
-            parsedComponents.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+        val componentsArray = parsedComponents.toTypedArray()
+        componentsArray.sortDescending()
 
         return ComboLte(componentsArray, bcsArray)
     }

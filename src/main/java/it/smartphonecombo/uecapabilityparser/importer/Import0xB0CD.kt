@@ -102,8 +102,8 @@ object Import0xB0CD : ImportCapabilities {
             return null
         }
 
-        val componentArray =
-            components.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+        val componentArray = components.toTypedArray()
+        componentArray.sortDescending()
 
         return ComboLte(componentArray)
     }
