@@ -3,7 +3,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 import com.soywiz.kmem.extract
 import com.soywiz.kmem.extract4
 import com.soywiz.kmem.extract8
-import com.soywiz.kmem.insert
+import com.soywiz.kmem.finsert
 import com.soywiz.kmem.isOdd
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
@@ -330,7 +330,7 @@ object Import0xB826 : ImportCapabilities {
 
         val mimoLeft = byte.extract(0, 6)
         val mimoRight = short.extract(15, 1)
-        val mimo = mimoRight.insert(mimoLeft, 1, 6)
+        val mimo = mimoRight.finsert(mimoLeft, 1)
         component.mimoDL = getMimoFromIndex(mimo)
 
         val byte2 = byteBuffer.readUnsignedByte()
@@ -339,7 +339,7 @@ object Import0xB826 : ImportCapabilities {
 
         val classUlLeft = byte2.extract(0, 3)
         val classUlRight = byte.extract(6, 2)
-        val classUl = classUlRight.insert(classUlLeft, 2, 3)
+        val classUl = classUlRight.finsert(classUlLeft, 2)
         component.classUL = BwClass.valueOf(classUl)
 
         val byte3 = byteBuffer.readUnsignedByte()
@@ -352,7 +352,7 @@ object Import0xB826 : ImportCapabilities {
 
             val scsLeft = byte4.extract(0, 2)
             val scsRight = byte3.extract(7, 1)
-            val scsIndex = scsRight.insert(scsLeft, 1, 2)
+            val scsIndex = scsRight.finsert(scsLeft, 1)
             nrBand.scs = getSCSFromIndex(scsIndex)
 
             val maxBWindex = byte4.extract(2, 5)
