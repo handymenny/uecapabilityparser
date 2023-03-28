@@ -2,10 +2,10 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
-import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -102,8 +102,8 @@ object Import0xB0CD : ImportCapabilities {
             return null
         }
 
-        val componentArray =
-            components.sortedWith(IComponent.defaultComparator.reversed()).toTypedArray()
+        val componentArray = components.toTypedArray()
+        componentArray.sortDescending()
 
         return ComboLte(componentArray)
     }
@@ -130,7 +130,7 @@ object Import0xB0CD : ImportCapabilities {
             // LTE UL Mimo is ignored at the moment
             extractMimo(values[7])
             val ulMod = Modulation.of(values[8])
-            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, Modulation.NONE, ulMod))
+            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, modUL = ulMod))
             index++
         }
 
@@ -157,7 +157,7 @@ object Import0xB0CD : ImportCapabilities {
             // LTE UL Mimo is ignored at the moment
             extractMimo(values[6])
             val ulMod = Modulation.of(values[7])
-            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, Modulation.NONE, ulMod))
+            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, modUL = ulMod))
         }
 
         return bands
@@ -181,9 +181,7 @@ object Import0xB0CD : ImportCapabilities {
             val ulClass = BwClass.valueOf(values[5].toInt())
             // LTE UL Mimo is ignored at the moment
             values[6]
-            bands.add(
-                ComponentLte(baseBand, dlClass, ulClass, dlMimo, Modulation.NONE, Modulation.NONE)
-            )
+            bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo))
         }
 
         return bands

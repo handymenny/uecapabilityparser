@@ -13,7 +13,6 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*
@@ -372,30 +371,6 @@ object Utility {
             it.nrCombos = nrCombos
             it.nrDcCombos = nrDcCombos
         }
-    }
-
-    fun ComponentNr.toBwString(): String {
-        val dlString =
-            bandwidthsDL
-                ?.entries
-                ?.filter { it.value.isNotEmpty() }
-                ?.joinToString(
-                    prefix = "BwDL:[",
-                    postfix = "]",
-                    transform = { "${it.key}kHz: ${it.value.joinToString()}" },
-                    separator = "; ",
-                )
-        val ulString =
-            bandwidthsUL
-                ?.entries
-                ?.filter { it.value.isNotEmpty() }
-                ?.joinToString(
-                    prefix = "BwUL:[",
-                    postfix = "]",
-                    transform = { "${it.key}kHz: ${it.value.joinToString()}" },
-                    separator = "; ",
-                )
-        return "n$band $dlString $ulString"
     }
 
     private fun getResourceAsStream(path: String): InputStream? =

@@ -16,11 +16,11 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
-import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
@@ -222,13 +222,13 @@ object Import0xB826 : ImportCapabilities {
         }
 
         val bandArray = bands.toTypedArray()
-        bandArray.sortWith(IComponent.defaultComparator.reversed())
+        bandArray.sortDescending()
 
         val nrBandsArray = nrBands.toTypedArray()
-        nrBandsArray.sortWith(IComponent.defaultComparator.reversed())
+        nrBandsArray.sortDescending()
 
         val nrDcBandsArray = nrDcBands.toTypedArray()
-        nrDcBands.sortWith(IComponent.defaultComparator.reversed())
+        nrDcBands.sortDescending()
 
         return if (bandArray.isNotEmpty()) {
             ComboNr(bandArray, nrBandsArray)

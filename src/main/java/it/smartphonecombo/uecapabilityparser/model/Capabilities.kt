@@ -1,9 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
-import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 
 /** The Class ComboList. */
 class Capabilities(
@@ -11,9 +11,9 @@ class Capabilities(
 ) {
     var lteCombos: List<ComboLte>? = null
     var lteBands: List<ComponentLte>? = null
-    var nrNSAbands: List<ComponentNr>? = null
-    var nrSAbands: List<ComponentNr>? = null
-    var nrBands: List<ComponentNr>? = null
+    var nrNSAbands: List<BandNrDetails>? = null
+    var nrSAbands: List<BandNrDetails>? = null
+    var nrBands: List<BandNrDetails>? = null
     var lteCategoryDL = 0
     var lteCategoryUL = 0
     private val metadata = HashMap<String, Any?>()
@@ -46,8 +46,8 @@ class Capabilities(
         comboList: List<ComboLte>?,
         enDCcomboList: List<ComboNr>?,
         saComboList: List<ComboNr>?,
-        nrNSAbands: List<ComponentNr>?,
-        nrSAbands: List<ComponentNr>?,
+        nrNSAbands: List<BandNrDetails>?,
+        nrSAbands: List<BandNrDetails>?,
         lteCategoryDL: Int,
         lteCategoryUL: Int
     ) : this(comboList, nrNSAbands, nrSAbands, lteCategoryDL, lteCategoryUL) {
@@ -57,8 +57,8 @@ class Capabilities(
 
     constructor(
         comboList: List<ComboLte>?,
-        nrNSAbands: List<ComponentNr>?,
-        nrSAbands: List<ComponentNr>?,
+        nrNSAbands: List<BandNrDetails>?,
+        nrSAbands: List<BandNrDetails>?,
         lteCategoryDL: Int,
         lteCategoryUL: Int
     ) : this(comboList) {

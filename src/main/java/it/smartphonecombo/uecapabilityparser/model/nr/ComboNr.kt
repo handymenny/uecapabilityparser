@@ -2,9 +2,10 @@ package it.smartphonecombo.uecapabilityparser.model.nr
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.ICombo
-import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
-import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 /** The Class Combo. */
 data class ComboNr(
@@ -28,7 +29,7 @@ data class ComboNr(
     override fun toString(): String {
         val str = StringBuilder()
         for (x in componentsLte) {
-            str.append(x)
+            str.append(x.toCompactStr())
             str.append("-")
         }
         if (str.length > 1) {
@@ -36,7 +37,7 @@ data class ComboNr(
             str.append("_")
         }
         for (x in componentsNr) {
-            str.append(x.toString())
+            str.append(x.toCompactStr())
             str.append("-")
         }
         if (isNrDc && str.length > 1) {
@@ -44,7 +45,7 @@ data class ComboNr(
             str.append("_")
         }
         for (x in componentsNrDc) {
-            str.append(x.toString())
+            str.append(x.toCompactStr())
             str.append("-")
         }
         str.append(featureSet)

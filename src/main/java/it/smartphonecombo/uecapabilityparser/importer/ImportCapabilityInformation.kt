@@ -1,35 +1,37 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.Mimo
+import it.smartphonecombo.uecapabilityparser.extension.MutableBwMap
 import it.smartphonecombo.uecapabilityparser.extension.fromLiteral
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getInt
 import it.smartphonecombo.uecapabilityparser.extension.getObject
 import it.smartphonecombo.uecapabilityparser.extension.getString
+import it.smartphonecombo.uecapabilityparser.extension.merge
 import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Feature
 import it.smartphonecombo.uecapabilityparser.model.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.FeatureSets
-import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrRrcCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
-import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
 import it.smartphonecombo.uecapabilityparser.model.nr.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
-import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 import java.io.InputStream
 import java.io.InputStreamReader
 import kotlinx.serialization.SerializationException
@@ -74,8 +76,8 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.lteCategoryUL = lteCategoryUL
 
             val bandList = getLteBands(eutra).associateBy({ it.band }, { it })
-            comboList.nrNSAbands = getNrBands(eutra, true).sortedWith(compareBy { it.band })
-            comboList.nrSAbands = getNrBands(eutra, false).sortedWith(compareBy { it.band })
+            comboList.nrNSAbands = getNrBands(eutra, true).sorted()
+            comboList.nrSAbands = getNrBands(eutra, false).sorted()
 
             val listCombo = getBandCombinations(eutra, bandList)
             val listComboAdd = getBandCombinationsAdd(eutra, bandList)
@@ -85,7 +87,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             updateLteBandsCapabilities(bandList, totalLteCombos)
 
             comboList.lteCombos = totalLteCombos
-            comboList.lteBands = bandList.values.sortedWith(compareBy { it.band })
+            comboList.lteBands = bandList.values.sorted()
 
             if (eutraNrCapability != null) {
                 // Don't parse lte features if no mrdc capability is available
@@ -95,9 +97,9 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (nrCapability != null) {
             val nr = UENrCapabilityJson(nrCapability)
-            val bandList = getNrBands(nr).sortedWith(compareBy { it.band })
+            val bandList = getNrBands(nr).sorted()
             if (debug) {
-                bandList.forEach { println(it.toBwString()) }
+                bandList.forEach { println(it.bwsToString()) }
             }
             comboList.nrBands = bandList
             nrFeatures = getNRFeatureSet(nr)
@@ -433,7 +435,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         val lteBands =
             supportedBandListEutra?.mapNotNull {
-                it.getInt("bandEUTRA")?.let { band -> ComponentLte(band, BwClass('A'), 2) }
+                it.getInt("bandEUTRA")?.let { band -> ComponentLte(band, BwClass('A'), mimoDL = 2) }
             }
                 ?: return emptyList()
 
@@ -460,7 +462,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     private fun getNrBands(
         eutraCapability: UEEutraCapabilityJson,
         endc: Boolean
-    ): List<ComponentNr> {
+    ): List<BandNrDetails> {
 
         val supportedBandListNR =
             if (endc) {
@@ -474,7 +476,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
 
         return supportedBandListNR?.mapNotNull {
-            it.getInt("bandNR-r15")?.let { band -> ComponentNr(band) }
+            it.getInt("bandNR-r15")?.let { band -> BandNrDetails(band) }
         }
             ?: emptyList()
     }
@@ -486,7 +488,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) =
         zip(bcsList) { bands, bcs ->
             val bandArray = bands.toTypedArray<IComponent>()
-            bandArray.sortWith(IComponent.defaultComparator.reversed())
+            bandArray.sortDescending()
             ComboLte(bandArray, bcs)
         }
 
@@ -552,11 +554,11 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         val nrArray = newNrComponents.toTypedArray<IComponent>()
-        nrArray.sortWith(IComponent.defaultComparator.reversed())
+        nrArray.sortDescending()
 
         return if (newLteComponents.isNotEmpty()) {
             val lteArray = newLteComponents.toTypedArray<IComponent>()
-            lteArray.sortWith(IComponent.defaultComparator.reversed())
+            lteArray.sortDescending()
             ComboNr(lteArray, nrArray, combo.featureSet)
         } else {
             ComboNr(nrArray, combo.featureSet)
@@ -760,20 +762,24 @@ object ImportCapabilityInformation : ImportCapabilities {
         return list
     }
 
-    private fun getNrBands(nrCapability: UENrCapabilityJson): List<ComponentNr> {
+    private fun getNrBands(nrCapability: UENrCapabilityJson): List<BandNrDetails> {
         return nrCapability.rootJson
             .getArrayAtPath("rf-Parameters.supportedBandListNR")
             ?.mapNotNull { supportedBandNr ->
                 val componentNr =
-                    supportedBandNr.getInt("bandNR")?.let { ComponentNr(it) }
+                    supportedBandNr.getInt("bandNR")?.let { BandNrDetails(it) }
                         ?: return@mapNotNull null
 
                 if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
                     componentNr.modDL = Modulation.QAM64
+                } else {
+                    componentNr.modDL = Modulation.QAM256
                 }
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
                     componentNr.modUL = Modulation.QAM256
+                } else {
+                    componentNr.modUL = Modulation.QAM64
                 }
 
                 supportedBandNr.getString("ue-PowerClass")?.removePrefix("pc")?.toInt()?.let {
@@ -781,7 +787,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 }
 
                 if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {
-                    componentNr.rateMatchingLTEcrs = true
+                    componentNr.rateMatchingLteCrs = true
                 }
 
                 val maxUplinkDutyCycleKey =
@@ -802,14 +808,14 @@ object ImportCapabilityInformation : ImportCapabilities {
             ?: emptyList()
     }
 
-    private fun parseNRChannelBWs(supportedBandNr: JsonElement, componentNr: ComponentNr) {
+    private fun parseNRChannelBWs(supportedBandNr: JsonElement, componentNr: BandNrDetails) {
         val channelBWsDL = supportedBandNr.getObject("channelBWs-DL")
         val channelBWsUL = supportedBandNr.getObject("channelBWs-UL")
         val channelBWsDlV1590 = supportedBandNr.getObject("channelBWs-DL-v1590")
         val channelBWsUlV1590 = supportedBandNr.getObject("channelBWs-UL-v1590")
 
-        var bandwidthsDL = parseNrBw(channelBWsDL, componentNr, false).toMutableMap()
-        var bandwidthsUL = parseNrBw(channelBWsUL, componentNr, false).toMutableMap()
+        val bandwidthsDL = parseNrBw(channelBWsDL, componentNr, false)
+        val bandwidthsUL = parseNrBw(channelBWsUL, componentNr, false)
 
         val scsRange =
             if (componentNr.isFR2) {
@@ -833,8 +839,8 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
         }
 
-        bandwidthsDL = bandwidthsDL.merge(parseNrBw(channelBWsDlV1590, componentNr, true))
-        bandwidthsUL = bandwidthsUL.merge(parseNrBw(channelBWsUlV1590, componentNr, true))
+        bandwidthsDL.merge(parseNrBw(channelBWsDlV1590, componentNr, true))
+        bandwidthsUL.merge(parseNrBw(channelBWsUlV1590, componentNr, true))
 
         // Sort bws array
         for (scs in scsRange) {
@@ -848,9 +854,9 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun parseNrBw(
         channelBWsDL: JsonObject?,
-        componentNr: ComponentNr,
+        componentNr: BandNrDetails,
         isV1590: Boolean = false
-    ): Map<Int, IntArray> {
+    ): MutableBwMap {
         /*
          * According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
          * So we assume that it's supported by default for 30kHz and supported for 60kHz
@@ -871,7 +877,6 @@ object ImportCapabilityInformation : ImportCapabilities {
                 bandWidthMap[scs] = bws
             }
         }
-            ?: return emptyMap()
         return bandWidthMap
     }
 
@@ -1092,13 +1097,5 @@ object ImportCapabilityInformation : ImportCapabilities {
         val (dlClass, dlMimo) = parseBandParametersDL(bandParameters, release)
         val ulClass = parseBandParametersUL(bandParameters, release)
         return ComponentLte(band, dlClass, ulClass, dlMimo)
-    }
-
-    private fun Map<Int, IntArray>.merge(map: Map<Int, IntArray>): MutableMap<Int, IntArray> {
-        val mutableMap = this.toMutableMap()
-        map.entries.forEach { (key, value) ->
-            mutableMap[key] = mutableMap[key]?.plus(value) ?: value
-        }
-        return mutableMap
     }
 }

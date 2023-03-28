@@ -2,7 +2,7 @@ package it.smartphonecombo.uecapabilityparser.model.lte
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.ICombo
-import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
 
 /** The Class Combo. */
@@ -35,7 +35,7 @@ data class ComboLte(override var masterComponents: Array<IComponent>, var bcs: I
     override fun toString(): String {
         val str = StringBuilder()
         for (x in masterComponents) {
-            str.append(x)
+            str.append(x.toCompactStr())
             str.append("-")
         }
         str.append(Utility.arrayToQcomBcs(bcs))
