@@ -36,18 +36,75 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(2, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    2,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    4,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    5,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    8,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
                 ComponentLte(
                     12,
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -56,6 +113,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -64,6 +122,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -72,6 +131,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -80,6 +140,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -88,6 +149,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -96,6 +158,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -104,6 +167,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -112,6 +176,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -120,6 +185,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -175,15 +241,48 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(2, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(4, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(5, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(7, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(
+                    2,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    4,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    5,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
                 ComponentLte(
                     12,
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -192,6 +291,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -200,6 +300,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -208,6 +309,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -216,6 +318,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -224,6 +327,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -232,6 +336,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -277,6 +382,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -285,6 +391,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -293,6 +400,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -301,6 +409,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -309,6 +418,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -317,6 +427,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -325,6 +436,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -333,6 +445,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -381,6 +494,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -389,6 +503,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -397,6 +512,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -405,6 +521,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -413,6 +530,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -421,6 +539,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -429,6 +548,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -437,6 +557,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -445,6 +566,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -453,6 +575,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -461,6 +584,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -469,6 +593,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -477,6 +602,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -485,6 +611,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -493,6 +620,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -501,6 +629,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -509,6 +638,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -517,6 +647,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM64
                 ),
@@ -525,6 +656,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -533,6 +665,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM64
                 ),
@@ -541,6 +674,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -549,6 +683,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -557,6 +692,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -565,6 +701,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -573,6 +710,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -581,6 +719,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -589,6 +728,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM64
                 ),
@@ -597,6 +737,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -605,6 +746,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -613,6 +755,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM1024,
                     Modulation.QAM256
                 ),
@@ -1277,6 +1420,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1285,6 +1429,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1293,6 +1438,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1301,6 +1447,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1309,6 +1456,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1317,6 +1465,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1325,6 +1474,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1333,6 +1483,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1341,6 +1492,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1349,6 +1501,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1357,6 +1510,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1365,6 +1519,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1373,6 +1528,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1607,14 +1763,39 @@ internal class ImportCapabilityInformationTest {
         // Bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(3, BwClass('A'), BwClass.NONE, 4, Modulation.QAM256, Modulation.QAM64),
-                ComponentLte(8, BwClass('A'), BwClass.NONE, 2, Modulation.QAM256, Modulation.QAM64),
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    4,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
+                ComponentLte(
+                    8,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM64
+                ),
                 ComponentLte(
                     18,
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1623,6 +1804,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1631,6 +1813,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1639,6 +1822,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1647,6 +1831,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1655,6 +1840,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1663,6 +1849,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM64
                 ),
@@ -1799,6 +1986,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1807,6 +1995,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1815,6 +2004,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1823,6 +2013,7 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
@@ -1831,22 +2022,17 @@ internal class ImportCapabilityInformationTest {
                     BwClass('A'),
                     BwClass.NONE,
                     2,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
-                ComponentLte(
-                    32,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    Modulation.QAM256,
-                    Modulation.QAM16
-                ),
+                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, 1, Modulation.QAM256),
                 ComponentLte(
                     38,
                     BwClass('A'),
                     BwClass.NONE,
                     4,
+                    1,
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),

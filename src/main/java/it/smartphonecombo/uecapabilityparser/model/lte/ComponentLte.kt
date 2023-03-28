@@ -6,14 +6,14 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 
-/** The Class LteBandAndBandwidth. */
 data class ComponentLte(
-    override var band: Band,
-    override var classDL: BwClass,
-    override var classUL: BwClass,
-    override var mimoDL: Mimo,
-    override var modDL: Modulation,
-    override var modUL: Modulation,
+    override var band: Band = 0,
+    override var classDL: BwClass = BwClass.NONE,
+    override var classUL: BwClass = BwClass.NONE,
+    override var mimoDL: Mimo = 0,
+    override var mimoUL: Mimo = 1,
+    override var modDL: Modulation = Modulation.NONE,
+    override var modUL: Modulation = Modulation.NONE
 ) : IComponent {
 
     override fun compareTo(other: IComponent): Int {
@@ -27,29 +27,6 @@ data class ComponentLte(
             { it.mimoUL }
         )
     }
-
-    // Mimo UL is constant for LTE
-    override var mimoUL = 1
-        set(value) = Unit
-
-    constructor(
-        band: Band,
-        classDL: BwClass,
-        classUL: BwClass,
-        mimoDL: Mimo
-    ) : this(band, classDL, classUL, mimoDL, Modulation.QAM64, Modulation.QAM16)
-
-    constructor(
-        band: Band,
-        classDL: BwClass,
-        mimoDL: Mimo
-    ) : this(band, classDL, BwClass.NONE, mimoDL)
-
-    constructor(band: Band, classDL: BwClass, classUL: BwClass) : this(band, classDL, classUL, 0)
-
-    constructor(band: Band) : this(band, BwClass.NONE, BwClass.NONE)
-
-    constructor() : this(0)
 
     /**
      * To string.

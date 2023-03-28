@@ -93,9 +93,7 @@ object ImportNrCapPrune : ImportCapabilities {
                 baseBand.toInt(),
                 BwClass.valueOf(classDL),
                 BwClass.valueOf(classUL),
-                mimoParsing(mimoDL),
-                Modulation.NONE,
-                Modulation.NONE
+                mimoParsing(mimoDL)
             )
         } else {
             return ComponentNr(

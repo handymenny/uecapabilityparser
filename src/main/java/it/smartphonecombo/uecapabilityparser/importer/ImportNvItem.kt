@@ -6,7 +6,6 @@ import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.IComponent
-import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
 import java.io.InputStream
@@ -122,9 +121,9 @@ object ImportNvItem : ImportCapabilities {
 
             val component =
                 if (isDL) {
-                    ComponentLte(band, bwClass, BwClass.NONE, ant, Modulation.NONE, Modulation.NONE)
+                    ComponentLte(band, bwClass, BwClass.NONE, ant)
                 } else {
-                    ComponentLte(band, BwClass.NONE, bwClass, 0, Modulation.NONE, Modulation.NONE)
+                    ComponentLte(band, BwClass.NONE, bwClass)
                 }
 
             lteComponents.add(component)
