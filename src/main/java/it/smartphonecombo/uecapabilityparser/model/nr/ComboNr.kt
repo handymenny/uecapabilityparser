@@ -28,7 +28,7 @@ data class ComboNr(
     override fun toString(): String {
         val str = StringBuilder()
         for (x in componentsLte) {
-            str.append(x)
+            str.append(x.toCompactStr())
             str.append("-")
         }
         if (str.length > 1) {
@@ -36,7 +36,7 @@ data class ComboNr(
             str.append("_")
         }
         for (x in componentsNr) {
-            str.append(x.toString())
+            str.append(x.toCompactStr())
             str.append("-")
         }
         if (isNrDc && str.length > 1) {
@@ -44,7 +44,7 @@ data class ComboNr(
             str.append("_")
         }
         for (x in componentsNrDc) {
-            str.append(x.toString())
+            str.append(x.toCompactStr())
             str.append("-")
         }
         str.append(featureSet)

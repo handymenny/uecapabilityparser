@@ -45,29 +45,6 @@ data class ComponentNr(
         }
     }
 
-    /**
-     * To string.
-     *
-     * @return the string
-     * @see java.lang.Object.toString
-     */
-    override fun toString(): String {
-        var str = "n$band"
-        if (classDL == BwClass.NONE) {
-            str += '*'
-        } else {
-            str += classDL
-            if (mimoDL > 0) {
-                str += mimoDL
-            }
-        }
-        str += classUL
-        if (mimoUL > 1) {
-            str += mimoUL
-        }
-        return str
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is ComponentNr) return false
@@ -114,4 +91,5 @@ data class ComponentNr(
         get() = band > 256
 
     override fun clone() = copy()
+    override fun toCompactStr(): String = "n${super.toCompactStr()}"
 }

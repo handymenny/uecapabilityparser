@@ -28,26 +28,6 @@ data class ComponentLte(
         )
     }
 
-    /**
-     * To string.
-     *
-     * @return the string
-     * @see java.lang.Object.toString
-     */
-    override fun toString(): String {
-        var str = band.toString() + ""
-        if (classDL == BwClass.NONE) {
-            str += "*"
-        } else {
-            str += classDL
-        }
-        if (mimoDL > 0) {
-            str += mimoDL
-        }
-        str += classUL
-        return str
-    }
-
     companion object {
         fun lteComponentsToArrays(
             band: IntArray,

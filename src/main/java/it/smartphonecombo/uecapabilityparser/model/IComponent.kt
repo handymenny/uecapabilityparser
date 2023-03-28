@@ -13,4 +13,12 @@ interface IComponent : Comparable<IComponent> {
     var mimoUL: Mimo
     var modDL: Modulation
     var modUL: Modulation
+
+    fun toCompactStr(): String {
+        val classDlStr = if (classDL != BwClass.NONE) classDL.toString() else "*"
+        val mimoDlStr = if (mimoDL > 0) mimoDL.toString() else ""
+        val mimoUlStr = if (mimoUL > 1) mimoUL.toString() else ""
+
+        return "$band$classDlStr$mimoDlStr$classUL$mimoUlStr"
+    }
 }
