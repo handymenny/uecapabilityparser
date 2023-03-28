@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model.band
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
+import it.smartphonecombo.uecapabilityparser.extension.BwMap
 import it.smartphonecombo.uecapabilityparser.extension.Mimo
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 
@@ -13,8 +14,8 @@ data class BandNrDetails(
 ) : Comparable<BandNrDetails> {
     var maxUplinkDutyCycle = 100
     var powerClass = 3
-    var bandwidthsDL: Map<Int, IntArray>? = null
-    var bandwidthsUL: Map<Int, IntArray>? = null
+    var bandwidthsDL: BwMap = emptyMap()
+    var bandwidthsUL: BwMap = emptyMap()
     var rateMatchingLteCrs = false
 
     override fun compareTo(other: BandNrDetails): Int {
@@ -30,20 +31,18 @@ data class BandNrDetails(
 
     fun bwsToString(): String {
         val dlString =
-            bandwidthsDL
-                ?.entries
-                ?.filter { it.value.isNotEmpty() }
-                ?.joinToString(
+            bandwidthsDL.entries
+                .filter { it.value.isNotEmpty() }
+                .joinToString(
                     prefix = "BwDL:[",
                     postfix = "]",
                     transform = { "${it.key}kHz: ${it.value.joinToString()}" },
                     separator = "; ",
                 )
         val ulString =
-            bandwidthsUL
-                ?.entries
-                ?.filter { it.value.isNotEmpty() }
-                ?.joinToString(
+            bandwidthsUL.entries
+                .filter { it.value.isNotEmpty() }
+                .joinToString(
                     prefix = "BwUL:[",
                     postfix = "]",
                     transform = { "${it.key}kHz: ${it.value.joinToString()}" },
