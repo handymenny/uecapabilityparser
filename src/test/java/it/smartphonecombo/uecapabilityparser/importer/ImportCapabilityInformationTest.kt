@@ -3,8 +3,8 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -197,19 +197,19 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                ComponentNr(1),
-                ComponentNr(3),
-                ComponentNr(5),
-                ComponentNr(7),
-                ComponentNr(8),
-                ComponentNr(20),
-                ComponentNr(28),
-                ComponentNr(38),
-                ComponentNr(40),
-                ComponentNr(41),
-                ComponentNr(66),
-                ComponentNr(77),
-                ComponentNr(78),
+                BandNrDetails(1),
+                BandNrDetails(3),
+                BandNrDetails(5),
+                BandNrDetails(7),
+                BandNrDetails(8),
+                BandNrDetails(20),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(40),
+                BandNrDetails(41),
+                BandNrDetails(66),
+                BandNrDetails(77),
+                BandNrDetails(78),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
@@ -346,7 +346,7 @@ internal class ImportCapabilityInformationTest {
 
         // NR NSA bans in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
-        val expectedNrNsaBands = listOf(ComponentNr(260), ComponentNr(261))
+        val expectedNrNsaBands = listOf(BandNrDetails(260), BandNrDetails(261))
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
         // NR SA bans in eutra capability
@@ -456,7 +456,13 @@ internal class ImportCapabilityInformationTest {
         // NR NSA bans in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
-            listOf(ComponentNr(1), ComponentNr(3), ComponentNr(7), ComponentNr(28), ComponentNr(78))
+            listOf(
+                BandNrDetails(1),
+                BandNrDetails(3),
+                BandNrDetails(7),
+                BandNrDetails(28),
+                BandNrDetails(78)
+            )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
         // NR SA bans in eutra capability
@@ -767,24 +773,24 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                ComponentNr(1),
-                ComponentNr(2),
-                ComponentNr(3),
-                ComponentNr(5),
-                ComponentNr(7),
-                ComponentNr(8),
-                ComponentNr(12),
-                ComponentNr(20),
-                ComponentNr(25),
-                ComponentNr(28),
-                ComponentNr(38),
-                ComponentNr(40),
-                ComponentNr(41),
-                ComponentNr(66),
-                ComponentNr(71),
-                ComponentNr(77),
-                ComponentNr(78),
-                ComponentNr(79),
+                BandNrDetails(1),
+                BandNrDetails(2),
+                BandNrDetails(3),
+                BandNrDetails(5),
+                BandNrDetails(7),
+                BandNrDetails(8),
+                BandNrDetails(12),
+                BandNrDetails(20),
+                BandNrDetails(25),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(40),
+                BandNrDetails(41),
+                BandNrDetails(66),
+                BandNrDetails(71),
+                BandNrDetails(77),
+                BandNrDetails(78),
+                BandNrDetails(79),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
@@ -806,10 +812,10 @@ internal class ImportCapabilityInformationTest {
         val actualNrBands = capabilities.nrBands
         val expectedNrBands =
             listOf(
-                ComponentNr(1).apply {
+                BandNrDetails(1).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -818,10 +824,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(2).apply {
+                BandNrDetails(2).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -830,10 +836,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(3).apply {
+                BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -842,10 +848,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(5).apply {
+                BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -854,10 +860,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(7).apply {
+                BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -866,10 +872,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(8).apply {
+                BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -878,10 +884,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(12).apply {
+                BandNrDetails(12).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(15, 10, 5),
@@ -890,10 +896,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(20).apply {
+                BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -902,10 +908,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(25).apply {
+                BandNrDetails(25).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -914,10 +920,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(28).apply {
+                BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -926,10 +932,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(38).apply {
+                BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -938,10 +944,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(40).apply {
+                BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -950,10 +956,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(41).apply {
+                BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -962,10 +968,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(48).apply {
+                BandNrDetails(48).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -974,10 +980,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(66).apply {
+                BandNrDetails(66).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -986,10 +992,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(71).apply {
+                BandNrDetails(71).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -998,10 +1004,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(77).apply {
+                BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1010,10 +1016,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(78).apply {
+                BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1022,10 +1028,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(79).apply {
+                BandNrDetails(79).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1034,10 +1040,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(258).apply {
+                BandNrDetails(258).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(),
@@ -1045,10 +1051,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(260).apply {
+                BandNrDetails(260).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(),
@@ -1056,10 +1062,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(261).apply {
+                BandNrDetails(261).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(),
@@ -1093,10 +1099,10 @@ internal class ImportCapabilityInformationTest {
         val actualNrBands = capabilities.nrBands
         val expectedNrBands =
             listOf(
-                ComponentNr(1).apply {
+                BandNrDetails(1).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(40, 30, 25, 20, 15, 10, 5),
@@ -1105,10 +1111,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(2).apply {
+                BandNrDetails(2).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1117,10 +1123,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(3).apply {
+                BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1129,10 +1135,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(5).apply {
+                BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1141,10 +1147,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(7).apply {
+                BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1153,10 +1159,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(8).apply {
+                BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1165,10 +1171,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(12).apply {
+                BandNrDetails(12).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(15, 10, 5),
@@ -1177,10 +1183,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(20).apply {
+                BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1189,10 +1195,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(25).apply {
+                BandNrDetails(25).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1201,10 +1207,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(28).apply {
+                BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(30, 20, 15, 10, 5),
@@ -1213,10 +1219,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(30).apply {
+                BandNrDetails(30).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(10),
@@ -1225,10 +1231,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(38).apply {
+                BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1237,10 +1243,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(41).apply {
+                BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1250,10 +1256,10 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(48).apply {
+                BandNrDetails(48).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1267,10 +1273,10 @@ internal class ImportCapabilityInformationTest {
                             60 to intArrayOf(),
                         )
                 },
-                ComponentNr(66).apply {
+                BandNrDetails(66).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(30, 20, 15, 10, 5),
@@ -1279,10 +1285,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(71).apply {
+                BandNrDetails(71).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1291,10 +1297,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(77).apply {
+                BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1304,10 +1310,10 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(78).apply {
+                BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1316,10 +1322,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(257).apply {
+                BandNrDetails(257).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(),
@@ -1327,10 +1333,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(258).apply {
+                BandNrDetails(258).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(),
@@ -1338,10 +1344,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(260).apply {
+                BandNrDetails(260).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(),
@@ -1349,10 +1355,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(261).apply {
+                BandNrDetails(261).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(),
@@ -1540,17 +1546,17 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                ComponentNr(1),
-                ComponentNr(3),
-                ComponentNr(5),
-                ComponentNr(7),
-                ComponentNr(8),
-                ComponentNr(20),
-                ComponentNr(28),
-                ComponentNr(38),
-                ComponentNr(41),
-                ComponentNr(77),
-                ComponentNr(78),
+                BandNrDetails(1),
+                BandNrDetails(3),
+                BandNrDetails(5),
+                BandNrDetails(7),
+                BandNrDetails(8),
+                BandNrDetails(20),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(41),
+                BandNrDetails(77),
+                BandNrDetails(78),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
@@ -1563,10 +1569,10 @@ internal class ImportCapabilityInformationTest {
         val actualNrBands = capabilities.nrBands
         val expectedNrBands =
             listOf(
-                ComponentNr(1).apply {
+                BandNrDetails(1).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
@@ -1575,10 +1581,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(3).apply {
+                BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(40, 30, 25, 20, 15, 10, 5),
@@ -1587,10 +1593,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(5).apply {
+                BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(30, 25, 20, 15, 10, 5),
@@ -1599,10 +1605,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(7).apply {
+                BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
@@ -1611,10 +1617,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(8).apply {
+                BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1623,10 +1629,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(20).apply {
+                BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -1635,10 +1641,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(28).apply {
+                BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(30, 20, 15, 10, 5),
@@ -1647,10 +1653,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(38).apply {
+                BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(40, 30, 25, 20, 15, 10, 5),
@@ -1659,10 +1665,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(40).apply {
+                BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
@@ -1671,10 +1677,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(41).apply {
+                BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 30, 20, 15, 10),
@@ -1684,10 +1690,10 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(77).apply {
+                BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 20, 15, 10),
@@ -1696,10 +1702,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(78).apply {
+                BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 30, 20, 15, 10),
@@ -1861,10 +1867,10 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                ComponentNr(77),
-                ComponentNr(78),
-                ComponentNr(79),
-                ComponentNr(257),
+                BandNrDetails(77),
+                BandNrDetails(78),
+                BandNrDetails(79),
+                BandNrDetails(257),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
@@ -1877,10 +1883,10 @@ internal class ImportCapabilityInformationTest {
         val actualNrBands = capabilities.nrBands
         val expectedNrBands =
             listOf(
-                ComponentNr(77).apply {
+                BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1890,10 +1896,10 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(78).apply {
+                BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1903,10 +1909,10 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(79).apply {
+                BandNrDetails(79).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = false
+                    rateMatchingLteCrs = false
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -1916,10 +1922,10 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(257).apply {
+                BandNrDetails(257).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             60 to intArrayOf(200, 100, 50),
@@ -2044,19 +2050,19 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                ComponentNr(1),
-                ComponentNr(3),
-                ComponentNr(5),
-                ComponentNr(7),
-                ComponentNr(8),
-                ComponentNr(20),
-                ComponentNr(28),
-                ComponentNr(38),
-                ComponentNr(40),
-                ComponentNr(41),
-                ComponentNr(75),
-                ComponentNr(77),
-                ComponentNr(78),
+                BandNrDetails(1),
+                BandNrDetails(3),
+                BandNrDetails(5),
+                BandNrDetails(7),
+                BandNrDetails(8),
+                BandNrDetails(20),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(40),
+                BandNrDetails(41),
+                BandNrDetails(75),
+                BandNrDetails(77),
+                BandNrDetails(78),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
 
@@ -2069,10 +2075,10 @@ internal class ImportCapabilityInformationTest {
         val actualNrBands = capabilities.nrBands
         val expectedNrBands =
             listOf(
-                ComponentNr(1).apply {
+                BandNrDetails(1).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2081,10 +2087,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(3).apply {
+                BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(30, 25, 20, 15, 10, 5),
@@ -2093,10 +2099,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(5).apply {
+                BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2105,10 +2111,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(7).apply {
+                BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2117,10 +2123,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(8).apply {
+                BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2129,10 +2135,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(20).apply {
+                BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2141,10 +2147,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(28).apply {
+                BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2153,10 +2159,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(38).apply {
+                BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2165,10 +2171,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(40).apply {
+                BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
@@ -2177,10 +2183,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(41).apply {
+                BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 20, 15, 10),
@@ -2189,10 +2195,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(75).apply {
+                BandNrDetails(75).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(20, 15, 10, 5),
@@ -2201,10 +2207,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = mutableMapOf()
                 },
-                ComponentNr(77).apply {
+                BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(50, 40, 20, 15, 10),
@@ -2213,10 +2219,10 @@ internal class ImportCapabilityInformationTest {
                         )
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(78).apply {
+                BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL =
                         mutableMapOf(
                             15 to intArrayOf(),
@@ -2251,130 +2257,130 @@ internal class ImportCapabilityInformationTest {
         val actualNrBands = capabilities.nrBands
         val expectedNrBands =
             listOf(
-                ComponentNr(1).apply {
+                BandNrDetails(1).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(2).apply {
+                BandNrDetails(2).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(3).apply {
+                BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(5).apply {
+                BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(7).apply {
+                BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(8).apply {
+                BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(12).apply {
+                BandNrDetails(12).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(13).apply {
+                BandNrDetails(13).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(14).apply {
+                BandNrDetails(14).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(18).apply {
+                BandNrDetails(18).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(20).apply {
+                BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(25).apply {
+                BandNrDetails(25).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(26).apply {
+                BandNrDetails(26).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(28).apply {
+                BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(30, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(29).apply {
+                BandNrDetails(29).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = mutableMapOf()
                 },
-                ComponentNr(30).apply {
+                BandNrDetails(30).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(38).apply {
+                BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(40, 30, 20, 15, 10))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(40).apply {
+                BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(80, 60, 50, 40, 30, 20, 15, 10))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(41).apply {
+                BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL =
@@ -2382,52 +2388,52 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(48).apply {
+                BandNrDetails(48).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(100, 80, 60, 50, 40, 30, 20, 10))
                     bandwidthsUL = mutableMapOf(30 to intArrayOf(100, 40, 30, 20, 10))
                 },
-                ComponentNr(53).apply {
+                BandNrDetails(53).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(10))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(66).apply {
+                BandNrDetails(66).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(40, 30, 20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(70).apply {
+                BandNrDetails(70).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(25, 20, 15, 10, 5))
                     bandwidthsUL = mutableMapOf(15 to intArrayOf(15, 10, 5))
                 },
-                ComponentNr(71).apply {
+                BandNrDetails(71).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(75).apply {
+                BandNrDetails(75).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
                     bandwidthsUL = mutableMapOf()
                 },
-                ComponentNr(76).apply {
+                BandNrDetails(76).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(5))
                     bandwidthsUL = mutableMapOf()
                 },
-                ComponentNr(77).apply {
+                BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL =
@@ -2435,7 +2441,7 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(78).apply {
+                BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL =
@@ -2443,60 +2449,60 @@ internal class ImportCapabilityInformationTest {
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(79).apply {
+                BandNrDetails(79).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     bandwidthsDL = mutableMapOf(30 to intArrayOf(100, 80, 60, 50, 40))
                     bandwidthsUL = bandwidthsDL
                     powerClass = 2
                 },
-                ComponentNr(91).apply {
+                BandNrDetails(91).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(92).apply {
+                BandNrDetails(92).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(93).apply {
+                BandNrDetails(93).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(94).apply {
+                BandNrDetails(94).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    rateMatchingLTEcrs = true
+                    rateMatchingLteCrs = true
                     bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(257).apply {
+                BandNrDetails(257).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(200, 100, 50))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(258).apply {
+                BandNrDetails(258).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(200, 100, 50))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(260).apply {
+                BandNrDetails(260).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(100, 50))
                     bandwidthsUL = bandwidthsDL
                 },
-                ComponentNr(261).apply {
+                BandNrDetails(261).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
                     bandwidthsDL = mutableMapOf(120 to intArrayOf(100, 50))

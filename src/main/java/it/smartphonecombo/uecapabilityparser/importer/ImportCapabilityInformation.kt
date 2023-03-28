@@ -19,6 +19,7 @@ import it.smartphonecombo.uecapabilityparser.model.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrRrcCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
@@ -29,7 +30,6 @@ import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
-import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 import java.io.InputStream
 import java.io.InputStreamReader
 import kotlinx.serialization.SerializationException
@@ -97,7 +97,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             val nr = UENrCapabilityJson(nrCapability)
             val bandList = getNrBands(nr).sorted()
             if (debug) {
-                bandList.forEach { println(it.toBwString()) }
+                bandList.forEach { println(it.bwsToString()) }
             }
             comboList.nrBands = bandList
             nrFeatures = getNRFeatureSet(nr)
@@ -460,7 +460,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     private fun getNrBands(
         eutraCapability: UEEutraCapabilityJson,
         endc: Boolean
-    ): List<ComponentNr> {
+    ): List<BandNrDetails> {
 
         val supportedBandListNR =
             if (endc) {
@@ -474,7 +474,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
 
         return supportedBandListNR?.mapNotNull {
-            it.getInt("bandNR-r15")?.let { band -> ComponentNr(band) }
+            it.getInt("bandNR-r15")?.let { band -> BandNrDetails(band) }
         }
             ?: emptyList()
     }
@@ -760,12 +760,12 @@ object ImportCapabilityInformation : ImportCapabilities {
         return list
     }
 
-    private fun getNrBands(nrCapability: UENrCapabilityJson): List<ComponentNr> {
+    private fun getNrBands(nrCapability: UENrCapabilityJson): List<BandNrDetails> {
         return nrCapability.rootJson
             .getArrayAtPath("rf-Parameters.supportedBandListNR")
             ?.mapNotNull { supportedBandNr ->
                 val componentNr =
-                    supportedBandNr.getInt("bandNR")?.let { ComponentNr(it) }
+                    supportedBandNr.getInt("bandNR")?.let { BandNrDetails(it) }
                         ?: return@mapNotNull null
 
                 if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
@@ -785,7 +785,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 }
 
                 if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {
-                    componentNr.rateMatchingLTEcrs = true
+                    componentNr.rateMatchingLteCrs = true
                 }
 
                 val maxUplinkDutyCycleKey =
@@ -806,7 +806,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             ?: emptyList()
     }
 
-    private fun parseNRChannelBWs(supportedBandNr: JsonElement, componentNr: ComponentNr) {
+    private fun parseNRChannelBWs(supportedBandNr: JsonElement, componentNr: BandNrDetails) {
         val channelBWsDL = supportedBandNr.getObject("channelBWs-DL")
         val channelBWsUL = supportedBandNr.getObject("channelBWs-UL")
         val channelBWsDlV1590 = supportedBandNr.getObject("channelBWs-DL-v1590")
@@ -852,7 +852,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun parseNrBw(
         channelBWsDL: JsonObject?,
-        componentNr: ComponentNr,
+        componentNr: BandNrDetails,
         isV1590: Boolean = false
     ): Map<Int, IntArray> {
         /*
