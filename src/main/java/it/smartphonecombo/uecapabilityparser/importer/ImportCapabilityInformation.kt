@@ -770,10 +770,14 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                 if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
                     componentNr.modDL = Modulation.QAM64
+                } else {
+                    componentNr.modDL = Modulation.QAM256
                 }
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
                     componentNr.modUL = Modulation.QAM256
+                } else {
+                    componentNr.modUL = Modulation.QAM64
                 }
 
                 supportedBandNr.getString("ue-PowerClass")?.removePrefix("pc")?.toInt()?.let {

@@ -8,13 +8,13 @@ import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 
 data class ComponentNr(
-    override var band: Band,
-    override var classDL: BwClass,
-    override var classUL: BwClass,
-    override var mimoDL: Mimo,
-    override var mimoUL: Mimo,
-    override var modDL: Modulation,
-    override var modUL: Modulation
+    override var band: Band = 0,
+    override var classDL: BwClass = BwClass.NONE,
+    override var classUL: BwClass = BwClass.NONE,
+    override var mimoDL: Mimo = 0,
+    override var mimoUL: Mimo = 0,
+    override var modDL: Modulation = Modulation.NONE,
+    override var modUL: Modulation = Modulation.NONE
 ) : IComponent {
     var maxBandwidth = 0
     var channelBW90mhz = false
@@ -24,15 +24,6 @@ data class ComponentNr(
     var maxUplinkDutyCycle = 100
     var powerClass = 3
     var rateMatchingLTEcrs = false
-
-    constructor(
-        band: Band
-    ) : this(band, BwClass.NONE, BwClass.NONE, 0, 0, Modulation.QAM256, Modulation.QAM64)
-    constructor(
-        band: Band,
-        classDL: BwClass,
-        classUL: BwClass
-    ) : this(band, classDL, classUL, 0, 0, Modulation.QAM256, Modulation.QAM64)
 
     override fun compareTo(other: IComponent): Int {
         return if (other is ComponentNr) {
