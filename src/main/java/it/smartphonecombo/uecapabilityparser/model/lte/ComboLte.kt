@@ -2,7 +2,7 @@ package it.smartphonecombo.uecapabilityparser.model.lte
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.ICombo
-import it.smartphonecombo.uecapabilityparser.model.IComponent
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
 
 /** The Class Combo. */

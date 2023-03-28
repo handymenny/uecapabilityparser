@@ -4,11 +4,11 @@ import it.smartphonecombo.uecapabilityparser.extension.component6
 import it.smartphonecombo.uecapabilityparser.extension.component7
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
-import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import java.io.InputStream
 import java.io.InputStreamReader
 

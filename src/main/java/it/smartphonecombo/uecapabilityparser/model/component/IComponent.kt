@@ -1,7 +1,9 @@
-package it.smartphonecombo.uecapabilityparser.model
+package it.smartphonecombo.uecapabilityparser.model.component
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.extension.Mimo
+import it.smartphonecombo.uecapabilityparser.model.BwClass
+import it.smartphonecombo.uecapabilityparser.model.Modulation
 
 interface IComponent : Comparable<IComponent> {
     fun clone(): IComponent

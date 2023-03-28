@@ -1,9 +1,8 @@
-package it.smartphonecombo.uecapabilityparser.model.nr
+package it.smartphonecombo.uecapabilityparser.model.component
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.extension.Mimo
 import it.smartphonecombo.uecapabilityparser.model.BwClass
-import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.util.Utility.toBwString
 

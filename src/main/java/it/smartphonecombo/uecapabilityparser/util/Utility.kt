@@ -12,8 +12,8 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
-import it.smartphonecombo.uecapabilityparser.model.nr.ComponentNr
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*

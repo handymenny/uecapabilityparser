@@ -2,9 +2,10 @@ package it.smartphonecombo.uecapabilityparser.model.nr
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.ICombo
-import it.smartphonecombo.uecapabilityparser.model.IComponent
 import it.smartphonecombo.uecapabilityparser.model.Modulation
-import it.smartphonecombo.uecapabilityparser.model.lte.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 /** The Class Combo. */
 data class ComboNr(

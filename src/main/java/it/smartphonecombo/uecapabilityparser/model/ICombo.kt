@@ -1,5 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
+
 interface ICombo {
     var masterComponents: Array<IComponent>
     var secondaryComponents: Array<IComponent>
