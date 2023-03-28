@@ -23,6 +23,7 @@ import it.smartphonecombo.uecapabilityparser.model.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
@@ -842,14 +843,30 @@ object ImportCapabilityInformation : ImportCapabilities {
         bandwidthsDL.merge(parseNrBw(channelBWsDlV1590, componentNr, true))
         bandwidthsUL.merge(parseNrBw(channelBWsUlV1590, componentNr, true))
 
-        // Sort bws array
+        // Sort bws array and add to bwsList
+        val bwsList = mutableListOf<BwsNr>()
         for (scs in scsRange) {
-            bandwidthsDL[scs]?.let { bandwidthsDL[scs] = it.sortedArrayDescending() }
-            bandwidthsUL[scs]?.let { bandwidthsUL[scs] = it.sortedArrayDescending() }
+            val bwsDl = bandwidthsDL[scs] ?: intArrayOf()
+            var bwsUl = bandwidthsUL[scs] ?: intArrayOf()
+
+            /* Don't add empty bws */
+            if (bwsDl.isEmpty() && bwsUl.isEmpty()) {
+                continue
+            }
+
+            /* if equal, preserve only one array */
+            if (bwsDl.contentEquals(bwsUl)) {
+                bwsUl = bwsDl
+                bwsDl.sortDescending()
+            } else {
+                bwsDl.sortDescending()
+                bwsUl.sortDescending()
+            }
+
+            bwsList.add(BwsNr(scs, bwsDl, bwsUl))
         }
 
-        componentNr.bandwidthsDL = bandwidthsDL
-        componentNr.bandwidthsUL = bandwidthsUL
+        componentNr.bandwidths = bwsList.toTypedArray()
     }
 
     private fun parseNrBw(
