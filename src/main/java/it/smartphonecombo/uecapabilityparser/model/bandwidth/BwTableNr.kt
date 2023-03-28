@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model.nr
+package it.smartphonecombo.uecapabilityparser.model.bandwidth
 
 /*
  * Don't update! It's used to obtain the default BW without channelBWs or SupportedBandwidth
