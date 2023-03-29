@@ -10,9 +10,9 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.Rat
-import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*

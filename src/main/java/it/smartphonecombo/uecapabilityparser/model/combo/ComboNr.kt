@@ -1,7 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.model.nr
+package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
-import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr

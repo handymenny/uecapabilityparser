@@ -1,7 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.model.lte
+package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
-import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
 

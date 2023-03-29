@@ -1,9 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
-import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 
 /** The Class ComboList. */
 class Capabilities(

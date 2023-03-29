@@ -24,12 +24,12 @@ import it.smartphonecombo.uecapabilityparser.model.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
-import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray

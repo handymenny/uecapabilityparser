@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model
+package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
