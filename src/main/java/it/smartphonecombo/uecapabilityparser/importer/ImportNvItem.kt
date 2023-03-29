@@ -7,7 +7,6 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -136,13 +135,13 @@ object ImportNvItem : ImportCapabilities {
     private fun mergeAndSort(
         dlComponents: List<ComponentLte>,
         ulComponents: List<ComponentLte>
-    ): Array<IComponent> {
-        val components = dlComponents.mapToTypedArray(IComponent::clone)
+    ): Array<ComponentLte> {
+        val components = dlComponents.mapToTypedArray(ComponentLte::clone)
         for (ulComponent in ulComponents) {
             val matchingComponent =
                 components
                     .filter { it.band == ulComponent.band && it.classUL == BwClass.NONE }
-                    .maxBy(IComponent::classDL)
+                    .maxBy(ComponentLte::classDL)
 
             matchingComponent.classUL = ulComponent.classUL
         }

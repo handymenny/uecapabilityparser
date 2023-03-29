@@ -1,14 +1,16 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
 
 data class ComboLte(
-    override val masterComponents: Array<IComponent>,
+    override val masterComponents: Array<ComponentLte>,
     var bcs: IntArray = intArrayOf()
 ) : ICombo {
-    override val secondaryComponents = emptyArray<IComponent>()
+    override val secondaryComponents
+        get() = emptyArray<IComponent>()
 
     /**
      * To string.

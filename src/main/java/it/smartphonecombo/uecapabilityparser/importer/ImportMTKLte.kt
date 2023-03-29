@@ -4,7 +4,6 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.NumberFormatException
@@ -35,7 +34,7 @@ object ImportMTKLte : ImportCapabilities {
             while (iterator.firstOrNull { it.startsWith("band_comb[") } != null) {
                 val bands = parseCombo(iterator) ?: continue
 
-                val bandArray = bands.toTypedArray<IComponent>()
+                val bandArray = bands.toTypedArray()
                 bandArray.sortDescending()
 
                 listCombos.add(ComboLte(bandArray))

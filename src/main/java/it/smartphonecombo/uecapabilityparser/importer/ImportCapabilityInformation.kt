@@ -488,7 +488,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) =
         zip(bcsList) { bands, bcs ->
-            val bandArray = bands.toTypedArray<IComponent>()
+            val bandArray = bands.toTypedArray()
             bandArray.sortDescending()
             ComboLte(bandArray, bcs)
         }
