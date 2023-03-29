@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.BwMap
 import it.smartphonecombo.uecapabilityparser.extension.Mimo
-import it.smartphonecombo.uecapabilityparser.extension.MutableBwMap
 import it.smartphonecombo.uecapabilityparser.extension.fromLiteral
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
@@ -22,12 +22,13 @@ import it.smartphonecombo.uecapabilityparser.model.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
-import it.smartphonecombo.uecapabilityparser.model.nr.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
@@ -842,21 +843,37 @@ object ImportCapabilityInformation : ImportCapabilities {
         bandwidthsDL.merge(parseNrBw(channelBWsDlV1590, componentNr, true))
         bandwidthsUL.merge(parseNrBw(channelBWsUlV1590, componentNr, true))
 
-        // Sort bws array
+        // Sort bws array and add to bwsList
+        val bwsList = mutableListOf<BwsNr>()
         for (scs in scsRange) {
-            bandwidthsDL[scs]?.let { bandwidthsDL[scs] = it.sortedArrayDescending() }
-            bandwidthsUL[scs]?.let { bandwidthsUL[scs] = it.sortedArrayDescending() }
+            val bwsDl = bandwidthsDL[scs] ?: intArrayOf()
+            var bwsUl = bandwidthsUL[scs] ?: intArrayOf()
+
+            /* Don't add empty bws */
+            if (bwsDl.isEmpty() && bwsUl.isEmpty()) {
+                continue
+            }
+
+            /* if equal, preserve only one array */
+            if (bwsDl.contentEquals(bwsUl)) {
+                bwsUl = bwsDl
+                bwsDl.sortDescending()
+            } else {
+                bwsDl.sortDescending()
+                bwsUl.sortDescending()
+            }
+
+            bwsList.add(BwsNr(scs, bwsDl, bwsUl))
         }
 
-        componentNr.bandwidthsDL = bandwidthsDL
-        componentNr.bandwidthsUL = bandwidthsUL
+        componentNr.bandwidths = bwsList.toTypedArray()
     }
 
     private fun parseNrBw(
         channelBWsDL: JsonObject?,
         componentNr: BandNrDetails,
         isV1590: Boolean = false
-    ): MutableBwMap {
+    ): BwMap {
         /*
          * According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
          * So we assume that it's supported by default for 30kHz and supported for 60kHz

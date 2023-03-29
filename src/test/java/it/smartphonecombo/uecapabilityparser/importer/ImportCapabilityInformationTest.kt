@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import org.junit.jupiter.api.Assertions.assertArrayEquals
@@ -816,262 +817,133 @@ internal class ImportCapabilityInformationTest {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(20)))
                 },
                 BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(80, 40),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 40)))
                 },
                 BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 60, 40, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 20)))
                 },
                 BandNrDetails(48).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 40, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 40, 20)))
                 },
                 BandNrDetails(66).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100)))
                 },
                 BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 60, 50, 40, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
                 },
                 BandNrDetails(79).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100)))
                 },
                 BandNrDetails(258).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(),
-                            120 to intArrayOf(100),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(260).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(),
-                            120 to intArrayOf(100, 50),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(),
-                            120 to intArrayOf(100, 50),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
@@ -1103,268 +975,140 @@ internal class ImportCapabilityInformationTest {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(40, 30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(30, 20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(30).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(10),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10)))
                 },
                 BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(40, 30, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20)))
                 },
                 BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
+
                     powerClass = 2
                 },
                 BandNrDetails(48).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 60, 50, 40, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 40, 20),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20), intArrayOf(100, 40, 20))
                         )
                 },
                 BandNrDetails(66).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(30, 20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 60, 40, 30, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 30, 20)))
+
                     powerClass = 2
                 },
                 BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
                 },
                 BandNrDetails(257).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(),
-                            120 to intArrayOf(100),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(258).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(),
-                            120 to intArrayOf(100),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(260).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(),
-                            120 to intArrayOf(100, 50),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(),
-                            120 to intArrayOf(100, 50),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
@@ -1573,146 +1317,124 @@ internal class ImportCapabilityInformationTest {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(50, 40, 30, 25, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(50, 40, 30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(40, 30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(40, 30, 25, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(40, 30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(30, 25, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(50, 40, 30, 25, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(50, 40, 30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(30, 20, 15, 10, 5),
-                            30 to intArrayOf(30, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(30, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(30, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(40, 30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(40, 30, 25, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(40, 30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 30, 20, 15, 10),
-                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 30, 20, 15, 10)),
+                            BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
+
                     powerClass = 2
                 },
                 BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 20, 15, 10),
-                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 20, 15, 10)),
+                            BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 30, 20, 15, 10),
-                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 30, 20, 15, 10)),
+                            BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
+
                     powerClass = 2
                 },
             )
@@ -1887,51 +1609,35 @@ internal class ImportCapabilityInformationTest {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 60, 50, 40, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
+
                     powerClass = 2
                 },
                 BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 60, 50, 40, 20),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
+
                     powerClass = 2
                 },
                 BandNrDetails(79).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = false
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 60, 50, 40),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
+
                     powerClass = 2
                 },
                 BandNrDetails(257).apply {
                     modDL = Modulation.QAM64
                     modUL = Modulation.QAM64
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            60 to intArrayOf(200, 100, 50),
-                            120 to intArrayOf(200, 100, 50),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(60, intArrayOf(200, 100, 50)),
+                            BwsNr(120, intArrayOf(200, 100, 50))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
@@ -2079,157 +1785,137 @@ internal class ImportCapabilityInformationTest {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10)),
+                            BwsNr(60, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(30, 25, 20, 15, 10),
-                            60 to intArrayOf(30, 25, 20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(30, 25, 20, 15, 10)),
+                            BwsNr(60, intArrayOf(30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10)),
+                            BwsNr(60, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(20, 15, 10)),
+                            BwsNr(60, intArrayOf(20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5),
-                            30 to intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10),
-                            60 to intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
+                            BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10)),
+                            BwsNr(60, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 20, 15, 10),
-                            30 to intArrayOf(100, 80, 60, 50, 40, 20, 15, 10),
-                            60 to intArrayOf(100, 80, 60, 50, 40, 20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 20, 15, 10)),
+                            BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)),
+                            BwsNr(60, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(75).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(20, 15, 10, 5),
-                            30 to intArrayOf(20, 15, 10),
-                            60 to intArrayOf(20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(20, 15, 10, 5), intArrayOf()),
+                            BwsNr(30, intArrayOf(20, 15, 10), intArrayOf()),
+                            BwsNr(60, intArrayOf(20, 15, 10), intArrayOf())
                         )
-                    bandwidthsUL = mutableMapOf()
                 },
                 BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(50, 40, 20, 15, 10),
-                            30 to intArrayOf(100, 80, 60, 50, 40, 20, 15, 10),
-                            60 to intArrayOf(100, 80, 60, 50, 40, 20, 15, 10),
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(50, 40, 20, 15, 10)),
+                            BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)),
+                            BwsNr(60, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10))
                         )
-                    bandwidthsUL = bandwidthsDL
                 },
                 BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL =
-                        mutableMapOf(
-                            15 to intArrayOf(),
-                            30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 25, 20, 15, 10),
-                            60 to intArrayOf(),
-                        )
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths =
+                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 25, 20, 15, 10)))
+
                     powerClass = 2
                 },
             )
@@ -2261,252 +1947,227 @@ internal class ImportCapabilityInformationTest {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(25, 20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(13).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(14).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(18).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(40, 30, 25, 20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(26).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(30, 20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(29).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
-                    bandwidthsUL = mutableMapOf()
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5), intArrayOf()))
                 },
                 BandNrDetails(30).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(38).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(30 to intArrayOf(40, 30, 20, 15, 10))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(40).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(30 to intArrayOf(80, 60, 50, 40, 30, 20, 15, 10))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(41).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL =
-                        mutableMapOf(30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths =
+                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
+
                     powerClass = 2
                 },
                 BandNrDetails(48).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(30 to intArrayOf(100, 80, 60, 50, 40, 30, 20, 10))
-                    bandwidthsUL = mutableMapOf(30 to intArrayOf(100, 40, 30, 20, 10))
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(
+                                30,
+                                intArrayOf(100, 80, 60, 50, 40, 30, 20, 10),
+                                intArrayOf(100, 40, 30, 20, 10)
+                            )
+                        )
                 },
                 BandNrDetails(53).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(30 to intArrayOf(10))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(10)))
                 },
                 BandNrDetails(66).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(40, 30, 20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(70).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(25, 20, 15, 10, 5))
-                    bandwidthsUL = mutableMapOf(15 to intArrayOf(15, 10, 5))
+                    bandwidths =
+                        arrayOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5), intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(75).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(50, 40, 30, 25, 20, 15, 10, 5))
-                    bandwidthsUL = mutableMapOf()
+                    bandwidths =
+                        arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5), intArrayOf()))
                 },
                 BandNrDetails(76).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(5))
-                    bandwidthsUL = mutableMapOf()
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(5), intArrayOf()))
                 },
                 BandNrDetails(77).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL =
-                        mutableMapOf(30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths =
+                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
                     powerClass = 2
                 },
                 BandNrDetails(78).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL =
-                        mutableMapOf(30 to intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths =
+                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
+
                     powerClass = 2
                 },
                 BandNrDetails(79).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
-                    bandwidthsDL = mutableMapOf(30 to intArrayOf(100, 80, 60, 50, 40))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
+
                     powerClass = 2
                 },
                 BandNrDetails(91).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(92).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(93).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(94).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM256
                     rateMatchingLteCrs = true
-                    bandwidthsDL = mutableMapOf(15 to intArrayOf(20, 15, 10, 5))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(257).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
-                    bandwidthsDL = mutableMapOf(120 to intArrayOf(200, 100, 50))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(200, 100, 50)))
                 },
                 BandNrDetails(258).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
-                    bandwidthsDL = mutableMapOf(120 to intArrayOf(200, 100, 50))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(200, 100, 50)))
                 },
                 BandNrDetails(260).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
-                    bandwidthsDL = mutableMapOf(120 to intArrayOf(100, 50))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
                     modDL = Modulation.QAM256
                     modUL = Modulation.QAM64
-                    bandwidthsDL = mutableMapOf(120 to intArrayOf(100, 50))
-                    bandwidthsUL = bandwidthsDL
+                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
