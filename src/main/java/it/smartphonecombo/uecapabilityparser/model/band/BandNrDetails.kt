@@ -10,12 +10,12 @@ data class BandNrDetails(
     var mimoDL: Mimo = 0,
     var mimoUL: Mimo = 0,
     var modDL: Modulation = Modulation.NONE,
-    var modUL: Modulation = Modulation.NONE
+    var modUL: Modulation = Modulation.NONE,
+    var maxUplinkDutyCycle: Int = 100,
+    var powerClass: Int = 3,
+    var bandwidths: Array<BwsNr> = emptyArray(),
+    var rateMatchingLteCrs: Boolean = false
 ) : Comparable<BandNrDetails> {
-    var maxUplinkDutyCycle = 100
-    var powerClass = 3
-    var bandwidths: Array<BwsNr> = emptyArray()
-    var rateMatchingLteCrs = false
 
     override fun compareTo(other: BandNrDetails): Int {
         val bandCmp = band.compareTo(other.band)
@@ -77,10 +77,6 @@ data class BandNrDetails(
         result = 31 * result + rateMatchingLteCrs.hashCode()
 
         return 31 * result + bandwidths.contentHashCode()
-    }
-
-    override fun toString(): String {
-        return "BandNrDetails(band=$band, mimoDL=$mimoDL, mimoUL=$mimoUL, modDL=$modDL, modUL=$modUL, maxUplinkDutyCycle=$maxUplinkDutyCycle, powerClass=$powerClass, bandwidths=${bandwidths.contentToString()}, rateMatchingLteCrs=$rateMatchingLteCrs)"
     }
 
     val isFR2: Boolean
