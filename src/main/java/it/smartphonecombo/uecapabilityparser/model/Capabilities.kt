@@ -1,8 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 
 /** The Class ComboList. */
@@ -20,13 +22,13 @@ class Capabilities(
 
     /** The flags. */
     var flags = 0
-    var enDcCombos: List<ComboNr>? = null
+    var enDcCombos: List<ComboEnDc>? = null
     var nrCombos: List<ComboNr>? = null
-    var nrDcCombos: List<ComboNr>? = null
+    var nrDcCombos: List<ComboNrDc>? = null
 
     constructor(
         comboList: List<ComboLte>?,
-        enDCcomboList: List<ComboNr>?,
+        enDCcomboList: List<ComboEnDc>?,
         flags: Int
     ) : this(comboList, flags) {
         enDcCombos = enDCcomboList
@@ -44,7 +46,7 @@ class Capabilities(
 
     constructor(
         comboList: List<ComboLte>?,
-        enDCcomboList: List<ComboNr>?,
+        enDCcomboList: List<ComboEnDc>?,
         saComboList: List<ComboNr>?,
         nrNSAbands: List<BandNrDetails>?,
         nrSAbands: List<BandNrDetails>?,

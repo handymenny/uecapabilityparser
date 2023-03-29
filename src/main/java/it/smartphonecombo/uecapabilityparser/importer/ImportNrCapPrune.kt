@@ -2,10 +2,13 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.component6
 import it.smartphonecombo.uecapabilityparser.extension.component7
+import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
@@ -46,16 +49,16 @@ object ImportNrCapPrune : ImportCapabilities {
             caBandCombosString.split(';').filter(String::isNotBlank).mapNotNull(::parseCombo)
 
         val cap = Capabilities()
-        val (enDcCombos, nrCombos) = listCombo.partition { it.componentsLte.isNotEmpty() }
-        cap.enDcCombos = enDcCombos
-        cap.nrCombos = nrCombos
+        val (enDcCombos, nrCombos) = listCombo.partition { it is ComboEnDc }
+        cap.enDcCombos = enDcCombos.typedList()
+        cap.nrCombos = nrCombos.typedList()
         return cap
     }
 
-    /** Converts the given comboString to a [ComboNr] Returns null if parsing fails */
-    private fun parseCombo(comboString: String): ComboNr? {
-        val lteBands = mutableListOf<IComponent>()
-        val nrBands = mutableListOf<IComponent>()
+    /** Converts the given comboString to a [ICombo] Returns null if parsing fails */
+    private fun parseCombo(comboString: String): ICombo? {
+        val lteBands = mutableListOf<ComponentLte>()
+        val nrBands = mutableListOf<ComponentNr>()
         val components = comboString.split('-')
 
         for (componentString in components) {
@@ -75,7 +78,7 @@ object ImportNrCapPrune : ImportCapabilities {
         } else if (lteBandsArray.isEmpty()) {
             ComboNr(nrBandsArray)
         } else {
-            ComboNr(lteBandsArray, nrBandsArray)
+            ComboEnDc(lteBandsArray, nrBandsArray)
         }
     }
 

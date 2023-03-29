@@ -7,17 +7,14 @@ import it.smartphonecombo.uecapabilityparser.util.Utility
 
 data class ComboLte(
     override val masterComponents: Array<ComponentLte>,
-    var bcs: IntArray = intArrayOf()
+    override var bcs: IntArray = intArrayOf()
 ) : ICombo {
     override val secondaryComponents
         get() = emptyArray<IComponent>()
 
-    /**
-     * To string.
-     *
-     * @return the string
-     * @see java.lang.Object.toString
-     */
+    override val featureSet: Int
+        get() = 0
+
     override fun toString(): String {
         val str = StringBuilder()
         for (x in masterComponents) {
@@ -84,5 +81,21 @@ data class ComboLte(
         }
         str.append(strBcs)
         return str.toString()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ComboLte) return false
+
+        if (!masterComponents.contentEquals(other.masterComponents)) return false
+        if (!bcs.contentEquals(other.bcs)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = masterComponents.contentHashCode()
+        result = 31 * result + bcs.contentHashCode()
+        return result
     }
 }

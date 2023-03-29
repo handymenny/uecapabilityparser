@@ -34,7 +34,7 @@ data class ComponentLte(
             mimo: IntArray,
             upload: Array<BwClass>,
             modUL: Array<Modulation>,
-            inputArray: Array<IComponent>
+            inputArray: Array<ComponentLte>
         ) {
             for (i in inputArray.indices) {
                 band[i] = inputArray[i].band

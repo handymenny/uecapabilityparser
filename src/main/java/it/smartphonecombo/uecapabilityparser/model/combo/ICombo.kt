@@ -5,6 +5,8 @@ import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 interface ICombo {
     val masterComponents: Array<out IComponent>
     val secondaryComponents: Array<out IComponent>
+    val featureSet: Int
+    val bcs: IntArray
 
     fun toCsv(
         separator: String,
