@@ -4,24 +4,11 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
 
-/** The Class Combo. */
-data class ComboLte(override val masterComponents: Array<IComponent>, var bcs: IntArray) : ICombo {
+data class ComboLte(
+    override val masterComponents: Array<IComponent>,
+    var bcs: IntArray = intArrayOf()
+) : ICombo {
     override val secondaryComponents = emptyArray<IComponent>()
-
-    constructor(components: Array<IComponent>) : this(components, IntArray(0))
-
-    constructor(components: Array<IComponent>, bcs: Int) : this(components) {
-        setSingleBcs(bcs)
-    }
-
-    /**
-     * Sets the bcs.
-     *
-     * @param bcs the bcs to set
-     */
-    fun setSingleBcs(bcs: Int) {
-        this.bcs = intArrayOf(bcs)
-    }
 
     /**
      * To string.
