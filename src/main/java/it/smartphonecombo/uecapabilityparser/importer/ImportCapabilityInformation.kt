@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.BwMap
 import it.smartphonecombo.uecapabilityparser.extension.Mimo
-import it.smartphonecombo.uecapabilityparser.extension.MutableBwMap
 import it.smartphonecombo.uecapabilityparser.extension.fromLiteral
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
@@ -873,7 +873,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         channelBWsDL: JsonObject?,
         componentNr: BandNrDetails,
         isV1590: Boolean = false
-    ): MutableBwMap {
+    ): BwMap {
         /*
          * According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
          * So we assume that it's supported by default for 30kHz and supported for 60kHz

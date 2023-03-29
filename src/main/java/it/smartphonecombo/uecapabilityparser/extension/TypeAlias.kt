@@ -6,6 +6,4 @@ typealias MimoCompanion = Int.Companion
 
 typealias Band = Int
 
-typealias BwMap = Map<Int, IntArray>
-
-typealias MutableBwMap = MutableMap<Int, IntArray>
+typealias BwMap = MutableMap<Int, IntArray>
