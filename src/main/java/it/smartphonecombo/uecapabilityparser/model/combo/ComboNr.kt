@@ -8,8 +8,8 @@ import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 /** The Class Combo. */
 data class ComboNr(
-    override var masterComponents: Array<IComponent>,
-    override var secondaryComponents: Array<IComponent>,
+    override val masterComponents: Array<IComponent>,
+    override val secondaryComponents: Array<IComponent>,
     val featureSet: Int = 0
 ) : ICombo {
     constructor(

@@ -3,8 +3,8 @@ package it.smartphonecombo.uecapabilityparser.model.combo
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 interface ICombo {
-    var masterComponents: Array<IComponent>
-    var secondaryComponents: Array<IComponent>
+    val masterComponents: Array<IComponent>
+    val secondaryComponents: Array<IComponent>
 
     fun toCsv(
         separator: String,
