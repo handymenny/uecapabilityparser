@@ -1,9 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
-import it.smartphonecombo.uecapabilityparser.model.BwClass
+import it.smartphonecombo.uecapabilityparser.extension.populateCsvStringBuilders
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.util.Utility
 
 data class ComboNrDc(
     override val masterComponents: Array<ComponentNr>,
@@ -47,90 +46,26 @@ data class ComboNrDc(
         val nrDcUlBwMod = StringBuilder()
         val nrDcMimoDl = StringBuilder()
         val nrDcMimoUl = StringBuilder()
-        var ulCount = 0
-        var ulDcCount = 0
 
-        for (component in componentsNr) {
-            nrBandBwScs.append(component.band).append(component.classDL).append(separator)
+        componentsNr.populateCsvStringBuilders(
+            nrBandBwScs,
+            nrMimoDl,
+            nrUlBwMod,
+            nrMimoUl,
+            nrDlCC,
+            nrUlCC,
+            separator
+        )
 
-            if (component.maxBandwidth != 0) {
-                nrBandBwScs.append(component.maxBandwidth)
-            }
-            nrBandBwScs.append(separator)
-
-            if (component.scs != 0) {
-                nrBandBwScs.append(component.scs)
-            }
-            nrBandBwScs.append(separator)
-
-            if (component.mimoDL != 0) {
-                nrMimoDl.append(component.mimoDL)
-            }
-            nrMimoDl.append(separator)
-
-            if (component.classUL != BwClass.NONE) {
-                ulCount++
-                nrUlBwMod
-                    .append(component.band)
-                    .append(component.classUL)
-                    .append(separator)
-                    .append(component.modUL)
-                    .append(separator)
-
-                if (component.mimoUL != 0) {
-                    nrMimoUl.append(component.mimoUL)
-                }
-                nrMimoUl.append(separator)
-            }
-        }
-
-        for (component in componentsNrDc) {
-            nrDcBandBwScs.append(component.band).append(component.classDL).append(separator)
-
-            if (component.maxBandwidth != 0) {
-                nrDcBandBwScs.append(component.maxBandwidth)
-            }
-            nrDcBandBwScs.append(separator)
-
-            if (component.scs != 0) {
-                nrDcBandBwScs.append(component.scs)
-            }
-            nrDcBandBwScs.append(separator)
-
-            if (component.mimoDL != 0) {
-                nrDcMimoDl.append(component.mimoDL)
-            }
-            nrDcMimoDl.append(separator)
-
-            if (component.classUL != BwClass.NONE) {
-                ulDcCount++
-                nrDcUlBwMod
-                    .append(component.band)
-                    .append(component.classUL)
-                    .append(separator)
-                    .append(component.modUL)
-                    .append(separator)
-
-                if (component.mimoUL != 0) {
-                    nrDcMimoUl.append(component.mimoUL)
-                }
-                nrDcMimoUl.append(separator)
-            }
-        }
-
-        repeat(nrDcDlCC - componentsNrDc.size) {
-            Utility.appendSeparator(
-                separator,
-                nrDcBandBwScs,
-                nrDcBandBwScs,
-                nrDcBandBwScs,
-                nrDcMimoDl
-            )
-        }
-
-        repeat(nrDcUlCC - ulDcCount) {
-            Utility.appendSeparator(separator, nrDcUlBwMod, nrDcUlBwMod, nrDcMimoUl)
-        }
+        componentsNrDc.populateCsvStringBuilders(
+            nrDcBandBwScs,
+            nrDcMimoDl,
+            nrDcUlBwMod,
+            nrDcMimoUl,
+            nrDcDlCC,
+            nrDcUlCC,
+            separator
+        )
 
         return "$compact$nrBandBwScs$nrDcBandBwScs$nrUlBwMod$nrDcUlBwMod$nrMimoDl$nrDcMimoDl$nrMimoUl$nrDcMimoUl"
     }
