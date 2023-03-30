@@ -8,6 +8,8 @@ interface ICombo {
     val featureSet: Int
     val bcs: IntArray
 
+    fun toCompactStr(): String
+
     fun toCsv(
         separator: String,
         lteDlCC: Int,

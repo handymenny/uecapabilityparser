@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 data class ComboEnDc(
     override val masterComponents: Array<ComponentLte>,
@@ -12,20 +13,19 @@ data class ComboEnDc(
     override val bcs: IntArray = IntArray(0)
 ) : ICombo {
 
-    override fun toString(): String {
-        val str = StringBuilder()
-        for (x in componentsLte) {
-            str.append(x.toCompactStr())
-            str.append("-")
-        }
-        str.deleteCharAt(str.length - 1)
-        str.append("_")
-        for (x in componentsNr) {
-            str.append(x.toCompactStr())
-            str.append("-")
-        }
-        str.append(featureSet)
-        return str.toString()
+    override fun toCompactStr(): String {
+        val lte =
+            componentsLte.joinToString(
+                separator = "-",
+                transform = IComponent::toCompactStr,
+            )
+        val nr =
+            componentsNr.joinToString(
+                separator = "-",
+                transform = IComponent::toCompactStr,
+            )
+
+        return "${lte}_${nr}-$featureSet"
     }
 
     override fun toCsv(
@@ -68,7 +68,7 @@ data class ComboEnDc(
             nrscs[i] = nr.scs
             nrModUL[i] = nr.modUL
         }
-        val str = StringBuilder(this.toString() + separator)
+        val str = StringBuilder(this.toCompactStr() + separator)
         for (i in 0 until lteDlCC) {
             val b = band[i]
             if (b != 0) {

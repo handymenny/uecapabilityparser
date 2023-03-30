@@ -97,7 +97,13 @@ object Import0xB826 : ImportCapabilities {
         }
 
         if (debug) {
-            println(listCombo)
+            println(
+                listCombo.joinToString(
+                    prefix = "[",
+                    postfix = "]",
+                    transform = ICombo::toCompactStr
+                )
+            )
         }
 
         if (listCombo.isNotEmpty()) {

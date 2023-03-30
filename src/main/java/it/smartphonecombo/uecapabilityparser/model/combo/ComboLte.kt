@@ -15,14 +15,15 @@ data class ComboLte(
     override val featureSet: Int
         get() = 0
 
-    override fun toString(): String {
-        val str = StringBuilder()
-        for (x in masterComponents) {
-            str.append(x.toCompactStr())
-            str.append("-")
-        }
-        str.append(Utility.arrayToQcomBcs(bcs))
-        return str.toString()
+    override fun toCompactStr(): String {
+        val lte =
+            masterComponents.joinToString(
+                separator = "-",
+                transform = IComponent::toCompactStr,
+            )
+        val bcs = Utility.arrayToQcomBcs(bcs)
+
+        return "$lte-$bcs"
     }
 
     override fun toCsv(
@@ -34,7 +35,7 @@ data class ComboLte(
         nrDcDlCC: Int,
         nrDcUlCC: Int
     ): String {
-        val str = StringBuilder(this.toString() + separator)
+        val str = StringBuilder(this.toCompactStr() + separator)
         val strBw = StringBuilder()
         val strMimo = StringBuilder()
         val strUl = StringBuilder()

@@ -14,14 +14,14 @@ data class ComboNr(
     override val secondaryComponents
         get() = emptyArray<IComponent>()
 
-    override fun toString(): String {
-        val str = StringBuilder()
-        for (x in componentsNr) {
-            str.append(x.toCompactStr())
-            str.append("-")
-        }
-        str.append(featureSet)
-        return str.toString()
+    override fun toCompactStr(): String {
+        val nr =
+            componentsNr.joinToString(
+                separator = "-",
+                transform = IComponent::toCompactStr,
+            )
+
+        return "$nr-$featureSet"
     }
 
     override fun toCsv(
@@ -55,7 +55,7 @@ data class ComboNr(
             nrscs[i] = nr.scs
             nrModUL[i] = nr.modUL
         }
-        val str = StringBuilder(this.toString() + separator)
+        val str = StringBuilder(this.toCompactStr() + separator)
         for (i in 0 until nrDlCC) {
             val b = nrband[i]
             val bw = nrbandwidth[i]
