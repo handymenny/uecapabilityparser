@@ -73,10 +73,9 @@ object ImportLteCarrierPolicy : ImportCapabilities {
                 return null
             }
 
-        val componentsArray = parsedComponents.toTypedArray()
-        componentsArray.sortDescending()
+        parsedComponents.sortDescending()
 
-        return ComboLte(componentsArray, bcsArray)
+        return ComboLte(parsedComponents, bcsArray)
     }
 
     // Regex used to extract the various parts of a component

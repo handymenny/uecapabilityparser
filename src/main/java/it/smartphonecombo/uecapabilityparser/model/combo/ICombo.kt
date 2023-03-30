@@ -3,8 +3,8 @@ package it.smartphonecombo.uecapabilityparser.model.combo
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 interface ICombo {
-    val masterComponents: Array<out IComponent>
-    val secondaryComponents: Array<out IComponent>
+    val masterComponents: List<IComponent>
+    val secondaryComponents: List<IComponent>
     val featureSet: Int
     val bcs: IntArray
 

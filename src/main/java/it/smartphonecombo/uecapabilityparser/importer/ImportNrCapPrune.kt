@@ -68,17 +68,15 @@ object ImportNrCapPrune : ImportCapabilities {
             }
         }
 
-        val lteBandsArray = lteBands.toTypedArray()
-        lteBandsArray.sortDescending()
-        val nrBandsArray = nrBands.toTypedArray()
-        nrBandsArray.sortDescending()
+        lteBands.sortDescending()
+        nrBands.sortDescending()
 
-        return if (lteBandsArray.isEmpty() && nrBandsArray.isEmpty()) {
+        return if (lteBands.isEmpty() && nrBands.isEmpty()) {
             null
-        } else if (lteBandsArray.isEmpty()) {
-            ComboNr(nrBandsArray)
+        } else if (lteBands.isEmpty()) {
+            ComboNr(nrBands)
         } else {
-            ComboEnDc(lteBandsArray, nrBandsArray)
+            ComboEnDc(lteBands, nrBands)
         }
     }
 

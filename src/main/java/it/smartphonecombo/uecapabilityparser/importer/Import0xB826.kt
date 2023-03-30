@@ -231,21 +231,18 @@ object Import0xB826 : ImportCapabilities {
             }
         }
 
-        val bandArray = bands.toTypedArray()
-        bandArray.sortDescending()
+        bands.sortDescending()
 
-        val nrBandsArray = nrBands.toTypedArray()
-        nrBandsArray.sortDescending()
+        nrBands.sortDescending()
 
-        val nrDcBandsArray = nrDcBands.toTypedArray()
         nrDcBands.sortDescending()
 
-        return if (bandArray.isNotEmpty()) {
-            ComboEnDc(bandArray, nrBandsArray)
-        } else if (nrDcBandsArray.isNotEmpty()) {
-            ComboNrDc(nrBandsArray, nrDcBandsArray)
+        return if (bands.isNotEmpty()) {
+            ComboEnDc(bands, nrBands)
+        } else if (nrDcBands.isNotEmpty()) {
+            ComboNrDc(nrBands, nrDcBands)
         } else {
-            ComboNr(nrBandsArray)
+            ComboNr(nrBands)
         }
     }
 

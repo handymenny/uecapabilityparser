@@ -5,13 +5,16 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 data class ComboNr(
-    override val masterComponents: Array<ComponentNr>,
+    override val masterComponents: List<ComponentNr>,
     override val featureSet: Int = 0,
     override val bcs: IntArray = IntArray(0)
 ) : ICombo {
 
     override val secondaryComponents
-        get() = emptyArray<IComponent>()
+        get() = emptyList<IComponent>()
+
+    val componentsNr: List<ComponentNr>
+        get() = masterComponents
 
     override fun toCompactStr(): String {
         val nr =
@@ -56,7 +59,7 @@ data class ComboNr(
         if (this === other) return true
         if (other !is ComboNr) return false
 
-        if (!masterComponents.contentEquals(other.masterComponents)) return false
+        if (masterComponents != other.masterComponents) return false
         if (featureSet != other.featureSet) return false
         if (!bcs.contentEquals(other.bcs)) return false
 
@@ -64,12 +67,9 @@ data class ComboNr(
     }
 
     override fun hashCode(): Int {
-        var result = masterComponents.contentHashCode()
+        var result = masterComponents.hashCode()
         result = 31 * result + featureSet
         result = 31 * result + bcs.contentHashCode()
         return result
     }
-
-    val componentsNr: Array<ComponentNr>
-        get() = masterComponents
 }

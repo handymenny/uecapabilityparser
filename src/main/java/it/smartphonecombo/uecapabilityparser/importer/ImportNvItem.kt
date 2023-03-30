@@ -135,8 +135,8 @@ object ImportNvItem : ImportCapabilities {
     private fun mergeAndSort(
         dlComponents: List<ComponentLte>,
         ulComponents: List<ComponentLte>
-    ): Array<ComponentLte> {
-        val components = dlComponents.mapToTypedArray(ComponentLte::clone)
+    ): List<ComponentLte> {
+        val components = dlComponents.map(ComponentLte::clone).toMutableList()
         for (ulComponent in ulComponents) {
             val matchingComponent =
                 components
@@ -149,8 +149,4 @@ object ImportNvItem : ImportCapabilities {
         components.sortDescending()
         return components
     }
-
-    /** Like map but returning a typedArray */
-    private inline fun <reified T> List<T>.mapToTypedArray(transform: (T) -> T) =
-        Array(size, init = { i -> transform(this[i]) })
 }

@@ -94,21 +94,19 @@ object Import0xB0CD : ImportCapabilities {
                 32 -> processCombo32(lines)
                 40 -> processCombo40(lines)
                 41 -> processCombo41(lines)
-                else -> emptyList()
+                else -> null
             }
 
-        if (components.isEmpty()) {
+        if (components.isNullOrEmpty()) {
             return null
         }
 
-        val componentArray = components.toTypedArray()
-        componentArray.sortDescending()
-
-        return ComboLte(componentArray)
+        components.sortDescending()
+        return ComboLte(components)
     }
 
     /** This method parses a single combination (combo) from 0xB0CD v41 * */
-    private fun processCombo41(lines: Iterator<String>): List<ComponentLte> {
+    private fun processCombo41(lines: Iterator<String>): MutableList<ComponentLte> {
         // Num of bands is dynamic
         var numBands = 1
         var index = 0
@@ -137,7 +135,7 @@ object Import0xB0CD : ImportCapabilities {
     }
 
     /** This method parses a single combination (combo) from 0xB0CD v40 * */
-    private fun processCombo40(lines: Iterator<String>): List<ComponentLte> {
+    private fun processCombo40(lines: Iterator<String>): MutableList<ComponentLte> {
         // Num of bands is fixed
         val numBands = 5
         var index = 0
@@ -163,7 +161,7 @@ object Import0xB0CD : ImportCapabilities {
     }
 
     /** This method parses a single combination (combo) from 0xB0CD v32 * */
-    private fun processCombo32(lines: Iterator<String>): List<ComponentLte> {
+    private fun processCombo32(lines: Iterator<String>): MutableList<ComponentLte> {
         var index = 0
         val bands = mutableListOf<ComponentLte>()
         // Num of bands is fixed

@@ -7,11 +7,11 @@ import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.appendSeparator
 
 data class ComboLte(
-    override val masterComponents: Array<ComponentLte>,
+    override val masterComponents: List<ComponentLte>,
     override var bcs: IntArray = intArrayOf()
 ) : ICombo {
     override val secondaryComponents
-        get() = emptyArray<IComponent>()
+        get() = emptyList<IComponent>()
 
     override val featureSet: Int
         get() = 0
@@ -74,14 +74,14 @@ data class ComboLte(
         if (this === other) return true
         if (other !is ComboLte) return false
 
-        if (!masterComponents.contentEquals(other.masterComponents)) return false
+        if (masterComponents != other.masterComponents) return false
         if (!bcs.contentEquals(other.bcs)) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = masterComponents.contentHashCode()
+        var result = masterComponents.hashCode()
         result = 31 * result + bcs.contentHashCode()
         return result
     }

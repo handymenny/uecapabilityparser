@@ -121,7 +121,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.nrDcCombos =
                 nrDcComboWithFeatures.map { combo ->
                     val (fr2, fr1) = combo.masterComponents.partition { it.isFR2 }
-                    ComboNrDc(fr1.toTypedArray(), fr2.toTypedArray(), combo.featureSet)
+                    ComboNrDc(fr1, fr2, combo.featureSet)
                 }
         }
 
@@ -495,11 +495,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) =
-        zip(bcsList) { bands, bcs ->
-            val bandArray = bands.toTypedArray()
-            bandArray.sortDescending()
-            ComboLte(bandArray, bcs)
-        }
+        zip(bcsList) { bands, bcs -> ComboLte(bands.sortedDescending(), bcs) }
 
     private fun linkFeaturesAndCarrier(
         combos: List<ICombo>,
@@ -576,15 +572,13 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
         }
 
-        val nrArray = newNrComponents.toTypedArray()
-        nrArray.sortDescending()
+        newNrComponents.sortDescending()
 
         return if (newLteComponents.isNotEmpty()) {
-            val lteArray = newLteComponents.toTypedArray()
-            lteArray.sortDescending()
-            ComboEnDc(lteArray, nrArray, combo.featureSet)
+            newLteComponents.sortDescending()
+            ComboEnDc(newLteComponents, newNrComponents, combo.featureSet)
         } else {
-            ComboNr(nrArray, combo.featureSet)
+            ComboNr(newNrComponents, combo.featureSet)
         }
     }
 
@@ -734,13 +728,9 @@ object ImportCapabilityInformation : ImportCapabilities {
                 }
                 val featureSetCombination = bandCombination.getInt("featureSetCombination") ?: 0
                 if (endc) {
-                    ComboEnDc(
-                        lteBands.toTypedArray(),
-                        nrBands.toTypedArray(),
-                        featureSetCombination
-                    )
+                    ComboEnDc(lteBands, nrBands, featureSetCombination)
                 } else {
-                    ComboNr(nrBands.toTypedArray(), featureSetCombination)
+                    ComboNr(nrBands, featureSetCombination)
                 }
             }
         return list ?: emptyList()
