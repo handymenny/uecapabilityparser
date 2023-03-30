@@ -36,6 +36,7 @@ import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCLte
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSets
+import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
 import java.io.InputStream
@@ -623,8 +624,8 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
     private fun mergeComponentLteAndFeature(
         component: ComponentLte,
-        dlFeature: FeaturePerCCLte?,
-        ulFeature: FeaturePerCCLte?
+        dlFeature: IFeaturePerCC?,
+        ulFeature: IFeaturePerCC?
     ): ComponentLte {
         val componentLte = component.copy()
 
