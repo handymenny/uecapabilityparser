@@ -1,27 +1,17 @@
 package it.smartphonecombo.uecapabilityparser.model.feature
 
+import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 
 class FeaturePerCCNr(
-    type: Int = DOWNlINK,
+    type: LinkDirection = LinkDirection.DOWNLINK,
     mimo: Int = 2,
     qam: Modulation = Modulation.NONE,
     var bw: Int = 0,
     var scs: Int = 0,
     var channelBW90mhz: Boolean = false,
 ) : FeaturePerCCLte(type, mimo, qam) {
-    companion object {
-        const val UPLINK = 1
-        const val DOWNlINK = 0
-    }
-
     override fun toString(): String {
-        val typeString =
-            when (type) {
-                DOWNlINK -> "DL"
-                UPLINK -> "UL"
-                else -> "Unknown"
-            }
-        return "FeaturePerCCNr(type=$typeString, mimo=$mimo, qam=$qam, bw=$bw, scs=$scs, bw90MHz=$channelBW90mhz)"
+        return "FeaturePerCCNr(type=$type, mimo=$mimo, qam=$qam, bw=$bw, scs=$scs, bw90MHz=$channelBW90mhz)"
     }
 }

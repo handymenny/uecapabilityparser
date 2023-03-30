@@ -13,6 +13,7 @@ import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.UEEutraCapabilityJson
@@ -936,7 +937,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 downlinkPerCC?.getOrNull(it)
                             }
                         }
-                    FeatureSet(list, FeatureSet.DOWNlINK)
+                    FeatureSet(list, LinkDirection.DOWNLINK)
                 }
                     ?: downlink
 
@@ -950,7 +951,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         }
                     val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
                     val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 1)
-                    FeaturePerCCLte(FeaturePerCCLte.UPLINK, mimo = mimo, qam = qam)
+                    FeaturePerCCLte(LinkDirection.UPLINK, mimo = mimo, qam = qam)
                 }
 
             // featureSets.getArray("featureSetsDL-v1550") - Never seen on the wild
@@ -961,7 +962,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                             index ->
                             (index as? JsonPrimitive)?.intOrNull?.let { uplinkPerCC?.getOrNull(it) }
                         }
-                    FeatureSet(list, FeatureSet.UPLINK)
+                    FeatureSet(list, LinkDirection.UPLINK)
                 }
                     ?: uplink
         }
@@ -1017,7 +1018,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 downlinkPerCC?.getOrNull(it - 1)
                             }
                         }
-                    FeatureSet(list, FeatureSet.DOWNlINK)
+                    FeatureSet(list, LinkDirection.DOWNLINK)
                 }
                     ?: downlink
 
@@ -1045,7 +1046,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         maxOf(Mimo.fromLiteral(mimoCbLayers), Mimo.fromLiteral(mimoNonCbLayers), 1)
                     val qam = Modulation.of(it.getString("supportedModulationOrderUL"))
                     FeaturePerCCNr(
-                        type = FeatureSet.UPLINK,
+                        type = LinkDirection.UPLINK,
                         mimo = mimo,
                         qam = qam,
                         scs = scs,
@@ -1064,7 +1065,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 uplinkPerCC?.getOrNull(it - 1)
                             }
                         }
-                    FeatureSet(list, FeatureSet.UPLINK)
+                    FeatureSet(list, LinkDirection.UPLINK)
                 }
                     ?: uplink
         }

@@ -1,18 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.model.feature
 
-data class FeatureSet(val featureSetsPerCC: List<FeaturePerCCLte>?, val type: Int) {
-    companion object {
-        const val UPLINK = 1
-        const val DOWNlINK = 0
-    }
+import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 
+data class FeatureSet(val featureSetsPerCC: List<FeaturePerCCLte>?, val type: LinkDirection) {
     override fun toString(): String {
-        val typeString =
-            when (type) {
-                DOWNlINK -> "DL"
-                UPLINK -> "UL"
-                else -> "Unknown"
-            }
-        return "FeatureSet(featureSetsPerCC=$featureSetsPerCC, type=$typeString)"
+        return "FeatureSet(featureSetsPerCC=$featureSetsPerCC, type=$type)"
     }
 }
