@@ -10,6 +10,7 @@ import it.smartphonecombo.uecapabilityparser.extension.getObject
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.merge
 import it.smartphonecombo.uecapabilityparser.extension.step
+import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Feature
@@ -24,17 +25,21 @@ import it.smartphonecombo.uecapabilityparser.model.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
-import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.lang.IllegalArgumentException
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -105,16 +110,18 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.nrBands = bandList
             nrFeatures = getNRFeatureSet(nr)
             val featureSetCombination = getFeatureSetCombinations(nr)
-            val saCombos = getNrBandCombinations(nr)
+            val saCombos = getNrBandCombinations(nr).typedList<ComboNr>()
             comboList.nrCombos =
                 linkFeaturesAndCarrier(saCombos, featureSetCombination, null, nrFeatures)
+                    .typedList()
             val nrDcCombos = getNrDcBandCombinations(nr, saCombos)
             val nrDcComboWithFeatures =
                 linkFeaturesAndCarrier(nrDcCombos, featureSetCombination, null, nrFeatures)
+                    .typedList<ComboNr>()
             comboList.nrDcCombos =
                 nrDcComboWithFeatures.map { combo ->
-                    val (fr2, fr1) = combo.masterComponents.partition { (it as ComponentNr).isFR2 }
-                    ComboNr(fr1.toTypedArray(), fr2.toTypedArray(), combo.featureSet)
+                    val (fr2, fr1) = combo.masterComponents.partition { it.isFR2 }
+                    ComboNrDc(fr1, fr2, combo.featureSet)
                 }
         }
 
@@ -124,6 +131,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             val nsaCombos = getNrBandCombinations(mrdc)
             comboList.enDcCombos =
                 linkFeaturesAndCarrier(nsaCombos, featureSetCombination, lteFeatures, nrFeatures)
+                    .typedList()
         }
         return comboList
     }
@@ -487,19 +495,15 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) =
-        zip(bcsList) { bands, bcs ->
-            val bandArray = bands.toTypedArray<IComponent>()
-            bandArray.sortDescending()
-            ComboLte(bandArray, bcs)
-        }
+        zip(bcsList) { bands, bcs -> ComboLte(bands.sortedDescending(), bcs) }
 
     private fun linkFeaturesAndCarrier(
-        combos: List<ComboNr>,
+        combos: List<ICombo>,
         featureSetCombinations: List<List<List<Feature>>>,
         lteFeatures: FeatureSets?,
         nrFeatures: FeatureSets?
-    ): List<ComboNr> {
-        val list = mutableListOf<ComboNr>()
+    ): List<ICombo> {
+        val list = mutableListOf<ICombo>()
 
         for (combo in combos) {
             val featureSetsPerBand = featureSetCombinations.getOrNull(combo.featureSet) ?: continue
@@ -520,17 +524,31 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun mergeComboNrAndIndexedFeature(
-        combo: ComboNr,
+        combo: ICombo,
         featureSetsPerBand: List<List<Feature>>,
         index: Int,
         nrFeatures: FeatureSets?,
         lteFeatures: FeatureSets?
-    ): ComboNr {
+    ): ICombo {
         val newNrComponents = mutableListOf<ComponentNr>()
         val newLteComponents = mutableListOf<ComponentLte>()
 
-        val lteComponents = combo.componentsLte.iterator()
-        val nrComponents = combo.componentsNr.iterator()
+        val lteComponents: Iterator<ComponentLte>?
+        val nrComponents: Iterator<ComponentNr>
+
+        when (combo) {
+            is ComboEnDc -> {
+                lteComponents = combo.componentsLte.iterator()
+                nrComponents = combo.componentsNr.iterator()
+            }
+            is ComboNr -> {
+                lteComponents = emptyArray<ComponentLte>().iterator()
+                nrComponents = combo.componentsNr.iterator()
+            }
+            else -> {
+                throw IllegalArgumentException("Unsupported combo type ${combo.javaClass}")
+            }
+        }
 
         for (featureSetBand in featureSetsPerBand) {
             val featureSet = featureSetBand[index]
@@ -554,15 +572,13 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
         }
 
-        val nrArray = newNrComponents.toTypedArray<IComponent>()
-        nrArray.sortDescending()
+        newNrComponents.sortDescending()
 
         return if (newLteComponents.isNotEmpty()) {
-            val lteArray = newLteComponents.toTypedArray<IComponent>()
-            lteArray.sortDescending()
-            ComboNr(lteArray, nrArray, combo.featureSet)
+            newLteComponents.sortDescending()
+            ComboEnDc(newLteComponents, newNrComponents, combo.featureSet)
         } else {
-            ComboNr(nrArray, combo.featureSet)
+            ComboNr(newNrComponents, combo.featureSet)
         }
     }
 
@@ -688,7 +704,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         return list ?: emptyList()
     }
 
-    private fun getNrBandCombinations(nrCapability: UENrRrcCapabilityJson): List<ComboNr> {
+    private fun getNrBandCombinations(nrCapability: UENrRrcCapabilityJson): List<ICombo> {
         val endc = nrCapability is UEMrdcCapabilityJson
         val bandCombinationsPath =
             if (endc) {
@@ -712,9 +728,9 @@ object ImportCapabilityInformation : ImportCapabilities {
                 }
                 val featureSetCombination = bandCombination.getInt("featureSetCombination") ?: 0
                 if (endc) {
-                    ComboNr(lteBands.toTypedArray(), nrBands.toTypedArray(), featureSetCombination)
+                    ComboEnDc(lteBands, nrBands, featureSetCombination)
                 } else {
-                    ComboNr(nrBands.toTypedArray(), featureSetCombination)
+                    ComboNr(nrBands, featureSetCombination)
                 }
             }
         return list ?: emptyList()
@@ -757,7 +773,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 if (nrCombo == null || featureSet == null) {
                     return@mapIndexedNotNull null
                 }
-                ComboNr(nrCombo.masterComponents, nrCombo.secondaryComponents, featureSet)
+                ComboNr(nrCombo.masterComponents, featureSet)
             }
                 ?: emptyList()
         return list

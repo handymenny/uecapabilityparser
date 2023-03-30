@@ -3,9 +3,8 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -95,25 +94,23 @@ object Import0xB0CD : ImportCapabilities {
                 32 -> processCombo32(lines)
                 40 -> processCombo40(lines)
                 41 -> processCombo41(lines)
-                else -> emptyList()
+                else -> null
             }
 
-        if (components.isEmpty()) {
+        if (components.isNullOrEmpty()) {
             return null
         }
 
-        val componentArray = components.toTypedArray()
-        componentArray.sortDescending()
-
-        return ComboLte(componentArray)
+        components.sortDescending()
+        return ComboLte(components)
     }
 
     /** This method parses a single combination (combo) from 0xB0CD v41 * */
-    private fun processCombo41(lines: Iterator<String>): List<IComponent> {
+    private fun processCombo41(lines: Iterator<String>): MutableList<ComponentLte> {
         // Num of bands is dynamic
         var numBands = 1
         var index = 0
-        val bands = mutableListOf<IComponent>()
+        val bands = mutableListOf<ComponentLte>()
 
         while (lines.hasNext() && index < numBands) {
             val values = split0xB0CDFields(lines.next())
@@ -138,11 +135,11 @@ object Import0xB0CD : ImportCapabilities {
     }
 
     /** This method parses a single combination (combo) from 0xB0CD v40 * */
-    private fun processCombo40(lines: Iterator<String>): List<IComponent> {
+    private fun processCombo40(lines: Iterator<String>): MutableList<ComponentLte> {
         // Num of bands is fixed
         val numBands = 5
         var index = 0
-        val bands = mutableListOf<IComponent>()
+        val bands = mutableListOf<ComponentLte>()
 
         while (lines.hasNext() && index < numBands) {
             val values = split0xB0CDFields(lines.next())
@@ -164,9 +161,9 @@ object Import0xB0CD : ImportCapabilities {
     }
 
     /** This method parses a single combination (combo) from 0xB0CD v32 * */
-    private fun processCombo32(lines: Iterator<String>): List<IComponent> {
+    private fun processCombo32(lines: Iterator<String>): MutableList<ComponentLte> {
         var index = 0
-        val bands = mutableListOf<IComponent>()
+        val bands = mutableListOf<ComponentLte>()
         // Num of bands is fixed
         val numBands = 5
         while (lines.hasNext() && index < numBands) {

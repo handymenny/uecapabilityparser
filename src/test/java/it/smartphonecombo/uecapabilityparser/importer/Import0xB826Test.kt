@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import java.io.File
 import org.junit.jupiter.api.Assertions
@@ -28,7 +28,7 @@ internal class Import0xB826Test {
         Assertions.assertEquals(totalCombos, comboList.getMetadata("totalCombos"))
         Assertions.assertEquals(index, comboList.getMetadata("index"))
         Assertions.assertEquals(source, comboList.getMetadata("source"))
-        val comboNR: List<ComboNr>?
+        val comboNR: List<ICombo>?
         if (endc) {
             comboNR = comboList.enDcCombos
             Assertions.assertNull(comboList.nrCombos)

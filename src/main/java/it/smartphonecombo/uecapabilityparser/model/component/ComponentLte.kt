@@ -27,24 +27,5 @@ data class ComponentLte(
         )
     }
 
-    companion object {
-        fun lteComponentsToArrays(
-            band: IntArray,
-            bandwidth: Array<BwClass>,
-            mimo: IntArray,
-            upload: Array<BwClass>,
-            modUL: Array<Modulation>,
-            inputArray: Array<IComponent>
-        ) {
-            for (i in inputArray.indices) {
-                band[i] = inputArray[i].band
-                mimo[i] = inputArray[i].mimoDL
-                bandwidth[i] = inputArray[i].classDL
-                upload[i] = inputArray[i].classUL
-                modUL[i] = inputArray[i].modUL
-            }
-        }
-    }
-
     override fun clone() = copy()
 }

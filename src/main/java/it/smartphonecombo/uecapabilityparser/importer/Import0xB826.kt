@@ -14,13 +14,17 @@ import com.soywiz.kmem.isOdd
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
+import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
 import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
@@ -50,7 +54,7 @@ object Import0xB826 : ImportCapabilities {
      */
     override fun parse(input: InputStream): Capabilities {
         val capabilities = Capabilities()
-        val listCombo = ArrayList<ComboNr>()
+        val listCombo = ArrayList<ICombo>()
         val byteArray = input.use(InputStream::readBytes)
         val byteBuffer = ByteBuffer.wrap(byteArray)
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
@@ -93,16 +97,22 @@ object Import0xB826 : ImportCapabilities {
         }
 
         if (debug) {
-            println(listCombo)
+            println(
+                listCombo.joinToString(
+                    prefix = "[",
+                    postfix = "]",
+                    transform = ICombo::toCompactStr
+                )
+            )
         }
 
         if (listCombo.isNotEmpty()) {
-            if (listCombo.first().isEnDc) {
-                capabilities.enDcCombos = listCombo
-            } else if (listCombo.first().isNrDc) {
-                capabilities.nrDcCombos = listCombo
+            if (listCombo.first() is ComboEnDc) {
+                capabilities.enDcCombos = listCombo.typedList()
+            } else if (listCombo.first() is ComboNrDc) {
+                capabilities.nrDcCombos = listCombo.typedList()
             } else {
-                capabilities.nrCombos = listCombo
+                capabilities.nrCombos = listCombo.typedList()
             }
         }
         return capabilities
@@ -185,14 +195,14 @@ object Import0xB826 : ImportCapabilities {
         byteBuffer: ByteBuffer,
         version: Int,
         source: String?,
-    ): ComboNr {
+    ): ICombo {
         if (version >= 8) {
             byteBuffer.skipBytes(3)
         }
         val numComponents = getNumComponents(byteBuffer, version)
-        val bands = mutableListOf<IComponent>()
-        var nrBands = mutableListOf<IComponent>()
-        var nrDcBands = mutableListOf<IComponent>()
+        val bands = mutableListOf<ComponentLte>()
+        var nrBands = mutableListOf<ComponentNr>()
+        var nrDcBands = mutableListOf<ComponentNr>()
         when (version) {
             6,
             8 -> byteBuffer.skipBytes(1)
@@ -205,7 +215,7 @@ object Import0xB826 : ImportCapabilities {
             if (component is ComponentNr) {
                 nrBands.add(component)
             } else {
-                bands.add(component)
+                bands.add(component as ComponentLte)
             }
         }
 
@@ -213,7 +223,7 @@ object Import0xB826 : ImportCapabilities {
          * We assume that 0xb826 without explicit combo type in source don't support NR CA FR1-FR2.
          */
         if (bands.isEmpty() && !source.equals("RF_NRCA")) {
-            val (fr2bands, fr1bands) = nrBands.partition { (it as ComponentNr).isFR2 }
+            val (fr2bands, fr1bands) = nrBands.partition { it.isFR2 }
 
             if (fr2bands.isNotEmpty() && fr1bands.isNotEmpty()) {
                 nrBands = fr1bands.toMutableList()
@@ -221,21 +231,18 @@ object Import0xB826 : ImportCapabilities {
             }
         }
 
-        val bandArray = bands.toTypedArray()
-        bandArray.sortDescending()
+        bands.sortDescending()
 
-        val nrBandsArray = nrBands.toTypedArray()
-        nrBandsArray.sortDescending()
+        nrBands.sortDescending()
 
-        val nrDcBandsArray = nrDcBands.toTypedArray()
         nrDcBands.sortDescending()
 
-        return if (bandArray.isNotEmpty()) {
-            ComboNr(bandArray, nrBandsArray)
-        } else if (nrDcBandsArray.isNotEmpty()) {
-            ComboNr(nrBandsArray, nrDcBandsArray)
+        return if (bands.isNotEmpty()) {
+            ComboEnDc(bands, nrBands)
+        } else if (nrDcBands.isNotEmpty()) {
+            ComboNrDc(nrBands, nrDcBands)
         } else {
-            ComboNr(nrBandsArray)
+            ComboNr(nrBands)
         }
     }
 

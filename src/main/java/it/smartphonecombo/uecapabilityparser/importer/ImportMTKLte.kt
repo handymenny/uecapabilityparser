@@ -2,9 +2,8 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.lte.ComboLte
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.NumberFormatException
@@ -35,10 +34,9 @@ object ImportMTKLte : ImportCapabilities {
             while (iterator.firstOrNull { it.startsWith("band_comb[") } != null) {
                 val bands = parseCombo(iterator) ?: continue
 
-                val bandArray = bands.toTypedArray<IComponent>()
-                bandArray.sortDescending()
+                bands.sortDescending()
 
-                listCombos.add(ComboLte(bandArray))
+                listCombos.add(ComboLte(bands))
             }
         } catch (ignored: NoSuchElementException) {
             // Do nothing
@@ -54,7 +52,7 @@ object ImportMTKLte : ImportCapabilities {
      * Return null if parsing fails or if there is no component.
      */
     @Throws(NoSuchElementException::class)
-    private fun parseCombo(input: Iterator<String>): List<ComponentLte>? {
+    private fun parseCombo(input: Iterator<String>): MutableList<ComponentLte>? {
         val numCCs = extractInt(input.next())
 
         // Check if combo contains any CCs
@@ -88,7 +86,7 @@ object ImportMTKLte : ImportCapabilities {
 
     /** Parse [numCCs] components. */
     @Throws(NoSuchElementException::class)
-    private fun parseComponents(numCCs: Int, input: Iterator<String>): List<ComponentLte> {
+    private fun parseComponents(numCCs: Int, input: Iterator<String>): MutableList<ComponentLte> {
         val bands = mutableListOf<ComponentLte>()
         for (i in 0 until numCCs) {
             input.firstOrNull { it.startsWith("band_param[$i]") }

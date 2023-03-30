@@ -10,9 +10,11 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.ICombo
 import it.smartphonecombo.uecapabilityparser.model.Rat
-import it.smartphonecombo.uecapabilityparser.model.nr.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import java.io.*
 import java.nio.charset.Charset
 import java.util.*
@@ -45,11 +47,10 @@ object Utility {
 
     fun toCsv(lists: List<ICombo>): String {
         if (lists.isEmpty()) return ""
-        val isNr = lists.any { it is ComboNr }
-        val standalone =
-            isNr && lists.none { (it as? ComboNr)?.componentsLte?.isNotEmpty() ?: false }
-        val nrDc = isNr && lists.any { (it as? ComboNr)?.componentsNrDc?.isNotEmpty() ?: false }
-        val enDc = isNr && !standalone && !nrDc
+        val standalone = lists.any { it is ComboNr }
+        val nrDc = lists.any { it is ComboNrDc }
+        val enDc = lists.any { it is ComboEnDc }
+        val isNr = standalone || nrDc || enDc
 
         var lteDlCC = 0
         var lteUlCC = 0
@@ -351,7 +352,7 @@ object Utility {
             list.add(importer.parse(inputStream))
         }
         val enDcCombos =
-            list.fold(mutableListOf<ComboNr>()) { sum, x ->
+            list.fold(mutableListOf<ComboEnDc>()) { sum, x ->
                 x.enDcCombos?.let { sum.addAll(it) }
                 sum
             }
@@ -361,7 +362,7 @@ object Utility {
                 sum
             }
         val nrDcCombos =
-            list.fold(mutableListOf<ComboNr>()) { sum, x ->
+            list.fold(mutableListOf<ComboNrDc>()) { sum, x ->
                 x.nrDcCombos?.let { sum.addAll(it) }
                 sum
             }
@@ -497,5 +498,9 @@ object Utility {
                 maxOf(acc, it.masterComponents.filter { it.classUL != BwClass.NONE }.size)
             }
         }
+    }
+
+    fun appendSeparator(separator: String, vararg strings: StringBuilder) {
+        strings.forEach { it.append(separator) }
     }
 }

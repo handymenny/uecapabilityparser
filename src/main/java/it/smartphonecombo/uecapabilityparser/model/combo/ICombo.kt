@@ -1,10 +1,14 @@
-package it.smartphonecombo.uecapabilityparser.model
+package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 interface ICombo {
-    var masterComponents: Array<IComponent>
-    var secondaryComponents: Array<IComponent>
+    val masterComponents: List<IComponent>
+    val secondaryComponents: List<IComponent>
+    val featureSet: Int
+    val bcs: IntArray
+
+    fun toCompactStr(): String
 
     fun toCsv(
         separator: String,
