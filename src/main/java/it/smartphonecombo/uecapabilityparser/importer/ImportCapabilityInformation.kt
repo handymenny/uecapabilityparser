@@ -937,7 +937,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 downlinkPerCC?.getOrNull(it)
                             }
                         }
-                    FeatureSet(list, LinkDirection.DOWNLINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.DOWNLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: downlink
 
@@ -962,7 +966,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                             index ->
                             (index as? JsonPrimitive)?.intOrNull?.let { uplinkPerCC?.getOrNull(it) }
                         }
-                    FeatureSet(list, LinkDirection.UPLINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.UPLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: uplink
         }
@@ -1018,7 +1026,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 downlinkPerCC?.getOrNull(it - 1)
                             }
                         }
-                    FeatureSet(list, LinkDirection.DOWNLINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.DOWNLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: downlink
 
@@ -1065,7 +1077,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 uplinkPerCC?.getOrNull(it - 1)
                             }
                         }
-                    FeatureSet(list, LinkDirection.UPLINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.UPLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: uplink
         }
