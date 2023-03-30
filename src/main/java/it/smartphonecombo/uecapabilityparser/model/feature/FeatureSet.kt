@@ -1,6 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model
-
-import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
+package it.smartphonecombo.uecapabilityparser.model.feature
 
 data class FeatureSet(val featureSetsPerCC: List<FeaturePerCCLte>?, val type: Int) {
     companion object {

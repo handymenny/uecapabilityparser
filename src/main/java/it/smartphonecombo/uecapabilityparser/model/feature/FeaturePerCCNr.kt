@@ -1,7 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.model.nr
+package it.smartphonecombo.uecapabilityparser.model.feature
 
 import it.smartphonecombo.uecapabilityparser.model.Modulation
-import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
 
 class FeaturePerCCNr(
     type: Int = DOWNlINK,

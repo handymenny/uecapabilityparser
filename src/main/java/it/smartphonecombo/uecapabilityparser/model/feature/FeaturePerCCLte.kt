@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model.lte
+package it.smartphonecombo.uecapabilityparser.model.feature
 
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 

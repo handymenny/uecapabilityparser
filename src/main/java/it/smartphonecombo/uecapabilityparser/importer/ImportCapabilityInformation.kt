@@ -13,9 +13,6 @@ import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.Feature
-import it.smartphonecombo.uecapabilityparser.model.FeatureSet
-import it.smartphonecombo.uecapabilityparser.model.FeatureSets
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.UEEutraCapabilityJson
@@ -33,8 +30,11 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
-import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
+import it.smartphonecombo.uecapabilityparser.model.feature.Feature
+import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCLte
+import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
+import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
+import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSets
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
 import java.io.InputStream
