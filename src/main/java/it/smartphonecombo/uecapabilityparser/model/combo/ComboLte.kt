@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Utility
+import it.smartphonecombo.uecapabilityparser.util.Utility.appendSeparator
 
 data class ComboLte(
     override val masterComponents: Array<ComponentLte>,
@@ -35,53 +36,38 @@ data class ComboLte(
         nrDcDlCC: Int,
         nrDcUlCC: Int
     ): String {
-        val str = StringBuilder(this.toCompactStr() + separator)
+        val compact = this.toCompactStr() + separator
+        val strBcs = if (bcs.isEmpty()) "all" else bcs.joinToString(", ")
+
+        val strBand = StringBuilder()
         val strBw = StringBuilder()
         val strMimo = StringBuilder()
         val strUl = StringBuilder()
         val strDLmod = StringBuilder()
         val strULmod = StringBuilder()
-        var i = 0
-        while (i < masterComponents.size) {
-            str.append(masterComponents[i].band)
-            val x = masterComponents[i].mimoDL
-            if (x != 0) {
-                strMimo.append(x)
+
+        for (component in masterComponents) {
+            strBand.append(component.band)
+            strBw.append(component.classDL)
+            strDLmod.append(component.modDL)
+
+            val mimo = component.mimoDL
+            if (mimo != 0) strMimo.append(mimo)
+
+            val ulClass = component.classUL
+            if (ulClass != BwClass.NONE) {
+                strUl.append(ulClass)
+                strULmod.append(component.modUL)
             }
-            var y = masterComponents[i].classDL
-            strBw.append(y)
-            y = masterComponents[i].classUL
-            if (y != BwClass.NONE) {
-                strUl.append(y)
-                strULmod.append(masterComponents[i].modUL)
-            }
-            str.append(separator)
-            strMimo.append(separator)
-            strBw.append(separator)
-            strUl.append(separator)
-            strDLmod.append(masterComponents[i].modDL).append(separator)
-            strULmod.append(separator)
-            i++
+
+            appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
         }
-        while (i < lteDlCC) {
-            str.append(separator)
-            strMimo.append(separator)
-            strBw.append(separator)
-            strUl.append(separator)
-            strDLmod.append(separator)
-            strULmod.append(separator)
-            i++
+
+        repeat(lteDlCC - masterComponents.size) {
+            appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
         }
-        str.append(strBw).append(strMimo).append(strUl).append(strDLmod).append(strULmod)
-        var strBcs: String
-        if (bcs.isNotEmpty()) {
-            strBcs = bcs.contentToString().substring(1)
-            strBcs = strBcs.substring(0, strBcs.length - 1)
-        } else {
-            strBcs = "all"
-        }
-        str.append(strBcs)
-        return str.toString()
+
+        return "$compact$strBand$strBw$strMimo$strUl$strDLmod$strULmod$strBcs"
     }
 
     override fun equals(other: Any?): Boolean {

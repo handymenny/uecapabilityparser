@@ -499,4 +499,8 @@ object Utility {
             }
         }
     }
+
+    fun appendSeparator(separator: String, vararg strings: StringBuilder) {
+        strings.forEach { it.append(separator) }
+    }
 }
