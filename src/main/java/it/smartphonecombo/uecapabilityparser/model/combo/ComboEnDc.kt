@@ -1,10 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
-import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
+import it.smartphonecombo.uecapabilityparser.util.Utility
 
 data class ComboEnDc(
     override val masterComponents: Array<ComponentLte>,
@@ -37,109 +37,83 @@ data class ComboEnDc(
         nrDcDlCC: Int,
         nrDcUlCC: Int
     ): String {
-        val band = IntArray(lteDlCC)
-        val bandwidth = Array(lteDlCC, init = { BwClass.NONE })
-        val mimo = IntArray(lteDlCC)
-        val upload = Array(lteDlCC, init = { BwClass.NONE })
-        val nrband = IntArray(nrDlCC)
-        val nrbandwidth = Array(nrDlCC, init = { BwClass.NONE })
-        val nrmimo = IntArray(nrDlCC)
-        val nrupload = Array(nrDlCC, init = { BwClass.NONE })
-        val nrmimoUL = IntArray(nrDlCC)
-        val nrmaxbandwidth = IntArray(nrDlCC)
-        val nrscs = IntArray(nrDlCC)
-        val lteModUL = Array(lteDlCC, init = { Modulation.NONE })
-        val nrModUL = Array(nrDlCC, init = { Modulation.NONE })
-        var lteUL = ""
-        var nrUL = ""
-        var nrmimoULstring = ""
-        val bands = componentsLte
-        if (lteDlCC > 0)
-            ComponentLte.lteComponentsToArrays(band, bandwidth, mimo, upload, lteModUL, bands)
-        val nrbands = componentsNr
-        for (i in nrbands.indices) {
-            val nr = nrbands[i]
-            nrband[i] = nr.band
-            nrmimo[i] = nr.mimoDL
-            nrbandwidth[i] = nr.classDL
-            nrmaxbandwidth[i] = nr.maxBandwidth
-            nrupload[i] = nr.classUL
-            nrmimoUL[i] = nr.mimoUL
-            nrscs[i] = nr.scs
-            nrModUL[i] = nr.modUL
-        }
-        val str = StringBuilder(this.toCompactStr() + separator)
-        for (i in 0 until lteDlCC) {
-            val b = band[i]
-            if (b != 0) {
-                str.append(b)
-            }
-            val bw = bandwidth[i]
-            str.append(bw)
-            str.append(separator)
-            val ul = upload[i]
-            if (ul != BwClass.NONE && lteUL.count { it == ';' } / 2 < lteUlCC) {
-                lteUL += "" + b + ul + separator + lteModUL[i] + separator
-            }
-        }
+        val compact = this.toCompactStr() + separator
 
-        while (lteUL.count { it == ';' } / 2 < lteUlCC) {
-            lteUL += ";;"
-        }
-        if (lteUlCC > 0) {
-            str.append(lteUL)
-        }
-        for (i in 0 until nrDlCC) {
-            val b = nrband[i]
-            val bw = nrbandwidth[i]
-            if (b != 0 && bw != BwClass.NONE) {
-                str.append(b)
-                str.append(bw)
+        val nrBandBwScs = StringBuilder()
+        val nrUlBwMod = StringBuilder()
+        val nrMimoDl = StringBuilder()
+        val nrMimoUl = StringBuilder()
+        val lteDl = StringBuilder()
+        val lteUl = StringBuilder()
+        val lteMimoDl = StringBuilder()
+        var ulCount = 0
+        var ulLteCount = 0
+
+        for (component in componentsNr) {
+            nrBandBwScs.append(component.band).append(component.classDL).append(separator)
+
+            if (component.maxBandwidth != 0) {
+                nrBandBwScs.append(component.maxBandwidth)
             }
-            str.append(separator)
-            val maxbw = nrmaxbandwidth[i]
-            if (maxbw != 0) {
-                str.append(maxbw)
+            nrBandBwScs.append(separator)
+
+            if (component.scs != 0) {
+                nrBandBwScs.append(component.scs)
             }
-            str.append(separator)
-            val scs = nrscs[i]
-            if (scs != 0) {
-                str.append(scs)
+            nrBandBwScs.append(separator)
+
+            if (component.mimoDL != 0) {
+                nrMimoDl.append(component.mimoDL)
             }
-            str.append(separator)
-            val ul = nrupload[i]
-            if (ul != BwClass.NONE && nrUL.count { it == ';' } / 2 < nrUlCC) {
-                nrUL += "" + b + ul + separator + nrModUL[i] + separator
-                if (nrmimoUL[i] != 0) {
-                    nrmimoULstring += "" + nrmimoUL[i]
+            nrMimoDl.append(separator)
+
+            if (component.classUL != BwClass.NONE) {
+                ulCount++
+                nrUlBwMod
+                    .append(component.band)
+                    .append(component.classUL)
+                    .append(separator)
+                    .append(component.modUL)
+                    .append(separator)
+
+                if (component.mimoUL != 0) {
+                    nrMimoUl.append(component.mimoUL)
                 }
-                nrmimoULstring += separator
+                nrMimoUl.append(separator)
             }
         }
 
-        while (nrUL.count { it == ';' } / 2 < nrUlCC) {
-            nrUL += ";;"
-        }
-        str.append(nrUL)
+        for (component in componentsLte) {
+            lteDl.append(component.band).append(component.classDL).append(separator)
+            if (component.mimoDL != 0) lteMimoDl.append(component.mimoDL)
+            lteMimoDl.append(separator)
 
-        for (value in mimo) {
-            if (value != 0) {
-                str.append(value)
+            if (component.classUL != BwClass.NONE) {
+                lteUl
+                    .append(component.band)
+                    .append(component.classUL)
+                    .append(separator)
+                    .append(component.modUL)
+                    .append(separator)
+                ulLteCount++
             }
-            str.append(separator)
-        }
-        for (c in nrmimo) {
-            if (c != 0) {
-                str.append(c)
-            }
-            str.append(separator)
         }
 
-        while (nrmimoULstring.count { it == ';' } < nrUlCC) {
-            nrmimoULstring += ";"
+        repeat(nrDlCC - componentsNr.size) {
+            Utility.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
         }
-        str.append(nrmimoULstring)
-        return str.toString()
+
+        repeat(nrUlCC - ulCount) {
+            Utility.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrMimoUl)
+        }
+
+        repeat(lteDlCC - componentsLte.size) {
+            Utility.appendSeparator(separator, lteDl, lteMimoDl)
+        }
+
+        repeat(lteUlCC - ulLteCount) { Utility.appendSeparator(separator, lteUl, lteUl) }
+
+        return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwMod$lteMimoDl$nrMimoDl$nrMimoUl"
     }
 
     override fun equals(other: Any?): Boolean {
