@@ -19,10 +19,6 @@ import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
-import it.smartphonecombo.uecapabilityparser.model.UEEutraCapabilityJson
-import it.smartphonecombo.uecapabilityparser.model.UEMrdcCapabilityJson
-import it.smartphonecombo.uecapabilityparser.model.UENrCapabilityJson
-import it.smartphonecombo.uecapabilityparser.model.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
@@ -40,6 +36,10 @@ import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSets
 import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
+import it.smartphonecombo.uecapabilityparser.model.json.UEEutraCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.json.UEMrdcCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.json.UENrCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.json.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import java.io.InputStream
 import java.io.InputStreamReader
