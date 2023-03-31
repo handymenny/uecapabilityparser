@@ -227,44 +227,6 @@ object Utility {
         } else t
     }
 
-    fun qcomBcsToArray(bcs: Int): IntArray {
-        var bcs = bcs
-        if (bcs == -1) return IntArray(0)
-        if (bcs == 0) return intArrayOf(0)
-        var x = 0
-        var y = 0
-        val bcsArray = IntArray(Integer.bitCount(bcs))
-        while (bcs > 0) {
-            if (bcs and 1 == 1) {
-                bcsArray[y++] = x
-            }
-            bcs = bcs shr 1
-            x++
-        }
-        return bcsArray
-    }
-
-    fun binaryStringToBcsArray(bcs: String): IntArray {
-        val bcsArray = mutableListOf<Int>()
-        for (x in bcs.indices) {
-            if (bcs[x] == '1') {
-                bcsArray.add(x)
-            }
-        }
-        return bcsArray.toIntArray()
-    }
-
-    fun arrayToQcomBcs(bcs: IntArray): String {
-        if (bcs.isEmpty()) return "mAll"
-        if (bcs.size == 1) return bcs[0].toString() + ""
-        var count = 0
-        for (i in bcs) {
-            count += 1 shl i
-        }
-        val hex = count.toString(16).uppercase()
-        return "m$hex"
-    }
-
     fun split0xB826hex(input: String): List<String> {
         fun String.emptyLineIndex(): Int {
             return Regex("^\\s*$", RegexOption.MULTILINE).find(this)?.range?.first ?: this.length

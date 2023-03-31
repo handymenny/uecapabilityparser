@@ -1,6 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.extension.populateCsvStringBuilders
+import it.smartphonecombo.uecapabilityparser.model.BCS
+import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
@@ -8,7 +10,7 @@ data class ComboNrDc(
     override val masterComponents: List<ComponentNr>,
     override val secondaryComponents: List<ComponentNr>,
     override val featureSet: Int = 0,
-    override val bcs: IntArray = IntArray(0)
+    override val bcs: BCS = EmptyBCS
 ) : ICombo {
     val componentsNr: List<ComponentNr>
         get() = masterComponents
@@ -73,25 +75,5 @@ data class ComboNrDc(
         )
 
         return "$compact$nrBandBwScs$nrDcBandBwScs$nrUlBwMod$nrDcUlBwMod$nrMimoDl$nrDcMimoDl$nrMimoUl$nrDcMimoUl"
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is ComboNrDc) return false
-
-        if (masterComponents != other.masterComponents) return false
-        if (secondaryComponents != other.secondaryComponents) return false
-        if (featureSet != other.featureSet) return false
-        if (!bcs.contentEquals(other.bcs)) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = masterComponents.hashCode()
-        result = 31 * result + secondaryComponents.hashCode()
-        result = 31 * result + featureSet
-        result = 31 * result + bcs.contentHashCode()
-        return result
     }
 }

@@ -1,14 +1,15 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
+import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
+import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.appendSeparator
 
 data class ComboLte(
     override val masterComponents: List<ComponentLte>,
-    override var bcs: IntArray = intArrayOf()
+    override val bcs: BCS = EmptyBCS
 ) : ICombo {
     override val secondaryComponents
         get() = emptyList<IComponent>()
@@ -22,9 +23,7 @@ data class ComboLte(
                 separator = "-",
                 transform = IComponent::toCompactStr,
             )
-        val bcs = Utility.arrayToQcomBcs(bcs)
-
-        return "$lte-$bcs"
+        return if (bcs is EmptyBCS) lte else "$lte-${bcs.toCompactStr()}"
     }
 
     override fun toCsv(
@@ -37,7 +36,7 @@ data class ComboLte(
         nrDcUlCC: Int
     ): String {
         val compact = this.toCompactStr() + separator
-        val strBcs = if (bcs.isEmpty()) "all" else bcs.joinToString(", ")
+        val strBcs = bcs.toString()
 
         val strBand = StringBuilder()
         val strBw = StringBuilder()
@@ -68,21 +67,5 @@ data class ComboLte(
         }
 
         return "$compact$strBand$strBw$strMimo$strUl$strDLmod$strULmod$strBcs"
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is ComboLte) return false
-
-        if (masterComponents != other.masterComponents) return false
-        if (!bcs.contentEquals(other.bcs)) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = masterComponents.hashCode()
-        result = 31 * result + bcs.contentHashCode()
-        return result
     }
 }
