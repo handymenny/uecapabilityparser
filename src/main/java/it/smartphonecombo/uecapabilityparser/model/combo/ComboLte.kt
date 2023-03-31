@@ -23,9 +23,7 @@ data class ComboLte(
                 separator = "-",
                 transform = IComponent::toCompactStr,
             )
-        val bcs = bcs.toCompactStr()
-
-        return "$lte-$bcs"
+        return if (bcs is EmptyBCS) lte else "$lte-${bcs.toCompactStr()}"
     }
 
     override fun toCsv(

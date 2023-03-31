@@ -50,8 +50,8 @@ sealed interface BCS {
 }
 
 object EmptyBCS : BCS {
-    override fun toCompactStr(): String = "mAll"
-    override fun toString(): String = "all"
+    override fun toCompactStr(): String = ""
+    override fun toString(): String = ""
 }
 
 object AllBCS : BCS {
