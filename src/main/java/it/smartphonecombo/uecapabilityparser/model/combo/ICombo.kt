@@ -3,7 +3,7 @@ package it.smartphonecombo.uecapabilityparser.model.combo
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
-interface ICombo {
+sealed interface ICombo {
     val masterComponents: List<IComponent>
     val secondaryComponents: List<IComponent>
     val featureSet: Int
