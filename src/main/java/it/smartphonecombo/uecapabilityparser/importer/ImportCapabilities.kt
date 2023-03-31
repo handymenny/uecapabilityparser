@@ -4,7 +4,7 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.InputStream
 
-interface ImportCapabilities {
+sealed interface ImportCapabilities {
     val debug
         get() = Config.getOrDefault("debug", "false").toBoolean()
 

@@ -5,7 +5,7 @@ import it.smartphonecombo.uecapabilityparser.extension.Mimo
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 
-interface IComponent : Comparable<IComponent> {
+sealed interface IComponent : Comparable<IComponent> {
     fun clone(): IComponent
 
     var band: Band

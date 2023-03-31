@@ -66,6 +66,9 @@ object ImportNrCapPrune : ImportCapabilities {
             when (val component = parseComponent(componentString)) {
                 is ComponentLte -> lteBands.add(component)
                 is ComponentNr -> nrBands.add(component)
+                else -> {
+                    // do nothing
+                }
             }
         }
 
