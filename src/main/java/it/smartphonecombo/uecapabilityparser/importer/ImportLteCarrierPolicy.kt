@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -51,7 +52,7 @@ object ImportLteCarrierPolicy : ImportCapabilities {
     /** Converts the given comboString to a [ComboLte] Returns null if parsing fails */
     private fun parseCombo(comboString: String): ComboLte? {
         val components = comboString.split('-')
-        val parsedComponents = mutableListOf<ComponentLte>()
+        val parsedComponents = mutableListWithCapacity<ComponentLte>(components.size - 1)
 
         for (i in 0 until components.size - 1) {
             val componentString = components[i].filterNot(Char::isWhitespace)

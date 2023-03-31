@@ -9,6 +9,7 @@ import it.smartphonecombo.uecapabilityparser.extension.getInt
 import it.smartphonecombo.uecapabilityparser.extension.getObject
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.merge
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BCS
@@ -206,20 +207,23 @@ object ImportCapabilityInformation : ImportCapabilities {
         eutraCapability: UEEutraCapabilityJson,
         bandList: Map<Int, ComponentLte>
     ): List<ComboLte> {
-        val bcsList = mutableListOf<BCS>()
-        val combinations =
-            eutraCapability.eutraCapabilityV1180
-                ?.getArrayAtPath("rf-Parameters-v1180.supportedBandCombinationAdd-r11")
-                ?.mapNotNull { bandCombination ->
-                    val bcs =
-                        bandCombination.getString("supportedBandwidthCombinationSet-r11")
-                            ?: "1" // 1 -> only bcs 0
-                    bcsList.add(BCS.fromBinaryString(bcs))
-                    val bandParametersList = bandCombination.getArrayAtPath("bandParameterList-r11")
-
-                    bandParametersList?.map { parseBandParameters(it, 11) } ?: emptyList()
-                }
+        val combinationsArray =
+            eutraCapability.eutraCapabilityV1180?.getArrayAtPath(
+                "rf-Parameters-v1180.supportedBandCombinationAdd-r11"
+            )
                 ?: return emptyList()
+        val bcsList = mutableListWithCapacity<BCS>(combinationsArray.size)
+
+        val combinations =
+            combinationsArray.mapNotNull { bandCombination ->
+                val bcs =
+                    bandCombination.getString("supportedBandwidthCombinationSet-r11")
+                        ?: "1" // 1 -> only bcs 0
+                bcsList.add(BCS.fromBinaryString(bcs))
+                val bandParametersList = bandCombination.getArrayAtPath("bandParameterList-r11")
+
+                bandParametersList?.map { parseBandParameters(it, 11) }
+            }
 
         // Some devices don't report 4layers in supportedMIMO-CapabilityDL-r10
         // Use CA-MIMO-ParametersDL-v10i0 if we haven't yet found any bands with 4rx or 8rx
@@ -247,20 +251,22 @@ object ImportCapabilityInformation : ImportCapabilities {
         eutraCapability: UEEutraCapabilityJson,
         bandList: Map<Int, ComponentLte>
     ): List<ComboLte> {
-        val bcsList = mutableListOf<BCS>()
-        val combinations =
-            eutraCapability.eutraCapabilityV1310
-                ?.getArrayAtPath("rf-Parameters-v1310.supportedBandCombinationReduced-r13")
-                ?.mapNotNull { bandCombination ->
-                    val bcs =
-                        bandCombination.getString("supportedBandwidthCombinationSet-r13")
-                            ?: "1" // 1 -> only bcs 0
-                    bcsList.add(BCS.fromBinaryString(bcs))
-
-                    val bandParametersList = bandCombination.getArray("bandParameterList-r13")
-                    bandParametersList?.map { parseBandParameters(it, 13) } ?: emptyList()
-                }
+        val combinationsArray =
+            eutraCapability.eutraCapabilityV1310?.getArrayAtPath(
+                "rf-Parameters-v1310.supportedBandCombinationReduced-r13"
+            )
                 ?: return emptyList()
+        val bcsList = mutableListWithCapacity<BCS>(combinationsArray.size)
+        val combinations =
+            combinationsArray.mapNotNull { bandCombination ->
+                val bcs =
+                    bandCombination.getString("supportedBandwidthCombinationSet-r13")
+                        ?: "1" // 1 -> only bcs 0
+                bcsList.add(BCS.fromBinaryString(bcs))
+
+                val bandParametersList = bandCombination.getArray("bandParameterList-r13")
+                bandParametersList?.map { parseBandParameters(it, 13) }
+            }
 
         // Basic Modulation - set 256qam or 64qam from bandList
         setModulationFromBandList(combinations, bandList)
@@ -505,7 +511,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         lteFeatures: FeatureSets?,
         nrFeatures: FeatureSets?
     ): List<ICombo> {
-        val list = mutableListOf<ICombo>()
+        val list = mutableListWithCapacity<ICombo>(combos.size)
 
         for (combo in combos) {
             val featureSetsPerBand = featureSetCombinations.getOrNull(combo.featureSet) ?: continue
@@ -532,20 +538,24 @@ object ImportCapabilityInformation : ImportCapabilities {
         nrFeatures: FeatureSets?,
         lteFeatures: FeatureSets?
     ): ICombo {
-        val newNrComponents = mutableListOf<ComponentNr>()
-        val newLteComponents = mutableListOf<ComponentLte>()
+        val newNrComponents: MutableList<ComponentNr>
+        val newLteComponents: MutableList<ComponentLte>
 
-        val lteComponents: Iterator<ComponentLte>?
-        val nrComponents: Iterator<ComponentNr>
+        val lteIterator: Iterator<ComponentLte>
+        val nrIterator: Iterator<ComponentNr>
 
         when (combo) {
             is ComboEnDc -> {
-                lteComponents = combo.componentsLte.iterator()
-                nrComponents = combo.componentsNr.iterator()
+                lteIterator = combo.componentsLte.iterator()
+                nrIterator = combo.componentsNr.iterator()
+                newLteComponents = mutableListWithCapacity(combo.componentsLte.size)
+                newNrComponents = mutableListWithCapacity(combo.componentsNr.size)
             }
             is ComboNr -> {
-                lteComponents = emptyArray<ComponentLte>().iterator()
-                nrComponents = combo.componentsNr.iterator()
+                lteIterator = emptyList<ComponentLte>().iterator()
+                nrIterator = combo.componentsNr.iterator()
+                newLteComponents = mutableListOf()
+                newNrComponents = mutableListWithCapacity(combo.componentsNr.size)
             }
             else -> {
                 throw IllegalArgumentException("Unsupported combo type ${combo.javaClass}")
@@ -558,10 +568,10 @@ object ImportCapabilityInformation : ImportCapabilities {
             val features: FeatureSets?
 
             if (featureSet.isNR) {
-                oldComponent = nrComponents.next()
+                oldComponent = nrIterator.next()
                 features = nrFeatures
             } else {
-                oldComponent = lteComponents.next()
+                oldComponent = lteIterator.next()
                 features = lteFeatures
             }
 
@@ -718,8 +728,8 @@ object ImportCapabilityInformation : ImportCapabilities {
         val list =
             bandCombinationsList?.mapNotNull { bandCombination ->
                 val bandList = bandCombination.getArray("bandList") ?: return@mapNotNull null
-                val lteBands = mutableListOf<ComponentLte>()
-                val nrBands = mutableListOf<ComponentNr>()
+                val lteBands = mutableListWithCapacity<ComponentLte>(bandList.size)
+                val nrBands = mutableListWithCapacity<ComponentNr>(bandList.size)
                 for (bandParameters in bandList) {
                     val component = parse5gBandParameters(bandParameters)
                     if (component is ComponentNr) {
@@ -862,7 +872,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         bandwidthsUL.merge(parseNrBw(channelBWsUlV1590, componentNr, true))
 
         // Sort bws array and add to bwsList
-        val bwsList = mutableListOf<BwsNr>()
+        val bwsList = mutableListWithCapacity<BwsNr>(scsRange.count())
         for (scs in scsRange) {
             val bwsDl = bandwidthsDL[scs] ?: intArrayOf()
             var bwsUl = bandwidthsUL[scs] ?: intArrayOf()

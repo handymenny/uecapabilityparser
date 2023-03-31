@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
@@ -39,12 +40,12 @@ object ImportNvItem : ImportCapabilities {
     @Throws(IllegalArgumentException::class)
     override fun parse(input: InputStream): Capabilities {
         var dlComponents = emptyList<ComponentLte>()
-        val listCombo = ArrayList<ComboLte>()
         val byteArray = input.use(InputStream::readBytes)
         val byteBuffer = ByteBuffer.wrap(byteArray)
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
         byteBuffer.skipBytes(4)
 
+        val listCombo = mutableListOf<ComboLte>()
         while (byteBuffer.remaining() > 0) {
             when (val itemType = byteBuffer.readUnsignedShort()) {
                 333,
@@ -94,7 +95,7 @@ object ImportNvItem : ImportCapabilities {
         hasMultiMimo: Boolean = false,
         isDL: Boolean = true
     ): List<ComponentLte> {
-        val lteComponents = mutableListOf<ComponentLte>()
+        val lteComponents = mutableListWithCapacity<ComponentLte>(MAX_CC)
 
         for (i in 0..MAX_CC) {
             // read band and bwClass

@@ -7,6 +7,7 @@ import com.ericsson.mts.asn1.PERTranslatorFactory
 import com.ericsson.mts.asn1.converter.AbstractConverter
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getString
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -308,7 +309,7 @@ object Utility {
             } else {
                 listOf(input)
             }
-        val list = mutableListOf<Capabilities>()
+        val list = mutableListWithCapacity<Capabilities>(inputArray.size)
         inputArray.forEach {
             val inputStream = hexStringToByteArray(preformatHexData(it)).inputStream()
             list.add(importer.parse(inputStream))

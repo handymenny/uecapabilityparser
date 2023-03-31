@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import java.util.WeakHashMap
 
 sealed interface BCS {
@@ -23,7 +24,7 @@ sealed interface BCS {
                 return cachedResult
             }
 
-            val bcsList = mutableListOf<Int>()
+            val bcsList = mutableListWithCapacity<Int>(binaryString.length)
             for (x in binaryString.indices) {
                 if (binaryString[x] == '1') {
                     bcsList.add(x)
