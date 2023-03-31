@@ -6,6 +6,11 @@ sealed interface BCS {
     fun toCompactStr(): String
 
     companion object {
+        // Cache used by fromBinaryString
+        private val cacheBinary = WeakHashMap<String, BCS>()
+        // Cache used by fromQualcommCP
+        private val cacheCP = WeakHashMap<String, BCS>()
+
         /**
          * Converts the given binaryString to an instance of [BCS]
          * - If binaryString has no bit with value 1 return [EmptyBCS]
@@ -13,17 +18,26 @@ sealed interface BCS {
          * - otherwise it returns a [MultiBCS]
          */
         fun fromBinaryString(binaryString: String): BCS {
+            val cachedResult = cacheBinary[binaryString]
+            if (cachedResult != null) {
+                return cachedResult
+            }
+
             val bcsList = mutableListOf<Int>()
             for (x in binaryString.indices) {
                 if (binaryString[x] == '1') {
                     bcsList.add(x)
                 }
             }
-            return when (bcsList.size) {
-                0 -> EmptyBCS
-                1 -> SingleBCS(bcsList.first())
-                else -> MultiBCS(bcsList.toIntArray())
-            }
+
+            val result =
+                when (bcsList.size) {
+                    0 -> EmptyBCS
+                    1 -> SingleBCS(bcsList.first())
+                    else -> MultiBCS(bcsList.toIntArray())
+                }
+            cacheBinary[binaryString] = result
+            return result
         }
 
         /**
@@ -35,16 +49,24 @@ sealed interface BCS {
          */
         @Throws(NumberFormatException::class)
         fun fromQualcommCP(bcsString: String): BCS {
-            return when {
-                bcsString.isEmpty() -> EmptyBCS
-                bcsString == "mAll" -> AllBCS
-                bcsString.startsWith('m') -> {
-                    val number = bcsString.substring(1).toInt(16)
-                    val bcsBinaryString = Integer.toBinaryString(number)
-                    fromBinaryString(bcsBinaryString)
-                }
-                else -> SingleBCS(bcsString.toInt())
+            val cachedResult = cacheCP[bcsString]
+            if (cachedResult != null) {
+                return cachedResult
             }
+
+            val result =
+                when {
+                    bcsString.isEmpty() -> EmptyBCS
+                    bcsString == "mAll" -> AllBCS
+                    bcsString.startsWith('m') -> {
+                        val number = bcsString.substring(1).toInt(16)
+                        val bcsBinaryString = Integer.toBinaryString(number)
+                        fromBinaryString(bcsBinaryString)
+                    }
+                    else -> SingleBCS(bcsString.toInt())
+                }
+            cacheCP[bcsString] = result
+            return result
         }
     }
 }
