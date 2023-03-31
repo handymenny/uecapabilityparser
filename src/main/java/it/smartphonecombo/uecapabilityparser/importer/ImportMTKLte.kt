@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -28,7 +29,7 @@ object ImportMTKLte : ImportCapabilities {
      * It can parse multiple messages in the same input.
      */
     override fun parse(input: InputStream): Capabilities {
-        val listCombos: MutableList<ComboLte> = ArrayList()
+        val listCombos: MutableList<ComboLte> = mutableListOf()
         val iterator = input.reader().use(InputStreamReader::readLines).map(String::trim).iterator()
         try {
             while (iterator.firstOrNull { it.startsWith("band_comb[") } != null) {
@@ -87,7 +88,7 @@ object ImportMTKLte : ImportCapabilities {
     /** Parse [numCCs] components. */
     @Throws(NoSuchElementException::class)
     private fun parseComponents(numCCs: Int, input: Iterator<String>): MutableList<ComponentLte> {
-        val bands = mutableListOf<ComponentLte>()
+        val bands = mutableListWithCapacity<ComponentLte>(numCCs)
         for (i in 0 until numCCs) {
             input.firstOrNull { it.startsWith("band_param[$i]") }
             val baseBand = extractInt(input.next())

@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Modulation
@@ -49,7 +50,7 @@ object Import0xB0CD : ImportCapabilities {
      */
     private fun getHeaders(lines: Iterator<String>): List<String> {
         var headerStart = false
-        val headers = mutableListOf<List<String>>()
+        val headers = mutableListWithCapacity<List<String>>(2)
         var result: List<String> = emptyList()
 
         while (lines.hasNext()) {
@@ -110,7 +111,7 @@ object Import0xB0CD : ImportCapabilities {
         // Num of bands is dynamic
         var numBands = 1
         var index = 0
-        val bands = mutableListOf<ComponentLte>()
+        val bands = mutableListWithCapacity<ComponentLte>(5)
 
         while (lines.hasNext() && index < numBands) {
             val values = split0xB0CDFields(lines.next())
@@ -139,7 +140,7 @@ object Import0xB0CD : ImportCapabilities {
         // Num of bands is fixed
         val numBands = 5
         var index = 0
-        val bands = mutableListOf<ComponentLte>()
+        val bands = mutableListWithCapacity<ComponentLte>(numBands)
 
         while (lines.hasNext() && index < numBands) {
             val values = split0xB0CDFields(lines.next())
@@ -163,9 +164,9 @@ object Import0xB0CD : ImportCapabilities {
     /** This method parses a single combination (combo) from 0xB0CD v32 * */
     private fun processCombo32(lines: Iterator<String>): MutableList<ComponentLte> {
         var index = 0
-        val bands = mutableListOf<ComponentLte>()
         // Num of bands is fixed
         val numBands = 5
+        val bands = mutableListWithCapacity<ComponentLte>(numBands)
         while (lines.hasNext() && index < numBands) {
             val values = split0xB0CDFields(lines.next())
             if (values.size != 7) {

@@ -11,6 +11,7 @@ import com.soywiz.kmem.extract7
 import com.soywiz.kmem.extract8
 import com.soywiz.kmem.finsert
 import com.soywiz.kmem.isOdd
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
@@ -54,7 +55,7 @@ object Import0xB826 : ImportCapabilities {
      */
     override fun parse(input: InputStream): Capabilities {
         val capabilities = Capabilities()
-        val listCombo = ArrayList<ICombo>()
+        var listCombo = emptyList<ICombo>()
         val byteArray = input.use(InputStream::readBytes)
         val byteBuffer = ByteBuffer.wrap(byteArray)
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
@@ -87,6 +88,8 @@ object Import0xB826 : ImportCapabilities {
                     println("source $it\n")
                 }
             }
+
+            listCombo = mutableListWithCapacity(numCombos)
 
             for (i in 1..numCombos) {
                 val combo = parseCombo(byteBuffer, version, source)
@@ -200,9 +203,9 @@ object Import0xB826 : ImportCapabilities {
             byteBuffer.skipBytes(3)
         }
         val numComponents = getNumComponents(byteBuffer, version)
-        val bands = mutableListOf<ComponentLte>()
-        var nrBands = mutableListOf<ComponentNr>()
-        var nrDcBands = mutableListOf<ComponentNr>()
+        val bands = mutableListWithCapacity<ComponentLte>(numComponents)
+        var nrBands = mutableListWithCapacity<ComponentNr>(numComponents)
+        var nrDcBands = mutableListWithCapacity<ComponentNr>(numComponents)
         when (version) {
             6,
             8 -> byteBuffer.skipBytes(1)

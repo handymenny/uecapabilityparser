@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.component6
 import it.smartphonecombo.uecapabilityparser.extension.component7
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -57,9 +58,9 @@ object ImportNrCapPrune : ImportCapabilities {
 
     /** Converts the given comboString to a [ICombo] Returns null if parsing fails */
     private fun parseCombo(comboString: String): ICombo? {
-        val lteBands = mutableListOf<ComponentLte>()
-        val nrBands = mutableListOf<ComponentNr>()
         val components = comboString.split('-')
+        val lteBands = mutableListWithCapacity<ComponentLte>(components.size)
+        val nrBands = mutableListWithCapacity<ComponentNr>(components.size)
 
         for (componentString in components) {
             when (val component = parseComponent(componentString)) {
