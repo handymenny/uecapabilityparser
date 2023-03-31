@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model
+package it.smartphonecombo.uecapabilityparser.model.json
 
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject

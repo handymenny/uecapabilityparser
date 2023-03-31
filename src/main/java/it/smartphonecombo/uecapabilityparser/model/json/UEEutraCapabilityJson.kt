@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model
+package it.smartphonecombo.uecapabilityparser.model.json
 
 import it.smartphonecombo.uecapabilityparser.extension.getObject
 import it.smartphonecombo.uecapabilityparser.extension.getObjectAtPath
