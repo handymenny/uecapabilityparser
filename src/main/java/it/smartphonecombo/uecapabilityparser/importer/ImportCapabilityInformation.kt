@@ -13,9 +13,7 @@ import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.Feature
-import it.smartphonecombo.uecapabilityparser.model.FeatureSet
-import it.smartphonecombo.uecapabilityparser.model.FeatureSets
+import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.UEEutraCapabilityJson
@@ -33,8 +31,12 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.lte.FeaturePerCCLte
-import it.smartphonecombo.uecapabilityparser.model.nr.FeaturePerCCNr
+import it.smartphonecombo.uecapabilityparser.model.feature.FeatureIndex
+import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCLte
+import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
+import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
+import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSets
+import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
 import java.io.InputStream
@@ -499,7 +501,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun linkFeaturesAndCarrier(
         combos: List<ICombo>,
-        featureSetCombinations: List<List<List<Feature>>>,
+        featureSetCombinations: List<List<List<FeatureIndex>>>,
         lteFeatures: FeatureSets?,
         nrFeatures: FeatureSets?
     ): List<ICombo> {
@@ -525,7 +527,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun mergeComboNrAndIndexedFeature(
         combo: ICombo,
-        featureSetsPerBand: List<List<Feature>>,
+        featureSetsPerBand: List<List<FeatureIndex>>,
         index: Int,
         nrFeatures: FeatureSets?,
         lteFeatures: FeatureSets?
@@ -583,12 +585,12 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun mergeComponentAndFeature(
-        featureSet: Feature,
+        featureSet: FeatureIndex,
         component: IComponent,
         features: FeatureSets?
     ): IComponent? {
-        val dlIndex = featureSet.downlink - 1
-        val ulIndex = featureSet.uplink - 1
+        val dlIndex = featureSet.downlinkIndex - 1
+        val ulIndex = featureSet.uplinkIndex - 1
 
         if (dlIndex < 0 && ulIndex < 0) {
             // Fallback combination
@@ -622,8 +624,8 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
     private fun mergeComponentLteAndFeature(
         component: ComponentLte,
-        dlFeature: FeaturePerCCLte?,
-        ulFeature: FeaturePerCCLte?
+        dlFeature: IFeaturePerCC?,
+        ulFeature: IFeaturePerCC?
     ): ComponentLte {
         val componentLte = component.copy()
 
@@ -677,7 +679,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getFeatureSetCombinations(
         nrCapability: UENrRrcCapabilityJson
-    ): List<List<List<Feature>>> {
+    ): List<List<List<FeatureIndex>>> {
         val featureSetCombinations = nrCapability.rootJson.getArray("featureSetCombinations")
         val list =
             featureSetCombinations?.mapNotNull { featureSetCombination ->
@@ -689,12 +691,12 @@ object ImportCapabilityInformation : ImportCapabilities {
                             val dl = nr.getInt("downlinkSetNR") ?: 0
                             val ul = nr.getInt("uplinkSetNR") ?: 0
 
-                            Feature(true, dl, ul)
+                            FeatureIndex(true, dl, ul)
                         } else if (eutra != null) {
                             val dl = eutra.getInt("downlinkSetEUTRA") ?: 0
                             val ul = eutra.getInt("uplinkSetEUTRA") ?: 0
 
-                            Feature(false, dl, ul)
+                            FeatureIndex(false, dl, ul)
                         } else {
                             null
                         }
@@ -936,7 +938,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 downlinkPerCC?.getOrNull(it)
                             }
                         }
-                    FeatureSet(list, FeatureSet.DOWNlINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.DOWNLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: downlink
 
@@ -950,7 +956,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         }
                     val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
                     val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 1)
-                    FeaturePerCCLte(FeaturePerCCLte.UPLINK, mimo = mimo, qam = qam)
+                    FeaturePerCCLte(LinkDirection.UPLINK, mimo = mimo, qam = qam)
                 }
 
             // featureSets.getArray("featureSetsDL-v1550") - Never seen on the wild
@@ -961,7 +967,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                             index ->
                             (index as? JsonPrimitive)?.intOrNull?.let { uplinkPerCC?.getOrNull(it) }
                         }
-                    FeatureSet(list, FeatureSet.UPLINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.UPLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: uplink
         }
@@ -1017,7 +1027,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 downlinkPerCC?.getOrNull(it - 1)
                             }
                         }
-                    FeatureSet(list, FeatureSet.DOWNlINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.DOWNLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: downlink
 
@@ -1045,7 +1059,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         maxOf(Mimo.fromLiteral(mimoCbLayers), Mimo.fromLiteral(mimoNonCbLayers), 1)
                     val qam = Modulation.of(it.getString("supportedModulationOrderUL"))
                     FeaturePerCCNr(
-                        type = FeatureSet.UPLINK,
+                        type = LinkDirection.UPLINK,
                         mimo = mimo,
                         qam = qam,
                         scs = scs,
@@ -1064,7 +1078,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                                 uplinkPerCC?.getOrNull(it - 1)
                             }
                         }
-                    FeatureSet(list, FeatureSet.UPLINK)
+                    if (list != null) {
+                        FeatureSet(list, LinkDirection.UPLINK)
+                    } else {
+                        null
+                    }
                 }
                     ?: uplink
         }
