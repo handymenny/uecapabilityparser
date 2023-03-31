@@ -1,10 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.util.Utility
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -68,7 +68,7 @@ object ImportLteCarrierPolicy : ImportCapabilities {
         val bcsString = components.last().filterNot(Char::isWhitespace)
         val bcsArray =
             try {
-                parseBcs(bcsString)
+                BCS.fromQualcommCP(bcsString)
             } catch (ignored: NumberFormatException) {
                 return null
             }
@@ -93,23 +93,5 @@ object ImportLteCarrierPolicy : ImportCapabilities {
             BwClass.valueOf(classUL),
             mimoDL.toIntOrNull() ?: 0
         )
-    }
-
-    /**
-     * Converts the given bcsString to an array of BCSs.
-     * - If bcsString is empty or "mAll" returns an empty IntArray
-     * - If bcsString starts with m it parses it as Qualcomm MultiBcs
-     * - otherwise it returns an IntArray containing the integer extracted from bcsString
-     */
-    @Throws(NumberFormatException::class)
-    private fun parseBcs(bcsString: String): IntArray {
-        return if (bcsString == "mAll" || bcsString.isEmpty()) {
-            IntArray(0)
-        } else if (bcsString.startsWith('m')) {
-            val bcs = bcsString.substring(1).toInt(16)
-            Utility.qcomBcsToArray(bcs)
-        } else {
-            intArrayOf(bcsString.toInt())
-        }
     }
 }

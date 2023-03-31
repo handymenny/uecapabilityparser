@@ -11,11 +11,13 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.merge
 import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.extension.typedList
+import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.model.SingleBCS
 import it.smartphonecombo.uecapabilityparser.model.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.UENrCapabilityJson
@@ -38,10 +40,8 @@ import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSets
 import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
 import it.smartphonecombo.uecapabilityparser.util.Utility
-import it.smartphonecombo.uecapabilityparser.util.Utility.binaryStringToBcsArray
 import java.io.InputStream
 import java.io.InputStreamReader
-import java.lang.IllegalArgumentException
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -194,9 +194,9 @@ object ImportCapabilityInformation : ImportCapabilities {
         val bcsList =
             supportedBandCombinationExtR10.map { combinationParameters ->
                 combinationParameters.getString("supportedBandwidthCombinationSet-r10")?.let {
-                    binaryStringToBcsArray(it)
+                    BCS.fromBinaryString(it)
                 }
-                    ?: intArrayOf(0)
+                    ?: SingleBCS(0)
             }
 
         return combinations.mergeBcs(bcsList)
@@ -206,7 +206,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         eutraCapability: UEEutraCapabilityJson,
         bandList: Map<Int, ComponentLte>
     ): List<ComboLte> {
-        val bcsList = mutableListOf<IntArray>()
+        val bcsList = mutableListOf<BCS>()
         val combinations =
             eutraCapability.eutraCapabilityV1180
                 ?.getArrayAtPath("rf-Parameters-v1180.supportedBandCombinationAdd-r11")
@@ -214,7 +214,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bcs =
                         bandCombination.getString("supportedBandwidthCombinationSet-r11")
                             ?: "1" // 1 -> only bcs 0
-                    bcsList.add(binaryStringToBcsArray(bcs))
+                    bcsList.add(BCS.fromBinaryString(bcs))
                     val bandParametersList = bandCombination.getArrayAtPath("bandParameterList-r11")
 
                     bandParametersList?.map { parseBandParameters(it, 11) } ?: emptyList()
@@ -247,7 +247,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         eutraCapability: UEEutraCapabilityJson,
         bandList: Map<Int, ComponentLte>
     ): List<ComboLte> {
-        val bcsList = mutableListOf<IntArray>()
+        val bcsList = mutableListOf<BCS>()
         val combinations =
             eutraCapability.eutraCapabilityV1310
                 ?.getArrayAtPath("rf-Parameters-v1310.supportedBandCombinationReduced-r13")
@@ -255,7 +255,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bcs =
                         bandCombination.getString("supportedBandwidthCombinationSet-r13")
                             ?: "1" // 1 -> only bcs 0
-                    bcsList.add(binaryStringToBcsArray(bcs))
+                    bcsList.add(BCS.fromBinaryString(bcs))
 
                     val bandParametersList = bandCombination.getArray("bandParameterList-r13")
                     bandParametersList?.map { parseBandParameters(it, 13) } ?: emptyList()
@@ -496,7 +496,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         bands.any { it.mimoDL > 2 }
     }
 
-    private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<IntArray>) =
+    private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<BCS>) =
         zip(bcsList) { bands, bcs -> ComboLte(bands.sortedDescending(), bcs) }
 
     private fun linkFeaturesAndCarrier(

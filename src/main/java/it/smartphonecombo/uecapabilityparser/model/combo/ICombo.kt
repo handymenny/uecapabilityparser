@@ -1,12 +1,13 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
+import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 interface ICombo {
     val masterComponents: List<IComponent>
     val secondaryComponents: List<IComponent>
     val featureSet: Int
-    val bcs: IntArray
+    val bcs: BCS
 
     fun toCompactStr(): String
 
