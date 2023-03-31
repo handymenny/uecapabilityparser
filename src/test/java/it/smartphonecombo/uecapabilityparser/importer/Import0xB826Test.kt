@@ -1,5 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import java.io.File
@@ -31,19 +34,19 @@ internal class Import0xB826Test {
         val comboNR: List<ICombo>?
         if (endc) {
             comboNR = comboList.enDcCombos
-            Assertions.assertNull(comboList.nrCombos)
-            Assertions.assertNull(comboList.nrDcCombos)
+            Assertions.assertEquals(comboList.nrCombos, emptyList<ComboNr>())
+            Assertions.assertEquals(comboList.nrDcCombos, emptyList<ComboNrDc>())
         } else if (nrdc) {
             comboNR = comboList.nrDcCombos
-            Assertions.assertNull(comboList.enDcCombos)
-            Assertions.assertNull(comboList.nrCombos)
+            Assertions.assertEquals(comboList.enDcCombos, emptyList<ComboEnDc>())
+            Assertions.assertEquals(comboList.nrCombos, emptyList<ComboNr>())
         } else {
             comboNR = comboList.nrCombos
-            Assertions.assertNull(comboList.enDcCombos)
-            Assertions.assertNull(comboList.nrDcCombos)
+            Assertions.assertEquals(comboList.enDcCombos, emptyList<ComboEnDc>())
+            Assertions.assertEquals(comboList.nrDcCombos, emptyList<ComboNrDc>())
         }
         Assertions.assertNotNull(comboNR)
-        Assertions.assertEquals(numCombos, comboNR!!.size)
+        Assertions.assertEquals(numCombos, comboNR.size)
 
         val actualCsv = Utility.toCsv(comboNR).lines().dropLastWhile { it.isBlank() }
         val oraclePath = "$path/oracle/$oracleFilename"
