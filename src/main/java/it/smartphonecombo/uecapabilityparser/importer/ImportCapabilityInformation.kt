@@ -21,6 +21,7 @@ import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsBitMap
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -40,7 +41,6 @@ import it.smartphonecombo.uecapabilityparser.model.json.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrRrcCapabilityJson
-import it.smartphonecombo.uecapabilityparser.util.Utility
 import java.io.InputStream
 import java.io.InputStreamReader
 import kotlinx.serialization.SerializationException
@@ -898,28 +898,17 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun parseNrBw(
-        channelBWsDL: JsonObject?,
+        channelBWs: JsonObject?,
         componentNr: BandNrDetails,
         isV1590: Boolean = false
     ): BwMap {
-        /*
-         * According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
-         * So we assume that it's supported by default for 30kHz and supported for 60kHz
-         * if 60kHz bws isn't empy.
-         * Add 100 MHz only for channelBWs (not for its extensions), to avoid duplicates
-         */
-        val default100MHz = !isV1590 && componentNr.band in listOf(41, 48, 77, 78, 79, 90)
         val freqRange = if (componentNr.isFR2) "fr2" else "fr1"
 
         val bandWidthMap = mutableMapOf<Int, IntArray>()
-        channelBWsDL?.getObject(freqRange)?.forEach { (scsKey, element) ->
+        channelBWs?.getObject(freqRange)?.forEach { (scsKey, element) ->
             val scs = scsKey.removePrefix("scs-").removeSuffix("kHz").toInt()
             (element as? JsonPrimitive)?.contentOrNull?.let { bwString ->
-                var bws = Utility.bwStringToArray(bwString, componentNr.isFR2, isV1590)
-                if (default100MHz && (scs == 30 || scs == 60 && bws.isNotEmpty())) {
-                    bws += 100
-                }
-                bandWidthMap[scs] = bws
+                bandWidthMap[scs] = BwsBitMap(bwString, componentNr.band, scs, isV1590).bws
             }
         }
         return bandWidthMap
