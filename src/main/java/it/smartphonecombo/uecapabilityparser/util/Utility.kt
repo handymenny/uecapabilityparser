@@ -5,9 +5,11 @@ import com.ericsson.mts.asn1.ASN1Translator
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.PERTranslatorFactory
 import com.ericsson.mts.asn1.converter.AbstractConverter
+import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.extension.preformatHex
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -17,7 +19,6 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import java.io.*
-import java.util.*
 import kotlin.system.exitProcess
 import kotlinx.serialization.json.*
 
@@ -189,39 +190,6 @@ object Utility {
         return header.toString()
     }
 
-    fun hexStringToByteArray(s: String): ByteArray {
-        var i = 0
-
-        try {
-            val len = s.length
-            val data = ByteArray(len / 2)
-            while (i < len) {
-                data[i / 2] = ((s[i].digitToInt(16) shl 4) + s[i + 1].digitToInt(16)).toByte()
-                i += 2
-            }
-            return data
-        } catch (err: IllegalArgumentException) {
-            throw IllegalArgumentException(
-                "Invalid hexdump: invalid char at position $i of whitespace-trimmed input file.\n\nUse flag '--multiple0xB826' if you are parsing multiple hexdumps.",
-                err
-            )
-        }
-    }
-
-    fun preformatHexData(strEncodedData: String?): String {
-        var t = strEncodedData
-        t = t!!.uppercase()
-        if (t.contains(" ")) t = t.replace(" ", "")
-        if (t.contains("\t")) t = t.replace("\t", "")
-        if (t.contains("\r")) t = t.replace("\r", "")
-        if (t.contains("\n")) t = t.replace("\n", "")
-        if (t.contains("0x")) t = t.replace("0x", "")
-        if (t.contains(",")) t = t.replace(",", "")
-        return if (t.length % 2 == 1) {
-            t + '0'
-        } else t
-    }
-
     fun split0xB826hex(input: String): List<String> {
         fun String.emptyLineIndex(): Int {
             return Regex("^\\s*$", RegexOption.MULTILINE).find(this)?.range?.first ?: this.length
@@ -281,8 +249,17 @@ object Utility {
             }
         val list = mutableListWithCapacity<Capabilities>(inputArray.size)
         inputArray.forEach {
-            val inputStream = hexStringToByteArray(preformatHexData(it)).inputStream()
-            list.add(importer.parse(inputStream))
+            try {
+                val inputStream = it.preformatHex().decodeHex().inputStream()
+                list.add(importer.parse(inputStream))
+            } catch (err: IllegalArgumentException) {
+                val errMessage = "Invalid hexdump"
+                val multiHelp =
+                    if (!split)
+                        "Use flag '--multiple0xB826' if you are parsing multiple 0xB826 hexdumps."
+                    else ""
+                throw IllegalArgumentException(errMessage + multiHelp, err)
+            }
         }
         val enDcCombos =
             list.fold(mutableListOf<ComboEnDc>()) { sum, x ->
@@ -365,15 +342,17 @@ object Utility {
     }
 
     fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
-        if (hexString.length < 2) {
+        val data = hexString.preformatHex().decodeHex()
+
+        if (data.isEmpty()) {
             return buildJsonObject {}
         }
 
-        val isLteCapInfo = hexString[0] == '3' && hexString[1] in '8'..'E'
-        val isNrCapInfo = hexString[0] == '4' && hexString[1] in '8'..'E'
+        val isLteCapInfo = data[0] in 0x38.toByte()..0x3E.toByte()
+        val isNrCapInfo = data[0] in 0x48.toByte()..0x4E.toByte()
 
         if (!isLteCapInfo && !isNrCapInfo) {
-            return ratContainerToJson(defaultRat, hexStringToByteArray(hexString))
+            return ratContainerToJson(defaultRat, data)
         }
 
         val jsonWriter = KotlinJsonFormatWriter()
@@ -393,11 +372,7 @@ object Utility {
             octetStringKey = "ue-CapabilityRAT-Container"
         }
 
-        translator.decode(
-            "UL-DCCH-Message",
-            hexStringToByteArray(hexString).inputStream(),
-            jsonWriter
-        )
+        translator.decode("UL-DCCH-Message", data.inputStream(), jsonWriter)
 
         val ueCap = jsonWriter.jsonNode?.getArrayAtPath(ratContainerListPath)
         val map = mutableMapOf<String, JsonElement>()
@@ -406,7 +381,7 @@ object Utility {
                 val ratType = Rat.of(ueCapContainer.getString("rat-Type"))
                 val octetString = ueCapContainer.getString(octetStringKey)
                 if (ratType != null && octetString != null) {
-                    map += ratContainerToJson(ratType, hexStringToByteArray(octetString))
+                    map += ratContainerToJson(ratType, octetString.decodeHex())
                 }
             }
         }

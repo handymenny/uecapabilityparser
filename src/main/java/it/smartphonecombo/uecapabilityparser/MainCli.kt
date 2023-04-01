@@ -21,7 +21,6 @@ import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.getAsn1Converter
 import it.smartphonecombo.uecapabilityparser.util.Utility.multipleParser
 import it.smartphonecombo.uecapabilityparser.util.Utility.outputFile
-import it.smartphonecombo.uecapabilityparser.util.Utility.preformatHexData
 import java.io.File
 import java.io.InputStreamReader
 import kotlin.system.exitProcess
@@ -225,11 +224,7 @@ internal object MainCli {
             if (cmd.hasOption("inputENDC")) {
                 inputENDC = File(cmd.getOptionValue("inputENDC")).readText()
             }
-            if (typeLog == "H") {
-                input = preformatHexData(input)
-                inputNR = preformatHexData(inputNR)
-                inputENDC = preformatHexData(inputENDC)
-            } else {
+            if (typeLog != "H") {
                 input += inputENDC + inputNR
             }
         }
