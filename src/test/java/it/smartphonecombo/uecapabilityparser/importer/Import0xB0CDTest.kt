@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.util.Utility
+import it.smartphonecombo.uecapabilityparser.util.Output
 import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -14,7 +14,7 @@ internal class Import0xB0CDTest {
         val oraclePath = "$path/oracle/$oracleFilename"
 
         val capabilities = Import0xB0CD.parse(File(inputPath).inputStream())
-        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
 

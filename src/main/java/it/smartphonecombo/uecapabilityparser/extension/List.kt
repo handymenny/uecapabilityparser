@@ -4,7 +4,7 @@ package it.smartphonecombo.uecapabilityparser.extension
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
-import it.smartphonecombo.uecapabilityparser.util.Utility
+import it.smartphonecombo.uecapabilityparser.util.Output
 
 internal inline operator fun <T> List<T>.component6(): T = get(5)
 
@@ -61,8 +61,8 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
     }
 
     repeat(dlCCs - this.size) {
-        Utility.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
+        Output.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
     }
 
-    repeat(ulCCs - ulCount) { Utility.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrMimoUl) }
+    repeat(ulCCs - ulCount) { Output.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrMimoUl) }
 }

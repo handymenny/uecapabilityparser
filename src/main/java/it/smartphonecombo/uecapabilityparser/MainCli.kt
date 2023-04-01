@@ -17,10 +17,11 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Config
+import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.Output.outputFileOrStdout
 import it.smartphonecombo.uecapabilityparser.util.Utility
 import it.smartphonecombo.uecapabilityparser.util.Utility.getAsn1Converter
 import it.smartphonecombo.uecapabilityparser.util.Utility.multipleParser
-import it.smartphonecombo.uecapabilityparser.util.Utility.outputFile
 import java.io.File
 import java.io.InputStreamReader
 import kotlin.system.exitProcess
@@ -121,35 +122,35 @@ internal object MainCli {
                         typeLog == "O"
                 ) {
                     val lteCombos = comboList.lteCombos
-                    if (!lteCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(lteCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-LTE") }
+                    if (lteCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(lteCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-LTE") }
                         )
                     }
                     val nrCombos = comboList.nrCombos
-                    if (!nrCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(nrCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-NR") }
+                    if (nrCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(nrCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-NR") }
                         )
                     }
                     val enDcCombos = comboList.enDcCombos
-                    if (!enDcCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(enDcCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-EN-DC") }
+                    if (enDcCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(enDcCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-EN-DC") }
                         )
                     }
                     val nrDcCombos = comboList.nrDcCombos
-                    if (!nrDcCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(nrDcCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-NR-DC") }
+                    if (nrDcCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(nrDcCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-NR-DC") }
                         )
                     }
                 } else {
-                    outputFile(Utility.toCsv(comboList), fileName)
+                    outputFileOrStdout(Output.toCsv(comboList), fileName)
                 }
             }
         } catch (e: ParseException) {
@@ -193,7 +194,7 @@ internal object MainCli {
 
             if (cmd.hasOption("uelog")) {
                 val outputFile = cmd.getOptionValue("uelog")
-                outputFile(file.reader().use(InputStreamReader::readText), outputFile)
+                outputFileOrStdout(file.reader().use(InputStreamReader::readText), outputFile)
             }
 
             return if (typeLog == "QNR") {
@@ -332,8 +333,7 @@ internal object MainCli {
         val jsonOutput = JsonObject(ratContainerMap)
 
         if (cmd.hasOption("uelog")) {
-            val outputFile = cmd.getOptionValue("uelog")
-            outputFile(jsonOutput.toString(), outputFile)
+            outputFileOrStdout(jsonOutput.toString(), cmd.getOptionValue("uelog"))
         }
 
         val jsonEutra = jsonOutput.getOrDefault(Rat.EUTRA.toString(), null) as? JsonObject

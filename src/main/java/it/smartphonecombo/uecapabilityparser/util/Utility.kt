@@ -11,184 +11,16 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilities
-import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
-import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import java.io.*
-import kotlin.system.exitProcess
 import kotlinx.serialization.json.*
 
 /** The Class Utility. */
 object Utility {
-    /** outputs lteCombos or enDcCombos or nrCombos, the first non-null and non-empty */
-    fun toCsv(list: Capabilities): String {
-        val lteCombos = list.lteCombos
-        val enDcCombos = list.enDcCombos
-        val nrCombos = list.nrCombos
-
-        return if (!lteCombos.isNullOrEmpty()) {
-            toCsv(lteCombos)
-        } else if (!enDcCombos.isNullOrEmpty()) {
-            toCsv(enDcCombos)
-        } else if (!nrCombos.isNullOrEmpty()) {
-            toCsv(nrCombos)
-        } else {
-            ""
-        }
-    }
-
-    fun toCsv(lists: List<ICombo>): String {
-        if (lists.isEmpty()) return ""
-        val standalone = lists.any { it is ComboNr }
-        val nrDc = lists.any { it is ComboNrDc }
-        val enDc = lists.any { it is ComboEnDc }
-        val isNr = standalone || nrDc || enDc
-
-        var lteDlCC = 0
-        var lteUlCC = 0
-        var nrDlCC = 0
-        var nrUlCC = 0
-        var nrDcDlCC = 0
-        var nrDcUlCC = 0
-
-        if (!isNr || enDc) {
-            lteDlCC = maxDlCC(lists)
-        } else {
-            nrDlCC = maxDlCC(lists)
-            nrUlCC = maxUlCC(lists)
-            if (nrDc) {
-                nrDcDlCC = maxDlCC(lists, true)
-                nrDcUlCC = maxUlCC(lists, true)
-            }
-        }
-
-        if (enDc) {
-            // LTE csv doesn't use UL CC
-            lteUlCC = maxUlCC(lists)
-            nrDlCC = maxDlCC(lists, true)
-            nrUlCC = maxUlCC(lists, true)
-        }
-
-        val contentFile: StringBuilder =
-            if (isNr) {
-                StringBuilder(getNrCsvHeader(lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
-            } else {
-                StringBuilder(getLteCsvHeader(lteDlCC))
-            }
-
-        for (x in lists) {
-            contentFile
-                .append(x.toCsv(";", lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
-                .append("\n")
-        }
-        return contentFile.toString()
-    }
-
-    private fun getNrCsvHeader(
-        lteDlCC: Int,
-        lteUlCC: Int,
-        nrDlCC: Int,
-        nrUlCC: Int,
-        nrDcDlCC: Int,
-        nrDcUlCC: Int
-    ): String {
-        val separator = ";"
-        val header = StringBuilder("combo;")
-
-        for (i in 1..lteDlCC) {
-            header.append("DL").append(i).append(separator)
-        }
-        for (i in 1..lteUlCC) {
-            header
-                .append("UL")
-                .append(i)
-                .append(separator)
-                .append("MOD UL")
-                .append(i)
-                .append(separator)
-        }
-        for (i in 1..nrDlCC) {
-            header
-                .append("NR DL")
-                .append(i)
-                .append(separator)
-                .append("NR BW")
-                .append(i)
-                .append(separator)
-                .append("NR SCS")
-                .append(i)
-                .append(separator)
-        }
-        for (i in 1..nrDcDlCC) {
-            header
-                .append("FR2 DL")
-                .append(i)
-                .append(separator)
-                .append("FR2 BW")
-                .append(i)
-                .append(separator)
-                .append("FR2 SCS")
-                .append(i)
-                .append(separator)
-        }
-        for (i in 1..nrUlCC) {
-            header
-                .append("NR UL")
-                .append(i)
-                .append(separator)
-                .append("NR UL MOD")
-                .append(i)
-                .append(separator)
-        }
-        for (i in 1..nrDcUlCC) {
-            header
-                .append("FR2 UL")
-                .append(i)
-                .append(separator)
-                .append("FR2 UL MOD")
-                .append(i)
-                .append(separator)
-        }
-        for (i in 1..lteDlCC) {
-            header.append("mimo DL").append(i).append(separator)
-        }
-        for (i in 1..nrDlCC) {
-            header.append("mimo NR DL").append(i).append(separator)
-        }
-        for (i in 1..nrDcDlCC) {
-            header.append("mimo FR2 DL").append(i).append(separator)
-        }
-        for (i in 1..nrUlCC) {
-            header.append("mimo NR UL").append(i).append(separator)
-        }
-        for (i in 1..nrDcUlCC) {
-            header.append("mimo FR2 UL").append(i).append(separator)
-        }
-        header.append("\n")
-
-        return if (nrDcDlCC > 0) {
-            header.toString().replace("NR", "FR1")
-        } else {
-            header.toString()
-        }
-    }
-
-    private fun getLteCsvHeader(lteDlCC: Int): String {
-        val separator = ";"
-        val header = StringBuilder("combo;")
-        val columns = arrayOf("band", "class", "mimo", "ul", "DLmod", "ULmod")
-        for (column in columns) {
-            for (i in 1..lteDlCC) {
-                header.append(column).append(i).append(separator)
-            }
-        }
-        header.append("bsc\n")
-        return header.toString()
-    }
 
     fun split0xB826hex(input: String): List<String> {
         fun String.emptyLineIndex(): Int {
@@ -205,38 +37,6 @@ object Utility {
             }
         } else {
             input.split(Regex("^\\s*$", RegexOption.MULTILINE))
-        }
-    }
-
-    /**
-     * Appends the given string before the last dot in the filename. If there isn't any dot, it
-     * appends it to the end of the string.
-     */
-    fun appendBeforeExtension(fileName: String, stringToAppend: String): String {
-        val split = fileName.split(".")
-        return if (split.size < 2) {
-            fileName + stringToAppend
-        } else {
-            split
-                .dropLast(1)
-                .joinToString(separator = ".", postfix = stringToAppend + "." + split.last())
-        }
-    }
-
-    fun outputFile(text: String, outputFile: String?) {
-        var writer: PrintWriter? = null
-        try {
-            if (!outputFile.isNullOrBlank()) {
-                writer = PrintWriter(BufferedWriter(FileWriter(outputFile, Charsets.UTF_8)))
-                writer.write(text)
-            } else {
-                println(text)
-            }
-        } catch (ex: Exception) {
-            System.err.println("Error ${ex.localizedMessage}")
-            exitProcess(1)
-        } finally {
-            writer?.close()
         }
     }
 
@@ -386,29 +186,5 @@ object Utility {
             }
         }
         return JsonObject(map)
-    }
-
-    private fun maxDlCC(list: List<ICombo>, secondary: Boolean = false): Int {
-        return if (secondary) {
-            list.fold(0) { acc, it -> maxOf(acc, it.secondaryComponents.size) }
-        } else {
-            list.fold(0) { acc, it -> maxOf(acc, it.masterComponents.size) }
-        }
-    }
-
-    private fun maxUlCC(list: List<ICombo>, secondary: Boolean = false): Int {
-        return if (secondary) {
-            list.fold(0) { acc, it ->
-                maxOf(acc, it.secondaryComponents.filter { it.classUL != BwClass.NONE }.size)
-            }
-        } else {
-            list.fold(0) { acc, it ->
-                maxOf(acc, it.masterComponents.filter { it.classUL != BwClass.NONE }.size)
-            }
-        }
-    }
-
-    fun appendSeparator(separator: String, vararg strings: StringBuilder) {
-        strings.forEach { it.append(separator) }
     }
 }
