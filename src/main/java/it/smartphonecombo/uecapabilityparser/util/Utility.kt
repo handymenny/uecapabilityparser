@@ -232,8 +232,8 @@ object Utility {
         }
 
         return if (input.contains("Payload:")) {
-            input.split("Payload:").drop(1).map { x ->
-                preformatHexData(x.substring(0, minOf(x.emptyLineIndex(), x.notHexLineIndex())))
+            input.split("Payload:").drop(1).map {
+                it.substring(0, minOf(it.emptyLineIndex(), it.notHexLineIndex()))
             }
         } else {
             input.split(Regex("^\\s*$", RegexOption.MULTILINE))
