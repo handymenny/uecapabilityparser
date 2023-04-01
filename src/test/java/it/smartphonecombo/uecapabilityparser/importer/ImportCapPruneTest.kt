@@ -20,17 +20,13 @@ internal class ImportCapPruneTest {
         val capabilities = ImportNrCapPrune.parse(File(inputPath).inputStream())
 
         val actualEnDcCsv =
-            Utility.toCsv(capabilities.enDcCombos ?: emptyList()).lines().dropLastWhile {
-                it.isBlank()
-            }
+            Utility.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         val expectedEnDcCsv =
             File(oracleEnDcPath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
         Assertions.assertLinesMatch(expectedEnDcCsv, actualEnDcCsv)
 
         val actualNrCaCsv =
-            Utility.toCsv(capabilities.nrCombos ?: emptyList()).lines().dropLastWhile {
-                it.isBlank()
-            }
+            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         val expectedNrCaCsv =
             File(oracleNrCaPath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
 

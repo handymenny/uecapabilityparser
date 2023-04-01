@@ -192,7 +192,7 @@ internal class ImportCapabilityInformationTest {
                 ),
             )
         val actualLteBands = capabilities.lteBands
-        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
 
         // NR NSA bans in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
@@ -212,11 +212,11 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(77),
                 BandNrDetails(78),
             )
-        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
     }
 
     @Test
@@ -343,16 +343,16 @@ internal class ImportCapabilityInformationTest {
                 ),
             )
         val actualLteBands = capabilities.lteBands
-        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
 
         // NR NSA bans in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands = listOf(BandNrDetails(260), BandNrDetails(261))
-        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
     }
 
     @Test
@@ -452,7 +452,7 @@ internal class ImportCapabilityInformationTest {
                 ),
             )
         val actualLteBands = capabilities.lteBands
-        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
 
         // NR NSA bans in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
@@ -464,11 +464,11 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(28),
                 BandNrDetails(78)
             )
-        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
     }
 
     @Test
@@ -768,7 +768,7 @@ internal class ImportCapabilityInformationTest {
                 ),
             )
         val actualLteBands = capabilities.lteBands
-        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
 
         // NR NSA bans in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
@@ -793,11 +793,11 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(78),
                 BandNrDetails(79),
             )
-        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
     }
 
     @Test
@@ -946,7 +946,7 @@ internal class ImportCapabilityInformationTest {
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
-        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
 
         // NR Combos
         val expectedCsv =
@@ -1111,7 +1111,7 @@ internal class ImportCapabilityInformationTest {
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
-        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
 
         // NR Combos
         val expectedCsv =
@@ -1140,9 +1140,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualEndcCsv =
-            capabilities.enDcCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedEndcCsv, actualEndcCsv)
 
         // EUTRA
@@ -1157,9 +1155,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualLteCsv =
-            capabilities.lteCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedLteCsv, actualLteCsv)
 
         // Bands
@@ -1284,7 +1280,7 @@ internal class ImportCapabilityInformationTest {
                 ),
             )
         val actualLteBands = capabilities.lteBands
-        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
 
         // NR NSA bands in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
@@ -1302,11 +1298,11 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(77),
                 BandNrDetails(78),
             )
-        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bands in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
 
         // NR
         // bands in nr capability
@@ -1438,14 +1434,12 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
             )
-        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
 
         // NR Combos
         val expectedNrCsv = emptyList<String>()
         val actualNrCsv =
-            capabilities.nrCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
     }
 
@@ -1466,9 +1460,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualEndcCsv =
-            capabilities.enDcCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedEndcCsv, actualEndcCsv)
 
         // EUTRA
@@ -1483,9 +1475,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualLteCsv =
-            capabilities.lteCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedLteCsv, actualLteCsv)
 
         // Bands
@@ -1583,7 +1573,7 @@ internal class ImportCapabilityInformationTest {
                 ),
             )
         val actualLteBands = capabilities.lteBands
-        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
 
         // NR NSA bands in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
@@ -1594,11 +1584,11 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(79),
                 BandNrDetails(257),
             )
-        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bands in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
 
         // NR
         // bands in nr capability
@@ -1640,14 +1630,12 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
             )
-        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
 
         // NR Combos
         val expectedNrCsv = emptyList<String>()
         val actualNrCsv =
-            capabilities.nrCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
     }
 
@@ -1668,9 +1656,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualEndcCsv =
-            capabilities.enDcCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedEndcCsv, actualEndcCsv)
 
         // EUTRA
@@ -1685,9 +1671,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualLteCsv =
-            capabilities.lteCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedLteCsv, actualLteCsv)
 
         // Bands
@@ -1750,7 +1734,7 @@ internal class ImportCapabilityInformationTest {
                 ),
             )
         val actualLteBands = capabilities.lteBands
-        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands?.toTypedArray())
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
 
         // NR NSA bands in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
@@ -1770,11 +1754,11 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(77),
                 BandNrDetails(78),
             )
-        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands?.toTypedArray())
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bands in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        assertArrayEquals(emptyArray(), actualNrSaBands?.toTypedArray())
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
 
         // NR
         // bands in nr capability
@@ -1919,14 +1903,13 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
             )
-        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
 
         // NR Combos
         val expectedNrCsv = emptyList<String>()
         val actualNrCsv =
-            capabilities.nrCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+
         assertLinesMatch(expectedNrCsv, actualNrCsv)
     }
 
@@ -2170,7 +2153,7 @@ internal class ImportCapabilityInformationTest {
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
-        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands?.toTypedArray())
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
 
         // NR Combos
         val expectedNrCsv =
@@ -2179,9 +2162,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualNrCsv =
-            capabilities.nrCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
 
         // NR-DC Combos
@@ -2191,9 +2172,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualNrDcCsv =
-            capabilities.nrDcCombos?.let { combos ->
-                Utility.toCsv(combos).lines().dropLastWhile { it.isBlank() }
-            }
+            Utility.toCsv(capabilities.nrDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrDcCsv, actualNrDcCsv)
     }
 }
