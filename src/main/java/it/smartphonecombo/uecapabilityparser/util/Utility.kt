@@ -17,18 +17,12 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import java.io.*
-import java.nio.charset.Charset
 import java.util.*
 import kotlin.system.exitProcess
 import kotlinx.serialization.json.*
 
 /** The Class Utility. */
 object Utility {
-    @Throws(IOException::class)
-    fun readFile(path: String, encoding: Charset): String {
-        return File(path).readText(encoding)
-    }
-
     /** outputs lteCombos or enDcCombos or nrCombos, the first non-null and non-empty */
     fun toCsv(list: Capabilities): String {
         val lteCombos = list.lteCombos

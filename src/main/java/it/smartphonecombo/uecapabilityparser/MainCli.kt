@@ -24,7 +24,6 @@ import it.smartphonecombo.uecapabilityparser.util.Utility.outputFile
 import it.smartphonecombo.uecapabilityparser.util.Utility.preformatHexData
 import java.io.File
 import java.io.InputStreamReader
-import java.nio.charset.StandardCharsets
 import kotlin.system.exitProcess
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
@@ -218,14 +217,13 @@ internal object MainCli {
         var input: String
         var inputNR = ""
         var inputENDC = ""
-        input = Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
+        input = File(cmd.getOptionValue("input")).readText()
         if (typeLog == "H" || typeLog == "N" || typeLog == "W") {
             if (cmd.hasOption("inputNR")) {
-                inputNR = Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
+                inputNR = File(cmd.getOptionValue("inputNR")).readText()
             }
             if (cmd.hasOption("inputENDC")) {
-                inputENDC =
-                    Utility.readFile(cmd.getOptionValue("inputENDC"), StandardCharsets.UTF_8)
+                inputENDC = File(cmd.getOptionValue("inputENDC")).readText()
             }
             if (typeLog == "H") {
                 input = preformatHexData(input)
