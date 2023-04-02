@@ -22,3 +22,16 @@ internal fun String.preformatHex(): String {
         if (it.length.isEven) it else "${it}0"
     }
 }
+/**
+ * Appends the given string before the last dot in the filename. If there isn't any dot, it appends
+ * it to the end of the string.
+ */
+internal fun String.appendBeforeExtension(strToAppend: String): String {
+    val split = split(".")
+
+    if (split.size < 2) {
+        return this + strToAppend
+    }
+
+    return split.dropLast(1).joinToString(".", postfix = "$strToAppend.${split.last()}")
+}

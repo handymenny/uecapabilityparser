@@ -12,6 +12,7 @@ import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
+import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
 import it.smartphonecombo.uecapabilityparser.extension.indexOf
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
@@ -290,28 +291,25 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
         if (lteCombos.isNotEmpty()) {
             Output.outputFileOrStdout(
                 Output.toCsv(lteCombos),
-                csvPath?.let { Output.appendBeforeExtension(it, "-LTE") }
+                csvPath?.appendBeforeExtension("-LTE")
             )
         }
         val nrCombos = comboList.nrCombos
         if (nrCombos.isNotEmpty()) {
-            Output.outputFileOrStdout(
-                Output.toCsv(nrCombos),
-                csvPath?.let { Output.appendBeforeExtension(it, "-NR") }
-            )
+            Output.outputFileOrStdout(Output.toCsv(nrCombos), csvPath?.appendBeforeExtension("-NR"))
         }
         val enDcCombos = comboList.enDcCombos
         if (enDcCombos.isNotEmpty()) {
             Output.outputFileOrStdout(
                 Output.toCsv(enDcCombos),
-                csvPath?.let { Output.appendBeforeExtension(it, "-EN-DC") }
+                csvPath?.appendBeforeExtension("-EN-DC")
             )
         }
         val nrDcCombos = comboList.nrDcCombos
         if (nrDcCombos.isNotEmpty()) {
             Output.outputFileOrStdout(
                 Output.toCsv(nrDcCombos),
-                csvPath?.let { Output.appendBeforeExtension(it, "-NR-DC") }
+                csvPath?.appendBeforeExtension("-NR-DC")
             )
         }
     }

@@ -27,21 +27,6 @@ object Output {
         }
     }
 
-    /**
-     * Appends the given string before the last dot in the filename. If there isn't any dot, it
-     * appends it to the end of the string.
-     */
-    fun appendBeforeExtension(fileName: String, stringToAppend: String): String {
-        val split = fileName.split(".")
-        return if (split.size < 2) {
-            fileName + stringToAppend
-        } else {
-            split
-                .dropLast(1)
-                .joinToString(separator = ".", postfix = stringToAppend + "." + split.last())
-        }
-    }
-
     /** outputs lteCombos or enDcCombos or nrCombos, the first non-null and non-empty */
     fun toCsv(list: Capabilities): String {
         val lteCombos = list.lteCombos
