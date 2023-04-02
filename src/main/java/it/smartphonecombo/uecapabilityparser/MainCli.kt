@@ -17,10 +17,10 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Config
+import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers.getAsn1Converter
+import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers.getUeCapabilityJsonFromHex
 import it.smartphonecombo.uecapabilityparser.util.Output
 import it.smartphonecombo.uecapabilityparser.util.Output.outputFileOrStdout
-import it.smartphonecombo.uecapabilityparser.util.Utility
-import it.smartphonecombo.uecapabilityparser.util.Utility.getAsn1Converter
 import it.smartphonecombo.uecapabilityparser.util.Utility.multipleParser
 import java.io.File
 import java.io.InputStreamReader
@@ -269,12 +269,12 @@ internal object MainCli {
 
         if (typeLog == "H") {
             val defaultRat = if (cmd.hasOption("defaultNR")) Rat.NR else Rat.EUTRA
-            ratContainerMap += Utility.getUeCapabilityJsonFromHex(defaultRat, input)
+            ratContainerMap += getUeCapabilityJsonFromHex(defaultRat, input)
             if (inputNR.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.NR, inputNR)
+                ratContainerMap += getUeCapabilityJsonFromHex(Rat.NR, inputNR)
             }
             if (inputENDC.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.EUTRA_NR, inputENDC)
+                ratContainerMap += getUeCapabilityJsonFromHex(Rat.EUTRA_NR, inputENDC)
             }
         } else {
             val list =
@@ -297,7 +297,9 @@ internal object MainCli {
                     Rat.EUTRA_NR ->
                         eutraNr = input.substring(start + mrdcIdentifier.toString().length - 1, end)
                     Rat.NR -> nr = input.substring(start + nrIdentifier.toString().length - 1, end)
-                    else -> {}
+                    else -> {
+                        // Do nothing
+                    }
                 }
             }
             if (eutra.isNotBlank()) {
