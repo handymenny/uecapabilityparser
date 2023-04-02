@@ -17,11 +17,11 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Config
+import it.smartphonecombo.uecapabilityparser.util.Import0xB826Helpers.parseMultiple0xB826
 import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers.getAsn1Converter
 import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers.getUeCapabilityJsonFromHex
 import it.smartphonecombo.uecapabilityparser.util.Output
 import it.smartphonecombo.uecapabilityparser.util.Output.outputFileOrStdout
-import it.smartphonecombo.uecapabilityparser.util.Utility.multipleParser
 import java.io.File
 import java.io.InputStreamReader
 import kotlin.system.exitProcess
@@ -198,10 +198,9 @@ internal object MainCli {
             }
 
             return if (typeLog == "QNR") {
-                multipleParser(
+                parseMultiple0xB826(
                     file.reader().use(InputStreamReader::readText),
-                    cmd.hasOption("multi"),
-                    imports
+                    cmd.hasOption("multi")
                 )
             } else {
                 file.inputStream().use { imports.parse(it) }
