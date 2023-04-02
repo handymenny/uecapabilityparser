@@ -58,7 +58,7 @@ tasks {
     shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
 }
 
-application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
+application { mainClass.set("it.smartphonecombo.uecapabilityparser.cli.Main") }
 
 kotlin { jvmToolchain(11) }
 

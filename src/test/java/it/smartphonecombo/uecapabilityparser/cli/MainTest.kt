@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser
+package it.smartphonecombo.uecapabilityparser.cli
 
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.ByteArrayOutputStream
@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-internal class MainCliTest {
+internal class MainTest {
     private val out: ByteArrayOutputStream = ByteArrayOutputStream()
     private val originalOut = System.out
     private val path = "src/test/resources/mainCli"
-    private val main = MainCli
+    private val main = Main
 
     @BeforeEach
     fun resetConfig() {

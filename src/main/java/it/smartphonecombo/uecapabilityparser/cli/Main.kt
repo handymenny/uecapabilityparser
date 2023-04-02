@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser
+package it.smartphonecombo.uecapabilityparser.cli
 
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.converter.ConverterNSG
@@ -35,12 +35,7 @@ import org.apache.commons.cli.Option
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.ParseException
 
-/**
- * The Class Main.
- *
- * @author handy
- */
-internal object MainCli {
+internal object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val options = Options()
