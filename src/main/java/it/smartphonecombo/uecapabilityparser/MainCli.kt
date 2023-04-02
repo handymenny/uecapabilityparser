@@ -17,14 +17,13 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.Utility
-import it.smartphonecombo.uecapabilityparser.util.Utility.getAsn1Converter
-import it.smartphonecombo.uecapabilityparser.util.Utility.multipleParser
-import it.smartphonecombo.uecapabilityparser.util.Utility.outputFile
-import it.smartphonecombo.uecapabilityparser.util.Utility.preformatHexData
+import it.smartphonecombo.uecapabilityparser.util.Import0xB826Helpers.parseMultiple0xB826
+import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers.getAsn1Converter
+import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers.getUeCapabilityJsonFromHex
+import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.Output.outputFileOrStdout
 import java.io.File
 import java.io.InputStreamReader
-import java.nio.charset.StandardCharsets
 import kotlin.system.exitProcess
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
@@ -123,35 +122,35 @@ internal object MainCli {
                         typeLog == "O"
                 ) {
                     val lteCombos = comboList.lteCombos
-                    if (!lteCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(lteCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-LTE") }
+                    if (lteCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(lteCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-LTE") }
                         )
                     }
                     val nrCombos = comboList.nrCombos
-                    if (!nrCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(nrCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-NR") }
+                    if (nrCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(nrCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-NR") }
                         )
                     }
                     val enDcCombos = comboList.enDcCombos
-                    if (!enDcCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(enDcCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-EN-DC") }
+                    if (enDcCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(enDcCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-EN-DC") }
                         )
                     }
                     val nrDcCombos = comboList.nrDcCombos
-                    if (!nrDcCombos.isNullOrEmpty()) {
-                        outputFile(
-                            Utility.toCsv(nrDcCombos),
-                            fileName?.let { Utility.appendBeforeExtension(it, "-NR-DC") }
+                    if (nrDcCombos.isNotEmpty()) {
+                        outputFileOrStdout(
+                            Output.toCsv(nrDcCombos),
+                            fileName?.let { Output.appendBeforeExtension(it, "-NR-DC") }
                         )
                     }
                 } else {
-                    outputFile(Utility.toCsv(comboList), fileName)
+                    outputFileOrStdout(Output.toCsv(comboList), fileName)
                 }
             }
         } catch (e: ParseException) {
@@ -195,14 +194,13 @@ internal object MainCli {
 
             if (cmd.hasOption("uelog")) {
                 val outputFile = cmd.getOptionValue("uelog")
-                outputFile(file.reader().use(InputStreamReader::readText), outputFile)
+                outputFileOrStdout(file.reader().use(InputStreamReader::readText), outputFile)
             }
 
             return if (typeLog == "QNR") {
-                multipleParser(
+                parseMultiple0xB826(
                     file.reader().use(InputStreamReader::readText),
-                    cmd.hasOption("multi"),
-                    imports
+                    cmd.hasOption("multi")
                 )
             } else {
                 file.inputStream().use { imports.parse(it) }
@@ -218,20 +216,15 @@ internal object MainCli {
         var input: String
         var inputNR = ""
         var inputENDC = ""
-        input = Utility.readFile(cmd.getOptionValue("input"), StandardCharsets.UTF_8)
+        input = File(cmd.getOptionValue("input")).readText()
         if (typeLog == "H" || typeLog == "N" || typeLog == "W") {
             if (cmd.hasOption("inputNR")) {
-                inputNR = Utility.readFile(cmd.getOptionValue("inputNR"), StandardCharsets.UTF_8)
+                inputNR = File(cmd.getOptionValue("inputNR")).readText()
             }
             if (cmd.hasOption("inputENDC")) {
-                inputENDC =
-                    Utility.readFile(cmd.getOptionValue("inputENDC"), StandardCharsets.UTF_8)
+                inputENDC = File(cmd.getOptionValue("inputENDC")).readText()
             }
-            if (typeLog == "H") {
-                input = preformatHexData(input)
-                inputNR = preformatHexData(inputNR)
-                inputENDC = preformatHexData(inputENDC)
-            } else {
+            if (typeLog != "H") {
                 input += inputENDC + inputNR
             }
         }
@@ -275,12 +268,12 @@ internal object MainCli {
 
         if (typeLog == "H") {
             val defaultRat = if (cmd.hasOption("defaultNR")) Rat.NR else Rat.EUTRA
-            ratContainerMap += Utility.getUeCapabilityJsonFromHex(defaultRat, input)
+            ratContainerMap += getUeCapabilityJsonFromHex(defaultRat, input)
             if (inputNR.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.NR, inputNR)
+                ratContainerMap += getUeCapabilityJsonFromHex(Rat.NR, inputNR)
             }
             if (inputENDC.isNotBlank()) {
-                ratContainerMap += Utility.getUeCapabilityJsonFromHex(Rat.EUTRA_NR, inputENDC)
+                ratContainerMap += getUeCapabilityJsonFromHex(Rat.EUTRA_NR, inputENDC)
             }
         } else {
             val list =
@@ -303,7 +296,9 @@ internal object MainCli {
                     Rat.EUTRA_NR ->
                         eutraNr = input.substring(start + mrdcIdentifier.toString().length - 1, end)
                     Rat.NR -> nr = input.substring(start + nrIdentifier.toString().length - 1, end)
-                    else -> {}
+                    else -> {
+                        // Do nothing
+                    }
                 }
             }
             if (eutra.isNotBlank()) {
@@ -339,8 +334,7 @@ internal object MainCli {
         val jsonOutput = JsonObject(ratContainerMap)
 
         if (cmd.hasOption("uelog")) {
-            val outputFile = cmd.getOptionValue("uelog")
-            outputFile(jsonOutput.toString(), outputFile)
+            outputFileOrStdout(jsonOutput.toString(), cmd.getOptionValue("uelog"))
         }
 
         val jsonEutra = jsonOutput.getOrDefault(Rat.EUTRA.toString(), null) as? JsonObject

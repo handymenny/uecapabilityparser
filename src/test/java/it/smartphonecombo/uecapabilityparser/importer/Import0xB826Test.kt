@@ -4,7 +4,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
-import it.smartphonecombo.uecapabilityparser.util.Utility
+import it.smartphonecombo.uecapabilityparser.util.Output
 import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -48,7 +48,7 @@ internal class Import0xB826Test {
         Assertions.assertNotNull(comboNR)
         Assertions.assertEquals(numCombos, comboNR.size)
 
-        val actualCsv = Utility.toCsv(comboNR).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(comboNR).lines().dropLastWhile { it.isBlank() }
         val oraclePath = "$path/oracle/$oracleFilename"
 
         val expectedCsv =

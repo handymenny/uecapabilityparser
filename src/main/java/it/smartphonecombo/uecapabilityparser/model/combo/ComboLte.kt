@@ -5,7 +5,7 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.util.Utility.appendSeparator
+import it.smartphonecombo.uecapabilityparser.util.Output
 
 data class ComboLte(
     override val masterComponents: List<ComponentLte>,
@@ -59,11 +59,11 @@ data class ComboLte(
                 strULmod.append(component.modUL)
             }
 
-            appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
+            Output.appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
         }
 
         repeat(lteDlCC - masterComponents.size) {
-            appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
+            Output.appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
         }
 
         return "$compact$strBand$strBw$strMimo$strUl$strDLmod$strULmod$strBcs"

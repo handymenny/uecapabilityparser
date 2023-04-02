@@ -6,7 +6,7 @@ import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
-import it.smartphonecombo.uecapabilityparser.util.Utility
+import it.smartphonecombo.uecapabilityparser.util.Output
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertLinesMatch
@@ -31,7 +31,7 @@ internal class ImportCapabilityInformationTest {
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
-        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
 
         // LTE bands
@@ -236,7 +236,7 @@ internal class ImportCapabilityInformationTest {
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
-        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
 
         // LTE bands
@@ -372,7 +372,7 @@ internal class ImportCapabilityInformationTest {
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
-        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
 
         // LTE bands
@@ -490,7 +490,7 @@ internal class ImportCapabilityInformationTest {
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
-        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
 
         // LTE bands
@@ -954,7 +954,7 @@ internal class ImportCapabilityInformationTest {
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
-        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
     }
 
@@ -1119,7 +1119,7 @@ internal class ImportCapabilityInformationTest {
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
-        val actualCsv = Utility.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
     }
 
@@ -1140,7 +1140,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualEndcCsv =
-            Utility.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
+            Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedEndcCsv, actualEndcCsv)
 
         // EUTRA
@@ -1155,7 +1155,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualLteCsv =
-            Utility.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
+            Output.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedLteCsv, actualLteCsv)
 
         // Bands
@@ -1438,8 +1438,7 @@ internal class ImportCapabilityInformationTest {
 
         // NR Combos
         val expectedNrCsv = emptyList<String>()
-        val actualNrCsv =
-            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
     }
 
@@ -1460,7 +1459,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualEndcCsv =
-            Utility.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
+            Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedEndcCsv, actualEndcCsv)
 
         // EUTRA
@@ -1475,7 +1474,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualLteCsv =
-            Utility.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
+            Output.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedLteCsv, actualLteCsv)
 
         // Bands
@@ -1634,8 +1633,7 @@ internal class ImportCapabilityInformationTest {
 
         // NR Combos
         val expectedNrCsv = emptyList<String>()
-        val actualNrCsv =
-            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
     }
 
@@ -1656,7 +1654,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualEndcCsv =
-            Utility.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
+            Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedEndcCsv, actualEndcCsv)
 
         // EUTRA
@@ -1671,7 +1669,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualLteCsv =
-            Utility.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
+            Output.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedLteCsv, actualLteCsv)
 
         // Bands
@@ -1907,8 +1905,7 @@ internal class ImportCapabilityInformationTest {
 
         // NR Combos
         val expectedNrCsv = emptyList<String>()
-        val actualNrCsv =
-            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
 
         assertLinesMatch(expectedNrCsv, actualNrCsv)
     }
@@ -2161,8 +2158,7 @@ internal class ImportCapabilityInformationTest {
                 .bufferedReader()
                 .readLines()
                 .dropLastWhile { it.isBlank() }
-        val actualNrCsv =
-            Utility.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
 
         // NR-DC Combos
@@ -2172,7 +2168,7 @@ internal class ImportCapabilityInformationTest {
                 .readLines()
                 .dropLastWhile { it.isBlank() }
         val actualNrDcCsv =
-            Utility.toCsv(capabilities.nrDcCombos).lines().dropLastWhile { it.isBlank() }
+            Output.toCsv(capabilities.nrDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrDcCsv, actualNrDcCsv)
     }
 }

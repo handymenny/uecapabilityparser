@@ -1,5 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import it.smartphonecombo.uecapabilityparser.extension.decodeHex
+import it.smartphonecombo.uecapabilityparser.extension.preformatHex
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import java.io.*
 import kotlin.system.exitProcess
@@ -10,9 +12,9 @@ class Tshark {
         if (ratType != Rat.EUTRA && ratType != Rat.EUTRA_NR && ratType != Rat.NR) {
             throw RuntimeException()
         }
-        val strData = Utility.preformatHexData(strEncodedData)
+        val strData = strEncodedData.preformatHex()
         val strBuilder: StringBuilder?
-        if (!(strData[0] == '3' && strData[1] < 'F' && strData[1] >= '8')) {
+        if (strData[0] != '3' || strData[1].uppercaseChar() !in '8'..'E') {
             val length = String.format("%X", strData.length / 2 + 32768)
             strBuilder = StringBuilder("3A01").append(ratType.id)
             strBuilder!!.append(length).append(strData)
@@ -26,10 +28,10 @@ class Tshark {
             val tempfile = File.createTempFile("UECAP-", ".pcap")
             val writer = BufferedOutputStream(FileOutputStream(tempfile))
             val pcap = PcapWriter()
-            writer.write(Utility.hexStringToByteArray(pcap.all))
+            writer.write(pcap.all.decodeHex())
             val length = String.format("%08X", strBuilder.length / 2)
-            writer.write(Utility.hexStringToByteArray(length + length))
-            writer.write(Utility.hexStringToByteArray(strBuilder.toString()))
+            writer.write(length.plus(length).decodeHex())
+            writer.write(strBuilder.toString().decodeHex())
             writer.flush()
             writer.close()
             val result = callTshark(tsharkPath, strProtocol, tempfile.path)
