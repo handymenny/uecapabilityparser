@@ -1,3 +1,5 @@
+import java.util.*
+
 plugins {
     val kotlinVersion = "1.8.10"
     kotlin("jvm") version kotlinVersion
@@ -31,7 +33,12 @@ dependencies {
 
 group = "parser"
 
-version = "0.0.6"
+val properties =
+    Properties().apply {
+        load(rootProject.file("src/main/resources/application.properties").reader())
+    }
+
+version = properties["project.version"]!!
 
 description = "uecapabilityparser"
 
