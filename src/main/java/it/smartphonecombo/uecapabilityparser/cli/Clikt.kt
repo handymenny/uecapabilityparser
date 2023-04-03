@@ -32,62 +32,27 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 
 object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs = true) {
-    private val input by
-        option("-i", "--input", help = "Main capability file").inputStream().required()
+    private val input by option("-i", "--input", help = HelpMessage.INPUT).inputStream().required()
 
-    private val inputNR by option("--inputNR", help = "NR UE Capability file").inputStream()
+    private val inputNR by option("--inputNR", help = HelpMessage.INPUT_NR).inputStream()
 
-    private val inputENDC by option("--inputENDC", help = "ENDC UE Capability file").inputStream()
+    private val inputENDC by option("--inputENDC", help = HelpMessage.INPUT_ENDC).inputStream()
 
-    private val defaultNR by
-        option("--nr", "--defaultNR", help = "Main capability input is NR (otherwise LTE)").flag()
+    private val defaultNR by option("--nr", "--defaultNR", help = HelpMessage.DEFAULT_NR).flag()
 
     private val multiple0xB826 by
-        option(
-                "--multi",
-                "--multiple0xB826",
-                help =
-                    """Use this option if input contains several 0xB826 hexdumps separated by blank 
-                        |lines and optionally prefixed with "Payload :""""
-                        .trimMargin()
-            )
-            .flag()
+        option("--multi", "--multiple0xB826", help = HelpMessage.MULTIPLE_0XB826).flag()
 
     private val type by
-        option(
-                "-t",
-                "--type",
-                help =
-                    """Type of capability. Valid values are: H (UE Capability Hex Dump), 
-                        |W (Wireshark UE Capability Information), N (NSG UE Capability Information), 
-                        |C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem binary, decompressed), 
-                        |Q (QCAT 0xB0CD), QNR (0xB826 hexdump), M (MEDIATEK CA_COMB_INFO), 
-                        |O (OSIX UE Capability Information), QC (QCAT UE Capability Information)."""
-                        .trimMargin()
-            )
+        option("-t", "--type", help = HelpMessage.TYPE)
             .choice("H", "W", "N", "C", "CNR", "E", "Q", "QNR", "M", "O", "QC", ignoreCase = true)
             .required()
 
-    private val csv by
-        option(
-            "-c",
-            "--csv",
-            help =
-                """Output a csv, if "-" is the csv will be output to standard output.
-                    |Some parsers output multiple CSVs, in these cases "-LTE", "-NR", "-EN-DC",
-                    | "-NR-DC" will be added before the extension."""
-                    .trimMargin()
-        )
+    private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
 
-    private val ueLog by
-        option(
-            "-l",
-            "--uelog",
-            help =
-                """Output the uelog, if "-" is specified the uelog will be output to standard output."""
-        )
+    private val ueLog by option("-l", "--uelog", help = HelpMessage.UE_LOG, metavar = "FILE")
 
-    private val debug by option("-d", "--debug", help = "Print debug info.").flag()
+    private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
     override fun run() {
         Config["debug"] = debug.toString()
