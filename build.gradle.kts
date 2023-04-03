@@ -1,3 +1,5 @@
+import java.util.*
+
 plugins {
     val kotlinVersion = "1.8.10"
     kotlin("jvm") version kotlinVersion
@@ -18,7 +20,6 @@ dependencies {
     val mtsAsn1Version = "0.0.8"
     val kmemVersion = "3.4.0"
 
-    implementation("commons-cli:commons-cli:1.5.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
@@ -27,11 +28,17 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     implementation("org.slf4j:slf4j-nop:2.0.7")
     implementation("com.soywiz.korlibs.kmem:kmem-jvm:$kmemVersion")
+    implementation("com.github.ajalt.clikt:clikt:3.5.2")
 }
 
 group = "parser"
 
-version = "0.0.6"
+val properties =
+    Properties().apply {
+        load(rootProject.file("src/main/resources/application.properties").reader())
+    }
+
+version = properties["project.version"]!!
 
 description = "uecapabilityparser"
 
@@ -58,7 +65,7 @@ tasks {
     shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
 }
 
-application { mainClass.set("it.smartphonecombo.uecapabilityparser.MainCli") }
+application { mainClass.set("it.smartphonecombo.uecapabilityparser.cli.Main") }
 
 kotlin { jvmToolchain(11) }
 
