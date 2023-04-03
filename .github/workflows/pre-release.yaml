@@ -25,8 +25,9 @@ jobs:
       - name: Build & test
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         run: |
+          sed -i "s/\(project.version=\).*/\1nightly-${{ steps.date.outputs.date }}/g" src/main/resources/application.properties
           ./gradlew --no-daemon build
-          cp build/distributions/*.zip uecapabilityparser-nightly.zip
+          cp build/distributions/*.zip .
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         with:
