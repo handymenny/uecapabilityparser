@@ -10,6 +10,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
 import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
@@ -27,11 +28,16 @@ import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.Import0xB826Helpers
 import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.Property
 import java.io.InputStreamReader
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 
 object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs = true) {
+    init {
+        versionOption(version = Property.getProperty("project.version") ?: "")
+    }
+
     private val input by option("-i", "--input", help = HelpMessage.INPUT).inputStream().required()
 
     private val inputNR by option("--inputNR", help = HelpMessage.INPUT_NR).inputStream()
