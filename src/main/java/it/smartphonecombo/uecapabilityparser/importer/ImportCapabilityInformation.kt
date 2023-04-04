@@ -464,7 +464,9 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         val lteBands =
             supportedBandListEutra?.mapNotNull {
-                it.getInt("bandEUTRA")?.let { band -> ComponentLte(band, BwClass('A'), mimoDL = 2) }
+                it.getInt("bandEUTRA")?.let { band ->
+                    ComponentLte(band, BwClass('A'), mimoDL = 2, mimoUL = 1)
+                }
             }
                 ?: return emptyList()
 

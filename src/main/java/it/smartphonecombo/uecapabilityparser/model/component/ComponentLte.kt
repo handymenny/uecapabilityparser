@@ -10,7 +10,7 @@ data class ComponentLte(
     override var classDL: BwClass = BwClass.NONE,
     override var classUL: BwClass = BwClass.NONE,
     override var mimoDL: Mimo = 0,
-    override var mimoUL: Mimo = 1,
+    override var mimoUL: Mimo = 0,
     override var modDL: Modulation = Modulation.NONE,
     override var modUL: Modulation = Modulation.NONE
 ) : IComponent {
