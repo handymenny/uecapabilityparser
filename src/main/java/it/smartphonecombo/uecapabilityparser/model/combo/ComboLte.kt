@@ -42,6 +42,7 @@ data class ComboLte(
         val strBw = StringBuilder()
         val strMimo = StringBuilder()
         val strUl = StringBuilder()
+        val strULmimo = StringBuilder()
         val strDLmod = StringBuilder()
         val strULmod = StringBuilder()
 
@@ -57,15 +58,34 @@ data class ComboLte(
             if (ulClass != BwClass.NONE) {
                 strUl.append(ulClass)
                 strULmod.append(component.modUL)
+                strULmimo.append(component.mimoUL)
             }
 
-            Output.appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
+            Output.appendSeparator(
+                separator,
+                strBand,
+                strBw,
+                strMimo,
+                strUl,
+                strULmimo,
+                strDLmod,
+                strULmod
+            )
         }
 
         repeat(lteDlCC - masterComponents.size) {
-            Output.appendSeparator(separator, strBand, strBw, strMimo, strUl, strDLmod, strULmod)
+            Output.appendSeparator(
+                separator,
+                strBand,
+                strBw,
+                strMimo,
+                strUl,
+                strULmimo,
+                strDLmod,
+                strULmod
+            )
         }
 
-        return "$compact$strBand$strBw$strMimo$strUl$strDLmod$strULmod$strBcs"
+        return "$compact$strBand$strBw$strMimo$strUl$strULmimo$strDLmod$strULmod$strBcs"
     }
 }

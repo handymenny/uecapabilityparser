@@ -182,7 +182,7 @@ object Output {
     private fun getLteCsvHeader(lteDlCC: Int): String {
         val separator = ";"
         val header = StringBuilder("combo;")
-        val columns = arrayOf("band", "class", "mimo", "ul", "DLmod", "ULmod")
+        val columns = arrayOf("band", "class", "mimo", "ul", "ULmimo", "DLmod", "ULmod")
         for (column in columns) {
             for (i in 1..lteDlCC) {
                 header.append(column).append(i).append(separator)
