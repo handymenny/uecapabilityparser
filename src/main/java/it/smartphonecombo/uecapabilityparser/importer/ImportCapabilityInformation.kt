@@ -88,6 +88,15 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.nrNSAbands = getNrBands(eutra, true).sorted()
             comboList.nrSAbands = getNrBands(eutra, false).sorted()
 
+            if (debug) {
+                println(
+                    "NR NSA bands (from eutra capability): [${comboList.nrNSAbands.joinToString(transform = {it.band.toString()})}]"
+                )
+                println(
+                    "NR SA bands (from eutra capability): [${comboList.nrSAbands.joinToString(transform = {it.band.toString()})}]"
+                )
+            }
+
             val listCombo = getBandCombinations(eutra, bandList)
             val listComboAdd = getBandCombinationsAdd(eutra, bandList)
             val listComboReduced = getBandCombinationsReduced(eutra, bandList)
