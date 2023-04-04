@@ -123,7 +123,7 @@ object ImportNvItem : ImportCapabilities {
                 if (isDL) {
                     ComponentLte(band, bwClass, BwClass.NONE, ant)
                 } else {
-                    ComponentLte(band, BwClass.NONE, bwClass)
+                    ComponentLte(band, BwClass.NONE, bwClass, mimoUL = ant)
                 }
 
             lteComponents.add(component)
@@ -145,6 +145,7 @@ object ImportNvItem : ImportCapabilities {
                     .maxBy(ComponentLte::classDL)
 
             matchingComponent.classUL = ulComponent.classUL
+            matchingComponent.mimoUL = ulComponent.mimoUL
         }
 
         components.sortDescending()
