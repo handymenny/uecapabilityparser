@@ -93,8 +93,10 @@ object ImportMTKLte : ImportCapabilities {
             input.firstOrNull { it.startsWith("band_param[$i]") }
             val baseBand = extractInt(input.next())
             val classUL = BwClass.valueOfMtkIndex(extractInt(input.next()))
+            // no support for UL MIMO
+            val mimoUL = if (classUL != BwClass.NONE) 1 else 0
             val classDL = BwClass.valueOfMtkIndex(extractInt(input.next()))
-            val band = ComponentLte(baseBand, classDL, classUL)
+            val band = ComponentLte(baseBand, classDL, classUL, mimoUL = mimoUL)
             bands.add(band)
         }
         return bands

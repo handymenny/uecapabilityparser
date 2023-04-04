@@ -92,7 +92,9 @@ object ImportLteCarrierPolicy : ImportCapabilities {
             baseBand.toInt(),
             BwClass.valueOf(classDL),
             BwClass.valueOf(classUL),
-            mimoDL.toIntOrNull() ?: 0
+            mimoDL.toIntOrNull() ?: 0,
+            // no support for UL MIMO
+            if (classUL.isEmpty()) 0 else 1
         )
     }
 }
