@@ -361,7 +361,6 @@ internal class MainTest {
         setUpStreams()
         main.main(args)
         restoreStreams()
-        val string = out.toString()
 
         Assertions.assertLinesMatch(
             File("$path/oracle/$oracleFilename").readLines().dropLastWhile { it.isBlank() },
