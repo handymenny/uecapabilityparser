@@ -65,6 +65,7 @@ data class ComboEnDc(
         val lteDl = StringBuilder()
         val lteUl = StringBuilder()
         val lteMimoDl = StringBuilder()
+        val lteMimoUl = StringBuilder()
         var ulLteCount = 0
 
         for (component in componentsLte) {
@@ -79,14 +80,15 @@ data class ComboEnDc(
                     .append(separator)
                     .append(component.modUL)
                     .append(separator)
+                lteMimoUl.append(component.mimoUL).append(separator)
                 ulLteCount++
             }
         }
 
         repeat(lteDlCC - componentsLte.size) { Output.appendSeparator(separator, lteDl, lteMimoDl) }
 
-        repeat(lteUlCC - ulLteCount) { Output.appendSeparator(separator, lteUl, lteUl) }
+        repeat(lteUlCC - ulLteCount) { Output.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
 
-        return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwMod$lteMimoDl$nrMimoDl$nrMimoUl"
+        return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwMod$lteMimoDl$nrMimoDl$lteMimoUl$nrMimoUl"
     }
 }

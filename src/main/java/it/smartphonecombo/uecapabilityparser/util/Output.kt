@@ -164,6 +164,9 @@ object Output {
         for (i in 1..nrDcDlCC) {
             header.append("mimo FR2 DL").append(i).append(separator)
         }
+        for (i in 1..lteUlCC) {
+            header.append("mimo LTE UL").append(i).append(separator)
+        }
         for (i in 1..nrUlCC) {
             header.append("mimo NR UL").append(i).append(separator)
         }
