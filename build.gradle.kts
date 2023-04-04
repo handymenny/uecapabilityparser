@@ -59,8 +59,13 @@ tasks {
         finalizedBy(koverXmlReport)
     }
 
-    // Enable shadow minify
-    shadowJar { minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) } }
+    shadowJar {
+        // Omit jna dependencies (required by kmem)
+        dependencies { exclude(dependency("net.java.dev.jna:.*")) }
+
+        // Enable shadow minify
+        minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) }
+    }
 }
 
 application { mainClass.set("it.smartphonecombo.uecapabilityparser.cli.Main") }
