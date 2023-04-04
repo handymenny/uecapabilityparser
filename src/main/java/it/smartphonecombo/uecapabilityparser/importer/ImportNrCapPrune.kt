@@ -6,7 +6,6 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
@@ -98,7 +97,8 @@ object ImportNrCapPrune : ImportCapabilities {
                 baseBand.toInt(),
                 BwClass.valueOf(classDL),
                 BwClass.valueOf(classUL),
-                mimoParsing(mimoDL)
+                mimoParsing(mimoDL),
+                mimoParsing(mimoUL)
             )
         } else {
             return ComponentNr(
@@ -106,9 +106,7 @@ object ImportNrCapPrune : ImportCapabilities {
                 BwClass.valueOf(classDL),
                 BwClass.valueOf(classUL),
                 mimoParsing(mimoDL),
-                mimoParsing(mimoUL),
-                Modulation.NONE,
-                Modulation.NONE
+                mimoParsing(mimoUL)
             )
         }
     }
