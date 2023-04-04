@@ -58,7 +58,8 @@ data class ComboLte(
             if (ulClass != BwClass.NONE) {
                 strUl.append(ulClass)
                 strULmod.append(component.modUL)
-                strULmimo.append(component.mimoUL)
+                val ulMimo = component.mimoUL
+                if (ulMimo != 0) strULmimo.append(ulMimo)
             }
 
             Output.appendSeparator(

@@ -80,7 +80,7 @@ data class ComboEnDc(
                     .append(separator)
                     .append(component.modUL)
                     .append(separator)
-                lteMimoUl.append(component.mimoUL).append(separator)
+                if (component.mimoUL != 0) lteMimoUl.append(component.mimoUL).append(separator)
                 ulLteCount++
             }
         }
