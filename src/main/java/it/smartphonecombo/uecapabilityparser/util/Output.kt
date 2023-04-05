@@ -164,6 +164,9 @@ object Output {
         for (i in 1..nrDcDlCC) {
             header.append("mimo FR2 DL").append(i).append(separator)
         }
+        for (i in 1..lteUlCC) {
+            header.append("mimo LTE UL").append(i).append(separator)
+        }
         for (i in 1..nrUlCC) {
             header.append("mimo NR UL").append(i).append(separator)
         }
@@ -182,7 +185,7 @@ object Output {
     private fun getLteCsvHeader(lteDlCC: Int): String {
         val separator = ";"
         val header = StringBuilder("combo;")
-        val columns = arrayOf("band", "class", "mimo", "ul", "DLmod", "ULmod")
+        val columns = arrayOf("band", "class", "mimo", "ul", "ULmimo", "DLmod", "ULmod")
         for (column in columns) {
             for (i in 1..lteDlCC) {
                 header.append(column).append(i).append(separator)

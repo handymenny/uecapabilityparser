@@ -363,6 +363,9 @@ object ImportCapabilityInformation : ImportCapabilities {
                 if (it.mimoDL > band.mimoDL) {
                     band.mimoDL = it.mimoDL
                 }
+                if (it.mimoUL > band.mimoUL) {
+                    band.mimoUL = it.mimoUL
+                }
                 if (it.modDL == Modulation.QAM1024 && it.modDL != band.modDL) {
                     band.modDL = it.modDL
                 }
@@ -461,7 +464,9 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         val lteBands =
             supportedBandListEutra?.mapNotNull {
-                it.getInt("bandEUTRA")?.let { band -> ComponentLte(band, BwClass('A'), mimoDL = 2) }
+                it.getInt("bandEUTRA")?.let { band ->
+                    ComponentLte(band, BwClass('A'), mimoDL = 2, mimoUL = 1)
+                }
             }
                 ?: return emptyList()
 
@@ -1140,21 +1145,40 @@ object ImportCapabilityInformation : ImportCapabilities {
         return Pair(dlClass, dlMimo)
     }
 
-    private fun parseBandParametersUL(bandParameters: JsonElement, release: Int): BwClass {
+    private fun parseBandParametersUL(
+        bandParameters: JsonElement,
+        release: Int
+    ): Pair<BwClass, Int> {
         val bandParametersUL =
             if (release == 13) {
                 bandParameters.getObject("bandParametersUL-r13")
             } else {
                 bandParameters.getArrayAtPath("bandParametersUL-r$release")?.first()
             }
-        val ulClassString = bandParametersUL?.getString("ca-BandwidthClassUL-r10")
-        return BwClass.valueOf(ulClassString)
+
+        if (bandParametersUL == null) {
+            return Pair(BwClass.NONE, 0)
+        }
+
+        // both r10 and r11 uses ca-BandwidthClassUL/supportedMIMO-CapabilityUL -r10
+        val subRelease = if (release == 13) "13" else "10"
+
+        val ulClassString = bandParametersUL.getString("ca-BandwidthClassUL-r10")
+        val ulClass = BwClass.valueOf(ulClassString)
+        val mimoLayers = bandParametersUL.getString("supportedMIMO-CapabilityUL-r$subRelease")
+        var ulMimo = Mimo.fromLiteral(mimoLayers)
+        if (ulMimo == 0) {
+            // supportedMIMO-CapabilityUL isn't reported if ulMimo = 1
+            ulMimo = 1
+        }
+
+        return Pair(ulClass, ulMimo)
     }
 
     private fun parseBandParameters(bandParameters: JsonElement, release: Int): ComponentLte {
         val band = bandParameters.getInt("bandEUTRA-r$release") ?: 0
         val (dlClass, dlMimo) = parseBandParametersDL(bandParameters, release)
-        val ulClass = parseBandParametersUL(bandParameters, release)
-        return ComponentLte(band, dlClass, ulClass, dlMimo)
+        val (ulClass, ulMimo) = parseBandParametersUL(bandParameters, release)
+        return ComponentLte(band, dlClass, ulClass, dlMimo, ulMimo)
     }
 }
