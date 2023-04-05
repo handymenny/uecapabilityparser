@@ -366,10 +366,10 @@ object ImportCapabilityInformation : ImportCapabilities {
                 if (it.mimoUL > band.mimoUL) {
                     band.mimoUL = it.mimoUL
                 }
-                if (it.modDL == Modulation.QAM1024 && it.modDL != band.modDL) {
+                if (it.modDL > band.modDL) {
                     band.modDL = it.modDL
                 }
-                if (it.modUL == Modulation.QAM256 && it.modUL != band.modUL) {
+                if (it.modUL > band.modUL) {
                     band.modUL = it.modUL
                 }
             }
