@@ -825,15 +825,71 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(3, BwClass('A'), mimoDL = 2, mimoUL = 2),
-                ComponentLte(7, BwClass('A'), mimoDL = 2, mimoUL = 2),
-                ComponentLte(8, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(20, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(28, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(32, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(38, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(40, BwClass('A'), mimoDL = 2, mimoUL = 1)
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 2,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 2,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    8,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    20,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    28,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(32, BwClass('A'), mimoDL = 2, mimoUL = 1, modDL = Modulation.QAM64),
+                ComponentLte(
+                    38,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    40,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                )
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
@@ -2319,5 +2375,91 @@ internal class ImportCapabilityInformationTest {
         val actualNrDcCsv =
             Output.toCsv(capabilities.nrDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrDcCsv, actualNrDcCsv)
+    }
+
+    @Test
+    fun ueCapNrSUL() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                    "/newEngine/input/json/ueCapNrSUL.json",
+                )!!,
+            )
+
+        // NR
+        val actualNrBands = capabilities.nrBands
+        val expectedNrBands =
+            listOf(
+                BandNrDetails(1).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(3).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
+                },
+                BandNrDetails(28).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
+                },
+                BandNrDetails(38).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(20)))
+                },
+                BandNrDetails(40).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20)))
+                },
+                BandNrDetails(41).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)))
+                },
+                BandNrDetails(77).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
+                },
+                BandNrDetails(78).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 10)))
+                },
+                BandNrDetails(79).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
+                },
+                BandNrDetails(80).apply {
+                    modDL = Modulation.NONE
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(), intArrayOf(30, 25, 20, 15, 10, 5)))
+                },
+                BandNrDetails(84).apply {
+                    modDL = Modulation.NONE
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)))
+                }
+            )
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
+
+        // NR Combos
+        val expectedNrCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapNrSUL-NR.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedNrCsv, actualNrCsv)
     }
 }
