@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
-import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
@@ -39,157 +38,117 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     2,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     4,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     5,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     8,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     12,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     13,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     17,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     20,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     28,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
-                ComponentLte(
-                    32,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
-                ),
+                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256, modUL = Modulation.QAM64),
                 ComponentLte(
                     38,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     40,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     66,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
-                ),
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                )
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
@@ -244,102 +203,80 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     2,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     4,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     5,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     12,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     13,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     26,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     46,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     48,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     66,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -380,75 +317,59 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     8,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     38,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     40,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     41,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -498,273 +419,201 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     2,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     4,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     5,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     8,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     12,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     13,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     14,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     17,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     18,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     19,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     25,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     26,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     28,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
-                ComponentLte(
-                    29,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM64
-                ),
+                ComponentLte(29, mimoDL = 2, modDL = Modulation.QAM1024, modUL = Modulation.QAM64),
                 ComponentLte(
                     30,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
-                ComponentLte(
-                    32,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM64
-                ),
+                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM1024, modUL = Modulation.QAM64),
                 ComponentLte(
                     34,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     38,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     39,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     40,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     41,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     42,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     46,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     48,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     66,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     71,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM1024,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -827,7 +676,6 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM64,
@@ -835,7 +683,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 2,
                     modDL = Modulation.QAM64,
@@ -843,7 +690,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 2,
                     modDL = Modulation.QAM64,
@@ -851,7 +697,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     8,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM64,
@@ -859,7 +704,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     20,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM64,
@@ -867,16 +711,14 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     28,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
-                ComponentLte(32, BwClass('A'), mimoDL = 2, mimoUL = 1, modDL = Modulation.QAM64),
+                ComponentLte(32, mimoDL = 2, mimoUL = 1, modDL = Modulation.QAM64),
                 ComponentLte(
                     38,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM64,
@@ -884,7 +726,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     40,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM64,
@@ -930,7 +771,6 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 2,
                     modDL = Modulation.QAM256,
@@ -938,7 +778,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 2,
                     modDL = Modulation.QAM256,
@@ -946,7 +785,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 2,
                     modDL = Modulation.QAM256,
@@ -954,7 +792,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     20,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 2,
                     modDL = Modulation.QAM256,
@@ -962,7 +799,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     28,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 2,
                     modDL = Modulation.QAM256,
@@ -970,7 +806,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     38,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM256,
@@ -978,7 +813,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     40,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM256,
@@ -986,7 +820,6 @@ internal class ImportCapabilityInformationTest {
                 ),
                 ComponentLte(
                     41,
-                    BwClass('A'),
                     mimoDL = 2,
                     mimoUL = 1,
                     modDL = Modulation.QAM256,
@@ -1368,120 +1201,88 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     5,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     8,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     28,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
-                ComponentLte(
-                    32,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
-                ),
+                ComponentLte(32, mimoDL = 4, modDL = Modulation.QAM256, modUL = Modulation.QAM64),
                 ComponentLte(
                     38,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     40,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     41,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     42,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     43,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -1687,93 +1488,73 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     8,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     18,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     19,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     21,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     26,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     28,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     42,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM64
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -1882,58 +1663,46 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     28,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
-                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, 1, Modulation.QAM256),
+                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256),
                 ComponentLte(
                     38,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    4,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM256
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands

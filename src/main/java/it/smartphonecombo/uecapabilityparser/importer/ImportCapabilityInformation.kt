@@ -467,18 +467,15 @@ object ImportCapabilityInformation : ImportCapabilities {
         val lteBands =
             supportedBandListEutra?.mapNotNull {
                 it.getInt("bandEUTRA")?.let { band ->
+                    val duplex = DuplexBandTable.getLteDuplex(band)
                     val defaultModUL =
-                        if (DuplexBandTable.getLteDuplex(band) == Duplex.SDL) {
-                            Modulation.NONE
-                        } else {
-                            Modulation.QAM16
-                        }
+                        if (duplex == Duplex.SDL) Modulation.NONE else Modulation.QAM16
+                    val mimoUl = if (duplex == Duplex.SDL) 0 else 1
 
                     ComponentLte(
                         band,
-                        BwClass('A'),
                         mimoDL = 2,
-                        mimoUL = 1,
+                        mimoUL = mimoUl,
                         modDL = Modulation.QAM64,
                         modUL = defaultModUL
                     )
