@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -8,6 +9,7 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.NumberFormatException
+import java.math.BigInteger
 import java.util.NoSuchElementException
 
 /**
@@ -30,14 +32,17 @@ object ImportMTKLte : ImportCapabilities {
      */
     override fun parse(input: InputStream): Capabilities {
         val listCombos: MutableList<ComboLte> = mutableListOf()
-        val iterator = input.reader().use(InputStreamReader::readLines).map(String::trim).iterator()
+        val lines = input.reader().use(InputStreamReader::readLines).map(String::trim)
         try {
+            val bcsIterator = getBCSArray(lines.iterator()).iterator()
+            val iterator = lines.iterator() // New iterator
             while (iterator.firstOrNull { it.startsWith("band_comb[") } != null) {
+                val bcs = bcsIterator.next()
                 val bands = parseCombo(iterator) ?: continue
 
                 bands.sortDescending()
 
-                listCombos.add(ComboLte(bands))
+                listCombos.add(ComboLte(bands, bcs))
             }
         } catch (ignored: NoSuchElementException) {
             // Do nothing
@@ -85,6 +90,22 @@ object ImportMTKLte : ImportCapabilities {
         }
     }
 
+    /** Extract BCS information */
+    @Throws(NoSuchElementException::class)
+    private fun getBCSArray(input: Iterator<String>): List<BCS> {
+        // Array size is typically 111 or 117
+        val bcsList = mutableListWithCapacity<BCS>(117)
+        while (true) {
+            val line = input.firstOrNull { it.startsWith("bandwidth_comb_set = Array") } ?: break
+            val bcsArrayLength = extractArraySize(line)
+            for (i in 0 until bcsArrayLength) {
+                val bcs = extractBigInt(input.next()).toString(2)
+                bcsList.add(BCS.fromBinaryString(bcs))
+            }
+        }
+        return bcsList
+    }
+
     /** Parse [numCCs] components. */
     @Throws(NoSuchElementException::class)
     private fun parseComponents(numCCs: Int, input: Iterator<String>): MutableList<ComponentLte> {
@@ -117,6 +138,13 @@ object ImportMTKLte : ImportCapabilities {
     @Throws(NumberFormatException::class)
     private fun extractInt(line: String): Int {
         return Integer.decode(extractValue(line))
+    }
+
+    /** Extract the field value from the given line and converts it to biginteger */
+    @Throws(NumberFormatException::class)
+    private fun extractBigInt(line: String): BigInteger {
+        val value = extractValue(line).drop(2)
+        return BigInteger(value, 16)
     }
 
     /**
