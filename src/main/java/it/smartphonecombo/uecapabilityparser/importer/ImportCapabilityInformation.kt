@@ -185,7 +185,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 ?.let { parseCaMimoV10i0(it, combinations) }
         }
 
-        // Basic Modulation - set 256qam or 64qam from bandList
+        // Basic Modulation - set 256/64qam DL or 64/16qam UL from bandList
         setModulationFromBandList(combinations, bandList)
 
         // Advanced Modulation - set 1024qam DL or 256qam UL per combo
@@ -465,7 +465,14 @@ object ImportCapabilityInformation : ImportCapabilities {
         val lteBands =
             supportedBandListEutra?.mapNotNull {
                 it.getInt("bandEUTRA")?.let { band ->
-                    ComponentLte(band, BwClass('A'), mimoDL = 2, mimoUL = 1)
+                    ComponentLte(
+                        band,
+                        BwClass('A'),
+                        mimoDL = 2,
+                        mimoUL = 1,
+                        modDL = Modulation.QAM64,
+                        modUL = Modulation.QAM16
+                    )
                 }
             }
                 ?: return emptyList()

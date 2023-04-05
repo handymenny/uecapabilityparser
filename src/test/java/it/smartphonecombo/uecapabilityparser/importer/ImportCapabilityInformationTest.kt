@@ -825,15 +825,78 @@ internal class ImportCapabilityInformationTest {
         // LTE bands
         val expectedLteBands =
             listOf(
-                ComponentLte(1, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(3, BwClass('A'), mimoDL = 2, mimoUL = 2),
-                ComponentLte(7, BwClass('A'), mimoDL = 2, mimoUL = 2),
-                ComponentLte(8, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(20, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(28, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(32, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(38, BwClass('A'), mimoDL = 2, mimoUL = 1),
-                ComponentLte(40, BwClass('A'), mimoDL = 2, mimoUL = 1)
+                ComponentLte(
+                    1,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    3,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 2,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    7,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 2,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    8,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    20,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    28,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    32,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    38,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                ),
+                ComponentLte(
+                    40,
+                    BwClass('A'),
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM64,
+                    modUL = Modulation.QAM16
+                )
             )
         val actualLteBands = capabilities.lteBands
         assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
@@ -1869,7 +1932,15 @@ internal class ImportCapabilityInformationTest {
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
-                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, 1, Modulation.QAM256),
+                ComponentLte(
+                    32,
+                    BwClass('A'),
+                    BwClass.NONE,
+                    2,
+                    1,
+                    Modulation.QAM256,
+                    Modulation.QAM16
+                ),
                 ComponentLte(
                     38,
                     BwClass('A'),
