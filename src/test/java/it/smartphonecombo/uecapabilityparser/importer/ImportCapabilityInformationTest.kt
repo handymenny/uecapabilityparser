@@ -873,14 +873,7 @@ internal class ImportCapabilityInformationTest {
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
-                ComponentLte(
-                    32,
-                    BwClass('A'),
-                    mimoDL = 2,
-                    mimoUL = 1,
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
-                ),
+                ComponentLte(32, BwClass('A'), mimoDL = 2, mimoUL = 1, modDL = Modulation.QAM64),
                 ComponentLte(
                     38,
                     BwClass('A'),
@@ -1932,15 +1925,7 @@ internal class ImportCapabilityInformationTest {
                     Modulation.QAM256,
                     Modulation.QAM256
                 ),
-                ComponentLte(
-                    32,
-                    BwClass('A'),
-                    BwClass.NONE,
-                    2,
-                    1,
-                    Modulation.QAM256,
-                    Modulation.QAM16
-                ),
+                ComponentLte(32, BwClass('A'), BwClass.NONE, 2, 1, Modulation.QAM256),
                 ComponentLte(
                     38,
                     BwClass('A'),

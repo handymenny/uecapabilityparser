@@ -15,11 +15,13 @@ import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.Duplex
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
+import it.smartphonecombo.uecapabilityparser.model.band.DuplexBandTable
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsBitMap
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
@@ -465,13 +467,20 @@ object ImportCapabilityInformation : ImportCapabilities {
         val lteBands =
             supportedBandListEutra?.mapNotNull {
                 it.getInt("bandEUTRA")?.let { band ->
+                    val defaultModUL =
+                        if (DuplexBandTable.getLteDuplex(band) == Duplex.SDL) {
+                            Modulation.NONE
+                        } else {
+                            Modulation.QAM16
+                        }
+
                     ComponentLte(
                         band,
                         BwClass('A'),
                         mimoDL = 2,
                         mimoUL = 1,
                         modDL = Modulation.QAM64,
-                        modUL = Modulation.QAM16
+                        modUL = defaultModUL
                     )
                 }
             }
@@ -820,15 +829,16 @@ object ImportCapabilityInformation : ImportCapabilities {
                     supportedBandNr.getInt("bandNR")?.let { BandNrDetails(it) }
                         ?: return@mapNotNull null
 
+                val duplex = DuplexBandTable.getNrDuplex(componentNr.band)
                 if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
                     componentNr.modDL = Modulation.QAM64
-                } else {
+                } else if (duplex != Duplex.SUL) { // this is ok because No fr2 is SUL
                     componentNr.modDL = Modulation.QAM256
                 }
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
                     componentNr.modUL = Modulation.QAM256
-                } else {
+                } else if (duplex != Duplex.SDL) {
                     componentNr.modUL = Modulation.QAM64
                 }
 
