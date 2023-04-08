@@ -13,8 +13,12 @@ data class ComboEnDc(
     override val masterComponents: List<ComponentLte>,
     override val secondaryComponents: List<ComponentNr>,
     override val featureSet: Int = 0,
-    override val bcs: BCS = EmptyBCS
+    val bcsNr: BCS = EmptyBCS,
+    val bcsEutra: BCS = EmptyBCS,
+    val bcsIntraEnDc: BCS = EmptyBCS
 ) : ICombo {
+    override val bcs: BCS
+        get() = bcsNr
     val componentsNr: List<ComponentNr>
         get() = secondaryComponents
 
@@ -33,7 +37,21 @@ data class ComboEnDc(
                 transform = IComponent::toCompactStr,
             )
 
-        return "${lte}_${nr}-$featureSet"
+        var bcsString = ""
+        if (bcs != EmptyBCS) {
+            bcsString += "${bcs.toCompactStr()},"
+        }
+        if (bcsEutra != EmptyBCS) {
+            bcsString += "${bcsEutra.toCompactStr()},"
+        }
+        if (bcsIntraEnDc != EmptyBCS) {
+            bcsString += "${bcsIntraEnDc.toCompactStr()},"
+        }
+        if (bcsString.isNotEmpty()) {
+            bcsString = "-[${bcsString.dropLast(1)}]"
+        }
+
+        return "${lte}_${nr}$bcsString"
     }
 
     override fun toCsv(
@@ -94,6 +112,6 @@ data class ComboEnDc(
 
         repeat(lteUlCC - ulLteCount) { Output.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
 
-        return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwMod$lteMimoDl$nrMimoDl$lteMimoUl$nrMimoUl"
+        return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwMod$lteMimoDl$nrMimoDl$lteMimoUl$nrMimoUl$bcs;$bcsEutra;$bcsIntraEnDc"
     }
 }
