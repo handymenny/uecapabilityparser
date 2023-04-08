@@ -16,6 +16,7 @@ sealed interface BCS {
          * Converts the given binaryString to an instance of [BCS]
          * - If binaryString has no bit with value 1 return [EmptyBCS]
          * - If binaryString has only one bit with value 1 return [SingleBCS]
+         * - if binaryString has 32 bits with value 1 return [AllBCS]
          * - otherwise it returns a [MultiBCS]
          */
         fun fromBinaryString(binaryString: String): BCS {
@@ -35,6 +36,7 @@ sealed interface BCS {
                 when (bcsList.size) {
                     0 -> EmptyBCS
                     1 -> SingleBCS(bcsList.first())
+                    32 -> AllBCS
                     else -> MultiBCS(bcsList.toIntArray())
                 }
             cacheBinary[binaryString] = result
