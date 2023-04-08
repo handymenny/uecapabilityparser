@@ -1885,6 +1885,536 @@ internal class ImportCapabilityInformationTest {
     }
 
     @Test
+    fun ueCapMrdcIntraEnDc() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                    "/newEngine/input/json/ueCapMrdcIntraEnDc.json",
+                )!!,
+            )
+
+        // MRDC
+        // ENDC combos
+        val expectedEndcCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapMrdcIntraEnDc-EN-DC.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+
+        val actualEndcCsv =
+            Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedEndcCsv, actualEndcCsv)
+
+        // EUTRA
+        // Category
+        assertEquals(19, capabilities.lteCategoryDL)
+        assertEquals(13, capabilities.lteCategoryUL)
+
+        // Combos
+        val expectedLteCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapMrdcIntraEnDc-LTE.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+        val actualLteCsv =
+            Output.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedLteCsv, actualLteCsv)
+
+        // Bands
+        val expectedLteBands =
+            listOf(
+                ComponentLte(
+                    1,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    3,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    5,
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    7,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    8,
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    20,
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    28,
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256, modUL = Modulation.QAM64),
+                ComponentLte(
+                    34,
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    38,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    39,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    40,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    41,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    42,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    43,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                )
+            )
+        val actualLteBands = capabilities.lteBands
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
+
+        // NR NSA bands in eutra capability
+        val actualNrNsaBands = capabilities.nrNSAbands
+        val expectedNrNsaBands =
+            listOf(
+                BandNrDetails(1),
+                BandNrDetails(3),
+                BandNrDetails(5),
+                BandNrDetails(7),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(40),
+                BandNrDetails(41),
+                BandNrDetails(77),
+                BandNrDetails(78),
+                BandNrDetails(79),
+                BandNrDetails(80),
+                BandNrDetails(84)
+            )
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
+
+        // NR SA bands in eutra capability
+        val actualNrSaBands = capabilities.nrSAbands
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // NR
+        // bands in nr capability
+        val actualNrBands = capabilities.nrBands
+        val expectedNrBands =
+            listOf(
+                BandNrDetails(1).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(3).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
+                },
+                BandNrDetails(5).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(7).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(28).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(38).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(20, 15, 10)))
+                },
+                BandNrDetails(40).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 20)))
+                },
+                BandNrDetails(41).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)),
+                        )
+                },
+                BandNrDetails(77).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)),
+                        )
+                },
+                BandNrDetails(78).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)),
+                        )
+                },
+                BandNrDetails(79).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 60, 50, 40)),
+                        )
+                },
+                BandNrDetails(80).apply {
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)),
+                        )
+                },
+                BandNrDetails(84).apply {
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)),
+                        )
+                }
+            )
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
+
+        // NR Combos
+        val expectedNrCsv = emptyList<String>()
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+
+        assertLinesMatch(expectedNrCsv, actualNrCsv)
+    }
+
+    @Test
+    fun ueCapMrdcIntraEnDcV1590() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                    "/newEngine/input/json/ueCapMrdcIntraEnDcV1590.json",
+                )!!,
+            )
+
+        // MRDC
+        // ENDC combos
+        val expectedEndcCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapMrdcIntraEnDcV1590-EN-DC.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+
+        val actualEndcCsv =
+            Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedEndcCsv, actualEndcCsv)
+
+        // EUTRA
+        // Category
+        assertEquals(19, capabilities.lteCategoryDL)
+        assertEquals(18, capabilities.lteCategoryUL)
+
+        // Combos
+        val expectedLteCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapMrdcIntraEnDcV1590-LTE.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+        val actualLteCsv =
+            Output.toCsv(capabilities.lteCombos).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedLteCsv, actualLteCsv)
+
+        // Bands
+        val expectedLteBands =
+            listOf(
+                ComponentLte(
+                    1,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    3,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    7,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    20,
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    28,
+                    mimoDL = 2,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256),
+                ComponentLte(
+                    38,
+                    mimoDL = 4,
+                    mimoUL = 1,
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                )
+            )
+        val actualLteBands = capabilities.lteBands
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
+
+        // NR NSA bands in eutra capability
+        val actualNrNsaBands = capabilities.nrNSAbands
+        val expectedNrNsaBands =
+            listOf(
+                BandNrDetails(1),
+                BandNrDetails(2),
+                BandNrDetails(3),
+                BandNrDetails(5),
+                BandNrDetails(7),
+                BandNrDetails(8),
+                BandNrDetails(12),
+                BandNrDetails(20),
+                BandNrDetails(25),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(40),
+                BandNrDetails(41),
+                BandNrDetails(66),
+                BandNrDetails(75),
+                BandNrDetails(77),
+                BandNrDetails(78)
+            )
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
+
+        // NR SA bands in eutra capability
+        val actualNrSaBands = capabilities.nrSAbands
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // NR
+        // bands in nr capability
+        val actualNrBands = capabilities.nrBands
+        val expectedNrBands =
+            listOf(
+                BandNrDetails(1).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(2).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(3).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
+                },
+                BandNrDetails(5).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(7).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(8).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(12).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
+                },
+                BandNrDetails(20).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(25).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(28).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(38).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
+                },
+                BandNrDetails(40).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
+                },
+                BandNrDetails(41).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
+                        )
+                },
+                BandNrDetails(66).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    rateMatchingLteCrs = true
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                },
+                BandNrDetails(75).apply {
+                    modDL = Modulation.QAM256
+                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5), intArrayOf()))
+                },
+                BandNrDetails(77).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
+                        )
+                },
+                BandNrDetails(78).apply {
+                    modDL = Modulation.QAM256
+                    modUL = Modulation.QAM256
+                    powerClass = 2
+                    bandwidths =
+                        arrayOf(
+                            BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
+                        )
+                }
+            )
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
+
+        // NR Combos
+        val expectedNrCsv = emptyList<String>()
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+
+        assertLinesMatch(expectedNrCsv, actualNrCsv)
+    }
+
+    @Test
+    fun ueCapEutraNrOnlyIntraBcsAll() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                    "/newEngine/input/json/ueCapEutraNrOnlyIntraBcsAll.json",
+                )!!,
+            )
+
+        // MRDC
+        // ENDC combos
+        val expectedEndcCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapEutraNrOnlyIntraBcsAll-EN-DC.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+
+        val actualEndcCsv =
+            Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedEndcCsv, actualEndcCsv)
+    }
+
+    @Test
     fun ueCapNrDc() {
         val capabilities =
             ImportCapabilityInformation.parse(
