@@ -3,7 +3,7 @@ package it.smartphonecombo.uecapabilityparser.model
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import java.util.WeakHashMap
 
-sealed interface BCS {
+sealed interface BCS : Comparable<BCS> {
     fun toCompactStr(): String
 
     companion object {
@@ -16,6 +16,7 @@ sealed interface BCS {
          * Converts the given binaryString to an instance of [BCS]
          * - If binaryString has no bit with value 1 return [EmptyBCS]
          * - If binaryString has only one bit with value 1 return [SingleBCS]
+         * - if binaryString has 32 bits with value 1 return [AllBCS]
          * - otherwise it returns a [MultiBCS]
          */
         fun fromBinaryString(binaryString: String): BCS {
@@ -35,6 +36,7 @@ sealed interface BCS {
                 when (bcsList.size) {
                     0 -> EmptyBCS
                     1 -> SingleBCS(bcsList.first())
+                    32 -> AllBCS
                     else -> MultiBCS(bcsList.toIntArray())
                 }
             cacheBinary[binaryString] = result
@@ -75,16 +77,33 @@ sealed interface BCS {
 object EmptyBCS : BCS {
     override fun toCompactStr(): String = ""
     override fun toString(): String = ""
+    override fun compareTo(other: BCS): Int {
+        // EmptyBCS is below any BCS
+        return if (other == this) 0 else -1
+    }
 }
 
 object AllBCS : BCS {
     override fun toCompactStr(): String = "mAll"
     override fun toString(): String = "all"
+    override fun compareTo(other: BCS): Int {
+        // AllBcs is above any BCS
+        return if (other == this) 0 else 1
+    }
 }
 
 data class SingleBCS(private val bcs: Int) : BCS {
     override fun toCompactStr(): String = bcs.toString()
     override fun toString(): String = bcs.toString()
+    override fun compareTo(other: BCS): Int {
+        return when (other) {
+            is SingleBCS -> bcs.compareTo(other.bcs)
+            // SingleBCS is above EmptyBCS
+            is EmptyBCS -> 1
+            // SingleBCS is below MultiBCS and AllBCS
+            else -> -1
+        }
+    }
 }
 
 data class MultiBCS(private val bcsArray: IntArray) : BCS {
@@ -118,5 +137,16 @@ data class MultiBCS(private val bcsArray: IntArray) : BCS {
 
     override fun hashCode(): Int {
         return bcsArray.contentHashCode()
+    }
+
+    override fun compareTo(other: BCS): Int {
+        return when (other) {
+            // Compare bcs length
+            is MultiBCS -> bcsArray.size.compareTo(other.bcsArray.size)
+            // MultiBCS is below AllBCS
+            is AllBCS -> -1
+            // MultiBcs is above EmptyBCS, SingleBCS
+            else -> 1
+        }
     }
 }

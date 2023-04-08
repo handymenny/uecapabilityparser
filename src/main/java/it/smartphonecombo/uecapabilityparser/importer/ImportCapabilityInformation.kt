@@ -16,6 +16,7 @@ import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Duplex
+import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -135,7 +136,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.nrDcCombos =
                 nrDcComboWithFeatures.map { combo ->
                     val (fr2, fr1) = combo.masterComponents.partition { it.isFR2 }
-                    ComboNrDc(fr1, fr2, combo.featureSet)
+                    ComboNrDc(fr1, fr2, combo.featureSet, combo.bcs)
                 }
         }
 
@@ -615,9 +616,54 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         return if (newLteComponents.isNotEmpty()) {
             newLteComponents.sortDescending()
-            ComboEnDc(newLteComponents, newNrComponents, combo.featureSet)
+            val comboEnDc = combo as ComboEnDc
+            val (bcsNr, bcsEutra, bcsIntraEnDc) =
+                mergeAndSplitEnDcBCS(
+                    newLteComponents,
+                    newNrComponents,
+                    comboEnDc.bcsNr,
+                    comboEnDc.bcsEutra,
+                    combo.bcsIntraEnDc
+                )
+            combo.copy(
+                masterComponents = newLteComponents,
+                secondaryComponents = newNrComponents,
+                bcsNr = bcsNr,
+                bcsEutra = bcsEutra,
+                bcsIntraEnDc = bcsIntraEnDc
+            )
         } else {
-            ComboNr(newNrComponents, combo.featureSet)
+            (combo as ComboNr).copy(masterComponents = newNrComponents)
+        }
+    }
+
+    private fun mergeAndSplitEnDcBCS(
+        lteComponents: List<ComponentLte>,
+        nrComponents: List<ComponentNr>,
+        bcsNr: BCS,
+        bcsEutra: BCS,
+        bcsIntraEnDc: BCS
+    ): Triple<BCS, BCS, BCS> {
+        val intraBandEnDC =
+            nrComponents.any { nr -> lteComponents.any { lte -> nr.band == lte.band } }
+        val interBandLte =
+            !intraBandEnDC ||
+                lteComponents.drop(1).any { it.band != lteComponents.firstOrNull()?.band }
+        val interBandNr =
+            !intraBandEnDC ||
+                nrComponents.drop(1).any { it.band != nrComponents.firstOrNull()?.band }
+
+        return if (!intraBandEnDC) {
+            // Don't set bcsIntraEnDc for ENDC Combos without any intraEnDc component
+            Triple(bcsNr, bcsEutra, EmptyBCS)
+        } else if (!interBandLte && !interBandNr) {
+            // intraBandEnDc without additional interBand only has intraEnDc bcs
+            // Set it to the max between bcsNr and bcsIntraEnDc to handle cases
+            // where bcsIntraEnDc is missing
+            Triple(EmptyBCS, EmptyBCS, maxOf(bcsIntraEnDc, bcsNr))
+        } else {
+            // interBand + intraBand, set all BCS available
+            Triple(bcsNr, bcsEutra, bcsIntraEnDc)
         }
     }
 
@@ -751,6 +797,10 @@ object ImportCapabilityInformation : ImportCapabilities {
             } else {
                 "rf-Parameters.supportedBandCombinationList"
             }
+        val bandCombinationsListv1590 =
+            nrCapability.rootJson
+                .getArrayAtPath("rf-ParametersMRDC.supportedBandCombinationList-v1590")
+                ?.iterator()
         val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
         val list =
             bandCombinationsList?.mapNotNull { bandCombination ->
@@ -766,10 +816,24 @@ object ImportCapabilityInformation : ImportCapabilities {
                     }
                 }
                 val featureSetCombination = bandCombination.getInt("featureSetCombination") ?: 0
+                val bcsString = bandCombination.getString("supportedBandwidthCombinationSet") ?: "1"
+                val bcs = BCS.fromBinaryString(bcsString)
                 if (endc) {
-                    ComboEnDc(lteBands, nrBands, featureSetCombination)
+                    val bcsEutraString =
+                        bandCombination
+                            .getObject("ca-ParametersEUTRA")
+                            ?.getString("supportedBandwidthCombinationSetEUTRA-v1530")
+                            ?: "1"
+                    val bcsEutra = BCS.fromBinaryString(bcsEutraString)
+                    val bcsIntraEnDcString =
+                        bandCombinationsListv1590
+                            ?.next()
+                            ?.getString("supportedBandwidthCombinationSetIntraENDC")
+                            ?: "1"
+                    val bcsIntraEnDc = BCS.fromBinaryString(bcsIntraEnDcString)
+                    ComboEnDc(lteBands, nrBands, featureSetCombination, bcs, bcsEutra, bcsIntraEnDc)
                 } else {
-                    ComboNr(nrBands, featureSetCombination)
+                    ComboNr(nrBands, featureSetCombination, bcs)
                 }
             }
         return list ?: emptyList()
@@ -812,7 +876,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 if (nrCombo == null || featureSet == null) {
                     return@mapIndexedNotNull null
                 }
-                ComboNr(nrCombo.masterComponents, featureSet)
+                nrCombo.copy(featureSet = featureSet)
             }
                 ?: emptyList()
         return list

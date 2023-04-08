@@ -25,7 +25,8 @@ data class ComboNr(
                 transform = IComponent::toCompactStr,
             )
 
-        return "$nr-$featureSet"
+        val bcsString = if (bcs == EmptyBCS) "" else "-${bcs.toCompactStr()}"
+        return "$nr$bcsString"
     }
 
     override fun toCsv(
@@ -54,6 +55,6 @@ data class ComboNr(
             separator
         )
 
-        return "$compact$nrBandBwScs$nrUlBwMod$nrMimoDl$nrMimoUl"
+        return "$compact$nrBandBwScs$nrUlBwMod$nrMimoDl$nrMimoUl$bcs"
     }
 }

@@ -173,6 +173,13 @@ object Output {
         for (i in 1..nrDcUlCC) {
             header.append("mimo FR2 UL").append(i).append(separator)
         }
+
+        if (lteDlCC > 0) {
+            header.append("BCS NR", separator, "BCS LTE", separator, "BCS intraENDC")
+        } else {
+            header.append("BCS")
+        }
+
         header.append("\n")
 
         return if (nrDcDlCC > 0) {
