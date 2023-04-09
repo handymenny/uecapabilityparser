@@ -6,6 +6,8 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
+import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.toMimo
@@ -104,16 +106,21 @@ object ImportNvItem : ImportCapabilities {
             val bwClass = BwClass.valueOf(input.readUnsignedByte())
 
             // read mimo/multiMimo
-            var ant = 0
-            if (hasMimo) {
-                ant = input.readUnsignedByte()
-                if (hasMultiMimo) {
-                    repeat(7) {
-                        // Ignore mimo for each component in intraband contigous CA
-                        input.readUnsignedByte()
+            val ant =
+                if (!hasMimo) {
+                    EmptyMimo
+                } else if (!hasMultiMimo) {
+                    input.readUnsignedByte().toMimo()
+                } else {
+                    val list = mutableListWithCapacity<Int>(8)
+                    repeat(8) {
+                        val antSubCC = input.readUnsignedByte()
+                        if (antSubCC > 0) {
+                            list.add(antSubCC)
+                        }
                     }
+                    Mimo.from(list.toIntArray())
                 }
-            }
 
             if (band == 0) {
                 // Null/Empty component
@@ -122,9 +129,9 @@ object ImportNvItem : ImportCapabilities {
 
             val component =
                 if (isDL) {
-                    ComponentLte(band, bwClass, BwClass.NONE, ant.toMimo())
+                    ComponentLte(band, bwClass, BwClass.NONE, ant)
                 } else {
-                    ComponentLte(band, BwClass.NONE, bwClass, mimoUL = ant.toMimo())
+                    ComponentLte(band, BwClass.NONE, bwClass, mimoUL = ant)
                 }
 
             lteComponents.add(component)
