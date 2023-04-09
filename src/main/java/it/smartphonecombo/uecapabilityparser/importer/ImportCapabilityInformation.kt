@@ -1,8 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.BwMap
-import it.smartphonecombo.uecapabilityparser.extension.Mimo
-import it.smartphonecombo.uecapabilityparser.extension.fromLiteral
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getInt
@@ -17,7 +15,9 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Duplex
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
+import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
@@ -40,10 +40,12 @@ import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSets
 import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
+import it.smartphonecombo.uecapabilityparser.model.fromLiteral
 import it.smartphonecombo.uecapabilityparser.model.json.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrRrcCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.io.InputStreamReader
 import kotlinx.serialization.SerializationException
@@ -350,7 +352,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 it.getArray("bandParametersDL-v10i0")
                     ?.get(0)
                     ?.getString("fourLayerTM3-TM4-r10")
-                    ?.let { combinations[i][j].mimoDL = 4 }
+                    ?.let { combinations[i][j].mimoDL = Mimo.from(4) }
             }
         }
     }
@@ -475,8 +477,8 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                     ComponentLte(
                         band,
-                        mimoDL = 2,
-                        mimoUL = mimoUl,
+                        mimoDL = 2.toMimo(),
+                        mimoUL = mimoUl.toMimo(),
                         modDL = Modulation.QAM64,
                         modUL = defaultModUL
                     )
@@ -527,7 +529,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun List<List<ComponentLte>>.hasHighMimo() = any { bands ->
-        bands.any { it.mimoDL > 2 }
+        bands.any { it.mimoDL.average() > 2 }
     }
 
     private fun List<List<ComponentLte>>.mergeBcs(bcsList: List<BCS>) =
@@ -725,7 +727,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         } else {
             // only UL
             componentLte.classDL = BwClass.NONE
-            componentLte.mimoDL = 0
+            componentLte.mimoDL = EmptyMimo
         }
 
         if (ulFeature != null) {
@@ -734,7 +736,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         } else {
             // only DL
             componentLte.classUL = BwClass.NONE
-            componentLte.mimoUL = 0
+            componentLte.mimoUL = EmptyMimo
         }
         return componentLte
     }
@@ -754,7 +756,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         } else {
             // only UL
             componentNr.classDL = BwClass.NONE
-            componentNr.mimoDL = 0
+            componentNr.mimoDL = EmptyMimo
         }
 
         if (ulFeature != null) {
@@ -763,7 +765,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         } else {
             // only DL
             componentNr.classUL = BwClass.NONE
-            componentNr.mimoUL = 0
+            componentNr.mimoUL = EmptyMimo
         }
         return componentNr
     }
@@ -1024,8 +1026,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                 featureSets.getArray("featureSetsDL-PerCC-r15")?.map {
                     val qam = Modulation.QAM256
                     val mimoLayers = it.getString("supportedMIMO-CapabilityDL-MRDC-r15")
-                    val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 2)
-                    FeaturePerCCLte(mimo = mimo, qam = qam)
+                    val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
+                    FeaturePerCCLte(mimo = mimo.toMimo(), qam = qam)
                 }
 
             downlink =
@@ -1054,8 +1056,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                             Modulation.QAM64
                         }
                     val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
-                    val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 1)
-                    FeaturePerCCLte(LinkDirection.UPLINK, mimo = mimo, qam = qam)
+                    val mimo = maxOf(Int.fromLiteral(mimoLayers), 1)
+                    FeaturePerCCLte(LinkDirection.UPLINK, mimo = mimo.toMimo(), qam = qam)
                 }
 
             // featureSets.getArray("featureSetsDL-v1550") - Never seen on the wild
@@ -1104,11 +1106,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
                     val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
                     val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
-                    val mimo = maxOf(Mimo.fromLiteral(mimoLayers), 2)
+                    val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
                     val qam = Modulation.of(it.getString("supportedModulationOrderDL"))
 
                     FeaturePerCCNr(
-                        mimo = mimo,
+                        mimo = mimo.toMimo(),
                         qam = qam,
                         scs = scs,
                         bw = bw,
@@ -1155,11 +1157,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val mimoNonCbLayers = it.getString("maxNumberMIMO-LayersNonCB-PUSCH")
 
                     val mimo =
-                        maxOf(Mimo.fromLiteral(mimoCbLayers), Mimo.fromLiteral(mimoNonCbLayers), 1)
+                        maxOf(Int.fromLiteral(mimoCbLayers), Int.fromLiteral(mimoNonCbLayers), 1)
                     val qam = Modulation.of(it.getString("supportedModulationOrderUL"))
                     FeaturePerCCNr(
                         type = LinkDirection.UPLINK,
-                        mimo = mimo,
+                        mimo = mimo.toMimo(),
                         qam = qam,
                         scs = scs,
                         bw = bw,
@@ -1197,7 +1199,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     private fun parseBandParametersDL(
         bandParameters: JsonElement,
         release: Int
-    ): Pair<BwClass, Int> {
+    ): Pair<BwClass, Mimo> {
         val bandParametersDL =
             if (release == 13) {
                 bandParameters.getObject("bandParametersDL-r13")
@@ -1206,7 +1208,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
 
         if (bandParametersDL == null) {
-            return Pair(BwClass.NONE, 0)
+            return Pair(BwClass.NONE, EmptyMimo)
         }
 
         // both r10 and r11 uses ca-BandwidthClassDL/supportedMIMO-CapabilityDL -r10
@@ -1214,7 +1216,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         val dlClassString = bandParametersDL.getString("ca-BandwidthClassDL-r$subRelease")
         val dlClass = BwClass.valueOf(dlClassString)
         val mimoLayers = bandParametersDL.getString("supportedMIMO-CapabilityDL-r$subRelease")
-        var dlMimo = Mimo.fromLiteral(mimoLayers)
+        var dlMimo = Int.fromLiteral(mimoLayers)
 
         // Some devices only reports fourLayerTM3-TM4-rXX or only reports 4rx in
         // fourLayerTM3-TM4-rXX
@@ -1228,13 +1230,13 @@ object ImportCapabilityInformation : ImportCapabilities {
             dlMimo = 2
         }
 
-        return Pair(dlClass, dlMimo)
+        return Pair(dlClass, dlMimo.toMimo())
     }
 
     private fun parseBandParametersUL(
         bandParameters: JsonElement,
         release: Int
-    ): Pair<BwClass, Int> {
+    ): Pair<BwClass, Mimo> {
         val bandParametersUL =
             if (release == 13) {
                 bandParameters.getObject("bandParametersUL-r13")
@@ -1243,7 +1245,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
 
         if (bandParametersUL == null) {
-            return Pair(BwClass.NONE, 0)
+            return Pair(BwClass.NONE, EmptyMimo)
         }
 
         // both r10 and r11 uses ca-BandwidthClassUL/supportedMIMO-CapabilityUL -r10
@@ -1252,13 +1254,13 @@ object ImportCapabilityInformation : ImportCapabilities {
         val ulClassString = bandParametersUL.getString("ca-BandwidthClassUL-r10")
         val ulClass = BwClass.valueOf(ulClassString)
         val mimoLayers = bandParametersUL.getString("supportedMIMO-CapabilityUL-r$subRelease")
-        var ulMimo = Mimo.fromLiteral(mimoLayers)
+        var ulMimo = Int.fromLiteral(mimoLayers)
         if (ulMimo == 0) {
             // supportedMIMO-CapabilityUL isn't reported if ulMimo = 1
             ulMimo = 1
         }
 
-        return Pair(ulClass, ulMimo)
+        return Pair(ulClass, ulMimo.toMimo())
     }
 
     private fun parseBandParameters(bandParameters: JsonElement, release: Int): ComponentLte {

@@ -18,6 +18,7 @@ import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -26,6 +27,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
@@ -385,33 +387,35 @@ object Import0xB826 : ImportCapabilities {
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getMimoFromIndex(index: Int): Int {
-        return when (index) {
-            0 -> 0
-            1,
-            25,
-            16,
-            9,
-            4 -> 1
-            2,
-            42,
-            56,
-            72,
-            in 26..30,
-            in 17..20,
-            10,
-            11,
-            12,
-            5,
-            6 -> 2
-            3,
-            in 31..35,
-            in 21..24,
-            in 13..15,
-            7,
-            8 -> 4
-            else -> index
-        }
+    private fun getMimoFromIndex(index: Int): Mimo {
+        val value =
+            when (index) {
+                0 -> 0
+                1,
+                25,
+                16,
+                9,
+                4 -> 1
+                2,
+                42,
+                56,
+                72,
+                in 26..30,
+                in 17..20,
+                10,
+                11,
+                12,
+                5,
+                6 -> 2
+                3,
+                in 31..35,
+                in 21..24,
+                in 13..15,
+                7,
+                8 -> 4
+                else -> index
+            }
+        return value.toMimo()
     }
 
     /**

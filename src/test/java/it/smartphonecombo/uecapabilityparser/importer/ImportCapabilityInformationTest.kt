@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import it.smartphonecombo.uecapabilityparser.util.Output
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -38,114 +39,119 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     2,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     4,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     5,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     8,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     12,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     13,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     17,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
-                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256, modUL = Modulation.QAM64),
+                ComponentLte(
+                    32,
+                    mimoDL = 2.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
                 ComponentLte(
                     38,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     40,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     66,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 )
@@ -203,78 +209,78 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     2,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     4,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     5,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     12,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     13,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     26,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     46,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     48,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     66,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
@@ -317,57 +323,57 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     8,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     38,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     40,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
@@ -419,199 +425,209 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     2,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     4,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     5,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     8,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     12,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     13,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     14,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     17,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     18,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     19,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     25,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     26,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
-                ComponentLte(29, mimoDL = 2, modDL = Modulation.QAM1024, modUL = Modulation.QAM64),
+                ComponentLte(
+                    29,
+                    mimoDL = 2.toMimo(),
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM64
+                ),
                 ComponentLte(
                     30,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
-                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM1024, modUL = Modulation.QAM64),
+                ComponentLte(
+                    32,
+                    mimoDL = 2.toMimo(),
+                    modDL = Modulation.QAM1024,
+                    modUL = Modulation.QAM64
+                ),
                 ComponentLte(
                     34,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     38,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     39,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     40,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     42,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     46,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     48,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     66,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     71,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM1024,
                     modUL = Modulation.QAM256
                 ),
@@ -676,58 +692,63 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 2,
-                    mimoUL = 2,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 2.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 2,
-                    mimoUL = 2,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 2.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
                 ComponentLte(
                     8,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
-                ComponentLte(32, mimoDL = 2, mimoUL = 1, modDL = Modulation.QAM64),
+                ComponentLte(
+                    32,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM64
+                ),
                 ComponentLte(
                     38,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 ),
                 ComponentLte(
                     40,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM64,
                     modUL = Modulation.QAM16
                 )
@@ -771,57 +792,57 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 2,
-                    mimoUL = 2,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 2.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 2,
-                    mimoUL = 2,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 2.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 2,
-                    mimoUL = 2,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 2.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 2,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 2.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 2,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 2.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     38,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     40,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 )
@@ -1201,86 +1222,91 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     5,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     8,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
-                ComponentLte(32, mimoDL = 4, modDL = Modulation.QAM256, modUL = Modulation.QAM64),
+                ComponentLte(
+                    32,
+                    mimoDL = 4.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
                 ComponentLte(
                     38,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     40,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     42,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     43,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
@@ -1488,71 +1514,71 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     8,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     18,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     19,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     21,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     26,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     42,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
@@ -1663,44 +1689,44 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
-                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256),
+                ComponentLte(32, mimoDL = 2.toMimo(), modDL = Modulation.QAM256),
                 ComponentLte(
                     38,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
@@ -1925,100 +1951,105 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     5,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     8,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
-                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256, modUL = Modulation.QAM64),
+                ComponentLte(
+                    32,
+                    mimoDL = 2.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
                 ComponentLte(
                     34,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     38,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     39,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     40,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     41,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     42,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 ),
                 ComponentLte(
                     43,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM64
                 )
@@ -2199,44 +2230,44 @@ internal class ImportCapabilityInformationTest {
             listOf(
                 ComponentLte(
                     1,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     3,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     7,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     20,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
                 ComponentLte(
                     28,
-                    mimoDL = 2,
-                    mimoUL = 1,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 ),
-                ComponentLte(32, mimoDL = 2, modDL = Modulation.QAM256),
+                ComponentLte(32, mimoDL = 2.toMimo(), modDL = Modulation.QAM256),
                 ComponentLte(
                     38,
-                    mimoDL = 4,
-                    mimoUL = 1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
                     modDL = Modulation.QAM256,
                     modUL = Modulation.QAM256
                 )

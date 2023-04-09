@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -121,9 +122,9 @@ object ImportNvItem : ImportCapabilities {
 
             val component =
                 if (isDL) {
-                    ComponentLte(band, bwClass, BwClass.NONE, ant)
+                    ComponentLte(band, bwClass, BwClass.NONE, ant.toMimo())
                 } else {
-                    ComponentLte(band, BwClass.NONE, bwClass, mimoUL = ant)
+                    ComponentLte(band, BwClass.NONE, bwClass, mimoUL = ant.toMimo())
                 }
 
             lteComponents.add(component)

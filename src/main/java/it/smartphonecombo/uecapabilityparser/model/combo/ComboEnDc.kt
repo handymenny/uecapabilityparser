@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.populateCsvStringBuilders
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
@@ -88,7 +89,7 @@ data class ComboEnDc(
 
         for (component in componentsLte) {
             lteDl.append(component.band).append(component.classDL).append(separator)
-            if (component.mimoDL != 0) lteMimoDl.append(component.mimoDL)
+            if (component.mimoDL != EmptyMimo) lteMimoDl.append(component.mimoDL)
             lteMimoDl.append(separator)
 
             if (component.classUL != BwClass.NONE) {
@@ -99,7 +100,7 @@ data class ComboEnDc(
                     .append(component.modUL)
                     .append(separator)
 
-                if (component.mimoUL != 0) {
+                if (component.mimoUL != EmptyMimo) {
                     lteMimoUl.append(component.mimoUL)
                 }
                 lteMimoUl.append(separator)

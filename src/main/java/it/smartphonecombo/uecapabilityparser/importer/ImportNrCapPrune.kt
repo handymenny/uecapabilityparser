@@ -6,12 +6,15 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
+import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -112,11 +115,11 @@ object ImportNrCapPrune : ImportCapabilities {
     }
 
     /** Extract mimo from the given string. Only the first mimo found is returned. */
-    private fun mimoParsing(mimo: String): Int {
+    private fun mimoParsing(mimo: String): Mimo {
         return if (mimo.isEmpty()) {
-            0
+            EmptyMimo
         } else {
-            mimo.split(",").first().toInt()
+            mimo.split(",").first().toInt().toMimo()
         }
     }
 }
