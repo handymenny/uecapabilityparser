@@ -104,7 +104,7 @@ object ImportNvItem : ImportCapabilities {
             val bwClass = BwClass.valueOf(input.readUnsignedByte())
 
             // read mimo/multiMimo
-            var ant = if (isDL) 2 else 1
+            var ant = 0
             if (hasMimo) {
                 ant = input.readUnsignedByte()
                 if (hasMultiMimo) {
