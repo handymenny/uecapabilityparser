@@ -50,4 +50,14 @@ internal class Import0xB0CDTest {
     fun parse0xB0CDv41Multi() {
         parse("v41multi.txt", "v41multi.csv")
     }
+
+    @Test
+    fun parse0xB0CDv40MixedMimo() {
+        parse("v40mixedMimo.txt", "v40mixedMimo.csv")
+    }
+
+    @Test
+    fun parse0xB0CDv41MixedMimo() {
+        parse("v41mixedMimo.txt", "v41mixedMimo.csv")
+    }
 }
