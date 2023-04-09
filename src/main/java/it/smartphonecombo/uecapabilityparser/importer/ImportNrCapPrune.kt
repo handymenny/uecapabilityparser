@@ -114,12 +114,8 @@ object ImportNrCapPrune : ImportCapabilities {
         }
     }
 
-    /** Extract mimo from the given string. Only the first mimo found is returned. */
+    /** Extract mimo from the given string */
     private fun mimoParsing(mimo: String): Mimo {
-        return if (mimo.isEmpty()) {
-            EmptyMimo
-        } else {
-            mimo.split(",").first().toInt().toMimo()
-        }
+        return if (mimo.isEmpty()) EmptyMimo else mimo.replace(",", "").toInt().toMimo()
     }
 }
