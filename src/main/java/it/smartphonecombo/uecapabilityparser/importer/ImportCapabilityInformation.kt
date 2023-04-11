@@ -376,32 +376,13 @@ object ImportCapabilityInformation : ImportCapabilities {
                 supportedBandCombinationV1270[i].getArray("bandParameterList-v1270") ?: continue
 
             for (j in bandParameterList.indices) {
-                val bandParameterDLV1270 =
-                    bandParameterList[j].getArray("bandParametersDL-v1270")?.get(0)
-                val intraBandCCInfoList =
-                    bandParameterDLV1270?.getArray("intraBandContiguousCC-InfoList-r12")
-
-                if (intraBandCCInfoList == null || intraBandCCInfoList.size < 2) {
-                    continue
-                }
-
-                val default = combinations[i][j].mimoDL.average().toInt()
-                var allDefault = true
-                val mixedMimo =
-                    intraBandCCInfoList.map {
-                        val str = it.getString("supportedMIMO-CapabilityDL-r12")
-                        if (str != null) {
-                            allDefault = false
-                            Int.fromLiteral(str)
-                        } else {
-                            default
-                        }
+                bandParameterList[j]
+                    .getArray("bandParametersDL-v1270")
+                    ?.get(0)
+                    ?.getArray("intraBandContiguousCC-InfoList-r12")
+                    ?.let {
+                        combinations[i][j].mimoDL = parseMimoR12(it, combinations[i][j].mimoDL)
                     }
-
-                // Don't override mimo if all are = to default
-                if (!allDefault) {
-                    combinations[i][j].mimoDL = Mimo.from(mixedMimo.toIntArray())
-                }
             }
         }
     }
@@ -1279,7 +1260,40 @@ object ImportCapabilityInformation : ImportCapabilities {
             dlMimo = 2
         }
 
-        return Pair(dlClass, dlMimo.toMimo())
+        var resultMimo: Mimo = dlMimo.toMimo()
+        if (release == 13) {
+            // if release 13 check intraBandContiguousCC-InfoList-r13
+            bandParametersDL.getArray("intraBandContiguousCC-InfoList-r13")?.let {
+                resultMimo = parseMimoR12(it, resultMimo)
+            }
+        }
+
+        return Pair(dlClass, resultMimo)
+    }
+
+    private fun parseMimoR12(
+        intraBandCCInfoList: JsonArray,
+        defaultMimo: Mimo,
+    ): Mimo {
+        if (intraBandCCInfoList.size < 2) {
+            return defaultMimo
+        }
+
+        var allDefault = true
+        val default = defaultMimo.average().toInt()
+        val mixedMimoList =
+            intraBandCCInfoList.map {
+                val str = it.getString("supportedMIMO-CapabilityDL-r12")
+                if (str == null) {
+                    default
+                } else {
+                    allDefault = false
+                    Int.fromLiteral(str)
+                }
+            }
+
+        // Don't override mimo if all are = to default
+        return if (allDefault) defaultMimo else Mimo.from(mixedMimoList.toIntArray())
     }
 
     private fun parseBandParametersUL(

@@ -860,6 +860,153 @@ internal class ImportCapabilityInformationTest {
     }
 
     @Test
+    fun ueCapEutraCombinationReducedMimoPerCC() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                    "/newEngine/input/json/ueCapEutraCombinationReducedMimoPerCC.json",
+                )!!,
+            )
+
+        // LTE Category
+        assertEquals(19, capabilities.lteCategoryDL)
+        assertEquals(18, capabilities.lteCategoryUL)
+
+        // LTE Combos
+        val expectedCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapEutraCombinationReducedMimoPerCC.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedCsv, actualCsv)
+
+        // LTE bands
+        val expectedLteBands =
+            listOf(
+                ComponentLte(
+                    1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    3,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    5,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    7,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    8,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    20,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    28,
+                    mimoDL = 2.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    32,
+                    mimoDL = 4.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM64
+                ),
+                ComponentLte(
+                    38,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    40,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    41,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                ),
+                ComponentLte(
+                    42,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = Modulation.QAM256,
+                    modUL = Modulation.QAM256
+                )
+            )
+        val actualLteBands = capabilities.lteBands
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
+
+        // NR NSA bands in eutra capability
+        val actualNrNsaBands = capabilities.nrNSAbands
+        val expectedNrNsaBands =
+            listOf(
+                BandNrDetails(1),
+                BandNrDetails(3),
+                BandNrDetails(7),
+                BandNrDetails(8),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(40),
+                BandNrDetails(41),
+                BandNrDetails(78)
+            )
+        assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
+
+        // NR SA bands in eutra capability
+        val actualNrSaBands = capabilities.nrSAbands
+        val expectedNrSaBands =
+            listOf(
+                BandNrDetails(1),
+                BandNrDetails(3),
+                BandNrDetails(5),
+                BandNrDetails(7),
+                BandNrDetails(8),
+                BandNrDetails(20),
+                BandNrDetails(28),
+                BandNrDetails(38),
+                BandNrDetails(40),
+                BandNrDetails(41),
+                BandNrDetails(78)
+            )
+        assertArrayEquals(expectedNrSaBands.toTypedArray(), actualNrSaBands.toTypedArray())
+    }
+
+    @Test
     fun ueCapNrOneCC() {
         val capabilities =
             ImportCapabilityInformation.parse(
