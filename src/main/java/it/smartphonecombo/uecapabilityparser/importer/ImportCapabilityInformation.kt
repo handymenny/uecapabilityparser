@@ -712,24 +712,23 @@ object ImportCapabilityInformation : ImportCapabilities {
             return null
         }
 
-        // TODO: Features per CC
         val dlFeature =
             if (dlIndex >= 0) {
-                features?.downlink?.getOrNull(dlIndex)?.featureSetsPerCC?.first()
+                features?.downlink?.getOrNull(dlIndex)?.featureSetsPerCC
             } else {
                 null
             }
         val ulFeature =
             if (ulIndex >= 0) {
-                features?.uplink?.getOrNull(ulIndex)?.featureSetsPerCC?.first()
+                features?.uplink?.getOrNull(ulIndex)?.featureSetsPerCC
             } else {
                 null
             }
 
         if (
             features == null ||
-                dlFeature == null && dlIndex >= 0 ||
-                ulFeature == null && ulIndex >= 0
+                dlFeature.isNullOrEmpty() && dlIndex >= 0 ||
+                ulFeature.isNullOrEmpty() && ulIndex >= 0
         ) {
             // Return a copy without any editing
             return component.clone()
@@ -738,8 +737,8 @@ object ImportCapabilityInformation : ImportCapabilities {
         return if (featureSet.isNR) {
             mergeComponentNrAndFeature(
                 component as ComponentNr,
-                dlFeature as? FeaturePerCCNr,
-                ulFeature as? FeaturePerCCNr
+                dlFeature?.typedList<FeaturePerCCNr>(),
+                ulFeature?.typedList<FeaturePerCCNr>()
             )
         } else {
             mergeComponentLteAndFeature(component as ComponentLte, dlFeature, ulFeature)
@@ -747,22 +746,33 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
     private fun mergeComponentLteAndFeature(
         component: ComponentLte,
-        dlFeature: IFeaturePerCC?,
-        ulFeature: IFeaturePerCC?
+        dlFeature: List<IFeaturePerCC>?,
+        ulFeature: List<IFeaturePerCC>?
     ): ComponentLte {
         val componentLte = component.copy()
 
-        if (dlFeature != null) {
-            componentLte.mimoDL = dlFeature.mimo
+        if (!dlFeature.isNullOrEmpty()) {
+            if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
+                val mixedMimo = dlFeature.map { it.mimo.average().toInt() }.toIntArray()
+                componentLte.mimoDL = Mimo.from(mixedMimo)
+            } else {
+                componentLte.mimoDL = dlFeature.first().mimo
+            }
         } else {
             // only UL
             componentLte.classDL = BwClass.NONE
             componentLte.mimoDL = EmptyMimo
         }
 
-        if (ulFeature != null) {
-            componentLte.mimoUL = ulFeature.mimo
-            componentLte.modUL = ulFeature.qam
+        if (!ulFeature.isNullOrEmpty()) {
+            if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
+                val mixedMimo = ulFeature.map { it.mimo.average().toInt() }.toIntArray()
+                componentLte.mimoUL = Mimo.from(mixedMimo)
+            } else {
+                componentLte.mimoUL = ulFeature.first().mimo
+            }
+            // TODO: Handle modulation per CC
+            componentLte.modUL = ulFeature.first().qam
         } else {
             // only DL
             componentLte.classUL = BwClass.NONE
@@ -773,25 +783,38 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun mergeComponentNrAndFeature(
         component: ComponentNr,
-        dlFeature: FeaturePerCCNr?,
-        ulFeature: FeaturePerCCNr?
+        dlFeature: List<FeaturePerCCNr>?,
+        ulFeature: List<FeaturePerCCNr>?
     ): ComponentNr {
         val componentNr = component.copy()
-        if (dlFeature != null) {
-            componentNr.mimoDL = dlFeature.mimo
-            componentNr.modDL = dlFeature.qam
-            componentNr.maxBandwidth = dlFeature.bw
-            componentNr.channelBW90mhz = dlFeature.bw >= 80 && dlFeature.channelBW90mhz
-            componentNr.scs = dlFeature.scs
+        if (!dlFeature.isNullOrEmpty()) {
+            val firstFeature = dlFeature.first()
+            if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
+                val mixedMimo = dlFeature.map { it.mimo.average().toInt() }.toIntArray()
+                componentNr.mimoDL = Mimo.from(mixedMimo)
+            } else {
+                componentNr.mimoDL = firstFeature.mimo
+            }
+            // TODO: Handle modulation per CC
+            componentNr.modDL = firstFeature.qam
+            componentNr.maxBandwidth = firstFeature.bw
+            componentNr.channelBW90mhz = firstFeature.bw >= 80 && firstFeature.channelBW90mhz
+            componentNr.scs = firstFeature.scs
         } else {
             // only UL
             componentNr.classDL = BwClass.NONE
             componentNr.mimoDL = EmptyMimo
         }
 
-        if (ulFeature != null) {
-            componentNr.mimoUL = ulFeature.mimo
-            componentNr.modUL = ulFeature.qam
+        if (!ulFeature.isNullOrEmpty()) {
+            if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
+                val mixedMimo = ulFeature.map { it.mimo.average().toInt() }.toIntArray()
+                componentNr.mimoUL = Mimo.from(mixedMimo)
+            } else {
+                componentNr.mimoUL = ulFeature.first().mimo
+            }
+            // TODO: Handle modulation per CC
+            componentNr.modUL = ulFeature.first().qam
         } else {
             // only DL
             componentNr.classUL = BwClass.NONE
