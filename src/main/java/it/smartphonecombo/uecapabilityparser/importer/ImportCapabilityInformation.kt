@@ -190,6 +190,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                 ?.let { parseCaMimoV10i0(it, combinations) }
         }
 
+        // parse mimo-perCC ("mixed mimo")
+        eutraCapability.eutraCapabilityV1270
+            ?.getArrayAtPath("rf-Parameters-v1270.supportedBandCombination-v1270")
+            ?.let { parseCaMimoV1270(it, combinations) }
+
         // Basic Modulation - set 256/64qam DL or 64/16qam UL from bandList
         setModulationFromBandList(combinations, bandList)
 
@@ -246,6 +251,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                 ?.getArrayAtPath("rf-Parameters-v11d0.supportedBandCombinationAdd-v11d0")
                 ?.let { parseCaMimoV10i0(it, combinations) }
         }
+
+        // parse mimo-perCC ("mixed mimo")
+        eutraCapability.eutraCapabilityV1270
+            ?.getArrayAtPath("rf-Parameters-v1270.supportedBandCombinationAdd-v1270")
+            ?.let { parseCaMimoV1270(it, combinations) }
 
         // Basic Modulation - set 256qam or 64qam from bandList
         setModulationFromBandList(combinations, bandList)
@@ -353,6 +363,45 @@ object ImportCapabilityInformation : ImportCapabilities {
                     ?.get(0)
                     ?.getString("fourLayerTM3-TM4-r10")
                     ?.let { combinations[i][j].mimoDL = Mimo.from(4) }
+            }
+        }
+    }
+
+    private fun parseCaMimoV1270(
+        supportedBandCombinationV1270: List<JsonElement>,
+        combinations: List<List<ComponentLte>>
+    ) {
+        for (i in supportedBandCombinationV1270.indices) {
+            val bandParameterList =
+                supportedBandCombinationV1270[i].getArray("bandParameterList-v1270") ?: continue
+
+            for (j in bandParameterList.indices) {
+                val bandParameterDLV1270 =
+                    bandParameterList[j].getArray("bandParametersDL-v1270")?.get(0)
+                val intraBandCCInfoList =
+                    bandParameterDLV1270?.getArray("intraBandContiguousCC-InfoList-r12")
+
+                if (intraBandCCInfoList == null || intraBandCCInfoList.size < 2) {
+                    continue
+                }
+
+                val default = combinations[i][j].mimoDL.average().toInt()
+                var allDefault = true
+                val mixedMimo =
+                    intraBandCCInfoList.map {
+                        val str = it.getString("supportedMIMO-CapabilityDL-r12")
+                        if (str != null) {
+                            allDefault = false
+                            Int.fromLiteral(str)
+                        } else {
+                            default
+                        }
+                    }
+
+                // Don't override mimo if all are = to default
+                if (!allDefault) {
+                    combinations[i][j].mimoDL = Mimo.from(mixedMimo.toIntArray())
+                }
             }
         }
     }
