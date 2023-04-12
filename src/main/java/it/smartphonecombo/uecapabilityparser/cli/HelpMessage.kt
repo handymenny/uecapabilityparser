@@ -17,6 +17,10 @@ object HelpMessage {
         """Output a csv, if "-" is the csv will be output to standard output.
         Some parsers output multiple CSVs, in these cases "-LTE", "-NR", "-EN-DC",
         "-NR-DC" will be added before the extension"""
+    const val KEYED_JSON =
+        """Output a JSON file containing an object that maps the appropriate RAT/capability type
+        to its respective capability data. E.g., { "lte": "combo;band1;..." }. If "-" is provided
+         in place of a file name, this will be outputted to standard output."""
     const val UE_LOG =
         """Output the uelog, if "-" is specified the uelog will be output to standard output"""
     const val DEBUG = "Print debug info"

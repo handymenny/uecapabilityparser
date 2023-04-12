@@ -30,8 +30,8 @@ import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 import it.smartphonecombo.uecapabilityparser.util.Output
 import it.smartphonecombo.uecapabilityparser.util.Property
 import java.io.InputStreamReader
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
 
 object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs = true) {
     init {
@@ -56,6 +56,8 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
 
     private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
 
+    private val keyedJson by option("--keyed-json", help = HelpMessage.KEYED_JSON, metavar = "FILE")
+
     private val ueLog by option("-l", "--uelog", help = HelpMessage.UE_LOG, metavar = "FILE")
 
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
@@ -66,6 +68,10 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
         csv?.let {
             val csvOutput = if (it == "-") null else it
             csvOutput(comboList, csvOutput)
+        }
+        keyedJson?.let {
+            val jsonOutput = if (it == "-") null else it
+            keyedJsonOutput(comboList, jsonOutput)
         }
     }
 
@@ -283,5 +289,68 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
                 csvPath?.appendBeforeExtension("-NR-DC")
             )
         }
+    }
+
+    /**
+     * Outputs a set of capabilities to a JSON object mapping capability type to their CSV(s).
+     *
+     * For example, a set of capabilities with only LTE would output in a format like this:
+     * ```json
+     * {
+     *   "lte": "combo;band1;band2;band3;..."
+     * }
+     * ```
+     */
+    private fun keyedJsonOutput(comboList: Capabilities, jsonPath: String?) {
+        val format = Json {}
+
+        if (type !in arrayOf("W", "N", "H", "QNR", "CNR", "QC", "O")) {
+            // Output for single RAT capabilities is always LTE
+
+            val json = buildJsonObject {
+                put(
+                    "lte",
+                    JsonPrimitive(Output.toCsv(comboList)),
+                )
+            }
+
+            return Output.outputFileOrStdout(format.encodeToString(json), jsonPath)
+        }
+
+        val json = buildJsonObject {
+            val lteCombos = comboList.lteCombos
+            if (lteCombos.isNotEmpty()) {
+                put(
+                    "lte",
+                    JsonPrimitive(Output.toCsv(lteCombos)),
+                )
+            }
+
+            val nrCombos = comboList.nrCombos
+            if (nrCombos.isNotEmpty()) {
+                put(
+                    "nr",
+                    JsonPrimitive(Output.toCsv(nrCombos)),
+                )
+            }
+
+            val enDcCombos = comboList.enDcCombos
+            if (enDcCombos.isNotEmpty()) {
+                put(
+                    "en-dc",
+                    JsonPrimitive(Output.toCsv(enDcCombos)),
+                )
+            }
+
+            val nrDcCombos = comboList.nrDcCombos
+            if (nrDcCombos.isNotEmpty()) {
+                put(
+                    "nr-dc",
+                    JsonPrimitive(Output.toCsv(nrDcCombos)),
+                )
+            }
+        }
+
+        return Output.outputFileOrStdout(format.encodeToString(json), jsonPath)
     }
 }
