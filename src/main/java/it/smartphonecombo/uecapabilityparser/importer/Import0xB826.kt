@@ -11,6 +11,7 @@ import com.soywiz.kmem.extract7
 import com.soywiz.kmem.extract8
 import com.soywiz.kmem.finsert
 import com.soywiz.kmem.isOdd
+import it.smartphonecombo.uecapabilityparser.extension.indexOfMin
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
@@ -27,11 +28,11 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.util.WeakHashMap
 
 /**
  * A parser for Qualcomm 0xB826 Log Item (NR5G RRC Supported CA Combos).
@@ -39,6 +40,7 @@ import java.nio.ByteOrder
  * Some BW, mimo and modulation values are guessed, so they can be wrong or incomplete.
  */
 object Import0xB826 : ImportCapabilities {
+    private val cacheMimoIndex = WeakHashMap<Int, Mimo>()
 
     /**
      * This parser take as [input] an [InputStream] of a 0xB826 (binary)
@@ -385,37 +387,44 @@ object Import0xB826 : ImportCapabilities {
     /**
      * Return mimo from index.
      *
-     * Some values are guessed, so they can be wrong or incomplete.
+     * The sequence generator is guessed, so it can be wrong or incomplete.
      */
     private fun getMimoFromIndex(index: Int): Mimo {
-        val value =
-            when (index) {
-                0 -> 0
-                1,
-                25,
-                16,
-                9,
-                4 -> 1
-                2,
-                42,
-                56,
-                72,
-                in 26..30,
-                in 17..20,
-                10,
-                11,
-                12,
-                5,
-                6 -> 2
-                3,
-                in 31..35,
-                in 21..24,
-                in 13..15,
-                7,
-                8 -> 4
-                else -> index
+        val cachedResult = cacheMimoIndex[index]
+        if (cachedResult != null) {
+            return cachedResult
+        }
+
+        /*
+            Some examples:
+            0 -> 0
+            1 -> 1
+            2 -> 2
+            3 -> 4
+            4 -> 1_1
+            5 -> 2_1
+            6 -> 2_2
+            7 -> 4_2
+            8 -> 4_4
+            9 -> 1_1_1
+            10 -> 2_1_1
+            ...
+            72 -> 2_2_2_2_2_2_2_2
+        */
+        var result = intArrayOf(0)
+        for (i in 1..index) {
+            val indexOfMin = result.indexOfMin()
+            when (result[indexOfMin]) {
+                4 -> result = IntArray(result.size + 1) { 1 }
+                2 -> result[indexOfMin] += 2
+                else -> result[indexOfMin] += 1
             }
-        return value.toMimo()
+        }
+
+        val resultMimo = Mimo.from(result)
+        cacheMimoIndex[index] = resultMimo
+
+        return resultMimo
     }
 
     /**
