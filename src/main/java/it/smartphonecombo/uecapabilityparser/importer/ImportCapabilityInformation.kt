@@ -682,9 +682,17 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         // TODO: Features per CC
         val dlFeature =
-            if (dlIndex >= 0) features?.downlink?.get(dlIndex)?.featureSetsPerCC?.first() else null
+            if (dlIndex >= 0) {
+                features?.downlink?.getOrNull(dlIndex)?.featureSetsPerCC?.first()
+            } else {
+                null
+            }
         val ulFeature =
-            if (ulIndex >= 0) features?.uplink?.get(ulIndex)?.featureSetsPerCC?.first() else null
+            if (ulIndex >= 0) {
+                features?.uplink?.getOrNull(ulIndex)?.featureSetsPerCC?.first()
+            } else {
+                null
+            }
 
         if (
             features == null ||
