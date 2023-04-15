@@ -3,9 +3,12 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
+import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -173,9 +176,9 @@ object Import0xB0CD : ImportCapabilities {
             index = values[1].toInt()
             val baseBand = values[2].toIntOrNull() ?: continue
             val dlClass = BwClass.valueOf(values[3].toInt())
-            val dlMimo = values[4].toInt()
+            val dlMimo = values[4].toInt().toMimo()
             val ulClass = BwClass.valueOf(values[5].toInt())
-            val ulMimo = values[6].toInt()
+            val ulMimo = values[6].toInt().toMimo()
             bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, ulMimo))
         }
 
@@ -197,11 +200,13 @@ object Import0xB0CD : ImportCapabilities {
      * Converts the given ANTENNA_INDEX string to the corresponding number of antennas. It's
      * applicable to 0xB0CD v40 and v41.
      */
-    private fun extractMimo(value: String): Int {
+    private fun extractMimo(value: String): Mimo {
         if (value.isEmpty() || value.endsWith("INVALID_INDEX")) {
-            return 0
+            return EmptyMimo
         }
-        return value.split('_').drop(2).dropLast(1).firstNotNullOf { it.toIntOrNull() }
+        val mimoArray =
+            value.split('_').drop(2).dropLast(1).mapNotNull(String::toIntOrNull).toIntArray()
+        return Mimo.from(mimoArray)
     }
 
     /**

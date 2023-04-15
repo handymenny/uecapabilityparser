@@ -4,8 +4,10 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.NumberFormatException
@@ -83,9 +85,9 @@ object ImportMTKLte : ImportCapabilities {
             input.firstOrNull { it.startsWith("band_mimo[$i]") } ?: break
             val line = extractValue(input.next()).split(" ").first()
             if (line == "ERRC_CAPA_CA_MIMO_CAPA_FOUR_LAYERS") {
-                bands[i].mimoDL = 4
+                bands[i].mimoDL = 4.toMimo()
             } else if (line == "ERRC_CAPA_CA_MIMO_CAPA_TWO_LAYERS") {
-                bands[i].mimoDL = 2
+                bands[i].mimoDL = 2.toMimo()
             }
         }
     }
@@ -115,7 +117,7 @@ object ImportMTKLte : ImportCapabilities {
             val baseBand = extractInt(input.next())
             val classUL = BwClass.valueOfMtkIndex(extractInt(input.next()))
             // no support for UL MIMO
-            val mimoUL = if (classUL != BwClass.NONE) 1 else 0
+            val mimoUL = if (classUL != BwClass.NONE) 1.toMimo() else EmptyMimo
             val classDL = BwClass.valueOfMtkIndex(extractInt(input.next()))
             val band = ComponentLte(baseBand, classDL, classUL, mimoUL = mimoUL)
             bands.add(band)

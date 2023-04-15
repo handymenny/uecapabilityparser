@@ -52,4 +52,9 @@ internal class ImportCapPruneTest {
     fun parseMimoFR2() {
         parse("mimoFR2.txt", "mimoFR2-EN-DC.csv", "mimoFR2-NR.csv")
     }
+
+    @Test
+    fun parseMixedMimoFR1() {
+        parse("mixedMimoFR1.txt", "mixedMimoFR1-EN-DC.csv", "mixedMimoFR1-NR.csv")
+    }
 }

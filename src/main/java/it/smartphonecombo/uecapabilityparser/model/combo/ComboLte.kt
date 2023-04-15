@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.model.combo
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Output
@@ -52,14 +53,14 @@ data class ComboLte(
             strDLmod.append(component.modDL)
 
             val mimo = component.mimoDL
-            if (mimo != 0) strMimo.append(mimo)
+            if (mimo != EmptyMimo) strMimo.append(mimo)
 
             val ulClass = component.classUL
             if (ulClass != BwClass.NONE) {
                 strUl.append(ulClass)
                 strULmod.append(component.modUL)
                 val ulMimo = component.mimoUL
-                if (ulMimo != 0) strULmimo.append(ulMimo)
+                if (ulMimo != EmptyMimo) strULmimo.append(ulMimo)
             }
 
             Output.appendSeparator(

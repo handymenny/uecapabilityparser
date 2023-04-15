@@ -1,14 +1,15 @@
 package it.smartphonecombo.uecapabilityparser.model.band
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
-import it.smartphonecombo.uecapabilityparser.extension.Mimo
+import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
+import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 
 data class BandNrDetails(
     var band: Band = 0,
-    var mimoDL: Mimo = 0,
-    var mimoUL: Mimo = 0,
+    var mimoDL: Mimo = EmptyMimo,
+    var mimoUL: Mimo = EmptyMimo,
     var modDL: Modulation = Modulation.NONE,
     var modUL: Modulation = Modulation.NONE,
     var maxUplinkDutyCycle: Int = 100,
@@ -68,8 +69,8 @@ data class BandNrDetails(
 
     override fun hashCode(): Int {
         var result = band
-        result = 31 * result + mimoDL
-        result = 31 * result + mimoUL
+        result = 31 * result + mimoDL.hashCode()
+        result = 31 * result + mimoUL.hashCode()
         result = 31 * result + modDL.hashCode()
         result = 31 * result + modUL.hashCode()
         result = 31 * result + maxUplinkDutyCycle
