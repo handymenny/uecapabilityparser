@@ -57,13 +57,13 @@ object EmptyMimo : Mimo {
     override fun average(): Double = 0.0
 }
 
-data class SingleMimo(private val mimo: Int) : Mimo {
+private data class SingleMimo(private val mimo: Int) : Mimo {
     override fun toCompactStr(): String = mimo.toString()
     override fun toString(): String = mimo.toString()
     override fun average(): Double = mimo.toDouble()
 }
 
-data class MixedMimo(private val mimoArray: IntArray) : Mimo {
+private data class MixedMimo(private val mimoArray: IntArray) : Mimo {
     override fun toCompactStr(): String = mimoArray.joinToString("")
     override fun toString(): String = mimoArray.joinToString(", ")
     override fun average(): Double = mimoArray.average()
