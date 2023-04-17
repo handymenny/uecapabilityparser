@@ -204,8 +204,7 @@ object Import0xB0CD : ImportCapabilities {
         if (value.isEmpty() || value.endsWith("INVALID_INDEX")) {
             return EmptyMimo
         }
-        val mimoArray =
-            value.split('_').drop(2).dropLast(1).mapNotNull(String::toIntOrNull).toIntArray()
+        val mimoArray = value.split('_').drop(2).dropLast(1).mapNotNull(String::toIntOrNull)
         return Mimo.from(mimoArray)
     }
 

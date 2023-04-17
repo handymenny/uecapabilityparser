@@ -119,7 +119,7 @@ object ImportNvItem : ImportCapabilities {
                             list.add(antSubCC)
                         }
                     }
-                    Mimo.from(list.toIntArray())
+                    Mimo.from(list)
                 }
 
             if (band == 0) {

@@ -421,7 +421,7 @@ object Import0xB826 : ImportCapabilities {
             }
         }
 
-        val resultMimo = Mimo.from(result)
+        val resultMimo = Mimo.from(result.toList())
         cacheMimoIndex[index] = resultMimo
 
         return resultMimo
