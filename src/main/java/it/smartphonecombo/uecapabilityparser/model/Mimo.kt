@@ -9,7 +9,7 @@ sealed interface Mimo : Comparable<Mimo> {
 
     companion object {
         private val cacheInt = WeakHashMap<Int, Mimo>()
-        private val cacheIntArray = WeakHashMap<IntArray, Mimo>()
+        private val cacheIntArray = WeakHashMap<List<Int>, Mimo>()
 
         fun from(int: Int): Mimo {
             val cachedResult = cacheInt[int]
@@ -21,7 +21,7 @@ sealed interface Mimo : Comparable<Mimo> {
                 if (int == 0) {
                     EmptyMimo
                 } else if (int > 10) {
-                    from(int.toString().map(Char::digitToInt).toIntArray())
+                    from(int.toString().map(Char::digitToInt))
                 } else {
                     SingleMimo(int)
                 }
@@ -30,22 +30,22 @@ sealed interface Mimo : Comparable<Mimo> {
             return result
         }
 
-        fun from(intArray: IntArray): Mimo {
-            val cachedResult = cacheIntArray[intArray]
+        fun from(list: List<Int>): Mimo {
+            val cachedResult = cacheIntArray[list]
             if (cachedResult != null) {
                 return cachedResult
             }
 
             val result =
-                if (intArray.isEmpty()) {
+                if (list.isEmpty()) {
                     EmptyMimo
-                } else if (intArray.size == 1 || intArray.distinct().count() == 1) {
-                    SingleMimo(intArray.first())
+                } else if (list.size == 1 || list.distinct().count() == 1) {
+                    SingleMimo(list.first())
                 } else {
-                    MixedMimo(intArray.sortedArrayDescending())
+                    MixedMimo(list.sortedDescending())
                 }
 
-            cacheIntArray[intArray] = result
+            cacheIntArray[list] = result
             return result
         }
     }
@@ -63,19 +63,10 @@ private data class SingleMimo(private val mimo: Int) : Mimo {
     override fun average(): Double = mimo.toDouble()
 }
 
-private data class MixedMimo(private val mimoArray: IntArray) : Mimo {
-    override fun toCompactStr(): String = mimoArray.joinToString("")
-    override fun toString(): String = mimoArray.joinToString(", ")
-    override fun average(): Double = mimoArray.average()
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is MixedMimo) return false
-
-        return mimoArray.contentEquals(other.mimoArray)
-    }
-
-    override fun hashCode(): Int = mimoArray.contentHashCode()
+private data class MixedMimo(private val mimoList: List<Int>) : Mimo {
+    override fun toCompactStr(): String = mimoList.joinToString("")
+    override fun toString(): String = mimoList.joinToString(", ")
+    override fun average(): Double = mimoList.average()
 }
 
 fun Int.toMimo(): Mimo = Mimo.from(this)

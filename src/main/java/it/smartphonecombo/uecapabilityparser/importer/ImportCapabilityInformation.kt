@@ -753,7 +753,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (!dlFeature.isNullOrEmpty()) {
             if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
-                val mixedMimo = dlFeature.map { it.mimo.average().toInt() }.toIntArray()
+                val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoDL = Mimo.from(mixedMimo)
             } else {
                 componentLte.mimoDL = dlFeature.first().mimo
@@ -766,7 +766,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (!ulFeature.isNullOrEmpty()) {
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
-                val mixedMimo = ulFeature.map { it.mimo.average().toInt() }.toIntArray()
+                val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoUL = Mimo.from(mixedMimo)
             } else {
                 componentLte.mimoUL = ulFeature.first().mimo
@@ -790,7 +790,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         if (!dlFeature.isNullOrEmpty()) {
             val firstFeature = dlFeature.first()
             if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
-                val mixedMimo = dlFeature.map { it.mimo.average().toInt() }.toIntArray()
+                val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoDL = Mimo.from(mixedMimo)
             } else {
                 componentNr.mimoDL = firstFeature.mimo
@@ -808,7 +808,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (!ulFeature.isNullOrEmpty()) {
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
-                val mixedMimo = ulFeature.map { it.mimo.average().toInt() }.toIntArray()
+                val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoUL = Mimo.from(mixedMimo)
             } else {
                 componentNr.mimoUL = ulFeature.first().mimo
@@ -1316,7 +1316,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
 
         // Don't override mimo if all are = to default
-        return if (allDefault) defaultMimo else Mimo.from(mixedMimoList.toIntArray())
+        return if (allDefault) defaultMimo else Mimo.from(mixedMimoList)
     }
 
     private fun parseBandParametersUL(
