@@ -3,15 +3,15 @@ package it.smartphonecombo.uecapabilityparser.model.band
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 
 data class BandNrDetails(
     var band: Band = 0,
     var mimoDL: Mimo = EmptyMimo,
     var mimoUL: Mimo = EmptyMimo,
-    var modDL: Modulation = Modulation.NONE,
-    var modUL: Modulation = Modulation.NONE,
+    var modDL: ModulationOrder = ModulationOrder.NONE,
+    var modUL: ModulationOrder = ModulationOrder.NONE,
     var maxUplinkDutyCycle: Int = 100,
     var powerClass: Int = 3,
     var bandwidths: Array<BwsNr> = emptyArray(),

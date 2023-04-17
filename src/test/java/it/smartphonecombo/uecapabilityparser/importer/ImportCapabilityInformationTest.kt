@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
-import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
@@ -41,119 +41,119 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     2,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     4,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     12,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     13,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     17,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     66,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -211,78 +211,78 @@ internal class ImportCapabilityInformationTest {
                     2,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     4,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     12,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     13,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     26,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     46,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     48,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     66,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -325,57 +325,57 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -427,209 +427,209 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     2,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     4,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     12,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     13,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     14,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     17,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     18,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     19,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     25,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     26,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     29,
                     mimoDL = 2.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     30,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     34,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     39,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     46,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     48,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     66,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     71,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM1024,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM1024,
+                    modUL = ModulationOrder.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -694,63 +694,63 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM64,
-                    modUL = Modulation.QAM16
+                    modDL = ModulationOrder.QAM64,
+                    modUL = ModulationOrder.QAM16
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -794,57 +794,57 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -888,84 +888,84 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 4.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -1020,134 +1020,134 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(20)))
                 },
                 BandNrDetails(40).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 40)))
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 20)))
                 },
                 BandNrDetails(48).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 40, 20)))
                 },
                 BandNrDetails(66).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100)))
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
                 },
                 BandNrDetails(79).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100)))
                 },
                 BandNrDetails(258).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(260).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
@@ -1178,88 +1178,88 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(30).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(10)))
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20)))
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
 
                     powerClass = 2
                 },
                 BandNrDetails(48).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths =
                         arrayOf(
@@ -1267,52 +1267,52 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(66).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 30, 20)))
 
                     powerClass = 2
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
                 },
                 BandNrDetails(257).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(258).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(260).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
@@ -1371,91 +1371,91 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 4.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     43,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -1489,8 +1489,8 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1499,8 +1499,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1509,8 +1509,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(5).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1519,8 +1519,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(7).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1529,8 +1529,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(8).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1539,8 +1539,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(20).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1549,8 +1549,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1559,8 +1559,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1569,8 +1569,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(40).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1579,8 +1579,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1591,8 +1591,8 @@ internal class ImportCapabilityInformationTest {
                     powerClass = 2
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1601,8 +1601,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1663,71 +1663,71 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     18,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     19,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     21,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     26,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -1754,32 +1754,32 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
 
                     powerClass = 2
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
 
                     powerClass = 2
                 },
                 BandNrDetails(79).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
 
                     powerClass = 2
                 },
                 BandNrDetails(257).apply {
-                    modDL = Modulation.QAM64
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM64
+                    modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1838,44 +1838,44 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
-                ComponentLte(32, mimoDL = 2.toMimo(), modDL = Modulation.QAM256),
+                ComponentLte(32, mimoDL = 2.toMimo(), modDL = ModulationOrder.QAM256),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -1911,8 +1911,8 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1922,8 +1922,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1933,8 +1933,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(5).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1943,8 +1943,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(7).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1954,8 +1954,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(8).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1964,8 +1964,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(20).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1974,8 +1974,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1984,8 +1984,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -1995,8 +1995,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(40).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -2006,8 +2006,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -2017,8 +2017,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(75).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -2028,8 +2028,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -2039,8 +2039,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 25, 20, 15, 10)))
@@ -2100,105 +2100,105 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     34,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     39,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 ),
                 ComponentLte(
                     43,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM64
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -2234,49 +2234,49 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(20, 15, 10)))
                 },
                 BandNrDetails(40).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 20)))
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
                         arrayOf(
@@ -2284,8 +2284,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
                         arrayOf(
@@ -2293,8 +2293,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
                         arrayOf(
@@ -2302,8 +2302,8 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(79).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
                         arrayOf(
@@ -2311,7 +2311,7 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(80).apply {
-                    modUL = Modulation.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -2319,7 +2319,7 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(84).apply {
-                    modUL = Modulation.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(
@@ -2379,44 +2379,44 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 ),
-                ComponentLte(32, mimoDL = 2.toMimo(), modDL = Modulation.QAM256),
+                ComponentLte(32, mimoDL = 2.toMimo(), modDL = ModulationOrder.QAM256),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = Modulation.QAM256,
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256,
+                    modUL = ModulationOrder.QAM256
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -2456,104 +2456,104 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(40).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths =
                         arrayOf(
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
                         )
                 },
                 BandNrDetails(66).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(75).apply {
-                    modDL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5), intArrayOf()))
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths =
                         arrayOf(
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
                         )
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
                         arrayOf(
@@ -2606,121 +2606,121 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(13).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(14).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(18).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(26).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(29).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5), intArrayOf()))
                 },
                 BandNrDetails(30).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(40).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths =
                         arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
 
                     powerClass = 2
                 },
                 BandNrDetails(48).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths =
                         arrayOf(
                             BwsNr(
@@ -2731,104 +2731,104 @@ internal class ImportCapabilityInformationTest {
                         )
                 },
                 BandNrDetails(53).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(10)))
                 },
                 BandNrDetails(66).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(70).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
                         arrayOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5), intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(75).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths =
                         arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5), intArrayOf()))
                 },
                 BandNrDetails(76).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(5), intArrayOf()))
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths =
                         arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
                     powerClass = 2
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths =
                         arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
 
                     powerClass = 2
                 },
                 BandNrDetails(79).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
 
                     powerClass = 2
                 },
                 BandNrDetails(91).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(92).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(93).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(94).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(257).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM64
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(200, 100, 50)))
                 },
                 BandNrDetails(258).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM64
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(200, 100, 50)))
                 },
                 BandNrDetails(260).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM64
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM64
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM64
                     bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
@@ -2868,62 +2868,62 @@ internal class ImportCapabilityInformationTest {
         val expectedNrBands =
             listOf(
                 BandNrDetails(1).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(20)))
                 },
                 BandNrDetails(40).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20)))
                 },
                 BandNrDetails(41).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)))
                 },
                 BandNrDetails(77).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
                 },
                 BandNrDetails(78).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 10)))
                 },
                 BandNrDetails(79).apply {
-                    modDL = Modulation.QAM256
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.QAM256
+                    modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
                 },
                 BandNrDetails(80).apply {
-                    modDL = Modulation.NONE
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.NONE
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(), intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(84).apply {
-                    modDL = Modulation.NONE
-                    modUL = Modulation.QAM256
+                    modDL = ModulationOrder.NONE
+                    modUL = ModulationOrder.QAM256
                     bandwidths = arrayOf(BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)))
                 }
             )

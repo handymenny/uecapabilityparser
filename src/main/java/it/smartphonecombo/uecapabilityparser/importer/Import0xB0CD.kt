@@ -5,7 +5,7 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.toMimo
@@ -129,7 +129,7 @@ object Import0xB0CD : ImportCapabilities {
             val ulClass = extractBwClass(values[5])
             val dlMimo = extractMimo(values[6])
             val ulMimo = extractMimo(values[7])
-            val ulMod = Modulation.of(values[8])
+            val ulMod = ModulationOrder.of(values[8])
             bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, ulMimo, modUL = ulMod))
             index++
         }
@@ -155,7 +155,7 @@ object Import0xB0CD : ImportCapabilities {
             val dlMimo = extractMimo(values[4])
             val ulClass = extractBwClass(values[5])
             val ulMimo = extractMimo(values[6])
-            val ulMod = Modulation.of(values[7])
+            val ulMod = ModulationOrder.of(values[7])
             bands.add(ComponentLte(baseBand, dlClass, ulClass, dlMimo, ulMimo, modUL = ulMod))
         }
 

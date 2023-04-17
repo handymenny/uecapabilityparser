@@ -4,7 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 
 data class ComponentNr(
     override var band: Band = 0,
@@ -12,8 +12,8 @@ data class ComponentNr(
     override var classUL: BwClass = BwClass.NONE,
     override var mimoDL: Mimo = EmptyMimo,
     override var mimoUL: Mimo = EmptyMimo,
-    override var modDL: Modulation = Modulation.NONE,
-    override var modUL: Modulation = Modulation.NONE
+    override var modDL: ModulationOrder = ModulationOrder.NONE,
+    override var modUL: ModulationOrder = ModulationOrder.NONE
 ) : IComponent {
     var maxBandwidth = 0
     var channelBW90mhz = false

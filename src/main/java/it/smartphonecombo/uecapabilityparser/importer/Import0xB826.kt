@@ -20,7 +20,7 @@ import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.Modulation
+import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
@@ -432,13 +432,13 @@ object Import0xB826 : ImportCapabilities {
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getQamFromIndex(index: Int): Modulation {
+    private fun getQamFromIndex(index: Int): ModulationOrder {
         return when (index) {
             2,
-            5 -> Modulation.QAM256
+            5 -> ModulationOrder.QAM256
             3,
-            6 -> Modulation.QAM1024
-            else -> Modulation.QAM64
+            6 -> ModulationOrder.QAM1024
+            else -> ModulationOrder.QAM64
         }
     }
 
