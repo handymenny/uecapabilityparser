@@ -78,7 +78,7 @@ private data class MixedMimo(private val mimoArray: IntArray) : Mimo {
     override fun hashCode(): Int = mimoArray.contentHashCode()
 }
 
-internal fun Int.toMimo(): Mimo = Mimo.from(this)
+fun Int.toMimo(): Mimo = Mimo.from(this)
 
 /**
  * Return:
