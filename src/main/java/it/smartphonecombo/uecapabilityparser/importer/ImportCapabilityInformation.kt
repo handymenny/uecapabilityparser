@@ -18,7 +18,6 @@ import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
@@ -45,6 +44,9 @@ import it.smartphonecombo.uecapabilityparser.model.json.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrRrcCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
+import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -311,8 +313,8 @@ object ImportCapabilityInformation : ImportCapabilities {
         bandList: Map<Int, ComponentLte>
     ) {
         combinations.flatten().forEach {
-            it.modDL = bandList[it.band]?.modDL ?: ModulationOrder.NONE
-            it.modUL = bandList[it.band]?.modUL ?: ModulationOrder.NONE
+            it.modDL = bandList[it.band]?.modDL ?: EmptyModulation
+            it.modUL = bandList[it.band]?.modUL ?: EmptyModulation
         }
     }
 
@@ -324,7 +326,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             bandParameterList.getArray("bandParameterList-v1430")?.forEachIndexed { j, bandParameter
                 ->
                 if (bandParameter.getString("ul-256QAM-r14") != null) {
-                    combinations[i][j].modUL = ModulationOrder.QAM256
+                    combinations[i][j].modUL = ModulationOrder.QAM256.toModulation()
                 } else {
                     bandParameter
                         .getArray("ul-256QAM-perCC-InfoList-r14")
@@ -332,7 +334,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         ?.getString("ul-256QAM-perCC-r14")
                         ?.let {
                             // TODO: Handle modulation per CC
-                            combinations[i][j].modUL = ModulationOrder.QAM256
+                            combinations[i][j].modUL = ModulationOrder.QAM256.toModulation()
                         }
                 }
             }
@@ -347,7 +349,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             bandParameterList.getArray("bandParameterList-v1530")?.forEachIndexed { j, bandParameter
                 ->
                 if (bandParameter.getString("dl-1024QAM-r15") != null) {
-                    combinations[i][j].modDL = ModulationOrder.QAM1024
+                    combinations[i][j].modDL = ModulationOrder.QAM1024.toModulation()
                 }
             }
         }
@@ -509,8 +511,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                         band,
                         mimoDL = 2.toMimo(),
                         mimoUL = mimoUl.toMimo(),
-                        modDL = ModulationOrder.QAM64,
-                        modUL = defaultModUL
+                        modDL = ModulationOrder.QAM64.toModulation(),
+                        modUL = defaultModUL.toModulation()
                     )
                 }
             }
@@ -526,10 +528,10 @@ object ImportCapabilityInformation : ImportCapabilities {
             ?.getArrayAtPath("rf-Parameters-v1250.supportedBandListEUTRA-v1250")
             ?.forEachIndexed { i, it ->
                 if (it.getString("dl-256QAM-r12") != null) {
-                    lteBands[i].modDL = ModulationOrder.QAM256
+                    lteBands[i].modDL = ModulationOrder.QAM256.toModulation()
                 }
                 if (it.getString("ul-64QAM-r12") != null) {
-                    lteBands[i].modUL = ModulationOrder.QAM64
+                    lteBands[i].modUL = ModulationOrder.QAM64.toModulation()
                 }
             }
 
@@ -772,7 +774,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentLte.mimoUL = ulFeature.first().mimo
             }
             // TODO: Handle modulation per CC
-            componentLte.modUL = ulFeature.first().qam
+            componentLte.modUL = ulFeature.first().qam.toModulation()
         } else {
             // only DL
             componentLte.classUL = BwClass.NONE
@@ -796,7 +798,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentNr.mimoDL = firstFeature.mimo
             }
             // TODO: Handle modulation per CC
-            componentNr.modDL = firstFeature.qam
+            componentNr.modDL = firstFeature.qam.toModulation()
             componentNr.maxBandwidth = firstFeature.bw
             componentNr.channelBW90mhz = firstFeature.bw >= 80 && firstFeature.channelBW90mhz
             componentNr.scs = firstFeature.scs
@@ -814,7 +816,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentNr.mimoUL = ulFeature.first().mimo
             }
             // TODO: Handle modulation per CC
-            componentNr.modUL = ulFeature.first().qam
+            componentNr.modUL = ulFeature.first().qam.toModulation()
         } else {
             // only DL
             componentNr.classUL = BwClass.NONE

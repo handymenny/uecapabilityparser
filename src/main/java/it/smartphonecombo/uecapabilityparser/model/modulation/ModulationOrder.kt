@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model
+package it.smartphonecombo.uecapabilityparser.model.modulation
 
 enum class ModulationOrder {
     NONE,

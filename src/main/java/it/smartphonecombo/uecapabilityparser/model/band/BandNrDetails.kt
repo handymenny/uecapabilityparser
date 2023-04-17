@@ -3,8 +3,8 @@ package it.smartphonecombo.uecapabilityparser.model.band
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 
 data class BandNrDetails(
     var band: Band = 0,

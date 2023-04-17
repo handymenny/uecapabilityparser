@@ -20,7 +20,6 @@ import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
@@ -28,6 +27,8 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
+import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
@@ -303,7 +304,7 @@ object Import0xB826 : ImportCapabilities {
         val mimoUL = byteBuffer.readUnsignedByte()
         component.mimoUL = getMimoFromIndex(mimoUL)
         val modUL = byteBuffer.readUnsignedByte()
-        component.modUL = getQamFromIndex(modUL)
+        component.modUL = getQamFromIndex(modUL).toModulation()
 
         if (isNr) {
             val nrBand = component as ComponentNr
@@ -364,7 +365,7 @@ object Import0xB826 : ImportCapabilities {
 
         val byte3 = byteBuffer.readUnsignedByte()
         val modUL = byte3.extract2(1)
-        component.modUL = getQamFromIndex(modUL)
+        component.modUL = getQamFromIndex(modUL).toModulation()
 
         if (isNr) {
             val nrBand = component as ComponentNr

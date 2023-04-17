@@ -1,10 +1,11 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
-import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.toMimo
 import it.smartphonecombo.uecapabilityparser.util.Output
 import org.junit.jupiter.api.Assertions.assertArrayEquals
@@ -41,119 +42,119 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     2,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     4,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     12,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     13,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     17,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     66,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -211,78 +212,78 @@ internal class ImportCapabilityInformationTest {
                     2,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     4,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     12,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     13,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     26,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     46,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     48,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     66,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -325,57 +326,57 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -427,209 +428,209 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     2,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     4,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     12,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     13,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     14,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     17,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     18,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     19,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     25,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     26,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     29,
                     mimoDL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     30,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     34,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     39,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     46,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     48,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     66,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     71,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM1024,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM1024.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -694,63 +695,63 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64,
-                    modUL = ModulationOrder.QAM16
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    modUL = ModulationOrder.QAM16.toModulation()
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -794,57 +795,57 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -888,84 +889,84 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 4.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -1371,91 +1372,91 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 4.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     43,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -1663,71 +1664,71 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     18,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     19,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     21,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     26,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -1838,44 +1839,48 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
-                ComponentLte(32, mimoDL = 2.toMimo(), modDL = ModulationOrder.QAM256),
+                ComponentLte(
+                    32,
+                    mimoDL = 2.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation()
+                ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -2100,105 +2105,105 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     5,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     8,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     34,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     39,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     40,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     41,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     42,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 ),
                 ComponentLte(
                     43,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM64
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation()
                 )
             )
         val actualLteBands = capabilities.lteBands
@@ -2379,44 +2384,48 @@ internal class ImportCapabilityInformationTest {
                     1,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     3,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     7,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     20,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
                 ComponentLte(
                     28,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 ),
-                ComponentLte(32, mimoDL = 2.toMimo(), modDL = ModulationOrder.QAM256),
+                ComponentLte(
+                    32,
+                    mimoDL = 2.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation()
+                ),
                 ComponentLte(
                     38,
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM256,
-                    modUL = ModulationOrder.QAM256
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM256.toModulation()
                 )
             )
         val actualLteBands = capabilities.lteBands

@@ -3,7 +3,7 @@ package it.smartphonecombo.uecapabilityparser.model.feature
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 
 data class FeaturePerCCNr(
     override val type: LinkDirection = LinkDirection.DOWNLINK,
