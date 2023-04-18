@@ -20,4 +20,5 @@ object HelpMessage {
     const val UE_LOG =
         """Output the uelog, if "-" is specified the uelog will be output to standard output"""
     const val DEBUG = "Print debug info"
+    const val JSON_PRETTY_PRINT = "Specifies whether resulting JSONs should be pretty-printed"
 }

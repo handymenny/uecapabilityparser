@@ -90,7 +90,15 @@ internal class MainTest {
     @Test
     fun mainWiresharkEutraJson() {
         mainTest(
-            arrayOf("-i", "$path/input/wiresharkEutra.txt", "-t", "W", "-l", "-"),
+            arrayOf(
+                "-i",
+                "$path/input/wiresharkEutra.txt",
+                "-t",
+                "W",
+                "-l",
+                "-",
+                "--json-pretty-print"
+            ),
             "wiresharkEutraJson.txt",
         )
     }
