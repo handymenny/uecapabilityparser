@@ -49,13 +49,13 @@ object EmptyModulation : Modulation {
     override fun maxModulationOrder(): ModulationOrder = ModulationOrder.NONE
 }
 
-private data class SingleModulation(private val modulation: ModulationOrder) : Modulation {
+data class SingleModulation(private val modulation: ModulationOrder) : Modulation {
     override fun toString(): String = modulation.toString()
     override fun average(): Double = modulation.ordinal.toDouble()
     override fun maxModulationOrder(): ModulationOrder = modulation
 }
 
-private data class MixedModulation(private val list: List<ModulationOrder>) : Modulation {
+data class MixedModulation(private val list: List<ModulationOrder>) : Modulation {
     override fun toString(): String = list.joinToString(", ")
     override fun average(): Double = list.map(ModulationOrder::ordinal).average()
     override fun maxModulationOrder(): ModulationOrder = list.max()
