@@ -40,7 +40,7 @@ sealed interface Mimo : Comparable<Mimo> {
                 if (list.isEmpty()) {
                     EmptyMimo
                 } else if (list.size == 1 || list.distinct().count() == 1) {
-                    SingleMimo(list.first())
+                    from(list.first())
                 } else {
                     MixedMimo(list.sortedDescending())
                 }
