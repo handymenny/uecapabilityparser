@@ -18,9 +18,8 @@ data class Capabilities(
     var enDcCombos: List<ComboEnDc> = emptyList(),
     var nrCombos: List<ComboNr> = emptyList(),
     var nrDcCombos: List<ComboNrDc> = emptyList(),
+    val metadata: MutableMap<String, Any> = mutableMapOf()
 ) {
-    private val metadata = HashMap<String, Any>()
-
     fun setMetadata(key: String, value: Any) {
         metadata[key] = value
     }

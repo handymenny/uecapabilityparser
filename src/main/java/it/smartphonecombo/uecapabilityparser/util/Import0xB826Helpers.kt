@@ -61,6 +61,25 @@ object Import0xB826Helpers {
         val nrCombos = list.flatMap(Capabilities::nrCombos)
         val nrDcCombos = list.flatMap(Capabilities::nrDcCombos)
 
-        return Capabilities(enDcCombos = enDcCombos, nrCombos = nrCombos, nrDcCombos = nrDcCombos)
+        val metadataList = list.map(Capabilities::metadata)
+        val metadata =
+            if (list.size == 1) {
+                metadataList.first()
+            } else {
+                metadataList
+                    .flatMapIndexed { index, map ->
+                        // add a suffix to each key
+                        map.map { Pair("${it.key}-$index", it.value) }
+                    }
+                    .toMap()
+                    .toMutableMap()
+            }
+
+        return Capabilities(
+            enDcCombos = enDcCombos,
+            nrCombos = nrCombos,
+            nrDcCombos = nrDcCombos,
+            metadata = metadata
+        )
     }
 }
