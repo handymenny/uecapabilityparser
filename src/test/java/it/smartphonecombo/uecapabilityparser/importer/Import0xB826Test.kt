@@ -25,12 +25,12 @@ internal class Import0xB826Test {
     ) {
         val filePath = "$path/input/$srcFilename"
         val comboList = Import0xB826.parse(File(filePath).inputStream())
-        Assertions.assertEquals(version, comboList.getMetadata("version"))
-        Assertions.assertEquals(logSize, comboList.getMetadata("logSize"))
-        Assertions.assertEquals(numCombos, comboList.getMetadata("numCombos"))
-        Assertions.assertEquals(totalCombos, comboList.getMetadata("totalCombos"))
-        Assertions.assertEquals(index, comboList.getMetadata("index"))
-        Assertions.assertEquals(source, comboList.getMetadata("source"))
+        Assertions.assertEquals(version, comboList.getIntMetadata("version"))
+        Assertions.assertEquals(logSize, comboList.getIntMetadata("logSize"))
+        Assertions.assertEquals(numCombos, comboList.getIntMetadata("numCombos"))
+        Assertions.assertEquals(totalCombos, comboList.getIntMetadata("totalCombos"))
+        Assertions.assertEquals(index, comboList.getIntMetadata("index"))
+        Assertions.assertEquals(source, comboList.getStringMetadata("source"))
         val comboNR: List<ICombo>?
         if (endc) {
             comboNR = comboList.enDcCombos

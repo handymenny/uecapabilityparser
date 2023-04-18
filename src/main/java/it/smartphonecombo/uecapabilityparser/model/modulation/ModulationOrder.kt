@@ -1,12 +1,14 @@
 package it.smartphonecombo.uecapabilityparser.model.modulation
 
+import kotlinx.serialization.SerialName
+
 enum class ModulationOrder {
-    NONE,
-    QPSK,
-    QAM16,
-    QAM64,
-    QAM256,
-    QAM1024;
+    @SerialName("") NONE,
+    @SerialName("qpsk") QPSK,
+    @SerialName("16qam") QAM16,
+    @SerialName("64qam") QAM64,
+    @SerialName("256qam") QAM256,
+    @SerialName("1024qam") QAM1024;
 
     override fun toString(): String {
         return when (this) {

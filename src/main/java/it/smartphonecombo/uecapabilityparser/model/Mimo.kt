@@ -1,7 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import java.util.WeakHashMap
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 sealed interface Mimo : Comparable<Mimo> {
     fun toCompactStr(): String
     fun average(): Double
@@ -51,19 +54,25 @@ sealed interface Mimo : Comparable<Mimo> {
     }
 }
 
+@Serializable
+@SerialName("empty")
 object EmptyMimo : Mimo {
     override fun toCompactStr(): String = ""
     override fun toString(): String = ""
     override fun average(): Double = 0.0
 }
 
-private data class SingleMimo(private val mimo: Int) : Mimo {
+@Serializable
+@SerialName("single")
+data class SingleMimo(@SerialName("value") private val mimo: Int) : Mimo {
     override fun toCompactStr(): String = mimo.toString()
     override fun toString(): String = mimo.toString()
     override fun average(): Double = mimo.toDouble()
 }
 
-private data class MixedMimo(private val mimoList: List<Int>) : Mimo {
+@Serializable
+@SerialName("mixed")
+data class MixedMimo(private val mimoList: List<Int>) : Mimo {
     override fun toCompactStr(): String = mimoList.joinToString("")
     override fun toString(): String = mimoList.joinToString(", ")
     override fun average(): Double = mimoList.average()

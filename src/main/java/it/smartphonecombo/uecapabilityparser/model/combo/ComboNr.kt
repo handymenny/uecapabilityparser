@@ -5,10 +5,14 @@ import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
+@Serializable
 data class ComboNr(
-    override val masterComponents: List<ComponentNr>,
-    override val featureSet: Int = 0,
+    @SerialName("components") override val masterComponents: List<ComponentNr>,
+    @Transient override val featureSet: Int = 0,
     override val bcs: BCS = EmptyBCS
 ) : ICombo {
 

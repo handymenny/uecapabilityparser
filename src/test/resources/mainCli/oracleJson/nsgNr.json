@@ -1,0 +1,509 @@
+{
+    "nr-bands": [
+        {
+            "band": 2,
+            "modulation-dl": {
+                "type": "single",
+                "value": "256qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 15,
+                    "bandwidths-dl": [
+                        20,
+                        15,
+                        10,
+                        5
+                    ],
+                    "bandwidths-ul": [
+                        20,
+                        15,
+                        10,
+                        5
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        },
+        {
+            "band": 25,
+            "modulation-dl": {
+                "type": "single",
+                "value": "256qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 15,
+                    "bandwidths-dl": [
+                        40,
+                        30,
+                        25,
+                        20,
+                        15,
+                        10,
+                        5
+                    ],
+                    "bandwidths-ul": [
+                        40,
+                        30,
+                        25,
+                        20,
+                        15,
+                        10,
+                        5
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        },
+        {
+            "band": 41,
+            "modulation-dl": {
+                "type": "single",
+                "value": "256qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 15,
+                    "bandwidths-dl": [
+                        50,
+                        40,
+                        30,
+                        20,
+                        15,
+                        10
+                    ],
+                    "bandwidths-ul": [
+                        50,
+                        40,
+                        30,
+                        20,
+                        15,
+                        10
+                    ]
+                },
+                {
+                    "scs": 30,
+                    "bandwidths-dl": [
+                        100,
+                        80,
+                        70,
+                        60,
+                        50,
+                        40,
+                        30,
+                        20,
+                        15,
+                        10
+                    ],
+                    "bandwidths-ul": [
+                        100,
+                        80,
+                        70,
+                        60,
+                        50,
+                        40,
+                        30,
+                        20,
+                        15,
+                        10
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        },
+        {
+            "band": 66,
+            "modulation-dl": {
+                "type": "single",
+                "value": "256qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 15,
+                    "bandwidths-dl": [
+                        40,
+                        30,
+                        25,
+                        20,
+                        15,
+                        10,
+                        5
+                    ],
+                    "bandwidths-ul": [
+                        40,
+                        30,
+                        25,
+                        20,
+                        15,
+                        10,
+                        5
+                    ]
+                },
+                {
+                    "scs": 30,
+                    "bandwidths-dl": [
+                        40,
+                        30,
+                        25,
+                        20,
+                        15,
+                        10
+                    ],
+                    "bandwidths-ul": [
+                        40,
+                        30,
+                        25,
+                        20,
+                        15,
+                        10
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        },
+        {
+            "band": 71,
+            "modulation-dl": {
+                "type": "single",
+                "value": "256qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 15,
+                    "bandwidths-dl": [
+                        20,
+                        15,
+                        10,
+                        5
+                    ],
+                    "bandwidths-ul": [
+                        20,
+                        15,
+                        10,
+                        5
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        },
+        {
+            "band": 258,
+            "modulation-dl": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 120,
+                    "bandwidths-dl": [
+                        200,
+                        100,
+                        50
+                    ],
+                    "bandwidths-ul": [
+                        200,
+                        100,
+                        50
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        },
+        {
+            "band": 260,
+            "modulation-dl": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 120,
+                    "bandwidths-dl": [
+                        200,
+                        100,
+                        50
+                    ],
+                    "bandwidths-ul": [
+                        200,
+                        100,
+                        50
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        },
+        {
+            "band": 261,
+            "modulation-dl": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "modulation-ul": {
+                "type": "single",
+                "value": "64qam"
+            },
+            "bandwidths": [
+                {
+                    "scs": 120,
+                    "bandwidths-dl": [
+                        200,
+                        100,
+                        50
+                    ],
+                    "bandwidths-ul": [
+                        200,
+                        100,
+                        50
+                    ]
+                }
+            ],
+            "rate-matching-lte-crs": true
+        }
+    ],
+    "nrca": [
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "modulation-ul": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 20,
+                    "max-scs": 15
+                },
+                {
+                    "band": 41,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 100,
+                    "max-scs": 30
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 20,
+                    "max-scs": 15
+                },
+                {
+                    "band": 41,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "modulation-ul": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 100,
+                    "max-scs": 30
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "modulation-ul": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 20,
+                    "max-scs": 15
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 41,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "modulation-ul": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 100,
+                    "max-scs": 30
+                },
+                {
+                    "band": 41,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 100,
+                    "max-scs": 30
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    4,
+                    5
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 41,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulation-dl": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "modulation-ul": {
+                        "type": "single",
+                        "value": "256qam"
+                    },
+                    "max-bw": 100,
+                    "max-scs": 30
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    4,
+                    5
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "parser-version": "staging",
+        "log-type": "N",
+        "timestamp": "2023-04-18T19:10:41.886630600Z",
+        "processing-time": "114ms"
+    }
+}

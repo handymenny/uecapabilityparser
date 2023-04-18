@@ -9,14 +9,18 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Output
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
+@Serializable
 data class ComboEnDc(
-    override val masterComponents: List<ComponentLte>,
-    override val secondaryComponents: List<ComponentNr>,
-    override val featureSet: Int = 0,
-    val bcsNr: BCS = EmptyBCS,
-    val bcsEutra: BCS = EmptyBCS,
-    val bcsIntraEnDc: BCS = EmptyBCS
+    @SerialName("components-lte") override val masterComponents: List<ComponentLte>,
+    @SerialName("components-nr") override val secondaryComponents: List<ComponentNr>,
+    @Transient override val featureSet: Int = 0,
+    @SerialName("bcs-nr") val bcsNr: BCS = EmptyBCS,
+    @SerialName("bcs-eutra") val bcsEutra: BCS = EmptyBCS,
+    @SerialName("bcs-intra-endc") val bcsIntraEnDc: BCS = EmptyBCS
 ) : ICombo {
     override val bcs: BCS
         get() = bcsNr

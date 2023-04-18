@@ -30,6 +30,8 @@ import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 import it.smartphonecombo.uecapabilityparser.util.Output
 import it.smartphonecombo.uecapabilityparser.util.Property
 import java.io.InputStreamReader
+import java.time.Instant
+import kotlin.system.measureTimeMillis
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -58,6 +60,8 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
 
     private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
 
+    private val json by option("-j", "--json", help = HelpMessage.JSON, metavar = "FILE")
+
     private val jsonPrettyPrint by
         option("--json-pretty-print", help = HelpMessage.JSON_PRETTY_PRINT).flag()
 
@@ -71,10 +75,20 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
         Config["debug"] = debug.toString()
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
 
-        val comboList = parsing()
+        val comboList: Capabilities
+        val processTime = measureTimeMillis { comboList = parsing() }
+        comboList.setMetadata("parser-version", Property.getProperty("project.version") ?: "")
+        comboList.setMetadata("log-type", type)
+        comboList.setMetadata("timestamp", Instant.now())
+        comboList.setMetadata("processing-time", "${processTime}ms")
+
         csv?.let {
             val csvOutput = if (it == "-") null else it
             csvOutput(comboList, csvOutput)
+        }
+        json?.let {
+            val jsvOutput = if (it == "-") null else it
+            Output.outputFileOrStdout(jsonFormat.encodeToString(comboList), jsvOutput)
         }
     }
 

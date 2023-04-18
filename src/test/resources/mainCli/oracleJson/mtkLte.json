@@ -1,0 +1,4080 @@
+{
+    "lteca": [
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "B",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 40,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 40,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 40,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "B",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "B",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2,
+                    3
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 32,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 40,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 38,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1,
+                    2
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 8,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 28,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 20,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bw-class-dl": "C",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bw-class-dl": "A",
+                    "bw-class-ul": "A",
+                    "mimo-dl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimo-ul": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "multi",
+                "value": [
+                    0,
+                    1
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "parser-version": "staging",
+        "log-type": "M",
+        "timestamp": "2023-04-18T19:10:41.101776700Z",
+        "processing-time": "32ms"
+    }
+}

@@ -6,15 +6,18 @@ import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ComponentLte(
-    override var band: Band = 0,
-    override var classDL: BwClass = BwClass.NONE,
-    override var classUL: BwClass = BwClass.NONE,
-    override var mimoDL: Mimo = EmptyMimo,
-    override var mimoUL: Mimo = EmptyMimo,
-    override var modDL: Modulation = EmptyModulation,
-    override var modUL: Modulation = EmptyModulation
+    @SerialName("band") override var band: Band = 0,
+    @SerialName("bw-class-dl") override var classDL: BwClass = BwClass.NONE,
+    @SerialName("bw-class-ul") override var classUL: BwClass = BwClass.NONE,
+    @SerialName("mimo-dl") override var mimoDL: Mimo = EmptyMimo,
+    @SerialName("mimo-ul") override var mimoUL: Mimo = EmptyMimo,
+    @SerialName("modulation-dl") override var modDL: Modulation = EmptyModulation,
+    @SerialName("modulation-ul") override var modUL: Modulation = EmptyModulation
 ) : IComponent {
 
     override fun compareTo(other: IComponent): Int {
