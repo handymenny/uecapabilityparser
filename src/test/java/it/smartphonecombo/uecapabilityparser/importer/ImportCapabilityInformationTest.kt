@@ -1024,133 +1024,133 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(20)))
                 },
                 BandNrDetails(40).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 40)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(80, 40)))
                 },
                 BandNrDetails(41).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 20)))
                 },
                 BandNrDetails(48).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 40, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 40, 20)))
                 },
                 BandNrDetails(66).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100)))
                 },
                 BandNrDetails(78).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
                 },
                 BandNrDetails(79).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100)))
                 },
                 BandNrDetails(258).apply {
                     modDL = ModulationOrder.QAM64
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(260).apply {
                     modDL = ModulationOrder.QAM64
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
                     modDL = ModulationOrder.QAM64
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -1182,79 +1182,79 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(30).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(10)))
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(40, 30, 20)))
                 },
                 BandNrDetails(41).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
 
                     powerClass = 2
                 },
@@ -1263,7 +1263,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20), intArrayOf(100, 40, 20))
                         )
                 },
@@ -1271,19 +1271,19 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 30, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 30, 20)))
 
                     powerClass = 2
                 },
@@ -1291,31 +1291,31 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20)))
                 },
                 BandNrDetails(257).apply {
                     modDL = ModulationOrder.QAM64
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(258).apply {
                     modDL = ModulationOrder.QAM64
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100)))
                 },
                 BandNrDetails(260).apply {
                     modDL = ModulationOrder.QAM64
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
                     modDL = ModulationOrder.QAM64
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -1494,7 +1494,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(50, 40, 30, 25, 20, 15, 10))
                         )
@@ -1504,7 +1504,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(40, 30, 25, 20, 15, 10))
                         )
@@ -1514,7 +1514,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(30, 25, 20, 15, 10))
                         )
@@ -1524,7 +1524,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(50, 40, 30, 25, 20, 15, 10))
                         )
@@ -1534,7 +1534,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10))
                         )
@@ -1544,7 +1544,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10))
                         )
@@ -1554,7 +1554,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(30, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(30, 20, 15, 10))
                         )
@@ -1564,7 +1564,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(40, 30, 25, 20, 15, 10))
                         )
@@ -1574,7 +1574,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10))
                         )
@@ -1584,7 +1584,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 30, 20, 15, 10)),
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                         )
@@ -1596,7 +1596,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 20, 15, 10)),
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 20, 15, 10))
                         )
@@ -1606,7 +1606,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 30, 20, 15, 10)),
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                         )
@@ -1758,7 +1758,7 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
 
                     powerClass = 2
                 },
@@ -1766,7 +1766,7 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
 
                     powerClass = 2
                 },
@@ -1774,7 +1774,7 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = false
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
 
                     powerClass = 2
                 },
@@ -1783,7 +1783,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM64
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(60, intArrayOf(200, 100, 50)),
                             BwsNr(120, intArrayOf(200, 100, 50))
                         )
@@ -1920,7 +1920,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10)),
                             BwsNr(60, intArrayOf(20, 15, 10))
@@ -1931,7 +1931,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(30, 25, 20, 15, 10)),
                             BwsNr(60, intArrayOf(30, 25, 20, 15, 10))
@@ -1942,7 +1942,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10))
                         )
@@ -1952,7 +1952,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10)),
                             BwsNr(60, intArrayOf(20, 15, 10))
@@ -1963,7 +1963,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10))
                         )
@@ -1973,7 +1973,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10))
                         )
@@ -1983,7 +1983,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10))
                         )
@@ -1993,7 +1993,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(20, 15, 10)),
                             BwsNr(60, intArrayOf(20, 15, 10))
@@ -2004,7 +2004,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)),
                             BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10)),
                             BwsNr(60, intArrayOf(80, 60, 50, 40, 30, 25, 20, 15, 10))
@@ -2015,7 +2015,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 20, 15, 10)),
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)),
                             BwsNr(60, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10))
@@ -2026,7 +2026,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(20, 15, 10, 5), intArrayOf()),
                             BwsNr(30, intArrayOf(20, 15, 10), intArrayOf()),
                             BwsNr(60, intArrayOf(20, 15, 10), intArrayOf())
@@ -2037,7 +2037,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(50, 40, 20, 15, 10)),
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)),
                             BwsNr(60, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10))
@@ -2048,7 +2048,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 25, 20, 15, 10)))
+                        listOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 25, 20, 15, 10)))
 
                     powerClass = 2
                 },
@@ -2242,49 +2242,49 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(20, 15, 10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(20, 15, 10)))
                 },
                 BandNrDetails(40).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 20)))
                 },
                 BandNrDetails(41).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)),
                         )
                 },
@@ -2293,7 +2293,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)),
                         )
                 },
@@ -2302,7 +2302,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)),
                         )
                 },
@@ -2311,7 +2311,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40)),
                         )
                 },
@@ -2319,7 +2319,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)),
                         )
                 },
@@ -2327,7 +2327,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)),
                         )
                 }
@@ -2468,77 +2468,77 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(40).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(41).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
                         )
                 },
@@ -2546,17 +2546,17 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(75).apply {
                     modDL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5), intArrayOf()))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5), intArrayOf()))
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
                         )
                 },
@@ -2565,7 +2565,7 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
                         )
                 }
@@ -2618,112 +2618,112 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(2).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(7).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(8).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(12).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(13).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(14).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(18).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(20).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(25).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(26).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(29).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5), intArrayOf()))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(10, 5), intArrayOf()))
                 },
                 BandNrDetails(30).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(40).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20, 15, 10)))
                 },
                 BandNrDetails(41).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     bandwidths =
-                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
+                        listOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
 
                     powerClass = 2
                 },
@@ -2731,7 +2731,7 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     bandwidths =
-                        arrayOf(
+                        listOf(
                             BwsNr(
                                 30,
                                 intArrayOf(100, 80, 60, 50, 40, 30, 20, 10),
@@ -2742,57 +2742,57 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(53).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(10)))
                 },
                 BandNrDetails(66).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(40, 30, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(40, 30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(70).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
                     bandwidths =
-                        arrayOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5), intArrayOf(15, 10, 5)))
+                        listOf(BwsNr(15, intArrayOf(25, 20, 15, 10, 5), intArrayOf(15, 10, 5)))
                 },
                 BandNrDetails(71).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(75).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     bandwidths =
-                        arrayOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5), intArrayOf()))
+                        listOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5), intArrayOf()))
                 },
                 BandNrDetails(76).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(5), intArrayOf()))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(5), intArrayOf()))
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     bandwidths =
-                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
+                        listOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
                     powerClass = 2
                 },
                 BandNrDetails(78).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     bandwidths =
-                        arrayOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
+                        listOf(BwsNr(30, intArrayOf(100, 80, 70, 60, 50, 40, 30, 20, 15, 10)))
 
                     powerClass = 2
                 },
                 BandNrDetails(79).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
 
                     powerClass = 2
                 },
@@ -2800,45 +2800,45 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(92).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(93).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(10, 5)))
                 },
                 BandNrDetails(94).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     rateMatchingLteCrs = true
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(257).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM64
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(200, 100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(200, 100, 50)))
                 },
                 BandNrDetails(258).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM64
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(200, 100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(200, 100, 50)))
                 },
                 BandNrDetails(260).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM64
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100, 50)))
                 },
                 BandNrDetails(261).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM64
-                    bandwidths = arrayOf(BwsNr(120, intArrayOf(100, 50)))
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100, 50)))
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -2879,61 +2879,61 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(1).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                 },
                 BandNrDetails(3).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(28).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(20)))
                 },
                 BandNrDetails(40).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20)))
                 },
                 BandNrDetails(41).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 15, 10)))
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20)))
                 },
                 BandNrDetails(78).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 10)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40, 20, 10)))
                 },
                 BandNrDetails(79).apply {
                     modDL = ModulationOrder.QAM256
                     modUL = ModulationOrder.QAM256
                     powerClass = 2
-                    bandwidths = arrayOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 50, 40)))
                 },
                 BandNrDetails(80).apply {
                     modDL = ModulationOrder.NONE
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(), intArrayOf(30, 25, 20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(), intArrayOf(30, 25, 20, 15, 10, 5)))
                 },
                 BandNrDetails(84).apply {
                     modDL = ModulationOrder.NONE
                     modUL = ModulationOrder.QAM256
-                    bandwidths = arrayOf(BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)))
+                    bandwidths = listOf(BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)))
                 }
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())

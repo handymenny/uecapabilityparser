@@ -1063,7 +1063,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             bwsList.add(BwsNr(scs, bwsDl, bwsUl))
         }
 
-        componentNr.bandwidths = bwsList.toTypedArray()
+        componentNr.bandwidths = bwsList
     }
 
     private fun parseNrBw(
