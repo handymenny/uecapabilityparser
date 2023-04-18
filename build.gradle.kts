@@ -80,13 +80,6 @@ spotless {
         endWithNewline()
     }
 
-    java {
-        importOrder()
-        removeUnusedImports()
-        googleJavaFormat().aosp().reflowLongStrings()
-        formatAnnotations()
-    }
-
     kotlin { ktfmt().kotlinlangStyle() }
 
     kotlinGradle { ktfmt().kotlinlangStyle() }
