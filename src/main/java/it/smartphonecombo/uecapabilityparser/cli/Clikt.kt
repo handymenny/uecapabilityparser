@@ -72,6 +72,9 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
 
         val comboList = parsing()
+        comboList.setMetadata("parser-version", Property.getProperty("project.version") ?: "")
+        comboList.setMetadata("log-type", type)
+
         csv?.let {
             val csvOutput = if (it == "-") null else it
             csvOutput(comboList, csvOutput)
