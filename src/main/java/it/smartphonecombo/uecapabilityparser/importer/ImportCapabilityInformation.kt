@@ -315,7 +315,9 @@ object ImportCapabilityInformation : ImportCapabilities {
     ) {
         combinations.flatten().forEach {
             it.modDL = bandList[it.band]?.modDL ?: EmptyModulation
-            it.modUL = bandList[it.band]?.modUL ?: EmptyModulation
+            if (it.classUL != BwClass.NONE) {
+                it.modUL = bandList[it.band]?.modUL ?: EmptyModulation
+            }
         }
     }
 
