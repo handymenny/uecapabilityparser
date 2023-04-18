@@ -18,13 +18,17 @@ data class Capabilities(
     var enDcCombos: List<ComboEnDc> = emptyList(),
     var nrCombos: List<ComboNr> = emptyList(),
     var nrDcCombos: List<ComboNrDc> = emptyList(),
-    val metadata: MutableMap<String, Any> = mutableMapOf()
+    val metadata: MutableMap<String, String> = mutableMapOf()
 ) {
     fun setMetadata(key: String, value: Any) {
-        metadata[key] = value
+        metadata[key] = value.toString()
     }
 
-    fun getMetadata(key: String): Any? {
+    fun getStringMetadata(key: String): String? {
         return metadata.getOrDefault(key, null)
+    }
+
+    fun getIntMetadata(key: String): Int? {
+        return metadata.getOrDefault(key, null)?.toIntOrNull()
     }
 }
