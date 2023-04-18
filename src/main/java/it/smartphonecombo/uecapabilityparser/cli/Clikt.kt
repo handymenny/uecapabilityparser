@@ -60,6 +60,8 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
 
     private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
 
+    private val json by option("-j", "--json", help = HelpMessage.JSON, metavar = "FILE")
+
     private val jsonPrettyPrint by
         option("--json-pretty-print", help = HelpMessage.JSON_PRETTY_PRINT).flag()
 
@@ -83,6 +85,10 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
         csv?.let {
             val csvOutput = if (it == "-") null else it
             csvOutput(comboList, csvOutput)
+        }
+        json?.let {
+            val jsvOutput = if (it == "-") null else it
+            Output.outputFileOrStdout(jsonFormat.encodeToString(comboList), jsvOutput)
         }
     }
 

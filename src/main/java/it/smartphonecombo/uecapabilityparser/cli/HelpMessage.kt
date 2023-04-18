@@ -21,4 +21,7 @@ object HelpMessage {
         """Output the uelog, if "-" is specified the uelog will be output to standard output"""
     const val DEBUG = "Print debug info"
     const val JSON_PRETTY_PRINT = "Specifies whether resulting JSONs should be pretty-printed"
+    const val JSON =
+        """Output a JSON file representing the serialization of capabilities data.
+         If "-" is provided in place of a file name, this will json be outputted to standard output."""
 }
