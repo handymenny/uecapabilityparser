@@ -7,9 +7,12 @@ import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Output
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ComboLte(
-    override val masterComponents: List<ComponentLte>,
+    @SerialName("components") override val masterComponents: List<ComponentLte>,
     override val bcs: BCS = EmptyBCS
 ) : ICombo {
     override val secondaryComponents

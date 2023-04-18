@@ -1,6 +1,19 @@
 package it.smartphonecombo.uecapabilityparser.model.bandwidth
 
-data class BwsNr(val scs: Int, val bwsDL: IntArray, val bwsUL: IntArray = bwsDL) {
+import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+@OptIn(ExperimentalSerializationApi::class)
+data class BwsNr(
+    val scs: Int,
+    @SerialName("bandwidths-dl") val bwsDL: IntArray,
+    @EncodeDefault(EncodeDefault.Mode.ALWAYS)
+    @SerialName("bandwidths-ul")
+    val bwsUL: IntArray = bwsDL
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is BwsNr) return false

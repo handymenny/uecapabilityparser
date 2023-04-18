@@ -2,7 +2,10 @@ package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import java.util.WeakHashMap
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 sealed interface BCS : Comparable<BCS> {
     fun toCompactStr(): String
 
@@ -74,6 +77,8 @@ sealed interface BCS : Comparable<BCS> {
     }
 }
 
+@Serializable
+@SerialName("empty")
 object EmptyBCS : BCS {
     override fun toCompactStr(): String = ""
     override fun toString(): String = ""
@@ -83,6 +88,8 @@ object EmptyBCS : BCS {
     }
 }
 
+@Serializable
+@SerialName("all")
 object AllBCS : BCS {
     override fun toCompactStr(): String = "mAll"
     override fun toString(): String = "all"
@@ -92,7 +99,9 @@ object AllBCS : BCS {
     }
 }
 
-data class SingleBCS(private val bcs: Int) : BCS {
+@Serializable
+@SerialName("single")
+data class SingleBCS(@SerialName("value") private val bcs: Int) : BCS {
     override fun toCompactStr(): String = bcs.toString()
     override fun toString(): String = bcs.toString()
     override fun compareTo(other: BCS): Int {
@@ -106,7 +115,9 @@ data class SingleBCS(private val bcs: Int) : BCS {
     }
 }
 
-data class MultiBCS(private val bcsArray: IntArray) : BCS {
+@Serializable
+@SerialName("multi")
+data class MultiBCS(@SerialName("value") private val bcsArray: IntArray) : BCS {
     private var compactText: String? = null
     override fun toString(): String = bcsArray.joinToString(", ")
 

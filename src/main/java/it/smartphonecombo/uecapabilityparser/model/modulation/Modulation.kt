@@ -1,7 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.model.modulation
 
 import java.util.WeakHashMap
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 sealed interface Modulation : Comparable<Modulation> {
     fun average(): Double
     fun maxModulationOrder(): ModulationOrder
@@ -43,19 +46,27 @@ sealed interface Modulation : Comparable<Modulation> {
     }
 }
 
+@Serializable
+@SerialName("empty")
 object EmptyModulation : Modulation {
     override fun toString(): String = ModulationOrder.NONE.toString()
     override fun average(): Double = ModulationOrder.NONE.ordinal.toDouble()
     override fun maxModulationOrder(): ModulationOrder = ModulationOrder.NONE
 }
 
-data class SingleModulation(private val modulation: ModulationOrder) : Modulation {
+@Serializable
+@SerialName("single")
+data class SingleModulation(@SerialName("value") private val modulation: ModulationOrder) :
+    Modulation {
     override fun toString(): String = modulation.toString()
     override fun average(): Double = modulation.ordinal.toDouble()
     override fun maxModulationOrder(): ModulationOrder = modulation
 }
 
-data class MixedModulation(private val list: List<ModulationOrder>) : Modulation {
+@Serializable
+@SerialName("mixed")
+data class MixedModulation(@SerialName("value") private val list: List<ModulationOrder>) :
+    Modulation {
     override fun toString(): String = list.joinToString(", ")
     override fun average(): Double = list.map(ModulationOrder::ordinal).average()
     override fun maxModulationOrder(): ModulationOrder = list.max()

@@ -1,22 +1,28 @@
 package it.smartphonecombo.uecapabilityparser.model.band
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class BandNrDetails(
-    var band: Band = 0,
-    var mimoDL: Mimo = EmptyMimo,
-    var mimoUL: Mimo = EmptyMimo,
-    var modDL: Modulation = EmptyModulation,
-    var modUL: Modulation = EmptyModulation,
-    var maxUplinkDutyCycle: Int = 100,
-    var powerClass: Int = 3,
-    var bandwidths: List<BwsNr> = emptyList(),
-    var rateMatchingLteCrs: Boolean = false
+    @SerialName("band") var band: Band = 0,
+    @SerialName("bw-class-dl") var classDL: BwClass = BwClass.NONE,
+    @SerialName("bw-class-ul") var classUL: BwClass = BwClass.NONE,
+    @SerialName("mimo-dl") var mimoDL: Mimo = EmptyMimo,
+    @SerialName("mimo-ul") var mimoUL: Mimo = EmptyMimo,
+    @SerialName("modulation-dl") var modDL: Modulation = EmptyModulation,
+    @SerialName("modulation-ul") var modUL: Modulation = EmptyModulation,
+    @SerialName("max-uplink-duty-cycle") var maxUplinkDutyCycle: Int = 100,
+    @SerialName("power-class") var powerClass: Int = 3,
+    @SerialName("bandwidths") var bandwidths: List<BwsNr> = emptyList(),
+    @SerialName("rate-matching-lte-crs") var rateMatchingLteCrs: Boolean = false
 ) : Comparable<BandNrDetails> {
 
     override fun compareTo(other: BandNrDetails): Int {
