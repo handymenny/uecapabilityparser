@@ -969,15 +969,15 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                 val duplex = DuplexBandTable.getNrDuplex(componentNr.band)
                 if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
-                    componentNr.modDL = ModulationOrder.QAM64
+                    componentNr.modDL = ModulationOrder.QAM64.toModulation()
                 } else if (duplex != Duplex.SUL) { // this is ok because No fr2 is SUL
-                    componentNr.modDL = ModulationOrder.QAM256
+                    componentNr.modDL = ModulationOrder.QAM256.toModulation()
                 }
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
-                    componentNr.modUL = ModulationOrder.QAM256
+                    componentNr.modUL = ModulationOrder.QAM256.toModulation()
                 } else if (duplex != Duplex.SDL) {
-                    componentNr.modUL = ModulationOrder.QAM64
+                    componentNr.modUL = ModulationOrder.QAM64.toModulation()
                 }
 
                 supportedBandNr.getString("ue-PowerClass")?.removePrefix("pc")?.toInt()?.let {
