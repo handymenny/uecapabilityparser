@@ -304,7 +304,9 @@ object Import0xB826 : ImportCapabilities {
         val mimoUL = byteBuffer.readUnsignedByte()
         component.mimoUL = getMimoFromIndex(mimoUL)
         val modUL = byteBuffer.readUnsignedByte()
-        component.modUL = getQamFromIndex(modUL).toModulation()
+        if (component.classUL != BwClass.NONE) {
+            component.modUL = getQamFromIndex(modUL).toModulation()
+        }
 
         if (isNr) {
             val nrBand = component as ComponentNr
@@ -365,7 +367,9 @@ object Import0xB826 : ImportCapabilities {
 
         val byte3 = byteBuffer.readUnsignedByte()
         val modUL = byte3.extract2(1)
-        component.modUL = getQamFromIndex(modUL).toModulation()
+        if (component.classUL != BwClass.NONE) {
+            component.modUL = getQamFromIndex(modUL).toModulation()
+        }
 
         if (isNr) {
             val nrBand = component as ComponentNr
