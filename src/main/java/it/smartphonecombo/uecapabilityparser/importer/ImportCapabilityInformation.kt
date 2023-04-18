@@ -45,6 +45,7 @@ import it.smartphonecombo.uecapabilityparser.model.json.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrRrcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
+import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.toMimo
@@ -328,14 +329,20 @@ object ImportCapabilityInformation : ImportCapabilities {
                 if (bandParameter.getString("ul-256QAM-r14") != null) {
                     combinations[i][j].modUL = ModulationOrder.QAM256.toModulation()
                 } else {
-                    bandParameter
-                        .getArray("ul-256QAM-perCC-InfoList-r14")
-                        ?.firstOrNull()
-                        ?.getString("ul-256QAM-perCC-r14")
-                        ?.let {
-                            // TODO: Handle modulation per CC
-                            combinations[i][j].modUL = ModulationOrder.QAM256.toModulation()
+                    val perCCInfoList = bandParameter.getArray("ul-256QAM-perCC-InfoList-r14")
+                    val defaultMod = combinations[i][j].modUL.maxModulationOrder()
+                    val mixedModulation =
+                        perCCInfoList?.map {
+                            if (it.getString("ul-256QAM-perCC-r14") != null) {
+                                ModulationOrder.QAM256
+                            } else {
+                                defaultMod
+                            }
                         }
+
+                    if (!mixedModulation.isNullOrEmpty()) {
+                        combinations[i][j].modUL = Modulation.from(mixedModulation)
+                    }
                 }
             }
         }
@@ -770,11 +777,12 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoUL = Mimo.from(mixedMimo)
+                val mixedModulation = ulFeature.map { it.qam }
+                componentLte.modUL = Modulation.from(mixedModulation)
             } else {
                 componentLte.mimoUL = ulFeature.first().mimo
+                componentLte.modUL = ulFeature.first().qam.toModulation()
             }
-            // TODO: Handle modulation per CC
-            componentLte.modUL = ulFeature.first().qam.toModulation()
         } else {
             // only DL
             componentLte.classUL = BwClass.NONE
@@ -794,11 +802,12 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoDL = Mimo.from(mixedMimo)
+                val mixedModulation = dlFeature.map { it.qam }
+                componentNr.modDL = Modulation.from(mixedModulation)
             } else {
                 componentNr.mimoDL = firstFeature.mimo
+                componentNr.modDL = firstFeature.qam.toModulation()
             }
-            // TODO: Handle modulation per CC
-            componentNr.modDL = firstFeature.qam.toModulation()
             componentNr.maxBandwidth = firstFeature.bw
             componentNr.channelBW90mhz = firstFeature.bw >= 80 && firstFeature.channelBW90mhz
             componentNr.scs = firstFeature.scs
@@ -812,11 +821,12 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoUL = Mimo.from(mixedMimo)
+                val mixedModulation = ulFeature.map { it.qam }
+                componentNr.modUL = Modulation.from(mixedModulation)
             } else {
                 componentNr.mimoUL = ulFeature.first().mimo
+                componentNr.modUL = ulFeature.first().qam.toModulation()
             }
-            // TODO: Handle modulation per CC
-            componentNr.modUL = ulFeature.first().qam.toModulation()
         } else {
             // only DL
             componentNr.classUL = BwClass.NONE
