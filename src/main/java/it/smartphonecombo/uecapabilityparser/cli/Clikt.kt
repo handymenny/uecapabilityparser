@@ -30,6 +30,8 @@ import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 import it.smartphonecombo.uecapabilityparser.util.Output
 import it.smartphonecombo.uecapabilityparser.util.Property
 import java.io.InputStreamReader
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 
@@ -56,12 +58,19 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
 
     private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
 
+    private val jsonPrettyPrint by
+        option("--json-pretty-print", help = HelpMessage.JSON_PRETTY_PRINT).flag()
+
     private val ueLog by option("-l", "--uelog", help = HelpMessage.UE_LOG, metavar = "FILE")
 
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
+    private lateinit var jsonFormat: Json
+
     override fun run() {
         Config["debug"] = debug.toString()
+        jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
+
         val comboList = parsing()
         csv?.let {
             val csvOutput = if (it == "-") null else it
@@ -121,7 +130,7 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
 
         if (ueLog != null) {
             val ueLogOutput = if (ueLog == "-") null else ueLog
-            Output.outputFileOrStdout(jsonOutput.toString(), ueLogOutput)
+            Output.outputFileOrStdout(jsonFormat.encodeToString(jsonOutput), ueLogOutput)
         }
 
         val jsonEutra = jsonOutput.getOrDefault(Rat.EUTRA.toString(), null) as? JsonObject
