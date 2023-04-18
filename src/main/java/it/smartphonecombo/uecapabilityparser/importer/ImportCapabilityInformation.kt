@@ -18,7 +18,6 @@ import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.Modulation
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
@@ -45,6 +44,10 @@ import it.smartphonecombo.uecapabilityparser.model.json.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UEMrdcCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UENrRrcCapabilityJson
+import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
+import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
+import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.toMimo
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -311,8 +314,8 @@ object ImportCapabilityInformation : ImportCapabilities {
         bandList: Map<Int, ComponentLte>
     ) {
         combinations.flatten().forEach {
-            it.modDL = bandList[it.band]?.modDL ?: Modulation.NONE
-            it.modUL = bandList[it.band]?.modUL ?: Modulation.NONE
+            it.modDL = bandList[it.band]?.modDL ?: EmptyModulation
+            it.modUL = bandList[it.band]?.modUL ?: EmptyModulation
         }
     }
 
@@ -324,16 +327,22 @@ object ImportCapabilityInformation : ImportCapabilities {
             bandParameterList.getArray("bandParameterList-v1430")?.forEachIndexed { j, bandParameter
                 ->
                 if (bandParameter.getString("ul-256QAM-r14") != null) {
-                    combinations[i][j].modUL = Modulation.QAM256
+                    combinations[i][j].modUL = ModulationOrder.QAM256.toModulation()
                 } else {
-                    bandParameter
-                        .getArray("ul-256QAM-perCC-InfoList-r14")
-                        ?.firstOrNull()
-                        ?.getString("ul-256QAM-perCC-r14")
-                        ?.let {
-                            // TODO: Handle modulation per CC
-                            combinations[i][j].modUL = Modulation.QAM256
+                    val perCCInfoList = bandParameter.getArray("ul-256QAM-perCC-InfoList-r14")
+                    val defaultMod = combinations[i][j].modUL.maxModulationOrder()
+                    val mixedModulation =
+                        perCCInfoList?.map {
+                            if (it.getString("ul-256QAM-perCC-r14") != null) {
+                                ModulationOrder.QAM256
+                            } else {
+                                defaultMod
+                            }
                         }
+
+                    if (!mixedModulation.isNullOrEmpty()) {
+                        combinations[i][j].modUL = Modulation.from(mixedModulation)
+                    }
                 }
             }
         }
@@ -347,7 +356,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             bandParameterList.getArray("bandParameterList-v1530")?.forEachIndexed { j, bandParameter
                 ->
                 if (bandParameter.getString("dl-1024QAM-r15") != null) {
-                    combinations[i][j].modDL = Modulation.QAM1024
+                    combinations[i][j].modDL = ModulationOrder.QAM1024.toModulation()
                 }
             }
         }
@@ -502,15 +511,15 @@ object ImportCapabilityInformation : ImportCapabilities {
                 it.getInt("bandEUTRA")?.let { band ->
                     val duplex = DuplexBandTable.getLteDuplex(band)
                     val defaultModUL =
-                        if (duplex == Duplex.SDL) Modulation.NONE else Modulation.QAM16
+                        if (duplex == Duplex.SDL) ModulationOrder.NONE else ModulationOrder.QAM16
                     val mimoUl = if (duplex == Duplex.SDL) 0 else 1
 
                     ComponentLte(
                         band,
                         mimoDL = 2.toMimo(),
                         mimoUL = mimoUl.toMimo(),
-                        modDL = Modulation.QAM64,
-                        modUL = defaultModUL
+                        modDL = ModulationOrder.QAM64.toModulation(),
+                        modUL = defaultModUL.toModulation()
                     )
                 }
             }
@@ -526,10 +535,10 @@ object ImportCapabilityInformation : ImportCapabilities {
             ?.getArrayAtPath("rf-Parameters-v1250.supportedBandListEUTRA-v1250")
             ?.forEachIndexed { i, it ->
                 if (it.getString("dl-256QAM-r12") != null) {
-                    lteBands[i].modDL = Modulation.QAM256
+                    lteBands[i].modDL = ModulationOrder.QAM256.toModulation()
                 }
                 if (it.getString("ul-64QAM-r12") != null) {
-                    lteBands[i].modUL = Modulation.QAM64
+                    lteBands[i].modUL = ModulationOrder.QAM64.toModulation()
                 }
             }
 
@@ -768,11 +777,12 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoUL = Mimo.from(mixedMimo)
+                val mixedModulation = ulFeature.map { it.qam }
+                componentLte.modUL = Modulation.from(mixedModulation)
             } else {
                 componentLte.mimoUL = ulFeature.first().mimo
+                componentLte.modUL = ulFeature.first().qam.toModulation()
             }
-            // TODO: Handle modulation per CC
-            componentLte.modUL = ulFeature.first().qam
         } else {
             // only DL
             componentLte.classUL = BwClass.NONE
@@ -792,11 +802,12 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoDL = Mimo.from(mixedMimo)
+                val mixedModulation = dlFeature.map { it.qam }
+                componentNr.modDL = Modulation.from(mixedModulation)
             } else {
                 componentNr.mimoDL = firstFeature.mimo
+                componentNr.modDL = firstFeature.qam.toModulation()
             }
-            // TODO: Handle modulation per CC
-            componentNr.modDL = firstFeature.qam
             componentNr.maxBandwidth = firstFeature.bw
             componentNr.channelBW90mhz = firstFeature.bw >= 80 && firstFeature.channelBW90mhz
             componentNr.scs = firstFeature.scs
@@ -810,11 +821,12 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoUL = Mimo.from(mixedMimo)
+                val mixedModulation = ulFeature.map { it.qam }
+                componentNr.modUL = Modulation.from(mixedModulation)
             } else {
                 componentNr.mimoUL = ulFeature.first().mimo
+                componentNr.modUL = ulFeature.first().qam.toModulation()
             }
-            // TODO: Handle modulation per CC
-            componentNr.modUL = ulFeature.first().qam
         } else {
             // only DL
             componentNr.classUL = BwClass.NONE
@@ -955,15 +967,15 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                 val duplex = DuplexBandTable.getNrDuplex(componentNr.band)
                 if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
-                    componentNr.modDL = Modulation.QAM64
+                    componentNr.modDL = ModulationOrder.QAM64
                 } else if (duplex != Duplex.SUL) { // this is ok because No fr2 is SUL
-                    componentNr.modDL = Modulation.QAM256
+                    componentNr.modDL = ModulationOrder.QAM256
                 }
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
-                    componentNr.modUL = Modulation.QAM256
+                    componentNr.modUL = ModulationOrder.QAM256
                 } else if (duplex != Duplex.SDL) {
-                    componentNr.modUL = Modulation.QAM64
+                    componentNr.modUL = ModulationOrder.QAM64
                 }
 
                 supportedBandNr.getString("ue-PowerClass")?.removePrefix("pc")?.toInt()?.let {
@@ -1077,7 +1089,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             ->
             val downlinkPerCC =
                 featureSets.getArray("featureSetsDL-PerCC-r15")?.map {
-                    val qam = Modulation.QAM256
+                    val qam = ModulationOrder.QAM256
                     val mimoLayers = it.getString("supportedMIMO-CapabilityDL-MRDC-r15")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
                     FeaturePerCCLte(mimo = mimo.toMimo(), qam = qam)
@@ -1104,9 +1116,9 @@ object ImportCapabilityInformation : ImportCapabilities {
                 featureSets.getArray("featureSetsUL-PerCC-r15")?.map {
                     val qam =
                         if (it.getString("ul-256QAM-r15") != null) {
-                            Modulation.QAM256
+                            ModulationOrder.QAM256
                         } else {
-                            Modulation.QAM64
+                            ModulationOrder.QAM64
                         }
                     val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 1)
@@ -1160,7 +1172,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
                     val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
-                    val qam = Modulation.of(it.getString("supportedModulationOrderDL"))
+                    val qam = ModulationOrder.of(it.getString("supportedModulationOrderDL"))
 
                     FeaturePerCCNr(
                         mimo = mimo.toMimo(),
@@ -1211,7 +1223,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                     val mimo =
                         maxOf(Int.fromLiteral(mimoCbLayers), Int.fromLiteral(mimoNonCbLayers), 1)
-                    val qam = Modulation.of(it.getString("supportedModulationOrderUL"))
+                    val qam = ModulationOrder.of(it.getString("supportedModulationOrderUL"))
                     FeaturePerCCNr(
                         type = LinkDirection.UPLINK,
                         mimo = mimo.toMimo(),

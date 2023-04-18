@@ -1,6 +1,6 @@
-package it.smartphonecombo.uecapabilityparser.model
+package it.smartphonecombo.uecapabilityparser.model.modulation
 
-enum class Modulation {
+enum class ModulationOrder {
     NONE,
     QPSK,
     QAM16,
@@ -28,7 +28,7 @@ enum class Modulation {
          * - [QAM16] if [string] contains "16"
          * - [NONE] otherwise
          */
-        fun of(string: String?): Modulation {
+        fun of(string: String?): ModulationOrder {
             return when {
                 string == null -> NONE
                 "1024" in string -> QAM1024
