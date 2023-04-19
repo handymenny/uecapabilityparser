@@ -1,9 +1,11 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.PrintMessage
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.transformAll
 import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
@@ -19,6 +21,20 @@ import kotlinx.serialization.json.Json
 object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs = true) {
     init {
         versionOption(version = Property.getProperty("project.version") ?: "")
+
+        // An eager option with value
+        option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT")
+            .transformAll {
+                if (it.isEmpty()) {
+                    return@transformAll
+                } else {
+                    val port = it.first().toIntOrNull() ?: 8080
+                    ServerMode.run(port)
+                    // stop processing other options
+                    throw PrintMessage("Server started at port $port", error = false)
+                }
+            }
+            .apply { registerOption(this) }
     }
 
     private val input by option("-i", "--input", help = HelpMessage.INPUT).inputStream().required()

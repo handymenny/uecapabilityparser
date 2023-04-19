@@ -27,6 +27,7 @@ dependencies {
     implementation("org.slf4j:slf4j-nop:2.0.7")
     implementation("com.soywiz.korlibs.kmem:kmem-jvm:$kmemVersion")
     implementation("com.github.ajalt.clikt:clikt:3.5.2")
+    implementation("io.javalin:javalin:5.4.2")
 }
 
 group = "parser"
