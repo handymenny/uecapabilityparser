@@ -8,26 +8,13 @@ import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
 import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
-import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
-import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
-import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
-import it.smartphonecombo.uecapabilityparser.importer.ImportLteCarrierPolicy
-import it.smartphonecombo.uecapabilityparser.importer.ImportMTKLte
-import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
-import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.Import0xB826Helpers
-import it.smartphonecombo.uecapabilityparser.util.ImportCapabilitiesHelpers.convertUeCapabilityToJson
 import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.Parsing
 import it.smartphonecombo.uecapabilityparser.util.Property
-import java.io.InputStreamReader
-import java.time.Instant
-import kotlin.system.measureTimeMillis
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
 
 object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs = true) {
     init {
@@ -63,75 +50,28 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
 
     private lateinit var jsonFormat: Json
 
+    private lateinit var parsing: Parsing
+
     override fun run() {
         Config["debug"] = debug.toString()
+
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
+        parsing = Parsing(input, inputNR, inputENDC, defaultNR, multiple0xB826, type, jsonFormat)
 
-        val comboList: Capabilities
-        val processTime = measureTimeMillis { comboList = parsing() }
-        comboList.setMetadata("parser-version", Property.getProperty("project.version") ?: "")
-        comboList.setMetadata("log-type", type)
-        comboList.setMetadata("timestamp", Instant.now())
-        comboList.setMetadata("processing-time", "${processTime}ms")
+        val capabilities = parsing.capabilities
 
+        ueLog?.let {
+            val ueLogOutput = if (ueLog == "-") null else ueLog
+            Output.outputFileOrStdout(parsing.ueLog, ueLogOutput)
+        }
         csv?.let {
             val csvOutput = if (it == "-") null else it
-            csvOutput(comboList, csvOutput)
+            csvOutput(capabilities, csvOutput)
         }
         json?.let {
             val jsvOutput = if (it == "-") null else it
-            Output.outputFileOrStdout(jsonFormat.encodeToString(comboList), jsvOutput)
+            Output.outputFileOrStdout(jsonFormat.encodeToString(capabilities), jsvOutput)
         }
-    }
-
-    private fun parsing(): Capabilities {
-        val imports =
-            when (type) {
-                "E" -> ImportNvItem
-                "C" -> ImportLteCarrierPolicy
-                "CNR" -> ImportNrCapPrune
-                "Q" -> Import0xB0CD
-                "M" -> ImportMTKLte
-                "QNR" -> Import0xB826
-                "W",
-                "N",
-                "O",
-                "QC",
-                "H" -> {
-                    val jsonOutput =
-                        convertUeCapabilityToJson(type, input, inputNR, inputENDC, defaultNR)
-                    return ueCapabilityHandling(jsonOutput)
-                }
-                else -> return Capabilities()
-            }
-
-        if (ueLog != null) {
-            val ueLogOutput = if (ueLog == "-") null else ueLog
-            Output.outputFileOrStdout(input.reader().use(InputStreamReader::readText), ueLogOutput)
-        }
-
-        return if (type == "QNR") {
-            Import0xB826Helpers.parseMultiple0xB826(
-                input.reader().use(InputStreamReader::readText),
-                multiple0xB826
-            )
-        } else {
-            input.use { imports.parse(it) }
-        }
-    }
-
-    private fun ueCapabilityHandling(input: JsonObject): Capabilities {
-        val imports = ImportCapabilityInformation
-        if (ueLog != null) {
-            val ueLogOutput = if (ueLog == "-") null else ueLog
-            Output.outputFileOrStdout(jsonFormat.encodeToString(input), ueLogOutput)
-        }
-
-        val jsonEutra = input.getOrDefault(Rat.EUTRA.toString(), null) as? JsonObject
-        val jsonEutraNr = input.getOrDefault(Rat.EUTRA_NR.toString(), null) as? JsonObject
-        val jsonNr = input.getOrDefault(Rat.NR.toString(), null) as? JsonObject
-
-        return imports.parse(jsonEutra, jsonEutraNr, jsonNr)
     }
 
     private fun csvOutput(comboList: Capabilities, csvPath: String?) {
