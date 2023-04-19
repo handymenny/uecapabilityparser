@@ -1,6 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 import com.ericsson.mts.asn1.ASN1Converter
+import com.ericsson.mts.asn1.ASN1Lexer
+import com.ericsson.mts.asn1.ASN1Parser
 import com.ericsson.mts.asn1.ASN1Translator
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.PERTranslatorFactory
@@ -15,27 +17,43 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
+import org.antlr.v4.runtime.CharStreams
+import org.antlr.v4.runtime.CommonTokenStream
+import org.antlr.v4.runtime.atn.PredictionMode
+import org.antlr.v4.runtime.tree.ParseTree
 
 object MtsAsn1Helpers {
 
-    private val asn1TranslatorLte by lazy {
-        val definition = getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
-        ASN1Translator(PERTranslatorFactory(false), listOf(definition))
-    }
+    private val lteTree: ParseTree by
+        lazy(LazyThreadSafetyMode.PUBLICATION) {
+            val definition = getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
+            parseTree(definition)
+        }
 
-    private val asn1TranslatorNr by lazy {
-        val definition = getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
-        ASN1Translator(PERTranslatorFactory(false), listOf(definition))
-    }
+    private val nrTree: ParseTree by
+        lazy(LazyThreadSafetyMode.PUBLICATION) {
+            val definition = getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
+            parseTree(definition)
+        }
 
     fun getAsn1Converter(rat: Rat, converter: AbstractConverter): ASN1Converter {
-        val definition =
+        val tree =
             if (rat == Rat.EUTRA) {
-                getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
+                lteTree
             } else {
-                getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
+                nrTree
             }
-        return ASN1Converter(converter, listOf(definition))
+        return ASN1Converter(converter, tree)
+    }
+
+    private fun getAsn1Translator(rat: Rat): ASN1Translator {
+        val tree =
+            if (rat == Rat.EUTRA) {
+                lteTree
+            } else {
+                nrTree
+            }
+        return ASN1Translator(PERTranslatorFactory(false), tree)
     }
 
     fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
@@ -58,12 +76,12 @@ object MtsAsn1Helpers {
         val octetStringKey: String
 
         if (isLteCapInfo) {
-            translator = asn1TranslatorLte
+            translator = getAsn1Translator(Rat.EUTRA)
             ratContainerListPath =
                 "message.c1.ueCapabilityInformation.criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
             octetStringKey = "ueCapabilityRAT-Container"
         } else {
-            translator = asn1TranslatorNr
+            translator = getAsn1Translator(Rat.NR)
             ratContainerListPath =
                 "message.c1.ueCapabilityInformation.criticalExtensions.ueCapabilityInformation.ue-CapabilityRAT-ContainerList"
             octetStringKey = "ue-CapabilityRAT-Container"
@@ -94,11 +112,21 @@ object MtsAsn1Helpers {
         }
 
         val jsonWriter = KotlinJsonFormatWriter()
-        val translator = if (rat == Rat.EUTRA) asn1TranslatorLte else asn1TranslatorNr
+        val translator =
+            if (rat == Rat.EUTRA) getAsn1Translator(Rat.EUTRA) else getAsn1Translator(Rat.NR)
 
         return buildJsonObject {
             translator.decode(rat.ratCapabilityIdentifier, bytes.inputStream(), jsonWriter)
             jsonWriter.jsonNode?.let { put(rat.toString(), it) }
         }
+    }
+
+    private fun parseTree(stream: InputStream): ParseTree {
+        val inputStream = CharStreams.fromStream(stream)
+        val asn1Lexer = ASN1Lexer(inputStream)
+        val commonTokenStream = CommonTokenStream(asn1Lexer)
+        val asn1Parser = ASN1Parser(commonTokenStream)
+        asn1Parser.interpreter.predictionMode = PredictionMode.SLL
+        return asn1Parser.moduleDefinition()
     }
 }
