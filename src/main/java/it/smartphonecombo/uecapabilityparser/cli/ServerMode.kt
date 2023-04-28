@@ -64,17 +64,25 @@ object ServerMode {
                 val inputNR = request.getString("inputNR")?.let { base64.decode(it).inputStream() }
                 val inputENDC =
                     request.getString("inputENDC")?.let { base64.decode(it).inputStream() }
-                val defaultNR = request.getString("defaultNR")?.let { it.toBoolean() } ?: false
+                val defaultNR =
+                    request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
                 val multiple0xB826 =
                     request.getString("multiple0xB826")?.let { it.toBoolean() } ?: false
                 val type = request.getString("type")
 
-                if (input == null || type == null) {
+                if (input == null && inputNR == null || type == null) {
                     ctx.result("Bad Request")
                     ctx.status(HttpStatus.BAD_REQUEST)
                 } else {
                     val parsing =
-                        Parsing(input, inputNR, inputENDC, defaultNR, multiple0xB826, type)
+                        Parsing(
+                            input ?: inputNR!!,
+                            inputNR,
+                            inputENDC,
+                            defaultNR,
+                            multiple0xB826,
+                            type
+                        )
                     ctx.json(parsing.capabilities)
                 }
             }
