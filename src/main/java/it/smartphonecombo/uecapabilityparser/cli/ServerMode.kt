@@ -49,6 +49,7 @@ object ServerMode {
                     config.http.maxRequestSize = 100L * SizeUnit.MB.multiplier
                     config.routing.treatMultipleSlashesAsSingleSlash = true
                     config.jsonMapper(jsonMapper)
+                    config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
                 }
                 .apply {
                     exception(Exception::class.java) { e, _ -> e.printStackTrace() }
@@ -98,6 +99,7 @@ object ServerMode {
                     ctx.result(Output.toCsv(comboList))
                         .contentType("text/csv")
                         .header("Content-Disposition", "attachment; filename=${type}-${date}.csv")
+                        .header("Access-Control-Expose-Headers", "Content-Disposition")
                 }
             }
         }
