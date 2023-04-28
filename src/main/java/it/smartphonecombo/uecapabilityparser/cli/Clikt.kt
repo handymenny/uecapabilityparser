@@ -30,8 +30,13 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
                 } else {
                     val port = it.first().toIntOrNull() ?: 8080
                     ServerMode.run(port)
+                    // Process debug
+                    val isDebug =
+                        context.originalArgv.any { arg -> arg == "--debug" || arg == "-d" }
+                    Config["debug"] = isDebug.toString()
+                    val debugMessage = if (isDebug) "with debug enabled" else ""
                     // stop processing other options
-                    throw PrintMessage("Server started at port $port", error = false)
+                    throw PrintMessage("Server started at port $port $debugMessage", error = false)
                 }
             }
             .apply { registerOption(this) }
