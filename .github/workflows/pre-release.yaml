@@ -1,5 +1,6 @@
 name: pre-release
 on:
+  workflow_dispatch:
   schedule:
     - cron: '00 20 * * *' # runs daily at 20:00 UTC
 jobs:
