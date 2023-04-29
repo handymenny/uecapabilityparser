@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.cli
+package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder

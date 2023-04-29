@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.cli
+package it.smartphonecombo.uecapabilityparser.server
 
 object ServerMode {
     fun run(port: Int) {

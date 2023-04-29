@@ -11,6 +11,7 @@ import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
 import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.server.ServerMode
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.Output
 import it.smartphonecombo.uecapabilityparser.util.Parsing
