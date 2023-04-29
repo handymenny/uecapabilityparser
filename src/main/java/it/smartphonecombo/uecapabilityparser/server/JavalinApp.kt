@@ -3,7 +3,9 @@ package it.smartphonecombo.uecapabilityparser.server
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder
 import io.javalin.config.SizeUnit
+import io.javalin.http.ContentType
 import io.javalin.http.HttpStatus
+import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getString
@@ -39,6 +41,7 @@ class JavalinApp {
             }
         }
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
+    private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
     val app: Javalin =
         Javalin.create { config ->
             config.compression.gzipOnly(4)
@@ -47,11 +50,17 @@ class JavalinApp {
             config.routing.treatMultipleSlashesAsSingleSlash = true
             config.jsonMapper(jsonMapper)
             config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
+            config.staticFiles.add("/web", Location.CLASSPATH)
         }
 
     init {
         app.exception(Exception::class.java) { e, _ -> e.printStackTrace() }
-        app.error(HttpStatus.NOT_FOUND) { ctx -> ctx.json("not found") }
+        app.error(HttpStatus.NOT_FOUND) { ctx ->
+            if (html404 != null) {
+                ctx.contentType(ContentType.HTML)
+                ctx.result(html404)
+            }
+        }
         app.routes {
             ApiBuilder.post("/parse/0.0.7") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
