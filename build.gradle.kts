@@ -29,7 +29,7 @@ dependencies {
     implementation("com.github.ajalt.clikt:clikt:3.5.2")
     implementation("io.javalin:javalin:$javalinVersion")
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
 }
 
 group = "parser"
