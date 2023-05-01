@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    val mtsAsn1Version = "0.0.8"
+    val mtsAsn1Version = "7bdf0d8"
     val kmemVersion = "3.4.0"
     val javalinVersion = "5.4.2"
 
