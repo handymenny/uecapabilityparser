@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model
 
-import java.util.WeakHashMap
+import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,8 +11,8 @@ sealed interface Mimo : Comparable<Mimo> {
     override fun compareTo(other: Mimo): Int = average().compareTo(other.average())
 
     companion object {
-        private val cacheInt = WeakHashMap<Int, Mimo>()
-        private val cacheIntArray = WeakHashMap<List<Int>, Mimo>()
+        private val cacheInt = WeakConcurrentHashMap<Int, Mimo>()
+        private val cacheIntArray = WeakConcurrentHashMap<List<Int>, Mimo>()
 
         fun from(int: Int): Mimo {
             val cachedResult = cacheInt[int]

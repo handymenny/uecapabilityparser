@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
-import java.util.WeakHashMap
+import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,9 +11,9 @@ sealed interface BCS : Comparable<BCS> {
 
     companion object {
         // Cache used by fromBinaryString
-        private val cacheBinary = WeakHashMap<String, BCS>()
+        private val cacheBinary = WeakConcurrentHashMap<String, BCS>()
         // Cache used by fromQualcommCP
-        private val cacheCP = WeakHashMap<String, BCS>()
+        private val cacheCP = WeakConcurrentHashMap<String, BCS>()
 
         /**
          * Converts the given binaryString to an instance of [BCS]
