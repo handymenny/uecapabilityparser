@@ -29,11 +29,11 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
+import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.WeakHashMap
 
 /**
  * A parser for Qualcomm 0xB826 Log Item (NR5G RRC Supported CA Combos).
@@ -41,7 +41,7 @@ import java.util.WeakHashMap
  * Some BW, mimo and modulation values are guessed, so they can be wrong or incomplete.
  */
 object Import0xB826 : ImportCapabilities {
-    private val cacheMimoIndex = WeakHashMap<Int, Mimo>()
+    private val cacheMimoIndex = WeakConcurrentHashMap<Int, Mimo>()
 
     /**
      * This parser take as [input] an [InputStream] of a 0xB826 (binary)
