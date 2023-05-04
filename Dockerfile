@@ -17,5 +17,6 @@ COPY --from=build /home/gradle/build/libs/*-all.jar /app/uecapabilityparser.jar
 
 USER java
 WORKDIR /home/java
+ENV JAVA_TOOL_OPTIONS -Xmx512m -XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:ShenandoahUncommitDelay=30000 -XX:ShenandoahGuaranteedGCInterval=60000
 
 ENTRYPOINT [ "java", "-jar", "/app/uecapabilityparser.jar" ]
