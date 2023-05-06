@@ -15,6 +15,16 @@ repositories {
     maven { url = uri("https://jitpack.io") }
 }
 
+sourceSets {
+    create("tstypes") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
+}
+
+val tstypesImplementation: Configuration by
+    configurations.getting { extendsFrom(configurations.implementation.get()) }
+
 dependencies {
     val mtsAsn1Version = "7bdf0d8"
     val kmemVersion = "3.4.0"
@@ -30,6 +40,7 @@ dependencies {
     implementation("io.javalin:javalin:$javalinVersion")
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.1")
 }
 
 group = "parser"
@@ -68,6 +79,11 @@ tasks {
 
         // Enable shadow minify
         minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) }
+    }
+
+    register("genTsTypes", JavaExec::class) {
+        mainClass.set("it.smartphonecombo.uecapabilityparser.TsTypesGenerator")
+        classpath = sourceSets["tstypes"].runtimeClasspath
     }
 }
 
