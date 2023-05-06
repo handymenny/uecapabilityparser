@@ -306,9 +306,9 @@ internal class CliJsonOutputTest {
             Json.decodeFromString<Capabilities>(File("$path/oracleJson/$oracleFilename").readText())
 
         // Override dynamic properties
-        expected.setMetadata("parser-version", actual.getStringMetadata("parser-version") ?: "")
-        expected.setMetadata("timestamp", actual.getStringMetadata("timestamp") ?: "")
-        expected.setMetadata("processing-time", actual.getStringMetadata("processing-time") ?: "")
+        expected.parserVersion = actual.parserVersion
+        expected.timestamp = actual.timestamp
+        expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
         Assertions.assertEquals(expected, actual)
     }

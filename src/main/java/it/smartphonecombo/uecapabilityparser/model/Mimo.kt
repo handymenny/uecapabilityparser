@@ -72,7 +72,7 @@ data class SingleMimo(@SerialName("value") private val mimo: Int) : Mimo {
 
 @Serializable
 @SerialName("mixed")
-data class MixedMimo(private val mimoList: List<Int>) : Mimo {
+data class MixedMimo(@SerialName("value") private val mimoList: List<Int>) : Mimo {
     override fun toCompactStr(): String = mimoList.joinToString("")
     override fun toString(): String = mimoList.joinToString(", ")
     override fun average(): Double = mimoList.average()

@@ -11,13 +11,13 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ComponentLte(
-    @SerialName("band") override var band: Band = 0,
-    @SerialName("bw-class-dl") override var classDL: BwClass = BwClass.NONE,
-    @SerialName("bw-class-ul") override var classUL: BwClass = BwClass.NONE,
-    @SerialName("mimo-dl") override var mimoDL: Mimo = EmptyMimo,
-    @SerialName("mimo-ul") override var mimoUL: Mimo = EmptyMimo,
-    @SerialName("modulation-dl") override var modDL: Modulation = EmptyModulation,
-    @SerialName("modulation-ul") override var modUL: Modulation = EmptyModulation
+    @SerialName("band") override var band: Band,
+    @SerialName("bwClassDl") override var classDL: BwClass = BwClass.NONE,
+    @SerialName("bwClassUl") override var classUL: BwClass = BwClass.NONE,
+    @SerialName("mimoDl") override var mimoDL: Mimo = EmptyMimo,
+    @SerialName("mimoUl") override var mimoUL: Mimo = EmptyMimo,
+    @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
+    @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation
 ) : IComponent {
 
     override fun compareTo(other: IComponent): Int {

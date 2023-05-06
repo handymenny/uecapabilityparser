@@ -39,10 +39,9 @@ data class Parsing(
     private fun parseCapabilitiesAndSetMetadata(): Capabilities {
         val capabilities: Capabilities
         val processTime = measureTimeMillis { capabilities = parseCapabilities() }
-        capabilities.setMetadata("parser-version", Property.getProperty("project.version") ?: "")
-        capabilities.setMetadata("log-type", type)
-        capabilities.setMetadata("timestamp", Instant.now())
-        capabilities.setMetadata("processing-time", "${processTime}ms")
+        capabilities.logType = type
+        capabilities.timestamp = Instant.now().toEpochMilli()
+        capabilities.setMetadata("processingTime", "${processTime}ms")
         return capabilities
     }
 

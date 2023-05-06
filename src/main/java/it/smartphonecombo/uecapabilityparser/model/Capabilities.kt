@@ -6,22 +6,29 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.util.Property
+import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Capabilities(
     @SerialName("lteca") var lteCombos: List<ComboLte> = emptyList(),
-    @SerialName("lte-bands") var lteBands: List<ComponentLte> = emptyList(),
-    @SerialName("nr-nsa-bands-eutra") var nrNSAbands: List<BandNrDetails> = emptyList(),
-    @SerialName("nr-sa-bands-eutra") var nrSAbands: List<BandNrDetails> = emptyList(),
-    @SerialName("nr-bands") var nrBands: List<BandNrDetails> = emptyList(),
-    @SerialName("lte-category-dl") var lteCategoryDL: Int = 0,
-    @SerialName("lte-category-ul") var lteCategoryUL: Int = 0,
+    @SerialName("lteBands") var lteBands: List<ComponentLte> = emptyList(),
+    @SerialName("nrNsaBandsEutra") var nrNSAbands: List<BandNrDetails> = emptyList(),
+    @SerialName("nrSaBandsEutra") var nrSAbands: List<BandNrDetails> = emptyList(),
+    @SerialName("nrBands") var nrBands: List<BandNrDetails> = emptyList(),
+    @SerialName("lteCategoryDl") var lteCategoryDL: Int = 0,
+    @SerialName("lteCategoryUl") var lteCategoryUL: Int = 0,
     @SerialName("endc") var enDcCombos: List<ComboEnDc> = emptyList(),
     @SerialName("nrca") var nrCombos: List<ComboNr> = emptyList(),
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),
-    @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf()
+    @Required @SerialName("logType") var logType: String = "",
+    @Required
+    @SerialName("parserVersion")
+    var parserVersion: String = Property.getProperty("project.version") ?: "",
+    @Required @SerialName("timestamp") var timestamp: Long = 0,
+    @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf()
 ) {
     fun setMetadata(key: String, value: Any) {
         metadata[key] = value.toString()

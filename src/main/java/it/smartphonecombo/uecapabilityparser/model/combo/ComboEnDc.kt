@@ -15,12 +15,12 @@ import kotlinx.serialization.Transient
 
 @Serializable
 data class ComboEnDc(
-    @SerialName("components-lte") override val masterComponents: List<ComponentLte>,
-    @SerialName("components-nr") override val secondaryComponents: List<ComponentNr>,
+    @SerialName("componentsLte") override val masterComponents: List<ComponentLte>,
+    @SerialName("componentsNr") override val secondaryComponents: List<ComponentNr>,
     @Transient override val featureSet: Int = 0,
-    @SerialName("bcs-nr") val bcsNr: BCS = EmptyBCS,
-    @SerialName("bcs-eutra") val bcsEutra: BCS = EmptyBCS,
-    @SerialName("bcs-intra-endc") val bcsIntraEnDc: BCS = EmptyBCS
+    @SerialName("bcsNr") val bcsNr: BCS = EmptyBCS,
+    @SerialName("bcsEutra") val bcsEutra: BCS = EmptyBCS,
+    @SerialName("bcsIntraEndc") val bcsIntraEnDc: BCS = EmptyBCS
 ) : ICombo {
     override val bcs: BCS
         get() = bcsNr
