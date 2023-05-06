@@ -3,12 +3,12 @@ package it.smartphonecombo.uecapabilityparser.model.modulation
 import kotlinx.serialization.SerialName
 
 enum class ModulationOrder {
-    @SerialName("") NONE,
+    @SerialName("none") NONE,
     @SerialName("qpsk") QPSK,
-    @SerialName("16qam") QAM16,
-    @SerialName("64qam") QAM64,
-    @SerialName("256qam") QAM256,
-    @SerialName("1024qam") QAM1024;
+    @SerialName("qam16") QAM16,
+    @SerialName("qam64") QAM64,
+    @SerialName("qam256") QAM256,
+    @SerialName("qam1024") QAM1024;
 
     override fun toString(): String {
         return when (this) {

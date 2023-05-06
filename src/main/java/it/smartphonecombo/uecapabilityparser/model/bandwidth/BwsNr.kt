@@ -9,9 +9,9 @@ import kotlinx.serialization.Serializable
 @OptIn(ExperimentalSerializationApi::class)
 data class BwsNr(
     val scs: Int,
-    @SerialName("bandwidths-dl") val bwsDL: IntArray,
+    @SerialName("bandwidthsDl") val bwsDL: IntArray,
     @EncodeDefault(EncodeDefault.Mode.ALWAYS)
-    @SerialName("bandwidths-ul")
+    @SerialName("bandwidthsUl")
     val bwsUL: IntArray = bwsDL
 ) {
     override fun equals(other: Any?): Boolean {

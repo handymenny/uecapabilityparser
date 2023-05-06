@@ -11,8 +11,8 @@ import kotlinx.serialization.Transient
 
 @Serializable
 data class ComboNrDc(
-    @SerialName("components-fr1") override val masterComponents: List<ComponentNr>,
-    @SerialName("components-fr2") override val secondaryComponents: List<ComponentNr>,
+    @SerialName("componentsFr1") override val masterComponents: List<ComponentNr>,
+    @SerialName("componentsFr2") override val secondaryComponents: List<ComponentNr>,
     @Transient override val featureSet: Int = 0,
     override val bcs: BCS = EmptyBCS
 ) : ICombo {

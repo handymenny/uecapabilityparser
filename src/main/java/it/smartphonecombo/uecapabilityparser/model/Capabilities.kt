@@ -12,12 +12,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Capabilities(
     @SerialName("lteca") var lteCombos: List<ComboLte> = emptyList(),
-    @SerialName("lte-bands") var lteBands: List<ComponentLte> = emptyList(),
-    @SerialName("nr-nsa-bands-eutra") var nrNSAbands: List<BandNrDetails> = emptyList(),
-    @SerialName("nr-sa-bands-eutra") var nrSAbands: List<BandNrDetails> = emptyList(),
-    @SerialName("nr-bands") var nrBands: List<BandNrDetails> = emptyList(),
-    @SerialName("lte-category-dl") var lteCategoryDL: Int = 0,
-    @SerialName("lte-category-ul") var lteCategoryUL: Int = 0,
+    @SerialName("lteBands") var lteBands: List<ComponentLte> = emptyList(),
+    @SerialName("nrNsaBandsEutra") var nrNSAbands: List<BandNrDetails> = emptyList(),
+    @SerialName("nrSaBandsEutra") var nrSAbands: List<BandNrDetails> = emptyList(),
+    @SerialName("nrBands") var nrBands: List<BandNrDetails> = emptyList(),
+    @SerialName("lteCategoryDl") var lteCategoryDL: Int = 0,
+    @SerialName("lteCategoryUl") var lteCategoryUL: Int = 0,
     @SerialName("endc") var enDcCombos: List<ComboEnDc> = emptyList(),
     @SerialName("nrca") var nrCombos: List<ComboNr> = emptyList(),
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),

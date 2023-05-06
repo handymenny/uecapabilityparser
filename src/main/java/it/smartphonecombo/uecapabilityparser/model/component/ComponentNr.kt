@@ -12,16 +12,16 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ComponentNr(
     @SerialName("band") override var band: Band = 0,
-    @SerialName("bw-class-dl") override var classDL: BwClass = BwClass.NONE,
-    @SerialName("bw-class-ul") override var classUL: BwClass = BwClass.NONE,
-    @SerialName("mimo-dl") override var mimoDL: Mimo = EmptyMimo,
-    @SerialName("mimo-ul") override var mimoUL: Mimo = EmptyMimo,
-    @SerialName("modulation-dl") override var modDL: Modulation = EmptyModulation,
-    @SerialName("modulation-ul") override var modUL: Modulation = EmptyModulation
+    @SerialName("bwClassDl") override var classDL: BwClass = BwClass.NONE,
+    @SerialName("bwClassUl") override var classUL: BwClass = BwClass.NONE,
+    @SerialName("mimoDl") override var mimoDL: Mimo = EmptyMimo,
+    @SerialName("mimoUl") override var mimoUL: Mimo = EmptyMimo,
+    @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
+    @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation
 ) : IComponent {
-    @SerialName("max-bw") var maxBandwidth = 0
-    @SerialName("bw-90mhz-supported") var channelBW90mhz = false
-    @SerialName("max-scs") var scs = 0
+    @SerialName("maxBw") var maxBandwidth = 0
+    @SerialName("bw90mhzSupported") var channelBW90mhz = false
+    @SerialName("maxScs") var scs = 0
 
     override fun compareTo(other: IComponent): Int {
         return if (other is ComponentNr) {
