@@ -4,13 +4,13 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -25,21 +25,21 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -58,13 +58,13 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "B",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -79,13 +79,13 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -104,13 +104,13 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -125,13 +125,13 @@
             "components": [
                 {
                     "band": 40,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -149,21 +149,21 @@
             "components": [
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -178,21 +178,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -212,21 +212,21 @@
             "components": [
                 {
                     "band": 40,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 40,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -244,21 +244,21 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -276,21 +276,21 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -308,21 +308,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -337,21 +337,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -366,21 +366,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -399,21 +399,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -432,21 +432,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -461,21 +461,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -490,21 +490,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -522,21 +522,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -554,21 +554,21 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -583,21 +583,21 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -615,21 +615,21 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -644,21 +644,21 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -673,21 +673,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -705,21 +705,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -737,21 +737,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -771,21 +771,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -805,21 +805,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -837,21 +837,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -869,21 +869,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -901,21 +901,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -933,21 +933,21 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -965,21 +965,21 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -994,21 +994,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1027,21 +1027,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -1060,21 +1060,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1093,21 +1093,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -1126,21 +1126,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1158,21 +1158,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -1190,21 +1190,21 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1219,21 +1219,21 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1248,13 +1248,13 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1269,21 +1269,21 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1298,21 +1298,21 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1327,21 +1327,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "B",
-                    "mimo-dl": {
+                    "bwClassDl": "B",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1356,21 +1356,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1385,21 +1385,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1414,21 +1414,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "B",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1443,21 +1443,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1475,21 +1475,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1504,21 +1504,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1533,21 +1533,21 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -1562,21 +1562,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1591,21 +1591,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -1620,21 +1620,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1649,21 +1649,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -1678,21 +1678,21 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1707,21 +1707,21 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1736,29 +1736,29 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1773,29 +1773,29 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1810,29 +1810,29 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -1847,103 +1847,29 @@
             "components": [
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "bcs": {
-                "type": "single",
-                "value": 0
-            }
-        },
-        {
-            "components": [
-                {
-                    "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                },
-                {
-                    "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                },
-                {
-                    "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimo-ul": {
-                        "type": "single",
-                        "value": 1
-                    }
-                }
-            ],
-            "bcs": {
-                "type": "single",
-                "value": 0
-            }
-        },
-        {
-            "components": [
-                {
-                    "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                },
-                {
-                    "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimo-ul": {
-                        "type": "single",
-                        "value": 1
-                    }
-                },
-                {
-                    "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1958,29 +1884,103 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
-                    },
-                    "mimo-ul": {
-                        "type": "single",
-                        "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 3,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 1,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "components": [
+                {
+                    "band": 7,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    }
+                },
+                {
+                    "band": 3,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                },
+                {
+                    "band": 1,
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -1995,29 +1995,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2037,29 +2037,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2079,29 +2079,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2121,29 +2121,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2158,29 +2158,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2195,29 +2195,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2232,29 +2232,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2269,29 +2269,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2306,29 +2306,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2343,29 +2343,29 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2380,29 +2380,29 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2417,29 +2417,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -2457,29 +2457,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2497,29 +2497,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -2534,29 +2534,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -2571,29 +2571,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2611,29 +2611,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2651,29 +2651,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2692,29 +2692,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2733,29 +2733,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2774,29 +2774,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2814,29 +2814,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2854,29 +2854,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2894,29 +2894,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -2931,29 +2931,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -2968,29 +2968,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3005,29 +3005,29 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3042,29 +3042,29 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3079,29 +3079,29 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3116,29 +3116,29 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3153,29 +3153,29 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3190,29 +3190,29 @@
             "components": [
                 {
                     "band": 32,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 3,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3227,13 +3227,13 @@
             "components": [
                 {
                     "band": 40,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3251,13 +3251,13 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3272,13 +3272,13 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3297,29 +3297,29 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3334,29 +3334,29 @@
             "components": [
                 {
                     "band": 38,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3371,29 +3371,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3411,29 +3411,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3451,29 +3451,29 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3491,29 +3491,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3532,29 +3532,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3573,29 +3573,29 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3614,29 +3614,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3654,29 +3654,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3694,29 +3694,29 @@
             "components": [
                 {
                     "band": 8,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3734,29 +3734,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3774,29 +3774,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3814,29 +3814,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -3851,29 +3851,29 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -3888,21 +3888,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -3920,21 +3920,21 @@
             "components": [
                 {
                     "band": 28,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -3952,21 +3952,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     }
@@ -3981,21 +3981,21 @@
             "components": [
                 {
                     "band": 20,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
@@ -4010,21 +4010,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
@@ -4042,21 +4042,21 @@
             "components": [
                 {
                     "band": 7,
-                    "bw-class-dl": "C",
-                    "mimo-dl": {
+                    "bwClassDl": "C",
+                    "mimoDl": {
                         "type": "single",
                         "value": 2
                     }
                 },
                 {
                     "band": 1,
-                    "bw-class-dl": "A",
-                    "bw-class-ul": "A",
-                    "mimo-dl": {
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
                         "type": "single",
                         "value": 4
                     },
-                    "mimo-ul": {
+                    "mimoUl": {
                         "type": "single",
                         "value": 1
                     }
