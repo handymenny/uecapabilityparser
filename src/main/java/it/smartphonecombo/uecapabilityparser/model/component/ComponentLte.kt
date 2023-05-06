@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ComponentLte(
-    @SerialName("band") override var band: Band = 0,
+    @SerialName("band") override var band: Band,
     @SerialName("bwClassDl") override var classDL: BwClass = BwClass.NONE,
     @SerialName("bwClassUl") override var classUL: BwClass = BwClass.NONE,
     @SerialName("mimoDl") override var mimoDL: Mimo = EmptyMimo,

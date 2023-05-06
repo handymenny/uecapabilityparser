@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BandNrDetails(
-    @SerialName("band") var band: Band = 0,
+    @SerialName("band") var band: Band,
     @SerialName("bwClassDl") var classDL: BwClass = BwClass.NONE,
     @SerialName("bwClassUl") var classUL: BwClass = BwClass.NONE,
     @SerialName("mimoDl") var mimoDL: Mimo = EmptyMimo,

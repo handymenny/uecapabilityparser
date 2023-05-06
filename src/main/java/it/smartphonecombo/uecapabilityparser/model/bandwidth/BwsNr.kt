@@ -1,19 +1,16 @@
 package it.smartphonecombo.uecapabilityparser.model.bandwidth
 
-import kotlinx.serialization.EncodeDefault
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@OptIn(ExperimentalSerializationApi::class)
 data class BwsNr(
     val scs: Int,
     @SerialName("bandwidthsDl") val bwsDL: IntArray,
-    @EncodeDefault(EncodeDefault.Mode.ALWAYS)
-    @SerialName("bandwidthsUl")
-    val bwsUL: IntArray = bwsDL
+    @SerialName("bandwidthsUl") val bwsUL: IntArray
 ) {
+    constructor(scs: Int, bwsDlUL: IntArray) : this(scs, bwsDlUL, bwsDlUL)
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is BwsNr) return false
