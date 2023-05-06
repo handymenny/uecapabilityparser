@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 sealed interface BCS : Comparable<BCS> {
@@ -118,7 +119,7 @@ data class SingleBCS(@SerialName("value") private val bcs: Int) : BCS {
 @Serializable
 @SerialName("multi")
 data class MultiBCS(@SerialName("value") private val bcsArray: IntArray) : BCS {
-    private var compactText: String? = null
+    @Transient private var compactText: String? = null
     override fun toString(): String = bcsArray.joinToString(", ")
 
     private fun calculateCompactStr(): String {
