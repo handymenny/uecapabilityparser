@@ -6,7 +6,7 @@ plugins {
     kotlin("plugin.serialization") version kotlinVersion
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("com.diffplug.spotless") version "6.18.0"
-    id("org.jetbrains.kotlinx.kover") version "0.6.1"
+    id("org.jetbrains.kotlinx.kover") version "0.7.0-Beta"
     application
 }
 
@@ -70,7 +70,7 @@ tasks {
         // Enable Junit test
         useJUnitPlatform()
         // generate kover report
-        finalizedBy(koverXmlReport)
+        finalizedBy(named("koverXmlReport"))
     }
 
     shadowJar {
