@@ -1945,7 +1945,7 @@
           "bandNR": 77,
           "mimo-ParametersPerBand": {
             "tci-StatePDSCH": {
-              "maxNumberConfiguredTCIstatesPerCC": "n16",
+              "maxNumberConfiguredTCI-StatesPerCC": "n16",
               "maxNumberActiveTCI-PerBWP": "n1"
             },
             "pusch-TransCoherence": "nonCoherent",
@@ -2032,7 +2032,7 @@
           "bandNR": 78,
           "mimo-ParametersPerBand": {
             "tci-StatePDSCH": {
-              "maxNumberConfiguredTCIstatesPerCC": "n16",
+              "maxNumberConfiguredTCI-StatesPerCC": "n16",
               "maxNumberActiveTCI-PerBWP": "n1"
             },
             "pusch-TransCoherence": "nonCoherent",
@@ -2119,7 +2119,7 @@
           "bandNR": 79,
           "mimo-ParametersPerBand": {
             "tci-StatePDSCH": {
-              "maxNumberConfiguredTCIstatesPerCC": "n16",
+              "maxNumberConfiguredTCI-StatesPerCC": "n16",
               "maxNumberActiveTCI-PerBWP": "n1"
             },
             "pusch-TransCoherence": "nonCoherent",
@@ -2204,7 +2204,7 @@
           "bandNR": 257,
           "mimo-ParametersPerBand": {
             "tci-StatePDSCH": {
-              "maxNumberConfiguredTCIstatesPerCC": "n64",
+              "maxNumberConfiguredTCI-StatesPerCC": "n64",
               "maxNumberActiveTCI-PerBWP": "n4"
             },
             "pusch-TransCoherence": "nonCoherent",
