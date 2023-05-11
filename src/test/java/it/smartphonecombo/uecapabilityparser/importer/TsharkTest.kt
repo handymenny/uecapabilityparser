@@ -62,10 +62,13 @@ internal class TsharkTest {
         val oraclePath = "$path/oracle/$oracleFilename"
 
         val hexData = File(inputPath).readText()
-        val ueCapability = tshark.startDecoder(hexData, "lte-rrc.ul.dcch", ratType)
-        val expectedUeCapability = File(oraclePath).readText()
+        val ueCapability = tshark.startDecoder(hexData, "lte-rrc.ul.dcch", ratType).lines()
+        val expectedUeCapability = File(oraclePath).readLines()
 
-        Assertions.assertEquals(ueCapability, expectedUeCapability)
+        Assertions.assertLinesMatch(
+            ueCapability.dropLastWhile { it.isBlank() },
+            expectedUeCapability.dropLastWhile { it.isBlank() }
+        )
     }
 
     @Test
