@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getInt
 import it.smartphonecombo.uecapabilityparser.extension.getObject
+import it.smartphonecombo.uecapabilityparser.extension.getObjectAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.merge
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
@@ -960,19 +961,32 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun getNrBands(nrCapability: UENrCapabilityJson): List<BandNrDetails> {
-        return nrCapability.rootJson
-            .getArrayAtPath("rf-Parameters.supportedBandListNR")
-            ?.mapNotNull { supportedBandNr ->
+        val qam256Fr1DL =
+            nrCapability.rootJson
+                .getObjectAtPath("phy-Parameters.phy-ParametersFR1")
+                ?.getString("pdsch-256QAM-FR1") != null
+
+        val bandsList =
+            nrCapability.rootJson.getArrayAtPath("rf-Parameters.supportedBandListNR")?.mapNotNull {
+                supportedBandNr ->
                 val componentNr =
                     supportedBandNr.getInt("bandNR")?.let { BandNrDetails(it) }
                         ?: return@mapNotNull null
 
                 val duplex = DuplexBandTable.getNrDuplex(componentNr.band)
-                if (componentNr.isFR2 && supportedBandNr.getString("pdsch-256QAM-FR2") == null) {
-                    componentNr.modDL = ModulationOrder.QAM64.toModulation()
-                } else if (duplex != Duplex.SUL) { // this is ok because No fr2 is SUL
-                    componentNr.modDL = ModulationOrder.QAM256.toModulation()
-                }
+                val qam256Dl =
+                    if (!componentNr.isFR2) {
+                        qam256Fr1DL
+                    } else {
+                        supportedBandNr.getString("pdsch-256QAM-FR2") != null
+                    }
+
+                componentNr.modDL =
+                    when {
+                        duplex == Duplex.SUL -> ModulationOrder.NONE
+                        qam256Dl -> ModulationOrder.QAM256
+                        else -> ModulationOrder.QAM64
+                    }.toModulation()
 
                 if (supportedBandNr.getString("pusch-256QAM") != null) {
                     componentNr.modUL = ModulationOrder.QAM256.toModulation()
@@ -1002,8 +1016,8 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                 componentNr
             }
-            ?.toList()
-            ?: emptyList()
+
+        return bandsList ?: emptyList()
     }
 
     private fun parseNRChannelBWs(supportedBandNr: JsonElement, componentNr: BandNrDetails) {
