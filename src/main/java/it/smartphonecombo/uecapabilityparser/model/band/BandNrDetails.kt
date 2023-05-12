@@ -59,6 +59,10 @@ data class BandNrDetails(
         return "n$band $dlString $ulString"
     }
 
+    fun bw90MHzSupported(): Boolean {
+        return bandwidths.any { bwsNr -> bwsNr.bwsDL.contains(90) || bwsNr.bwsUL.contains(90) }
+    }
+
     val isFR2: Boolean
         get() = band > 256
 }

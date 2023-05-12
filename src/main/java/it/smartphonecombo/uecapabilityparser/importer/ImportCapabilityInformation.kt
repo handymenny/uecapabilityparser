@@ -125,10 +125,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (nrCapability != null) {
             val nr = UENrCapabilityJson(nrCapability)
-            val bandList = getNrBands(nr).sorted()
-            if (debug) {
-                bandList.forEach { println(it.bwsToString()) }
-            }
+            val bandList = getNrBands(nr)
             comboList.nrBands = bandList
             nrFeatures = getNRFeatureSet(nr)
             val featureSetCombination = getFeatureSetCombinations(nr)
@@ -155,6 +152,21 @@ object ImportCapabilityInformation : ImportCapabilities {
                 linkFeaturesAndCarrier(nsaCombos, featureSetCombination, lteFeatures, nrFeatures)
                     .typedList()
         }
+
+        if (comboList.nrBands.isNotEmpty()) {
+            val bandList = comboList.nrBands.associateBy({ it.band }, { it })
+            updateNrBandsCapabilities(
+                bandList,
+                comboList.enDcCombos,
+                comboList.nrCombos,
+                comboList.nrDcCombos
+            )
+            comboList.nrBands = bandList.values.sorted()
+            if (debug) {
+                comboList.nrBands.forEach { println(it.bwsToString()) }
+            }
+        }
+
         return comboList
     }
 
@@ -420,6 +432,41 @@ object ImportCapabilityInformation : ImportCapabilities {
                 if (it.modUL > band.modUL) {
                     band.modUL = it.modUL
                 }
+            }
+        }
+    }
+
+    private fun updateNrBandsCapabilities(
+        bandList: Map<Int, BandNrDetails>,
+        enDcCombos: List<ComboEnDc>,
+        nrCombos: List<ComboNr>,
+        nrDcCombos: List<ComboNrDc>
+    ) {
+        val nrComponents =
+            enDcCombos.flatMap { it.componentsNr } +
+                nrCombos.flatMap { it.componentsNr } +
+                nrDcCombos.flatMap { it.componentsNr + it.componentsNrDc }
+
+        for (component in nrComponents.toHashSet()) {
+            val band = bandList[component.band] ?: continue
+            if (component.channelBW90mhz && !band.bw90MHzSupported()) {
+                val newBandwidths =
+                    band.bandwidths.map { bwsNr ->
+                        val (scs, bwsDL, bwsUL) = bwsNr
+                        if (scs == 30 || scs == 60) {
+                            val newBwsDL = bwsDL.takeIf(IntArray::isNotEmpty)?.plus(90)
+                            val newBwsUL = bwsUL.takeIf(IntArray::isNotEmpty)?.plus(90)
+                            newBwsDL?.sortDescending()
+                            newBwsUL?.sortDescending()
+
+                            if (newBwsDL != null || newBwsUL != null) {
+                                return@map BwsNr(scs, newBwsDL ?: bwsDL, newBwsUL ?: bwsUL)
+                            }
+                        }
+                        return@map bwsNr
+                    }
+
+                band.bandwidths = newBandwidths
             }
         }
     }
@@ -1193,7 +1240,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         supportedBandwidthDL?.getString("fr1")
                             ?: supportedBandwidthDL?.getString("fr2")
                     val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
-                    val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
+                    val channelBW90mhz = it.getString("channelBW-90mhz") != null
                     val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
                     val qam = ModulationOrder.of(it.getString("supportedModulationOrderDL"))
@@ -1239,7 +1286,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         supportedBandwidthUL?.getString("fr1")
                             ?: supportedBandwidthUL?.getString("fr2")
                     val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
-                    val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
+                    val channelBW90mhz = it.getString("channelBW-90mhz") != null
 
                     val mimoCbLayers =
                         it.getObject("mimo-CB-PUSCH")?.getString("maxNumberMIMO-LayersCB-PUSCH")
