@@ -19,6 +19,7 @@ import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Mimo
+import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
@@ -997,8 +998,12 @@ object ImportCapabilityInformation : ImportCapabilities {
                     componentNr.modUL = ModulationOrder.QAM64.toModulation()
                 }
 
-                supportedBandNr.getString("ue-PowerClass")?.removePrefix("pc")?.toInt()?.let {
-                    componentNr.powerClass = it
+                supportedBandNr.getString("ue-PowerClass")?.let {
+                    componentNr.powerClass = PowerClass.valueOf(it.uppercase())
+                }
+
+                if (supportedBandNr.getString("ue-PowerClass-v1610") == "pc1dot5") {
+                    componentNr.powerClass = PowerClass.PC1dot5
                 }
 
                 if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {

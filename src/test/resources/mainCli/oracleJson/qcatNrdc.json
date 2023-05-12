@@ -68,7 +68,7 @@
                 "type": "single",
                 "value": "qam256"
             },
-            "powerClass": 2,
+            "powerClass": "pc2",
             "bandwidths": [
                 {
                     "scs": 30,
@@ -132,6 +132,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc1dot5",
             "bandwidths": [
                 {
                     "scs": 30,
@@ -172,7 +173,7 @@
                 "type": "single",
                 "value": "qam64"
             },
-            "powerClass": 1,
+            "powerClass": "pc1",
             "bandwidths": [
                 {
                     "scs": 120,
@@ -197,7 +198,7 @@
                 "type": "single",
                 "value": "qam64"
             },
-            "powerClass": 1,
+            "powerClass": "pc1",
             "bandwidths": [
                 {
                     "scs": 120,
