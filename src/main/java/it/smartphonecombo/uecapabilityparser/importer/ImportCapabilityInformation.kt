@@ -1193,7 +1193,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         supportedBandwidthDL?.getString("fr1")
                             ?: supportedBandwidthDL?.getString("fr2")
                     val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
-                    val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
+                    val channelBW90mhz = it.getString("channelBW-90mhz") != null
                     val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
                     val qam = ModulationOrder.of(it.getString("supportedModulationOrderDL"))
@@ -1239,7 +1239,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         supportedBandwidthUL?.getString("fr1")
                             ?: supportedBandwidthUL?.getString("fr2")
                     val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
-                    val channelBW90mhz = it.getString("channelBW-90mhz") == "true"
+                    val channelBW90mhz = it.getString("channelBW-90mhz") != null
 
                     val mimoCbLayers =
                         it.getObject("mimo-CB-PUSCH")?.getString("maxNumberMIMO-LayersCB-PUSCH")
