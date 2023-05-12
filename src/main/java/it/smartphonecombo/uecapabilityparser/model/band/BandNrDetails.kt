@@ -12,16 +12,16 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BandNrDetails(
-    @SerialName("band") var band: Band,
-    @SerialName("mimoDl") var mimoDL: Mimo = EmptyMimo,
-    @SerialName("mimoUl") var mimoUL: Mimo = EmptyMimo,
-    @SerialName("modulationDl") var modDL: Modulation = EmptyModulation,
-    @SerialName("modulationUl") var modUL: Modulation = EmptyModulation,
+    @SerialName("band") override var band: Band,
+    @SerialName("mimoDl") override var mimoDL: Mimo = EmptyMimo,
+    @SerialName("mimoUl") override var mimoUL: Mimo = EmptyMimo,
+    @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
+    @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation,
     @SerialName("maxUplinkDutyCycle") var maxUplinkDutyCycle: Int = 100,
-    @SerialName("powerClass") var powerClass: PowerClass = PowerClass.PC3,
+    @SerialName("powerClass") override var powerClass: PowerClass = PowerClass.PC3,
     @SerialName("bandwidths") var bandwidths: List<BwsNr> = emptyList(),
     @SerialName("rateMatchingLteCrs") var rateMatchingLteCrs: Boolean = false
-) : Comparable<BandNrDetails> {
+) : IBandDetails, Comparable<BandNrDetails> {
 
     override fun compareTo(other: BandNrDetails): Int {
         val bandCmp = band.compareTo(other.band)
