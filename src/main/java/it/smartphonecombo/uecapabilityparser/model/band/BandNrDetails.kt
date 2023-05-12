@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
+import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
 import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
@@ -20,7 +21,7 @@ data class BandNrDetails(
     @SerialName("modulationDl") var modDL: Modulation = EmptyModulation,
     @SerialName("modulationUl") var modUL: Modulation = EmptyModulation,
     @SerialName("maxUplinkDutyCycle") var maxUplinkDutyCycle: Int = 100,
-    @SerialName("powerClass") var powerClass: Int = 3,
+    @SerialName("powerClass") var powerClass: PowerClass = PowerClass.PC3,
     @SerialName("bandwidths") var bandwidths: List<BwsNr> = emptyList(),
     @SerialName("rateMatchingLteCrs") var rateMatchingLteCrs: Boolean = false
 ) : Comparable<BandNrDetails> {
