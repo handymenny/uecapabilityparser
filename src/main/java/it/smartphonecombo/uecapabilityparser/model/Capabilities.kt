@@ -1,11 +1,11 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
-import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Capabilities(
     @SerialName("lteca") var lteCombos: List<ComboLte> = emptyList(),
-    @SerialName("lteBands") var lteBands: List<ComponentLte> = emptyList(),
+    @SerialName("lteBands") var lteBands: List<BandLteDetails> = emptyList(),
     @SerialName("nrNsaBandsEutra") var nrNSAbands: List<BandNrDetails> = emptyList(),
     @SerialName("nrSaBandsEutra") var nrSAbands: List<BandNrDetails> = emptyList(),
     @SerialName("nrBands") var nrBands: List<BandNrDetails> = emptyList(),

@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.extension.BwMap
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
@@ -22,6 +23,7 @@ import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
+import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.band.DuplexBandTable
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
@@ -172,7 +174,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getBandCombinations(
         eutraCapability: UEEutraCapabilityJson,
-        bandList: Map<Int, ComponentLte>
+        bandList: Map<Band, BandLteDetails>
     ): List<ComboLte> {
         val combinations =
             eutraCapability.eutraCapabilityV1020
@@ -241,7 +243,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getBandCombinationsAdd(
         eutraCapability: UEEutraCapabilityJson,
-        bandList: Map<Int, ComponentLte>
+        bandList: Map<Band, BandLteDetails>
     ): List<ComboLte> {
         val combinationsArray =
             eutraCapability.eutraCapabilityV1180?.getArrayAtPath(
@@ -290,7 +292,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getBandCombinationsReduced(
         eutraCapability: UEEutraCapabilityJson,
-        bandList: Map<Int, ComponentLte>
+        bandList: Map<Band, BandLteDetails>
     ): List<ComboLte> {
         val combinationsArray =
             eutraCapability.eutraCapabilityV1310?.getArrayAtPath(
@@ -325,7 +327,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun setModulationFromBandList(
         combinations: List<List<ComponentLte>>,
-        bandList: Map<Int, ComponentLte>
+        bandList: Map<Band, BandLteDetails>
     ) {
         combinations.flatten().forEach {
             it.modDL = bandList[it.band]?.modDL ?: EmptyModulation
@@ -413,7 +415,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun updateLteBandsCapabilities(
-        bandList: Map<Int, ComponentLte>,
+        bandList: Map<Band, BandLteDetails>,
         listCombo: List<ComboLte>
     ) {
         val lteComponents = listCombo.flatMap { it.masterComponents.toList() }.toHashSet()
@@ -553,7 +555,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         return Pair(dlCategory, ulCategory)
     }
 
-    private fun getLteBands(eutraCapability: UEEutraCapabilityJson): List<ComponentLte> {
+    private fun getLteBands(eutraCapability: UEEutraCapabilityJson): List<BandLteDetails> {
         val supportedBandListEutra =
             eutraCapability.rootJson.getArrayAtPath("rf-Parameters.supportedBandListEUTRA")
 
@@ -565,7 +567,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         if (duplex == Duplex.SDL) ModulationOrder.NONE else ModulationOrder.QAM16
                     val mimoUl = if (duplex == Duplex.SDL) 0 else 1
 
-                    ComponentLte(
+                    BandLteDetails(
                         band,
                         mimoDL = 2.toMimo(),
                         mimoUL = mimoUl.toMimo(),
