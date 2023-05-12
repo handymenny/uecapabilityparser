@@ -17,12 +17,11 @@ data class ComponentNr(
     @SerialName("mimoDl") override var mimoDL: Mimo = EmptyMimo,
     @SerialName("mimoUl") override var mimoUL: Mimo = EmptyMimo,
     @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
-    @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation
+    @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation,
+    @SerialName("maxBw") var maxBandwidth: Int = 0,
+    @SerialName("bw90mhzSupported") var channelBW90mhz: Boolean = false,
+    @SerialName("maxScs") var scs: Int = 0
 ) : IComponent {
-    @SerialName("maxBw") var maxBandwidth = 0
-    @SerialName("bw90mhzSupported") var channelBW90mhz = false
-    @SerialName("maxScs") var scs = 0
-
     override fun compareTo(other: IComponent): Int {
         return if (other is ComponentNr) {
             compareValuesBy(
