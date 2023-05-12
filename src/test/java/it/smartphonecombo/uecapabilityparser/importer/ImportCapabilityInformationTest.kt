@@ -377,7 +377,8 @@ internal class ImportCapabilityInformationTest {
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
                     modDL = ModulationOrder.QAM1024.toModulation(),
-                    modUL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation(),
+                    powerClass = 2.toPowerClass()
                 ),
             )
         val actualLteBands = capabilities.lteBands
@@ -960,7 +961,8 @@ internal class ImportCapabilityInformationTest {
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
                     modDL = ModulationOrder.QAM256.toModulation(),
-                    modUL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation(),
+                    powerClass = 2.toPowerClass()
                 ),
                 BandLteDetails(
                     42,
@@ -1441,7 +1443,8 @@ internal class ImportCapabilityInformationTest {
                     mimoDL = 4.toMimo(),
                     mimoUL = 1.toMimo(),
                     modDL = ModulationOrder.QAM256.toModulation(),
-                    modUL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation(),
+                    powerClass = 2.toPowerClass()
                 ),
                 BandLteDetails(
                     42,
