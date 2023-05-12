@@ -766,8 +766,11 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoDL = Mimo.from(mixedMimo)
+                val mixedModulation = dlFeature.map { it.qam }
+                componentLte.modDL = Modulation.from(mixedModulation)
             } else {
                 componentLte.mimoDL = dlFeature.first().mimo
+                componentLte.modDL = dlFeature.first().qam.toModulation()
             }
         } else {
             // only UL
