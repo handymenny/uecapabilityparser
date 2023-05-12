@@ -1002,6 +1002,10 @@ object ImportCapabilityInformation : ImportCapabilities {
                     componentNr.powerClass = PowerClass.valueOf(it.uppercase())
                 }
 
+                if (supportedBandNr.getString("ue-PowerClass-v1610") == "pc1dot5") {
+                    componentNr.powerClass = PowerClass.PC1dot5
+                }
+
                 if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {
                     componentNr.rateMatchingLteCrs = true
                 }
