@@ -595,6 +595,22 @@ object ImportCapabilityInformation : ImportCapabilities {
                 }
             }
 
+        eutraCapability.eutraCapabilityV1310
+            ?.getArrayAtPath("rf-Parameters-v1310.supportedBandListEUTRA-v1310")
+            ?.forEachIndexed { i, it ->
+                if (it.getString("ue-PowerClass-5-r13") != null) {
+                    lteBands[i].powerClass = PowerClass.PC5
+                }
+            }
+
+        eutraCapability.eutraCapabilityV1320
+            ?.getArrayAtPath("rf-Parameters-v1320.supportedBandListEUTRA-v1320")
+            ?.forEachIndexed { i, it ->
+                it.getString("ue-PowerClass-N-r13")?.let {
+                    lteBands[i].powerClass = PowerClass.valueOf(it.replace("class", "PC"))
+                }
+            }
+
         return lteBands
     }
 
