@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model.band
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
-import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
@@ -14,8 +13,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class BandNrDetails(
     @SerialName("band") var band: Band,
-    @SerialName("bwClassDl") var classDL: BwClass = BwClass.NONE,
-    @SerialName("bwClassUl") var classUL: BwClass = BwClass.NONE,
     @SerialName("mimoDl") var mimoDL: Mimo = EmptyMimo,
     @SerialName("mimoUl") var mimoUL: Mimo = EmptyMimo,
     @SerialName("modulationDl") var modDL: Modulation = EmptyModulation,
