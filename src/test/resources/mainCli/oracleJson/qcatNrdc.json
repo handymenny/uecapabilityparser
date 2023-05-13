@@ -2,6 +2,14 @@
     "nrBands": [
         {
             "band": 2,
+            "mimoDl": {
+                "type": "single",
+                "value": 4
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 1
+            },
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
@@ -32,6 +40,14 @@
         },
         {
             "band": 5,
+            "mimoDl": {
+                "type": "single",
+                "value": 4
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 1
+            },
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
@@ -62,6 +78,14 @@
         },
         {
             "band": 48,
+            "mimoDl": {
+                "type": "single",
+                "value": 4
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 2
+            },
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
@@ -91,6 +115,14 @@
         },
         {
             "band": 66,
+            "mimoDl": {
+                "type": "single",
+                "value": 4
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 1
+            },
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
@@ -127,6 +159,14 @@
         },
         {
             "band": 77,
+            "mimoDl": {
+                "type": "single",
+                "value": 4
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 2
+            },
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
@@ -170,6 +210,14 @@
         },
         {
             "band": 260,
+            "mimoDl": {
+                "type": "single",
+                "value": 2
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 2
+            },
             "modulationDl": {
                 "type": "single",
                 "value": "qam64"
@@ -195,6 +243,14 @@
         },
         {
             "band": 261,
+            "mimoDl": {
+                "type": "single",
+                "value": 2
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 2
+            },
             "modulationDl": {
                 "type": "single",
                 "value": "qam64"
