@@ -18,7 +18,7 @@ data class BandNrDetails(
     @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
     @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation,
     @SerialName("maxUplinkDutyCycle") var maxUplinkDutyCycle: Int = 100,
-    @SerialName("powerClass") override var powerClass: PowerClass = PowerClass.PC3,
+    @SerialName("powerClass") override var powerClass: PowerClass = PowerClass.NONE,
     @SerialName("bandwidths") var bandwidths: List<BwsNr> = emptyList(),
     @SerialName("rateMatchingLteCrs") var rateMatchingLteCrs: Boolean = false
 ) : IBandDetails, Comparable<BandNrDetails> {
