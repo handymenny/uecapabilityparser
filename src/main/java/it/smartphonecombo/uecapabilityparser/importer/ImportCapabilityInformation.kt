@@ -26,6 +26,7 @@ import it.smartphonecombo.uecapabilityparser.model.SingleBCS
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.band.DuplexBandTable
+import it.smartphonecombo.uecapabilityparser.model.band.IBandDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsBitMap
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
@@ -90,6 +91,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         var lteFeatures: FeatureSets? = null
         var nrFeatures: FeatureSets? = null
         var nrBandsMap: Map<Band, BandNrDetails>? = null
+        var lteBandsMap: Map<Band, BandLteDetails>? = null
 
         if (eutraCapability != null) {
             val eutra = UEEutraCapabilityJson(eutraCapability)
@@ -97,7 +99,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.lteCategoryDL = lteCategoryDL
             comboList.lteCategoryUL = lteCategoryUL
 
-            val bandList = getLteBands(eutra).associateBy({ it.band }, { it })
+            lteBandsMap = getLteBands(eutra).associateBy({ it.band }, { it })
             comboList.nrNSAbands = getNrBands(eutra, true).sorted()
             comboList.nrSAbands = getNrBands(eutra, false).sorted()
 
@@ -110,15 +112,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                 )
             }
 
-            val listCombo = getBandCombinations(eutra, bandList)
-            val listComboAdd = getBandCombinationsAdd(eutra, bandList)
-            val listComboReduced = getBandCombinationsReduced(eutra, bandList)
+            val listCombo = getBandCombinations(eutra, lteBandsMap)
+            val listComboAdd = getBandCombinationsAdd(eutra, lteBandsMap)
+            val listComboReduced = getBandCombinationsReduced(eutra, lteBandsMap)
             val totalLteCombos = listCombo + listComboAdd + listComboReduced
-
-            updateLteBandsCapabilities(bandList, totalLteCombos)
-
             comboList.lteCombos = totalLteCombos
-            comboList.lteBands = bandList.values.sorted()
 
             if (eutraNrCapability != null) {
                 // Don't parse lte features if no mrdc capability is available
@@ -138,6 +136,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         featureSetCombination,
                         null,
                         nrFeatures,
+                        null,
                         nrBandsMap
                     )
                     .typedList()
@@ -148,6 +147,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         featureSetCombination,
                         null,
                         nrFeatures,
+                        null,
                         nrBandsMap
                     )
                     .typedList<ComboNr>()
@@ -168,9 +168,15 @@ object ImportCapabilityInformation : ImportCapabilities {
                         featureSetCombination,
                         lteFeatures,
                         nrFeatures,
+                        lteBandsMap,
                         nrBandsMap
                     )
                     .typedList()
+        }
+
+        if (lteBandsMap != null) {
+            updateLteBandsCapabilities(lteBandsMap, comboList.lteCombos)
+            comboList.lteBands = lteBandsMap.values.sorted()
         }
 
         if (nrBandsMap != null) {
@@ -668,6 +674,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         featureSetCombinations: List<List<List<FeatureIndex>>>,
         lteFeatures: FeatureSets?,
         nrFeatures: FeatureSets?,
+        lteBands: Map<Band, BandLteDetails>?,
         nrBands: Map<Band, BandNrDetails>?
     ): List<ICombo> {
         val list = mutableListWithCapacity<ICombo>(combos.size)
@@ -683,6 +690,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         index,
                         nrFeatures,
                         lteFeatures,
+                        lteBands,
                         nrBands
                     )
                 }
@@ -697,6 +705,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         index: Int,
         nrFeatures: FeatureSets?,
         lteFeatures: FeatureSets?,
+        lteBands: Map<Band, BandLteDetails>?,
         nrBands: Map<Band, BandNrDetails>?
     ): ICombo {
         val newNrComponents: MutableList<ComponentNr>
@@ -727,13 +736,16 @@ object ImportCapabilityInformation : ImportCapabilities {
             val featureSet = featureSetBand[index]
             val oldComponent: IComponent
             val features: FeatureSets?
+            val bandDetails: IBandDetails?
 
             if (featureSet.isNR) {
                 oldComponent = nrIterator.next()
                 features = nrFeatures
+                bandDetails = nrBands?.get(oldComponent.band)
             } else {
                 oldComponent = lteIterator.next()
                 features = lteFeatures
+                bandDetails = lteBands?.get(oldComponent.band)
             }
 
             val newComponent =
@@ -741,7 +753,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     featureSet,
                     oldComponent,
                     features,
-                    nrBands?.get(oldComponent.band) ?: BandNrDetails(0)
+                    bandDetails ?: BandLteDetails(0)
                 )
 
             if (newComponent is ComponentLte) {
@@ -810,7 +822,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         featureSet: FeatureIndex,
         component: IComponent,
         features: FeatureSets?,
-        nrBandDetails: BandNrDetails
+        bandDetails: IBandDetails
     ): IComponent? {
         val dlIndex = featureSet.downlinkIndex - 1
         val ulIndex = featureSet.uplinkIndex - 1
@@ -847,16 +859,22 @@ object ImportCapabilityInformation : ImportCapabilities {
                 component as ComponentNr,
                 dlFeature?.typedList<FeaturePerCCNr>(),
                 ulFeature?.typedList<FeaturePerCCNr>(),
-                nrBandDetails
+                bandDetails
             )
         } else {
-            mergeComponentLteAndFeature(component as ComponentLte, dlFeature, ulFeature)
+            mergeComponentLteAndFeature(
+                component as ComponentLte,
+                dlFeature,
+                ulFeature,
+                bandDetails
+            )
         }
     }
     private fun mergeComponentLteAndFeature(
         component: ComponentLte,
         dlFeature: List<IFeaturePerCC>?,
-        ulFeature: List<IFeaturePerCC>?
+        ulFeature: List<IFeaturePerCC>?,
+        bandDetails: IBandDetails
     ): ComponentLte {
         val componentLte = component.copy()
 
@@ -865,10 +883,10 @@ object ImportCapabilityInformation : ImportCapabilities {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoDL = Mimo.from(mixedMimo)
                 val mixedModulation = dlFeature.map { it.qam }
-                componentLte.modDL = Modulation.from(mixedModulation)
+                componentLte.modDL = maxOf(bandDetails.modDL, Modulation.from(mixedModulation))
             } else {
                 componentLte.mimoDL = dlFeature.first().mimo
-                componentLte.modDL = dlFeature.first().qam.toModulation()
+                componentLte.modDL = maxOf(bandDetails.modDL, dlFeature.first().qam.toModulation())
             }
         } else {
             // only UL
@@ -881,10 +899,10 @@ object ImportCapabilityInformation : ImportCapabilities {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoUL = Mimo.from(mixedMimo)
                 val mixedModulation = ulFeature.map { it.qam }
-                componentLte.modUL = Modulation.from(mixedModulation)
+                componentLte.modUL = maxOf(bandDetails.modUL, Modulation.from(mixedModulation))
             } else {
                 componentLte.mimoUL = ulFeature.first().mimo
-                componentLte.modUL = ulFeature.first().qam.toModulation()
+                componentLte.modUL = maxOf(bandDetails.modUL, ulFeature.first().qam.toModulation())
             }
         } else {
             // only DL
@@ -898,7 +916,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         component: ComponentNr,
         dlFeature: List<FeaturePerCCNr>?,
         ulFeature: List<FeaturePerCCNr>?,
-        nrBandDetails: BandNrDetails
+        nrBandDetails: IBandDetails
     ): ComponentNr {
         val componentNr = component.copy()
         if (!dlFeature.isNullOrEmpty()) {
@@ -1217,10 +1235,9 @@ object ImportCapabilityInformation : ImportCapabilities {
             ->
             val downlinkPerCC =
                 featureSets.getArray("featureSetsDL-PerCC-r15")?.map {
-                    val qam = ModulationOrder.QAM256
                     val mimoLayers = it.getString("supportedMIMO-CapabilityDL-MRDC-r15")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
-                    FeaturePerCCLte(mimo = mimo.toMimo(), qam = qam)
+                    FeaturePerCCLte(mimo = mimo.toMimo())
                 }
 
             downlink =
@@ -1246,7 +1263,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         if (it.getString("ul-256QAM-r15") != null) {
                             ModulationOrder.QAM256
                         } else {
-                            ModulationOrder.QAM64
+                            ModulationOrder.NONE
                         }
                     val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 1)
