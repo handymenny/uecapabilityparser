@@ -18,14 +18,14 @@ FeatureSet(featureSetsPerCC=[FeaturePerCCLte(type=UPLINK, mimo=2, qam=256qam), F
 FeatureSet(featureSetsPerCC=[FeaturePerCCLte(type=UPLINK, mimo=1, qam=256qam), FeaturePerCCLte(type=UPLINK, mimo=1, qam=256qam)], type=UPLINK)
 
 Nr FeatureSets
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=256qam, bw=100, scs=30, channelBW90mhz=true)], type=DOWNLINK)
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=256qam, bw=30, scs=15, channelBW90mhz=false)], type=DOWNLINK)
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=256qam, bw=20, scs=15, channelBW90mhz=false)], type=DOWNLINK)
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=256qam, bw=20, scs=15, channelBW90mhz=false), FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=256qam, bw=20, scs=15, channelBW90mhz=false)], type=DOWNLINK)
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=256qam, bw=100, scs=30, channelBW90mhz=true), FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=256qam, bw=100, scs=30, channelBW90mhz=true)], type=DOWNLINK)
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=UPLINK, mimo=1, qam=256qam, bw=100, scs=30, channelBW90mhz=true)], type=UPLINK)
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=UPLINK, mimo=1, qam=256qam, bw=30, scs=15, channelBW90mhz=false)], type=UPLINK)
-FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=UPLINK, mimo=1, qam=256qam, bw=20, scs=15, channelBW90mhz=false)], type=UPLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=, bw=100, scs=30, channelBW90mhz=true)], type=DOWNLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=, bw=30, scs=15, channelBW90mhz=false)], type=DOWNLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=, bw=20, scs=15, channelBW90mhz=false)], type=DOWNLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=, bw=20, scs=15, channelBW90mhz=false), FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=, bw=20, scs=15, channelBW90mhz=false)], type=DOWNLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=, bw=100, scs=30, channelBW90mhz=true), FeaturePerCCNr(type=DOWNLINK, mimo=4, qam=, bw=100, scs=30, channelBW90mhz=true)], type=DOWNLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=UPLINK, mimo=1, qam=, bw=100, scs=30, channelBW90mhz=true)], type=UPLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=UPLINK, mimo=1, qam=, bw=30, scs=15, channelBW90mhz=false)], type=UPLINK)
+FeatureSet(featureSetsPerCC=[FeaturePerCCNr(type=UPLINK, mimo=1, qam=, bw=20, scs=15, channelBW90mhz=false)], type=UPLINK)
 n1 BwDL:[15kHz: 20, 15, 10, 5; 30kHz: 20, 15, 10; 60kHz: 20, 15, 10] BwUL:[15kHz: 20, 15, 10, 5; 30kHz: 20, 15, 10; 60kHz: 20, 15, 10]
 n3 BwDL:[15kHz: 30, 25, 20, 15, 10, 5; 30kHz: 30, 25, 20, 15, 10; 60kHz: 30, 25, 20, 15, 10] BwUL:[15kHz: 30, 25, 20, 15, 10, 5; 30kHz: 30, 25, 20, 15, 10; 60kHz: 30, 25, 20, 15, 10]
 n5 BwDL:[15kHz: 20, 15, 10, 5; 30kHz: 20, 15, 10] BwUL:[15kHz: 20, 15, 10, 5; 30kHz: 20, 15, 10]
