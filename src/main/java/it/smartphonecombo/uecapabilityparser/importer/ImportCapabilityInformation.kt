@@ -583,13 +583,16 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val defaultModUL =
                         if (duplex == Duplex.SDL) ModulationOrder.NONE else ModulationOrder.QAM16
                     val mimoUl = if (duplex == Duplex.SDL) 0 else 1
+                    val defaultPowerClass =
+                        if (duplex == Duplex.SDL) PowerClass.NONE else PowerClass.PC3
 
                     BandLteDetails(
                         band,
                         mimoDL = 2.toMimo(),
                         mimoUL = mimoUl.toMimo(),
                         modDL = ModulationOrder.QAM64.toModulation(),
-                        modUL = defaultModUL.toModulation()
+                        modUL = defaultModUL.toModulation(),
+                        powerClass = defaultPowerClass
                     )
                 }
             }
@@ -1092,13 +1095,20 @@ object ImportCapabilityInformation : ImportCapabilities {
                     componentNr.modUL = ModulationOrder.QAM64.toModulation()
                 }
 
-                supportedBandNr.getString("ue-PowerClass")?.let {
-                    componentNr.powerClass = PowerClass.valueOf(it.uppercase())
-                }
-
-                if (supportedBandNr.getString("ue-PowerClass-v1610") == "pc1dot5") {
-                    componentNr.powerClass = PowerClass.PC1dot5
-                }
+                componentNr.powerClass =
+                    when {
+                        duplex == Duplex.SDL -> {
+                            PowerClass.NONE
+                        }
+                        supportedBandNr.getString("ue-PowerClass-v1610") != null -> {
+                            PowerClass.PC1dot5
+                        }
+                        else -> {
+                            PowerClass.valueOf(
+                                supportedBandNr.getString("ue-PowerClass")?.uppercase() ?: "PC3"
+                            )
+                        }
+                    }
 
                 if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {
                     componentNr.rateMatchingLteCrs = true

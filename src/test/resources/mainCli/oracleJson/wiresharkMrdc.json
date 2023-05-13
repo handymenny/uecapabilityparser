@@ -5557,7 +5557,8 @@
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
-            }
+            },
+            "powerClass": "none"
         },
         {
             "band": 38,
@@ -6195,6 +6196,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "none",
             "bandwidths": [
                 {
                     "scs": 15,
