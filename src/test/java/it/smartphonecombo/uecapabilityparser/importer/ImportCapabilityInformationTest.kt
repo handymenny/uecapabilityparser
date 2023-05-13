@@ -1123,6 +1123,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(2).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1137,6 +1139,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1151,6 +1155,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(8).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1186,6 +1192,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1242,6 +1250,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = false
                     bandwidths = listOf(BwsNr(30, intArrayOf(100, 90, 80, 60, 50, 40, 20)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(79).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1249,6 +1259,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = false
                     bandwidths = listOf(BwsNr(30, intArrayOf(100)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(258).apply {
                     modDL = ModulationOrder.QAM64.toModulation()
@@ -1324,6 +1336,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(7).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1418,6 +1432,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = false
                     bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 30, 20)))
                     powerClass = 2.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(78).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1715,6 +1731,8 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(30, intArrayOf(30, 20, 15, 10))
                         )
                     powerClass = 3.toPowerClass()
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1726,6 +1744,8 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(30, intArrayOf(40, 30, 25, 20, 15, 10))
                         )
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(40).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -1770,6 +1790,8 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(30, intArrayOf(100, 90, 80, 70, 60, 50, 40, 30, 20, 15, 10))
                         )
                     powerClass = 2.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -1953,6 +1975,8 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(120, intArrayOf(200, 100, 50))
                         )
                     powerClass = 3.toPowerClass()
+                    mimoDL = 2.toMimo()
+                    mimoUL = 2.toMimo()
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -2111,6 +2135,8 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(60, intArrayOf(30, 25, 20, 15, 10))
                         )
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2134,6 +2160,8 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(60, intArrayOf(20, 15, 10))
                         )
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(8).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2237,6 +2265,8 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(30, intArrayOf(100, 90, 80, 70, 60, 50, 40, 30, 25, 20, 15, 10))
                         )
                     powerClass = 2.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -2445,6 +2475,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(3).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2452,6 +2484,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2459,6 +2493,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(7).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2466,6 +2502,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(28).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2473,18 +2511,24 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(38).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
                     modUL = ModulationOrder.QAM256.toModulation()
                     powerClass = 2.toPowerClass()
                     bandwidths = listOf(BwsNr(30, intArrayOf(20, 15, 10)))
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(40).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
                     modUL = ModulationOrder.QAM256.toModulation()
                     bandwidths = listOf(BwsNr(30, intArrayOf(90, 80, 60, 50, 40, 20)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(41).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2494,6 +2538,8 @@ internal class ImportCapabilityInformationTest {
                         listOf(
                             BwsNr(30, intArrayOf(100, 90, 80, 60, 50, 40, 20)),
                         )
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2503,6 +2549,8 @@ internal class ImportCapabilityInformationTest {
                         listOf(
                             BwsNr(30, intArrayOf(100, 90, 80, 60, 50, 40, 20)),
                         )
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(78).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2512,6 +2560,8 @@ internal class ImportCapabilityInformationTest {
                         listOf(
                             BwsNr(30, intArrayOf(100, 90, 80, 60, 50, 40, 20)),
                         )
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(79).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2521,6 +2571,8 @@ internal class ImportCapabilityInformationTest {
                         listOf(
                             BwsNr(30, intArrayOf(100, 80, 60, 50, 40)),
                         )
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(80).apply {
                     modUL = ModulationOrder.QAM256.toModulation()
@@ -2700,6 +2752,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(30, 25, 20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(5).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2714,6 +2768,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(8).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2800,6 +2856,8 @@ internal class ImportCapabilityInformationTest {
                         listOf(
                             BwsNr(30, intArrayOf(100, 90, 80, 70, 60, 50, 40, 30, 20, 15, 10)),
                         )
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 }
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -3001,6 +3059,8 @@ internal class ImportCapabilityInformationTest {
                     rateMatchingLteCrs = true
                     bandwidths = listOf(BwsNr(15, intArrayOf(40, 30, 20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(70).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -3101,6 +3161,8 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM64.toModulation()
                     bandwidths = listOf(BwsNr(120, intArrayOf(100, 50)))
                     powerClass = 3.toPowerClass()
+                    mimoDL = 2.toMimo()
+                    mimoUL = 2.toMimo()
                 },
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
@@ -3179,12 +3241,16 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256.toModulation()
                     powerClass = 2.toPowerClass()
                     bandwidths = listOf(BwsNr(30, intArrayOf(100, 90, 80, 60, 50, 40, 20)))
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(78).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
                     modUL = ModulationOrder.QAM256.toModulation()
                     powerClass = 2.toPowerClass()
                     bandwidths = listOf(BwsNr(30, intArrayOf(100, 90, 80, 60, 50, 40, 20, 10)))
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(79).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -3197,12 +3263,14 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256.toModulation()
                     bandwidths = listOf(BwsNr(15, intArrayOf(), intArrayOf(30, 25, 20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoUL = 1.toMimo()
                 },
                 BandNrDetails(84).apply {
                     modDL = ModulationOrder.NONE.toModulation()
                     modUL = ModulationOrder.QAM256.toModulation()
                     bandwidths = listOf(BwsNr(15, intArrayOf(), intArrayOf(20, 15, 10, 5)))
                     powerClass = 3.toPowerClass()
+                    mimoUL = 1.toMimo()
                 }
             )
         assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())

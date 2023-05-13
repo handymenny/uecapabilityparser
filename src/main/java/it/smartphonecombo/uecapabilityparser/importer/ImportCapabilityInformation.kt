@@ -493,6 +493,12 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                 band.bandwidths = newBandwidths
             }
+            if (component.mimoDL > band.mimoDL) {
+                band.mimoDL = component.mimoDL
+            }
+            if (component.mimoUL > band.mimoUL) {
+                band.mimoUL = component.mimoUL
+            }
         }
     }
 
