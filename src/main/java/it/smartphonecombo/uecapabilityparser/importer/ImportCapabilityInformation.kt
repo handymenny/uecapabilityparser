@@ -1217,10 +1217,9 @@ object ImportCapabilityInformation : ImportCapabilities {
             ->
             val downlinkPerCC =
                 featureSets.getArray("featureSetsDL-PerCC-r15")?.map {
-                    val qam = ModulationOrder.QAM256
                     val mimoLayers = it.getString("supportedMIMO-CapabilityDL-MRDC-r15")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
-                    FeaturePerCCLte(mimo = mimo.toMimo(), qam = qam)
+                    FeaturePerCCLte(mimo = mimo.toMimo())
                 }
 
             downlink =
@@ -1246,7 +1245,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         if (it.getString("ul-256QAM-r15") != null) {
                             ModulationOrder.QAM256
                         } else {
-                            ModulationOrder.QAM64
+                            ModulationOrder.NONE
                         }
                     val mimoLayers = it.getString("supportedMIMO-CapabilityUL-r15")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 1)
