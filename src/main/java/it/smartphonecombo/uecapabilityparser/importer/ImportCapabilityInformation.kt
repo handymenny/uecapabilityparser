@@ -1092,13 +1092,20 @@ object ImportCapabilityInformation : ImportCapabilities {
                     componentNr.modUL = ModulationOrder.QAM64.toModulation()
                 }
 
-                supportedBandNr.getString("ue-PowerClass")?.let {
-                    componentNr.powerClass = PowerClass.valueOf(it.uppercase())
-                }
-
-                if (supportedBandNr.getString("ue-PowerClass-v1610") == "pc1dot5") {
-                    componentNr.powerClass = PowerClass.PC1dot5
-                }
+                componentNr.powerClass =
+                    when {
+                        duplex == Duplex.SDL -> {
+                            PowerClass.NONE
+                        }
+                        supportedBandNr.getString("ue-PowerClass-v1610") != null -> {
+                            PowerClass.PC1dot5
+                        }
+                        else -> {
+                            PowerClass.valueOf(
+                                supportedBandNr.getString("ue-PowerClass")?.uppercase() ?: "PC3"
+                            )
+                        }
+                    }
 
                 if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {
                     componentNr.rateMatchingLteCrs = true

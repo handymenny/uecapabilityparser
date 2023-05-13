@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toPowerClass
+import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
@@ -2028,6 +2029,7 @@ internal class ImportCapabilityInformationTest {
                             BwsNr(30, intArrayOf(20, 15, 10), intArrayOf()),
                             BwsNr(60, intArrayOf(20, 15, 10), intArrayOf())
                         )
+                    powerClass = PowerClass.NONE
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2549,6 +2551,7 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(75).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
                     bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5), intArrayOf()))
+                    powerClass = PowerClass.NONE
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2700,6 +2703,7 @@ internal class ImportCapabilityInformationTest {
                     modDL = ModulationOrder.QAM256.toModulation()
                     modUL = ModulationOrder.QAM256.toModulation()
                     bandwidths = listOf(BwsNr(15, intArrayOf(10, 5), intArrayOf()))
+                    powerClass = PowerClass.NONE
                 },
                 BandNrDetails(30).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
@@ -2765,11 +2769,13 @@ internal class ImportCapabilityInformationTest {
                     modUL = ModulationOrder.QAM256.toModulation()
                     bandwidths =
                         listOf(BwsNr(15, intArrayOf(50, 40, 30, 25, 20, 15, 10, 5), intArrayOf()))
+                    powerClass = PowerClass.NONE
                 },
                 BandNrDetails(76).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
                     modUL = ModulationOrder.QAM256.toModulation()
                     bandwidths = listOf(BwsNr(15, intArrayOf(5), intArrayOf()))
+                    powerClass = PowerClass.NONE
                 },
                 BandNrDetails(77).apply {
                     modDL = ModulationOrder.QAM256.toModulation()
