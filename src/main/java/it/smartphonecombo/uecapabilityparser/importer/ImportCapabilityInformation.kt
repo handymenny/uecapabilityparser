@@ -583,13 +583,16 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val defaultModUL =
                         if (duplex == Duplex.SDL) ModulationOrder.NONE else ModulationOrder.QAM16
                     val mimoUl = if (duplex == Duplex.SDL) 0 else 1
+                    val defaultPowerClass =
+                        if (duplex == Duplex.SDL) PowerClass.NONE else PowerClass.PC3
 
                     BandLteDetails(
                         band,
                         mimoDL = 2.toMimo(),
                         mimoUL = mimoUl.toMimo(),
                         modDL = ModulationOrder.QAM64.toModulation(),
-                        modUL = defaultModUL.toModulation()
+                        modUL = defaultModUL.toModulation(),
+                        powerClass = defaultPowerClass
                     )
                 }
             }

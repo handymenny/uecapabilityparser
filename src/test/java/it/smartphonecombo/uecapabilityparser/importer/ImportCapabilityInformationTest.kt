@@ -128,7 +128,8 @@ internal class ImportCapabilityInformationTest {
                     32,
                     mimoDL = 2.toMimo(),
                     modDL = ModulationOrder.QAM256.toModulation(),
-                    modUL = ModulationOrder.QAM64.toModulation()
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     38,
@@ -550,7 +551,8 @@ internal class ImportCapabilityInformationTest {
                     29,
                     mimoDL = 2.toMimo(),
                     modDL = ModulationOrder.QAM1024.toModulation(),
-                    modUL = ModulationOrder.QAM64.toModulation()
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     30,
@@ -563,7 +565,8 @@ internal class ImportCapabilityInformationTest {
                     32,
                     mimoDL = 2.toMimo(),
                     modDL = ModulationOrder.QAM1024.toModulation(),
-                    modUL = ModulationOrder.QAM64.toModulation()
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     34,
@@ -740,7 +743,8 @@ internal class ImportCapabilityInformationTest {
                     32,
                     mimoDL = 2.toMimo(),
                     mimoUL = 1.toMimo(),
-                    modDL = ModulationOrder.QAM64.toModulation()
+                    modDL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     38,
@@ -941,7 +945,8 @@ internal class ImportCapabilityInformationTest {
                     32,
                     mimoDL = 4.toMimo(),
                     modDL = ModulationOrder.QAM256.toModulation(),
-                    modUL = ModulationOrder.QAM64.toModulation()
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     38,
@@ -1423,7 +1428,8 @@ internal class ImportCapabilityInformationTest {
                     32,
                     mimoDL = 4.toMimo(),
                     modDL = ModulationOrder.QAM256.toModulation(),
-                    modUL = ModulationOrder.QAM64.toModulation()
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     38,
@@ -1871,7 +1877,8 @@ internal class ImportCapabilityInformationTest {
                 BandLteDetails(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256.toModulation()
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     38,
@@ -2154,7 +2161,8 @@ internal class ImportCapabilityInformationTest {
                     32,
                     mimoDL = 2.toMimo(),
                     modDL = ModulationOrder.QAM256.toModulation(),
-                    modUL = ModulationOrder.QAM64.toModulation()
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     34,
@@ -2418,7 +2426,8 @@ internal class ImportCapabilityInformationTest {
                 BandLteDetails(
                     32,
                     mimoDL = 2.toMimo(),
-                    modDL = ModulationOrder.QAM256.toModulation()
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    powerClass = PowerClass.NONE
                 ),
                 BandLteDetails(
                     38,
