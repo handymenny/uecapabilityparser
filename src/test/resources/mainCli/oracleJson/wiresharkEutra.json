@@ -6118,7 +6118,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam64"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 3,
@@ -6137,7 +6138,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam64"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 7,
@@ -6156,7 +6158,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam64"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 20,
@@ -6175,7 +6178,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam64"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 32,
@@ -6186,8 +6190,7 @@
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
-            },
-            "powerClass": "none"
+            }
         },
         {
             "band": 38,
@@ -6206,7 +6209,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam64"
-            }
+            },
+            "powerClass": "pc3"
         }
     ],
     "lteCategoryDl": 18,

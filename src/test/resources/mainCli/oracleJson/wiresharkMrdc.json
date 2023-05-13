@@ -5489,7 +5489,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam256"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 3,
@@ -5508,7 +5509,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam256"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 7,
@@ -5527,7 +5529,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam256"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 20,
@@ -5546,7 +5549,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam256"
-            }
+            },
+            "powerClass": "pc3"
         },
         {
             "band": 32,
@@ -5557,8 +5561,7 @@
             "modulationDl": {
                 "type": "single",
                 "value": "qam256"
-            },
-            "powerClass": "none"
+            }
         },
         {
             "band": 38,
@@ -5577,7 +5580,8 @@
             "modulationUl": {
                 "type": "single",
                 "value": "qam256"
-            }
+            },
+            "powerClass": "pc3"
         }
     ],
     "nrNsaBandsEutra": [
@@ -5632,6 +5636,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -5687,6 +5692,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -5754,6 +5760,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -5796,6 +5803,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -5851,6 +5859,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -5893,6 +5902,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -5935,6 +5945,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -5977,6 +5988,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -6032,6 +6044,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -6119,6 +6132,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -6196,7 +6210,6 @@
                 "type": "single",
                 "value": "qam256"
             },
-            "powerClass": "none",
             "bandwidths": [
                 {
                     "scs": 15,
@@ -6242,6 +6255,7 @@
                 "type": "single",
                 "value": "qam256"
             },
+            "powerClass": "pc3",
             "bandwidths": [
                 {
                     "scs": 15,
