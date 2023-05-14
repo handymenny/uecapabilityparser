@@ -1,16 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import com.soywiz.kmem.extract
-import com.soywiz.kmem.extract1
-import com.soywiz.kmem.extract2
-import com.soywiz.kmem.extract3
-import com.soywiz.kmem.extract4
-import com.soywiz.kmem.extract5
-import com.soywiz.kmem.extract6
-import com.soywiz.kmem.extract7
-import com.soywiz.kmem.extract8
-import com.soywiz.kmem.finsert
-import com.soywiz.kmem.isOdd
 import it.smartphonecombo.uecapabilityparser.extension.indexOfMin
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
@@ -34,6 +23,17 @@ import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import korlibs.memory.extract
+import korlibs.memory.extract1
+import korlibs.memory.extract2
+import korlibs.memory.extract3
+import korlibs.memory.extract4
+import korlibs.memory.extract5
+import korlibs.memory.extract6
+import korlibs.memory.extract7
+import korlibs.memory.extract8
+import korlibs.memory.finsert
+import korlibs.memory.isOdd
 
 /**
  * A parser for Qualcomm 0xB826 Log Item (NR5G RRC Supported CA Combos).
