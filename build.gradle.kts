@@ -27,7 +27,7 @@ val tstypesImplementation: Configuration by
 
 dependencies {
     val mtsAsn1Version = "86f06cd"
-    val kmemVersion = "3.4.0"
+    val kmemVersion = "4.0.0"
     val javalinVersion = "5.5.0"
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
