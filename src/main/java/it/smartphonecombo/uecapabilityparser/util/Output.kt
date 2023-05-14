@@ -198,7 +198,7 @@ object Output {
                 header.append(column).append(i).append(separator)
             }
         }
-        header.append("bsc\n")
+        header.append("bcs\n")
         return header.toString()
     }
 
