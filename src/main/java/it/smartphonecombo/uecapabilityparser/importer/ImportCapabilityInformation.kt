@@ -1136,11 +1136,20 @@ object ImportCapabilityInformation : ImportCapabilities {
 
                 val maxUplinkDutyCycleKey =
                     when {
-                        componentNr.isFR2 -> "maxUplinkDutyCycle-FR2"
-                        componentNr.powerClass == PowerClass.PC2 -> "maxUplinkDutyCycle-PC2-FR1"
-                        componentNr.powerClass == PowerClass.PC1dot5 ->
+                        componentNr.isFR2 -> {
+                            "maxUplinkDutyCycle-FR2"
+                        }
+                        componentNr.powerClass == PowerClass.PC2 -> {
+                            // default is 50% according to TS 38.306
+                            componentNr.maxUplinkDutyCycle = 50
+                            "maxUplinkDutyCycle-PC2-FR1"
+                        }
+                        componentNr.powerClass == PowerClass.PC1dot5 -> {
                             "maxUplinkDutyCycle-PC1dot5-MPE-FR1-r16"
-                        else -> null
+                        }
+                        else -> {
+                            null
+                        }
                     }
 
                 if (maxUplinkDutyCycleKey != null) {
