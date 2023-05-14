@@ -4,6 +4,7 @@ import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder
 import io.javalin.config.SizeUnit
 import io.javalin.http.ContentType
+import io.javalin.http.Context
 import io.javalin.http.HttpStatus
 import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
@@ -42,6 +43,13 @@ class JavalinApp {
         }
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
+    private val openapi =
+        {}.javaClass
+            .getResourceAsStream("/swagger/openapi.json")
+            ?.bufferedReader()
+            ?.readText()
+            ?.replace("http://localhost:8080", "/")
+
     val app: Javalin =
         Javalin.create { config ->
             config.compression.gzipOnly(4)
@@ -51,6 +59,11 @@ class JavalinApp {
             config.jsonMapper(jsonMapper)
             config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
             config.staticFiles.add("/web", Location.CLASSPATH)
+            config.staticFiles.add { staticFiles ->
+                staticFiles.hostedPath = "/swagger"
+                staticFiles.directory = "/swagger"
+                staticFiles.location = Location.CLASSPATH
+            }
         }
 
     init {
@@ -114,6 +127,21 @@ class JavalinApp {
                         .header("Access-Control-Expose-Headers", "Content-Disposition")
                 }
             }
+            ApiBuilder.get("/openapi", ::getOpenApi)
+            ApiBuilder.get("/swagger/openapi.json", ::getOpenApi)
+            // Add / if missing
+            ApiBuilder.before("/swagger") { ctx ->
+                if (!ctx.path().endsWith("/")) {
+                    ctx.redirect("/swagger/")
+                }
+            }
+        }
+    }
+
+    private fun getOpenApi(ctx: Context) {
+        if (openapi != null) {
+            ctx.contentType(ContentType.JSON)
+            ctx.result(openapi)
         }
     }
 }

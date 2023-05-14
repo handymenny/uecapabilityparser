@@ -37,7 +37,13 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
                     Config["debug"] = isDebug.toString()
                     val debugMessage = if (isDebug) "with debug enabled" else ""
                     val serverStartMessage = "Server started at port $port $debugMessage"
-                    val webUiMessage = "Web UI (demo) available at http://localhost:$port/"
+                    val webUiMessage =
+                        """
+                        |Web UI (demo) available at http://localhost:$port/
+                        |OpenAPI Spec available at http://localhost:$port/openapi
+                        |Swagger UI available at http://localhost:$port/swagger
+                        |"""
+                            .trimMargin()
                     // stop processing other options
                     throw PrintMessage("$serverStartMessage\n$webUiMessage", error = false)
                 }
