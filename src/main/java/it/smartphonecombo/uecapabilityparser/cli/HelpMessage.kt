@@ -15,8 +15,8 @@ object HelpMessage {
             O (OSIX UE Capability Information), QC (QCAT UE Capability Information)"""
     const val CSV =
         """Output a csv, if "-" is the csv will be output to standard output.
-        Some parsers output multiple CSVs, in these cases "-LTE", "-NR", "-EN-DC",
-        "-NR-DC" will be added before the extension"""
+        Some parsers output multiple CSVs, in these cases "-LTECA", "-NRCA", "-ENDC",
+        "-NRDC" will be added before the extension"""
     const val UE_LOG =
         """Output the uelog, if "-" is specified the uelog will be output to standard output"""
     const val DEBUG = "Print debug info"
