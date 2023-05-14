@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.extension
 
-import com.soywiz.kmem.finsert
-import com.soywiz.kmem.isEven
+import korlibs.memory.finsert
+import korlibs.memory.isEven
 import kotlin.jvm.Throws
 
 internal fun String.indexOf(regex: Regex): Int = regex.find(this)?.range?.first ?: -1
