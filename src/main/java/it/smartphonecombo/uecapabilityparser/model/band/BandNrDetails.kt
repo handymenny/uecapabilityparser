@@ -17,7 +17,7 @@ data class BandNrDetails(
     @SerialName("mimoUl") override var mimoUL: Mimo = EmptyMimo,
     @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
     @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation,
-    @SerialName("maxUplinkDutyCycle") var maxUplinkDutyCycle: Int = 100,
+    @SerialName("maxUplinkDutyCycle") var maxUplinkDutyCycle: Int = 0,
     @SerialName("powerClass") override var powerClass: PowerClass = PowerClass.NONE,
     @SerialName("bandwidths") var bandwidths: List<BwsNr> = emptyList(),
     @SerialName("rateMatchingLteCrs") var rateMatchingLteCrs: Boolean = false
