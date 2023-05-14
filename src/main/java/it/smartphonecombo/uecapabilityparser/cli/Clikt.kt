@@ -113,25 +113,28 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
         if (lteCombos.isNotEmpty()) {
             Output.outputFileOrStdout(
                 Output.toCsv(lteCombos),
-                csvPath?.appendBeforeExtension("-LTE")
+                csvPath?.appendBeforeExtension("-LTECA")
             )
         }
         val nrCombos = comboList.nrCombos
         if (nrCombos.isNotEmpty()) {
-            Output.outputFileOrStdout(Output.toCsv(nrCombos), csvPath?.appendBeforeExtension("-NR"))
+            Output.outputFileOrStdout(
+                Output.toCsv(nrCombos),
+                csvPath?.appendBeforeExtension("-NRCA")
+            )
         }
         val enDcCombos = comboList.enDcCombos
         if (enDcCombos.isNotEmpty()) {
             Output.outputFileOrStdout(
                 Output.toCsv(enDcCombos),
-                csvPath?.appendBeforeExtension("-EN-DC")
+                csvPath?.appendBeforeExtension("-ENDC")
             )
         }
         val nrDcCombos = comboList.nrDcCombos
         if (nrDcCombos.isNotEmpty()) {
             Output.outputFileOrStdout(
                 Output.toCsv(nrDcCombos),
-                csvPath?.appendBeforeExtension("-NR-DC")
+                csvPath?.appendBeforeExtension("-NRDC")
             )
         }
     }
