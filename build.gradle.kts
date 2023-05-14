@@ -109,6 +109,8 @@ distributions {
         distributionBaseName.set(project.name)
         contents {
             from("src/main/dist")
+            from("src/main/resources/swagger/openapi.json")
+            from("uecapabilityparser.d.ts")
             from("LICENSE")
             from("README.md")
             eachFile {
