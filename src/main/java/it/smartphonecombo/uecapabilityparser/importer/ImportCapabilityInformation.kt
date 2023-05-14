@@ -1134,19 +1134,34 @@ object ImportCapabilityInformation : ImportCapabilities {
                         }
                     }
 
-                if (supportedBandNr.getString("rateMatchingLTE-CRS") != null) {
-                    componentNr.rateMatchingLteCrs = true
+                val maxUplinkDutyCycleKey =
+                    when {
+                        componentNr.isFR2 -> {
+                            "maxUplinkDutyCycle-FR2"
+                        }
+                        componentNr.powerClass == PowerClass.PC2 -> {
+                            // default is 50% according to TS 38.306
+                            componentNr.maxUplinkDutyCycle = 50
+                            "maxUplinkDutyCycle-PC2-FR1"
+                        }
+                        componentNr.powerClass == PowerClass.PC1dot5 -> {
+                            "maxUplinkDutyCycle-PC1dot5-MPE-FR1-r16"
+                        }
+                        else -> {
+                            null
+                        }
+                    }
+
+                if (maxUplinkDutyCycleKey != null) {
+                    supportedBandNr
+                        .getString(maxUplinkDutyCycleKey)
+                        ?.removePrefix("n")
+                        ?.toInt()
+                        ?.let { componentNr.maxUplinkDutyCycle = it }
                 }
 
-                val maxUplinkDutyCycleKey =
-                    if (componentNr.isFR2) {
-                        "maxUplinkDutyCycle-FR2"
-                    } else {
-                        "maxUplinkDutyCycle-PC2-FR1"
-                    }
-                supportedBandNr.getString(maxUplinkDutyCycleKey)?.removePrefix("n")?.toInt()?.let {
-                    componentNr.maxUplinkDutyCycle = it
-                }
+                componentNr.rateMatchingLteCrs =
+                    supportedBandNr.getString("rateMatchingLTE-CRS") != null
 
                 parseNRChannelBWs(supportedBandNr, componentNr)
 
