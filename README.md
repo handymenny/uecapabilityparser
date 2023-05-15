@@ -43,8 +43,8 @@ Despite its beta quality, it's the source of sites such as smartphonecombo.it, c
    - ```--name``` sets the name of the container
    - ```-p 8081:8080``` map the port 8080 of the container to the port 8081 of the host
    - ```-d``` starts the container in detached mode (background)
-   - ```ghcr.io/handymenny/uecapabilityparser:latest``` the container image to use
-   - ```-s 8080``` options to be passed to the container, in this case start a server on port 8080
+   - ```ghcr.io/handymenny/uecapabilityparser:latest``` is the container image to use
+   - ```-s 8080``` are the options to be passed to the container, in this case start a server on port 8080
 
 ## Run with Docker - Cli Mode
 > **Warning**<br>
@@ -70,8 +70,8 @@ This isn't the recommended way to run the parser. It currently complicates sendi
    - ```-it``` starts the container in interactive mode (attached to the shell)
    - ```--rm``` remove the container after the execution
    - ``-v `pwd`:/home/java`` maps the current directory to /home/java (in container)
-   - ```ghcr.io/handymenny/uecapabilityparser:latest``` the container image to use
-   - ```-h``` options to be passed to the container, in this case print help
+   - ```ghcr.io/handymenny/uecapabilityparser:latest``` is the container image to use
+   - ```-h``` are the options to be passed to the container, in this case print help
 
 ## Build
 
