@@ -75,7 +75,7 @@ class JavalinApp {
             }
         }
         app.routes {
-            ApiBuilder.post("/parse/0.0.7") { ctx ->
+            ApiBuilder.post("/parse/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
                 val input = request.getString("input")?.let { base64.decode(it).inputStream() }
                 val inputNR = request.getString("inputNR")?.let { base64.decode(it).inputStream() }
@@ -103,7 +103,7 @@ class JavalinApp {
                     ctx.json(parsing.capabilities)
                 }
             }
-            ApiBuilder.post("/csv/0.0.7") { ctx ->
+            ApiBuilder.post("/csv/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
                 val type = request.getString("type")
                 val input = request.getArray("input")
