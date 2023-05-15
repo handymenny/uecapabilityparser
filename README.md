@@ -2,7 +2,7 @@
 
 UE Capability Parser is a tool that parses the LTE/NR capabilities of mobile devices and convertes them into a human-readable format.<br>
 
-Despite its alpha/beta quality, it's the source of sites such as smartphonecombo.it, cacombos.com, mobilecombos.com
+Despite its beta quality, it's the source of sites such as smartphonecombo.it, cacombos.com, mobilecombos.com
 
 ## Run locally
 
@@ -21,8 +21,32 @@ Despite its alpha/beta quality, it's the source of sites such as smartphonecombo
     ````
     ./uecapabilityparser
     ````
+   a. Server mode example:
+   ````
+   ./uecapabilityparser -s 8080
+    ````
+   b. CLI mode example:
+   ````
+   ./uecapabilityparser -t C -i input.xml -c output.csv
+    ````
 
-## Run with Docker
+## Run with Docker - Server Mode
+1. Open a terminal
+2. Run container in detached mode
+
+   Example:
+
+   ````
+   docker run --name uecapabilityparser -p 8081:8080 -d ghcr.io/handymenny/uecapabilityparser:latest -s 8080
+   ````
+   Where:
+   - ```--name``` sets the name of the container
+   - ```-p 8081:8080``` map the port 8080 of the container to the port 8081 of the host
+   - ```-d``` starts the container in detached mode (background)
+   - ```ghcr.io/handymenny/uecapabilityparser:latest``` the container image to use
+   - ```-s 8080``` options to be passed to the container, in this case start a server on port 8080
+
+## Run with Docker - Cli Mode
 > **Warning**<br>
 This isn't the recommended way to run the parser. It currently complicates sending data to the parser and receiving data from the parser.
 
@@ -34,19 +58,35 @@ This isn't the recommended way to run the parser. It currently complicates sendi
    ````
     chown 2000:2000 -R .
     ````
-4. Run the application:
+4. Run container in interactive mode:
+
+   Example:
 
     ````
-    docker run -it --rm -v `pwd`:/home/java ghcr.io/handymenny/uecapabilityparser:main
+    docker run --name uecapabilityparser -it --rm -v `pwd`:/home/java ghcr.io/handymenny/uecapabilityparser:latest -h
     ````
+   Where:
+   - ```--name``` sets the name of the container
+   - ```-it``` starts the container in interactive mode (attached to the shell)
+   - ```--rm``` remove the container after the execution
+   - ``-v `pwd`:/home/java`` maps the current directory to /home/java (in container)
+   - ```ghcr.io/handymenny/uecapabilityparser:latest``` the container image to use
+   - ```-h``` options to be passed to the container, in this case print help
 
 ## Build
 
 1. Install Git
 2. Clone the repo:
+   > **Note**<br>
+   > If you have already cloned this before, you can update it and its submodules with these commands:
+   > ````
+   > git fetch
+   > get pull
+   > git submodule update --init
+   > ````
 
     ````
-    git clone https://github.com/HandyMenny/uecapabilityparser
+    git clone --recurse-submodules https://github.com/HandyMenny/uecapabilityparser
     ````
 3. Move to `uecapabilityparser` folder:
 
@@ -65,5 +105,20 @@ This isn't the recommended way to run the parser. It currently complicates sendi
     - or build the docker image (requires Docker):
 
         ````
-        docker build -t ghcr.io/handymenny/uecapabilityparser:main .
+        docker build -t ghcr.io/handymenny/uecapabilityparser:latest .
         ````
+
+## Tips
+
+In each release zip you can find:
+- Some useful type script definitions in ```uecapabilityparser.d.ts```
+- OpenAPI spec in ```openapi.json```
+
+The server (alongside the uecapabilityparser API) also serves:
+- Web UI (DEMO) at ```/```
+- Swagger UI at ```/swagger```
+- OpenAPI spec at ```/openapi```
+
+Useful links:
+- [Swagger UI (online)](https://handymenny.github.io/uecapabilityparser-swagger/)
+- [Web UI source code](https://github.com/handymenny/uecapabilityparser-web)
