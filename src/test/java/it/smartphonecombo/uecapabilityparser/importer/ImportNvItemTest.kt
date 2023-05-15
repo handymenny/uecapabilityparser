@@ -39,4 +39,9 @@ internal class ImportNvItemTest {
     fun parseNvItem333() {
         parse("28874_333.bin", "28874_333.csv")
     }
+
+    @Test
+    fun parseNvItemZlib() {
+        parse("28874_zlib.bin", "28874_zlib.csv")
+    }
 }
