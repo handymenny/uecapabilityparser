@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
+import it.smartphonecombo.uecapabilityparser.extension.zlibDecompress
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
@@ -31,7 +32,8 @@ private const val MAX_CC = 5
 object ImportNvItem : ImportCapabilities {
 
     /**
-     * This parser take as [input] an [InputStream] of a decompressed NVItem 28874.
+     * This parser take as [input] an [InputStream] of an uncompressed or zlib-compressed
+     * NVItem 28874.
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
      * [lteCombos][Capabilities.lteCombos].
@@ -44,7 +46,15 @@ object ImportNvItem : ImportCapabilities {
     override fun parse(input: InputStream): Capabilities {
         var dlComponents = emptyList<ComponentLte>()
         val byteArray = input.use(InputStream::readBytes)
-        val byteBuffer = ByteBuffer.wrap(byteArray)
+        var byteBuffer = ByteBuffer.wrap(byteArray)
+
+        // zlib header check
+        if (byteBuffer.readUnsignedShort() == 0x789C) {
+            byteBuffer = byteBuffer.rewind().zlibDecompress()
+        } else {
+            byteBuffer.rewind()
+        }
+
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
         byteBuffer.skipBytes(4)
 
