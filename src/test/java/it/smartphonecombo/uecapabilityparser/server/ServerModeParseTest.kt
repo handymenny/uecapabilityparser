@@ -18,7 +18,7 @@ internal class ServerModeParseTest {
     private val path = "src/test/resources/mainCli"
     private val app = JavalinApp().app
     private val base64 = Base64.getEncoder()
-    private val endpoint = "/parse/0.0.7/"
+    private val endpoint = "/parse/0.1.0/"
 
     @Test
     fun carrierPolicyJsonOutput() {
