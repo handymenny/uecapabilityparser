@@ -8,6 +8,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("com.diffplug.spotless") version "6.21.0"
     id("org.jetbrains.kotlinx.kover") version "0.7.3"
+    id("maven-publish")
     application
 }
 
@@ -142,3 +143,5 @@ spotless {
     // Workaround: https://github.com/diffplug/spotless/issues/1644
     lineEndings = LineEnding.UNIX
 }
+
+publishing { publications { create<MavenPublication>("maven") { from(components["java"]) } } }
