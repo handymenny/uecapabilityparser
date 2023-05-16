@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.server
 
-import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.readText
@@ -15,6 +14,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
+import org.eclipse.jetty.http.HttpStatus
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assumptions.assumeTrue
@@ -125,7 +125,7 @@ internal class ServerModeCompressionTest {
     ) =
         JavalinTest.test(JavalinApp().app) { _, client ->
             val response = client.get(url)
-            Assertions.assertEquals(HttpStatus.OK.code, response.code)
+            Assertions.assertEquals(HttpStatus.OK_200, response.code)
             val actualText = response.body?.string() ?: ""
             val expectedText =
                 if (gzip) File(oraclePath).gzipDecompress().readText()
@@ -143,7 +143,7 @@ internal class ServerModeCompressionTest {
     private fun storeTest(url: String, request: JsonObject, oraclePath: String) =
         JavalinTest.test(JavalinApp().app) { _, client ->
             val response = client.post(url, request)
-            Assertions.assertEquals(HttpStatus.OK.code, response.code)
+            Assertions.assertEquals(HttpStatus.OK_200, response.code)
             capabilitiesAssertEquals(
                 File(oraclePath).gzipDecompress().readText(),
                 response.body?.string() ?: ""

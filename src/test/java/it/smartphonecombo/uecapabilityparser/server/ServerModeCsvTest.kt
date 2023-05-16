@@ -1,11 +1,11 @@
 package it.smartphonecombo.uecapabilityparser.server
 
-import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import java.io.File
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
+import org.eclipse.jetty.http.HttpStatus
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -50,7 +50,7 @@ internal class ServerModeCsvTest {
         JavalinTest.test(app) { _, client ->
             val request = Json.parseToJsonElement(File(inputPath).readText())
             val response = client.post(endpoint, request)
-            Assertions.assertEquals(HttpStatus.OK.code, response.code)
+            Assertions.assertEquals(HttpStatus.OK_200, response.code)
 
             val actual =
                 response.body?.string()?.lines()?.dropLastWhile { it.isBlank() } ?: emptyList()

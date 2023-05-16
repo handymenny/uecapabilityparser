@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.server
 
-import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -10,6 +9,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import org.eclipse.jetty.http.HttpStatus
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -366,7 +366,7 @@ internal class ServerModeParseTest {
     private fun javalinJsonTest(request: JsonObject, oraclePath: String) =
         JavalinTest.test(app) { _, client ->
             val response = client.post(endpoint, request)
-            Assertions.assertEquals(HttpStatus.OK.code, response.code)
+            Assertions.assertEquals(HttpStatus.OK_200, response.code)
 
             val actual = Json.custom().decodeFromString<Capabilities>(response.body?.string() ?: "")
             val expected = Json.custom().decodeFromString<Capabilities>(File(oraclePath).readText())

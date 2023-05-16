@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.server
 
-import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
@@ -13,6 +12,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
+import org.eclipse.jetty.http.HttpStatus
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assumptions.assumeTrue
@@ -110,13 +110,13 @@ internal class ServerModeStoreTest {
     @Test
     fun getItemBadRequest() {
         Config["store"] = "$resourcesPath/oracleForStore"
-        getTestError("${endpointStore}getItem", HttpStatus.BAD_REQUEST.code)
+        getTestError("${endpointStore}getItem", HttpStatus.BAD_REQUEST_400)
     }
 
     @Test
     fun getItem404() {
         Config["store"] = "$resourcesPath/oracleForStore"
-        getTestError("${endpointStore}getItem?id=${UUID.randomUUID()}", HttpStatus.NOT_FOUND.code)
+        getTestError("${endpointStore}getItem?id=${UUID.randomUUID()}", HttpStatus.NOT_FOUND_404)
     }
 
     @Test
@@ -131,10 +131,7 @@ internal class ServerModeStoreTest {
     @Test
     fun getOutputBadRequest() {
         Config["store"] = "$resourcesPath/oracleForStore"
-        getTestError(
-            "${endpointStore}getOutput?id=../output/$storedId",
-            HttpStatus.BAD_REQUEST.code
-        )
+        getTestError("${endpointStore}getOutput?id=../output/$storedId", HttpStatus.BAD_REQUEST_400)
     }
 
     @Test
@@ -142,14 +139,14 @@ internal class ServerModeStoreTest {
         Config["store"] = "$resourcesPath/oracleForStore"
         getTestError(
             "${endpointStore}getOutput?idd=../output/$storedId",
-            HttpStatus.BAD_REQUEST.code
+            HttpStatus.BAD_REQUEST_400
         )
     }
 
     @Test
     fun getOutput404() {
         Config["store"] = "$resourcesPath/oracleForStore"
-        getTestError("${endpointStore}getOutput?id=${UUID.randomUUID()}", HttpStatus.NOT_FOUND.code)
+        getTestError("${endpointStore}getOutput?id=${UUID.randomUUID()}", HttpStatus.NOT_FOUND_404)
     }
 
     @Test
@@ -165,28 +162,25 @@ internal class ServerModeStoreTest {
     @Test
     fun getInputBadRequest() {
         Config["store"] = "$resourcesPath/oracleForStore"
-        getTestError(
-            "${endpointStore}getInput?id=../input/$storedId-0",
-            HttpStatus.BAD_REQUEST.code
-        )
+        getTestError("${endpointStore}getInput?id=../input/$storedId-0", HttpStatus.BAD_REQUEST_400)
     }
 
     @Test
     fun getInputBadRequest2() {
         Config["store"] = "$resourcesPath/oracleForStore"
-        getTestError("${endpointStore}getInput?", HttpStatus.BAD_REQUEST.code)
+        getTestError("${endpointStore}getInput?", HttpStatus.BAD_REQUEST_400)
     }
 
     @Test
     fun getInput404() {
         Config["store"] = "$resourcesPath/oracleForStore"
-        getTestError("${endpointStore}getInput?id=$storedId-4", HttpStatus.NOT_FOUND.code)
+        getTestError("${endpointStore}getInput?id=$storedId-4", HttpStatus.NOT_FOUND_404)
     }
 
     private fun getTest(url: String, oraclePath: String, json: Boolean = true) =
         JavalinTest.test(JavalinApp().app) { _, client ->
             val response = client.get(url)
-            Assertions.assertEquals(HttpStatus.OK.code, response.code)
+            Assertions.assertEquals(HttpStatus.OK_200, response.code)
             val actualText = response.body?.string() ?: ""
             val expectedText = File(oraclePath).readText()
 
@@ -208,7 +202,7 @@ internal class ServerModeStoreTest {
     private fun storeTest(url: String, request: JsonObject, oraclePath: String) =
         JavalinTest.test(JavalinApp().app) { _, client ->
             val response = client.post(url, request)
-            Assertions.assertEquals(HttpStatus.OK.code, response.code)
+            Assertions.assertEquals(HttpStatus.OK_200, response.code)
             capabilitiesAssertEquals(File(oraclePath).readText(), response.body?.string() ?: "")
         }
 
