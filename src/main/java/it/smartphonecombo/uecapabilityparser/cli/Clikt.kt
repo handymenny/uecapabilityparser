@@ -23,20 +23,31 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
     init {
         versionOption(version = Property.getProperty("project.version") ?: "")
 
+        this.registerOption(option("--store", help = HelpMessage.STORE, metavar = "DIR"))
+
         // An eager option with value
         option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT")
             .transformAll {
                 if (it.isEmpty()) {
                     return@transformAll
                 } else {
-                    val port = it.first().toIntOrNull() ?: 8080
-                    ServerMode.run(port)
                     // Process debug
                     val isDebug =
                         context.originalArgv.any { arg -> arg == "--debug" || arg == "-d" }
                     Config["debug"] = isDebug.toString()
-                    val debugMessage = if (isDebug) "with debug enabled" else ""
-                    val serverStartMessage = "Server started at port $port $debugMessage"
+                    val debugMessage = if (isDebug) " with debug enabled" else ""
+                    // Process store
+                    var storeMessage = ""
+                    val storeIndex = context.originalArgv.indexOfFirst { arg -> arg == "--store" }
+                    if (storeIndex != -1) {
+                        Config["store"] = context.originalArgv[storeIndex + 1]
+                        storeMessage =
+                            if (isDebug) " and with store enabled" else " with store enabled"
+                    }
+                    val port = it.first().toIntOrNull() ?: 8080
+                    ServerMode.run(port)
+                    val serverStartMessage =
+                        "Server started at port $port$debugMessage$storeMessage"
                     val webUiMessage =
                         """
                         |Web UI (demo) available at http://localhost:$port/

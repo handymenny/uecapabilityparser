@@ -9,6 +9,8 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
+import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Import0xB826Helpers.parseMultiple0xB826
 import it.smartphonecombo.uecapabilityparser.util.ImportCapabilitiesHelpers.convertUeCapabilityToJson
 import java.time.Instant
@@ -72,5 +74,29 @@ class Parsing(
         }
 
         return imports.parse(input)
+    }
+
+    fun store(libraryIndex: LibraryIndex, path: String): Boolean {
+        val inputDir = "$path/input"
+        val outputDir = "$path/output"
+        val id = capabilities.id
+        val inputs = arrayOf(input, inputNR, inputENDC)
+        val inputsPath = mutableListOf<String>()
+
+        inputs.filterNotNull().filterNot(ByteArray::isEmpty).forEachIndexed { index, data ->
+            val fileName = "$id-$index"
+            Output.outputFile(data, "$inputDir/$fileName")
+            inputsPath.add(fileName)
+        }
+        Output.outputFileOrStdout(Json.encodeToString(capabilities), "$outputDir/$id.json")
+        val indexLine =
+            IndexLine(
+                id,
+                capabilities.timestamp,
+                capabilities.getStringMetadata("description") ?: "",
+                inputsPath
+            )
+        libraryIndex.addLine(indexLine)
+        return true
     }
 }

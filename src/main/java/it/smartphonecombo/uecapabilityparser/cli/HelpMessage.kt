@@ -26,4 +26,6 @@ object HelpMessage {
          If "-" is provided in place of a file name, this will json be outputted to standard output."""
     const val SERVER =
         """Starts ue capability parser in server mode, accepting requests to the port passed as value"""
+    const val STORE =
+        "Store the capabilities in the given directory for further retrieval. Only applicable to server mode"
 }
