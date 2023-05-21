@@ -12,7 +12,7 @@ internal class ImportLteCarrierPolicyTest {
         val inputPath = "$path/input/$inputFilename"
         val oraclePath = "$path/oracle/$oracleFilename"
 
-        val capabilities = ImportLteCarrierPolicy.parse(File(inputPath).inputStream())
+        val capabilities = ImportLteCarrierPolicy.parse(File(inputPath).readBytes())
         val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }

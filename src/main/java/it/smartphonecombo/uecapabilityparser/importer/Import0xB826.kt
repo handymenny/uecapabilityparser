@@ -19,7 +19,6 @@ import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
-import java.io.InputStream
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -44,7 +43,7 @@ object Import0xB826 : ImportCapabilities {
     private val cacheMimoIndex = WeakConcurrentHashMap<Int, Mimo>()
 
     /**
-     * This parser take as [input] an [InputStream] of a 0xB826 (binary)
+     * This parser take as [input] a [ByteArray] of a 0xB826 (binary)
      *
      * The output is a [Capabilities] with the list of parsed NR CA combos stored in
      * [nrCombos][Capabilities.nrCombos], the list of parsed EN DC combos stored in
@@ -58,11 +57,10 @@ object Import0xB826 : ImportCapabilities {
      * If you have a 0xB826 of a different version, please share it with info at smartphonecombo dot
      * it.
      */
-    override fun parse(input: InputStream): Capabilities {
+    override fun parse(input: ByteArray): Capabilities {
         val capabilities = Capabilities()
         var listCombo = emptyList<ICombo>()
-        val byteArray = input.use(InputStream::readBytes)
-        val byteBuffer = ByteBuffer.wrap(byteArray)
+        val byteBuffer = ByteBuffer.wrap(input)
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
 
         try {

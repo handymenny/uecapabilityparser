@@ -8,22 +8,20 @@ import com.ericsson.mts.asn1.converter.ConverterQcat
 import com.ericsson.mts.asn1.converter.ConverterWireshark
 import it.smartphonecombo.uecapabilityparser.extension.indexOf
 import it.smartphonecombo.uecapabilityparser.model.Rat
-import java.io.InputStream
-import java.io.InputStreamReader
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 
 object ImportCapabilitiesHelpers {
     fun convertUeCapabilityToJson(
         type: String,
-        input: InputStream,
-        inputNR: InputStream?,
-        inputENDC: InputStream?,
+        input: ByteArray,
+        inputNR: ByteArray?,
+        inputENDC: ByteArray?,
         defaultNR: Boolean
     ): JsonObject {
-        val inputMainText = input.reader().use(InputStreamReader::readText)
-        val inputNRText = inputNR?.reader()?.use(InputStreamReader::readText)
-        val inputENDCText = inputENDC?.reader()?.use(InputStreamReader::readText)
+        val inputMainText = input.decodeToString()
+        val inputNRText = inputNR?.decodeToString()
+        val inputENDCText = inputENDC?.decodeToString()
 
         val ratContainerMap =
             if (type == "H") {

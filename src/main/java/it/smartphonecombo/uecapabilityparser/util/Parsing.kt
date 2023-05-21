@@ -11,18 +11,16 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.util.Import0xB826Helpers.parseMultiple0xB826
 import it.smartphonecombo.uecapabilityparser.util.ImportCapabilitiesHelpers.convertUeCapabilityToJson
-import java.io.InputStream
-import java.io.InputStreamReader
 import java.time.Instant
 import kotlin.system.measureTimeMillis
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
-data class Parsing(
-    private val input: InputStream,
-    private val inputNR: InputStream?,
-    private val inputENDC: InputStream?,
+class Parsing(
+    private val input: ByteArray,
+    private val inputNR: ByteArray?,
+    private val inputENDC: ByteArray?,
     private val defaultNR: Boolean = false,
     private val multiple0xB826: Boolean = false,
     private val type: String,
@@ -32,9 +30,7 @@ data class Parsing(
     val capabilities = parseCapabilitiesAndSetMetadata()
 
     val ueLog: String
-        get() =
-            jsonUeCap?.let { jsonFormat.encodeToString(jsonUeCap) }
-                ?: input.reader().use(InputStreamReader::readText)
+        get() = jsonUeCap?.let { jsonFormat.encodeToString(jsonUeCap) } ?: input.decodeToString()
 
     private fun parseCapabilitiesAndSetMetadata(): Capabilities {
         val capabilities: Capabilities
@@ -63,10 +59,7 @@ data class Parsing(
             }
 
         if (imports == Import0xB826) {
-            return parseMultiple0xB826(
-                input.reader().use(InputStreamReader::readText),
-                multiple0xB826
-            )
+            return parseMultiple0xB826(input.decodeToString(), multiple0xB826)
         }
 
         if (imports == ImportCapabilityInformation) {
@@ -78,6 +71,6 @@ data class Parsing(
             return (imports as ImportCapabilityInformation).parse(eutra, eutraNr, nr)
         }
 
-        return input.use { imports.parse(it) }
+        return imports.parse(input)
     }
 }

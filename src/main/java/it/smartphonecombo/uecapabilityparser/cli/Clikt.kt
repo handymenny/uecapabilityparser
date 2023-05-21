@@ -86,7 +86,16 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
         Config["debug"] = debug.toString()
 
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
-        parsing = Parsing(input, inputNR, inputENDC, defaultNR, multiple0xB826, type, jsonFormat)
+        parsing =
+            Parsing(
+                input.readBytes(),
+                inputNR?.readBytes(),
+                inputENDC?.readBytes(),
+                defaultNR,
+                multiple0xB826,
+                type,
+                jsonFormat
+            )
 
         val capabilities = parsing.capabilities
 

@@ -77,10 +77,9 @@ class JavalinApp {
         app.routes {
             ApiBuilder.post("/parse/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
-                val input = request.getString("input")?.let { base64.decode(it).inputStream() }
-                val inputNR = request.getString("inputNR")?.let { base64.decode(it).inputStream() }
-                val inputENDC =
-                    request.getString("inputENDC")?.let { base64.decode(it).inputStream() }
+                val input = request.getString("input")?.let { base64.decode(it) }
+                val inputNR = request.getString("inputNR")?.let { base64.decode(it) }
+                val inputENDC = request.getString("inputENDC")?.let { base64.decode(it) }
                 val defaultNR =
                     request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
                 val multiple0xB826 =

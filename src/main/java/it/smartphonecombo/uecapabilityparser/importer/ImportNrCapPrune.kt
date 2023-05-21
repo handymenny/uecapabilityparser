@@ -15,14 +15,12 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.toMimo
-import java.io.InputStream
-import java.io.InputStreamReader
 
 /** A parser for NR Combinations as found in Qualcomm cap_prune */
 object ImportNrCapPrune : ImportCapabilities {
 
     /**
-     * This parser take as [input] an [InputStream] containing NR Combinations using the same format
+     * This parser take as [input] a [ByteArray] containing NR Combinations using the same format
      * used in Qualcomm cap_prune.
      *
      * In this format each combination is separated from the other by a ";".
@@ -45,8 +43,8 @@ object ImportNrCapPrune : ImportCapabilities {
      * This parser doesn't support NR DC or SUL combos, if you have an example of cap_prune
      * containing such combos, please share it with info at smartphonecombo dot it
      */
-    override fun parse(input: InputStream): Capabilities {
-        val caBandCombosString = input.reader().use(InputStreamReader::readText)
+    override fun parse(input: ByteArray): Capabilities {
+        val caBandCombosString = input.decodeToString()
 
         val listCombo =
             caBandCombosString.split(';').filter(String::isNotBlank).mapNotNull(::parseCombo)

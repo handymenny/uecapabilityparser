@@ -13,7 +13,7 @@ internal class Import0xB0CDTest {
         val inputPath = "$path/input/$inputFilename"
         val oraclePath = "$path/oracle/$oracleFilename"
 
-        val capabilities = Import0xB0CD.parse(File(inputPath).inputStream())
+        val capabilities = Import0xB0CD.parse(File(inputPath).readBytes())
         val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }

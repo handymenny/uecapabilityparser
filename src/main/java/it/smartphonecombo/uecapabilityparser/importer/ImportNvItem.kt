@@ -12,10 +12,8 @@ import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.toMimo
-import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import kotlin.jvm.Throws
 
 private const val MAX_CC = 5
 
@@ -32,8 +30,7 @@ private const val MAX_CC = 5
 object ImportNvItem : ImportCapabilities {
 
     /**
-     * This parser take as [input] an [InputStream] of an uncompressed or zlib-compressed
-     * NVItem 28874.
+     * This parser take as [input] a [ByteArray] of an uncompressed or zlib-compressed NVItem 28874.
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
      * [lteCombos][Capabilities.lteCombos].
@@ -43,10 +40,9 @@ object ImportNvItem : ImportCapabilities {
      * Throws an [IllegalArgumentException] if an invalid or unsupported descriptor type is found.
      */
     @Throws(IllegalArgumentException::class)
-    override fun parse(input: InputStream): Capabilities {
+    override fun parse(input: ByteArray): Capabilities {
         var dlComponents = emptyList<ComponentLte>()
-        val byteArray = input.use(InputStream::readBytes)
-        var byteBuffer = ByteBuffer.wrap(byteArray)
+        var byteBuffer = ByteBuffer.wrap(input)
 
         // zlib header check
         if (byteBuffer.readUnsignedShort() == 0x789C) {
