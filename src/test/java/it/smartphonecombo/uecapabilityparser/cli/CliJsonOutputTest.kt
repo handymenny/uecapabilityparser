@@ -4,7 +4,6 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -308,6 +307,7 @@ internal class CliJsonOutputTest {
         // Override dynamic properties
         expected.parserVersion = actual.parserVersion
         expected.timestamp = actual.timestamp
+        expected.id = actual.id
         expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
         Assertions.assertEquals(expected, actual)

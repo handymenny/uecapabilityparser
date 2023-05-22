@@ -7,11 +7,15 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.util.Property
+import java.util.UUID
+import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class Capabilities(
     @SerialName("lteca") var lteCombos: List<ComboLte> = emptyList(),
     @SerialName("lteBands") var lteBands: List<BandLteDetails> = emptyList(),
@@ -28,7 +32,10 @@ data class Capabilities(
     @SerialName("parserVersion")
     var parserVersion: String = Property.getProperty("project.version") ?: "",
     @Required @SerialName("timestamp") var timestamp: Long = 0,
-    @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf()
+    @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf(),
+    @EncodeDefault(EncodeDefault.Mode.ALWAYS)
+    @SerialName("id")
+    var id: String = UUID.randomUUID().toString()
 ) {
     fun setMetadata(key: String, value: Any) {
         metadata[key] = value.toString()
