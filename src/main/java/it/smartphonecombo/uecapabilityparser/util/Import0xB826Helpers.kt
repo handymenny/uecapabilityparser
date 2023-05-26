@@ -43,7 +43,7 @@ object Import0xB826Helpers {
 
         for (it in inputArray) {
             try {
-                val inputStream = it.preformatHex().decodeHex().inputStream()
+                val inputStream = it.preformatHex().decodeHex()
                 list.add(Import0xB826.parse(inputStream))
             } catch (err: IllegalArgumentException) {
                 val errMessage = "Invalid hexdump"

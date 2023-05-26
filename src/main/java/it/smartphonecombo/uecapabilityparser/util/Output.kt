@@ -7,6 +7,8 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
 
 object Output {
 
@@ -22,6 +24,24 @@ object Output {
             } else {
                 println(text)
             }
+        } catch (ex: Exception) {
+            System.err.println("Error ${ex.localizedMessage}")
+        }
+    }
+
+    /** Output the given [byteArray] to [outputFile] */
+    fun outputFile(byteArray: ByteArray, outputFile: String) {
+        try {
+            File(outputFile).writeBytes(byteArray)
+        } catch (ex: Exception) {
+            System.err.println("Error ${ex.localizedMessage}")
+        }
+    }
+
+    /** See [Files.createDirectories] */
+    fun createDirectories(path: String) {
+        try {
+            Files.createDirectories(Path.of(path))
         } catch (ex: Exception) {
             System.err.println("Error ${ex.localizedMessage}")
         }

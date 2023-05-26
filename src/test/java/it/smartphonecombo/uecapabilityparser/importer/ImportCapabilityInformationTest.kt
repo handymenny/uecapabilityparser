@@ -21,7 +21,8 @@ internal class ImportCapabilityInformationTest {
     fun ueCapEutraCombinationAdd() {
         val capabilities =
             ImportCapabilityInformation.parse(
-                getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!,
+                getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationAdd.json")!!
+                    .readBytes()
             )
 
         // LTE Category
@@ -208,7 +209,8 @@ internal class ImportCapabilityInformationTest {
     fun ueCapEutraCombinationReduced() {
         val capabilities =
             ImportCapabilityInformation.parse(
-                getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!,
+                getResourceAsStream("/newEngine/input/json/ueCapEutraCombinationReduced.json")!!
+                    .readBytes()
             )
 
         // LTE Category
@@ -333,7 +335,7 @@ internal class ImportCapabilityInformationTest {
     fun ueCapEutra1024qam() {
         val capabilities =
             ImportCapabilityInformation.parse(
-                getResourceAsStream("/newEngine/input/json/ueCapEutra1024qam.json")!!
+                getResourceAsStream("/newEngine/input/json/ueCapEutra1024qam.json")!!.readBytes()
             )
 
         // LTE Category
@@ -442,8 +444,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapEutraCombinationReduced1024qam.json",
-                )!!,
+                        "/newEngine/input/json/ueCapEutraCombinationReduced1024qam.json",
+                    )!!
+                    .readBytes()
             )
 
         // LTE Category
@@ -739,8 +742,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapEutra64qamDLMimoUL.json",
-                )!!,
+                        "/newEngine/input/json/ueCapEutra64qamDLMimoUL.json",
+                    )!!
+                    .readBytes()
             )
 
         // LTE Category
@@ -848,8 +852,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapEutra256qamDLMimoUL.json",
-                )!!,
+                        "/newEngine/input/json/ueCapEutra256qamDLMimoUL.json",
+                    )!!
+                    .readBytes()
             )
 
         // LTE Category
@@ -950,8 +955,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapEutraCombinationReducedMimoPerCC.json",
-                )!!,
+                        "/newEngine/input/json/ueCapEutraCombinationReducedMimoPerCC.json",
+                    )!!
+                    .readBytes()
             )
 
         // LTE Category
@@ -1109,8 +1115,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapNrOneCC.json",
-                )!!,
+                        "/newEngine/input/json/ueCapNrOneCC.json",
+                    )!!
+                    .readBytes()
             )
 
         // NR bands in nr capability
@@ -1301,8 +1308,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapNrThreeCC.json",
-                )!!,
+                        "/newEngine/input/json/ueCapNrThreeCC.json",
+                    )!!
+                    .readBytes()
             )
 
         // NR bands in nr capability
@@ -1490,8 +1498,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapMrdcDefaultBws.json",
-                )!!,
+                        "/newEngine/input/json/ueCapMrdcDefaultBws.json",
+                    )!!
+                    .readBytes()
             )
 
         // MRDC
@@ -1811,8 +1820,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapMrdcFR2.json",
-                )!!,
+                        "/newEngine/input/json/ueCapMrdcFR2.json",
+                    )!!
+                    .readBytes()
             )
 
         // MRDC
@@ -1999,8 +2009,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapMrdcExynos.json",
-                )!!,
+                        "/newEngine/input/json/ueCapMrdcExynos.json",
+                    )!!
+                    .readBytes()
             )
 
         // MRDC
@@ -2291,8 +2302,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapMrdcIntraEnDc.json",
-                )!!,
+                        "/newEngine/input/json/ueCapMrdcIntraEnDc.json",
+                    )!!
+                    .readBytes()
             )
 
         // MRDC
@@ -2620,8 +2632,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapMrdcIntraEnDcV1590.json",
-                )!!,
+                        "/newEngine/input/json/ueCapMrdcIntraEnDcV1590.json",
+                    )!!
+                    .readBytes()
             )
 
         // MRDC
@@ -2888,8 +2901,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapEutraNrOnlyIntraBcsAll.json",
-                )!!,
+                        "/newEngine/input/json/ueCapEutraNrOnlyIntraBcsAll.json",
+                    )!!
+                    .readBytes()
             )
 
         // MRDC
@@ -2910,8 +2924,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapNrdc.json",
-                )!!,
+                        "/newEngine/input/json/ueCapNrdc.json",
+                    )!!
+                    .readBytes()
             )
 
         // NR
@@ -3210,8 +3225,9 @@ internal class ImportCapabilityInformationTest {
         val capabilities =
             ImportCapabilityInformation.parse(
                 getResourceAsStream(
-                    "/newEngine/input/json/ueCapNrSUL.json",
-                )!!,
+                        "/newEngine/input/json/ueCapNrSUL.json",
+                    )!!
+                    .readBytes()
             )
 
         // NR

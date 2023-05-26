@@ -11,14 +11,13 @@ import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.toMimo
-import java.io.InputStream
 import java.io.InputStreamReader
 
 /** A parser for 0xB0CD LTE RRC Supported CA Combos * */
 object Import0xB0CD : ImportCapabilities {
 
     /**
-     * This parser take as [input] an [InputStream] containing the QCAT text representation of the
+     * This parser take as [input] a [ByteArray] containing the QCAT text representation of the
      * 0xB0CD (LTE RRC Supported CA Combos) log item.
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
@@ -28,9 +27,10 @@ object Import0xB0CD : ImportCapabilities {
      *
      * It supports 0xB0CD version 32, 40 and 41.
      */
-    override fun parse(input: InputStream): Capabilities {
+    override fun parse(input: ByteArray): Capabilities {
         val listCombo = mutableListOf<ComboLte>()
-        val lines = input.reader().use(InputStreamReader::readLines).iterator()
+        val lines =
+            input.inputStream().use { it.reader().use(InputStreamReader::readLines).iterator() }
 
         while (lines.hasNext()) {
             val headers = getHeaders(lines)

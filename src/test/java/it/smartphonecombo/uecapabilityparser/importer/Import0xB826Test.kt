@@ -24,7 +24,7 @@ internal class Import0xB826Test {
         nrdc: Boolean = false,
     ) {
         val filePath = "$path/input/$srcFilename"
-        val comboList = Import0xB826.parse(File(filePath).inputStream())
+        val comboList = Import0xB826.parse(File(filePath).readBytes())
         Assertions.assertEquals(version, comboList.getIntMetadata("version"))
         Assertions.assertEquals(logSize, comboList.getIntMetadata("logSize"))
         Assertions.assertEquals(numCombos, comboList.getIntMetadata("numCombos"))

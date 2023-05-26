@@ -301,6 +301,7 @@ internal class ServerModeParseTest {
             // Override dynamic properties
             expected.parserVersion = actual.parserVersion
             expected.timestamp = actual.timestamp
+            expected.id = actual.id
             expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
             Assertions.assertEquals(expected, actual)

@@ -12,7 +12,7 @@ internal class ImportMtkLteTest {
         val inputPath = "$path/input/$inputFilename"
         val oraclePath = "$path/oracle/$oracleFilename"
 
-        val capabilities = ImportMTKLte.parse(File(inputPath).inputStream())
+        val capabilities = ImportMTKLte.parse(File(inputPath).readBytes())
         val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         val expectedCsv =
             File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
