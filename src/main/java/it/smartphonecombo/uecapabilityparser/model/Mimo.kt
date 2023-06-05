@@ -7,7 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface Mimo : Comparable<Mimo> {
     fun toCompactStr(): String
+
     fun average(): Double
+
     override fun compareTo(other: Mimo): Int = average().compareTo(other.average())
 
     companion object {
@@ -58,7 +60,9 @@ sealed interface Mimo : Comparable<Mimo> {
 @SerialName("empty")
 object EmptyMimo : Mimo {
     override fun toCompactStr(): String = ""
+
     override fun toString(): String = ""
+
     override fun average(): Double = 0.0
 }
 
@@ -66,7 +70,9 @@ object EmptyMimo : Mimo {
 @SerialName("single")
 data class SingleMimo(@SerialName("value") private val mimo: Int) : Mimo {
     override fun toCompactStr(): String = mimo.toString()
+
     override fun toString(): String = mimo.toString()
+
     override fun average(): Double = mimo.toDouble()
 }
 
@@ -74,7 +80,9 @@ data class SingleMimo(@SerialName("value") private val mimo: Int) : Mimo {
 @SerialName("mixed")
 data class MixedMimo(@SerialName("value") private val mimoList: List<Int>) : Mimo {
     override fun toCompactStr(): String = mimoList.joinToString("")
+
     override fun toString(): String = mimoList.joinToString(", ")
+
     override fun average(): Double = mimoList.average()
 }
 

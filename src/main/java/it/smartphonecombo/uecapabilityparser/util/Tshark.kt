@@ -8,6 +8,7 @@ import kotlin.system.exitProcess
 
 class Tshark {
     private val config: Config = Config
+
     fun startDecoder(strEncodedData: String, strProtocol: String, ratType: Rat): String {
         if (ratType != Rat.EUTRA && ratType != Rat.EUTRA_NR && ratType != Rat.NR) {
             throw RuntimeException()

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test
 
 internal class Import0xB826Test {
     private val path = "src/test/resources/0xB826/"
+
     private fun parse(
         srcFilename: String,
         version: Int,
@@ -305,6 +306,7 @@ internal class Import0xB826Test {
     fun parseV10NSA2() {
         parse("0xB826-v10-NSA2.bin", 10, 3298, 91, 91, 0, "RF", true, "0xB826-v10-NSA2.csv")
     }
+
     @Test
     fun parseV10NSAmmWave() {
         parse(

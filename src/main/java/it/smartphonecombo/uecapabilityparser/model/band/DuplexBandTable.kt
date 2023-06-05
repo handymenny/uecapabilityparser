@@ -147,5 +147,6 @@ object DuplexBandTable {
         )
 
     fun getLteDuplex(band: Band): Duplex = lteData[band] ?: Duplex.NONE
+
     fun getNrDuplex(band: Band): Duplex = nrData[band] ?: Duplex.NONE
 }

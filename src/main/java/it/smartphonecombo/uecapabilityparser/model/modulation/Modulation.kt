@@ -7,7 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface Modulation : Comparable<Modulation> {
     fun average(): Double
+
     fun maxModulationOrder(): ModulationOrder
+
     override fun compareTo(other: Modulation): Int = average().compareTo(other.average())
 
     companion object {
@@ -51,7 +53,9 @@ sealed interface Modulation : Comparable<Modulation> {
 @SerialName("empty")
 object EmptyModulation : Modulation {
     override fun toString(): String = ModulationOrder.NONE.toString()
+
     override fun average(): Double = ModulationOrder.NONE.ordinal.toDouble()
+
     override fun maxModulationOrder(): ModulationOrder = ModulationOrder.NONE
 }
 
@@ -60,7 +64,9 @@ object EmptyModulation : Modulation {
 data class SingleModulation(@SerialName("value") private val modulation: ModulationOrder) :
     Modulation {
     override fun toString(): String = modulation.toString()
+
     override fun average(): Double = modulation.ordinal.toDouble()
+
     override fun maxModulationOrder(): ModulationOrder = modulation
 }
 
@@ -69,7 +75,9 @@ data class SingleModulation(@SerialName("value") private val modulation: Modulat
 data class MixedModulation(@SerialName("value") private val list: List<ModulationOrder>) :
     Modulation {
     override fun toString(): String = list.joinToString(", ")
+
     override fun average(): Double = list.map(ModulationOrder::ordinal).average()
+
     override fun maxModulationOrder(): ModulationOrder = list.max()
 }
 
