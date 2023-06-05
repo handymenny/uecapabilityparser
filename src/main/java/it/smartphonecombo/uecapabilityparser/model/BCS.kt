@@ -82,7 +82,9 @@ sealed interface BCS : Comparable<BCS> {
 @SerialName("empty")
 object EmptyBCS : BCS {
     override fun toCompactStr(): String = ""
+
     override fun toString(): String = ""
+
     override fun compareTo(other: BCS): Int {
         // EmptyBCS is below any BCS
         return if (other == this) 0 else -1
@@ -93,7 +95,9 @@ object EmptyBCS : BCS {
 @SerialName("all")
 object AllBCS : BCS {
     override fun toCompactStr(): String = "mAll"
+
     override fun toString(): String = "all"
+
     override fun compareTo(other: BCS): Int {
         // AllBcs is above any BCS
         return if (other == this) 0 else 1
@@ -104,7 +108,9 @@ object AllBCS : BCS {
 @SerialName("single")
 data class SingleBCS(@SerialName("value") private val bcs: Int) : BCS {
     override fun toCompactStr(): String = bcs.toString()
+
     override fun toString(): String = bcs.toString()
+
     override fun compareTo(other: BCS): Int {
         return when (other) {
             is SingleBCS -> bcs.compareTo(other.bcs)
@@ -120,6 +126,7 @@ data class SingleBCS(@SerialName("value") private val bcs: Int) : BCS {
 @SerialName("multi")
 data class MultiBCS(@SerialName("value") private val bcsArray: IntArray) : BCS {
     @Transient private var compactText: String? = null
+
     override fun toString(): String = bcsArray.joinToString(", ")
 
     private fun calculateCompactStr(): String {

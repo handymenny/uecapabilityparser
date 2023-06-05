@@ -45,5 +45,6 @@ data class ComponentNr(
         get() = band > 256
 
     override fun clone() = copy()
+
     override fun toCompactStr(): String = "n${super.toCompactStr()}"
 }

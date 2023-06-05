@@ -24,6 +24,7 @@ data class ComboEnDc(
 ) : ICombo {
     override val bcs: BCS
         get() = bcsNr
+
     val componentsNr: List<ComponentNr>
         get() = secondaryComponents
 

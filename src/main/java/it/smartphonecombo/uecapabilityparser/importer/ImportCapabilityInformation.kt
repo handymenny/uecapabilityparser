@@ -874,6 +874,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             )
         }
     }
+
     private fun mergeComponentLteAndFeature(
         component: ComponentLte,
         dlFeature: List<IFeaturePerCC>?,
