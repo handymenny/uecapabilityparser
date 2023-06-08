@@ -238,6 +238,6 @@ object Import0xB0CD : ImportCapabilities {
      */
     private fun String.isHeaderSeparator(): Boolean {
         val trimmed = this.trim()
-        return this.isNotEmpty() && trimmed.all { it == '-' }
+        return trimmed.isNotEmpty() && trimmed.all { it == '-' }
     }
 }
