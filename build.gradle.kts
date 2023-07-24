@@ -39,7 +39,7 @@ dependencies {
     implementation("com.github.ajalt.clikt:clikt:3.5.4")
     implementation("io.javalin:javalin:$javalinVersion")
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.1")
 }
 
