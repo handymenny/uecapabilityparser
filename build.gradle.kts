@@ -36,7 +36,7 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     implementation("org.slf4j:slf4j-nop:2.0.7")
     implementation("com.soywiz.korlibs.kmem:kmem-jvm:$kmemVersion")
-    implementation("com.github.ajalt.clikt:clikt:3.5.4")
+    implementation("com.github.ajalt.clikt:clikt:4.1.0")
     implementation("io.javalin:javalin:$javalinVersion")
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")

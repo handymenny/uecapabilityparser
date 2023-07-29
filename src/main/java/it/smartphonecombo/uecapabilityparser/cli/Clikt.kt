@@ -4,11 +4,13 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.PrintMessage
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
+import com.github.ajalt.clikt.parameters.options.optionalValue
 import com.github.ajalt.clikt.parameters.options.required
-import com.github.ajalt.clikt.parameters.options.transformAll
+import com.github.ajalt.clikt.parameters.options.validate
 import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
+import com.github.ajalt.clikt.parameters.types.int
 import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.server.ServerMode
@@ -22,45 +24,42 @@ import kotlinx.serialization.json.Json
 object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs = true) {
     init {
         versionOption(version = Property.getProperty("project.version") ?: "")
-
-        this.registerOption(option("--store", help = HelpMessage.STORE, metavar = "DIR"))
-
-        // An eager option with value
-        option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT")
-            .transformAll {
-                if (it.isEmpty()) {
-                    return@transformAll
-                } else {
-                    // Process debug
-                    val isDebug =
-                        context.originalArgv.any { arg -> arg == "--debug" || arg == "-d" }
-                    Config["debug"] = isDebug.toString()
-                    val debugMessage = if (isDebug) " with debug enabled" else ""
-                    // Process store
-                    var storeMessage = ""
-                    val storeIndex = context.originalArgv.indexOfFirst { arg -> arg == "--store" }
-                    if (storeIndex != -1) {
-                        Config["store"] = context.originalArgv[storeIndex + 1]
-                        storeMessage =
-                            if (isDebug) " and with store enabled" else " with store enabled"
-                    }
-                    val port = it.first().toIntOrNull() ?: 8080
-                    ServerMode.run(port)
-                    val serverStartMessage =
-                        "Server started at port $port$debugMessage$storeMessage"
-                    val webUiMessage =
-                        """
-                        |Web UI (demo) available at http://localhost:$port/
-                        |OpenAPI Spec available at http://localhost:$port/openapi
-                        |Swagger UI available at http://localhost:$port/swagger
-                        |"""
-                            .trimMargin()
-                    // stop processing other options
-                    throw PrintMessage("$serverStartMessage\n$webUiMessage", error = false)
-                }
-            }
-            .apply { registerOption(this) }
     }
+
+    private val server by
+        option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT", eager = true)
+            .int()
+            .optionalValue(8080)
+            .validate { port ->
+                // Process debug
+                val isDebug = context.originalArgv.any { arg -> arg == "--debug" || arg == "-d" }
+                Config["debug"] = isDebug.toString()
+                val debugMessage = if (isDebug) " with debug enabled" else ""
+                // Process store
+                var storeMessage = ""
+                val storeIndex = context.originalArgv.indexOfFirst { arg -> arg == "--store" }
+                if (storeIndex != -1) {
+                    Config["store"] = context.originalArgv[storeIndex + 1]
+                    storeMessage = if (isDebug) " and with store enabled" else " with store enabled"
+                }
+                ServerMode.run(port)
+                val serverStartMessage = "Server started at port $port$debugMessage$storeMessage"
+                val webUiMessage =
+                    """
+                    |Web UI (demo) available at http://localhost:$port/
+                    |OpenAPI Spec available at http://localhost:$port/openapi
+                    |Swagger UI available at http://localhost:$port/swagger
+                    |"""
+                        .trimMargin()
+                // stop processing other options
+                throw PrintMessage(
+                    "$serverStartMessage\n$webUiMessage",
+                    statusCode = 0,
+                    printError = false
+                )
+            }
+
+    private val store by option("--store", help = HelpMessage.STORE, metavar = "DIR")
 
     private val input by option("-i", "--input", help = HelpMessage.INPUT).inputStream().required()
 
