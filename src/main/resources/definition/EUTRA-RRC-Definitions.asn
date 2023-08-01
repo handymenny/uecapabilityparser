@@ -1,4 +1,4 @@
--- 3GPP TS 36.331 V17.4.0 (2023-03)
+-- 3GPP TS 36.331 V17.5.0 (2023-06)
 
 EUTRA-RRC-Definitions DEFINITIONS AUTOMATIC TAGS ::=
 
@@ -7968,10 +7968,6 @@ PUCCH-ConfigDedicated-v1530 ::=		SEQUENCE {
 	codebooksizeDeterminationSTTI-r15	ENUMERATED {dai,cc}			OPTIONAL	-- Need OR
 }
 
-CE-PUCCH-TxDurationConfig-r17 ::=	SEQUENCE {
-	ce-PUCCH-TxDuration-r17				ENUMERATED {sf2, sf4, sf8, sf16, sf32, sf64, sf128}
-}
-
 Format4-resource-r13	::=				SEQUENCE {
 	startingPRB-format4-r13						INTEGER (0..109),
 	numberOfPRB-format4-r13					INTEGER (0..7)
@@ -13151,7 +13147,7 @@ UE-EUTRA-Capability-v1550-IEs ::= SEQUENCE {
 UE-EUTRA-Capability-v1560-IEs ::= SEQUENCE {
 	pdcp-ParametersNR-v1560				PDCP-ParametersNR-v1560,
 	irat-ParametersNR-v1560				IRAT-ParametersNR-v1560,
-	appliedCapabilityFilterCommon-r15		OCTET STRING							OPTIONAL,
+	appliedCapabilityFilterCommon-r15		OCTET STRING(CONTAINING UE-CapabilityRequestFilterCommon)							OPTIONAL,
 	fdd-Add-UE-EUTRA-Capabilities-v1560	UE-EUTRA-CapabilityAddXDD-Mode-v1560,
 	tdd-Add-UE-EUTRA-Capabilities-v1560	UE-EUTRA-CapabilityAddXDD-Mode-v1560,
 	nonCriticalExtension					UE-EUTRA-Capability-v1570-IEs			OPTIONAL
@@ -16920,6 +16916,42 @@ maxWLAN-Channels-r13		INTEGER ::= 16	-- maximum number of WLAN channels used in
 maxWLAN-CarrierInfo-r13	INTEGER ::= 8	-- Maximum number of WLAN Carrier Information
 maxWLAN-Id-Report-r14		INTEGER ::= 32	-- Maximum number of WLAN IDs to report
 maxWLAN-Name-r15			INTEGER ::= 4	-- Maximum number of WLAN name
+
+-- TAG-UE-CAPABILITYREQUESTFILTERCOMMON-START
+
+UE-CapabilityRequestFilterCommon ::=            SEQUENCE {
+    mrdc-Request                                SEQUENCE {
+        omitEN-DC                                   ENUMERATED {true}                      OPTIONAL,    -- Need N
+        includeNR-DC                                ENUMERATED {true}                      OPTIONAL,    -- Need N
+        includeNE-DC                                ENUMERATED {true}                      OPTIONAL     -- Need N
+    }                                                                                  OPTIONAL,        -- Need N
+    ...,
+    [[
+    codebookTypeRequest-r16        SEQUENCE {
+        type1-SinglePanel-r16          ENUMERATED {true}                                    OPTIONAL,    -- Need N
+        type1-MultiPanel-r16           ENUMERATED {true}                                    OPTIONAL,    -- Need N
+        type2-r16                      ENUMERATED {true}                                    OPTIONAL,    -- Need N
+        type2-PortSelection-r16        ENUMERATED {true}                                    OPTIONAL     -- Need N
+    }                                                                                   OPTIONAL,    -- Need N
+    uplinkTxSwitchRequest-r16      ENUMERATED {true}                                    OPTIONAL     -- Need N
+    ]],
+    [[
+    requestedCellGrouping-r16      SEQUENCE (SIZE (1..maxCellGroupings-r16)) OF CellGrouping-r16    OPTIONAL    -- Cond NRDC
+    ]],
+    [[
+    fallbackGroupFiveRequest-r17   ENUMERATED {true}                                    OPTIONAL     -- Need N
+    ]]
+}
+
+CellGrouping-r16 ::=    SEQUENCE {
+    mcg-r16                 SEQUENCE (SIZE (1..maxBands)) OF FreqBandIndicatorNR-r15,
+    scg-r16                 SEQUENCE (SIZE (1..maxBands)) OF FreqBandIndicatorNR-r15,
+    mode-r16                ENUMERATED {sync, async}
+}
+
+-- TAG-UE-CAPABILITYREQUESTFILTERCOMMON-STOP
+
+maxCellGroupings-r16                                    INTEGER ::= 32      -- Maximum number of cell groupings for NR-DC
 
 
 END
