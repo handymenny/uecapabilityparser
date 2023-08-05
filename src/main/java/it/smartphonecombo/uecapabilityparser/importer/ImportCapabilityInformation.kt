@@ -45,6 +45,11 @@ import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSets
 import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
+import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterLte
+import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterNr
+import it.smartphonecombo.uecapabilityparser.model.filter.IUeCapabilityFilter
+import it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterLte
+import it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterNr
 import it.smartphonecombo.uecapabilityparser.model.fromLiteral
 import it.smartphonecombo.uecapabilityparser.model.json.UEEutraCapabilityJson
 import it.smartphonecombo.uecapabilityparser.model.json.UEMrdcCapabilityJson
@@ -90,6 +95,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         var nrFeatures: FeatureSets? = null
         var nrBandsMap: Map<Band, BandNrDetails>? = null
         var lteBandsMap: Map<Band, BandLteDetails>? = null
+        val filterList = mutableListWithCapacity<IUeCapabilityFilter>(3)
 
         if (eutraCapability != null) {
             val eutra = UEEutraCapabilityJson(eutraCapability)
@@ -120,6 +126,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 // Don't parse lte features if no mrdc capability is available
                 lteFeatures = getLteFeatureSet(eutra)
             }
+            filterList.add(getUeLteCapabilityFilters(eutra))
         }
 
         if (nrCapability != null) {
@@ -154,6 +161,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val (fr2, fr1) = combo.masterComponents.partition { it.isFR2 }
                     ComboNrDc(fr1, fr2, combo.featureSet, combo.bcs)
                 }
+            filterList.add(getUeNrCapabilityFilters(nr))
         }
 
         if (eutraNrCapability != null) {
@@ -170,6 +178,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         nrBandsMap
                     )
                     .typedList()
+            filterList.add(getUeNrCapabilityFilters(mrdc))
         }
 
         if (lteBandsMap != null) {
@@ -189,6 +198,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                 comboList.nrBands.forEach { println(it.bwsToString()) }
             }
         }
+
+        comboList.ueCapFilters = filterList
 
         return comboList
     }
@@ -1529,5 +1540,140 @@ object ImportCapabilityInformation : ImportCapabilities {
         val (dlClass, dlMimo) = parseBandParametersDL(bandParameters, release)
         val (ulClass, ulMimo) = parseBandParametersUL(bandParameters, release)
         return ComponentLte(band, dlClass, ulClass, dlMimo, ulMimo)
+    }
+
+    private fun getUeNrCapabilityFilters(capability: UENrRrcCapabilityJson): UeCapabilityFilterNr {
+        val rat =
+            if (capability is UEMrdcCapabilityJson) {
+                Rat.EUTRA_NR
+            } else {
+                Rat.NR
+            }
+        val ueCapFilter = UeCapabilityFilterNr(rat)
+
+        val filterCommon =
+            capability.nrRrcCapabilityV1560?.getObjectAtPath(
+                "receivedFilters.capabilityRequestFilterCommon"
+            )
+        if (filterCommon != null) {
+            parseUeFilterCommon(filterCommon, ueCapFilter)
+        }
+
+        val bandListFilterPath =
+            if (rat == Rat.EUTRA_NR) {
+                "rf-ParametersMRDC.appliedFreqBandListFilter"
+            } else {
+                "rf-Parameters.appliedFreqBandListFilter"
+            }
+        val freqBandFilter = capability.rootJson.getArrayAtPath(bandListFilterPath)
+        val freqBandFilterList =
+            freqBandFilter?.mapNotNull { bandInfo ->
+                val eutra = bandInfo.getObject("bandInformationEUTRA")
+                val nr = bandInfo.getObject("bandInformationNR")
+                if (nr != null) {
+                    val band = nr.getInt("bandNR") ?: 0
+                    val maxBwDl =
+                        nr.getString("maxBandwidthRequestedDL")?.removePrefix("mhz")?.toIntOrNull()
+                            ?: 0
+                    val maxBwUl =
+                        nr.getString("maxBandwidthRequestedUL")?.removePrefix("mhz")?.toIntOrNull()
+                            ?: 0
+                    val maxCCsDl = nr.getInt("maxCarriersRequestedDL") ?: 0
+                    val maxCCsUl = nr.getInt("maxCarriersRequestedUL") ?: 0
+                    BandFilterNr(band, maxBwDl, maxBwUl, maxCCsDl, maxCCsUl)
+                } else if (eutra != null) {
+                    val band = eutra.getInt("bandEUTRA") ?: 0
+                    val classDl = BwClass.valueOf(eutra.getString("ca-BandwidthClassDL-EUTRA"))
+                    val classUl = BwClass.valueOf(eutra.getString("ca-BandwidthClassUL-EUTRA"))
+                    BandFilterLte(band, classDl, classUl)
+                } else {
+                    null
+                }
+            }
+
+        if (freqBandFilterList != null) {
+            val (lteBands, nrBands) = freqBandFilterList.partition { it is BandFilterLte }
+            ueCapFilter.lteBands = lteBands.typedList()
+            ueCapFilter.nrBands = nrBands.typedList()
+        }
+
+        // if rat is NR and eutra-nr-only is set, the UE should omit appliedFreqBandListFilter
+        // but eutra-nr-only with omitEnDc or includeNrDc doesn't really make sense
+        if (
+            rat == Rat.NR &&
+                freqBandFilterList == null &&
+                !ueCapFilter.omitEnDc &&
+                !ueCapFilter.includeNrDc
+        ) {
+            // Check bandList to make sure we don't have a strange unfiltered request
+            // (unfiltered request aren't supported by 3gpp)
+            val bandList =
+                capability.rootJson.getArrayAtPath("rf-Parameters.supportedBandCombinationList")
+
+            ueCapFilter.eutraNrOnly = bandList == null
+        }
+
+        return ueCapFilter
+    }
+
+    private fun getUeLteCapabilityFilters(
+        capability: UEEutraCapabilityJson
+    ): UeCapabilityFilterLte {
+        val ueCapFilter = UeCapabilityFilterLte()
+
+        val requestedBands =
+            capability.eutraCapabilityV1180?.getArrayAtPath(
+                "rf-Parameters-v1180.requestedBands-r11"
+            )
+                ?: emptyList()
+        val requestedBandsList =
+            requestedBands.mapNotNull { band -> band.asIntOrNull()?.let { BandFilterLte(it) } }
+        ueCapFilter.lteBands = requestedBandsList
+
+        val enbRequestR13 =
+            capability.eutraCapabilityV1310?.getObjectAtPath(
+                "rf-Parameters-v1310.eNB-RequestedParameters-r13"
+            )
+        if (enbRequestR13 != null) {
+            ueCapFilter.reducedIntNonContComb =
+                enbRequestR13.getString("reducedIntNonContCombRequested-r13") != null
+            ueCapFilter.maxCCsDl = enbRequestR13.getInt("requestedCCsDL-r13") ?: 0
+            ueCapFilter.maxCCsUl = enbRequestR13.getInt("requestedCCsUL-r13") ?: 0
+            ueCapFilter.skipFallbackCombRequested =
+                enbRequestR13.getString("skipFallbackCombRequested-r13") != null
+        }
+
+        val enbRequestV1430 =
+            capability.eutraCapabilityV1430?.getObjectAtPath(
+                "rf-Parameters-v1430.eNB-RequestedParameters-v1430"
+            )
+        // TODO
+
+        val filterCommon =
+            capability.eutraCapabilityV1560?.getObject("appliedCapabilityFilterCommon-r15")
+        if (filterCommon != null) {
+            parseUeFilterCommon(filterCommon, ueCapFilter)
+        }
+
+        if (
+            capability.eutraCapabilityV1310?.getArrayAtPath(
+                "rf-Parameters-v1310.supportedBandCombinationReduced-r13"
+            ) != null
+        ) {
+            ueCapFilter.reducedFormat = true
+        }
+
+        return ueCapFilter
+    }
+
+    private fun parseUeFilterCommon(filterCommon: JsonObject, ueCapFilter: IUeCapabilityFilter) {
+        val mrdcRequest = filterCommon.getObject("mrdc-Request")
+        if (mrdcRequest != null) {
+            ueCapFilter.omitEnDc = mrdcRequest.getString("omitEN-DC") != null
+            ueCapFilter.includeNeDc = mrdcRequest.getString("includeNE-DC") != null
+            ueCapFilter.includeNrDc = mrdcRequest.getString("includeNR-DC") != null
+        }
+        ueCapFilter.uplinkTxSwitchRequest =
+            filterCommon.getString("uplinkTxSwitchRequest-r16") != null
     }
 }
