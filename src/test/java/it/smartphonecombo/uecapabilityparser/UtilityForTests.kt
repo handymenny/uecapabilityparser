@@ -1,6 +1,9 @@
 package it.smartphonecombo.uecapabilityparser
 
+import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
+import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterLte
+import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterNr
 import java.io.InputStream
 
 object UtilityForTests {
@@ -20,5 +23,13 @@ object UtilityForTests {
             7 -> PowerClass.PC7
             else -> PowerClass.NONE
         }
+    }
+
+    internal fun Band.toBandFilterLte(): BandFilterLte {
+        return BandFilterLte(this)
+    }
+
+    internal fun Band.toBandFilterNr(): BandFilterNr {
+        return BandFilterNr(this)
     }
 }

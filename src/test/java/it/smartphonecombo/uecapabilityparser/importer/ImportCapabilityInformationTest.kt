@@ -1,11 +1,17 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBandFilterLte
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBandFilterNr
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toPowerClass
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
+import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterNr
+import it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterLte
+import it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterNr
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.toMimo
@@ -203,6 +209,26 @@ internal class ImportCapabilityInformationTest {
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
         assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        32.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        40.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
     }
 
     @Test
@@ -329,6 +355,23 @@ internal class ImportCapabilityInformationTest {
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
         assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                reducedFormat = true,
+                lteBands =
+                    listOf(
+                        66.toBandFilterLte(),
+                        4.toBandFilterLte(),
+                        2.toBandFilterLte(),
+                        13.toBandFilterLte(),
+                        5.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
     }
 
     @Test
@@ -437,6 +480,24 @@ internal class ImportCapabilityInformationTest {
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
         assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                lteBands =
+                    listOf(
+                        20.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        41.toBandFilterLte(),
+                        1.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        8.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
     }
 
     @Test
@@ -735,6 +796,27 @@ internal class ImportCapabilityInformationTest {
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
         assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                reducedFormat = true,
+                skipFallbackCombRequested = true,
+                maxCCsDl = 6,
+                maxCCsUl = 2,
+                lteBands =
+                    listOf(
+                        3.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        1.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        38.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
     }
 
     @Test
@@ -845,6 +927,12 @@ internal class ImportCapabilityInformationTest {
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
         assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters = UeCapabilityFilterLte()
+        assertEquals(expectedLteFilters, actualLteFilters)
     }
 
     @Test
@@ -948,6 +1036,23 @@ internal class ImportCapabilityInformationTest {
         // NR SA bans in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
         assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                lteBands =
+                    listOf(
+                        28.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        1.toBandFilterLte(),
+                        7.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
     }
 
     @Test
@@ -1108,6 +1213,13 @@ internal class ImportCapabilityInformationTest {
                 BandNrDetails(78)
             )
         assertArrayEquals(expectedNrSaBands.toTypedArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(reducedFormat = true, skipFallbackCombRequested = true)
+        assertEquals(expectedLteFilters, actualLteFilters)
     }
 
     @Test
@@ -1301,6 +1413,37 @@ internal class ImportCapabilityInformationTest {
                 .dropLastWhile { it.isBlank() }
         val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualNrFilters = capabilities.ueCapFilters[0]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        28.toBandFilterLte()
+                    ),
+                nrBands =
+                    listOf(
+                        1.toBandFilterNr(),
+                        3.toBandFilterNr(),
+                        7.toBandFilterNr(),
+                        28.toBandFilterNr(),
+                        38.toBandFilterNr(),
+                        40.toBandFilterNr(),
+                        78.toBandFilterNr(),
+                        79.toBandFilterNr(),
+                        257.toBandFilterNr(),
+                        258.toBandFilterNr()
+                    )
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
     }
 
     @Test
@@ -1491,6 +1634,26 @@ internal class ImportCapabilityInformationTest {
                 .dropLastWhile { it.isBlank() }
         val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedCsv, actualCsv)
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualNrFilters = capabilities.ueCapFilters[0]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                lteBands =
+                    listOf(
+                        2.toBandFilterLte(),
+                        4.toBandFilterLte(),
+                        5.toBandFilterLte(),
+                        13.toBandFilterLte(),
+                        46.toBandFilterLte(),
+                        48.toBandFilterLte(),
+                        66.toBandFilterLte()
+                    ),
+                nrBands = listOf(5.toBandFilterNr(), 261.toBandFilterNr(), 77.toBandFilterNr())
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
     }
 
     @Test
@@ -1813,6 +1976,40 @@ internal class ImportCapabilityInformationTest {
         val expectedNrCsv = emptyList<String>()
         val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
+
+        // Ue Cap filters
+        assertEquals(3, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                lteBands =
+                    listOf(
+                        3.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        1.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
+
+        val actualNrFilters = capabilities.ueCapFilters[1]
+        val expectedNrFilters = UeCapabilityFilterNr(rat = Rat.NR, eutraNrOnly = true)
+        assertEquals(expectedNrFilters, actualNrFilters)
+
+        val actualEutraNrFilters = capabilities.ueCapFilters[2]
+        val expectedEutraNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.EUTRA_NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        20.toBandFilterLte()
+                    ),
+                nrBands = listOf(38.toBandFilterNr(), 28.toBandFilterNr(), 78.toBandFilterNr())
+            )
+        assertEquals(expectedEutraNrFilters, actualEutraNrFilters)
     }
 
     @Test
@@ -2002,6 +2199,108 @@ internal class ImportCapabilityInformationTest {
         val expectedNrCsv = emptyList<String>()
         val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
+
+        // Ue Cap filters
+        assertEquals(3, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        40.toBandFilterLte(),
+                        46.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
+
+        val actualNrFilters = capabilities.ueCapFilters[1]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        40.toBandFilterLte(),
+                        46.toBandFilterLte()
+                    ),
+                nrBands =
+                    listOf(
+                        1.toBandFilterNr(),
+                        3.toBandFilterNr(),
+                        5.toBandFilterNr(),
+                        7.toBandFilterNr(),
+                        8.toBandFilterNr(),
+                        20.toBandFilterNr(),
+                        28.toBandFilterNr(),
+                        38.toBandFilterNr(),
+                        40.toBandFilterNr(),
+                        41.toBandFilterNr(),
+                        77.toBandFilterNr(),
+                        78.toBandFilterNr(),
+                        79.toBandFilterNr(),
+                        80.toBandFilterNr(),
+                        84.toBandFilterNr(),
+                        257.toBandFilterNr(),
+                        258.toBandFilterNr(),
+                        260.toBandFilterNr(),
+                        261.toBandFilterNr()
+                    )
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
+
+        val actualEutraNrFilters = capabilities.ueCapFilters[2]
+        val expectedEutraNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.EUTRA_NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        40.toBandFilterLte(),
+                        46.toBandFilterLte()
+                    ),
+                nrBands =
+                    listOf(
+                        1.toBandFilterNr(),
+                        3.toBandFilterNr(),
+                        5.toBandFilterNr(),
+                        7.toBandFilterNr(),
+                        8.toBandFilterNr(),
+                        20.toBandFilterNr(),
+                        28.toBandFilterNr(),
+                        38.toBandFilterNr(),
+                        40.toBandFilterNr(),
+                        41.toBandFilterNr(),
+                        77.toBandFilterNr(),
+                        78.toBandFilterNr(),
+                        79.toBandFilterNr(),
+                        80.toBandFilterNr(),
+                        84.toBandFilterNr(),
+                        257.toBandFilterNr(),
+                        258.toBandFilterNr(),
+                        260.toBandFilterNr(),
+                        261.toBandFilterNr()
+                    )
+            )
+        assertEquals(expectedEutraNrFilters, actualEutraNrFilters)
     }
 
     @Test
@@ -2295,6 +2594,44 @@ internal class ImportCapabilityInformationTest {
         val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
 
         assertLinesMatch(expectedNrCsv, actualNrCsv)
+
+        // Ue Cap filters
+        assertEquals(capabilities.ueCapFilters.size, 3)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                lteBands =
+                    listOf(
+                        20.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        1.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        7.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
+
+        val actualNrFilters = capabilities.ueCapFilters[1]
+        val expectedNrFilters = UeCapabilityFilterNr(rat = Rat.NR, eutraNrOnly = true)
+        assertEquals(expectedNrFilters, actualNrFilters)
+
+        val actualEutraNrFilters = capabilities.ueCapFilters[2]
+        val expectedEutraNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.EUTRA_NR,
+                lteBands =
+                    listOf(
+                        20.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        1.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        7.toBandFilterLte()
+                    ),
+                nrBands = listOf(3.toBandFilterNr(), 7.toBandFilterNr(), 78.toBandFilterNr())
+            )
+        assertEquals(expectedEutraNrFilters, actualEutraNrFilters)
     }
 
     @Test
@@ -2625,6 +2962,94 @@ internal class ImportCapabilityInformationTest {
         val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
 
         assertLinesMatch(expectedNrCsv, actualNrCsv)
+
+        // Ue Cap filters
+        assertEquals(capabilities.ueCapFilters.size, 3)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters = UeCapabilityFilterLte()
+        assertEquals(expectedLteFilters, actualLteFilters)
+
+        val actualNrFilters = capabilities.ueCapFilters[1]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        40.toBandFilterLte(),
+                        46.toBandFilterLte()
+                    ),
+                nrBands =
+                    listOf(
+                        1.toBandFilterNr(),
+                        3.toBandFilterNr(),
+                        5.toBandFilterNr(),
+                        7.toBandFilterNr(),
+                        8.toBandFilterNr(),
+                        20.toBandFilterNr(),
+                        28.toBandFilterNr(),
+                        38.toBandFilterNr(),
+                        40.toBandFilterNr(),
+                        41.toBandFilterNr(),
+                        77.toBandFilterNr(),
+                        78.toBandFilterNr(),
+                        79.toBandFilterNr(),
+                        80.toBandFilterNr(),
+                        84.toBandFilterNr(),
+                        257.toBandFilterNr(),
+                        258.toBandFilterNr(),
+                        260.toBandFilterNr(),
+                        261.toBandFilterNr()
+                    )
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
+
+        val actualEutraNrFilters = capabilities.ueCapFilters[2]
+        val expectedEutraNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.EUTRA_NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        28.toBandFilterLte(),
+                        38.toBandFilterLte(),
+                        40.toBandFilterLte(),
+                        46.toBandFilterLte()
+                    ),
+                nrBands =
+                    listOf(
+                        1.toBandFilterNr(),
+                        3.toBandFilterNr(),
+                        5.toBandFilterNr(),
+                        7.toBandFilterNr(),
+                        8.toBandFilterNr(),
+                        20.toBandFilterNr(),
+                        28.toBandFilterNr(),
+                        38.toBandFilterNr(),
+                        40.toBandFilterNr(),
+                        41.toBandFilterNr(),
+                        77.toBandFilterNr(),
+                        78.toBandFilterNr(),
+                        79.toBandFilterNr(),
+                        80.toBandFilterNr(),
+                        84.toBandFilterNr(),
+                        257.toBandFilterNr(),
+                        258.toBandFilterNr(),
+                        260.toBandFilterNr(),
+                        261.toBandFilterNr()
+                    )
+            )
+        assertEquals(expectedEutraNrFilters, actualEutraNrFilters)
     }
 
     @Test
@@ -2894,6 +3319,54 @@ internal class ImportCapabilityInformationTest {
         val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
 
         assertLinesMatch(expectedNrCsv, actualNrCsv)
+
+        // Ue Cap filters
+        assertEquals(capabilities.ueCapFilters.size, 3)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        38.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
+
+        val actualNrFilters = capabilities.ueCapFilters[1]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        38.toBandFilterLte()
+                    ),
+                nrBands = listOf(3.toBandFilterNr(), 7.toBandFilterNr(), 78.toBandFilterNr())
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
+
+        val actualEutraNrFilters = capabilities.ueCapFilters[2]
+        val expectedEutraNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.EUTRA_NR,
+                lteBands =
+                    listOf(
+                        1.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        20.toBandFilterLte(),
+                        38.toBandFilterLte()
+                    ),
+                nrBands = listOf(3.toBandFilterNr(), 7.toBandFilterNr(), 78.toBandFilterNr())
+            )
+        assertEquals(expectedEutraNrFilters, actualEutraNrFilters)
     }
 
     @Test
@@ -2917,6 +3390,30 @@ internal class ImportCapabilityInformationTest {
         val actualEndcCsv =
             Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedEndcCsv, actualEndcCsv)
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualEutraNrFilters = capabilities.ueCapFilters[0]
+        val expectedEutraNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.EUTRA_NR,
+                lteBands =
+                    listOf(
+                        28.toBandFilterLte(),
+                        1.toBandFilterLte(),
+                        8.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        3.toBandFilterLte()
+                    ),
+                nrBands =
+                    listOf(
+                        5.toBandFilterNr(),
+                        7.toBandFilterNr(),
+                        78.toBandFilterNr(),
+                        258.toBandFilterNr()
+                    )
+            )
+        assertEquals(expectedEutraNrFilters, actualEutraNrFilters)
     }
 
     @Test
@@ -3218,6 +3715,17 @@ internal class ImportCapabilityInformationTest {
         val actualNrDcCsv =
             Output.toCsv(capabilities.nrDcCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrDcCsv, actualNrDcCsv)
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualNrFilters = capabilities.ueCapFilters[0]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                includeNrDc = true,
+                nrBands = listOf(66.toBandFilterNr(), 261.toBandFilterNr())
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
     }
 
     @Test
@@ -3322,5 +3830,25 @@ internal class ImportCapabilityInformationTest {
 
         val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
         assertLinesMatch(expectedNrCsv, actualNrCsv)
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualNrFilters = capabilities.ueCapFilters[0]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                nrBands =
+                    listOf(
+                        BandFilterNr(78, maxCCsDl = 1, maxCCsUl = 1),
+                        BandFilterNr(77, maxCCsDl = 1, maxCCsUl = 1),
+                        BandFilterNr(80, maxCCsDl = 1, maxCCsUl = 1),
+                        BandFilterNr(81, maxCCsDl = 1, maxCCsUl = 1),
+                        BandFilterNr(82, maxCCsDl = 1, maxCCsUl = 1),
+                        BandFilterNr(83, maxCCsDl = 1, maxCCsUl = 1),
+                        BandFilterNr(84, maxCCsDl = 1, maxCCsUl = 1),
+                        BandFilterNr(86, maxCCsDl = 1, maxCCsUl = 1)
+                    )
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
     }
 }
