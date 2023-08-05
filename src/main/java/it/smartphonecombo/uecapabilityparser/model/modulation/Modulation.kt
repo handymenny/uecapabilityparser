@@ -15,7 +15,7 @@ sealed interface Modulation : Comparable<Modulation> {
     companion object {
         // pre-compute all SingleModulations
         private val singleModulations =
-            ModulationOrder.values().map {
+            ModulationOrder.entries.map {
                 // SingleModulation(ModulationOrder.NONE) == EmptyModulation
                 if (it == ModulationOrder.NONE) {
                     EmptyModulation
