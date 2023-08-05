@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
+import it.smartphonecombo.uecapabilityparser.model.filter.IUeCapabilityFilter
 import it.smartphonecombo.uecapabilityparser.util.Property
 import java.util.UUID
 import kotlinx.serialization.EncodeDefault
@@ -28,6 +29,7 @@ data class Capabilities(
     @SerialName("nrca") var nrCombos: List<ComboNr> = emptyList(),
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),
     @Required @SerialName("logType") var logType: String = "",
+    @SerialName("ueCapFilters") var ueCapFilters: List<IUeCapabilityFilter> = emptyList(),
     @Required
     @SerialName("parserVersion")
     var parserVersion: String = Property.getProperty("project.version") ?: "",
