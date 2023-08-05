@@ -4096,6 +4096,93 @@
         }
     ],
     "logType": "W",
+    "ueCapFilters": [
+        {
+            "type": "UeCapabilityFilterLte",
+            "rat": "EUTRA",
+            "lteBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 38
+                }
+            ]
+        },
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "NR",
+            "lteBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 38
+                }
+            ],
+            "nrBands": [
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 78
+                }
+            ]
+        },
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "EUTRA_NR",
+            "lteBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 38
+                }
+            ],
+            "nrBands": [
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 78
+                }
+            ]
+        }
+    ],
     "parserVersion": "staging",
     "timestamp": 1683801666379,
     "metadata": {

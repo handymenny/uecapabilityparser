@@ -46438,6 +46438,189 @@
         }
     ],
     "logType": "N",
+    "ueCapFilters": [
+        {
+            "type": "UeCapabilityFilterLte",
+            "rat": "EUTRA",
+            "lteBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 8
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 28
+                },
+                {
+                    "band": 32
+                },
+                {
+                    "band": 38
+                },
+                {
+                    "band": 40
+                }
+            ]
+        },
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "NR",
+            "lteBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 8
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 28
+                },
+                {
+                    "band": 32
+                },
+                {
+                    "band": 38
+                },
+                {
+                    "band": 40
+                }
+            ],
+            "nrBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 5
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 8
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 28
+                },
+                {
+                    "band": 38
+                },
+                {
+                    "band": 40
+                },
+                {
+                    "band": 41
+                },
+                {
+                    "band": 77
+                },
+                {
+                    "band": 78
+                },
+                {
+                    "band": 79
+                }
+            ]
+        },
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "EUTRA_NR",
+            "lteBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 8
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 28
+                },
+                {
+                    "band": 32
+                },
+                {
+                    "band": 38
+                },
+                {
+                    "band": 40
+                }
+            ],
+            "nrBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 5
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 8
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 28
+                },
+                {
+                    "band": 38
+                },
+                {
+                    "band": 40
+                },
+                {
+                    "band": 41
+                },
+                {
+                    "band": 77
+                },
+                {
+                    "band": 78
+                },
+                {
+                    "band": 79
+                }
+            ]
+        }
+    ],
     "parserVersion": "staging",
     "timestamp": 1683909476970,
     "metadata": {
