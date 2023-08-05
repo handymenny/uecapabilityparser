@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.extension.BwMap
+import it.smartphonecombo.uecapabilityparser.extension.asIntOrNull
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getInt
@@ -61,7 +62,6 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.contentOrNull
-import kotlinx.serialization.json.intOrNull
 
 object ImportCapabilityInformation : ImportCapabilities {
     override fun parse(input: ByteArray): Capabilities {
@@ -1265,9 +1265,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val list =
                         featureSetPerCCList.getArray("featureSetPerCC-ListDL-r15")?.mapNotNull {
                             index ->
-                            (index as? JsonPrimitive)?.intOrNull?.let {
-                                downlinkPerCC?.getOrNull(it)
-                            }
+                            index.asIntOrNull()?.let { downlinkPerCC?.getOrNull(it) }
                         }
                     if (list != null) {
                         FeatureSet(list, LinkDirection.DOWNLINK)
@@ -1296,7 +1294,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val list =
                         featureSetPerCCList.getArray("featureSetPerCC-ListUL-r15")?.mapNotNull {
                             index ->
-                            (index as? JsonPrimitive)?.intOrNull?.let { uplinkPerCC?.getOrNull(it) }
+                            index.asIntOrNull()?.let { uplinkPerCC?.getOrNull(it) }
                         }
                     if (list != null) {
                         FeatureSet(list, LinkDirection.UPLINK)
@@ -1353,7 +1351,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val list =
                         featureSetPerCCList.getArray("featureSetListPerDownlinkCC")?.mapNotNull {
                             index ->
-                            (index as? JsonPrimitive)?.intOrNull?.let {
+                            index.asIntOrNull()?.let {
                                 // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
                                 downlinkPerCC?.getOrNull(it - 1)
                             }
@@ -1404,7 +1402,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val list =
                         featureSetPerCCList.getArray("featureSetListPerUplinkCC")?.mapNotNull {
                             index ->
-                            (index as? JsonPrimitive)?.intOrNull?.let {
+                            index.asIntOrNull()?.let {
                                 // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
                                 uplinkPerCC?.getOrNull(it - 1)
                             }

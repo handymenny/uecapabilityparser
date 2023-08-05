@@ -31,3 +31,7 @@ internal fun JsonElement.getArrayAtPath(path: String): JsonArray? {
     }
     return obj?.getArray(split.last())
 }
+
+internal fun JsonElement.asIntOrNull(): Int? {
+    return (this as? JsonPrimitive)?.intOrNull
+}
