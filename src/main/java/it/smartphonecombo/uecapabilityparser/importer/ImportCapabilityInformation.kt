@@ -1342,7 +1342,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bwFr1OrFr2 =
                         supportedBandwidthDL?.getString("fr1")
                             ?: supportedBandwidthDL?.getString("fr2")
-                    val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
+                    val bw = parseBw(bwFr1OrFr2)
                     val channelBW90mhz = it.getString("channelBW-90mhz") != null
                     val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
@@ -1388,7 +1388,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bwFr1OrFr2 =
                         supportedBandwidthUL?.getString("fr1")
                             ?: supportedBandwidthUL?.getString("fr2")
-                    val bw = bwFr1OrFr2?.removePrefix("mhz")?.toIntOrNull() ?: 0
+                    val bw = parseBw(bwFr1OrFr2)
                     val channelBW90mhz = it.getString("channelBW-90mhz") != null
 
                     val mimoCbLayers =
@@ -1572,12 +1572,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                 val nr = bandInfo.getObject("bandInformationNR")
                 if (nr != null) {
                     val band = nr.getInt("bandNR") ?: 0
-                    val maxBwDl =
-                        nr.getString("maxBandwidthRequestedDL")?.removePrefix("mhz")?.toIntOrNull()
-                            ?: 0
-                    val maxBwUl =
-                        nr.getString("maxBandwidthRequestedUL")?.removePrefix("mhz")?.toIntOrNull()
-                            ?: 0
+                    val maxBwDl = parseBw(nr.getString("maxBandwidthRequestedDL"))
+                    val maxBwUl = parseBw(nr.getString("maxBandwidthRequestedUL"))
                     val maxCCsDl = nr.getInt("maxCarriersRequestedDL") ?: 0
                     val maxCCsUl = nr.getInt("maxCarriersRequestedUL") ?: 0
                     BandFilterNr(band, maxBwDl, maxBwUl, maxCCsDl, maxCCsUl)
@@ -1675,5 +1671,11 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
         ueCapFilter.uplinkTxSwitchRequest =
             filterCommon.getString("uplinkTxSwitchRequest-r16") != null
+    }
+
+    // remove mhz prefix and convert to int
+    // return 0 if input is invalid or null
+    private fun parseBw(bandwidth: String?): Int {
+        return bandwidth?.removePrefix("mhz")?.toIntOrNull() ?: 0
     }
 }
