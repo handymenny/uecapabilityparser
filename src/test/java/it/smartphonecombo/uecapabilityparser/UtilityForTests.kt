@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
+import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterLte
 import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterNr
@@ -31,5 +32,9 @@ object UtilityForTests {
 
     internal fun Band.toBandFilterNr(): BandFilterNr {
         return BandFilterNr(this)
+    }
+
+    internal fun String.toBwClass(): BwClass {
+        return BwClass.valueOf(this)
     }
 }

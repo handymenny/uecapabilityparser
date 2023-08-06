@@ -3,12 +3,14 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBandFilterLte
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBandFilterNr
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBwClass
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toPowerClass
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterLte
 import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterNr
 import it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterLte
 import it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterNr
@@ -4033,6 +4035,90 @@ internal class ImportCapabilityInformationTest {
                         28.toBandFilterNr(),
                         77.toBandFilterNr(),
                         78.toBandFilterNr()
+                    )
+            )
+        assertEquals(expectedNrFilters, actualNrFilters)
+    }
+
+    @Test
+    fun ueCapNrBwRequested() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                        "/newEngine/input/json/ueCapNrBwRequested.json",
+                    )!!
+                    .readBytes()
+            )
+
+        // NR
+        val actualNrBands = capabilities.nrBands
+        val expectedNrBands =
+            listOf(
+                BandNrDetails(3).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    rateMatchingLteCrs = true
+                },
+                BandNrDetails(28).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
+                    powerClass = 3.toPowerClass()
+                    rateMatchingLteCrs = true
+                },
+                BandNrDetails(77).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 60, 40, 30, 20)))
+                },
+                BandNrDetails(78).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 80, 40, 20)))
+                },
+                BandNrDetails(79).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100)))
+                },
+                BandNrDetails(257).apply {
+                    modDL = ModulationOrder.QAM64.toModulation()
+                    modUL = ModulationOrder.QAM64.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(120, intArrayOf(100)))
+                },
+            )
+
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
+
+        assertEquals(0, capabilities.nrCombos.size)
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualNrFilters = capabilities.ueCapFilters[0]
+        val expectedNrFilters =
+            UeCapabilityFilterNr(
+                rat = Rat.NR,
+                lteBands =
+                    listOf(
+                        BandFilterLte(1, "A".toBwClass(), "A".toBwClass()),
+                        BandFilterLte(19, "A".toBwClass(), "A".toBwClass()),
+                        BandFilterLte(3, "A".toBwClass(), "A".toBwClass()),
+                        BandFilterLte(21, "A".toBwClass(), "A".toBwClass()),
+                        BandFilterLte(42, "E".toBwClass(), "A".toBwClass()),
+                        BandFilterLte(28, "A".toBwClass(), "A".toBwClass())
+                    ),
+                nrBands =
+                    listOf(
+                        BandFilterNr(77, 100, 100, 1, 1),
+                        BandFilterNr(78, 100, 100, 1, 1),
+                        BandFilterNr(79, 100, 100, 1, 1),
+                        BandFilterNr(257, 400, 400, 4, 4),
                     )
             )
         assertEquals(expectedNrFilters, actualNrFilters)
