@@ -4123,4 +4123,123 @@ internal class ImportCapabilityInformationTest {
             )
         assertEquals(expectedNrFilters, actualNrFilters)
     }
+
+    @Test
+    fun ueCapNrUnfiltered() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                        "/newEngine/input/json/ueCapNrUnfiltered.json",
+                    )!!
+                    .readBytes()
+            )
+
+        // NR
+        val actualNrBands = capabilities.nrBands
+        val expectedNrBands =
+            listOf(
+                BandNrDetails(1).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
+                    rateMatchingLteCrs = true
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(3).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
+                    rateMatchingLteCrs = true
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(7).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(40, 30, 25, 20, 15, 10, 5)))
+                    rateMatchingLteCrs = true
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(8).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    rateMatchingLteCrs = true
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(20).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(20, 15, 10, 5)))
+                    powerClass = 3.toPowerClass()
+                    rateMatchingLteCrs = true
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(28).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(30, 20, 15, 10, 5)))
+                    powerClass = 3.toPowerClass()
+                    rateMatchingLteCrs = true
+                    mimoDL = 2.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(38).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(30, intArrayOf(40, 30, 20)))
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(40).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 3.toPowerClass()
+                    bandwidths = listOf(BwsNr(30, intArrayOf(80, 60, 50, 40, 30, 20)))
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
+                },
+                BandNrDetails(75).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    bandwidths = listOf(BwsNr(15, intArrayOf(50, 40, 30), intArrayOf()))
+                    mimoDL = 2.toMimo()
+                },
+                BandNrDetails(78).apply {
+                    modDL = ModulationOrder.QAM256.toModulation()
+                    modUL = ModulationOrder.QAM256.toModulation()
+                    powerClass = 2.toPowerClass()
+                    maxUplinkDutyCycle = 50
+                    bandwidths = listOf(BwsNr(30, intArrayOf(100, 90, 80, 70, 60, 50, 40, 30, 20)))
+                    mimoDL = 4.toMimo()
+                    mimoUL = 1.toMimo()
+                }
+            )
+
+        assertArrayEquals(expectedNrBands.toTypedArray(), actualNrBands.toTypedArray())
+
+        // NR Combos
+        val expectedNrCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapNrUnfiltered-NR.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+
+        val actualNrCsv = Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedNrCsv, actualNrCsv)
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualNrFilters = capabilities.ueCapFilters[0]
+        val expectedNrFilters = UeCapabilityFilterNr(Rat.NR)
+        assertEquals(expectedNrFilters, actualNrFilters)
+    }
 }
