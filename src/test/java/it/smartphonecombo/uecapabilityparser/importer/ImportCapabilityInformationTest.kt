@@ -10,6 +10,8 @@ import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterLte
 import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterNr
 import it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterLte
@@ -1444,6 +1446,63 @@ internal class ImportCapabilityInformationTest {
                         3.toBandFilterLte(),
                         1.toBandFilterLte(),
                         38.toBandFilterLte()
+                    ),
+                diffFallbackCombList =
+                    listOf(
+                        ComboLte(
+                            listOf(
+                                ComponentLte(38, "A".toBwClass()),
+                                ComponentLte(20, "A".toBwClass(), "A".toBwClass()),
+                                ComponentLte(7, "A".toBwClass()),
+                            )
+                        ),
+                        ComboLte(
+                            listOf(
+                                ComponentLte(38, "C".toBwClass()),
+                                ComponentLte(20, "A".toBwClass(), "A".toBwClass())
+                            )
+                        ),
+                        ComboLte(
+                            listOf(
+                                ComponentLte(20, "A".toBwClass(), "A".toBwClass()),
+                                ComponentLte(7, "A".toBwClass(), "A".toBwClass()),
+                                ComponentLte(1, "A".toBwClass()),
+                            )
+                        ),
+                        ComboLte(
+                            listOf(
+                                ComponentLte(20, "A".toBwClass()),
+                                ComponentLte(7, "A".toBwClass()),
+                                ComponentLte(1, "A".toBwClass(), "A".toBwClass()),
+                            )
+                        ),
+                        ComboLte(
+                            listOf(
+                                ComponentLte(38, "A".toBwClass()),
+                                ComponentLte(7, "A".toBwClass()),
+                                ComponentLte(3, "A".toBwClass(), "A".toBwClass()),
+                            )
+                        ),
+                        ComboLte(
+                            listOf(
+                                ComponentLte(7, "A".toBwClass(), "A".toBwClass()),
+                                ComponentLte(1, "A".toBwClass(), "A".toBwClass()),
+                            )
+                        ),
+                        ComboLte(
+                            listOf(
+                                ComponentLte(38, "A".toBwClass()),
+                                ComponentLte(3, "A".toBwClass(), "A".toBwClass()),
+                                ComponentLte(1, "A".toBwClass()),
+                            )
+                        ),
+                        ComboLte(
+                            listOf(
+                                ComponentLte(38, "A".toBwClass()),
+                                ComponentLte(3, "A".toBwClass()),
+                                ComponentLte(1, "A".toBwClass(), "A".toBwClass()),
+                            )
+                        )
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)

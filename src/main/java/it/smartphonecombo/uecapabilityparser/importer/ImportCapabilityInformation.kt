@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.extension.BwMap
+import it.smartphonecombo.uecapabilityparser.extension.asArrayOrNull
 import it.smartphonecombo.uecapabilityparser.extension.asIntOrNull
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
@@ -1440,10 +1441,10 @@ object ImportCapabilityInformation : ImportCapabilities {
         release: Int
     ): Pair<BwClass, Mimo> {
         val bandParametersDL =
-            if (release == 13) {
-                bandParameters.getObject("bandParametersDL-r13")
-            } else {
-                bandParameters.getArrayAtPath("bandParametersDL-r$release")?.first()
+            when (release) {
+                14 -> bandParameters
+                13 -> bandParameters.getObject("bandParametersDL-r13")
+                else -> bandParameters.getArrayAtPath("bandParametersDL-r$release")?.first()
             }
 
         if (bandParametersDL == null) {
@@ -1451,22 +1452,27 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         // both r10 and r11 uses ca-BandwidthClassDL/supportedMIMO-CapabilityDL -r10
-        val subRelease = if (release == 13) "13" else "10"
+        val subRelease = if (release >= 13) release.toString() else "10"
         val dlClassString = bandParametersDL.getString("ca-BandwidthClassDL-r$subRelease")
         val dlClass = BwClass.valueOf(dlClassString)
-        val mimoLayers = bandParametersDL.getString("supportedMIMO-CapabilityDL-r$subRelease")
-        var dlMimo = Int.fromLiteral(mimoLayers)
 
-        // Some devices only reports fourLayerTM3-TM4-rXX or only reports 4rx in
-        // fourLayerTM3-TM4-rXX
-        // For r11 and r10 the check is done in parseCaMimoV10i0()
-        if (release == 13 && dlMimo < 4) {
-            bandParametersDL.getString("fourLayerTM3-TM4-r13")?.let { dlMimo = 4 }
-        }
+        var dlMimo = 0
+        // BandCombination-r14/BandIndication-r14 doesn't support mimo
+        if (release < 14) {
+            val mimoLayers = bandParametersDL.getString("supportedMIMO-CapabilityDL-r$subRelease")
+            dlMimo = Int.fromLiteral(mimoLayers)
 
-        // Some devices don't report supportedMIMO-CapabilityDL-rXX for twoLayers
-        if (dlClass != BwClass.NONE && dlMimo == 0) {
-            dlMimo = 2
+            // Some devices only reports fourLayerTM3-TM4-rXX or only reports 4rx in
+            // fourLayerTM3-TM4-rXX
+            // For r11 and r10 the check is done in parseCaMimoV10i0()
+            if (release == 13 && dlMimo < 4) {
+                bandParametersDL.getString("fourLayerTM3-TM4-r13")?.let { dlMimo = 4 }
+            }
+
+            // Some devices don't report supportedMIMO-CapabilityDL-rXX for twoLayers
+            if (dlClass != BwClass.NONE && dlMimo == 0) {
+                dlMimo = 2
+            }
         }
 
         var resultMimo: Mimo = dlMimo.toMimo()
@@ -1510,26 +1516,32 @@ object ImportCapabilityInformation : ImportCapabilities {
         release: Int
     ): Pair<BwClass, Mimo> {
         val bandParametersUL =
-            if (release == 13) {
-                bandParameters.getObject("bandParametersUL-r13")
-            } else {
-                bandParameters.getArrayAtPath("bandParametersUL-r$release")?.first()
+            when (release) {
+                14 -> bandParameters
+                13 -> bandParameters.getObject("bandParametersUL-r13")
+                else -> bandParameters.getArrayAtPath("bandParametersUL-r$release")?.first()
             }
 
         if (bandParametersUL == null) {
             return Pair(BwClass.NONE, EmptyMimo)
         }
 
-        // both r10 and r11 uses ca-BandwidthClassUL/supportedMIMO-CapabilityUL -r10
-        val subRelease = if (release == 13) "13" else "10"
+        // both r10, r11 and r13 uses supportedMIMO-CapabilityUL -r10
+        val subReleaseBw = if (release >= 14) release.toString() else "10"
+        val subReleaseMimo = if (release >= 13) release.toString() else "10"
 
-        val ulClassString = bandParametersUL.getString("ca-BandwidthClassUL-r10")
+        val ulClassString = bandParametersUL.getString("ca-BandwidthClassUL-r$subReleaseBw")
         val ulClass = BwClass.valueOf(ulClassString)
-        val mimoLayers = bandParametersUL.getString("supportedMIMO-CapabilityUL-r$subRelease")
-        var ulMimo = Int.fromLiteral(mimoLayers)
-        if (ulMimo == 0) {
-            // supportedMIMO-CapabilityUL isn't reported if ulMimo = 1
-            ulMimo = 1
+        val mimoLayers = bandParametersUL.getString("supportedMIMO-CapabilityUL-r$subReleaseMimo")
+
+        var ulMimo = 0
+        // BandCombination-r14/BandIndication-r14 doesn't support mimo
+        if (release < 14) {
+            ulMimo = Int.fromLiteral(mimoLayers)
+            if (ulMimo == 0) {
+                // supportedMIMO-CapabilityUL isn't reported if ulMimo = 1
+                ulMimo = 1
+            }
         }
 
         return Pair(ulClass, ulMimo.toMimo())
@@ -1639,11 +1651,19 @@ object ImportCapabilityInformation : ImportCapabilities {
                 enbRequestR13.getString("skipFallbackCombRequested-r13") != null
         }
 
-        val enbRequestV1430 =
-            capability.eutraCapabilityV1430?.getObjectAtPath(
-                "rf-Parameters-v1430.eNB-RequestedParameters-v1430"
+        val requestedDiffFallbackCombList =
+            capability.eutraCapabilityV1430?.getArrayAtPath(
+                "rf-Parameters-v1430.eNB-RequestedParameters-v1430.requestedDiffFallbackCombList-r14"
             )
-        // TODO
+
+        val diffFallbackCombList =
+            requestedDiffFallbackCombList?.mapNotNull { combination ->
+                val componentsArray = combination.asArrayOrNull() ?: return@mapNotNull null
+                val components = componentsArray.map { parseBandParameters(it, 14) }
+                ComboLte(components.sortedDescending())
+            }
+
+        ueCapFilter.diffFallbackCombList = diffFallbackCombList ?: emptyList()
 
         val filterCommon =
             capability.eutraCapabilityV1560?.getObject("appliedCapabilityFilterCommon-r15")
