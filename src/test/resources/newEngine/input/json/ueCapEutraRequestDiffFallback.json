@@ -1,0 +1,2485 @@
+{
+  "eutra": {
+    "accessStratumRelease": "rel14",
+    "ue-Category": 4,
+    "pdcp-Parameters": {
+      "supportedROHC-Profiles": {
+        "profile0x0001-r15": true,
+        "profile0x0002-r15": true,
+        "profile0x0003-r15": false,
+        "profile0x0004-r15": false,
+        "profile0x0006-r15": false,
+        "profile0x0101-r15": false,
+        "profile0x0102-r15": false,
+        "profile0x0103-r15": false,
+        "profile0x0104-r15": false
+      },
+      "maxNumberROHC-ContextSessions": "cs24"
+    },
+    "phyLayerParameters": {
+      "ue-TxAntennaSelectionSupported": false,
+      "ue-SpecificRefSigsSupported": false
+    },
+    "rf-Parameters": {
+      "supportedBandListEUTRA": [
+        {
+          "bandEUTRA": 20,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 7,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 3,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 1,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 38,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 8,
+          "halfDuplex": false
+        }
+      ]
+    },
+    "measParameters": {
+      "bandListEUTRA": [
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ]
+        }
+      ]
+    },
+    "featureGroupIndicators": "01111110000011011101100010011110",
+    "interRAT-Parameters": {},
+    "nonCriticalExtension": {
+      "phyLayerParameters-v920": {
+        "enhancedDualLayerTDD-r9": "supported"
+      },
+      "interRAT-ParametersGERAN-v920": {},
+      "csg-ProximityIndicationParameters-r9": {
+        "intraFreqProximityIndication-r9": "supported",
+        "interFreqProximityIndication-r9": "supported"
+      },
+      "neighCellSI-AcquisitionParameters-r9": {
+        "intraFreqSI-AcquisitionForHO-r9": "supported",
+        "interFreqSI-AcquisitionForHO-r9": "supported"
+      },
+      "son-Parameters-r9": {
+        "rach-Report-r9": "supported"
+      },
+      "nonCriticalExtension": {
+        "lateNonCriticalExtension": {
+          "featureGroupIndRel9Add-r9": "00000000000000000000000000000000",
+          "fdd-Add-UE-EUTRA-Capabilities-r9": {
+            "featureGroupIndicators-r9": "01111110000011011101100010011110",
+            "featureGroupIndRel9Add-r9": "00000000000000000000000000000000"
+          },
+          "tdd-Add-UE-EUTRA-Capabilities-r9": {
+            "featureGroupIndicators-r9": "01111110000011011101100010011110",
+            "featureGroupIndRel9Add-r9": "00000000000000000000000000000000"
+          },
+          "nonCriticalExtension": {
+            "nonCriticalExtension": {
+              "nonCriticalExtension": {
+                "nonCriticalExtension": {
+                  "nonCriticalExtension": {
+                    "otdoa-PositioningCapabilities-r10": {
+                      "otdoa-UE-Assisted-r10": "supported"
+                    },
+                    "nonCriticalExtension": {
+                      "rf-Parameters-v10f0": {
+                        "modifiedMPR-Behavior-r10": "11000000000000000000000000000000"
+                      },
+                      "nonCriticalExtension": {
+                        "nonCriticalExtension": {
+                          "otherParameters-v11d0": {
+                            "inDeviceCoexInd-UL-CA-r11": "supported"
+                          },
+                          "nonCriticalExtension": {
+                            "nonCriticalExtension": {
+                              "rf-Parameters-v12b0": {
+                                "maxLayersMIMO-Indication-r12": "supported"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "nonCriticalExtension": {
+          "ue-Category-v1020": 7,
+          "phyLayerParameters-v1020": {
+            "tm9-With-8Tx-FDD-r10": "supported",
+            "pmi-Disabling-r10": "supported",
+            "multiClusterPUSCH-WithinCC-r10": "supported",
+            "nonContiguousUL-RA-WithinCC-List-r10": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          "featureGroupIndRel10-r10": "01101100111010000000000000000000",
+          "ue-BasedNetwPerfMeasParameters-r10": {
+            "loggedMeasurementsIdle-r10": "supported",
+            "standaloneGNSS-Location-r10": "supported"
+          },
+          "nonCriticalExtension": {
+            "fdd-Add-UE-EUTRA-Capabilities-v1060": {
+              "phyLayerParameters-v1060": {
+                "tm9-With-8Tx-FDD-r10": "supported"
+              },
+              "featureGroupIndRel10-v1060": "01101100111010000000000000000000"
+            },
+            "tdd-Add-UE-EUTRA-Capabilities-v1060": {
+              "featureGroupIndRel10-v1060": "01111100111010000000000000000000"
+            },
+            "nonCriticalExtension": {
+              "nonCriticalExtension": {
+                "pdcp-Parameters-v1130": {
+                  "pdcp-SN-Extension-r11": "supported"
+                },
+                "phyLayerParameters-v1130": {
+                  "crs-InterfHandl-r11": "supported",
+                  "ss-CCH-InterfHandl-r11": "supported",
+                  "tdd-SpecialSubframe-r11": "supported"
+                },
+                "rf-Parameters-v1130": {},
+                "measParameters-v1130": {},
+                "interRAT-ParametersCDMA2000-v1130": {},
+                "otherParameters-r11": {
+                  "inDeviceCoexInd-r11": "supported"
+                },
+                "nonCriticalExtension": {
+                  "ue-Category-v1170": 10,
+                  "nonCriticalExtension": {
+                    "rf-Parameters-v1180": {
+                      "freqBandRetrieval-r11": "supported",
+                      "requestedBands-r11": [
+                        20,
+                        7,
+                        3,
+                        1,
+                        38
+                      ]
+                    },
+                    "nonCriticalExtension": {
+                      "ue-Category-v11a0": 12,
+                      "nonCriticalExtension": {
+                        "phyLayerParameters-v1250": {
+                          "e-HARQ-Pattern-FDD-r12": "supported",
+                          "noResourceRestrictionForTTIBundling-r12": "supported",
+                          "discoverySignalsInDeactSCell-r12": "supported"
+                        },
+                        "rf-Parameters-v1250": {
+                          "supportedBandListEUTRA-v1250": [
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            }
+                          ],
+                          "freqBandPriorityAdjustment-r12": "supported"
+                        },
+                        "ue-CategoryDL-r12": 12,
+                        "ue-CategoryUL-r12": 13,
+                        "measParameters-v1250": {
+                          "incMonEUTRA-r12": "supported",
+                          "extendedMaxMeasId-r12": "supported",
+                          "crs-DiscoverySignalsMeas-r12": "supported"
+                        },
+                        "nonCriticalExtension": {
+                          "ue-CategoryDL-v1260": 16,
+                          "nonCriticalExtension": {
+                            "nonCriticalExtension": {
+                              "phyLayerParameters-v1280": {
+                                "alternativeTBS-Indices-r12": "supported"
+                              },
+                              "nonCriticalExtension": {
+                                "pdcp-Parameters-v1310": {
+                                  "pdcp-SN-Extension-18bits-r13": "supported"
+                                },
+                                "rlc-Parameters-v1310": {
+                                  "extendedRLC-SN-SO-Field-r13": "supported"
+                                },
+                                "phyLayerParameters-v1310": {
+                                  "aperiodicCSI-Reporting-r13": "11",
+                                  "codebook-HARQ-ACK-r13": "11",
+                                  "maxNumberUpdatedCSI-Proc-r13": 5,
+                                  "pucch-Format4-r13": "supported",
+                                  "pucch-Format5-r13": "supported",
+                                  "spatialBundling-HARQ-ACK-r13": "supported",
+                                  "uci-PUSCH-Ext-r13": "supported"
+                                },
+                                "rf-Parameters-v1310": {
+                                  "eNB-RequestedParameters-r13": {
+                                    "reducedIntNonContCombRequested-r13": "true",
+                                    "requestedCCsDL-r13": 3,
+                                    "requestedCCsUL-r13": 2,
+                                    "skipFallbackCombRequested-r13": "true"
+                                  },
+                                  "maximumCCsRetrieval-r13": "supported",
+                                  "skipFallbackCombinations-r13": "supported",
+                                  "reducedIntNonContComb-r13": "supported",
+                                  "supportedBandCombinationReduced-r13": [
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 8,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "c",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {},
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "twoLayers",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "multipleTimingAdvance-r13": "supported",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "multipleTimingAdvance-r13": "supported",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "twoLayers",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "111",
+                                      "multipleTimingAdvance-r13": "supported",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "multipleTimingAdvance-r13": "supported",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "twoLayers",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "111",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "twoLayers",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "multipleTimingAdvance-r13": "supported",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "c"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "c",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {},
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "111",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 38,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "twoLayers",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "111",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "111",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "twoLayers",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "111",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "111",
+                                      "multipleTimingAdvance-r13": "supported",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 20,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 7,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "bandParameterList-r13": [
+                                        {
+                                          "bandEUTRA-r13": 3,
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "bandEUTRA-r13": 1,
+                                          "bandParametersUL-r13": {
+                                            "ca-BandwidthClassUL-r10": "a"
+                                          },
+                                          "bandParametersDL-r13": {
+                                            "ca-BandwidthClassDL-r13": "a",
+                                            "supportedMIMO-CapabilityDL-r13": "fourLayers",
+                                            "fourLayerTM3-TM4-r13": "supported",
+                                            "intraBandContiguousCC-InfoList-r13": [
+                                              {}
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "supportedBandwidthCombinationSet-r13": "11",
+                                      "bandInfoEUTRA-r13": {
+                                        "interFreqBandList": [
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          },
+                                          {
+                                            "interFreqNeedForGaps": true
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                },
+                                "measParameters-v1310": {
+                                  "extendedMaxObjectId-r13": "supported"
+                                },
+                                "interRAT-ParametersWLAN-r13": {},
+                                "wlan-IW-Parameters-v1310": {},
+                                "lwip-Parameters-r13": {},
+                                "nonCriticalExtension": {
+                                  "nonCriticalExtension": {
+                                    "ue-CategoryDL-v1330": 18,
+                                    "nonCriticalExtension": {
+                                      "nonCriticalExtension": {
+                                        "ce-Parameters-v1350": {},
+                                        "nonCriticalExtension": {
+                                          "other-Parameters-v1360": {
+                                            "inDeviceCoexInd-HardwareSharingInd-r13": "supported"
+                                          },
+                                          "nonCriticalExtension": {
+                                            "phyLayerParameters-v1430": {
+                                              "alternativeTBS-Index-r14": "supported"
+                                            },
+                                            "mac-Parameters-v1430": {
+                                              "shortSPS-IntervalFDD-r14": "supported",
+                                              "shortSPS-IntervalTDD-r14": "supported",
+                                              "skipUplinkDynamic-r14": "supported",
+                                              "skipUplinkSPS-r14": "supported"
+                                            },
+                                            "pdcp-Parameters-v1430": {
+                                              "supportedUplinkOnlyROHC-Profiles-r14": {
+                                                "profile0x0006-r14": true
+                                              },
+                                              "maxNumberROHC-ContextSessions-r14": "cs24"
+                                            },
+                                            "rlc-Parameters-v1430": {
+                                              "extendedPollByte-r14": "supported"
+                                            },
+                                            "rf-Parameters-v1430": {
+                                              "eNB-RequestedParameters-v1430": {
+                                                "requestedDiffFallbackCombList-r14": [
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 38,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 20,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 7,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    }
+                                                  ],
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 38,
+                                                      "ca-BandwidthClassDL-r14": "c"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 20,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    }
+                                                  ],
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 20,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 7,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 1,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    }
+                                                  ],
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 20,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 7,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 1,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    }
+                                                  ],
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 38,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 7,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 3,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    }
+                                                  ],
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 7,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 1,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    }
+                                                  ],
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 38,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 3,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 1,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    }
+                                                  ],
+                                                  [
+                                                    {
+                                                      "bandEUTRA-r14": 38,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 3,
+                                                      "ca-BandwidthClassDL-r14": "a"
+                                                    },
+                                                    {
+                                                      "bandEUTRA-r14": 1,
+                                                      "ca-BandwidthClassDL-r14": "a",
+                                                      "ca-BandwidthClassUL-r14": "a"
+                                                    }
+                                                  ]
+                                                ]
+                                              },
+                                              "diffFallbackCombReport-r14": "supported"
+                                            },
+                                            "otherParameters-v1430": {},
+                                            "mmtel-Parameters-r14": {
+                                              "delayBudgetReporting-r14": "supported"
+                                            },
+                                            "ce-Parameters-v1430": {},
+                                            "highSpeedEnhParameters-r14": {
+                                              "measurementEnhancements-r14": "supported",
+                                              "demodulationEnhancements-r14": "supported",
+                                              "prach-Enhancements-r14": "supported"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -6216,6 +6216,12 @@
     "lteCategoryDl": 18,
     "lteCategoryUl": 5,
     "logType": "W",
+    "ueCapFilters": [
+        {
+            "type": "UeCapabilityFilterLte",
+            "rat": "EUTRA"
+        }
+    ],
     "parserVersion": "staging",
     "timestamp": 1683384283760,
     "metadata": {

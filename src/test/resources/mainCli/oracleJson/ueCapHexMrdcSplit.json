@@ -18920,6 +18920,64 @@
         }
     ],
     "logType": "H",
+    "ueCapFilters": [
+        {
+            "type": "UeCapabilityFilterLte",
+            "rat": "EUTRA",
+            "lteBands": [
+                {
+                    "band": 3
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 1
+                }
+            ],
+            "reducedFormat": true,
+            "skipFallbackCombRequested": true,
+            "maxCCsDl": 5,
+            "maxCCsUl": 2
+        },
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "NR",
+            "eutraNrOnly": true
+        },
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "EUTRA_NR",
+            "lteBands": [
+                {
+                    "band": 1
+                },
+                {
+                    "band": 3
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 20
+                }
+            ],
+            "nrBands": [
+                {
+                    "band": 38
+                },
+                {
+                    "band": 28
+                },
+                {
+                    "band": 78
+                }
+            ]
+        }
+    ],
     "parserVersion": "staging",
     "timestamp": 1683909478271,
     "metadata": {

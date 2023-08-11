@@ -62,4 +62,7 @@ class UEEutraCapabilityJson(val rootJson: JsonObject) {
         eutraCapabilityV1510?.getObjectAtPath("nonCriticalExtension".repeat(2, "."))
 
     val eutraCapabilityV1540 = eutraCapabilityV1530?.getObject("nonCriticalExtension")
+
+    val eutraCapabilityV1560 =
+        eutraCapabilityV1540?.getObjectAtPath("nonCriticalExtension".repeat(2, "."))
 }

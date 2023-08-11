@@ -1,0 +1,2727 @@
+{
+  "eutra": {
+    "accessStratumRelease": "rel15",
+    "ue-Category": 4,
+    "pdcp-Parameters": {
+      "supportedROHC-Profiles": {
+        "profile0x0001-r15": true,
+        "profile0x0002-r15": true,
+        "profile0x0003-r15": false,
+        "profile0x0004-r15": false,
+        "profile0x0006-r15": false,
+        "profile0x0101-r15": false,
+        "profile0x0102-r15": false,
+        "profile0x0103-r15": false,
+        "profile0x0104-r15": false
+      },
+      "maxNumberROHC-ContextSessions": "cs24"
+    },
+    "phyLayerParameters": {
+      "ue-TxAntennaSelectionSupported": false,
+      "ue-SpecificRefSigsSupported": false
+    },
+    "rf-Parameters": {
+      "supportedBandListEUTRA": [
+        {
+          "bandEUTRA": 1,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 20,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 28,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 3,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 8,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 7,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 38,
+          "halfDuplex": false
+        },
+        {
+          "bandEUTRA": 32,
+          "halfDuplex": false
+        }
+      ]
+    },
+    "measParameters": {
+      "bandListEUTRA": [
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        },
+        {
+          "interFreqBandList": [
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            },
+            {
+              "interFreqNeedForGaps": true
+            }
+          ],
+          "interRAT-BandList": [
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            },
+            {
+              "interRAT-NeedForGaps": true
+            }
+          ]
+        }
+      ]
+    },
+    "featureGroupIndicators": "11111111110011111111111010111110",
+    "interRAT-Parameters": {
+      "utraFDD": {
+        "supportedBandListUTRA-FDD": [
+          "bandI"
+        ]
+      },
+      "geran": {
+        "supportedBandListGERAN": [
+          "gsm850",
+          "gsm900E",
+          "gsm1800",
+          "gsm1900"
+        ],
+        "interRAT-PS-HO-ToGERAN": false
+      }
+    },
+    "nonCriticalExtension": {
+      "phyLayerParameters-v920": {
+        "enhancedDualLayerTDD-r9": "supported"
+      },
+      "interRAT-ParametersGERAN-v920": {
+        "dtm-r9": "supported",
+        "e-RedirectionGERAN-r9": "supported"
+      },
+      "interRAT-ParametersUTRA-v920": {
+        "e-RedirectionUTRA-r9": "supported"
+      },
+      "csg-ProximityIndicationParameters-r9": {},
+      "neighCellSI-AcquisitionParameters-r9": {
+        "intraFreqSI-AcquisitionForHO-r9": "supported",
+        "interFreqSI-AcquisitionForHO-r9": "supported",
+        "utran-SI-AcquisitionForHO-r9": "supported"
+      },
+      "son-Parameters-r9": {
+        "rach-Report-r9": "supported"
+      },
+      "nonCriticalExtension": {
+        "lateNonCriticalExtension": {
+          "featureGroupIndRel9Add-r9": "11000000000000000000000000000000",
+          "nonCriticalExtension": {
+            "nonCriticalExtension": {
+              "nonCriticalExtension": {
+                "nonCriticalExtension": {
+                  "nonCriticalExtension": {
+                    "otdoa-PositioningCapabilities-r10": {
+                      "otdoa-UE-Assisted-r10": "supported"
+                    },
+                    "nonCriticalExtension": {
+                      "rf-Parameters-v10f0": {
+                        "modifiedMPR-Behavior-r10": "11000000000000000000000000000000"
+                      },
+                      "nonCriticalExtension": {
+                        "rf-Parameters-v10i0": {
+                          "supportedBandCombination-v10i0": [
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {},
+                            {},
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {},
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {},
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {},
+                            {},
+                            {},
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "bandParameterList-v10i0": [
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {}
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "bandParametersDL-v10i0": [
+                                    {
+                                      "fourLayerTM3-TM4-r10": "supported"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "nonCriticalExtension": {
+                          "nonCriticalExtension": {
+                            "nonCriticalExtension": {
+                              "rf-Parameters-v12b0": {
+                                "maxLayersMIMO-Indication-r12": "supported"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "nonCriticalExtension": {
+          "ue-Category-v1020": 7,
+          "phyLayerParameters-v1020": {
+            "tm9-With-8Tx-FDD-r10": "supported",
+            "multiClusterPUSCH-WithinCC-r10": "supported",
+            "nonContiguousUL-RA-WithinCC-List-r10": [
+              {},
+              {},
+              {},
+              {
+                "nonContiguousUL-RA-WithinCC-Info-r10": "supported"
+              },
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          "rf-Parameters-v1020": {
+            "supportedBandCombination-r10": [
+              [
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 3,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 8,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 7,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 38,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 32,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "c",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "c",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 20,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "bandEUTRA-r10": 28,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "twoLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersUL-r10": [
+                    {
+                      "ca-BandwidthClassUL-r10": "a"
+                    }
+                  ],
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                },
+                {
+                  "bandEUTRA-r10": 1,
+                  "bandParametersDL-r10": [
+                    {
+                      "ca-BandwidthClassDL-r10": "a",
+                      "supportedMIMO-CapabilityDL-r10": "fourLayers"
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          "measParameters-v1020": {
+            "bandCombinationListEUTRA-r10": [
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              },
+              {
+                "interFreqBandList": [
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  },
+                  {
+                    "interFreqNeedForGaps": true
+                  }
+                ],
+                "interRAT-BandList": [
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  },
+                  {
+                    "interRAT-NeedForGaps": true
+                  }
+                ]
+              }
+            ]
+          },
+          "featureGroupIndRel10-r10": "01101000001101000000000000000000",
+          "nonCriticalExtension": {
+            "fdd-Add-UE-EUTRA-Capabilities-v1060": {
+              "phyLayerParameters-v1060": {
+                "tm9-With-8Tx-FDD-r10": "supported"
+              },
+              "featureGroupIndRel10-v1060": "01101100111111000000000000000000"
+            },
+            "tdd-Add-UE-EUTRA-Capabilities-v1060": {
+              "featureGroupIndRel10-v1060": "01101000001101000000000000000000"
+            },
+            "rf-Parameters-v1060": {
+              "supportedBandCombinationExt-r10": [
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {
+                  "supportedBandwidthCombinationSet-r10": "11"
+                },
+                {},
+                {},
+                {
+                  "supportedBandwidthCombinationSet-r10": "11"
+                },
+                {
+                  "supportedBandwidthCombinationSet-r10": "11"
+                },
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+              ]
+            },
+            "nonCriticalExtension": {
+              "nonCriticalExtension": {
+                "pdcp-Parameters-v1130": {
+                  "pdcp-SN-Extension-r11": "supported",
+                  "supportRohcContextContinue-r11": "supported"
+                },
+                "phyLayerParameters-v1130": {
+                  "tdd-SpecialSubframe-r11": "supported"
+                },
+                "rf-Parameters-v1130": {},
+                "measParameters-v1130": {},
+                "interRAT-ParametersCDMA2000-v1130": {},
+                "otherParameters-r11": {
+                  "ue-Rx-TxTimeDiffMeasurements-r11": "supported"
+                },
+                "fdd-Add-UE-EUTRA-Capabilities-v1130": {
+                  "phyLayerParameters-v1130": {
+                    "crs-InterfHandl-r11": "supported",
+                    "multiACK-CSI-Reporting-r11": "supported",
+                    "ss-CCH-InterfHandl-r11": "supported"
+                  }
+                },
+                "tdd-Add-UE-EUTRA-Capabilities-v1130": {},
+                "nonCriticalExtension": {
+                  "ue-Category-v1170": 10,
+                  "nonCriticalExtension": {
+                    "rf-Parameters-v1180": {
+                      "freqBandRetrieval-r11": "supported",
+                      "requestedBands-r11": [
+                        1,
+                        20,
+                        28
+                      ]
+                    },
+                    "mbms-Parameters-r11": {
+                      "mbms-SCell-r11": "supported"
+                    },
+                    "nonCriticalExtension": {
+                      "ue-Category-v11a0": 12,
+                      "nonCriticalExtension": {
+                        "phyLayerParameters-v1250": {
+                          "discoverySignalsInDeactSCell-r12": "supported"
+                        },
+                        "rf-Parameters-v1250": {
+                          "supportedBandListEUTRA-v1250": [
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported",
+                              "ul-64QAM-r12": "supported"
+                            },
+                            {
+                              "dl-256QAM-r12": "supported"
+                            }
+                          ],
+                          "freqBandPriorityAdjustment-r12": "supported"
+                        },
+                        "ue-CategoryDL-r12": 12,
+                        "ue-CategoryUL-r12": 13,
+                        "measParameters-v1250": {
+                          "incMonEUTRA-r12": "supported",
+                          "extendedMaxMeasId-r12": "supported",
+                          "crs-DiscoverySignalsMeas-r12": "supported"
+                        },
+                        "nonCriticalExtension": {
+                          "ue-CategoryDL-v1260": 16,
+                          "nonCriticalExtension": {
+                            "nonCriticalExtension": {
+                              "phyLayerParameters-v1280": {
+                                "alternativeTBS-Indices-r12": "supported"
+                              },
+                              "nonCriticalExtension": {
+                                "pdcp-Parameters-v1310": {
+                                  "pdcp-SN-Extension-18bits-r13": "supported"
+                                },
+                                "rlc-Parameters-v1310": {
+                                  "extendedRLC-SN-SO-Field-r13": "supported"
+                                },
+                                "phyLayerParameters-v1310": {
+                                  "codebook-HARQ-ACK-r13": "01"
+                                },
+                                "rf-Parameters-v1310": {
+                                  "maximumCCsRetrieval-r13": "supported",
+                                  "skipFallbackCombinations-r13": "supported"
+                                },
+                                "measParameters-v1310": {
+                                  "extendedMaxObjectId-r13": "supported"
+                                },
+                                "interRAT-ParametersWLAN-r13": {},
+                                "wlan-IW-Parameters-v1310": {},
+                                "lwip-Parameters-r13": {},
+                                "nonCriticalExtension": {
+                                  "nonCriticalExtension": {
+                                    "ue-CategoryDL-v1330": 19,
+                                    "nonCriticalExtension": {
+                                      "nonCriticalExtension": {
+                                        "ce-Parameters-v1350": {},
+                                        "nonCriticalExtension": {
+                                          "nonCriticalExtension": {
+                                            "phyLayerParameters-v1430": {
+                                              "alternativeTBS-Index-r14": "supported"
+                                            },
+                                            "ue-CategoryUL-v1430": "n18",
+                                            "rlc-Parameters-v1430": {
+                                              "extendedPollByte-r14": "supported"
+                                            },
+                                            "rf-Parameters-v1430": {
+                                              "supportedBandCombination-v1430": [
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {},
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {}
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {}
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {},
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {}
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {},
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {}
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {},
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {},
+                                                    {}
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {},
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {}
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {},
+                                                    {},
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {},
+                                                    {}
+                                                  ]
+                                                },
+                                                {
+                                                  "bandParameterList-v1430": [
+                                                    {},
+                                                    {
+                                                      "ul-256QAM-r14": "supported"
+                                                    },
+                                                    {}
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            "otherParameters-v1430": {},
+                                            "ce-Parameters-v1430": {},
+                                            "nonCriticalExtension": {
+                                              "lwa-Parameters-v1440": {},
+                                              "mac-Parameters-v1440": {},
+                                              "nonCriticalExtension": {
+                                                "otherParameters-v1450": {},
+                                                "ue-CategoryDL-v1450": 20,
+                                                "nonCriticalExtension": {
+                                                  "otherParameters-v1460": {},
+                                                  "nonCriticalExtension": {
+                                                    "irat-ParametersNR-r15": {
+                                                      "en-DC-r15": "supported",
+                                                      "eventB2-r15": "supported",
+                                                      "supportedBandListEN-DC-r15": [
+                                                        {
+                                                          "bandNR-r15": 3
+                                                        },
+                                                        {
+                                                          "bandNR-r15": 28
+                                                        },
+                                                        {
+                                                          "bandNR-r15": 78
+                                                        }
+                                                      ]
+                                                    },
+                                                    "pdcp-ParametersNR-r15": {
+                                                      "rohc-Profiles-r15": {
+                                                        "profile0x0001-r15": false,
+                                                        "profile0x0002-r15": false,
+                                                        "profile0x0003-r15": false,
+                                                        "profile0x0004-r15": false,
+                                                        "profile0x0006-r15": false,
+                                                        "profile0x0101-r15": false,
+                                                        "profile0x0102-r15": false,
+                                                        "profile0x0103-r15": false,
+                                                        "profile0x0104-r15": false
+                                                      },
+                                                      "rohc-ProfilesUL-Only-r15": {
+                                                        "profile0x0006-r15": false
+                                                      },
+                                                      "sn-SizeLo-r15": "supported"
+                                                    },
+                                                    "nonCriticalExtension": {
+                                                      "measParameters-v1520": {},
+                                                      "nonCriticalExtension": {
+                                                        "neighCellSI-AcquisitionParameters-v1530": {
+                                                          "reportCGI-NR-NoEN-DC-r15": "supported"
+                                                        },
+                                                        "extendedNumberOfDRBs-r15": "supported",
+                                                        "nonCriticalExtension": {
+                                                          "otherParameters-v1540": {},
+                                                          "irat-ParametersNR-v1540": {
+                                                            "ims-VoiceOverNR-FR1-r15": "supported",
+                                                            "sa-NR-r15": "supported",
+                                                            "supportedBandListNR-SA-r15": [
+                                                              {
+                                                                "bandNR-r15": 3
+                                                              },
+                                                              {
+                                                                "bandNR-r15": 28
+                                                              },
+                                                              {
+                                                                "bandNR-r15": 78
+                                                              }
+                                                            ]
+                                                          },
+                                                          "nonCriticalExtension": {
+                                                            "neighCellSI-AcquisitionParameters-v1550": {
+                                                              "eutra-CGI-Reporting-ENDC-r15": "supported"
+                                                            },
+                                                            "phyLayerParameters-v1550": {},
+                                                            "mac-Parameters-v1550": {
+                                                              "eLCID-Support-r15": "supported"
+                                                            },
+                                                            "fdd-Add-UE-EUTRA-Capabilities-v1550": {},
+                                                            "tdd-Add-UE-EUTRA-Capabilities-v1550": {},
+                                                            "nonCriticalExtension": {
+                                                              "pdcp-ParametersNR-v1560": {},
+                                                              "irat-ParametersNR-v1560": {},
+                                                              "appliedCapabilityFilterCommon-r15": {
+                                                                "mrdc-Request": {
+                                                                  "omitEN-DC": "true"
+                                                                }
+                                                              },
+                                                              "fdd-Add-UE-EUTRA-Capabilities-v1560": {
+                                                                "pdcp-ParametersNR-v1560": {}
+                                                              },
+                                                              "tdd-Add-UE-EUTRA-Capabilities-v1560": {
+                                                                "pdcp-ParametersNR-v1560": {}
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

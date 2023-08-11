@@ -386,6 +386,20 @@
         }
     ],
     "logType": "W",
+    "ueCapFilters": [
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "NR",
+            "nrBands": [
+                {
+                    "band": 41
+                },
+                {
+                    "band": 71
+                }
+            ]
+        }
+    ],
     "parserVersion": "staging",
     "timestamp": 1683384284921,
     "metadata": {

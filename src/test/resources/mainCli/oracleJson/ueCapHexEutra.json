@@ -2277,6 +2277,36 @@
     "lteCategoryDl": 21,
     "lteCategoryUl": 16,
     "logType": "H",
+    "ueCapFilters": [
+        {
+            "type": "UeCapabilityFilterLte",
+            "rat": "EUTRA",
+            "lteBands": [
+                {
+                    "band": 3
+                },
+                {
+                    "band": 20
+                },
+                {
+                    "band": 7
+                },
+                {
+                    "band": 1
+                },
+                {
+                    "band": 38
+                },
+                {
+                    "band": 8
+                }
+            ],
+            "reducedFormat": true,
+            "skipFallbackCombRequested": true,
+            "maxCCsDl": 5,
+            "maxCCsUl": 2
+        }
+    ],
     "parserVersion": "staging",
     "timestamp": 1683384284532,
     "metadata": {
