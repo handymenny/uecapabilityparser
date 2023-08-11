@@ -1338,6 +1338,118 @@ internal class ImportCapabilityInformationTest {
     }
 
     @Test
+    fun ueCapEutraRequestDiffFallback() {
+        val capabilities =
+            ImportCapabilityInformation.parse(
+                getResourceAsStream(
+                        "/newEngine/input/json/ueCapEutraRequestDiffFallback.json",
+                    )!!
+                    .readBytes()
+            )
+
+        // LTE Category
+        assertEquals(18, capabilities.lteCategoryDL)
+        assertEquals(13, capabilities.lteCategoryUL)
+
+        Output.outputFileOrStdout(
+            Output.toCsv(capabilities),
+            "src/test/resources/newEngine/oracle/ueCapEutraRequestDiffFallback.csv"
+        )
+        // LTE Combos
+        val expectedCsv =
+            getResourceAsStream("/newEngine/oracle/ueCapEutraRequestDiffFallback.csv")!!
+                .bufferedReader()
+                .readLines()
+                .dropLastWhile { it.isBlank() }
+        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
+        assertLinesMatch(expectedCsv, actualCsv)
+
+        // LTE bands
+        val expectedLteBands =
+            listOf(
+                BandLteDetails(
+                    1,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = 3.toPowerClass()
+                ),
+                BandLteDetails(
+                    3,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = 3.toPowerClass()
+                ),
+                BandLteDetails(
+                    7,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = 3.toPowerClass()
+                ),
+                BandLteDetails(
+                    8,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = 3.toPowerClass()
+                ),
+                BandLteDetails(
+                    20,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = 3.toPowerClass()
+                ),
+                BandLteDetails(
+                    38,
+                    mimoDL = 4.toMimo(),
+                    mimoUL = 1.toMimo(),
+                    modDL = ModulationOrder.QAM256.toModulation(),
+                    modUL = ModulationOrder.QAM64.toModulation(),
+                    powerClass = 3.toPowerClass()
+                )
+            )
+        val actualLteBands = capabilities.lteBands
+        assertArrayEquals(expectedLteBands.toTypedArray(), actualLteBands.toTypedArray())
+
+        // NR NSA bands in eutra capability
+        val actualNrNsaBands = capabilities.nrNSAbands
+        assertArrayEquals(emptyArray(), actualNrNsaBands.toTypedArray())
+
+        // NR SA bands in eutra capability
+        val actualNrSaBands = capabilities.nrSAbands
+        assertArrayEquals(emptyArray(), actualNrSaBands.toTypedArray())
+
+        // Ue Cap filters
+        assertEquals(1, capabilities.ueCapFilters.size)
+        val actualLteFilters = capabilities.ueCapFilters[0]
+        val expectedLteFilters =
+            UeCapabilityFilterLte(
+                reducedFormat = true,
+                reducedIntNonContComb = true,
+                skipFallbackCombRequested = true,
+                maxCCsDl = 3,
+                maxCCsUl = 2,
+                lteBands =
+                    listOf(
+                        20.toBandFilterLte(),
+                        7.toBandFilterLte(),
+                        3.toBandFilterLte(),
+                        1.toBandFilterLte(),
+                        38.toBandFilterLte()
+                    )
+            )
+        assertEquals(expectedLteFilters, actualLteFilters)
+    }
+
+    @Test
     fun ueCapNrOneCC() {
         val capabilities =
             ImportCapabilityInformation.parse(
