@@ -75,7 +75,7 @@ tasks {
 
     shadowJar {
         // Omit jna-platform dependency (required by kmem but not used in this project)
-        dependencies { exclude(dependency("net.java.dev.jna:.*:.*")) }
+        dependencies { exclude(dependency("net.java.dev.jna-platform:.*:.*")) }
 
         // slf4j-nop silence slf4k warning and jna needed by mordant/clikt
         val keepDependencies = listOf("org.slf4j:slf4j-nop:.*", "net.java.dev.jna:jna:.*")
