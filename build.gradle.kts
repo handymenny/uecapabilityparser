@@ -74,11 +74,13 @@ tasks {
     }
 
     shadowJar {
-        // Omit jna dependencies (required by kmem)
-        dependencies { exclude(dependency("net.java.dev.jna:.*")) }
+        // Omit jna-platform dependency (required by kmem but not used in this project)
+        dependencies { exclude(dependency("net.java.dev.jna:jna-platform:.*")) }
 
+        // slf4j-nop silence slf4k warning and jna needed by mordant/clikt
+        val keepDependencies = listOf("org.slf4j:slf4j-nop:.*", "net.java.dev.jna:jna:.*")
         // Enable shadow minify
-        minimize { exclude(dependency("org.slf4j:slf4j-nop:.*")) }
+        minimize { keepDependencies.forEach { exclude(dependency(it)) } }
     }
 
     register("genTsTypes", JavaExec::class) {
