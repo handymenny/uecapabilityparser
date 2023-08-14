@@ -11,19 +11,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          submodules: true        
+          submodules: true
       - name: Setup jdk11
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
-          cache: 'gradle'
-      - name: Build & test
+      - name: Set Version
         run: |
           sed -i "s/\(project.version=\).*/\1${GITHUB_REF#refs/*/v}/g" src/main/resources/application.properties
-          ./gradlew --no-daemon genTsTypes
-          ./gradlew --no-daemon build
-          cp build/distributions/*.zip .
+      - name: Build & Test
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: genTsTypes build
+      - name: Save dist zip
+        run: cp build/distributions/*.zip .
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
