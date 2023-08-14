@@ -1,3 +1,4 @@
+import com.diffplug.spotless.LineEnding
 import java.util.*
 
 plugins {
@@ -127,4 +128,9 @@ distributions {
             }
         }
     }
+}
+
+spotless {
+    // Workaround: https://github.com/diffplug/spotless/issues/1644
+    lineEndings = LineEnding.UNIX
 }
