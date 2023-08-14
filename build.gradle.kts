@@ -1,3 +1,4 @@
+import com.diffplug.spotless.LineEnding
 import java.util.*
 
 plugins {
@@ -108,7 +109,10 @@ spotless {
 
 distributions {
     named("shadow") {
-        distributionBaseName.set(project.name)
+        val projectName = project.name
+        val projectVersion = project.version
+
+        distributionBaseName.set(projectName)
         contents {
             from("src/main/dist")
             from("src/main/resources/swagger/openapi.json")
@@ -119,9 +123,14 @@ distributions {
                 // Move all files to root and rename jar to uecapabilityparser.jar
                 this.path =
                     this.path
-                        .replace("${project.name}-${project.version}/", "")
-                        .replace(""".*\.jar""".toRegex(), "${project.name}.jar")
+                        .replace("${projectName}-${projectVersion}/", "")
+                        .replace(""".*\.jar""".toRegex(), "${projectName}.jar")
             }
         }
     }
+}
+
+spotless {
+    // Workaround: https://github.com/diffplug/spotless/issues/1644
+    lineEndings = LineEnding.UNIX
 }
