@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
+import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
 import it.smartphonecombo.uecapabilityparser.importer.ImportLteCarrierPolicy
@@ -13,6 +14,7 @@ import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.ImportCapabilitiesHelpers.convertUeCapabilityToJson
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers.parseMultiple0xB826
+import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers.parseMultiple0xBOCD
 import java.time.Instant
 import kotlin.system.measureTimeMillis
 import kotlinx.serialization.encodeToString
@@ -50,6 +52,7 @@ class Parsing(
                 "C" -> ImportLteCarrierPolicy
                 "CNR" -> ImportNrCapPrune
                 "Q" -> Import0xB0CD
+                "QLTE" -> Import0xB0CDBin
                 "M" -> ImportMTKLte
                 "QNR" -> Import0xB826
                 "W",
@@ -62,6 +65,10 @@ class Parsing(
 
         if (imports == Import0xB826) {
             return parseMultiple0xB826(input.decodeToString(), multiple0xB826)
+        }
+
+        if (imports == Import0xB0CDBin) {
+            return parseMultiple0xBOCD(input.decodeToString(), multiple0xB826)
         }
 
         if (imports == ImportCapabilityInformation) {

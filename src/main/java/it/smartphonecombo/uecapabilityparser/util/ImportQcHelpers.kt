@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
+import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.nio.ByteBuffer
@@ -32,7 +33,7 @@ object ImportQcHelpers {
         return if (res == -1) length else res
     }
 
-    private fun split0xB826hex(input: String): List<String> {
+    private fun splitHex(input: String): List<String> {
         val splitByPayload = input.split("Payload:")
         return if (splitByPayload.size > 1) {
             splitByPayload.drop(1).map {
@@ -44,18 +45,26 @@ object ImportQcHelpers {
     }
 
     fun parseMultiple0xB826(input: String, split: Boolean): Capabilities {
-        val inputArray = if (split) split0xB826hex(input) else listOf(input)
-        val list = mutableListWithCapacity<Capabilities>(inputArray.size)
+        return parseMultipleQcDiag(input, split, false)
+    }
 
+    fun parseMultiple0xBOCD(input: String, split: Boolean): Capabilities {
+        return parseMultipleQcDiag(input, split, true)
+    }
+
+    private fun parseMultipleQcDiag(input: String, split: Boolean, lte: Boolean): Capabilities {
+        val inputArray = if (split) splitHex(input) else listOf(input)
+        val list = mutableListWithCapacity<Capabilities>(inputArray.size)
+        val importer = if (lte) Import0xB0CDBin else Import0xB826
         for (it in inputArray) {
             try {
                 val inputStream = it.preformatHex().decodeHex()
-                list.add(Import0xB826.parse(inputStream))
+                list.add(importer.parse(inputStream))
             } catch (err: IllegalArgumentException) {
                 val errMessage = "Invalid hexdump"
                 val multiHelp =
                     if (!split) {
-                        "Use flag '--multiple0xB826' if you are parsing multiple 0xB826 hexdumps."
+                        "\nUse flag '--multi' if you are parsing multiple 0xB826 or 0xB0CD hexdumps."
                     } else {
                         ""
                     }
@@ -63,9 +72,10 @@ object ImportQcHelpers {
             }
         }
 
-        val enDcCombos = list.flatMap(Capabilities::enDcCombos)
-        val nrCombos = list.flatMap(Capabilities::nrCombos)
-        val nrDcCombos = list.flatMap(Capabilities::nrDcCombos)
+        val lteCombos = if (lte) list.flatMap(Capabilities::lteCombos) else emptyList()
+        val enDcCombos = if (!lte) list.flatMap(Capabilities::enDcCombos) else emptyList()
+        val nrCombos = if (!lte) list.flatMap(Capabilities::nrCombos) else emptyList()
+        val nrDcCombos = if (!lte) list.flatMap(Capabilities::nrDcCombos) else emptyList()
 
         val metadataList = list.map(Capabilities::metadata)
         val metadata =
@@ -82,6 +92,7 @@ object ImportQcHelpers {
             }
 
         return Capabilities(
+            lteCombos = lteCombos,
             enDcCombos = enDcCombos,
             nrCombos = nrCombos,
             nrDcCombos = nrDcCombos,

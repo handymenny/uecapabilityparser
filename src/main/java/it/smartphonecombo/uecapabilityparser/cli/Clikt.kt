@@ -74,7 +74,21 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
 
     private val type by
         option("-t", "--type", help = HelpMessage.TYPE)
-            .choice("H", "W", "N", "C", "CNR", "E", "Q", "QNR", "M", "O", "QC", ignoreCase = true)
+            .choice(
+                "H",
+                "W",
+                "N",
+                "C",
+                "CNR",
+                "E",
+                "Q",
+                "QLTE",
+                "QNR",
+                "M",
+                "O",
+                "QC",
+                ignoreCase = true
+            )
             .required()
 
     private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
