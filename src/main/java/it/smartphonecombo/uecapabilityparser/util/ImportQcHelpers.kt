@@ -3,10 +3,16 @@ package it.smartphonecombo.uecapabilityparser.util
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
+import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
+import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import java.nio.ByteBuffer
 
 object ImportQcHelpers {
+    private val debug
+        get() = Config.getOrDefault("debug", "false").toBoolean()
+
     private val regexEmptyLine = Regex("^\\s*$", RegexOption.MULTILINE)
 
     private fun String.emptyLineIndex(): Int {
@@ -81,5 +87,34 @@ object ImportQcHelpers {
             nrDcCombos = nrDcCombos,
             metadata = metadata
         )
+    }
+
+    /**
+     * Return the content size of a Qualcomm diag packet. Also set logItem in [capabilities] if
+     * available.
+     *
+     * It supports qualcomm diag packets with or without header.
+     *
+     * Note: it advances the [byteBuffer].
+     */
+    fun getQcDiagLogSize(byteBuffer: ByteBuffer, capabilities: Capabilities): Int {
+        // Try to read fileSize from the header
+        val fileSize = byteBuffer.readUnsignedShort()
+
+        // if fileSize = bufferSize 0xB826 has a header
+        if (fileSize != byteBuffer.limit()) {
+            // header missing, logSize is buffer size
+            byteBuffer.rewind()
+            return byteBuffer.limit()
+        }
+
+        val logItem = byteBuffer.readUnsignedShort().toString(16).uppercase()
+        capabilities.setMetadata("logItem", "0x$logItem")
+        if (debug) {
+            println("Log Item: 0x$logItem")
+        }
+        // Skip the rest of the header
+        byteBuffer.skipBytes(8)
+        return fileSize
     }
 }

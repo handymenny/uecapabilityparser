@@ -17,6 +17,7 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
+import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -61,7 +62,7 @@ object Import0xB826 : ImportCapabilities {
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
 
         try {
-            val logSize = getLogSize(byteBuffer, capabilities)
+            val logSize = ImportQcHelpers.getQcDiagLogSize(byteBuffer, capabilities)
             capabilities.setMetadata("logSize", logSize)
             if (debug) {
                 println("Log file size: $logSize bytes")
@@ -165,32 +166,6 @@ object Import0xB826 : ImportCapabilities {
             println("Index $index\n")
         }
         return byteBuffer.readUnsignedShort()
-    }
-
-    /**
-     * Return the content size of 0xB826. Also set logItem [capabilities] if available.
-     *
-     * It supports 0xB826 with or without header.
-     */
-    private fun getLogSize(byteBuffer: ByteBuffer, capabilities: Capabilities): Int {
-        // Try to read fileSize from the header
-        val fileSize = byteBuffer.readUnsignedShort()
-
-        // if fileSize = bufferSize 0xB826 has a header
-        if (fileSize != byteBuffer.limit()) {
-            // header missing, logSize is buffer size
-            byteBuffer.rewind()
-            return byteBuffer.limit()
-        }
-
-        val logItem = byteBuffer.readUnsignedShort().toString(16).uppercase()
-        capabilities.setMetadata("logItem", "0x$logItem")
-        if (debug) {
-            println("Log Item: 0x$logItem")
-        }
-        // Skip the rest of the header
-        byteBuffer.skipBytes(8)
-        return fileSize
     }
 
     /** Parses a combo */
