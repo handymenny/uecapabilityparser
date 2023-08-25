@@ -11,8 +11,8 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
-import it.smartphonecombo.uecapabilityparser.util.Import0xB826Helpers.parseMultiple0xB826
 import it.smartphonecombo.uecapabilityparser.util.ImportCapabilitiesHelpers.convertUeCapabilityToJson
+import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers.parseMultiple0xB826
 import java.time.Instant
 import kotlin.system.measureTimeMillis
 import kotlinx.serialization.encodeToString

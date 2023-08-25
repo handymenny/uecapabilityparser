@@ -6,7 +6,7 @@ import it.smartphonecombo.uecapabilityparser.extension.preformatHex
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 
-object Import0xB826Helpers {
+object ImportQcHelpers {
     private val regexEmptyLine = Regex("^\\s*$", RegexOption.MULTILINE)
 
     private fun String.emptyLineIndex(): Int {
