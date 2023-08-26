@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.extension.indexOfMin
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
@@ -18,7 +17,7 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
-import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
+import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -40,7 +39,6 @@ import korlibs.memory.isOdd
  * Some BW, mimo and modulation values are guessed, so they can be wrong or incomplete.
  */
 object Import0xB826 : ImportCapabilities {
-    private val cacheMimoIndex = WeakConcurrentHashMap<Int, Mimo>()
 
     /**
      * This parser take as [input] a [ByteArray] of a 0xB826 (binary)
@@ -64,7 +62,7 @@ object Import0xB826 : ImportCapabilities {
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
 
         try {
-            val logSize = getLogSize(byteBuffer, capabilities)
+            val logSize = ImportQcHelpers.getQcDiagLogSize(byteBuffer, capabilities)
             capabilities.setMetadata("logSize", logSize)
             if (debug) {
                 println("Log file size: $logSize bytes")
@@ -170,32 +168,6 @@ object Import0xB826 : ImportCapabilities {
         return byteBuffer.readUnsignedShort()
     }
 
-    /**
-     * Return the content size of 0xB826. Also set logItem [capabilities] if available.
-     *
-     * It supports 0xB826 with or without header.
-     */
-    private fun getLogSize(byteBuffer: ByteBuffer, capabilities: Capabilities): Int {
-        // Try to read fileSize from the header
-        val fileSize = byteBuffer.readUnsignedShort()
-
-        // if fileSize = bufferSize 0xB826 has a header
-        if (fileSize != byteBuffer.limit()) {
-            // header missing, logSize is buffer size
-            byteBuffer.rewind()
-            return byteBuffer.limit()
-        }
-
-        val logItem = byteBuffer.readUnsignedShort().toString(16).uppercase()
-        capabilities.setMetadata("logItem", "0x$logItem")
-        if (debug) {
-            println("Log Item: 0x$logItem")
-        }
-        // Skip the rest of the header
-        byteBuffer.skipBytes(8)
-        return fileSize
-    }
-
     /** Parses a combo */
     private fun parseCombo(
         byteBuffer: ByteBuffer,
@@ -296,11 +268,11 @@ object Import0xB826 : ImportCapabilities {
             }
 
         component.classDL = bwClass
-        component.mimoDL = getMimoFromIndex(byteBuffer.readUnsignedByte())
+        component.mimoDL = Mimo.fromQcIndex(byteBuffer.readUnsignedByte())
         val ulClass = byteBuffer.readUnsignedByte().extract8(1)
         component.classUL = BwClass.valueOf(ulClass)
         val mimoUL = byteBuffer.readUnsignedByte()
-        component.mimoUL = getMimoFromIndex(mimoUL)
+        component.mimoUL = Mimo.fromQcIndex(mimoUL)
         val modUL = byteBuffer.readUnsignedByte()
         if (component.classUL != BwClass.NONE) {
             component.modUL = getQamFromIndex(modUL).toModulation()
@@ -352,11 +324,11 @@ object Import0xB826 : ImportCapabilities {
         val mimoLeft = byte.extract6(0)
         val mimoRight = short.extract1(15)
         val mimo = mimoRight.finsert(mimoLeft, 1)
-        component.mimoDL = getMimoFromIndex(mimo)
+        component.mimoDL = Mimo.fromQcIndex(mimo)
 
         val byte2 = byteBuffer.readUnsignedByte()
         val mimoUL = byte2.extract7(3)
-        component.mimoUL = getMimoFromIndex(mimoUL)
+        component.mimoUL = Mimo.fromQcIndex(mimoUL)
 
         val classUlLeft = byte2.extract3(0)
         val classUlRight = byte.extract2(6)
@@ -385,49 +357,6 @@ object Import0xB826 : ImportCapabilities {
             byteBuffer.skipBytes(3)
         }
         return component
-    }
-
-    /**
-     * Return mimo from index.
-     *
-     * The sequence generator is guessed, so it can be wrong or incomplete.
-     */
-    private fun getMimoFromIndex(index: Int): Mimo {
-        val cachedResult = cacheMimoIndex[index]
-        if (cachedResult != null) {
-            return cachedResult
-        }
-
-        /*
-            Some examples:
-            0 -> 0
-            1 -> 1
-            2 -> 2
-            3 -> 4
-            4 -> 1_1
-            5 -> 2_1
-            6 -> 2_2
-            7 -> 4_2
-            8 -> 4_4
-            9 -> 1_1_1
-            10 -> 2_1_1
-            ...
-            72 -> 2_2_2_2_2_2_2_2
-        */
-        var result = intArrayOf(0)
-        for (i in 1..index) {
-            val indexOfMin = result.indexOfMin()
-            when (result[indexOfMin]) {
-                4 -> result = IntArray(result.size + 1) { 1 }
-                2 -> result[indexOfMin] += 2
-                else -> result[indexOfMin] += 1
-            }
-        }
-
-        val resultMimo = Mimo.from(result.toList())
-        cacheMimoIndex[index] = resultMimo
-
-        return resultMimo
     }
 
     /**

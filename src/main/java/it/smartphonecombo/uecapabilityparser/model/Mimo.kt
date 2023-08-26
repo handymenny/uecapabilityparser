@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.extension.indexOfMin
 import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -15,6 +16,7 @@ sealed interface Mimo : Comparable<Mimo> {
     companion object {
         private val cacheInt = WeakConcurrentHashMap<Int, Mimo>()
         private val cacheIntArray = WeakConcurrentHashMap<List<Int>, Mimo>()
+        private val cacheQcIndex = WeakConcurrentHashMap<Int, Mimo>()
 
         fun from(int: Int): Mimo {
             val cachedResult = cacheInt[int]
@@ -52,6 +54,49 @@ sealed interface Mimo : Comparable<Mimo> {
 
             cacheIntArray[list] = result
             return result
+        }
+
+        /**
+         * Return mimo from Qualcomm diag index.
+         *
+         * The sequence generator is guessed, so it can be wrong or incomplete.
+         */
+        fun fromQcIndex(index: Int): Mimo {
+            val cachedResult = cacheQcIndex[index]
+            if (cachedResult != null) {
+                return cachedResult
+            }
+
+            /*
+                Some examples:
+                0 -> 0
+                1 -> 1
+                2 -> 2
+                3 -> 4
+                4 -> 1_1
+                5 -> 2_1
+                6 -> 2_2
+                7 -> 4_2
+                8 -> 4_4
+                9 -> 1_1_1
+                10 -> 2_1_1
+                ...
+                72 -> 2_2_2_2_2_2_2_2
+            */
+            var result = intArrayOf(0)
+            for (i in 1..index) {
+                val indexOfMin = result.indexOfMin()
+                when (result[indexOfMin]) {
+                    4 -> result = IntArray(result.size + 1) { 1 }
+                    2 -> result[indexOfMin] += 2
+                    else -> result[indexOfMin] += 1
+                }
+            }
+
+            val resultMimo = from(result.toList())
+            cacheQcIndex[index] = resultMimo
+
+            return resultMimo
         }
     }
 }

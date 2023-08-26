@@ -5,7 +5,6 @@ import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
 import java.util.*
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
@@ -41,6 +40,19 @@ internal class ServerModeParseTest {
                     put("input", fileToBase64("$path/input/0xB0CD.txt"))
                 },
             oraclePath = "$path/oracleJson/0xB0CD.json"
+        )
+    }
+
+    @Test
+    fun b0CDMultiHexJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "QLTE")
+                    put("multiple0xB826", true)
+                    put("input", fileToBase64("$path/input/0xB0CDMultiHex.txt"))
+                },
+            oraclePath = "$path/oracleJson/0xB0CDMultiHex.json"
         )
     }
 

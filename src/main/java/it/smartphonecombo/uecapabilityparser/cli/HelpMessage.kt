@@ -6,12 +6,12 @@ object HelpMessage {
     const val INPUT_ENDC = "ENDC UE Capability file"
     const val DEFAULT_NR = "Main capability input is NR (otherwise LTE)"
     const val MULTIPLE_0XB826 =
-        """Use this option if input contains several 0xB826 hexdumps separated by blank lines and optionally prefixed with "Payload :""""
+        """Use this option if input contains several 0xB0CD or 0xB826 hexdumps separated by blank lines and optionally prefixed with "Payload :""""
     const val TYPE =
         """Type of capability. Valid values are: H (UE Capability Hex Dump), 
             W (Wireshark UE Capability Information), N (NSG UE Capability Information), 
             C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem binary, decompressed), 
-            Q (QCAT 0xB0CD), QNR (0xB826 hexdump), M (MEDIATEK CA_COMB_INFO), 
+            Q (QCAT 0xB0CD), QLTE (0xB0CD hexdump), QNR (0xB826 hexdump), M (MEDIATEK CA_COMB_INFO), 
             O (OSIX UE Capability Information), QC (QCAT UE Capability Information)"""
     const val CSV =
         """Output a csv, if "-" is the csv will be output to standard output.
