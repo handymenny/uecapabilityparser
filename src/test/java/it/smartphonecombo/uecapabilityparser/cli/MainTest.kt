@@ -41,6 +41,23 @@ internal class MainTest {
     }
 
     @Test
+    fun main0xB0CDMultiHex() {
+        mainTest(
+            arrayOf(
+                "-i",
+                "$path/input/0xB0CDMultiHex.txt",
+                "-t",
+                "QLTE",
+                "--multi",
+                "--debug",
+                "-c",
+                "-"
+            ),
+            "0xB0CDMultiHex.txt"
+        )
+    }
+
+    @Test
     fun mainMtkLte() {
         mainTest(arrayOf("-i", "$path/input/mtkLte.txt", "-t", "M", "-c", "-"), "mtkLte.txt")
     }

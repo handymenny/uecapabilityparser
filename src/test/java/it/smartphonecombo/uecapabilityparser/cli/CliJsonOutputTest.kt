@@ -47,6 +47,23 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun b0CDMultiHexJsonOutput() {
+        cliTest(
+            arrayOf(
+                "-i",
+                "$path/input/0xB0CDMultiHex.txt",
+                "-t",
+                "QLTE",
+                "--multi",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
+            "0xB0CDMultiHex.json"
+        )
+    }
+
+    @Test
     fun mtkLteJsonOutput() {
         cliTest(
             arrayOf("-i", "$path/input/mtkLte.txt", "-t", "M", "-j", "-", "--json-pretty-print"),
