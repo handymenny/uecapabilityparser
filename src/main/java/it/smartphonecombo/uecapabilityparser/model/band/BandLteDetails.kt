@@ -17,16 +17,4 @@ data class BandLteDetails(
     @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
     @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation,
     @SerialName("powerClass") override var powerClass: PowerClass = PowerClass.NONE,
-) : IBandDetails, Comparable<BandLteDetails> {
-
-    override fun compareTo(other: BandLteDetails): Int {
-        val bandCmp = band.compareTo(other.band)
-
-        if (bandCmp != 0) {
-            return bandCmp
-        }
-
-        // Return 0 only if they're equal
-        return if (this == other) 0 else -1
-    }
-}
+) : IBandDetails
