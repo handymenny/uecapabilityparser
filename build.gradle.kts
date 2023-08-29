@@ -31,7 +31,7 @@ dependencies {
     val kmemVersion = "4.0.10"
     val javalinVersion = "5.6.2"
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
