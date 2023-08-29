@@ -21,18 +21,7 @@ data class BandNrDetails(
     @SerialName("powerClass") override var powerClass: PowerClass = PowerClass.NONE,
     @SerialName("bandwidths") var bandwidths: List<BwsNr> = emptyList(),
     @SerialName("rateMatchingLteCrs") var rateMatchingLteCrs: Boolean = false
-) : IBandDetails, Comparable<BandNrDetails> {
-
-    override fun compareTo(other: BandNrDetails): Int {
-        val bandCmp = band.compareTo(other.band)
-
-        if (bandCmp != 0) {
-            return bandCmp
-        }
-
-        // Return 0 only if they're equal
-        return if (this == other) 0 else -1
-    }
+) : IBandDetails {
 
     fun bwsToString(): String {
         val dlString =

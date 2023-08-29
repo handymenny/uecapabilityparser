@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model.filter
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
+import it.smartphonecombo.uecapabilityparser.model.band.IBandBoxed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,4 +12,4 @@ data class BandFilterNr(
     @SerialName("maxBwUl") var maxBwUl: Int = 0,
     @SerialName("maxCCsDl") var maxCCsDl: Int = 0,
     @SerialName("maxCCsUl") var maxCCsUl: Int = 0,
-) : IBandFilter
+) : IBandBoxed

@@ -25,6 +25,7 @@ import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
+import it.smartphonecombo.uecapabilityparser.model.band.BandBoxed
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.band.DuplexBandTable
@@ -656,10 +657,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         return lteBands
     }
 
-    private fun getNrBands(
-        eutraCapability: UEEutraCapabilityJson,
-        endc: Boolean
-    ): List<BandNrDetails> {
+    private fun getNrBands(eutraCapability: UEEutraCapabilityJson, endc: Boolean): List<BandBoxed> {
 
         val supportedBandListNR =
             if (endc) {
@@ -673,7 +671,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
 
         return supportedBandListNR?.mapNotNull {
-            it.getInt("bandNR-r15")?.let { band -> BandNrDetails(band) }
+            it.getInt("bandNR-r15")?.let { band -> BandBoxed(band) }
         }
             ?: emptyList()
     }
@@ -1635,7 +1633,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             )
                 ?: emptyList()
         val requestedBandsList =
-            requestedBands.mapNotNull { band -> band.asIntOrNull()?.let { BandFilterLte(it) } }
+            requestedBands.mapNotNull { band -> band.asIntOrNull()?.let { BandBoxed(it) } }
         ueCapFilter.lteBands = requestedBandsList
 
         val enbRequestR13 =

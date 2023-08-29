@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.model.band.BandBoxed
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
@@ -20,8 +21,8 @@ import kotlinx.serialization.Serializable
 data class Capabilities(
     @SerialName("lteca") var lteCombos: List<ComboLte> = emptyList(),
     @SerialName("lteBands") var lteBands: List<BandLteDetails> = emptyList(),
-    @SerialName("nrNsaBandsEutra") var nrNSAbands: List<BandNrDetails> = emptyList(),
-    @SerialName("nrSaBandsEutra") var nrSAbands: List<BandNrDetails> = emptyList(),
+    @SerialName("nrNsaBandsEutra") var nrNSAbands: List<BandBoxed> = emptyList(),
+    @SerialName("nrSaBandsEutra") var nrSAbands: List<BandBoxed> = emptyList(),
     @SerialName("nrBands") var nrBands: List<BandNrDetails> = emptyList(),
     @SerialName("lteCategoryDl") var lteCategoryDL: Int = 0,
     @SerialName("lteCategoryUl") var lteCategoryUL: Int = 0,
