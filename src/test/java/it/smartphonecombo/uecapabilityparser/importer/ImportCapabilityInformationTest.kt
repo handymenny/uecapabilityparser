@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.getResourceAsStream
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBandBoxed
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBandFilterLte
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBandFilterNr
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.toBwClass
@@ -194,19 +195,19 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(3),
-                BandNrDetails(5),
-                BandNrDetails(7),
-                BandNrDetails(8),
-                BandNrDetails(20),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(40),
-                BandNrDetails(41),
-                BandNrDetails(66),
-                BandNrDetails(77),
-                BandNrDetails(78),
+                1.toBandBoxed(),
+                3.toBandBoxed(),
+                5.toBandBoxed(),
+                7.toBandBoxed(),
+                8.toBandBoxed(),
+                20.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                40.toBandBoxed(),
+                41.toBandBoxed(),
+                66.toBandBoxed(),
+                77.toBandBoxed(),
+                78.toBandBoxed(),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -221,15 +222,15 @@ internal class ImportCapabilityInformationTest {
             UeCapabilityFilterLte(
                 lteBands =
                     listOf(
-                        1.toBandFilterLte(),
-                        3.toBandFilterLte(),
-                        7.toBandFilterLte(),
-                        8.toBandFilterLte(),
-                        20.toBandFilterLte(),
-                        28.toBandFilterLte(),
-                        32.toBandFilterLte(),
-                        38.toBandFilterLte(),
-                        40.toBandFilterLte()
+                        1.toBandBoxed(),
+                        3.toBandBoxed(),
+                        7.toBandBoxed(),
+                        8.toBandBoxed(),
+                        20.toBandBoxed(),
+                        28.toBandBoxed(),
+                        32.toBandBoxed(),
+                        38.toBandBoxed(),
+                        40.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)
@@ -353,7 +354,7 @@ internal class ImportCapabilityInformationTest {
 
         // NR NSA bans in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
-        val expectedNrNsaBands = listOf(BandNrDetails(260), BandNrDetails(261))
+        val expectedNrNsaBands = listOf(260.toBandBoxed(), 261.toBandBoxed())
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bans in eutra capability
@@ -368,11 +369,11 @@ internal class ImportCapabilityInformationTest {
                 reducedFormat = true,
                 lteBands =
                     listOf(
-                        66.toBandFilterLte(),
-                        4.toBandFilterLte(),
-                        2.toBandFilterLte(),
-                        13.toBandFilterLte(),
-                        5.toBandFilterLte()
+                        66.toBandBoxed(),
+                        4.toBandBoxed(),
+                        2.toBandBoxed(),
+                        13.toBandBoxed(),
+                        5.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)
@@ -473,11 +474,11 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(3),
-                BandNrDetails(7),
-                BandNrDetails(28),
-                BandNrDetails(78)
+                1.toBandBoxed(),
+                3.toBandBoxed(),
+                7.toBandBoxed(),
+                28.toBandBoxed(),
+                78.toBandBoxed()
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -492,13 +493,13 @@ internal class ImportCapabilityInformationTest {
             UeCapabilityFilterLte(
                 lteBands =
                     listOf(
-                        20.toBandFilterLte(),
-                        38.toBandFilterLte(),
-                        41.toBandFilterLte(),
-                        1.toBandFilterLte(),
-                        7.toBandFilterLte(),
-                        3.toBandFilterLte(),
-                        8.toBandFilterLte()
+                        20.toBandBoxed(),
+                        38.toBandBoxed(),
+                        41.toBandBoxed(),
+                        1.toBandBoxed(),
+                        7.toBandBoxed(),
+                        3.toBandBoxed(),
+                        8.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)
@@ -776,24 +777,24 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(2),
-                BandNrDetails(3),
-                BandNrDetails(5),
-                BandNrDetails(7),
-                BandNrDetails(8),
-                BandNrDetails(12),
-                BandNrDetails(20),
-                BandNrDetails(25),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(40),
-                BandNrDetails(41),
-                BandNrDetails(66),
-                BandNrDetails(71),
-                BandNrDetails(77),
-                BandNrDetails(78),
-                BandNrDetails(79),
+                1.toBandBoxed(),
+                2.toBandBoxed(),
+                3.toBandBoxed(),
+                5.toBandBoxed(),
+                7.toBandBoxed(),
+                8.toBandBoxed(),
+                12.toBandBoxed(),
+                20.toBandBoxed(),
+                25.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                40.toBandBoxed(),
+                41.toBandBoxed(),
+                66.toBandBoxed(),
+                71.toBandBoxed(),
+                77.toBandBoxed(),
+                78.toBandBoxed(),
+                79.toBandBoxed(),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -812,12 +813,12 @@ internal class ImportCapabilityInformationTest {
                 maxCCsUl = 2,
                 lteBands =
                     listOf(
-                        3.toBandFilterLte(),
-                        20.toBandFilterLte(),
-                        1.toBandFilterLte(),
-                        8.toBandFilterLte(),
-                        7.toBandFilterLte(),
-                        38.toBandFilterLte()
+                        3.toBandBoxed(),
+                        20.toBandBoxed(),
+                        1.toBandBoxed(),
+                        8.toBandBoxed(),
+                        7.toBandBoxed(),
+                        38.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)
@@ -1048,12 +1049,12 @@ internal class ImportCapabilityInformationTest {
             UeCapabilityFilterLte(
                 lteBands =
                     listOf(
-                        28.toBandFilterLte(),
-                        3.toBandFilterLte(),
-                        20.toBandFilterLte(),
-                        8.toBandFilterLte(),
-                        1.toBandFilterLte(),
-                        7.toBandFilterLte()
+                        28.toBandBoxed(),
+                        3.toBandBoxed(),
+                        20.toBandBoxed(),
+                        8.toBandBoxed(),
+                        1.toBandBoxed(),
+                        7.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)
@@ -1188,15 +1189,15 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(3),
-                BandNrDetails(7),
-                BandNrDetails(8),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(40),
-                BandNrDetails(41),
-                BandNrDetails(78)
+                1.toBandBoxed(),
+                3.toBandBoxed(),
+                7.toBandBoxed(),
+                8.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                40.toBandBoxed(),
+                41.toBandBoxed(),
+                78.toBandBoxed()
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -1204,17 +1205,17 @@ internal class ImportCapabilityInformationTest {
         val actualNrSaBands = capabilities.nrSAbands
         val expectedNrSaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(3),
-                BandNrDetails(5),
-                BandNrDetails(7),
-                BandNrDetails(8),
-                BandNrDetails(20),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(40),
-                BandNrDetails(41),
-                BandNrDetails(78)
+                1.toBandBoxed(),
+                3.toBandBoxed(),
+                5.toBandBoxed(),
+                7.toBandBoxed(),
+                8.toBandBoxed(),
+                20.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                40.toBandBoxed(),
+                41.toBandBoxed(),
+                78.toBandBoxed()
             )
         assertArrayEquals(expectedNrSaBands.toTypedArray(), actualNrSaBands.toTypedArray())
 
@@ -1320,12 +1321,12 @@ internal class ImportCapabilityInformationTest {
 
         // NR NSA bands in eutra capability
         val actualNrNsaBands = capabilities.nrNSAbands
-        val expectedNrNsaBands = listOf(BandNrDetails(3), BandNrDetails(28), BandNrDetails(78))
+        val expectedNrNsaBands = listOf(3.toBandBoxed(), 28.toBandBoxed(), 78.toBandBoxed())
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
         // NR SA bands in eutra capability
         val actualNrSaBands = capabilities.nrSAbands
-        val expectedNrSaBands = listOf(BandNrDetails(3), BandNrDetails(28), BandNrDetails(78))
+        val expectedNrSaBands = listOf(3.toBandBoxed(), 28.toBandBoxed(), 78.toBandBoxed())
         assertArrayEquals(expectedNrSaBands.toTypedArray(), actualNrSaBands.toTypedArray())
 
         // Ue Cap filters
@@ -1334,7 +1335,7 @@ internal class ImportCapabilityInformationTest {
         val expectedLteFilters =
             UeCapabilityFilterLte(
                 omitEnDc = true,
-                lteBands = listOf(1.toBandFilterLte(), 20.toBandFilterLte(), 28.toBandFilterLte())
+                lteBands = listOf(1.toBandBoxed(), 20.toBandBoxed(), 28.toBandBoxed())
             )
         assertEquals(expectedLteFilters, actualLteFilters)
     }
@@ -1441,11 +1442,11 @@ internal class ImportCapabilityInformationTest {
                 maxCCsUl = 2,
                 lteBands =
                     listOf(
-                        20.toBandFilterLte(),
-                        7.toBandFilterLte(),
-                        3.toBandFilterLte(),
-                        1.toBandFilterLte(),
-                        38.toBandFilterLte()
+                        20.toBandBoxed(),
+                        7.toBandBoxed(),
+                        3.toBandBoxed(),
+                        1.toBandBoxed(),
+                        38.toBandBoxed()
                     ),
                 diffFallbackCombList =
                     listOf(
@@ -2092,17 +2093,17 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(3),
-                BandNrDetails(5),
-                BandNrDetails(7),
-                BandNrDetails(8),
-                BandNrDetails(20),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(41),
-                BandNrDetails(77),
-                BandNrDetails(78),
+                1.toBandBoxed(),
+                3.toBandBoxed(),
+                5.toBandBoxed(),
+                7.toBandBoxed(),
+                8.toBandBoxed(),
+                20.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                41.toBandBoxed(),
+                77.toBandBoxed(),
+                78.toBandBoxed(),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -2269,12 +2270,7 @@ internal class ImportCapabilityInformationTest {
         val expectedLteFilters =
             UeCapabilityFilterLte(
                 lteBands =
-                    listOf(
-                        3.toBandFilterLte(),
-                        20.toBandFilterLte(),
-                        7.toBandFilterLte(),
-                        1.toBandFilterLte()
-                    )
+                    listOf(3.toBandBoxed(), 20.toBandBoxed(), 7.toBandBoxed(), 1.toBandBoxed())
             )
         assertEquals(expectedLteFilters, actualLteFilters)
 
@@ -2425,10 +2421,10 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(77),
-                BandNrDetails(78),
-                BandNrDetails(79),
-                BandNrDetails(257),
+                77.toBandBoxed(),
+                78.toBandBoxed(),
+                79.toBandBoxed(),
+                257.toBandBoxed(),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -2493,15 +2489,15 @@ internal class ImportCapabilityInformationTest {
             UeCapabilityFilterLte(
                 lteBands =
                     listOf(
-                        1.toBandFilterLte(),
-                        3.toBandFilterLte(),
-                        7.toBandFilterLte(),
-                        8.toBandFilterLte(),
-                        20.toBandFilterLte(),
-                        28.toBandFilterLte(),
-                        38.toBandFilterLte(),
-                        40.toBandFilterLte(),
-                        46.toBandFilterLte()
+                        1.toBandBoxed(),
+                        3.toBandBoxed(),
+                        7.toBandBoxed(),
+                        8.toBandBoxed(),
+                        20.toBandBoxed(),
+                        28.toBandBoxed(),
+                        38.toBandBoxed(),
+                        40.toBandBoxed(),
+                        46.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)
@@ -2690,19 +2686,19 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(3),
-                BandNrDetails(5),
-                BandNrDetails(7),
-                BandNrDetails(8),
-                BandNrDetails(20),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(40),
-                BandNrDetails(41),
-                BandNrDetails(75),
-                BandNrDetails(77),
-                BandNrDetails(78),
+                1.toBandBoxed(),
+                3.toBandBoxed(),
+                5.toBandBoxed(),
+                7.toBandBoxed(),
+                8.toBandBoxed(),
+                20.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                40.toBandBoxed(),
+                41.toBandBoxed(),
+                75.toBandBoxed(),
+                77.toBandBoxed(),
+                78.toBandBoxed(),
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -2888,12 +2884,12 @@ internal class ImportCapabilityInformationTest {
             UeCapabilityFilterLte(
                 lteBands =
                     listOf(
-                        20.toBandFilterLte(),
-                        3.toBandFilterLte(),
-                        1.toBandFilterLte(),
-                        28.toBandFilterLte(),
-                        38.toBandFilterLte(),
-                        7.toBandFilterLte()
+                        20.toBandBoxed(),
+                        3.toBandBoxed(),
+                        1.toBandBoxed(),
+                        28.toBandBoxed(),
+                        38.toBandBoxed(),
+                        7.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)
@@ -3087,19 +3083,19 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(3),
-                BandNrDetails(5),
-                BandNrDetails(7),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(40),
-                BandNrDetails(41),
-                BandNrDetails(77),
-                BandNrDetails(78),
-                BandNrDetails(79),
-                BandNrDetails(80),
-                BandNrDetails(84)
+                1.toBandBoxed(),
+                3.toBandBoxed(),
+                5.toBandBoxed(),
+                7.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                40.toBandBoxed(),
+                41.toBandBoxed(),
+                77.toBandBoxed(),
+                78.toBandBoxed(),
+                79.toBandBoxed(),
+                80.toBandBoxed(),
+                84.toBandBoxed()
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -3440,23 +3436,23 @@ internal class ImportCapabilityInformationTest {
         val actualNrNsaBands = capabilities.nrNSAbands
         val expectedNrNsaBands =
             listOf(
-                BandNrDetails(1),
-                BandNrDetails(2),
-                BandNrDetails(3),
-                BandNrDetails(5),
-                BandNrDetails(7),
-                BandNrDetails(8),
-                BandNrDetails(12),
-                BandNrDetails(20),
-                BandNrDetails(25),
-                BandNrDetails(28),
-                BandNrDetails(38),
-                BandNrDetails(40),
-                BandNrDetails(41),
-                BandNrDetails(66),
-                BandNrDetails(75),
-                BandNrDetails(77),
-                BandNrDetails(78)
+                1.toBandBoxed(),
+                2.toBandBoxed(),
+                3.toBandBoxed(),
+                5.toBandBoxed(),
+                7.toBandBoxed(),
+                8.toBandBoxed(),
+                12.toBandBoxed(),
+                20.toBandBoxed(),
+                25.toBandBoxed(),
+                28.toBandBoxed(),
+                38.toBandBoxed(),
+                40.toBandBoxed(),
+                41.toBandBoxed(),
+                66.toBandBoxed(),
+                75.toBandBoxed(),
+                77.toBandBoxed(),
+                78.toBandBoxed()
             )
         assertArrayEquals(expectedNrNsaBands.toTypedArray(), actualNrNsaBands.toTypedArray())
 
@@ -3613,11 +3609,11 @@ internal class ImportCapabilityInformationTest {
             UeCapabilityFilterLte(
                 lteBands =
                     listOf(
-                        1.toBandFilterLte(),
-                        3.toBandFilterLte(),
-                        7.toBandFilterLte(),
-                        20.toBandFilterLte(),
-                        38.toBandFilterLte()
+                        1.toBandBoxed(),
+                        3.toBandBoxed(),
+                        7.toBandBoxed(),
+                        20.toBandBoxed(),
+                        38.toBandBoxed()
                     )
             )
         assertEquals(expectedLteFilters, actualLteFilters)

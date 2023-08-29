@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model.filter
 
 import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.model.band.BandBoxed
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
@@ -10,7 +11,7 @@ import kotlinx.serialization.Serializable
 @SerialName("UeCapabilityFilterLte")
 data class UeCapabilityFilterLte(
     @Required @SerialName("rat") override var rat: Rat = Rat.EUTRA,
-    @SerialName("lteBands") override var lteBands: List<BandFilterLte> = emptyList(),
+    @SerialName("lteBands") override var lteBands: List<BandBoxed> = emptyList(),
     @SerialName("reducedFormat") var reducedFormat: Boolean = false,
     @SerialName("reducedIntNonContComb") var reducedIntNonContComb: Boolean = false,
     @SerialName("skipFallbackCombRequested") var skipFallbackCombRequested: Boolean = false,

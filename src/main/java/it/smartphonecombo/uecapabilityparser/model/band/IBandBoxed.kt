@@ -19,3 +19,16 @@ interface IBandBoxed : Comparable<IBandBoxed> {
     }
 }
 
+@Serializable
+/**
+ * This is a class introduced to avoid breaking (serialization) compatibility when changing
+ * [nrNSAbands][it.smartphonecombo.uecapabilityparser.model.Capabilities.nrNSAbands],
+ * [nrSAbands][it.smartphonecombo.uecapabilityparser.model.Capabilities.nrSAbands] and
+ * [lteBands][it.smartphonecombo.uecapabilityparser.model.filter.UeCapabilityFilterLte.lteBands]
+ * type.
+ *
+ * It only contains the attribute [band].
+ */
+data class BandBoxed(
+    @SerialName("band") override var band: Band,
+) : IBandBoxed

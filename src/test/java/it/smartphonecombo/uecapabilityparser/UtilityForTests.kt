@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
+import it.smartphonecombo.uecapabilityparser.model.band.BandBoxed
 import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterLte
 import it.smartphonecombo.uecapabilityparser.model.filter.BandFilterNr
 import java.io.InputStream
@@ -24,6 +25,10 @@ object UtilityForTests {
             7 -> PowerClass.PC7
             else -> PowerClass.NONE
         }
+    }
+
+    internal fun Band.toBandBoxed(): BandBoxed {
+        return BandBoxed(this)
     }
 
     internal fun Band.toBandFilterLte(): BandFilterLte {

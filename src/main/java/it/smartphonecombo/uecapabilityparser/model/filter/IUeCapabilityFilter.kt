@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface IUeCapabilityFilter {
     var rat: Rat
+    // BandBoxed for LTE Capabilities BandFilterLte for NR Capabilities
     val lteBands: List<IBandBoxed>
     var includeNrDc: Boolean
     var includeNeDc: Boolean
