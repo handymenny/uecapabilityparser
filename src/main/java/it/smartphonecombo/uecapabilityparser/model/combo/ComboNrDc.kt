@@ -7,20 +7,30 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 @Serializable
 data class ComboNrDc(
     @SerialName("componentsFr1") override val masterComponents: List<ComponentNr>,
     @SerialName("componentsFr2") override val secondaryComponents: List<ComponentNr>,
-    @Transient override val featureSet: Int = 0,
     override val bcs: BCS = EmptyBCS
 ) : ICombo {
+    override var featureSet: Int = 0
+        private set
+
     val componentsNr: List<ComponentNr>
         get() = masterComponents
 
     val componentsNrDc: List<ComponentNr>
         get() = secondaryComponents
+
+    constructor(
+        masterComponents: List<ComponentNr>,
+        secondaryComponents: List<ComponentNr>,
+        featureSet: Int,
+        bcs: BCS
+    ) : this(masterComponents, secondaryComponents, bcs) {
+        this.featureSet = featureSet
+    }
 
     override fun toCompactStr(): String {
         val nr =

@@ -7,14 +7,22 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 @Serializable
 data class ComboNr(
     @SerialName("components") override val masterComponents: List<ComponentNr>,
-    @Transient override val featureSet: Int = 0,
     override val bcs: BCS = EmptyBCS
 ) : ICombo {
+    override var featureSet: Int = 0
+        private set
+
+    constructor(
+        masterComponents: List<ComponentNr>,
+        featureSet: Int,
+        bcs: BCS
+    ) : this(masterComponents, bcs) {
+        this.featureSet = featureSet
+    }
 
     override val secondaryComponents
         get() = emptyList<IComponent>()
@@ -60,5 +68,11 @@ data class ComboNr(
         )
 
         return "$compact$nrBandBwScs$nrUlBwMod$nrMimoDl$nrMimoUl$bcs"
+    }
+
+    fun copy(featureSet: Int): ComboNr {
+        val copy = copy()
+        copy.featureSet = featureSet
+        return copy
     }
 }
