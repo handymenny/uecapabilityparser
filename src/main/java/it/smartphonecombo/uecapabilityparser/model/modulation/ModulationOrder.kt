@@ -4,7 +4,6 @@ import kotlinx.serialization.SerialName
 
 enum class ModulationOrder {
     @SerialName("none") NONE,
-    @SerialName("qpsk") QPSK,
     @SerialName("qam16") QAM16,
     @SerialName("qam64") QAM64,
     @SerialName("qam256") QAM256,
@@ -16,7 +15,6 @@ enum class ModulationOrder {
             QAM256 -> "256qam"
             QAM64 -> "64qam"
             QAM16 -> "16qam"
-            QPSK -> "qpsk"
             NONE -> ""
         }
     }
