@@ -1,57 +1,60 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class ImportLteCarrierPolicyTest {
+    private val path = "src/test/resources/carrierPolicy/"
+
     private fun parse(inputFilename: String, oracleFilename: String) {
-        val path = "src/test/resources/carrierPolicy/"
+        val filePath = "$path/input/$inputFilename"
+        val actual = ImportLteCarrierPolicy.parse(File(filePath).readBytes())
 
-        val inputPath = "$path/input/$inputFilename"
-        val oraclePath = "$path/oracle/$oracleFilename"
+        val expected =
+            Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
+        // Override dynamic properties
+        expected.parserVersion = actual.parserVersion
+        expected.timestamp = actual.timestamp
+        expected.id = actual.id
 
-        val capabilities = ImportLteCarrierPolicy.parse(File(inputPath).readBytes())
-        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
-        val expectedCsv =
-            File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
-
-        Assertions.assertLinesMatch(expectedCsv, actualCsv)
+        Assertions.assertEquals(expected, actual)
     }
 
     @Test
     fun parseNoMimo() {
-        parse("noMimo.xml", "noMimo.csv")
+        parse("noMimo.xml", "noMimo.json")
     }
 
     @Test
     fun parseMimoBcsAll() {
-        parse("mimoBcsAll.xml", "mimoBcsAll.csv")
+        parse("mimoBcsAll.xml", "mimoBcsAll.json")
     }
 
     @Test
     fun parseMimoMultiBcs() {
-        parse("mimoMultiBcs.xml", "mimoMultiBcs.csv")
+        parse("mimoMultiBcs.xml", "mimoMultiBcs.json")
     }
 
     @Test
     fun parseMimoMultiBcsAbove9() {
-        parse("mimoMultiBcsAbove9.xml", "mimoMultiBcsAbove9.csv")
+        parse("mimoMultiBcsAbove9.xml", "mimoMultiBcsAbove9.json")
     }
 
     @Test
     fun parseFullCarrierPolicy() {
-        parse("fullCarrierPolicy.xml", "fullCarrierPolicy.csv")
+        parse("fullCarrierPolicy.xml", "fullCarrierPolicy.json")
     }
 
     @Test
     fun parseLteCapPrune() {
-        parse("lteCapPrune.txt", "lteCapPrune.csv")
+        parse("lteCapPrune.txt", "lteCapPrune.json")
     }
 
     @Test
     fun parseLteCapPruneWithSpaces() {
-        parse("lteCapPruneWithSpaces.txt", "lteCapPruneWithSpaces.csv")
+        parse("lteCapPruneWithSpaces.txt", "lteCapPruneWithSpaces.json")
     }
 }
