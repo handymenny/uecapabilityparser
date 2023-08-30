@@ -1,47 +1,49 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class ImportNvItemTest {
+    private val path = "src/test/resources/nvitem/"
+
     private fun parse(inputFilename: String, oracleFilename: String) {
-        val path = "src/test/resources/nvitem/"
+        val filePath = "$path/input/$inputFilename"
+        val actual = ImportNvItem.parse(File(filePath).readBytes())
+        val expected =
+            Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
+        // Override dynamic properties
+        expected.parserVersion = actual.parserVersion
+        expected.timestamp = actual.timestamp
+        expected.id = actual.id
 
-        val inputPath = "$path/input/$inputFilename"
-        val oraclePath = "$path/oracle/$oracleFilename"
-
-        val capabilities = ImportNvItem.parse(File(inputPath).readBytes())
-        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
-        val expectedCsv =
-            File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
-
-        Assertions.assertLinesMatch(expectedCsv, actualCsv)
+        Assertions.assertEquals(expected, actual)
     }
 
     @Test
     fun parseNvItem137() {
-        parse("28874_137.bin", "28874_137.csv")
+        parse("28874_137.bin", "28874_137.json")
     }
 
     @Test
     fun parseNvItem137201() {
-        parse("28874_137_201.bin", "28874_137_201.csv")
+        parse("28874_137_201.bin", "28874_137_201.json")
     }
 
     @Test
     fun parseNvItem201() {
-        parse("28874_201.bin", "28874_201.csv")
+        parse("28874_201.bin", "28874_201.json")
     }
 
     @Test
     fun parseNvItem333() {
-        parse("28874_333.bin", "28874_333.csv")
+        parse("28874_333.bin", "28874_333.json")
     }
 
     @Test
     fun parseNvItemZlib() {
-        parse("28874_zlib.bin", "28874_zlib.csv")
+        parse("28874_zlib.bin", "28874_zlib.json")
     }
 }
