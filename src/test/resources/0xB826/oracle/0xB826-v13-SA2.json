@@ -1,0 +1,3966 @@
+{
+    "nrca": [
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 100,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 100,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 100,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 71,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 80,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 80,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 80,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 80,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 80,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 80,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 80,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 30,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 10,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 30,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 7,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 7,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "B",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 66,
+                    "bwClassDl": "B",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 20,
+                    "maxScs": 15
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 30
+                },
+                {
+                    "band": 25,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxBw": 40,
+                    "maxScs": 15
+                }
+            ]
+        }
+    ],
+    "logType": "",
+    "parserVersion": "staging",
+    "timestamp": 0,
+    "metadata": {
+        "logSize": "3531",
+        "version": "13",
+        "totalCombos": "518",
+        "index": "300",
+        "numCombos": "100",
+        "source": "RF_NRCA"
+    },
+    "id": "e871d259-d36e-4d62-86cb-bb384c815ba9"
+}

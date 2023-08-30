@@ -1,0 +1,85 @@
+{
+    "nrca": [
+        {
+            "components": [
+                {
+                    "band": 79,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 78,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        },
+        {
+            "components": [
+                {
+                    "band": 41,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxBw": 100,
+                    "maxScs": 30
+                }
+            ]
+        }
+    ],
+    "logType": "",
+    "parserVersion": "staging",
+    "timestamp": 0,
+    "metadata": {
+        "logSize": "44",
+        "version": "4",
+        "totalCombos": "3",
+        "index": "0",
+        "numCombos": "3",
+        "source": "RF"
+    },
+    "id": "a44b1cc6-443a-4f1d-9ba8-3de8f2e8afbf"
+}

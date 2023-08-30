@@ -1,32 +1,34 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class ImportMtkLteTest {
+    private val path = "src/test/resources/mtkLte/"
+
     private fun parse(inputFilename: String, oracleFilename: String) {
-        val path = "src/test/resources/mtkLte/"
+        val filePath = "$path/input/$inputFilename"
+        val actual = ImportMTKLte.parse(File(filePath).readBytes())
+        val expected =
+            Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
+        // Override dynamic properties
+        expected.parserVersion = actual.parserVersion
+        expected.timestamp = actual.timestamp
+        expected.id = actual.id
 
-        val inputPath = "$path/input/$inputFilename"
-        val oraclePath = "$path/oracle/$oracleFilename"
-
-        val capabilities = ImportMTKLte.parse(File(inputPath).readBytes())
-        val actualCsv = Output.toCsv(capabilities).lines().dropLastWhile { it.isBlank() }
-        val expectedCsv =
-            File(oraclePath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
-
-        Assertions.assertLinesMatch(expectedCsv, actualCsv)
+        Assertions.assertEquals(expected, actual)
     }
 
     @Test
     fun parsePreCaCombInfo() {
-        parse("PRE_CA_COMB_INFO.txt", "PRE_CA_COMB_INFO.csv")
+        parse("PRE_CA_COMB_INFO.txt", "PRE_CA_COMB_INFO.json")
     }
 
     @Test
     fun parseUeCaCombInfo() {
-        parse("UE_CA_COMB_INFO.txt", "UE_CA_COMB_INFO.csv")
+        parse("UE_CA_COMB_INFO.txt", "UE_CA_COMB_INFO.json")
     }
 }

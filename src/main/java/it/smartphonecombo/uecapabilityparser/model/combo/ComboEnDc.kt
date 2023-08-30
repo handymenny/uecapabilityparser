@@ -11,17 +11,18 @@ import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Output
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 @Serializable
 data class ComboEnDc(
     @SerialName("componentsLte") override val masterComponents: List<ComponentLte>,
     @SerialName("componentsNr") override val secondaryComponents: List<ComponentNr>,
-    @Transient override val featureSet: Int = 0,
     @SerialName("bcsNr") val bcsNr: BCS = EmptyBCS,
     @SerialName("bcsEutra") val bcsEutra: BCS = EmptyBCS,
     @SerialName("bcsIntraEndc") val bcsIntraEnDc: BCS = EmptyBCS
 ) : ICombo {
+    override var featureSet: Int = 0
+        private set
+
     override val bcs: BCS
         get() = bcsNr
 
@@ -30,6 +31,17 @@ data class ComboEnDc(
 
     val componentsLte: List<ComponentLte>
         get() = masterComponents
+
+    constructor(
+        masterComponents: List<ComponentLte>,
+        secondaryComponents: List<ComponentNr>,
+        featureSet: Int,
+        bcsNr: BCS,
+        bcsEutra: BCS,
+        bcsIntraEnDc: BCS
+    ) : this(masterComponents, secondaryComponents, bcsNr, bcsEutra, bcsIntraEnDc) {
+        this.featureSet = featureSet
+    }
 
     override fun toCompactStr(): String {
         val lte =

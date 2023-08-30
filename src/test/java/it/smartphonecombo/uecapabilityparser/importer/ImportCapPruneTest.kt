@@ -1,60 +1,49 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class ImportCapPruneTest {
-    private fun parse(
-        inputFilename: String,
-        oracleEnDcFilename: String,
-        oracleNrCaFilename: String
-    ) {
-        val path = "src/test/resources/nrCapPrune/"
+    private val path = "src/test/resources/nrCapPrune/"
 
-        val inputPath = "$path/input/$inputFilename"
-        val oracleEnDcPath = "$path/oracle/$oracleEnDcFilename"
-        val oracleNrCaPath = "$path/oracle/$oracleNrCaFilename"
+    private fun parse(inputFilename: String, oracleFilename: String) {
+        val filePath = "$path/input/$inputFilename"
+        val actual = ImportNrCapPrune.parse(File(filePath).readBytes())
+        val expected =
+            Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
+        // Override dynamic properties
+        expected.parserVersion = actual.parserVersion
+        expected.timestamp = actual.timestamp
+        expected.id = actual.id
 
-        val capabilities = ImportNrCapPrune.parse(File(inputPath).readBytes())
-
-        val actualEnDcCsv =
-            Output.toCsv(capabilities.enDcCombos).lines().dropLastWhile { it.isBlank() }
-        val expectedEnDcCsv =
-            File(oracleEnDcPath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
-        Assertions.assertLinesMatch(expectedEnDcCsv, actualEnDcCsv)
-
-        val actualNrCaCsv =
-            Output.toCsv(capabilities.nrCombos).lines().dropLastWhile { it.isBlank() }
-        val expectedNrCaCsv =
-            File(oracleNrCaPath).bufferedReader().readLines().dropLastWhile { it.isBlank() }
-
-        Assertions.assertLinesMatch(expectedNrCaCsv, actualNrCaCsv)
+        Assertions.assertEquals(expected, actual)
     }
 
     @Test
     fun parseNoMimoFR1() {
-        parse("noMimoFR1.txt", "noMimoFR1-EN-DC.csv", "noMimoFR1-NR.csv")
+        parse("noMimoFR1.txt", "noMimoFR1.json")
     }
 
     @Test
     fun parseNoMimoFR2() {
-        parse("noMimoFR2.txt", "noMimoFR2-EN-DC.csv", "noMimoFR2-NR.csv")
+        parse("noMimoFR2.txt", "noMimoFR2.json")
     }
 
     @Test
     fun parseMimoFR1() {
-        parse("mimoFR1.txt", "mimoFR1-EN-DC.csv", "mimoFR1-NR.csv")
+        parse("mimoFR1.txt", "mimoFR1.json")
     }
 
     @Test
     fun parseMimoFR2() {
-        parse("mimoFR2.txt", "mimoFR2-EN-DC.csv", "mimoFR2-NR.csv")
+        parse("mimoFR2.txt", "mimoFR2.json")
     }
 
     @Test
     fun parseMixedMimoFR1() {
-        parse("mixedMimoFR1.txt", "mixedMimoFR1-EN-DC.csv", "mixedMimoFR1-NR.csv")
+        parse("mixedMimoFR1.txt", "mixedMimoFR1.json")
     }
 }
