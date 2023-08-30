@@ -216,6 +216,18 @@ internal class ServerModeParseTest {
     }
 
     @Test
+    fun nsgSulJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "N")
+                    put("input", fileToBase64("$path/input/nsgSul.txt"))
+                },
+            oraclePath = "$path/oracleJson/nsgSul.json"
+        )
+    }
+
+    @Test
     fun osixMrdcJsonOutput() {
         javalinJsonTest(
             request =

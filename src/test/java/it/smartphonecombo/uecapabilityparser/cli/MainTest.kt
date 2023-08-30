@@ -268,6 +268,22 @@ internal class MainTest {
     }
 
     @Test
+    fun mainNsgSulCsv() {
+        mainTest(
+            arrayOf("-i", "$path/input/nsgSul.txt", "-t", "N", "-c", "-"),
+            "nsgSulCsv.txt",
+        )
+    }
+
+    @Test
+    fun mainNsgSulJson() {
+        mainTest(
+            arrayOf("-i", "$path/input/nsgSul.txt", "-t", "N", "-l", "-"),
+            "nsgSulJson.txt",
+        )
+    }
+
+    @Test
     fun mainOsixMrdcCsv() {
         mainTest(arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "O", "-c", "-"), "osixMrdcCsv.txt")
     }

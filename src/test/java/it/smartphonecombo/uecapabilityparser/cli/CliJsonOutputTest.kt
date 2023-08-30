@@ -237,6 +237,14 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun nsgSulJsonOutput() {
+        cliTest(
+            arrayOf("-i", "$path/input/nsgSul.txt", "-t", "N", "-j", "-", "--json-pretty-print"),
+            "nsgSul.json"
+        )
+    }
+
+    @Test
     fun osixMrdcJsonOutput() {
         cliTest(
             arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "O", "-j", "-", "--json-pretty-print"),
