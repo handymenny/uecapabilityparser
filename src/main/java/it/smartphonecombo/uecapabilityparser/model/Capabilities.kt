@@ -47,8 +47,4 @@ data class Capabilities(
     fun getStringMetadata(key: String): String? {
         return metadata.getOrDefault(key, null)
     }
-
-    fun getIntMetadata(key: String): Int? {
-        return metadata.getOrDefault(key, null)?.toIntOrNull()
-    }
 }
