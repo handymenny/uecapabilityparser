@@ -138,8 +138,9 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
     }
 
     private fun csvOutput(comboList: Capabilities, csvPath: String?) {
-        if (type !in arrayOf("W", "N", "H", "QNR", "CNR", "QC", "O")) {
-            return Output.outputFileOrStdout(Output.toCsv(comboList), csvPath)
+        val lteOnlyTypes = arrayOf("C", "E", "Q", "QLTE", "M")
+        if (type in lteOnlyTypes) {
+            return Output.outputFileOrStdout(Output.toCsv(comboList.lteCombos), csvPath)
         }
 
         val lteCombos = comboList.lteCombos
