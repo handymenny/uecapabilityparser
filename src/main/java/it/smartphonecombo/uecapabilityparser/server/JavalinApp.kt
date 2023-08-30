@@ -97,15 +97,12 @@ class JavalinApp {
                 val inputENDC = request.getString("inputENDC")?.let { base64.decode(it) }
                 val defaultNR =
                     request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
-                val multiple0xB826 =
-                    request.getString("multiple0xB826")?.let { it.toBoolean() } ?: false
                 val type = request.getString("type")
 
                 if (input == null && inputNR == null || type == null) {
                     return@post ctx.badRequest()
                 }
-                val parsing =
-                    Parsing(input ?: inputNR!!, inputNR, inputENDC, defaultNR, multiple0xB826, type)
+                val parsing = Parsing(input ?: inputNR!!, inputNR, inputENDC, defaultNR, type)
                 val description = request.getString("description")
                 if (description != null) {
                     parsing.capabilities.setMetadata("description", description)

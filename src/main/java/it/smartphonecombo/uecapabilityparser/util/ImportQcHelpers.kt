@@ -44,16 +44,16 @@ object ImportQcHelpers {
         }
     }
 
-    fun parseMultiple0xB826(input: String, split: Boolean): Capabilities {
-        return parseMultipleQcDiag(input, split, false)
+    fun parseMultiple0xB826(input: String): Capabilities {
+        return parseMultipleQcDiag(input, false)
     }
 
-    fun parseMultiple0xBOCD(input: String, split: Boolean): Capabilities {
-        return parseMultipleQcDiag(input, split, true)
+    fun parseMultiple0xBOCD(input: String): Capabilities {
+        return parseMultipleQcDiag(input, true)
     }
 
-    private fun parseMultipleQcDiag(input: String, split: Boolean, lte: Boolean): Capabilities {
-        val inputArray = if (split) splitHex(input) else listOf(input)
+    private fun parseMultipleQcDiag(input: String, lte: Boolean): Capabilities {
+        val inputArray = splitHex(input)
         val list = mutableListWithCapacity<Capabilities>(inputArray.size)
         val importer = if (lte) Import0xB0CDBin else Import0xB826
         for (it in inputArray) {
@@ -61,14 +61,7 @@ object ImportQcHelpers {
                 val inputStream = it.preformatHex().decodeHex()
                 list.add(importer.parse(inputStream))
             } catch (err: IllegalArgumentException) {
-                val errMessage = "Invalid hexdump"
-                val multiHelp =
-                    if (!split) {
-                        "\nUse flag '--multi' if you are parsing multiple 0xB826 or 0xB0CD hexdumps."
-                    } else {
-                        ""
-                    }
-                throw IllegalArgumentException(errMessage + multiHelp, err)
+                throw IllegalArgumentException("Invalid hexdump", err)
             }
         }
 

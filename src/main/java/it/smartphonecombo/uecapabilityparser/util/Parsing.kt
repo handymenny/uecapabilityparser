@@ -26,7 +26,6 @@ class Parsing(
     private val inputNR: ByteArray?,
     private val inputENDC: ByteArray?,
     private val defaultNR: Boolean = false,
-    private val multiple0xB826: Boolean = false,
     private val type: String,
     private val jsonFormat: Json = Json
 ) {
@@ -64,11 +63,11 @@ class Parsing(
             }
 
         if (imports == Import0xB826) {
-            return parseMultiple0xB826(input.decodeToString(), multiple0xB826)
+            return parseMultiple0xB826(input.decodeToString())
         }
 
         if (imports == Import0xB0CDBin) {
-            return parseMultiple0xBOCD(input.decodeToString(), multiple0xB826)
+            return parseMultiple0xBOCD(input.decodeToString())
         }
 
         if (imports == ImportCapabilityInformation) {

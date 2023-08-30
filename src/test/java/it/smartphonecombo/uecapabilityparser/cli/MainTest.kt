@@ -43,16 +43,7 @@ internal class MainTest {
     @Test
     fun main0xB0CDMultiHex() {
         mainTest(
-            arrayOf(
-                "-i",
-                "$path/input/0xB0CDMultiHex.txt",
-                "-t",
-                "QLTE",
-                "--multi",
-                "--debug",
-                "-c",
-                "-"
-            ),
+            arrayOf("-i", "$path/input/0xB0CDMultiHex.txt", "-t", "QLTE", "--debug", "-c", "-"),
             "0xB0CDMultiHex.txt"
         )
     }
@@ -75,7 +66,7 @@ internal class MainTest {
     @Test
     fun main0xB826Multi() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "--multi", "-c", "-"),
+            arrayOf("-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "-c", "-"),
             "0xB826Multi.txt"
         )
     }
@@ -83,7 +74,7 @@ internal class MainTest {
     @Test
     fun main0xB826MultiDebug() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "--multi", "--debug"),
+            arrayOf("-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "--debug"),
             "0xB826MultiDebug.txt"
         )
     }

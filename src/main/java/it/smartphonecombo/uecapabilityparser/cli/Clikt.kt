@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.PrintMessage
+import com.github.ajalt.clikt.parameters.options.deprecated
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.optionalValue
@@ -70,7 +71,12 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
     private val defaultNR by option("--nr", "--defaultNR", help = HelpMessage.DEFAULT_NR).flag()
 
     private val multiple0xB826 by
-        option("--multi", "--multiple0xB826", help = HelpMessage.MULTIPLE_0XB826).flag()
+        option("--multi", "--multiple0xB826", help = HelpMessage.MULTIPLE_0XB826)
+            .flag()
+            .deprecated(
+                "WARNING: --multiple0xB826 is deprecated, it's the default behaviour",
+                "deprecated, default behaviour"
+            )
 
     private val type by
         option("-t", "--type", help = HelpMessage.TYPE)
@@ -116,7 +122,6 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
                 inputNR?.readBytes(),
                 inputENDC?.readBytes(),
                 defaultNR,
-                multiple0xB826,
                 type,
                 jsonFormat
             )
