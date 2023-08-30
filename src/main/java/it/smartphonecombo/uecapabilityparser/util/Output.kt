@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
-import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
@@ -44,23 +43,6 @@ object Output {
             Files.createDirectories(Path.of(path))
         } catch (ex: Exception) {
             System.err.println("Error ${ex.localizedMessage}")
-        }
-    }
-
-    /** outputs lteCombos or enDcCombos or nrCombos, the first non-null and non-empty */
-    fun toCsv(list: Capabilities): String {
-        val lteCombos = list.lteCombos
-        val enDcCombos = list.enDcCombos
-        val nrCombos = list.nrCombos
-
-        return if (lteCombos.isNotEmpty()) {
-            toCsv(lteCombos)
-        } else if (enDcCombos.isNotEmpty()) {
-            toCsv(enDcCombos)
-        } else if (nrCombos.isNotEmpty()) {
-            toCsv(nrCombos)
-        } else {
-            ""
         }
     }
 
