@@ -49,7 +49,6 @@ internal class ServerModeParseTest {
             request =
                 buildJsonObject {
                     put("type", "QLTE")
-                    put("multiple0xB826", true)
                     put("input", fileToBase64("$path/input/0xB0CDMultiHex.txt"))
                 },
             oraclePath = "$path/oracleJson/0xB0CDMultiHex.json"
@@ -99,7 +98,6 @@ internal class ServerModeParseTest {
                 buildJsonObject {
                     put("type", "QNR")
                     put("input", fileToBase64("$path/input/0xB826Multi.txt"))
-                    put("multiple0xB826", true)
                 },
             oraclePath = "$path/oracleJson/0xB826Multi.json"
         )

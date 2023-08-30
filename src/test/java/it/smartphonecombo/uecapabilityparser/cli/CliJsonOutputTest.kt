@@ -54,7 +54,6 @@ internal class CliJsonOutputTest {
                 "$path/input/0xB0CDMultiHex.txt",
                 "-t",
                 "QLTE",
-                "--multi",
                 "-j",
                 "-",
                 "--json-pretty-print"
@@ -95,7 +94,6 @@ internal class CliJsonOutputTest {
                 "$path/input/0xB826Multi.txt",
                 "-t",
                 "QNR",
-                "--multi",
                 "-j",
                 "-",
                 "--json-pretty-print"
