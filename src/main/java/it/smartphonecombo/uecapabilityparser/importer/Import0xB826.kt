@@ -273,9 +273,10 @@ object Import0xB826 : ImportCapabilities {
         component.classUL = BwClass.valueOf(ulClass)
         val mimoUL = byteBuffer.readUnsignedByte()
         component.mimoUL = Mimo.fromQcIndex(mimoUL)
+        // Only values 0, 1, 2 have been seen on the wild
         val modUL = byteBuffer.readUnsignedByte()
         if (component.classUL != BwClass.NONE) {
-            component.modUL = getQamFromIndex(modUL).toModulation()
+            component.modUL = getQamFromIndex(modUL, true).toModulation()
         }
 
         if (isNr) {
@@ -336,9 +337,14 @@ object Import0xB826 : ImportCapabilities {
         component.classUL = BwClass.valueOf(classUl)
 
         val byte3 = byteBuffer.readUnsignedByte()
-        val modUL = byte3.extract2(1)
+        // Only values 0, 1 have been seen on the wild
+        val modULSecondBit = byte3.extract1(1)
+        val modULFirstBit = byte3.extract1(2)
+        val modUL = modULFirstBit.finsert(modULSecondBit, 1)
+
         if (component.classUL != BwClass.NONE) {
-            component.modUL = getQamFromIndex(modUL).toModulation()
+            // v8 doesn't have 64qam
+            component.modUL = getQamFromIndex(modUL, false).toModulation()
         }
 
         if (isNr) {
@@ -364,13 +370,13 @@ object Import0xB826 : ImportCapabilities {
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getQamFromIndex(index: Int): ModulationOrder {
+    private fun getQamFromIndex(index: Int, preV8: Boolean): ModulationOrder {
+        // only values 0, 1, 2 have been seen on the wild for < v8
+        // only values 0, 1 have been seen on the wild for >= v8
         return when (index) {
-            2,
-            5 -> ModulationOrder.QAM256
-            3,
-            6 -> ModulationOrder.QAM1024
-            else -> ModulationOrder.QAM64
+            1 -> if (preV8) ModulationOrder.QAM64 else ModulationOrder.QAM256
+            2 -> ModulationOrder.QAM256
+            else -> ModulationOrder.NONE
         }
     }
 
