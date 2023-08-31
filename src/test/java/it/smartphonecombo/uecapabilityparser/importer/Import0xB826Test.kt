@@ -24,6 +24,7 @@ internal class Import0xB826Test {
 
     @Test
     fun parseV2NSA() {
+        // Modulation UL invalid
         parse("0xB826-v2-NSA.bin", "0xB826-v2-NSA.json")
     }
 
@@ -35,6 +36,12 @@ internal class Import0xB826Test {
     @Test
     fun parseV3NSAmmWave() {
         parse("0xB826-v3-NSA-mmWave.bin", "0xB826-v3-NSA-mmWave.json")
+    }
+
+    @Test
+    fun parseV3NSA64qamUL() {
+        // LTE UL 256qam and 64qam
+        parse("0xB826-v3-NSA-64qamUL.bin", "0xB826-v3-NSA-64qamUL.json")
     }
 
     @Test
@@ -95,6 +102,12 @@ internal class Import0xB826Test {
     @Test
     fun parseV7NSAmmWave3() {
         parse("0xB826-v7-SA2.bin", "0xB826-v7-SA2.json")
+    }
+
+    @Test
+    fun parseV7NSA64qamUL() {
+        // LTE UL 64qam
+        parse("0xB826-v7-NSA-64qamUL.bin", "0xB826-v7-NSA-64qamUL.json")
     }
 
     @Test
