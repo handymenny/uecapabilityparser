@@ -297,6 +297,11 @@ object Import0xB826 : ImportCapabilities {
             if (version >= 6) {
                 val bwIndex = short.extract5(6)
                 nrBand.maxBandwidthDl = getBWFromIndexV6(bwIndex).toBandwidth()
+
+                if (component.classUL != BwClass.NONE) {
+                    val bwIndexUl = short.extract5(11)
+                    nrBand.maxBandwidthUl = getBWFromIndexV6(bwIndexUl).toBandwidth()
+                }
             } else {
                 // v2-v5 stores the max bw as a 10 bit integer
                 nrBand.maxBandwidthDl = short.extract10(6).toBandwidth()
