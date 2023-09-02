@@ -23,6 +23,7 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import korlibs.memory.extract
 import korlibs.memory.extract1
+import korlibs.memory.extract10
 import korlibs.memory.extract2
 import korlibs.memory.extract3
 import korlibs.memory.extract4
@@ -295,8 +296,8 @@ object Import0xB826 : ImportCapabilities {
                 val bwIndex = short.extract5(6)
                 nrBand.maxBandwidth = getBWFromIndex(bwIndex)
             } else {
-                val bwIndex = short.extract8(8)
-                nrBand.maxBandwidth = bwIndex shl 2
+                // v2-v5 stores the max bw as a 10 bit integer
+                nrBand.maxBandwidth = short.extract10(6)
             }
         } else {
             byteBuffer.skipBytes(3)
