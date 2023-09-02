@@ -294,7 +294,7 @@ object Import0xB826 : ImportCapabilities {
 
             if (version >= 6) {
                 val bwIndex = short.extract5(6)
-                nrBand.maxBandwidth = getBWFromIndex(bwIndex)
+                nrBand.maxBandwidth = getBWFromIndexV6(bwIndex)
             } else {
                 // v2-v5 stores the max bw as a 10 bit integer
                 nrBand.maxBandwidth = short.extract10(6)
@@ -405,25 +405,25 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /**
-     * Return maxBw from index for 0xB826 versions < 8.
+     * Return maxBw from index for 0xB826 versions 6 and 7.
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getBWFromIndex(index: Int): Int {
+    private fun getBWFromIndexV6(index: Int): Int {
         return when (index) {
-            4 -> 5
-            5 -> 10
+            5 -> 5
             6 -> 15
+            in 1..4,
             7 -> 20
             8 -> 25
             9 -> 30
             10 -> 40
             11,
-            15 -> 50
+            in 15..18 -> 50
             12 -> 60
             13 -> 80
             14,
-            in 20..26 -> 100
+            in 19..26 -> 100
             else -> index
         }
     }
