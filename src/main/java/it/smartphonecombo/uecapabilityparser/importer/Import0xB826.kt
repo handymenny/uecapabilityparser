@@ -248,7 +248,7 @@ object Import0xB826 : ImportCapabilities {
      */
     private fun parseComponent(byteBuffer: ByteBuffer, version: Int): IComponent {
         return if (version >= 8) {
-            parseComponentV8(byteBuffer)
+            parseComponentV8(byteBuffer, version)
         } else {
             parseComponentPreV8(byteBuffer, version)
         }
@@ -306,7 +306,7 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /** Parse a component. It supports versions >= 8 */
-    private fun parseComponentV8(byteBuffer: ByteBuffer): IComponent {
+    private fun parseComponentV8(byteBuffer: ByteBuffer, version: Int): IComponent {
         val short = byteBuffer.readUnsignedShort()
 
         val band = short.extract(0, 9)
@@ -351,7 +351,7 @@ object Import0xB826 : ImportCapabilities {
             val scsIndex = scsRight.finsert(scsLeft, 1)
             nrBand.scs = getSCSFromIndex(scsIndex)
 
-            val maxBWindex = byte4.extract5(2)
+            val maxBWindex = if (version >= 10) byte4.extract6(2) else byte4.extract5(2)
             nrBand.maxBandwidth = getBWFromIndexV8(maxBWindex)
             byteBuffer.skipBytes(2)
         } else {
