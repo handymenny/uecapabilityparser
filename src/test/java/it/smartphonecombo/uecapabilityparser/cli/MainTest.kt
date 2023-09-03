@@ -80,6 +80,14 @@ internal class MainTest {
     }
 
     @Test
+    fun main0xB826MultiV14() {
+        mainTest(
+            arrayOf("-i", "$path/input/0xB826MultiV14.txt", "-t", "QNR", "-c", "-"),
+            "0xB826MultiV14.txt"
+        )
+    }
+
+    @Test
     fun mainNrCapPrune() {
         mainTest(
             arrayOf("-i", "$path/input/nrCapPrune.txt", "-t", "CNR", "-c", "-"),

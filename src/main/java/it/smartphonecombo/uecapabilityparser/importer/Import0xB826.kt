@@ -23,6 +23,7 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import korlibs.memory.extract
 import korlibs.memory.extract1
+import korlibs.memory.extract10
 import korlibs.memory.extract2
 import korlibs.memory.extract3
 import korlibs.memory.extract4
@@ -247,7 +248,7 @@ object Import0xB826 : ImportCapabilities {
      */
     private fun parseComponent(byteBuffer: ByteBuffer, version: Int): IComponent {
         return if (version >= 8) {
-            parseComponentV8(byteBuffer)
+            parseComponentV8(byteBuffer, version)
         } else {
             parseComponentPreV8(byteBuffer, version)
         }
@@ -294,10 +295,10 @@ object Import0xB826 : ImportCapabilities {
 
             if (version >= 6) {
                 val bwIndex = short.extract5(6)
-                nrBand.maxBandwidth = getBWFromIndex(bwIndex)
+                nrBand.maxBandwidth = getBWFromIndexV6(bwIndex)
             } else {
-                val bwIndex = short.extract8(8)
-                nrBand.maxBandwidth = bwIndex shl 2
+                // v2-v5 stores the max bw as a 10 bit integer
+                nrBand.maxBandwidth = short.extract10(6)
             }
         } else {
             byteBuffer.skipBytes(3)
@@ -306,7 +307,7 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /** Parse a component. It supports versions >= 8 */
-    private fun parseComponentV8(byteBuffer: ByteBuffer): IComponent {
+    private fun parseComponentV8(byteBuffer: ByteBuffer, version: Int): IComponent {
         val short = byteBuffer.readUnsignedShort()
 
         val band = short.extract(0, 9)
@@ -356,8 +357,14 @@ object Import0xB826 : ImportCapabilities {
             val scsIndex = scsRight.finsert(scsLeft, 1)
             nrBand.scs = getSCSFromIndex(scsIndex)
 
-            val maxBWindex = byte4.extract5(2)
-            nrBand.maxBandwidth = getBWFromIndexV8(maxBWindex)
+            if (version >= 10) {
+                val maxBWindex = byte4.extract6(2)
+                nrBand.maxBandwidth = getBWFromIndexV10(maxBWindex)
+            } else {
+                val maxBWindex = byte4.extract5(2)
+                nrBand.maxBandwidth = getBWFromIndexV8(maxBWindex)
+            }
+
             byteBuffer.skipBytes(2)
         } else {
             byteBuffer.skipBytes(3)
@@ -381,54 +388,90 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /**
-     * Return maxBw from index for 0xB826 versions >= 8.
+     * Return maxBw from index for 0xB826 versions >= 8 and < 10.
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
     private fun getBWFromIndexV8(index: Int): Int {
         return when (index) {
-            0 -> 5
-            1,
+            1 -> 5
             2 -> 10
             3 -> 15
-            4,
-            5,
-            7 -> 20
-            8,
+            in 4..8 -> 20
             9 -> 25
             10 -> 30
-            11 -> 40
-            12,
-            13 -> 50
-            17 -> 60
+            11,
+            30 -> 40
+            in 12..16 -> 50
+            17,
+            31 -> 60
             18 -> 70
-            19,
-            20 -> 80
-            in 21..31 -> 100
+            19 -> 80
+            20 -> 90
+            in 21..29 -> 100
             else -> index
         }
     }
 
     /**
-     * Return maxBw from index for 0xB826 versions < 8.
+     * Return maxBw from index for 0xB826 versions >= 10.
+     *
+     * The first 32 values are decoded by [getBWFromIndexV8]
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getBWFromIndex(index: Int): Int {
+    private fun getBWFromIndexV10(index: Int): Int {
         return when (index) {
-            4 -> 5
-            5 -> 10
+            32,
+            59,
+            61 -> 100
+            in 33..36 -> 200
+            37 -> 10
+            38 -> 25
+            39,
+            40,
+            50,
+            58 -> 40
+            41 -> 35
+            42,
+            44,
+            52,
+            60 -> 30
+            43 -> 60
+            45 -> 45
+            in 46..49,
+            63 -> 50
+            51 -> 15
+            53,
+            54 -> 20
+            55 -> 5
+            56,
+            57,
+            62 -> 80
+            else -> getBWFromIndexV8(index) // Decodes the range 0-31
+        }
+    }
+
+    /**
+     * Return maxBw from index for 0xB826 versions 6 and 7.
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
+    private fun getBWFromIndexV6(index: Int): Int {
+        return when (index) {
+            5 -> 5
             6 -> 15
+            in 1..4,
             7 -> 20
             8 -> 25
             9 -> 30
             10 -> 40
             11,
-            15 -> 50
+            in 15..18 -> 50
             12 -> 60
             13 -> 80
             14,
-            in 20..26 -> 100
+            in 19..26 -> 100
             else -> index
         }
     }
