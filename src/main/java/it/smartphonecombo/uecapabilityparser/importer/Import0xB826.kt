@@ -382,24 +382,21 @@ object Import0xB826 : ImportCapabilities {
      */
     private fun getBWFromIndexV8(index: Int): Int {
         return when (index) {
-            0 -> 5
-            1,
+            1 -> 5
             2 -> 10
             3 -> 15
-            4,
-            5,
-            7 -> 20
-            8,
+            in 4..8 -> 20
             9 -> 25
             10 -> 30
-            11 -> 40
-            12,
-            13 -> 50
-            17 -> 60
+            11,
+            30 -> 40
+            in 12..16 -> 50
+            17,
+            31 -> 60
             18 -> 70
-            19,
-            20 -> 80
-            in 21..31 -> 100
+            19 -> 80
+            20 -> 90
+            in 21..29 -> 100
             else -> index
         }
     }
