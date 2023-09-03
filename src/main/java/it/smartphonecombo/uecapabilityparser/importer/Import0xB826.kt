@@ -351,8 +351,14 @@ object Import0xB826 : ImportCapabilities {
             val scsIndex = scsRight.finsert(scsLeft, 1)
             nrBand.scs = getSCSFromIndex(scsIndex)
 
-            val maxBWindex = if (version >= 10) byte4.extract6(2) else byte4.extract5(2)
-            nrBand.maxBandwidth = getBWFromIndexV8(maxBWindex)
+            if (version >= 10) {
+                val maxBWindex = byte4.extract6(2)
+                nrBand.maxBandwidth = getBWFromIndexV10(maxBWindex)
+            } else {
+                val maxBWindex = byte4.extract5(2)
+                nrBand.maxBandwidth = getBWFromIndexV8(maxBWindex)
+            }
+
             byteBuffer.skipBytes(2)
         } else {
             byteBuffer.skipBytes(3)
@@ -376,7 +382,7 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /**
-     * Return maxBw from index for 0xB826 versions >= 8.
+     * Return maxBw from index for 0xB826 versions >= 8 and < 10.
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
@@ -398,6 +404,45 @@ object Import0xB826 : ImportCapabilities {
             20 -> 90
             in 21..29 -> 100
             else -> index
+        }
+    }
+
+    /**
+     * Return maxBw from index for 0xB826 versions >= 10.
+     *
+     * The first 32 values are decoded by [getBWFromIndexV8]
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
+    private fun getBWFromIndexV10(index: Int): Int {
+        return when (index) {
+            32,
+            59,
+            61 -> 100
+            in 33..36 -> 200
+            37 -> 10
+            38 -> 25
+            39,
+            40,
+            50,
+            58 -> 40
+            41 -> 35
+            42,
+            44,
+            52,
+            60 -> 30
+            43 -> 60
+            45 -> 45
+            in 46..49,
+            63 -> 50
+            51 -> 15
+            53,
+            54 -> 20
+            55 -> 5
+            56,
+            57,
+            62 -> 80
+            else -> getBWFromIndexV8(index) // Decodes the range 0-31
         }
     }
 
