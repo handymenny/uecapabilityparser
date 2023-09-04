@@ -2137,8 +2137,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 100
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            20
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -2203,8 +2206,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 100
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            20
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -2269,8 +2275,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 80
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            40
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -2335,8 +2344,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 80
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            40
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -2401,8 +2413,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 80
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            20
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -2467,8 +2482,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 80
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            20
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -2665,8 +2683,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 60
+                        "type": "mixed",
+                        "value": [
+                            60,
+                            40
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -2731,8 +2752,11 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 60
+                        "type": "mixed",
+                        "value": [
+                            60,
+                            40
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",

@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.Bandwidth
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -371,14 +372,14 @@ object Import0xB826 : ImportCapabilities {
 
             if (version >= 10) {
                 val maxBWindex = byte4.extract6(2)
-                nrBand.maxBandwidthDl = getBWFromIndexV10(maxBWindex).toBandwidth()
+                nrBand.maxBandwidthDl = getBWFromIndexV10(maxBWindex)
                 val maxBwIndexUl = byte5.extract6(0)
-                nrBand.maxBandwidthUl = getBWFromIndexV10(maxBwIndexUl).toBandwidth()
+                nrBand.maxBandwidthUl = getBWFromIndexV10(maxBwIndexUl)
             } else {
                 val maxBWindex = byte4.extract5(2)
-                nrBand.maxBandwidthDl = getBWFromIndexV8(maxBWindex).toBandwidth()
+                nrBand.maxBandwidthDl = getBWFromIndexV8(maxBWindex)
                 val maxBwIndexUl = byte4.extract1(7).finsert(byte5.extract4(0), 1)
-                nrBand.maxBandwidthUl = getBWFromIndexV8(maxBwIndexUl).toBandwidth()
+                nrBand.maxBandwidthUl = getBWFromIndexV8(maxBwIndexUl)
             }
 
             byteBuffer.skipBytes(1)
@@ -408,25 +409,38 @@ object Import0xB826 : ImportCapabilities {
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getBWFromIndexV8(index: Int): Int {
-        return when (index) {
-            1 -> 5
-            2 -> 10
-            3 -> 15
-            in 4..8 -> 20
-            9 -> 25
-            10 -> 30
-            11,
-            30 -> 40
-            in 12..16 -> 50
-            17,
-            31 -> 60
-            18 -> 70
-            19 -> 80
-            20 -> 90
-            in 21..29 -> 100
-            else -> index
+    private fun getBWFromIndexV8(index: Int): Bandwidth {
+        val mixed =
+            when (index) {
+                22 -> listOf(100, 60)
+                31 -> listOf(60, 40)
+                else -> null
+            }
+
+        if (mixed != null) {
+            return Bandwidth.from(mixed)
         }
+
+        val single =
+            when (index) {
+                1 -> 5
+                2 -> 10
+                3 -> 15
+                in 4..8 -> 20
+                9 -> 25
+                10 -> 30
+                11,
+                30 -> 40
+                in 12..16 -> 50
+                17 -> 60
+                18 -> 70
+                19 -> 80
+                20 -> 90
+                in 21..29 -> 100
+                else -> index
+            }
+
+        return single.toBandwidth()
     }
 
     /**
@@ -436,36 +450,56 @@ object Import0xB826 : ImportCapabilities {
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getBWFromIndexV10(index: Int): Int {
-        return when (index) {
-            32,
-            59,
-            61 -> 100
-            in 33..36 -> 200
-            37 -> 10
-            38 -> 25
-            39,
-            40,
-            50,
-            58 -> 40
-            41 -> 35
-            42,
-            44,
-            52,
-            60 -> 30
-            43 -> 60
-            45 -> 45
-            in 46..49,
-            63 -> 50
-            51 -> 15
-            53,
-            54 -> 20
-            55 -> 5
-            56,
-            57,
-            62 -> 80
-            else -> getBWFromIndexV8(index) // Decodes the range 0-31
+    private fun getBWFromIndexV10(index: Int): Bandwidth {
+        if (index < 32) {
+            // V8 Decodes the range 0-31
+            return getBWFromIndexV8(index)
         }
+
+        val mixed =
+            when (index) {
+                32 -> listOf(100, 40)
+                39 -> listOf(40, 10)
+                40 -> listOf(40, 20)
+                42 -> listOf(30, 20)
+                46 -> listOf(50, 5)
+                47 -> listOf(50, 10)
+                48 -> listOf(50, 15)
+                49 -> listOf(50, 20)
+                50 -> listOf(40, 15)
+                52 -> listOf(30, 25)
+                53 -> listOf(20, 10)
+                54 -> listOf(20, 15)
+                57 -> listOf(80, 20)
+                58 -> listOf(40, 30)
+                59 -> listOf(100, 90)
+                60 -> listOf(30, 10)
+                61 -> listOf(100, 20)
+                62 -> listOf(80, 40)
+                63 -> listOf(50, 40)
+                else -> null
+            }
+
+        if (mixed != null) {
+            return Bandwidth.from(mixed)
+        }
+
+        val single =
+            when (index) {
+                in 33..36 -> 200
+                37 -> 10
+                38 -> 25
+                41 -> 35
+                43 -> 60
+                44 -> 30
+                45 -> 45
+                51 -> 15
+                55 -> 5
+                56 -> 80
+                else -> index
+            }
+
+        return single.toBandwidth()
     }
 
     /**
