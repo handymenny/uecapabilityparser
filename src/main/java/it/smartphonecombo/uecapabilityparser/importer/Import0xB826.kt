@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
@@ -295,10 +296,10 @@ object Import0xB826 : ImportCapabilities {
 
             if (version >= 6) {
                 val bwIndex = short.extract5(6)
-                nrBand.maxBandwidth = getBWFromIndexV6(bwIndex)
+                nrBand.maxBandwidthDl = getBWFromIndexV6(bwIndex).toBandwidth()
             } else {
                 // v2-v5 stores the max bw as a 10 bit integer
-                nrBand.maxBandwidth = short.extract10(6)
+                nrBand.maxBandwidthDl = short.extract10(6).toBandwidth()
             }
         } else {
             byteBuffer.skipBytes(3)
@@ -359,10 +360,10 @@ object Import0xB826 : ImportCapabilities {
 
             if (version >= 10) {
                 val maxBWindex = byte4.extract6(2)
-                nrBand.maxBandwidth = getBWFromIndexV10(maxBWindex)
+                nrBand.maxBandwidthDl = getBWFromIndexV10(maxBWindex).toBandwidth()
             } else {
                 val maxBWindex = byte4.extract5(2)
-                nrBand.maxBandwidth = getBWFromIndexV8(maxBWindex)
+                nrBand.maxBandwidthDl = getBWFromIndexV8(maxBWindex).toBandwidth()
             }
 
             byteBuffer.skipBytes(2)

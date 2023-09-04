@@ -57,6 +57,7 @@ data class ComponentNr(
         // If maxBandwidthDl is empty, de-serialize maxBandwidthDl to a value equivalent to
         // maxBandwidth
         // Check maxBandwidthDl before maxBandwidth to avoid strange side effects
+        @Suppress("DEPRECATION")
         if (maxBandwidthDl == EmptyBandwidth && maxBandwidth != 0) {
             maxBandwidthDl = maxBandwidth.toBandwidth()
         }

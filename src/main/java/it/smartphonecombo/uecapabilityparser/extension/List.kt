@@ -4,6 +4,7 @@ package it.smartphonecombo.uecapabilityparser.extension
 
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.EmptyBandwidth
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.util.Output
 
@@ -30,8 +31,8 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
     for (component in this) {
         nrBandBwScs.append(component.band).append(component.classDL).append(separator)
 
-        if (component.maxBandwidth != 0) {
-            nrBandBwScs.append(component.maxBandwidth)
+        if (component.maxBandwidthDl != EmptyBandwidth) {
+            nrBandBwScs.append(component.maxBandwidthDl)
         }
         nrBandBwScs.append(separator)
 

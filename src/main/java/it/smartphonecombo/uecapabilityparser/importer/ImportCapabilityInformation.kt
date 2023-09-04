@@ -33,6 +33,7 @@ import it.smartphonecombo.uecapabilityparser.model.band.IBandDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsBitMap
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -942,7 +943,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             } else {
                 componentNr.mimoDL = firstFeature.mimo
             }
-            componentNr.maxBandwidth = firstFeature.bw
+            componentNr.maxBandwidthDl = firstFeature.bw.toBandwidth()
             componentNr.channelBW90mhz = firstFeature.bw >= 80 && firstFeature.channelBW90mhz
             componentNr.scs = firstFeature.scs
             // set mod dl from bandDetails, because modulation in NR features means something else
