@@ -16,6 +16,9 @@ object ImportQcHelpers {
 
     private val regexEmptyLine = Regex("^\\s*$", RegexOption.MULTILINE)
 
+    private val regexEmptyOrCommentedLine = Regex("^(#.*)?\\s*$", RegexOption.MULTILINE)
+
+
     private fun String.emptyLineIndex(): Int {
         return regexEmptyLine.find(this)?.range?.first ?: this.length
     }
@@ -40,7 +43,7 @@ object ImportQcHelpers {
                 it.substring(0, minOf(it.emptyLineIndex(), it.notHexLineIndex()))
             }
         } else {
-            input.split(regexEmptyLine)
+            input.split(regexEmptyOrCommentedLine)
         }
     }
 
@@ -57,6 +60,7 @@ object ImportQcHelpers {
         val list = mutableListWithCapacity<Capabilities>(inputArray.size)
         val importer = if (lte) Import0xB0CDBin else Import0xB826
         for (it in inputArray) {
+            if (it.isBlank()) continue
             try {
                 val inputStream = it.preformatHex().decodeHex()
                 list.add(importer.parse(inputStream))
