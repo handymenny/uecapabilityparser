@@ -23,6 +23,10 @@
                         "type": "single",
                         "value": 100
                     },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxBw": 100
                 }
             ]
@@ -50,6 +54,10 @@
                         "type": "single",
                         "value": 100
                     },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxBw": 100
                 }
             ]
@@ -74,6 +82,10 @@
                     },
                     "maxScs": 30,
                     "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
                         "type": "single",
                         "value": 100
                     },

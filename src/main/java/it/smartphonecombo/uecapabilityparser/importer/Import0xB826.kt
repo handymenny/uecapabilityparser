@@ -300,6 +300,11 @@ object Import0xB826 : ImportCapabilities {
             } else {
                 // v2-v5 stores the max bw as a 10 bit integer
                 nrBand.maxBandwidthDl = short.extract10(6).toBandwidth()
+
+                // version <= 5 don't have a separate field for maxBwUl
+                if (component.classUL != BwClass.NONE) {
+                    nrBand.maxBandwidthUl = nrBand.maxBandwidthDl
+                }
             }
         } else {
             byteBuffer.skipBytes(3)
