@@ -2660,9 +2660,13 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
                     "bw90mhzSupported": true,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "bcs": {
@@ -2704,9 +2708,13 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
                     "bw90mhzSupported": true,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "bcs": {
@@ -2748,9 +2756,13 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
                     "bw90mhzSupported": true,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "bcs": {
@@ -2780,9 +2792,13 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
                     "bw90mhzSupported": true,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "bcs": {

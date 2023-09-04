@@ -4,10 +4,14 @@ import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.Mimo
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.Bandwidth
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.EmptyBandwidth
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
 import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class ComponentNr(
@@ -18,10 +22,47 @@ data class ComponentNr(
     @SerialName("mimoUl") override var mimoUL: Mimo = EmptyMimo,
     @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
     @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation,
-    @SerialName("maxBw") var maxBandwidth: Int = 0,
     @SerialName("bw90mhzSupported") var channelBW90mhz: Boolean = false,
-    @SerialName("maxScs") var scs: Int = 0
+    @SerialName("maxScs") var scs: Int = 0,
+    @SerialName("maxBwDl") var maxBandwidthDl: Bandwidth = EmptyBandwidth,
 ) : IComponent {
+    @Transient private var maxBwDlInitialized = false
+
+    @Deprecated(
+        """Supports only non mixed bandwidths and it's set only for DL.
+            Use maxBandwidthDl and maxBandwidthUl instead."""
+    )
+    @SerialName("maxBw")
+    /**
+     * Warning, this property is backed by [maxBandwidthDl]. Set affects [maxBandwidthDl] and get
+     * returns [maxBandwidthDl].max() *
+     */
+    var maxBandwidth: Int = 0
+        get() {
+            // if maxBwDl is uninitialized, ignore emptyBandwidth
+            return if (maxBwDlInitialized || maxBandwidthDl != EmptyBandwidth) {
+                maxBandwidthDl.max()
+            } else {
+                // "fake" backing field for serialization purposes
+                field
+            }
+        }
+        set(value) {
+            maxBandwidthDl = value.toBandwidth()
+            // "fake" backing field for serialization purposes
+            field = value
+        }
+
+    init {
+        // If maxBandwidthDl is empty, de-serialize maxBandwidthDl to a value equivalent to
+        // maxBandwidth
+        // Check maxBandwidthDl before maxBandwidth to avoid strange side effects
+        if (maxBandwidthDl == EmptyBandwidth && maxBandwidth != 0) {
+            maxBandwidthDl = maxBandwidth.toBandwidth()
+        }
+        maxBwDlInitialized = true
+    }
+
     override fun compareTo(other: IComponent): Int {
         return if (other is ComponentNr) {
             compareValuesBy(
@@ -33,7 +74,7 @@ data class ComponentNr(
                 { it.mimoDL },
                 { it.mimoUL },
                 { it.scs },
-                { it.maxBandwidth }
+                { it.maxBandwidthDl }
             )
         } else {
             // Component Nr is higher than ComponentLTE
