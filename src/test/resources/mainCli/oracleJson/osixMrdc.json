@@ -8160,76 +8160,6 @@
                         "value": "qam256"
                     },
                     "bw90mhzSupported": true,
-                    "maxScs": 15,
-                    "maxBwDl": {
-                        "type": "mixed",
-                        "value": [
-                            100,
-                            50
-                        ]
-                    },
-                    "maxBwUl": {
-                        "type": "single",
-                        "value": 50
-                    },
-                    "maxBw": 100
-                }
-            ],
-            "bcsNr": {
-                "type": "single",
-                "value": 0
-            },
-            "bcsEutra": {
-                "type": "single",
-                "value": 0
-            }
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 1,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationDl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 78,
-                    "bwClassDl": "C",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationDl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "bw90mhzSupported": true,
                     "maxScs": 30,
                     "maxBwDl": {
                         "type": "mixed",
@@ -8240,6 +8170,76 @@
                     },
                     "maxBwUl": {
                         "type": "single",
+                        "value": 50
+                    },
+                    "maxBw": 100
+                }
+            ],
+            "bcsNr": {
+                "type": "single",
+                "value": 0
+            },
+            "bcsEutra": {
+                "type": "single",
+                "value": 0
+            }
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 1,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationDl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 78,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationDl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "bw90mhzSupported": true,
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            50
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
                         "value": 100
                     },
                     "maxBw": 100
@@ -25288,7 +25288,7 @@
                         "value": "qam256"
                     },
                     "bw90mhzSupported": true,
-                    "maxScs": 15,
+                    "maxScs": 30,
                     "maxBwDl": {
                         "type": "mixed",
                         "value": [

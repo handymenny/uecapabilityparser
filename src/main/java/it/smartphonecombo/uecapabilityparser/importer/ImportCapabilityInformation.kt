@@ -948,7 +948,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentNr.maxBandwidthDl = firstFeature.bw.toBandwidth()
             }
             componentNr.channelBW90mhz = dlFeature.any { it.bw >= 80 && it.channelBW90mhz }
-            componentNr.scs = firstFeature.scs
+            componentNr.scs = dlFeature.maxOf(FeaturePerCCNr::scs)
             // set mod dl from bandDetails, because modulation in NR features means something else
             // (see TS 38 306)
             componentNr.modDL = nrBandDetails.modDL
@@ -971,6 +971,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
             componentNr.channelBW90mhz =
                 componentNr.channelBW90mhz || ulFeature.any { it.bw >= 80 && it.channelBW90mhz }
+            componentNr.scs = maxOf(componentNr.scs, ulFeature.maxOf(FeaturePerCCNr::scs))
 
             // set mod ul from bandDetails, because modulation in NR features means something else
             // (see TS 38 306)
