@@ -96,6 +96,14 @@ internal class MainTest {
     }
 
     @Test
+    fun main0xB826Multi0x9801() {
+        mainTest(
+            arrayOf("-i", "$path/input/0xB826Multi0x9801.txt", "-t", "QNR", "-c", "-"),
+            "0xB826MultiScat0x9801.txt"
+        )
+    }
+
+    @Test
     fun mainNrCapPrune() {
         mainTest(
             arrayOf("-i", "$path/input/nrCapPrune.txt", "-t", "CNR", "-c", "-"),

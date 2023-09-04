@@ -128,6 +128,18 @@ internal class ServerModeParseTest {
     }
 
     @Test
+    fun b826Multi0x980JsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "QNR")
+                    put("input", fileToBase64("$path/input/0xB826Multi0x9801.txt"))
+                },
+            oraclePath = "$path/oracleJson/0xB826Multi0x9801.json"
+        )
+    }
+
+    @Test
     fun nrCapPruneJsonOutput() {
         javalinJsonTest(
             request =
