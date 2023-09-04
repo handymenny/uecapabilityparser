@@ -2666,6 +2666,10 @@
                         "type": "single",
                         "value": 100
                     },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxBw": 100
                 }
             ],
@@ -2686,6 +2690,10 @@
                     "modulationUl": {
                         "type": "single",
                         "value": "qam256"
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 30
                     }
                 },
                 {
@@ -2714,6 +2722,10 @@
                         "type": "single",
                         "value": 100
                     },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxBw": 100
                 }
             ],
@@ -2734,6 +2746,10 @@
                     "modulationUl": {
                         "type": "single",
                         "value": "qam256"
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
                     }
                 },
                 {
@@ -2759,6 +2775,10 @@
                     "bw90mhzSupported": true,
                     "maxScs": 30,
                     "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
                         "type": "single",
                         "value": 100
                     },
@@ -2795,6 +2815,10 @@
                     "bw90mhzSupported": true,
                     "maxScs": 30,
                     "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
                         "type": "single",
                         "value": 100
                     },

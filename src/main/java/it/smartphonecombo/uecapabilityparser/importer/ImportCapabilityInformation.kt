@@ -956,12 +956,17 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         if (!ulFeature.isNullOrEmpty()) {
+            val firstFeature = ulFeature.first()
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoUL = Mimo.from(mixedMimo)
             } else {
-                componentNr.mimoUL = ulFeature.first().mimo
+                componentNr.mimoUL = firstFeature.mimo
             }
+            componentNr.maxBandwidthUl = firstFeature.bw.toBandwidth()
+            componentNr.channelBW90mhz =
+                componentNr.channelBW90mhz || firstFeature.bw >= 80 && firstFeature.channelBW90mhz
+
             // set mod ul from bandDetails, because modulation in NR features means something else
             // (see TS 38 306)
             componentNr.modUL = nrBandDetails.modUL
