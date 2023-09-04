@@ -25,6 +25,7 @@ data class ComponentNr(
     @SerialName("bw90mhzSupported") var channelBW90mhz: Boolean = false,
     @SerialName("maxScs") var scs: Int = 0,
     @SerialName("maxBwDl") var maxBandwidthDl: Bandwidth = EmptyBandwidth,
+    @SerialName("maxBwUl") var maxBandwidthUl: Bandwidth = EmptyBandwidth
 ) : IComponent {
     @Transient private var maxBwDlInitialized = false
 
@@ -67,7 +68,8 @@ data class ComponentNr(
                 { it.mimoDL },
                 { it.mimoUL },
                 { it.scs },
-                { it.maxBandwidthDl }
+                { it.maxBandwidthDl },
+                { it.maxBandwidthUl }
             )
         } else {
             // Component Nr is higher than ComponentLTE
