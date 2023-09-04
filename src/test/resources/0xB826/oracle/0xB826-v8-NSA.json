@@ -45,8 +45,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 }
             ]
         },
@@ -103,8 +111,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -161,8 +177,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -219,8 +243,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -261,8 +293,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -319,8 +359,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -377,8 +425,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -435,8 +491,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -493,8 +557,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -551,8 +623,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -609,8 +689,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -667,8 +755,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -725,8 +821,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -783,8 +887,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -833,8 +945,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -883,8 +1003,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -933,8 +1061,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -983,8 +1119,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1025,8 +1169,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1067,8 +1219,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1125,8 +1285,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1183,58 +1351,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 3,
-                    "bwClassDl": "C",
-                    "bwClassUl": "A",
-                    "mimoDl": {
+                    "maxScs": 15,
+                    "maxBwDl": {
                         "type": "single",
-                        "value": 4
+                        "value": 20
                     },
-                    "mimoUl": {
+                    "maxBwUl": {
                         "type": "single",
-                        "value": 1
+                        "value": 20
                     },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 1,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 7,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxBw": 20
                 }
             ]
         },
@@ -1243,6 +1369,64 @@
                 {
                     "band": 3,
                     "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 1,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 7,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 3,
+                    "bwClassDl": "C",
                     "mimoDl": {
                         "type": "single",
                         "value": 4
@@ -1283,8 +1467,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1333,8 +1525,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1391,8 +1591,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1449,8 +1657,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1507,8 +1723,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1565,8 +1789,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1623,8 +1855,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1681,8 +1921,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1731,8 +1979,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1781,8 +2037,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1831,8 +2095,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1881,8 +2153,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1931,8 +2211,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1981,8 +2269,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2039,8 +2335,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2097,8 +2401,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2155,8 +2467,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2213,8 +2533,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2271,8 +2599,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2329,8 +2665,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2379,8 +2723,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2429,8 +2781,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2487,8 +2847,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2545,8 +2913,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2603,8 +2979,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2653,8 +3037,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2703,8 +3095,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2753,8 +3153,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2819,8 +3227,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2885,8 +3301,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2951,8 +3375,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2993,8 +3425,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3051,8 +3491,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3109,8 +3557,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3167,8 +3623,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3225,8 +3689,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3283,8 +3755,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3341,8 +3821,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3399,8 +3887,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3457,8 +3953,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3515,8 +4019,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3589,8 +4101,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3663,8 +4183,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3737,8 +4265,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3803,8 +4339,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3869,8 +4413,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3935,8 +4487,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3993,8 +4553,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -4051,8 +4619,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -4101,8 +4677,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -4151,8 +4735,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -4201,8 +4793,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -4251,8 +4851,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         }

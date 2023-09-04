@@ -18,8 +18,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -39,8 +47,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -49,8 +65,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -59,8 +79,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -82,8 +106,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -94,8 +126,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -113,8 +149,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -123,8 +167,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -146,8 +194,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -158,8 +214,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -168,8 +228,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -187,8 +251,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -210,8 +282,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -231,8 +311,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -241,8 +329,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -251,8 +343,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -274,8 +370,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -286,8 +390,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -305,8 +413,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -315,8 +431,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -338,8 +458,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -350,8 +478,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -360,8 +492,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -379,8 +515,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -402,8 +546,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -423,8 +575,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -433,8 +593,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -443,8 +607,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -466,8 +634,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -478,8 +654,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -497,8 +677,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -507,8 +695,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -530,8 +722,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -542,8 +742,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -552,8 +756,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -571,8 +779,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -594,8 +810,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -615,8 +839,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -625,8 +857,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -635,8 +871,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -658,8 +898,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -670,8 +918,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -689,8 +941,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -699,8 +959,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -722,8 +986,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -734,8 +1006,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -744,8 +1020,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -763,8 +1043,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -786,8 +1074,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -807,8 +1103,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -817,8 +1121,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -827,8 +1135,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -850,8 +1162,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -862,8 +1182,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -881,8 +1205,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -891,8 +1223,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -914,8 +1250,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -926,8 +1270,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -936,8 +1284,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -955,8 +1307,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -978,8 +1338,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -999,8 +1367,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1009,8 +1385,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1019,8 +1399,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1042,8 +1426,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -1054,8 +1446,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1073,8 +1469,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1083,8 +1487,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1106,8 +1514,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -1118,8 +1534,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1128,8 +1548,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1147,8 +1571,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1170,8 +1602,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -1191,8 +1631,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1201,8 +1649,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1211,8 +1663,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1234,8 +1690,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -1246,8 +1710,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1265,8 +1733,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1275,8 +1751,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1298,8 +1778,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -1310,8 +1798,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1320,8 +1812,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1339,8 +1835,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1362,8 +1866,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -1383,8 +1895,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1393,8 +1913,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1416,8 +1940,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -1428,8 +1960,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1447,8 +1983,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1470,8 +2014,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -1491,8 +2043,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1501,8 +2061,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1524,8 +2088,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -1536,8 +2108,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1555,8 +2131,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1578,8 +2162,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -1599,8 +2191,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1609,8 +2209,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1632,8 +2236,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -1644,8 +2256,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1663,8 +2279,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1686,8 +2310,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -1707,8 +2339,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1717,8 +2357,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1740,8 +2384,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -1752,224 +2404,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "G",
-                    "bwClassUl": "G",
-                    "mimoDl": {
+                    "maxScs": 120,
+                    "maxBwDl": {
                         "type": "single",
-                        "value": 2
+                        "value": 100
                     },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 40,
-                    "maxScs": 15
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "bwClassUl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 48,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 30
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "I",
-                    "bwClassUl": "I",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 48,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 30
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "I",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "bwClassUl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 48,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 30
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "I",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -1987,8 +2427,312 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "bwClassUl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "I",
+                    "bwClassUl": "I",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "I",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "bwClassUl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 48,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "I",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "G",
+                    "bwClassUl": "G",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2010,8 +2754,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -2031,8 +2783,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -2041,8 +2801,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2064,8 +2828,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -2085,8 +2857,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -2095,8 +2875,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2118,8 +2902,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2139,8 +2931,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -2149,8 +2949,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2172,8 +2976,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2184,8 +2996,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -2203,8 +3019,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2226,8 +3050,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2247,8 +3079,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -2257,8 +3097,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2280,8 +3124,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2292,278 +3144,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "G",
-                    "bwClassUl": "G",
-                    "mimoDl": {
+                    "maxScs": 120,
+                    "maxBwDl": {
                         "type": "single",
-                        "value": 2
+                        "value": 100
                     },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 5,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 20,
-                    "maxScs": 15
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "bwClassUl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 2,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 20,
-                    "maxScs": 15
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "I",
-                    "bwClassUl": "I",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 2,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 20,
-                    "maxScs": 15
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "I",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "bwClassUl": "H",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 2,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 20,
-                    "maxScs": 15
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "I",
-                    "bwClassUl": "I",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "G",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
-                }
-            ]
-        },
-        {
-            "componentsFr1": [
-                {
-                    "band": 2,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 20,
-                    "maxScs": 15
-                }
-            ],
-            "componentsFr2": [
-                {
-                    "band": 261,
-                    "bwClassDl": "I",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -2581,8 +3167,90 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "bwClassUl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2604,8 +3272,312 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "I",
+                    "bwClassUl": "I",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "I",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "bwClassUl": "H",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "I",
+                    "bwClassUl": "I",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "G",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                }
+            ],
+            "componentsFr2": [
+                {
+                    "band": 261,
+                    "bwClassDl": "I",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "G",
+                    "bwClassUl": "G",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsFr1": [
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2625,8 +3597,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 261,
@@ -2635,8 +3615,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2658,8 +3642,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -2679,8 +3671,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2702,8 +3702,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -2723,8 +3731,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2746,8 +3762,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -2767,8 +3791,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2790,8 +3822,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -2811,8 +3851,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2834,8 +3882,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2855,8 +3911,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2878,8 +3942,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2899,8 +3971,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2922,8 +4002,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2943,8 +4031,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2966,8 +4062,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -2987,8 +4091,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3010,8 +4122,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -3031,8 +4151,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3041,8 +4169,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3051,8 +4183,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3061,8 +4197,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3071,8 +4211,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3081,8 +4225,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3091,8 +4239,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3101,8 +4253,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3124,8 +4280,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -3145,8 +4309,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3155,8 +4327,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3165,8 +4341,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3175,8 +4355,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3185,8 +4369,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3195,8 +4383,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3205,8 +4397,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3215,8 +4411,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3238,8 +4438,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -3259,8 +4467,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3269,8 +4485,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3279,8 +4499,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3289,8 +4513,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3299,8 +4527,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3309,8 +4541,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3319,8 +4555,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3329,8 +4569,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3352,8 +4596,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -3373,8 +4625,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3383,8 +4643,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3393,8 +4657,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3403,8 +4671,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3413,8 +4685,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3423,8 +4699,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3446,8 +4726,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -3467,8 +4755,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3477,8 +4773,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3487,8 +4787,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3497,8 +4801,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3507,8 +4815,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 260,
@@ -3517,8 +4829,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3540,8 +4856,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -3561,8 +4885,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3584,8 +4916,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -3605,8 +4945,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3628,8 +4976,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -3649,8 +5005,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3672,8 +5036,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -3693,8 +5065,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3716,8 +5096,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -3737,8 +5125,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3760,8 +5156,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -3781,8 +5185,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3804,8 +5216,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -3825,8 +5245,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3848,8 +5276,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -3869,8 +5305,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3892,8 +5336,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -3913,8 +5365,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3936,8 +5396,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 10,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBw": 10
                 }
             ],
             "componentsFr2": [
@@ -3957,8 +5425,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3980,8 +5456,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 10,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBw": 10
                 }
             ],
             "componentsFr2": [
@@ -4001,8 +5485,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4024,8 +5516,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 10,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBw": 10
                 }
             ],
             "componentsFr2": [
@@ -4045,8 +5545,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4068,8 +5576,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -4089,8 +5605,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4112,8 +5636,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -4133,8 +5665,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4156,8 +5696,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -4177,8 +5725,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4200,8 +5756,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 15,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBw": 15
                 }
             ],
             "componentsFr2": [
@@ -4221,8 +5785,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4244,8 +5816,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 15,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBw": 15
                 }
             ],
             "componentsFr2": [
@@ -4265,8 +5845,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4288,8 +5876,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 15,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBw": 15
                 }
             ],
             "componentsFr2": [
@@ -4309,8 +5905,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4332,8 +5936,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -4353,8 +5965,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4376,8 +5996,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -4397,8 +6025,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4420,8 +6056,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -4441,8 +6085,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4464,8 +6116,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -4485,8 +6145,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4508,8 +6176,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -4529,8 +6205,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4552,8 +6236,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -4573,8 +6265,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4596,8 +6296,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -4617,8 +6325,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 258,
@@ -4627,8 +6343,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4650,8 +6370,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -4662,8 +6390,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 258,
@@ -4681,8 +6413,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4704,8 +6444,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -4725,8 +6473,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 258,
@@ -4735,8 +6491,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4758,8 +6518,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -4770,8 +6538,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 258,
@@ -4789,8 +6561,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4812,8 +6592,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -4833,8 +6621,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 258,
@@ -4843,8 +6639,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4866,8 +6666,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -4878,8 +6686,12 @@
                         "type": "single",
                         "value": 2
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 258,
@@ -4897,8 +6709,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4920,8 +6740,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -4941,8 +6769,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -4964,8 +6800,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "componentsFr2": [
@@ -4985,8 +6829,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5008,8 +6860,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 10,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBw": 10
                 }
             ],
             "componentsFr2": [
@@ -5029,8 +6889,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5052,8 +6920,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 10,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBw": 10
                 }
             ],
             "componentsFr2": [
@@ -5073,8 +6949,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5096,8 +6980,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 15,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBw": 15
                 }
             ],
             "componentsFr2": [
@@ -5117,8 +7009,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5140,8 +7040,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 15,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 15
+                    },
+                    "maxBw": 15
                 }
             ],
             "componentsFr2": [
@@ -5161,8 +7069,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5184,8 +7100,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -5205,8 +7129,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5228,8 +7160,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -5249,8 +7189,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5272,8 +7220,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -5293,8 +7249,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5316,8 +7280,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ],
             "componentsFr2": [
@@ -5337,8 +7309,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -5360,8 +7340,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ],
             "componentsFr2": [
@@ -5381,8 +7369,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         }

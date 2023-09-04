@@ -37,8 +37,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -79,8 +87,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -121,8 +137,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -163,8 +187,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -205,8 +237,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -247,8 +287,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -289,8 +337,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -347,8 +403,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -405,8 +469,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -463,8 +535,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 },
                 {
                     "band": 77,
@@ -473,8 +553,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -531,8 +615,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 },
                 {
                     "band": 77,
@@ -541,8 +633,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -599,8 +695,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 },
                 {
                     "band": 77,
@@ -609,8 +713,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ]
         },
@@ -667,8 +775,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 },
                 {
                     "band": 77,
@@ -677,8 +793,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ]
         },
@@ -735,8 +855,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 },
                 {
                     "band": 77,
@@ -745,8 +873,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 }
             ]
         },
@@ -803,8 +935,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 },
                 {
                     "band": 77,
@@ -813,8 +953,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 }
             ]
         },
@@ -871,8 +1015,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 },
                 {
                     "band": 77,
@@ -881,8 +1033,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 }
             ]
         },
@@ -939,8 +1095,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 },
                 {
                     "band": 77,
@@ -949,212 +1113,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
+                    "maxScs": 30,
+                    "maxBwDl": {
                         "type": "single",
-                        "value": 4
+                        "value": 80
                     },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 30
-                },
-                {
-                    "band": 77,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "maxBw": 20,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 30
-                },
-                {
-                    "band": 77,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "maxBw": 20,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 80,
-                    "maxScs": 30
-                },
-                {
-                    "band": 77,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxBw": 80
                 }
             ]
         },
@@ -1211,8 +1175,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 77,
@@ -1221,8 +1193,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1279,8 +1255,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 77,
@@ -1289,8 +1273,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -1347,8 +1335,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 },
                 {
                     "band": 77,
@@ -1357,8 +1353,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ]
         },
@@ -1415,8 +1415,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 },
                 {
                     "band": 77,
@@ -1425,8 +1433,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 }
             ]
         },
@@ -1483,8 +1495,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 },
                 {
                     "band": 77,
@@ -1493,8 +1513,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 }
             ]
         },
@@ -1551,8 +1575,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 },
                 {
                     "band": 77,
@@ -1561,8 +1593,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 }
             ]
         },
@@ -1619,8 +1655,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
                 },
                 {
                     "band": 77,
@@ -1629,8 +1673,252 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBw": 40
+                },
+                {
+                    "band": 77,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                },
+                {
+                    "band": 77,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
+                },
+                {
+                    "band": 77,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1687,8 +1975,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 77,
@@ -1697,8 +1993,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -1755,8 +2055,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 77,
@@ -1765,298 +2073,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
+                    "maxScs": 30,
+                    "maxBwDl": {
                         "type": "single",
-                        "value": 4
+                        "value": 100
                     },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "C",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "C",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 100,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "C",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 80,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "C",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 80,
-                    "maxScs": 30
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 77,
-                    "bwClassDl": "C",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxBw": 100
                 }
             ]
         },
@@ -2113,8 +2135,19 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 80,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            20
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2171,8 +2204,19 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            20
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2229,8 +2273,19 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            40
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 }
             ]
         },
@@ -2287,8 +2342,19 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            40
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
                 }
             ]
         },
@@ -2345,8 +2411,358 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 60,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            20
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            80,
+                            20
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 80
+                    },
+                    "maxBw": 80
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            60,
+                            40
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 77,
+                    "bwClassDl": "C",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "mixed",
+                        "value": [
+                            60,
+                            40
+                        ]
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 60
+                    },
+                    "maxBw": 60
                 }
             ]
         },
@@ -2403,8 +2819,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2461,8 +2885,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2519,8 +2951,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2577,8 +3017,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2618,8 +3066,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 2,
@@ -2637,8 +3089,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2687,8 +3147,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2728,8 +3196,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 5,
@@ -2747,8 +3219,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2797,8 +3277,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 10,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 10
+                    },
+                    "maxBw": 10
                 }
             ]
         },
@@ -2847,8 +3335,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -2897,8 +3393,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 77,
@@ -2907,8 +3411,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -2957,8 +3465,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 77,
@@ -2967,8 +3483,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3017,8 +3537,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3067,8 +3595,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3117,8 +3653,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3167,8 +3711,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3217,8 +3769,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3267,8 +3827,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3309,8 +3877,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3351,8 +3927,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3393,8 +3977,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3435,8 +4027,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3468,8 +4068,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 25,
@@ -3487,8 +4091,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         },
@@ -3529,8 +4141,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 },
                 {
                     "band": 41,
@@ -3539,8 +4159,12 @@
                         "type": "single",
                         "value": 4
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3581,8 +4205,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3623,8 +4255,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -3665,8 +4305,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 20,
-                    "maxScs": 15
+                    "maxScs": 15,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBw": 20
                 }
             ]
         }

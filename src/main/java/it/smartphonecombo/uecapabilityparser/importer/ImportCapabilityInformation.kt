@@ -30,9 +30,11 @@ import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
 import it.smartphonecombo.uecapabilityparser.model.band.DuplexBandTable
 import it.smartphonecombo.uecapabilityparser.model.band.IBandDetails
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.Bandwidth
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwTableNr
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsBitMap
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.BwsNr
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -939,11 +941,13 @@ object ImportCapabilityInformation : ImportCapabilities {
             if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoDL = Mimo.from(mixedMimo)
+                val mixedBandwidth = dlFeature.map(FeaturePerCCNr::bw)
+                componentNr.maxBandwidthDl = Bandwidth.from(mixedBandwidth)
             } else {
                 componentNr.mimoDL = firstFeature.mimo
+                componentNr.maxBandwidthDl = firstFeature.bw.toBandwidth()
             }
-            componentNr.maxBandwidth = firstFeature.bw
-            componentNr.channelBW90mhz = firstFeature.bw >= 80 && firstFeature.channelBW90mhz
+            componentNr.channelBW90mhz = dlFeature.any { it.bw >= 80 && it.channelBW90mhz }
             componentNr.scs = firstFeature.scs
             // set mod dl from bandDetails, because modulation in NR features means something else
             // (see TS 38 306)
@@ -955,12 +959,19 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         if (!ulFeature.isNullOrEmpty()) {
+            val firstFeature = ulFeature.first()
             if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoUL = Mimo.from(mixedMimo)
+                val mixedBandwidth = ulFeature.map(FeaturePerCCNr::bw)
+                componentNr.maxBandwidthUl = Bandwidth.from(mixedBandwidth)
             } else {
-                componentNr.mimoUL = ulFeature.first().mimo
+                componentNr.mimoUL = firstFeature.mimo
+                componentNr.maxBandwidthUl = firstFeature.bw.toBandwidth()
             }
+            componentNr.channelBW90mhz =
+                componentNr.channelBW90mhz || ulFeature.any { it.bw >= 80 && it.channelBW90mhz }
+
             // set mod ul from bandDetails, because modulation in NR features means something else
             // (see TS 38 306)
             componentNr.modUL = nrBandDetails.modUL

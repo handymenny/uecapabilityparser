@@ -18,8 +18,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -41,8 +49,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         },
@@ -64,8 +80,16 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 100,
-                    "maxScs": 30
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ]
         }

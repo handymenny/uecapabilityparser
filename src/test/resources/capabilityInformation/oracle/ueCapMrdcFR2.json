@@ -533,8 +533,16 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 200,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 200
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 200
+                    },
+                    "maxBw": 200
                 }
             ],
             "bcsNr": {
@@ -591,8 +599,16 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 200,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 200
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 200
+                    },
+                    "maxBw": 200
                 }
             ],
             "bcsNr": {
@@ -649,8 +665,16 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "bcsNr": {
@@ -707,8 +731,16 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
-                    "maxScs": 120
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBw": 100
                 }
             ],
             "bcsNr": {
