@@ -1174,8 +1174,11 @@
                     },
                     "maxScs": 15,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 40
+                        "type": "mixed",
+                        "value": [
+                            40,
+                            20
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -1779,8 +1782,11 @@
                     },
                     "maxScs": 15,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 40
+                        "type": "mixed",
+                        "value": [
+                            40,
+                            10
+                        ]
                     },
                     "maxBw": 40
                 },

@@ -8159,16 +8159,20 @@
                         "type": "single",
                         "value": "qam256"
                     },
+                    "bw90mhzSupported": true,
                     "maxScs": 15,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 50
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            50
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
                         "value": 50
                     },
-                    "maxBw": 50
+                    "maxBw": 100
                 }
             ],
             "bcsNr": {
@@ -8228,8 +8232,11 @@
                     "bw90mhzSupported": true,
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 100
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            50
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
@@ -25280,16 +25287,20 @@
                         "type": "single",
                         "value": "qam256"
                     },
+                    "bw90mhzSupported": true,
                     "maxScs": 15,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 50
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            50
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
                         "value": 50
                     },
-                    "maxBw": 50
+                    "maxBw": 100
                 }
             ],
             "bcsNr": {
@@ -25349,8 +25360,11 @@
                     "bw90mhzSupported": true,
                     "maxScs": 30,
                     "maxBwDl": {
-                        "type": "single",
-                        "value": 100
+                        "type": "mixed",
+                        "value": [
+                            100,
+                            50
+                        ]
                     },
                     "maxBwUl": {
                         "type": "single",
