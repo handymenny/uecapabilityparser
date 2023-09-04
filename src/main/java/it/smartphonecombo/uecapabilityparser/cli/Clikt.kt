@@ -75,7 +75,7 @@ object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs 
             .flag()
             .deprecated(
                 "WARNING: --multiple0xB826 is deprecated, it's the default behaviour",
-                "deprecated, default behaviour"
+                "option deprecated, default behaviour"
             )
 
     private val type by
