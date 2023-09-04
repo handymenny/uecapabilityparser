@@ -362,6 +362,7 @@ object Import0xB826 : ImportCapabilities {
         if (isNr) {
             val nrBand = component as ComponentNr
             val byte4 = byteBuffer.readUnsignedByte()
+            val byte5 = byteBuffer.readUnsignedByte()
 
             val scsLeft = byte4.extract2(0)
             val scsRight = byte3.extract1(7)
@@ -371,12 +372,16 @@ object Import0xB826 : ImportCapabilities {
             if (version >= 10) {
                 val maxBWindex = byte4.extract6(2)
                 nrBand.maxBandwidthDl = getBWFromIndexV10(maxBWindex).toBandwidth()
+                val maxBwIndexUl = byte5.extract6(0)
+                nrBand.maxBandwidthUl = getBWFromIndexV10(maxBwIndexUl).toBandwidth()
             } else {
                 val maxBWindex = byte4.extract5(2)
                 nrBand.maxBandwidthDl = getBWFromIndexV8(maxBWindex).toBandwidth()
+                val maxBwIndexUl = byte4.extract1(7).finsert(byte5.extract4(0), 1)
+                nrBand.maxBandwidthUl = getBWFromIndexV8(maxBwIndexUl).toBandwidth()
             }
 
-            byteBuffer.skipBytes(2)
+            byteBuffer.skipBytes(1)
         } else {
             byteBuffer.skipBytes(3)
         }
