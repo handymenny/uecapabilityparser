@@ -896,14 +896,15 @@ object ImportCapabilityInformation : ImportCapabilities {
         val componentLte = component.copy()
 
         if (!dlFeature.isNullOrEmpty()) {
-            if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
+            if (dlFeature.size > 1) {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoDL = Mimo.from(mixedMimo)
                 val mixedModulation = dlFeature.map { it.qam }
                 componentLte.modDL = maxOf(bandDetails.modDL, Modulation.from(mixedModulation))
             } else {
-                componentLte.mimoDL = dlFeature.first().mimo
-                componentLte.modDL = maxOf(bandDetails.modDL, dlFeature.first().qam.toModulation())
+                val firstFeature = dlFeature.first()
+                componentLte.mimoDL = firstFeature.mimo
+                componentLte.modDL = maxOf(bandDetails.modDL, firstFeature.qam.toModulation())
             }
         } else {
             // only UL
@@ -912,14 +913,15 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         if (!ulFeature.isNullOrEmpty()) {
-            if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
+            if (ulFeature.size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentLte.mimoUL = Mimo.from(mixedMimo)
                 val mixedModulation = ulFeature.map { it.qam }
                 componentLte.modUL = maxOf(bandDetails.modUL, Modulation.from(mixedModulation))
             } else {
-                componentLte.mimoUL = ulFeature.first().mimo
-                componentLte.modUL = maxOf(bandDetails.modUL, ulFeature.first().qam.toModulation())
+                val firstFeature = ulFeature.first()
+                componentLte.mimoUL = firstFeature.mimo
+                componentLte.modUL = maxOf(bandDetails.modUL, firstFeature.qam.toModulation())
             }
         } else {
             // only DL
@@ -937,13 +939,13 @@ object ImportCapabilityInformation : ImportCapabilities {
     ): ComponentNr {
         val componentNr = component.copy()
         if (!dlFeature.isNullOrEmpty()) {
-            val firstFeature = dlFeature.first()
-            if (dlFeature.size > 1 && dlFeature.distinct().size > 1) {
+            if (dlFeature.size > 1) {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoDL = Mimo.from(mixedMimo)
                 val mixedBandwidth = dlFeature.map(FeaturePerCCNr::bw)
                 componentNr.maxBandwidthDl = Bandwidth.from(mixedBandwidth)
             } else {
+                val firstFeature = dlFeature.first()
                 componentNr.mimoDL = firstFeature.mimo
                 componentNr.maxBandwidthDl = firstFeature.bw.toBandwidth()
             }
@@ -959,13 +961,13 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         if (!ulFeature.isNullOrEmpty()) {
-            val firstFeature = ulFeature.first()
-            if (ulFeature.size > 1 && ulFeature.distinct().size > 1) {
+            if (ulFeature.size > 1) {
                 val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
                 componentNr.mimoUL = Mimo.from(mixedMimo)
                 val mixedBandwidth = ulFeature.map(FeaturePerCCNr::bw)
                 componentNr.maxBandwidthUl = Bandwidth.from(mixedBandwidth)
             } else {
+                val firstFeature = ulFeature.first()
                 componentNr.mimoUL = firstFeature.mimo
                 componentNr.maxBandwidthUl = firstFeature.bw.toBandwidth()
             }
