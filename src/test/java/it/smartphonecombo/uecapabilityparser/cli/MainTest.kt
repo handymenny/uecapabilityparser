@@ -88,6 +88,14 @@ internal class MainTest {
     }
 
     @Test
+    fun main0xB826MultiScat() {
+        mainTest(
+            arrayOf("-i", "$path/input/0xB826MultiScat.txt", "-t", "QNR", "-c", "-"),
+            "0xB826MultiScat.txt"
+        )
+    }
+
+    @Test
     fun mainNrCapPrune() {
         mainTest(
             arrayOf("-i", "$path/input/nrCapPrune.txt", "-t", "CNR", "-c", "-"),

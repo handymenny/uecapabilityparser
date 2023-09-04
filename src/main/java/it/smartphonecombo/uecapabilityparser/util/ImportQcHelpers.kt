@@ -18,7 +18,6 @@ object ImportQcHelpers {
 
     private val regexEmptyOrCommentedLine = Regex("^(#.*)?\\s*$", RegexOption.MULTILINE)
 
-
     private fun String.emptyLineIndex(): Int {
         return regexEmptyLine.find(this)?.range?.first ?: this.length
     }
@@ -37,9 +36,15 @@ object ImportQcHelpers {
     }
 
     private fun splitHex(input: String): List<String> {
-        val splitByPayload = input.split("Payload:")
-        return if (splitByPayload.size > 1) {
-            splitByPayload.drop(1).map {
+        // Try payload Prefix
+        var splitByPrefix = input.split("Payload:")
+        if (splitByPrefix.size == 1) {
+            // Try scat Prefix
+            splitByPrefix = input.split("CA Combos Raw:")
+        }
+
+        return if (splitByPrefix.size > 1) {
+            splitByPrefix.drop(1).map {
                 it.substring(0, minOf(it.emptyLineIndex(), it.notHexLineIndex()))
             }
         } else {

@@ -119,6 +119,22 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun b826MultiScatJsonOutput() {
+        cliTest(
+            arrayOf(
+                "-i",
+                "$path/input/0xB826MultiScat.txt",
+                "-t",
+                "QNR",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
+            "0xB826MultiScat.json"
+        )
+    }
+
+    @Test
     fun nrCapPruneJsonOutput() {
         cliTest(
             arrayOf(
