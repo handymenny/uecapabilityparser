@@ -33,11 +33,8 @@ data class ComponentNr(
             Use maxBandwidthDl and maxBandwidthUl instead."""
     )
     @SerialName("maxBw")
-    /**
-     * Warning, this property is backed by [maxBandwidthDl]. Set affects [maxBandwidthDl] and get
-     * returns [maxBandwidthDl].max() *
-     */
-    var maxBandwidth: Int = 0
+    /** Warning, this property is backed by [maxBandwidthDl]. Get returns [maxBandwidthDl].max() */
+    val maxBandwidth: Int = 0
         get() {
             // if maxBwDl is uninitialized, ignore emptyBandwidth
             return if (maxBwDlInitialized || maxBandwidthDl != EmptyBandwidth) {
@@ -47,17 +44,12 @@ data class ComponentNr(
                 field
             }
         }
-        set(value) {
-            maxBandwidthDl = value.toBandwidth()
-            // "fake" backing field for serialization purposes
-            field = value
-        }
 
     init {
         // If maxBandwidthDl is empty, de-serialize maxBandwidthDl to a value equivalent to
         // maxBandwidth
         // Check maxBandwidthDl before maxBandwidth to avoid strange side effects
-        @Suppress("DEPRECATION")
+        @Suppress("DEPRECATION") @Suppress("KotlinConstantConditions")
         if (maxBandwidthDl == EmptyBandwidth && maxBandwidth != 0) {
             maxBandwidthDl = maxBandwidth.toBandwidth()
         }
