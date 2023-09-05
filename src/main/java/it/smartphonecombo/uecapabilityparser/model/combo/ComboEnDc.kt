@@ -11,6 +11,7 @@ import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.util.Output
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class ComboEnDc(
@@ -20,6 +21,7 @@ data class ComboEnDc(
     @SerialName("bcsEutra") val bcsEutra: BCS = EmptyBCS,
     @SerialName("bcsIntraEndc") val bcsIntraEnDc: BCS = EmptyBCS
 ) : ICombo {
+    @Transient
     override var featureSet: Int = 0
         private set
 

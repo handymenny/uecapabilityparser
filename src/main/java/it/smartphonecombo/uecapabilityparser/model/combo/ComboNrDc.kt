@@ -7,6 +7,7 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 @Serializable
 data class ComboNrDc(
@@ -14,6 +15,7 @@ data class ComboNrDc(
     @SerialName("componentsFr2") override val secondaryComponents: List<ComponentNr>,
     override val bcs: BCS = EmptyBCS
 ) : ICombo {
+    @Transient
     override var featureSet: Int = 0
         private set
 
