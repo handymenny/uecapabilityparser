@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.firstOrNull
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
@@ -149,19 +150,5 @@ object ImportMTKLte : ImportCapabilities {
     private fun extractBigInt(line: String): BigInteger {
         val value = extractValue(line).drop(2)
         return BigInteger(value, 16)
-    }
-
-    /**
-     * Return the first element matching the given predicate or null if not found.
-     *
-     * NB: This function will update iterator cursor.
-     */
-    private inline fun Iterator<String>.firstOrNull(predicate: (String) -> Boolean): String? {
-        for (item in this) {
-            if (predicate(item)) {
-                return item
-            }
-        }
-        return null
     }
 }

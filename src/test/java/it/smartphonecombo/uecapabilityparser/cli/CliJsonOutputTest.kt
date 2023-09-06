@@ -167,6 +167,22 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun mainQctModemCap() {
+        cliTest(
+            arrayOf(
+                "-i",
+                "$path/input/qctModemCap.txt",
+                "-t",
+                "RF",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
+            "qctModemCap.json"
+        )
+    }
+
+    @Test
     fun wiresharkEutraJsonOutput() {
         cliTest(
             arrayOf(
