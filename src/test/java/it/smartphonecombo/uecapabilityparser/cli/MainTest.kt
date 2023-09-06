@@ -112,6 +112,14 @@ internal class MainTest {
     }
 
     @Test
+    fun mainQctModemCap() {
+        mainTest(
+            arrayOf("-i", "$path/input/qctModemCap.txt", "-t", "RF", "-c", "-"),
+            "qctModemCap.txt"
+        )
+    }
+
+    @Test
     fun mainWiresharkEutraCsv() {
         mainTest(
             arrayOf("-i", "$path/input/wiresharkEutra.txt", "-t", "W", "-c", "-"),

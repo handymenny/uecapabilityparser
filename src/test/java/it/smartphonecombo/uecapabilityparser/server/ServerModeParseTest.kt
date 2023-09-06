@@ -152,6 +152,18 @@ internal class ServerModeParseTest {
     }
 
     @Test
+    fun qctModemCapJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "RF")
+                    put("input", fileToBase64("$path/input/qctModemCap.txt"))
+                },
+            oraclePath = "$path/oracleJson/qctModemCap.json"
+        )
+    }
+
+    @Test
     fun wiresharkEutraJsonOutput() {
         javalinJsonTest(
             request =
