@@ -12,7 +12,8 @@ object HelpMessage {
             W (Wireshark UE Capability Information), N (NSG UE Capability Information), 
             C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem binary, decompressed), 
             Q (QCAT 0xB0CD), QLTE (0xB0CD hexdump), QNR (0xB826 hexdump), M (MEDIATEK CA_COMB_INFO), 
-            O (OSIX UE Capability Information), QC (QCAT UE Capability Information)"""
+            O (OSIX UE Capability Information), QC (QCAT UE Capability Information),
+            RF (QCT Modem Capabilities)"""
     const val CSV =
         """Output a csv, if "-" is the csv will be output to standard output.
         Some parsers output multiple CSVs, in these cases "-LTECA", "-NRCA", "-ENDC",
