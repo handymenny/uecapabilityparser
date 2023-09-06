@@ -1,0 +1,26 @@
+Source     : EFS
+Type       : Query
+Combos     : 17
+Carriers   : ᐁ 2xDLCA ᐃ 1xULCA
+Streams    : ᐁ 4 ᐃ 1
+Modulation : ᐁ 16QAM ᐃ 16QAM
+Throughput : ᐁ 191 Mbps ᐃ 0 Mbps
+
+   #  DL Bands             DL Streams  UL Bands
+   1  3A2-1A2                 191M  4  1A1
+   2  3C2                     191M  4  3A1
+   3  7A2-1A2                 191M  4  1A1
+   4  7A2-3A2                 191M  4  3A1
+   5  7A2-3A2                 191M  4  7A1
+   6  7C2                     191M  4  7A1
+   7  38A2-3A2                180M  4  38A1
+   8  38A2-7A2                180M  4  38A1
+   9  38C2                    169M  4  38A1
+  10  39A2-3A2                180M  4  39A1
+  11  39A2-7A2                180M  4  39A1
+  12  39C2                    169M  4  39A1
+  13  40A2-3A2                180M  4  40A1
+  14  40A2-7A2                180M  4  40A1
+  15  40C2                    169M  4  40A1
+  16  41A2-3A2                180M  4  41A1
+  17  41A2-7A2                180M  4  41A1
