@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
@@ -96,7 +97,7 @@ class Parsing(
             Output.outputFile(data, "$inputDir/$fileName")
             inputsPath.add(fileName)
         }
-        Output.outputFileOrStdout(Json.encodeToString(capabilities), "$outputDir/$id.json")
+        Output.outputFileOrStdout(Json.custom().encodeToString(capabilities), "$outputDir/$id.json")
         val indexLine =
             IndexLine(
                 id,
