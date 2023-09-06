@@ -69,8 +69,7 @@ object ImportNvItem : ImportCapabilities {
                     // Get UL Components
                     val ulComponents = parseItem(byteBuffer, itemType)
                     // merge DL and UL Components
-                    val bandArray = mergeAndSort(dlComponents, ulComponents)
-                    listCombo.add(ComboLte(bandArray))
+                    listCombo.add(ComboLte(dlComponents, ulComponents))
                 }
                 else -> throw IllegalArgumentException("Invalid item type")
             }
@@ -144,25 +143,5 @@ object ImportNvItem : ImportCapabilities {
         }
 
         return lteComponents
-    }
-
-    /** Merge DL Components and UL Components */
-    private fun mergeAndSort(
-        dlComponents: List<ComponentLte>,
-        ulComponents: List<ComponentLte>
-    ): List<ComponentLte> {
-        val components = dlComponents.map(ComponentLte::clone).toMutableList()
-        for (ulComponent in ulComponents) {
-            val matchingComponent =
-                components
-                    .filter { it.band == ulComponent.band && it.classUL == BwClass.NONE }
-                    .maxBy(ComponentLte::classDL)
-
-            matchingComponent.classUL = ulComponent.classUL
-            matchingComponent.mimoUL = ulComponent.mimoUL
-        }
-
-        components.sortDescending()
-        return components
     }
 }

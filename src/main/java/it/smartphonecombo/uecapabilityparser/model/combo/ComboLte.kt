@@ -21,6 +21,12 @@ data class ComboLte(
     override val featureSet: Int
         get() = 0
 
+    /** Creates a [ComboLte] merging [dlComponents] and [ulComponents] and sorting them */
+    constructor(
+        dlComponents: List<ComponentLte>,
+        ulComponents: List<ComponentLte>
+    ) : this(mergeAndSort(dlComponents, ulComponents))
+
     override fun toCompactStr(): String {
         val lte =
             masterComponents.joinToString(
@@ -92,5 +98,27 @@ data class ComboLte(
         }
 
         return "$compact$strBand$strBw$strMimo$strUl$strULmimo$strDLmod$strULmod$strBcs"
+    }
+
+    companion object {
+        /** Merge DL Components and UL Components */
+        private fun mergeAndSort(
+            dlComponents: List<ComponentLte>,
+            ulComponents: List<ComponentLte>
+        ): List<ComponentLte> {
+            val components = dlComponents.map(ComponentLte::clone).toMutableList()
+            for (ulComponent in ulComponents) {
+                val matchingComponent =
+                    components
+                        .filter { it.band == ulComponent.band && it.classUL == BwClass.NONE }
+                        .maxBy(ComponentLte::classDL)
+
+                matchingComponent.classUL = ulComponent.classUL
+                matchingComponent.mimoUL = ulComponent.mimoUL
+            }
+
+            components.sortDescending()
+            return components
+        }
     }
 }
