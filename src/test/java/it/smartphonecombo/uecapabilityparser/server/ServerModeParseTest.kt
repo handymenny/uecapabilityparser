@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
 import java.util.*
@@ -365,8 +366,8 @@ internal class ServerModeParseTest {
             val response = client.post(endpoint, request)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
 
-            val actual = Json.decodeFromString<Capabilities>(response.body?.string() ?: "")
-            val expected = Json.decodeFromString<Capabilities>(File(oraclePath).readText())
+            val actual = Json.custom().decodeFromString<Capabilities>(response.body?.string() ?: "")
+            val expected = Json.custom().decodeFromString<Capabilities>(File(oraclePath).readText())
 
             // Override dynamic properties
             expected.parserVersion = actual.parserVersion

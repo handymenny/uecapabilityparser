@@ -10,6 +10,7 @@ import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
 import it.smartphonecombo.uecapabilityparser.extension.attachFile
 import it.smartphonecombo.uecapabilityparser.extension.badRequest
+import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.internalError
@@ -43,12 +44,12 @@ class JavalinApp {
             override fun <T : Any> fromJsonString(json: String, targetType: Type): T {
                 @Suppress("UNCHECKED_CAST")
                 val deserializer = serializer(targetType) as KSerializer<T>
-                return Json.decodeFromString(deserializer, json)
+                return Json.custom().decodeFromString(deserializer, json)
             }
 
             override fun toJsonString(obj: Any, type: Type): String {
                 val serializer = serializer(obj.javaClass)
-                return Json.encodeToString(serializer, obj)
+                return Json.custom().encodeToString(serializer, obj)
             }
         }
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
@@ -166,7 +167,7 @@ class JavalinApp {
                     return@get ctx.notFound()
                 }
                 try {
-                    val capabilities = Json.decodeFromString<Capabilities>(file.readText())
+                    val capabilities = Json.custom().decodeFromString<Capabilities>(file.readText())
                     ctx.json(capabilities)
                 } catch (ex: Exception) {
                     ctx.internalError()

@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model.index
 
+import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Output
 import java.io.File
@@ -40,7 +41,7 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
                     .mapNotNull { outputFile ->
                         try {
                             val capabilities =
-                                Json.decodeFromString<Capabilities>(outputFile.readText())
+                                Json.custom().decodeFromString<Capabilities>(outputFile.readText())
                             val inputs =
                                 inputFiles
                                     .filter { inputFile ->
