@@ -22,7 +22,7 @@ import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-object Clikt : CliktCommand(name = "UE Capability Parser", printHelpOnEmptyArgs = true) {
+object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = true) {
     init {
         versionOption(version = Property.getProperty("project.version") ?: "")
     }
