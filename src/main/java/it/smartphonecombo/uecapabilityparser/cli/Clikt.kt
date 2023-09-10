@@ -223,21 +223,18 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
     override fun run() {
         // Set debug if it's passed to subcommand
         if (debug) Config["debug"] = debug.toString()
-        val isDebug = Config["debug"].toBoolean()
-        val debugMessage = if (isDebug) " with debug enabled" else ""
 
         // Process store
-        var storeMessage = ""
-        store?.let {
-            Config["store"] = it
-            storeMessage = if (isDebug) " and with store enabled" else " with store enabled"
-        }
+        store?.let { Config["store"] = it }
 
         // Start server
         val serverPort = if (port != DEFAULT_PORT) port else server
         ServerMode.run(serverPort)
 
-        val serverStartMessage = "Server started at port $serverPort$debugMessage$storeMessage"
+        echo(buildServerStartMessage(serverPort))
+    }
+
+    private fun buildServerStartMessage(serverPort: Int): String {
         val webUiMessage =
             """
             |Web UI (demo) available at http://localhost:$serverPort/
@@ -246,6 +243,15 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
             """
                 .trimMargin()
 
-        echo("$serverStartMessage\n$webUiMessage")
+        val features = mutableListOf<String>()
+        if (Config["debug"].toBoolean()) features += "debug"
+        if (store != null) features += "store"
+
+        val featuresString =
+            if (features.isNotEmpty()) {
+                features.joinToString(" and ", " with ", " enabled")
+            } else ""
+
+        return "Server started at port $serverPort$featuresString\n$webUiMessage"
     }
 }
