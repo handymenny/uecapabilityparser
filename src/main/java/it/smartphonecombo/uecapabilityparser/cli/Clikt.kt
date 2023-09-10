@@ -1,7 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.core.subcommands
+import com.github.ajalt.clikt.output.MordantHelpFormatter
 import com.github.ajalt.clikt.parameters.options.Option
 import com.github.ajalt.clikt.parameters.options.OptionDelegate
 import com.github.ajalt.clikt.parameters.options.default
@@ -51,6 +53,13 @@ object Clikt :
             if (cmdName == "cli") oldCliOptions = opt else oldServerOptions = opt
 
             registerOption(opt)
+        }
+
+        // Customize help formatter
+        context {
+            helpFormatter = {
+                MordantHelpFormatter(it, showDefaultValues = true, requiredOptionMarker = "*")
+            }
         }
     }
 
