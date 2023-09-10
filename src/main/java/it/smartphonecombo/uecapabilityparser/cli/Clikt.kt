@@ -1,13 +1,14 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
-import com.github.ajalt.clikt.core.PrintMessage
+import com.github.ajalt.clikt.core.subcommands
+import com.github.ajalt.clikt.parameters.options.Option
+import com.github.ajalt.clikt.parameters.options.OptionDelegate
 import com.github.ajalt.clikt.parameters.options.deprecated
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.optionalValue
 import com.github.ajalt.clikt.parameters.options.required
-import com.github.ajalt.clikt.parameters.options.validate
 import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
@@ -22,46 +23,63 @@ import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = true) {
+object Clikt :
+    CliktCommand(
+        name = "uecapabilityparser",
+        printHelpOnEmptyArgs = true,
+        invokeWithoutSubcommand = true
+    ) {
+
     init {
         versionOption(version = Property.getProperty("project.version") ?: "")
+
+        val subcommands = arrayOf(Cli, Server)
+        // Set subcommands
+        subcommands(*subcommands)
+
+        // Register subcommands options, so cli doesn't fail if it's invoked without a subcommand
+        subcommands.forEach { command ->
+            val cmdName = command.commandName
+            val unfilteredNames = command.registeredOptions().flatMap(Option::names)
+            val names = unfilteredNames.filter { it != "-d" && it != "--debug" }.toTypedArray()
+
+            val deprecatedMessage =
+                "WARNING: running without a command is deprecated, add \"$cmdName\" before options"
+            val opt = option(*names, hidden = true).optionalValue("").deprecated(deprecatedMessage)
+
+            if (cmdName == "cli") oldCliOptions = opt else oldServerOptions = opt
+
+            registerOption(opt)
+        }
     }
 
-    private val server by
-        option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT", eager = true)
-            .int()
-            .optionalValue(8080)
-            .validate { port ->
-                // Process debug
-                val isDebug = context.originalArgv.any { arg -> arg == "--debug" || arg == "-d" }
-                Config["debug"] = isDebug.toString()
-                val debugMessage = if (isDebug) " with debug enabled" else ""
-                // Process store
-                var storeMessage = ""
-                val storeIndex = context.originalArgv.indexOfFirst { arg -> arg == "--store" }
-                if (storeIndex != -1) {
-                    Config["store"] = context.originalArgv[storeIndex + 1]
-                    storeMessage = if (isDebug) " and with store enabled" else " with store enabled"
-                }
-                ServerMode.run(port)
-                val serverStartMessage = "Server started at port $port$debugMessage$storeMessage"
-                val webUiMessage =
-                    """
-                    |Web UI (demo) available at http://localhost:$port/
-                    |OpenAPI Spec available at http://localhost:$port/openapi
-                    |Swagger UI available at http://localhost:$port/swagger
-                    |"""
-                        .trimMargin()
-                // stop processing other options
-                throw PrintMessage(
-                    "$serverStartMessage\n$webUiMessage",
-                    statusCode = 0,
-                    printError = false
-                )
+    // this is common to both oldCli and oldServer
+    private val debug by option("-d", "--debug", hidden = true).flag()
+    private lateinit var oldCliOptions: OptionDelegate<String?>
+    private lateinit var oldServerOptions: OptionDelegate<String?>
+
+    override fun run() {
+        if (debug) Config["debug"] = "true"
+
+        if (currentContext.invokedSubcommand == null) {
+            // No subcommand, redirect to cli or server command
+            if (oldServerOptions.value != null) {
+                Server.main(currentContext.originalArgv)
+            } else if (oldCliOptions.value != null) {
+                Cli.main(currentContext.originalArgv)
+            } else {
+                echoFormattedHelp()
             }
+        }
+    }
+}
 
-    private val store by option("--store", help = HelpMessage.STORE, metavar = "DIR")
-
+object Cli :
+    CliktCommand(
+        name = "cli",
+        help = "Starts ue capability parser in cli mode",
+        printHelpOnEmptyArgs = true
+    ) {
     private val input by option("-i", "--input", help = HelpMessage.INPUT).inputStream().required()
 
     private val inputNR by option("--inputNR", help = HelpMessage.INPUT_NR).inputStream()
@@ -114,7 +132,8 @@ object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = 
     private lateinit var parsing: Parsing
 
     override fun run() {
-        Config["debug"] = debug.toString()
+        // Set debug if it's passed to subcommand
+        if (debug) Config["debug"] = debug.toString()
 
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
         parsing =
@@ -177,5 +196,48 @@ object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = 
                 csvPath?.appendBeforeExtension("-NRDC")
             )
         }
+    }
+}
+
+object Server : CliktCommand(name = "server", help = "Starts ue capability parser in server mode") {
+    private const val DEFAULT_PORT = 8080
+
+    private val server by
+        option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT")
+            .int()
+            .optionalValue(DEFAULT_PORT)
+            .required()
+
+    private val store by option("--store", help = HelpMessage.STORE, metavar = "DIR")
+
+    private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
+
+    override fun run() {
+        // Set debug if it's passed to subcommand
+        if (debug) Config["debug"] = debug.toString()
+        val isDebug = Config["debug"].toBoolean()
+        val debugMessage = if (isDebug) " with debug enabled" else ""
+
+        // Process store
+        var storeMessage = ""
+        store?.let {
+            Config["store"] = it
+            storeMessage = if (isDebug) " and with store enabled" else " with store enabled"
+        }
+
+        // Start server
+        val serverPort = server
+        ServerMode.run(serverPort)
+
+        val serverStartMessage = "Server started at port $serverPort$debugMessage$storeMessage"
+        val webUiMessage =
+            """
+            |Web UI (demo) available at http://localhost:$serverPort/
+            |OpenAPI Spec available at http://localhost:$serverPort/openapi
+            |Swagger UI available at http://localhost:$serverPort/swagger
+            """
+                .trimMargin()
+
+        echo("$serverStartMessage\n$webUiMessage")
     }
 }
