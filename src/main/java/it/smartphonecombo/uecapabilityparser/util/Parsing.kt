@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
@@ -85,7 +86,7 @@ class Parsing(
         return imports.parse(input)
     }
 
-    fun store(libraryIndex: LibraryIndex, path: String): Boolean {
+    fun store(libraryIndex: LibraryIndex, path: String, compression: Boolean): Boolean {
         val inputDir = "$path/input"
         val outputDir = "$path/output"
         val id = capabilities.id
@@ -94,16 +95,35 @@ class Parsing(
 
         inputs.filterNotNull().filterNot(ByteArray::isEmpty).forEachIndexed { index, data ->
             val fileName = "$id-$index"
-            Output.outputFile(data, "$inputDir/$fileName")
+            val byteData =
+                if (compression) {
+                    data.gzipCompress()
+                } else {
+                    data
+                }
+            var inputPath = "$inputDir/$fileName"
+            if (compression) inputPath += ".gz"
+            Output.outputFile(byteData, inputPath)
             inputsPath.add(fileName)
         }
-        Output.outputFileOrStdout(Json.custom().encodeToString(capabilities), "$outputDir/$id.json")
+
+        val encodedString = Json.custom().encodeToString(capabilities)
+        val byteArrayStr =
+            if (compression) {
+                encodedString.gzipCompress()
+            } else {
+                encodedString.toByteArray()
+            }
+        var outputPath = "$outputDir/$id.json"
+        if (compression) outputPath += ".gz"
+        Output.outputFile(byteArrayStr, outputPath)
         val indexLine =
             IndexLine(
                 id,
                 capabilities.timestamp,
                 capabilities.getStringMetadata("description") ?: "",
-                inputsPath
+                inputsPath,
+                compression
             )
         libraryIndex.addLine(indexLine)
         return true

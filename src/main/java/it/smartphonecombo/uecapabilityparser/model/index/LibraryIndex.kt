@@ -1,6 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.model.index
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
+import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
+import it.smartphonecombo.uecapabilityparser.extension.readText
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Output
 import java.io.File
@@ -22,6 +25,12 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
         return items.find { it.id == id }
     }
 
+    fun findByInput(id: String): IndexLine? {
+        return items.find { item -> item.inputs.any { it == id } }
+    }
+
+    fun findByOutput(id: String): IndexLine? = find(id)
+
     companion object {
         fun buildIndex(path: String): LibraryIndex {
             val outputDir = "$path/output"
@@ -40,22 +49,30 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
                 outputFiles
                     .mapNotNull { outputFile ->
                         try {
-                            val capabilities =
-                                Json.custom().decodeFromString<Capabilities>(outputFile.readText())
+                            val compressed = outputFile.extension == "gz"
+
+                            val capStr =
+                                if (compressed) {
+                                    outputFile.gzipDecompress().readText()
+                                } else {
+                                    outputFile.readText()
+                                }
+
+                            // Drop any extension
+                            val id = outputFile.nameWithoutAnyExtension()
+
+                            val capabilities = Json.custom().decodeFromString<Capabilities>(capStr)
                             val inputs =
                                 inputFiles
-                                    .filter { inputFile ->
-                                        inputFile.nameWithoutExtension.startsWith(
-                                            outputFile.nameWithoutExtension
-                                        )
-                                    }
-                                    .map { it.name }
+                                    .filter { it.name.startsWith(id) }
+                                    .map(File::nameWithoutAnyExtension)
 
                             IndexLine(
-                                outputFile.nameWithoutExtension,
+                                id,
                                 capabilities.timestamp,
                                 capabilities.getStringMetadata("description") ?: "",
-                                inputs
+                                inputs,
+                                compressed
                             )
                         } catch (ex: Exception) {
                             System.err.println("Error ${ex.localizedMessage}")
