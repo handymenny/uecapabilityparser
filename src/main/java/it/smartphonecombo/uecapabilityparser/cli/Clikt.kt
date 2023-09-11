@@ -4,6 +4,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.parameters.options.Option
 import com.github.ajalt.clikt.parameters.options.OptionDelegate
+import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.deprecated
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
@@ -202,11 +203,18 @@ object Cli :
 object Server : CliktCommand(name = "server", help = "Starts ue capability parser in server mode") {
     private const val DEFAULT_PORT = 8080
 
+    private val port by
+        option("-p", "--port", help = HelpMessage.PORT, metavar = "PORT")
+            .int()
+            .default(DEFAULT_PORT)
+
+    // -p/--port was -s/--server in 0.1.0
     private val server by
         option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT")
             .int()
             .optionalValue(DEFAULT_PORT)
-            .required()
+            .default(DEFAULT_PORT, defaultForHelp = "")
+            .deprecated("WARNING: option --server is deprecated, use --port instead", "")
 
     private val store by option("--store", help = HelpMessage.STORE, metavar = "DIR")
 
@@ -226,7 +234,7 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         }
 
         // Start server
-        val serverPort = server
+        val serverPort = if (port != DEFAULT_PORT) port else server
         ServerMode.run(serverPort)
 
         val serverStartMessage = "Server started at port $serverPort$debugMessage$storeMessage"

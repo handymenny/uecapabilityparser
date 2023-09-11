@@ -25,6 +25,7 @@ object HelpMessage {
     const val JSON =
         """Output a JSON file representing the serialization of capabilities data.
          If "-" is provided in place of a file name, this will json be outputted to standard output."""
-    const val SERVER = """Listen to the port passed as value"""
+    const val PORT = """Listen to the port passed as value"""
+    const val SERVER = """Same as --port but deprecated"""
     const val STORE = "Store the capabilities in the given directory for further retrieval"
 }
