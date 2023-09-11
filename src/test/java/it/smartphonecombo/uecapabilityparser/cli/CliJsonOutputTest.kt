@@ -26,6 +26,7 @@ internal class CliJsonOutputTest {
     fun carrierPolicyJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/carrierPolicy.xml",
                 "-t",
@@ -41,7 +42,16 @@ internal class CliJsonOutputTest {
     @Test
     fun b0CDJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/0xB0CD.txt", "-t", "Q", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB0CD.txt",
+                "-t",
+                "Q",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "0xB0CD.json"
         )
     }
@@ -50,6 +60,7 @@ internal class CliJsonOutputTest {
     fun b0CDMultiHexJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/0xB0CDMultiHex.txt",
                 "-t",
@@ -65,7 +76,16 @@ internal class CliJsonOutputTest {
     @Test
     fun mtkLteJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/mtkLte.txt", "-t", "M", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/mtkLte.txt",
+                "-t",
+                "M",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "mtkLte.json"
         )
     }
@@ -73,7 +93,16 @@ internal class CliJsonOutputTest {
     @Test
     fun nvItemJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/nvItem.bin", "-t", "E", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/nvItem.bin",
+                "-t",
+                "E",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "nvItem.json"
         )
     }
@@ -81,7 +110,16 @@ internal class CliJsonOutputTest {
     @Test
     fun b826JsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/0xB826.hex", "-t", "QNR", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB826.hex",
+                "-t",
+                "QNR",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "0xB826.json"
         )
     }
@@ -90,6 +128,7 @@ internal class CliJsonOutputTest {
     fun b826MultiJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/0xB826Multi.txt",
                 "-t",
@@ -106,6 +145,7 @@ internal class CliJsonOutputTest {
     fun b826MultiV14JsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/0xB826MultiV14.txt",
                 "-t",
@@ -122,6 +162,7 @@ internal class CliJsonOutputTest {
     fun b826MultiScatJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/0xB826MultiScat.txt",
                 "-t",
@@ -138,6 +179,7 @@ internal class CliJsonOutputTest {
     fun b826Multi0x9801JsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/0xB826Multi0x9801.txt",
                 "-t",
@@ -154,6 +196,7 @@ internal class CliJsonOutputTest {
     fun nrCapPruneJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/nrCapPrune.txt",
                 "-t",
@@ -170,6 +213,7 @@ internal class CliJsonOutputTest {
     fun mainQctModemCap() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/qctModemCap.txt",
                 "-t",
@@ -186,6 +230,7 @@ internal class CliJsonOutputTest {
     fun wiresharkEutraJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/wiresharkEutra.txt",
                 "-t",
@@ -202,6 +247,7 @@ internal class CliJsonOutputTest {
     fun wiresharkNrJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/wiresharkNr.txt",
                 "-t",
@@ -219,6 +265,7 @@ internal class CliJsonOutputTest {
     fun wiresharkMrdcJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/wiresharkMrdc.txt",
                 "-t",
@@ -235,6 +282,7 @@ internal class CliJsonOutputTest {
     fun wiresharkMrdcSplitJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/wiresharkMrdcSplit_0.txt",
                 "--inputENDC",
@@ -251,7 +299,16 @@ internal class CliJsonOutputTest {
     @Test
     fun nsgEutraJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/nsgEutra.txt", "-t", "N", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/nsgEutra.txt",
+                "-t",
+                "N",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "nsgEutra.json"
         )
     }
@@ -260,6 +317,7 @@ internal class CliJsonOutputTest {
     fun nsgNrJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/nsgNr.txt",
                 "-t",
@@ -276,7 +334,16 @@ internal class CliJsonOutputTest {
     @Test
     fun nsgMrdcJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/nsgMrdc.txt", "-t", "N", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/nsgMrdc.txt",
+                "-t",
+                "N",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "nsgMrdc.json"
         )
     }
@@ -285,6 +352,7 @@ internal class CliJsonOutputTest {
     fun nsgMrdcSplitJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/nsgMrdcSplit_0.txt",
                 "--inputNR",
@@ -301,7 +369,16 @@ internal class CliJsonOutputTest {
     @Test
     fun nsgSulJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/nsgSul.txt", "-t", "N", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/nsgSul.txt",
+                "-t",
+                "N",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "nsgSul.json"
         )
     }
@@ -309,7 +386,16 @@ internal class CliJsonOutputTest {
     @Test
     fun osixMrdcJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "O", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/osixMrdc.txt",
+                "-t",
+                "O",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "osixMrdc.json"
         )
     }
@@ -318,6 +404,7 @@ internal class CliJsonOutputTest {
     fun ueCapHexEutraJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/ueCapHexEutra.hex",
                 "-t",
@@ -334,6 +421,7 @@ internal class CliJsonOutputTest {
     fun ueCapHexNrJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/ueCapHexNr.hex",
                 "-t",
@@ -351,6 +439,7 @@ internal class CliJsonOutputTest {
     fun ueCapHexMrdcSplitJsonOutput() {
         cliTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/ueCapHexMrdcSplit_eutra.hex",
                 "--inputNR",
@@ -369,7 +458,16 @@ internal class CliJsonOutputTest {
     @Test
     fun qcatMrdcJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/qcatMrdc.txt", "-t", "QC", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/qcatMrdc.txt",
+                "-t",
+                "QC",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "qcatMrdc.json"
         )
     }
@@ -377,7 +475,16 @@ internal class CliJsonOutputTest {
     @Test
     fun qcatNrdcJsonOutput() {
         cliTest(
-            arrayOf("-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-j", "-", "--json-pretty-print"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/qcatNrdc.txt",
+                "-t",
+                "QC",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
             "qcatNrdc.json"
         )
     }

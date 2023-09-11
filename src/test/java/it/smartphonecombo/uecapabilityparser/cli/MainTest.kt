@@ -30,43 +30,55 @@ internal class MainTest {
     @Test
     fun mainCarrierPolicy() {
         mainTest(
-            arrayOf("-i", "$path/input/carrierPolicy.xml", "-t", "C", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/carrierPolicy.xml", "-t", "C", "-c", "-"),
             "carrierPolicy.txt"
         )
     }
 
     @Test
     fun main0xB0CD() {
-        mainTest(arrayOf("-i", "$path/input/0xB0CD.txt", "-t", "Q", "-c", "-"), "0xB0CD.txt")
+        mainTest(arrayOf("cli", "-i", "$path/input/0xB0CD.txt", "-t", "Q", "-c", "-"), "0xB0CD.txt")
     }
 
     @Test
     fun main0xB0CDMultiHex() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB0CDMultiHex.txt", "-t", "QLTE", "--debug", "-c", "-"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB0CDMultiHex.txt",
+                "-t",
+                "QLTE",
+                "--debug",
+                "-c",
+                "-"
+            ),
             "0xB0CDMultiHex.txt"
         )
     }
 
     @Test
     fun mainMtkLte() {
-        mainTest(arrayOf("-i", "$path/input/mtkLte.txt", "-t", "M", "-c", "-"), "mtkLte.txt")
+        mainTest(arrayOf("cli", "-i", "$path/input/mtkLte.txt", "-t", "M", "-c", "-"), "mtkLte.txt")
     }
 
     @Test
     fun mainNvItem() {
-        mainTest(arrayOf("-i", "$path/input/nvItem.bin", "-t", "E", "-c", "-"), "nvItem.txt")
+        mainTest(arrayOf("cli", "-i", "$path/input/nvItem.bin", "-t", "E", "-c", "-"), "nvItem.txt")
     }
 
     @Test
     fun main0xB826() {
-        mainTest(arrayOf("-i", "$path/input/0xB826.hex", "-t", "QNR", "-c", "-"), "0xB826.txt")
+        mainTest(
+            arrayOf("cli", "-i", "$path/input/0xB826.hex", "-t", "QNR", "-c", "-"),
+            "0xB826.txt"
+        )
     }
 
     @Test
     fun main0xB826Multi() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "-c", "-"),
             "0xB826Multi.txt"
         )
     }
@@ -74,7 +86,7 @@ internal class MainTest {
     @Test
     fun main0xB826MultiDebug() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "--debug"),
+            arrayOf("cli", "-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "--debug"),
             "0xB826MultiDebug.txt"
         )
     }
@@ -82,7 +94,7 @@ internal class MainTest {
     @Test
     fun main0xB826MultiV14() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB826MultiV14.txt", "-t", "QNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/0xB826MultiV14.txt", "-t", "QNR", "-c", "-"),
             "0xB826MultiV14.txt"
         )
     }
@@ -90,7 +102,7 @@ internal class MainTest {
     @Test
     fun main0xB826MultiScat() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB826MultiScat.txt", "-t", "QNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/0xB826MultiScat.txt", "-t", "QNR", "-c", "-"),
             "0xB826MultiScat.txt"
         )
     }
@@ -98,7 +110,7 @@ internal class MainTest {
     @Test
     fun main0xB826Multi0x9801() {
         mainTest(
-            arrayOf("-i", "$path/input/0xB826Multi0x9801.txt", "-t", "QNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/0xB826Multi0x9801.txt", "-t", "QNR", "-c", "-"),
             "0xB826MultiScat0x9801.txt"
         )
     }
@@ -106,7 +118,7 @@ internal class MainTest {
     @Test
     fun mainNrCapPrune() {
         mainTest(
-            arrayOf("-i", "$path/input/nrCapPrune.txt", "-t", "CNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/nrCapPrune.txt", "-t", "CNR", "-c", "-"),
             "nrCapPrune.txt"
         )
     }
@@ -114,7 +126,7 @@ internal class MainTest {
     @Test
     fun mainQctModemCap() {
         mainTest(
-            arrayOf("-i", "$path/input/qctModemCap.txt", "-t", "RF", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/qctModemCap.txt", "-t", "RF", "-c", "-"),
             "qctModemCap.txt"
         )
     }
@@ -122,7 +134,7 @@ internal class MainTest {
     @Test
     fun mainWiresharkEutraCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/wiresharkEutra.txt", "-t", "W", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/wiresharkEutra.txt", "-t", "W", "-c", "-"),
             "wiresharkEutraCsv.txt",
         )
     }
@@ -131,6 +143,7 @@ internal class MainTest {
     fun mainWiresharkEutraJson() {
         mainTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/wiresharkEutra.txt",
                 "-t",
@@ -146,7 +159,16 @@ internal class MainTest {
     @Test
     fun mainWiresharkNrCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/wiresharkNr.txt", "-t", "W", "--defaultNR", "-c", "-"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/wiresharkNr.txt",
+                "-t",
+                "W",
+                "--defaultNR",
+                "-c",
+                "-"
+            ),
             "wiresharkNrCsv.txt",
         )
     }
@@ -154,7 +176,16 @@ internal class MainTest {
     @Test
     fun mainWiresharkNrJson() {
         mainTest(
-            arrayOf("-i", "$path/input/wiresharkNr.txt", "-t", "W", "--defaultNR", "-l", "-"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/wiresharkNr.txt",
+                "-t",
+                "W",
+                "--defaultNR",
+                "-l",
+                "-"
+            ),
             "wiresharkNrJson.txt",
         )
     }
@@ -162,7 +193,7 @@ internal class MainTest {
     @Test
     fun mainWiresharkMrdcCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/wiresharkMrdc.txt", "-t", "W", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/wiresharkMrdc.txt", "-t", "W", "-c", "-"),
             "wiresharkMrdcCsv.txt",
         )
     }
@@ -170,7 +201,7 @@ internal class MainTest {
     @Test
     fun mainWiresharkMrdcDebug() {
         mainTest(
-            arrayOf("-i", "$path/input/wiresharkMrdc.txt", "-t", "W", "-d"),
+            arrayOf("cli", "-i", "$path/input/wiresharkMrdc.txt", "-t", "W", "-d"),
             "wiresharkMrdcDebug.txt",
         )
     }
@@ -178,7 +209,7 @@ internal class MainTest {
     @Test
     fun mainWiresharkMrdcJson() {
         mainTest(
-            arrayOf("-i", "$path/input/wiresharkMrdc.txt", "-t", "W", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/wiresharkMrdc.txt", "-t", "W", "-l", "-"),
             "wiresharkMrdcJson.txt",
         )
     }
@@ -187,6 +218,7 @@ internal class MainTest {
     fun mainWiresharkMrdcSplitCsv() {
         mainTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/wiresharkMrdcSplit_0.txt",
                 "--inputENDC",
@@ -204,6 +236,7 @@ internal class MainTest {
     fun mainWiresharkMrdcSplitJson() {
         mainTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/wiresharkMrdc.txt",
                 "--inputENDC",
@@ -219,13 +252,16 @@ internal class MainTest {
 
     @Test
     fun mainNsgEutraCsv() {
-        mainTest(arrayOf("-i", "$path/input/nsgEutra.txt", "-t", "N", "-c", "-"), "nsgEutraCsv.txt")
+        mainTest(
+            arrayOf("cli", "-i", "$path/input/nsgEutra.txt", "-t", "N", "-c", "-"),
+            "nsgEutraCsv.txt"
+        )
     }
 
     @Test
     fun mainNsgEutraJson() {
         mainTest(
-            arrayOf("-i", "$path/input/nsgEutra.txt", "-t", "N", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/nsgEutra.txt", "-t", "N", "-l", "-"),
             "nsgEutraJson.txt"
         )
     }
@@ -233,7 +269,7 @@ internal class MainTest {
     @Test
     fun mainNsgNrCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/nsgNr.txt", "-t", "N", "--defaultNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/nsgNr.txt", "-t", "N", "--defaultNR", "-c", "-"),
             "nsgNrCsv.txt",
         )
     }
@@ -241,25 +277,32 @@ internal class MainTest {
     @Test
     fun mainNsgNrJson() {
         mainTest(
-            arrayOf("-i", "$path/input/nsgNr.txt", "-t", "N", "--defaultNR", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/nsgNr.txt", "-t", "N", "--defaultNR", "-l", "-"),
             "nsgNrJson.txt",
         )
     }
 
     @Test
     fun mainNsgMrdcCsv() {
-        mainTest(arrayOf("-i", "$path/input/nsgMrdc.txt", "-t", "N", "-c", "-"), "nsgMrdcCsv.txt")
+        mainTest(
+            arrayOf("cli", "-i", "$path/input/nsgMrdc.txt", "-t", "N", "-c", "-"),
+            "nsgMrdcCsv.txt"
+        )
     }
 
     @Test
     fun mainNsgMrdcJson() {
-        mainTest(arrayOf("-i", "$path/input/nsgMrdc.txt", "-t", "N", "-l", "-"), "nsgMrdcJson.txt")
+        mainTest(
+            arrayOf("cli", "-i", "$path/input/nsgMrdc.txt", "-t", "N", "-l", "-"),
+            "nsgMrdcJson.txt"
+        )
     }
 
     @Test
     fun mainNsgMrdcSplitCsv() {
         mainTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/nsgMrdcSplit_0.txt",
                 "--inputNR",
@@ -277,6 +320,7 @@ internal class MainTest {
     fun mainNsgMrdcSplitJson() {
         mainTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/nsgMrdc.txt",
                 "--inputNR",
@@ -293,7 +337,7 @@ internal class MainTest {
     @Test
     fun mainNsgSulCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/nsgSul.txt", "-t", "N", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/nsgSul.txt", "-t", "N", "-c", "-"),
             "nsgSulCsv.txt",
         )
     }
@@ -301,20 +345,23 @@ internal class MainTest {
     @Test
     fun mainNsgSulJson() {
         mainTest(
-            arrayOf("-i", "$path/input/nsgSul.txt", "-t", "N", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/nsgSul.txt", "-t", "N", "-l", "-"),
             "nsgSulJson.txt",
         )
     }
 
     @Test
     fun mainOsixMrdcCsv() {
-        mainTest(arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "O", "-c", "-"), "osixMrdcCsv.txt")
+        mainTest(
+            arrayOf("cli", "-i", "$path/input/osixMrdc.txt", "-t", "O", "-c", "-"),
+            "osixMrdcCsv.txt"
+        )
     }
 
     @Test
     fun mainOsixMrdcJson() {
         mainTest(
-            arrayOf("-i", "$path/input/osixMrdc.txt", "-t", "O", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/osixMrdc.txt", "-t", "O", "-l", "-"),
             "osixMrdcJson.txt"
         )
     }
@@ -322,7 +369,7 @@ internal class MainTest {
     @Test
     fun mainUeCapHexEutraCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/ueCapHexEutra.hex", "-t", "H", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/ueCapHexEutra.hex", "-t", "H", "-c", "-"),
             "ueCapHexEutraCsv.txt",
         )
     }
@@ -330,7 +377,7 @@ internal class MainTest {
     @Test
     fun mainUeCapHexEutraJson() {
         mainTest(
-            arrayOf("-i", "$path/input/ueCapHexEutra.hex", "-t", "H", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/ueCapHexEutra.hex", "-t", "H", "-l", "-"),
             "ueCapHexEutraJson.txt",
         )
     }
@@ -338,7 +385,7 @@ internal class MainTest {
     @Test
     fun mainUeCapHexNrCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/ueCapHexNr.hex", "-t", "H", "--defaultNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/ueCapHexNr.hex", "-t", "H", "--defaultNR", "-c", "-"),
             "ueCapHexNrCsv.txt",
         )
     }
@@ -346,7 +393,7 @@ internal class MainTest {
     @Test
     fun mainUeCapHexNrJson() {
         mainTest(
-            arrayOf("-i", "$path/input/ueCapHexNr.hex", "-t", "H", "--defaultNR", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/ueCapHexNr.hex", "-t", "H", "--defaultNR", "-l", "-"),
             "ueCapHexNrJson.txt",
         )
     }
@@ -355,6 +402,7 @@ internal class MainTest {
     fun mainUeCapHexMrdcSplitCsv() {
         mainTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/ueCapHexMrdcSplit_eutra.hex",
                 "--inputNR",
@@ -374,6 +422,7 @@ internal class MainTest {
     fun mainUeCapHexMrdcSplitJson() {
         mainTest(
             arrayOf(
+                "cli",
                 "-i",
                 "$path/input/ueCapHexMrdcSplit_eutra.hex",
                 "--inputNR",
@@ -392,7 +441,7 @@ internal class MainTest {
     @Test
     fun mainQcatMrdcCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/qcatMrdc.txt", "-t", "QC", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/qcatMrdc.txt", "-t", "QC", "-c", "-"),
             "qcatMrdcCsv.txt"
         )
     }
@@ -400,7 +449,7 @@ internal class MainTest {
     @Test
     fun mainQcatMrdcJson() {
         mainTest(
-            arrayOf("-i", "$path/input/qcatMrdc.txt", "-t", "QC", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/qcatMrdc.txt", "-t", "QC", "-l", "-"),
             "qcatMrdcJson.txt"
         )
     }
@@ -408,7 +457,7 @@ internal class MainTest {
     @Test
     fun mainQcatNrdcCsv() {
         mainTest(
-            arrayOf("-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-c", "-"),
             "qcatNrdcCsv.txt"
         )
     }
@@ -416,7 +465,7 @@ internal class MainTest {
     @Test
     fun mainQcatNrdcJson() {
         mainTest(
-            arrayOf("-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-l", "-"),
             "qcatNrdcJson.txt"
         )
     }
