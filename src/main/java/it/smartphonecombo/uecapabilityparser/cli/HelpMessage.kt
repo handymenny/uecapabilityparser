@@ -25,8 +25,7 @@ object HelpMessage {
     const val JSON =
         """Output a JSON file representing the serialization of capabilities data.
          If "-" is provided in place of a file name, this will json be outputted to standard output."""
-    const val SERVER =
-        """Starts ue capability parser in server mode, accepting requests to the port passed as value. If no value passed default to 8080."""
-    const val STORE =
-        "Store the capabilities in the given directory for further retrieval. Only applicable to server mode."
+    const val PORT = """Listen to the port passed as value"""
+    const val SERVER = """Same as --port but deprecated"""
+    const val STORE = "Store the capabilities in the given directory for further retrieval"
 }
