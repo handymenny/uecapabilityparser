@@ -4,6 +4,8 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.output.MordantHelpFormatter
+import com.github.ajalt.clikt.parameters.groups.OptionGroup
+import com.github.ajalt.clikt.parameters.groups.cooccurring
 import com.github.ajalt.clikt.parameters.options.Option
 import com.github.ajalt.clikt.parameters.options.OptionDelegate
 import com.github.ajalt.clikt.parameters.options.default
@@ -210,6 +212,18 @@ object Cli :
 }
 
 object Server : CliktCommand(name = "server", help = "Starts ue capability parser in server mode") {
+
+    init {
+        // Disable required mark
+        context { helpFormatter = { MordantHelpFormatter(it, showDefaultValues = true) } }
+    }
+
+    // Subclass StoreOptions
+    private class StoreOptions : OptionGroup() {
+        val path by option("--store", help = HelpMessage.STORE, metavar = "DIR").required()
+        val compression by option("--compression", help = HelpMessage.COMPRESSION).flag()
+    }
+
     private const val DEFAULT_PORT = 8080
 
     private val port by
@@ -225,7 +239,7 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
             .default(DEFAULT_PORT, defaultForHelp = "")
             .deprecated("WARNING: option --server is deprecated, use --port instead", "")
 
-    private val store by option("--store", help = HelpMessage.STORE, metavar = "DIR")
+    private val store by StoreOptions().cooccurring()
 
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
@@ -234,7 +248,10 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         if (debug) Config["debug"] = debug.toString()
 
         // Process store
-        store?.let { Config["store"] = it }
+        store?.let {
+            Config["store"] = it.path
+            Config["compression"] = it.compression.toString()
+        }
 
         // Start server
         val serverPort = if (port != DEFAULT_PORT) port else server
@@ -255,10 +272,11 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         val features = mutableListOf<String>()
         if (Config["debug"].toBoolean()) features += "debug"
         if (store != null) features += "store"
+        if (Config["compression"].toBoolean()) features += "compression"
 
         val featuresString =
             if (features.isNotEmpty()) {
-                features.joinToString(" and ", " with ", " enabled")
+                features.joinToString(" + ", " with ", " enabled")
             } else ""
 
         return "Server started at port $serverPort$featuresString\n$webUiMessage"

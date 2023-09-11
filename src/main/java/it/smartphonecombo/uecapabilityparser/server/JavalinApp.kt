@@ -13,8 +13,10 @@ import it.smartphonecombo.uecapabilityparser.extension.badRequest
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getString
+import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.notFound
+import it.smartphonecombo.uecapabilityparser.extension.readText
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -79,6 +81,7 @@ class JavalinApp {
 
     init {
         val store = Config["store"]
+        val compression = Config["compression"] == "true"
         val index: LibraryIndex =
             store?.let { LibraryIndex.buildIndex(it) } ?: LibraryIndex(mutableListOf())
         val idRegex = "[a-f0-9-]{36}(?:-[0-9]+)?".toRegex()
@@ -110,7 +113,7 @@ class JavalinApp {
                 }
                 ctx.json(parsing.capabilities)
                 if (store != null) {
-                    parsing.store(index, store)
+                    parsing.store(index, store, compression)
                 }
             }
             ApiBuilder.post("/csv/0.1.0") { ctx ->
@@ -162,12 +165,23 @@ class JavalinApp {
                     return@get ctx.badRequest()
                 }
 
-                val file = File("$store/output/$id.json")
-                if (!file.exists()) {
-                    return@get ctx.notFound()
-                }
+                val indexLine = index.findByOutput(id) ?: return@get ctx.notFound()
+
+                var filePath = "$store/output/$id.json"
+                if (indexLine.compressed) filePath += ".gz"
+
+                val file = File(filePath)
+
+                if (!file.exists()) return@get ctx.notFound()
+
                 try {
-                    val capabilities = Json.custom().decodeFromString<Capabilities>(file.readText())
+                    val text =
+                        if (indexLine.compressed) {
+                            file.gzipDecompress().readText()
+                        } else {
+                            file.readText()
+                        }
+                    val capabilities = Json.custom().decodeFromString<Capabilities>(text)
                     ctx.json(capabilities)
                 } catch (ex: Exception) {
                     ctx.internalError()
@@ -179,12 +193,24 @@ class JavalinApp {
                     return@get ctx.badRequest()
                 }
 
-                val file = File("$store/input/$id")
-                if (!file.exists()) {
-                    return@get ctx.notFound()
-                }
+                val indexLine = index.findByInput(id) ?: return@get ctx.notFound()
+
+                var filePath = "$store/input/$id"
+                if (indexLine.compressed) filePath += ".gz"
+
+                val file = File(filePath)
+
+                if (!file.exists()) return@get ctx.notFound()
+
                 try {
-                    ctx.attachFile(file.readBytes(), id, ContentType.APPLICATION_OCTET_STREAM)
+                    val bytes =
+                        if (indexLine.compressed) {
+                            file.gzipDecompress().use { it.readBytes() }
+                        } else {
+                            file.readBytes()
+                        }
+
+                    ctx.attachFile(bytes, id, ContentType.APPLICATION_OCTET_STREAM)
                 } catch (ex: Exception) {
                     ctx.internalError()
                 }
