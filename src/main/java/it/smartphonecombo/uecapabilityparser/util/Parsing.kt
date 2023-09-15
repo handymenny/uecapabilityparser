@@ -103,7 +103,7 @@ class Parsing(
                 }
             var inputPath = "$inputDir/$fileName"
             if (compression) inputPath += ".gz"
-            Output.outputFile(byteData, inputPath)
+            IO.outputFile(byteData, inputPath)
             inputsPath.add(fileName)
         }
 
@@ -116,7 +116,7 @@ class Parsing(
             }
         var outputPath = "$outputDir/$id.json"
         if (compression) outputPath += ".gz"
-        Output.outputFile(byteArrayStr, outputPath)
+        IO.outputFile(byteArrayStr, outputPath)
         val indexLine =
             IndexLine(
                 id,

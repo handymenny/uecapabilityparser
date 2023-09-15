@@ -5,7 +5,7 @@ import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
 import it.smartphonecombo.uecapabilityparser.extension.readText
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.IO
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -37,8 +37,8 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
             val inputDir = "$path/input"
 
             // Create directories if they don't exist
-            Output.createDirectories(outputDir)
-            Output.createDirectories(inputDir)
+            IO.createDirectories(outputDir)
+            IO.createDirectories(inputDir)
 
             val outputFiles = File(outputDir).listFiles() ?: emptyArray()
             val inputFiles = File(inputDir).listFiles() ?: emptyArray()

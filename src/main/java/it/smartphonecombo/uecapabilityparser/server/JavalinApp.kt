@@ -24,7 +24,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.io.File
 import java.lang.reflect.Type
@@ -134,7 +134,7 @@ class JavalinApp {
                     }
                 val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
                 ctx.attachFile(
-                    Output.toCsv(comboList).toByteArray(),
+                    IO.toCsv(comboList).toByteArray(),
                     "${type}-${date}.csv",
                     ContentType.TEXT_CSV
                 )
