@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
-import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
@@ -95,28 +94,14 @@ class Parsing(
 
         inputs.filterNotNull().filterNot(ByteArray::isEmpty).forEachIndexed { index, data ->
             val fileName = "$id-$index"
-            val byteData =
-                if (compression) {
-                    data.gzipCompress()
-                } else {
-                    data
-                }
-            var inputPath = "$inputDir/$fileName"
-            if (compression) inputPath += ".gz"
-            IO.outputFile(byteData, inputPath)
+            val inputPath = "$inputDir/$fileName"
+            IO.outputFile(data, inputPath, compression)
             inputsPath.add(fileName)
         }
 
         val encodedString = Json.custom().encodeToString(capabilities)
-        val byteArrayStr =
-            if (compression) {
-                encodedString.gzipCompress()
-            } else {
-                encodedString.toByteArray()
-            }
-        var outputPath = "$outputDir/$id.json"
-        if (compression) outputPath += ".gz"
-        IO.outputFile(byteArrayStr, outputPath)
+        val outputPath = "$outputDir/$id.json"
+        IO.outputFile(encodedString.toByteArray(), outputPath, compression)
         val indexLine =
             IndexLine(
                 id,

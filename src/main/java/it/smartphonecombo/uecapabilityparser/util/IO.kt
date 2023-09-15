@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.readText
 import it.smartphonecombo.uecapabilityparser.model.BwClass
@@ -30,10 +31,22 @@ object IO {
         }
     }
 
-    /** Output the given [byteArray] to [outputFile] */
-    fun outputFile(byteArray: ByteArray, outputFile: String) {
+    /**
+     * Output the given [byteArray] to [outputFile]
+     *
+     * if [compress] is true ".gz" is automatically appended to [outputFile]
+     */
+    fun outputFile(byteArray: ByteArray, outputFile: String, compress: Boolean) {
+        var path = outputFile
+        var bytes = byteArray
+
+        if (compress) {
+            path += ".gz"
+            bytes = bytes.gzipCompress()
+        }
+
         try {
-            File(outputFile).writeBytes(byteArray)
+            File(path).writeBytes(bytes)
         } catch (ex: Exception) {
             System.err.println("Error ${ex.localizedMessage}")
         }
