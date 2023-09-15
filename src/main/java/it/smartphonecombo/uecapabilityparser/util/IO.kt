@@ -234,7 +234,12 @@ object IO {
     fun readTextFromFile(filePath: String, compressed: Boolean): String? {
         val addExtension = if (compressed) ".gz" else ""
 
-        val file = File(filePath + addExtension).takeIf { it.exists() } ?: return null
+        return readTextFromFile(File(filePath + addExtension), compressed)
+    }
+
+    /** Return null if file doesn't exist */
+    fun readTextFromFile(file: File, compressed: Boolean): String? {
+        if (!file.exists()) return null
 
         return if (compressed) file.gzipDecompress().readText() else file.readText()
     }
