@@ -1,5 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
+import it.smartphonecombo.uecapabilityparser.extension.readText
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -226,5 +228,27 @@ object IO {
 
     fun appendSeparator(separator: String, vararg strings: StringBuilder) {
         strings.forEach { it.append(separator) }
+    }
+
+    /** if [compressed] is true, automatically appends ".gz". Return null if file doesn't exist */
+    fun readTextFromFile(filePath: String, compressed: Boolean): String? {
+        val addExtension = if (compressed) ".gz" else ""
+
+        val file = File(filePath + addExtension).takeIf { it.exists() } ?: return null
+
+        return if (compressed) file.gzipDecompress().readText() else file.readText()
+    }
+
+    /** if [compressed] is true, automatically appends ".gz". Return null if file doesn't exist */
+    fun readBytesFromFile(filePath: String, compressed: Boolean): ByteArray? {
+        val addExtension = if (compressed) ".gz" else ""
+
+        val file = File(filePath + addExtension).takeIf { it.exists() } ?: return null
+
+        return if (compressed) {
+            file.gzipDecompress().use { it.readBytes() }
+        } else {
+            file.readBytes()
+        }
     }
 }
