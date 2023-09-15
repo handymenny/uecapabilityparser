@@ -13,7 +13,6 @@ import it.smartphonecombo.uecapabilityparser.extension.badRequest
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getString
-import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.notFound
 import it.smartphonecombo.uecapabilityparser.extension.readText
@@ -24,9 +23,8 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.Parsing
-import java.io.File
 import java.lang.reflect.Type
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -134,7 +132,7 @@ class JavalinApp {
                     }
                 val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
                 ctx.attachFile(
-                    Output.toCsv(comboList).toByteArray(),
+                    IO.toCsv(comboList).toByteArray(),
                     "${type}-${date}.csv",
                     ContentType.TEXT_CSV
                 )
@@ -166,21 +164,12 @@ class JavalinApp {
                 }
 
                 val indexLine = index.findByOutput(id) ?: return@get ctx.notFound()
-
-                var filePath = "$store/output/$id.json"
-                if (indexLine.compressed) filePath += ".gz"
-
-                val file = File(filePath)
-
-                if (!file.exists()) return@get ctx.notFound()
+                val compressed = indexLine.compressed
+                val filePath = "$store/output/$id.json"
 
                 try {
                     val text =
-                        if (indexLine.compressed) {
-                            file.gzipDecompress().readText()
-                        } else {
-                            file.readText()
-                        }
+                        IO.readTextFromFile(filePath, compressed) ?: return@get ctx.notFound()
                     val capabilities = Json.custom().decodeFromString<Capabilities>(text)
                     ctx.json(capabilities)
                 } catch (ex: Exception) {
@@ -194,21 +183,12 @@ class JavalinApp {
                 }
 
                 val indexLine = index.findByInput(id) ?: return@get ctx.notFound()
-
-                var filePath = "$store/input/$id"
-                if (indexLine.compressed) filePath += ".gz"
-
-                val file = File(filePath)
-
-                if (!file.exists()) return@get ctx.notFound()
+                val compressed = indexLine.compressed
+                val filePath = "$store/input/$id"
 
                 try {
                     val bytes =
-                        if (indexLine.compressed) {
-                            file.gzipDecompress().use { it.readBytes() }
-                        } else {
-                            file.readBytes()
-                        }
+                        IO.readBytesFromFile(filePath, compressed) ?: return@get ctx.notFound()
 
                     ctx.attachFile(bytes, id, ContentType.APPLICATION_OCTET_STREAM)
                 } catch (ex: Exception) {

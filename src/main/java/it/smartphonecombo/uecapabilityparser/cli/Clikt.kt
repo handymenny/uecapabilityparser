@@ -22,7 +22,7 @@ import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.server.ServerMode
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.Output
+import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.encodeToString
@@ -162,7 +162,7 @@ object Cli :
 
         ueLog?.let {
             val ueLogOutput = if (ueLog == "-") null else ueLog
-            Output.outputFileOrStdout(parsing.ueLog, ueLogOutput)
+            IO.outputFileOrStdout(parsing.ueLog, ueLogOutput)
         }
         csv?.let {
             val csvOutput = if (it == "-") null else it
@@ -170,43 +170,31 @@ object Cli :
         }
         json?.let {
             val jsvOutput = if (it == "-") null else it
-            Output.outputFileOrStdout(jsonFormat.encodeToString(capabilities), jsvOutput)
+            IO.outputFileOrStdout(jsonFormat.encodeToString(capabilities), jsvOutput)
         }
     }
 
     private fun csvOutput(comboList: Capabilities, csvPath: String?) {
         val lteOnlyTypes = arrayOf("C", "E", "Q", "QLTE", "M", "RF")
         if (type in lteOnlyTypes) {
-            return Output.outputFileOrStdout(Output.toCsv(comboList.lteCombos), csvPath)
+            return IO.outputFileOrStdout(IO.toCsv(comboList.lteCombos), csvPath)
         }
 
         val lteCombos = comboList.lteCombos
         if (lteCombos.isNotEmpty()) {
-            Output.outputFileOrStdout(
-                Output.toCsv(lteCombos),
-                csvPath?.appendBeforeExtension("-LTECA")
-            )
+            IO.outputFileOrStdout(IO.toCsv(lteCombos), csvPath?.appendBeforeExtension("-LTECA"))
         }
         val nrCombos = comboList.nrCombos
         if (nrCombos.isNotEmpty()) {
-            Output.outputFileOrStdout(
-                Output.toCsv(nrCombos),
-                csvPath?.appendBeforeExtension("-NRCA")
-            )
+            IO.outputFileOrStdout(IO.toCsv(nrCombos), csvPath?.appendBeforeExtension("-NRCA"))
         }
         val enDcCombos = comboList.enDcCombos
         if (enDcCombos.isNotEmpty()) {
-            Output.outputFileOrStdout(
-                Output.toCsv(enDcCombos),
-                csvPath?.appendBeforeExtension("-ENDC")
-            )
+            IO.outputFileOrStdout(IO.toCsv(enDcCombos), csvPath?.appendBeforeExtension("-ENDC"))
         }
         val nrDcCombos = comboList.nrDcCombos
         if (nrDcCombos.isNotEmpty()) {
-            Output.outputFileOrStdout(
-                Output.toCsv(nrDcCombos),
-                csvPath?.appendBeforeExtension("-NRDC")
-            )
+            IO.outputFileOrStdout(IO.toCsv(nrDcCombos), csvPath?.appendBeforeExtension("-NRDC"))
         }
     }
 }

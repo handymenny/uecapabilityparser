@@ -11,9 +11,6 @@ internal fun GZIPInputStream.readText(): String = reader().use { it.readText() }
 /** Create gzipInputStream from file. Remember to close the stream. */
 internal fun File.gzipDecompress(): GZIPInputStream = GZIPInputStream(this.inputStream(), 4096)
 
-/** Compress string to gzip * */
-internal fun String.gzipCompress(): ByteArray = this.toByteArray().gzipCompress()
-
 /** Compress bytearray to gzip * */
 internal fun ByteArray.gzipCompress(): ByteArray {
     val outputStream = ByteArrayOutputStream(this.size)
