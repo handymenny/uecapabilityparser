@@ -183,6 +183,7 @@ internal class ServerModeParseTest {
                 buildJsonObject {
                     put("type", "W")
                     put("input", fileToBase64("$path/input/wiresharkNr.txt"))
+                    put("defaultNR", true)
                 },
             oraclePath = "$path/oracleJson/wiresharkNr.json"
         )
@@ -232,6 +233,7 @@ internal class ServerModeParseTest {
                 buildJsonObject {
                     put("type", "N")
                     put("input", fileToBase64("$path/input/nsgNr.txt"))
+                    put("defaultNR", true)
                 },
             oraclePath = "$path/oracleJson/nsgNr.json"
         )

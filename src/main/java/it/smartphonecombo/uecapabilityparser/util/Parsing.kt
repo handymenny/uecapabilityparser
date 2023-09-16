@@ -43,6 +43,7 @@ class Parsing(
         capabilities.logType = type
         capabilities.timestamp = Instant.now().toEpochMilli()
         capabilities.setMetadata("processingTime", "${processTime}ms")
+        if (defaultNR) capabilities.setMetadata("defaultNR", "true")
         return capabilities
     }
 
@@ -108,7 +109,8 @@ class Parsing(
                 capabilities.timestamp,
                 capabilities.getStringMetadata("description") ?: "",
                 inputsPath,
-                compression
+                compression,
+                capabilities.getStringMetadata("defaultNR").toBoolean(),
             )
         libraryIndex.addLine(indexLine)
         return true

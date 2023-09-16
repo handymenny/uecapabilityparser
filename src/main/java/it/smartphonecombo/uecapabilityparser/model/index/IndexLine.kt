@@ -8,5 +8,6 @@ data class IndexLine(
     val timestamp: Long,
     val description: String,
     val inputs: List<String>,
-    val compressed: Boolean = false
+    val compressed: Boolean = false,
+    val defaultNR: Boolean = false
 )
