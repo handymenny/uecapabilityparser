@@ -210,6 +210,10 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
     private class StoreOptions : OptionGroup() {
         val path by option("--store", help = HelpMessage.STORE, metavar = "DIR").required()
         val compression by option("--compression", help = HelpMessage.COMPRESSION).flag()
+        val reparse by
+            option("--reparse", help = HelpMessage.REPARSE, metavar = "Strategy")
+                .choice("off", "auto", "force")
+                .default("off")
     }
 
     private const val DEFAULT_PORT = 8080
@@ -239,6 +243,7 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         store?.let {
             Config["store"] = it.path
             Config["compression"] = it.compression.toString()
+            Config["reparse"] = it.reparse
         }
 
         // Start server
@@ -261,10 +266,11 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         if (Config["debug"].toBoolean()) features += "debug"
         if (store != null) features += "store"
         if (Config["compression"].toBoolean()) features += "compression"
+        if (Config["reparse"] != "off") features += "reparse=${Config["reparse"]}"
 
         val featuresString =
             if (features.isNotEmpty()) {
-                features.joinToString(" + ", " with ", " enabled")
+                features.joinToString(" + ", " with ")
             } else ""
 
         return "Server started at port $serverPort$featuresString\n$webUiMessage"

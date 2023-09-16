@@ -30,4 +30,11 @@ object HelpMessage {
     const val STORE = "Store the capabilities in the given directory for further retrieval"
     const val COMPRESSION =
         "Compress new stored capabilities, it doesn't affect the ability to read already compressed capabilities"
+    const val REPARSE =
+        """Re-parse stored capabilities with the given strategy. 
+            Valid values are "off" (feature disabled), 
+            "force" (re-parse all),
+            "auto" (re-parse when parser version differs).
+            A backup of the re-parsed data is kept in the backup folder.
+            Note: --compression affects the capabilities re-parsed."""
 }

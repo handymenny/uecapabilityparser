@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
+import it.smartphonecombo.uecapabilityparser.extension.moveTo
 import it.smartphonecombo.uecapabilityparser.extension.readText
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
@@ -261,12 +262,31 @@ object IO {
     fun readBytesFromFile(filePath: String, compressed: Boolean): ByteArray? {
         val addExtension = if (compressed) ".gz" else ""
 
-        val file = File(filePath + addExtension).takeIf { it.exists() } ?: return null
+        return readBytesFromFile(File(filePath + addExtension), compressed)
+    }
+
+    /** Return null if file doesn't exist */
+    fun readBytesFromFile(file: File, compressed: Boolean): ByteArray? {
+        if (!file.exists()) return null
 
         return if (compressed) {
             file.gzipDecompress().use { it.readBytes() }
         } else {
             file.readBytes()
         }
+    }
+
+    /**
+     * if [compressed] is true, automatically appends ".gz". Return null if file doesn't exist. File
+     * is moved [srcPath] to [dstPath] after a successful read.
+     */
+    fun readAndMove(srcPath: String, dstPath: String, compressed: Boolean): ByteArray? {
+        val addExtension = if (compressed) ".gz" else ""
+
+        val inputFile = File(srcPath + addExtension)
+        val bytes = readBytesFromFile(inputFile, compressed)
+        inputFile.moveTo(dstPath + addExtension)
+
+        return bytes
     }
 }
