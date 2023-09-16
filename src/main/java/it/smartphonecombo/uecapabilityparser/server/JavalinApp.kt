@@ -37,7 +37,6 @@ import kotlinx.serialization.json.put
 import kotlinx.serialization.serializer
 
 class JavalinApp {
-    private val base64 = Base64.getDecoder()
     private val jsonMapper =
         object : JsonMapper {
             override fun <T : Any> fromJsonString(json: String, targetType: Type): T {
@@ -93,31 +92,10 @@ class JavalinApp {
         app.routes {
             ApiBuilder.post("/parse/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
-                val input = request.getString("input")?.let { base64.decode(it) }
-                val inputNR = request.getString("inputNR")?.let { base64.decode(it) }
-                val inputENDC = request.getString("inputENDC")?.let { base64.decode(it) }
-                val defaultNR =
-                    request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
-                val type = request.getString("type")
-
-                if (input == null && inputNR == null || type == null) {
-                    return@post ctx.badRequest()
-                }
-                val parsing =
-                    Parsing(
-                        input ?: inputNR!!,
-                        if (defaultNR) null else inputNR,
-                        inputENDC,
-                        defaultNR,
-                        type
-                    )
-                val description = request.getString("description")
-                if (description != null) {
-                    parsing.capabilities.setMetadata("description", description)
-                }
-                ctx.json(parsing.capabilities)
+                val parsed = Parsing.fromJsonRequest(request) ?: return@post ctx.badRequest()
+                ctx.json(parsed.capabilities)
                 if (store != null) {
-                    parsing.store(index, store, compression)
+                    parsed.store(index, store, compression)
                 }
             }
             ApiBuilder.post("/csv/0.1.0") { ctx ->
