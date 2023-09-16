@@ -15,7 +15,6 @@ import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.notFound
-import it.smartphonecombo.uecapabilityparser.extension.readText
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -104,7 +103,14 @@ class JavalinApp {
                 if (input == null && inputNR == null || type == null) {
                     return@post ctx.badRequest()
                 }
-                val parsing = Parsing(input ?: inputNR!!, inputNR, inputENDC, defaultNR, type)
+                val parsing =
+                    Parsing(
+                        input ?: inputNR!!,
+                        if (defaultNR) null else inputNR,
+                        inputENDC,
+                        defaultNR,
+                        type
+                    )
                 val description = request.getString("description")
                 if (description != null) {
                     parsing.capabilities.setMetadata("description", description)
