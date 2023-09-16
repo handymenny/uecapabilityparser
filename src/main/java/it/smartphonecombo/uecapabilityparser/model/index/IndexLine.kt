@@ -9,5 +9,6 @@ data class IndexLine(
     val description: String,
     val inputs: List<String>,
     val compressed: Boolean = false,
-    val defaultNR: Boolean = false
+    val defaultNR: Boolean = false,
+    val parserVersion: String
 )

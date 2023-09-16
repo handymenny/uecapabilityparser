@@ -71,7 +71,8 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
                                 capabilities.getStringMetadata("description") ?: "",
                                 inputs,
                                 compressed,
-                                capabilities.getStringMetadata("defaultNR").toBoolean()
+                                capabilities.getStringMetadata("defaultNR").toBoolean(),
+                                capabilities.parserVersion
                             )
                         } catch (ex: Exception) {
                             System.err.println("Error ${ex.localizedMessage}")

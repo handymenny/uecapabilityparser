@@ -114,6 +114,7 @@ class Parsing(
                 inputsPath,
                 compression,
                 capabilities.getStringMetadata("defaultNR").toBoolean(),
+                capabilities.parserVersion
             )
         libraryIndex.addLine(indexLine)
         return true
