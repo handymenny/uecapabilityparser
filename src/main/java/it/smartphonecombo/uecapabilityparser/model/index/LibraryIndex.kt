@@ -30,6 +30,9 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
 
     fun findByOutput(id: String): IndexLine? = find(id)
 
+    /** return a list of all elements */
+    fun getAll() = items.toList()
+
     companion object {
         fun buildIndex(path: String): LibraryIndex {
             val outputDir = "$path/output"
