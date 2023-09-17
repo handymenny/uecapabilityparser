@@ -122,9 +122,18 @@ class Parsing(
     companion object {
         fun fromJsonRequest(request: JsonElement): Parsing? {
             val base64decoder = Base64.getDecoder()
-            val input = request.getString("input")?.let { base64decoder.decode(it) }
-            val inputNR = request.getString("inputNR")?.let { base64decoder.decode(it) }
-            val inputENDC = request.getString("inputENDC")?.let { base64decoder.decode(it) }
+            val input =
+                request.getString("input").takeUnless(String?::isNullOrEmpty)?.let {
+                    base64decoder.decode(it)
+                }
+            val inputNR =
+                request.getString("inputNR").takeUnless(String?::isNullOrEmpty)?.let {
+                    base64decoder.decode(it)
+                }
+            val inputENDC =
+                request.getString("inputENDC").takeUnless(String?::isNullOrEmpty)?.let {
+                    base64decoder.decode(it)
+                }
             val defaultNR =
                 request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
             val type = request.getString("type")
@@ -144,7 +153,7 @@ class Parsing(
 
             // Set description
             val description = request.getString("description")
-            if (description != null) {
+            if (!description.isNullOrEmpty()) {
                 parsing.capabilities.setMetadata("description", description)
             }
 
