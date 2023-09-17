@@ -98,8 +98,16 @@ object ImportQcHelpers {
                 metadata = metadataList.first()
             )
 
-        metadataList.drop(1).forEach { map ->
-            map.forEach { (key, value) -> capabilities.addMetadata(key, value) }
+        if (metadataList.size > 1) {
+            val keys = metadataList.flatMap { it.keys }.distinct()
+
+            // Add missing keys to maps
+            metadataList.forEach { map -> keys.filter { it !in map }.forEach { map[it] = "" } }
+
+            // Add additional metadata
+            metadataList.drop(1).forEach { map ->
+                map.forEach { (key, value) -> capabilities.addMetadata(key, value) }
+            }
         }
 
         return capabilities
