@@ -30,6 +30,9 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
 
     fun findByOutput(id: String): IndexLine? = find(id)
 
+    /** return a list of all elements */
+    fun getAll() = items.toList()
+
     companion object {
         fun buildIndex(path: String): LibraryIndex {
             val outputDir = "$path/output"
@@ -68,7 +71,8 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
                                 capabilities.getStringMetadata("description") ?: "",
                                 inputs,
                                 compressed,
-                                capabilities.getStringMetadata("defaultNR").toBoolean()
+                                capabilities.getStringMetadata("defaultNR").toBoolean(),
+                                capabilities.parserVersion
                             )
                         } catch (ex: Exception) {
                             System.err.println("Error ${ex.localizedMessage}")

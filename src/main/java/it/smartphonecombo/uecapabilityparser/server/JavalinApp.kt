@@ -24,6 +24,7 @@ import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.Parsing
+import it.smartphonecombo.uecapabilityparser.util.Property
 import java.lang.reflect.Type
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -31,13 +32,13 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.put
 import kotlinx.serialization.serializer
 
 class JavalinApp {
-    private val base64 = Base64.getDecoder()
     private val jsonMapper =
         object : JsonMapper {
             override fun <T : Any> fromJsonString(json: String, targetType: Type): T {
@@ -79,9 +80,16 @@ class JavalinApp {
     init {
         val store = Config["store"]
         val compression = Config["compression"] == "true"
-        val index: LibraryIndex =
+        var index: LibraryIndex =
             store?.let { LibraryIndex.buildIndex(it) } ?: LibraryIndex(mutableListOf())
         val idRegex = "[a-f0-9-]{36}(?:-[0-9]+)?".toRegex()
+
+        val reparseStrategy = Config.getOrDefault("reparse", "off")
+        if (store != null && reparseStrategy != "off") {
+            reparseLibrary(reparseStrategy, store, index, compression)
+            // Rebuild index
+            index = LibraryIndex.buildIndex(store)
+        }
 
         app.exception(Exception::class.java) { e, _ -> e.printStackTrace() }
         app.error(HttpStatus.NOT_FOUND) { ctx ->
@@ -93,31 +101,10 @@ class JavalinApp {
         app.routes {
             ApiBuilder.post("/parse/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
-                val input = request.getString("input")?.let { base64.decode(it) }
-                val inputNR = request.getString("inputNR")?.let { base64.decode(it) }
-                val inputENDC = request.getString("inputENDC")?.let { base64.decode(it) }
-                val defaultNR =
-                    request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
-                val type = request.getString("type")
-
-                if (input == null && inputNR == null || type == null) {
-                    return@post ctx.badRequest()
-                }
-                val parsing =
-                    Parsing(
-                        input ?: inputNR!!,
-                        if (defaultNR) null else inputNR,
-                        inputENDC,
-                        defaultNR,
-                        type
-                    )
-                val description = request.getString("description")
-                if (description != null) {
-                    parsing.capabilities.setMetadata("description", description)
-                }
-                ctx.json(parsing.capabilities)
+                val parsed = Parsing.fromJsonRequest(request) ?: return@post ctx.badRequest()
+                ctx.json(parsed.capabilities)
                 if (store != null) {
-                    parsing.store(index, store, compression)
+                    parsed.store(index, store, compression)
                 }
             }
             ApiBuilder.post("/csv/0.1.0") { ctx ->
@@ -208,6 +195,90 @@ class JavalinApp {
         if (openapi != null) {
             ctx.contentType(ContentType.JSON)
             ctx.result(openapi)
+        }
+    }
+
+    private fun reparseLibrary(
+        strategy: String,
+        store: String,
+        index: LibraryIndex,
+        compression: Boolean
+    ) {
+        val parserVersion = Property.getProperty("project.version")
+        val auto = strategy !== "force"
+
+        IO.createDirectories("$store/backup/output/")
+        IO.createDirectories("$store/backup/input/")
+
+        val base64 = Base64.getEncoder()
+
+        for (indexLine in index.getAll()) {
+
+            if (auto && indexLine.parserVersion == parserVersion) continue
+
+            try {
+                val compressed = indexLine.compressed
+                val capPath = "/output/${indexLine.id}.json"
+                val text =
+                    IO.readAndMove("$store$capPath", "$store/backup$capPath", compressed)
+                        ?.decodeToString()
+                        ?: continue
+
+                val capabilities = Json.decodeFromString<Capabilities>(text)
+                val inputMap =
+                    indexLine.inputs.mapNotNull { input ->
+                        val path = "/input/$input"
+                        val bytes = IO.readAndMove("$store$path", "$store/backup$path", compressed)
+                        bytes?.let { base64.encodeToString(bytes) }
+                    }
+
+                val json =
+                    buildParseJsonRequest(
+                        *inputMap.toTypedArray(),
+                        type = capabilities.logType,
+                        description = indexLine.description,
+                        defaultNR =
+                            indexLine.defaultNR ||
+                                capabilities.lteBands.isEmpty() && capabilities.nrBands.isNotEmpty()
+                    )
+
+                Parsing.fromJsonRequest(json)?.let {
+                    // Reset capabilities id and timestamp
+                    it.capabilities.id = capabilities.id
+                    it.capabilities.timestamp = capabilities.timestamp
+                    it.store(index, store, compression)
+                }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
+        }
+    }
+
+    private fun buildParseJsonRequest(
+        vararg inputs: String,
+        type: String,
+        description: String?,
+        defaultNR: Boolean
+    ): JsonObject {
+        // We don't support more than 3 inputs for type H and 1 for others
+        val maxInputs = if (type == "H") 3 else 1
+        val inputSize = minOf(inputs.size, maxInputs)
+
+        return buildJsonObject {
+            for (i in 0 until inputSize) {
+                val input = inputs[i]
+                if (i == 0) {
+                    put("input", input)
+                } else if (i == 2 || i == 1 && type == "H" && defaultNR) {
+                    put("inputENDC", input)
+                } else {
+                    put("inputNR", input)
+                }
+            }
+
+            description?.let { put("description", it) }
+            put("type", type)
+            put("defaultNR", defaultNR)
         }
     }
 }
