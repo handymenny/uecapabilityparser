@@ -216,7 +216,7 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
                 .default("off")
     }
 
-    private const val DEFAULT_PORT = 8080
+    private const val DEFAULT_PORT = 0
 
     private val port by
         option("-p", "--port", help = HelpMessage.PORT, metavar = "PORT")
@@ -227,8 +227,7 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
     private val server by
         option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT")
             .int()
-            .optionalValue(DEFAULT_PORT)
-            .default(DEFAULT_PORT, defaultForHelp = "")
+            .optionalValue(8080)
             .deprecated("WARNING: option --server is deprecated, use --port instead", "")
 
     private val store by StoreOptions().cooccurring()
@@ -247,8 +246,9 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         }
 
         // Start server
-        val serverPort = if (port != DEFAULT_PORT) port else server
-        ServerMode.run(serverPort)
+        val inputPort = server ?: port
+        // if inputPort is 0, serverPort is random
+        val serverPort = ServerMode.run(inputPort)
 
         echo(buildServerStartMessage(serverPort))
     }
