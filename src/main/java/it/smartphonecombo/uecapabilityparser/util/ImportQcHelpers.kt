@@ -88,26 +88,29 @@ object ImportQcHelpers {
         val nrDcCombos = if (!lte) list.flatMap(Capabilities::nrDcCombos) else emptyList()
 
         val metadataList = list.map(Capabilities::metadata)
-        val metadata =
-            if (list.size == 1) {
-                metadataList.first()
-            } else {
-                metadataList
-                    .flatMapIndexed { index, map ->
-                        // add a suffix to each key
-                        map.map { Pair("${it.key}-$index", it.value) }
-                    }
-                    .toMap()
-                    .toMutableMap()
-            }
 
-        return Capabilities(
-            lteCombos = lteCombos,
-            enDcCombos = enDcCombos,
-            nrCombos = nrCombos,
-            nrDcCombos = nrDcCombos,
-            metadata = metadata
-        )
+        val capabilities =
+            Capabilities(
+                lteCombos = lteCombos,
+                enDcCombos = enDcCombos,
+                nrCombos = nrCombos,
+                nrDcCombos = nrDcCombos,
+                metadata = metadataList.first()
+            )
+
+        if (metadataList.size > 1) {
+            val keys = metadataList.flatMap { it.keys }.distinct()
+
+            // Add missing keys to maps
+            metadataList.forEach { map -> keys.filter { it !in map }.forEach { map[it] = "" } }
+
+            // Add additional metadata
+            metadataList.drop(1).forEach { map ->
+                map.forEach { (key, value) -> capabilities.addMetadata(key, value) }
+            }
+        }
+
+        return capabilities
     }
 
     /**

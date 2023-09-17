@@ -40,8 +40,8 @@ object ImportQctModemCap : ImportCapabilities {
                 }
 
                 val sourceStr = "${source}-${type}".uppercase()
-                capabilities.setMetadata("source", sourceStr)
-                capabilities.setMetadata("numCombos", numCombos)
+                capabilities.addMetadata("source", sourceStr)
+                capabilities.addMetadata("numCombos", numCombos)
 
                 val indexDl = combosHeader.indexOf("DL Bands", ignoreCase = true)
                 val indexUl = combosHeader.indexOf("UL Bands", ignoreCase = true)

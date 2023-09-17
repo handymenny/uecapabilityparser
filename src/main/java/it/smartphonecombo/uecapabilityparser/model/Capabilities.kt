@@ -40,6 +40,14 @@ data class Capabilities(
     @SerialName("id")
     var id: String = UUID.randomUUID().toString()
 ) {
+    fun addMetadata(key: String, value: Any) {
+        if (key in metadata) {
+            metadata[key] += ", $value"
+        } else {
+            metadata[key] = "$value"
+        }
+    }
+
     fun setMetadata(key: String, value: Any) {
         metadata[key] = value.toString()
     }
