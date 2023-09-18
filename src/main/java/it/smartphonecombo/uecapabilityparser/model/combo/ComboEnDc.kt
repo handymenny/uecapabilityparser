@@ -86,14 +86,14 @@ data class ComboEnDc(
         val compact = this.toCompactStr() + separator
 
         val nrBandBwScs = StringBuilder()
-        val nrUlBwMod = StringBuilder()
+        val nrUlBwScsMod = StringBuilder()
         val nrMimoDl = StringBuilder()
         val nrMimoUl = StringBuilder()
 
         componentsNr.populateCsvStringBuilders(
             nrBandBwScs,
             nrMimoDl,
-            nrUlBwMod,
+            nrUlBwScsMod,
             nrMimoUl,
             nrDlCC,
             nrUlCC,
@@ -132,6 +132,6 @@ data class ComboEnDc(
 
         repeat(lteUlCC - ulLteCount) { IO.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
 
-        return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwMod$lteMimoDl$nrMimoDl$lteMimoUl$nrMimoUl$bcs;$bcsEutra;$bcsIntraEnDc"
+        return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwScsMod$lteMimoDl$nrMimoDl$lteMimoUl$nrMimoUl$bcs;$bcsEutra;$bcsIntraEnDc"
     }
 }

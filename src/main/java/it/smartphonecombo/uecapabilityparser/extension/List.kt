@@ -48,12 +48,18 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
 
         if (component.classUL != BwClass.NONE) {
             ulCount++
-            nrUlBwMod
-                .append(component.band)
-                .append(component.classUL)
-                .append(separator)
-                .append(component.modUL)
-                .append(separator)
+            nrUlBwMod.append(component.band).append(component.classUL).append(separator)
+
+            if (component.maxBandwidthUl != EmptyBandwidth) {
+                nrUlBwMod.append(component.maxBandwidthUl)
+            }
+            nrUlBwMod.append(separator)
+
+            if (component.scs != 0) {
+                nrUlBwMod.append(component.scs)
+            }
+
+            nrUlBwMod.append(separator).append(component.modUL).append(separator)
 
             if (component.mimoUL != EmptyMimo) {
                 nrMimoUl.append(component.mimoUL)
