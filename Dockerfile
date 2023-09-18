@@ -1,6 +1,11 @@
 FROM --platform=$BUILDPLATFORM gradle:8-jdk11 AS build
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
+# Replace project.version=staging with project.version=commit@hash
+RUN git config --global --add safe.directory "*" \
+    && rev=$(git rev-parse --short --verify HEAD) \
+    && sed -i "s/\(project.version=\)staging$/\1commit@$rev/g" src/main/resources/application.properties \
+    || true
 RUN gradle build --no-daemon
 
 FROM eclipse-temurin:17-jre AS deploy
