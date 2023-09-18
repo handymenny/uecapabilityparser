@@ -39,7 +39,7 @@ jobs:
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
         if: github.event_name != 'schedule' || ${{ env.NEW_COMMIT_COUNT > 0 }}
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       - name: Docker meta
         if: github.event_name != 'schedule' || ${{ env.NEW_COMMIT_COUNT > 0 }}
         id: meta
