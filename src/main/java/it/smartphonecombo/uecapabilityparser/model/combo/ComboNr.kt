@@ -55,21 +55,21 @@ data class ComboNr(
         val compact = this.toCompactStr() + separator
 
         val nrBandBwScs = StringBuilder()
-        val nrUlBwMod = StringBuilder()
+        val nrUlBwScsMod = StringBuilder()
         val nrMimoDl = StringBuilder()
         val nrMimoUl = StringBuilder()
 
         componentsNr.populateCsvStringBuilders(
             nrBandBwScs,
             nrMimoDl,
-            nrUlBwMod,
+            nrUlBwScsMod,
             nrMimoUl,
             nrDlCC,
             nrUlCC,
             separator
         )
 
-        return "$compact$nrBandBwScs$nrUlBwMod$nrMimoDl$nrMimoUl$bcs"
+        return "$compact$nrBandBwScs$nrUlBwScsMod$nrMimoDl$nrMimoUl$bcs"
     }
 
     fun copy(featureSet: Int): ComboNr {

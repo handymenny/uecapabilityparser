@@ -63,18 +63,18 @@ data class ComboNrDc(
         val compact = this.toCompactStr() + separator
 
         val nrBandBwScs = StringBuilder()
-        val nrUlBwMod = StringBuilder()
+        val nrUlBwScsMod = StringBuilder()
         val nrMimoDl = StringBuilder()
         val nrMimoUl = StringBuilder()
         val nrDcBandBwScs = StringBuilder()
-        val nrDcUlBwMod = StringBuilder()
+        val nrDcUlBwScsMod = StringBuilder()
         val nrDcMimoDl = StringBuilder()
         val nrDcMimoUl = StringBuilder()
 
         componentsNr.populateCsvStringBuilders(
             nrBandBwScs,
             nrMimoDl,
-            nrUlBwMod,
+            nrUlBwScsMod,
             nrMimoUl,
             nrDlCC,
             nrUlCC,
@@ -84,13 +84,13 @@ data class ComboNrDc(
         componentsNrDc.populateCsvStringBuilders(
             nrDcBandBwScs,
             nrDcMimoDl,
-            nrDcUlBwMod,
+            nrDcUlBwScsMod,
             nrDcMimoUl,
             nrDcDlCC,
             nrDcUlCC,
             separator
         )
 
-        return "$compact$nrBandBwScs$nrDcBandBwScs$nrUlBwMod$nrDcUlBwMod$nrMimoDl$nrDcMimoDl$nrMimoUl$nrDcMimoUl$bcs"
+        return "$compact$nrBandBwScs$nrDcBandBwScs$nrUlBwScsMod$nrDcUlBwScsMod$nrMimoDl$nrDcMimoDl$nrMimoUl$nrDcMimoUl$bcs"
     }
 }
