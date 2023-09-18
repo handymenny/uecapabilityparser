@@ -23,7 +23,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -48,7 +55,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 },
                 {
@@ -121,7 +135,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -146,7 +167,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 },
                 {
@@ -205,7 +233,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -244,7 +279,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 },
                 {
@@ -289,7 +331,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -342,7 +391,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 }
             ],
@@ -373,7 +429,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -398,7 +461,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 },
                 {
@@ -443,7 +513,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -482,7 +559,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 }
             ],
@@ -513,7 +597,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -538,7 +629,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 },
                 {
@@ -583,7 +681,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -608,7 +713,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 }
             ],
@@ -639,7 +751,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -664,7 +783,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 },
                 {
@@ -793,7 +919,14 @@
                         "type": "single",
                         "value": "qam256"
                     },
-                    "maxBw": 40,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 40
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 40
+                    },
                     "maxScs": 15
                 }
             ],
@@ -818,7 +951,14 @@
                         "type": "single",
                         "value": "qam64"
                     },
-                    "maxBw": 100,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    },
                     "maxScs": 120
                 }
             ],
