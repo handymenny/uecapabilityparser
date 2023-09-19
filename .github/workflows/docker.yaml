@@ -36,7 +36,7 @@ jobs:
           sed -i "s/\(project.version=\).*/\1nightly-${{ steps.date.outputs.date }}/g" src/main/resources/application.properties
       - name: Set up QEMU
         if: github.event_name != 'schedule' || ${{ env.NEW_COMMIT_COUNT > 0 }}
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         if: github.event_name != 'schedule' || ${{ env.NEW_COMMIT_COUNT > 0 }}
         uses: docker/setup-buildx-action@v3
