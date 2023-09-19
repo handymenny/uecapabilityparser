@@ -188,6 +188,11 @@ class JavalinApp {
                     ctx.internalError()
                 }
             }
+            ApiBuilder.get("/version") { ctx ->
+                val version = Property.getProperty("project.version")
+                val json = buildJsonObject { put("version", version) }
+                ctx.json(json)
+            }
         }
     }
 
