@@ -131,6 +131,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 lteFeatures = getLteFeatureSet(eutra)
             }
             filterList.add(getUeLteCapabilityFilters(eutra))
+            comboList.altTbsIndexes = parseAltTbsIndexes(eutra)
         }
 
         if (nrCapability != null) {
@@ -1709,5 +1710,29 @@ object ImportCapabilityInformation : ImportCapabilities {
     // return 0 if input is invalid or null
     private fun parseBw(bandwidth: String?): Int {
         return bandwidth?.removePrefix("mhz")?.toIntOrNull() ?: 0
+    }
+
+    private fun parseAltTbsIndexes(eutraCapability: UEEutraCapabilityJson): List<String> {
+        val tbsAltIndex = mutableListWithCapacity<String>(3)
+
+        val a26a33 =
+            eutraCapability.eutraCapabilityV1280
+                ?.getObject("phyLayerParameters-v1280")
+                ?.getString("alternativeTBS-Indices-r12")
+
+        val b33 =
+            eutraCapability.eutraCapabilityV1430
+                ?.getObject("phyLayerParameters-v1430")
+                ?.getString("alternativeTBS-Index-r14")
+
+        if (a26a33 == "supported") {
+            tbsAltIndex.add("26a")
+            tbsAltIndex.add("33a")
+        }
+        if (b33 == "supported") {
+            tbsAltIndex.add("33b")
+        }
+
+        return tbsAltIndex
     }
 }

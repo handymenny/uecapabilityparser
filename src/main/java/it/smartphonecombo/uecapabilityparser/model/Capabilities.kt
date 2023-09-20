@@ -26,6 +26,7 @@ data class Capabilities(
     @SerialName("nrBands") var nrBands: List<BandNrDetails> = emptyList(),
     @SerialName("lteCategoryDl") var lteCategoryDL: Int = 0,
     @SerialName("lteCategoryUl") var lteCategoryUL: Int = 0,
+    @SerialName("altTbsIndexes") var altTbsIndexes: List<String> = emptyList(),
     @SerialName("endc") var enDcCombos: List<ComboEnDc> = emptyList(),
     @SerialName("nrca") var nrCombos: List<ComboNr> = emptyList(),
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),
