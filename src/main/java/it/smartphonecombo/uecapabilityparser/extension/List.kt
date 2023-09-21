@@ -27,24 +27,29 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
     ulCCs: Int,
     separator: String,
 ) {
+    var dlCount = 0
     var ulCount = 0
+
     for (component in this) {
-        nrBandBwScs.append(component.band).append(component.classDL).append(separator)
+        if (component.classDL != BwClass.NONE) {
+            dlCount++
+            nrBandBwScs.append(component.band).append(component.classDL).append(separator)
 
-        if (component.maxBandwidthDl != EmptyBandwidth) {
-            nrBandBwScs.append(component.maxBandwidthDl)
-        }
-        nrBandBwScs.append(separator)
+            if (component.maxBandwidthDl != EmptyBandwidth) {
+                nrBandBwScs.append(component.maxBandwidthDl)
+            }
+            nrBandBwScs.append(separator)
 
-        if (component.scs != 0) {
-            nrBandBwScs.append(component.scs)
-        }
-        nrBandBwScs.append(separator)
+            if (component.scs != 0) {
+                nrBandBwScs.append(component.scs)
+            }
+            nrBandBwScs.append(separator)
 
-        if (component.mimoDL != EmptyMimo) {
-            nrMimoDl.append(component.mimoDL)
+            if (component.mimoDL != EmptyMimo) {
+                nrMimoDl.append(component.mimoDL)
+            }
+            nrMimoDl.append(separator)
         }
-        nrMimoDl.append(separator)
 
         if (component.classUL != BwClass.NONE) {
             ulCount++
@@ -68,7 +73,7 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
         }
     }
 
-    repeat(dlCCs - this.size) {
+    repeat(dlCCs - dlCount) {
         IO.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
     }
 
