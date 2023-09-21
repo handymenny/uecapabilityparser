@@ -939,6 +939,9 @@ object ImportCapabilityInformation : ImportCapabilities {
         nrBandDetails: IBandDetails
     ): ComponentNr {
         val componentNr = component.copy()
+        var dlChannelBW90mhz = false
+        var ulChannelBW90mhz = false
+
         if (!dlFeature.isNullOrEmpty()) {
             if (dlFeature.size > 1) {
                 val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
@@ -950,7 +953,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentNr.mimoDL = firstFeature.mimo
                 componentNr.maxBandwidthDl = firstFeature.bw.toBandwidth()
             }
-            componentNr.channelBW90mhz = dlFeature.any { it.bw >= 80 && it.channelBW90mhz }
+            dlChannelBW90mhz = dlFeature.any { it.channelBW90mhz }
             componentNr.scs = dlFeature.maxOf(FeaturePerCCNr::scs)
             // set mod dl from bandDetails, because modulation in NR features means something else
             // (see TS 38 306)
@@ -972,8 +975,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentNr.mimoUL = firstFeature.mimo
                 componentNr.maxBandwidthUl = firstFeature.bw.toBandwidth()
             }
-            componentNr.channelBW90mhz =
-                componentNr.channelBW90mhz || ulFeature.any { it.bw >= 80 && it.channelBW90mhz }
+            ulChannelBW90mhz = ulFeature.any { it.channelBW90mhz }
             componentNr.scs = maxOf(componentNr.scs, ulFeature.maxOf(FeaturePerCCNr::scs))
 
             // set mod ul from bandDetails, because modulation in NR features means something else
@@ -984,6 +986,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             componentNr.classUL = BwClass.NONE
             componentNr.mimoUL = EmptyMimo
         }
+        componentNr.channelBW90mhz = dlChannelBW90mhz || ulChannelBW90mhz
         return componentNr
     }
 
@@ -1356,8 +1359,12 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bwFr1OrFr2 =
                         supportedBandwidthDL?.getString("fr1")
                             ?: supportedBandwidthDL?.getString("fr2")
-                    val bw = parseBw(bwFr1OrFr2)
-                    val channelBW90mhz = it.getString("channelBW-90mhz") != null
+                    var bw = parseBw(bwFr1OrFr2)
+                    // Ignore bw 90MHz if max bw is < 80
+                    val channelBW90mhz = it.getString("channelBW-90mhz") != null && bw >= 80
+                    // Set maxBw to 90MHz if maxBw is 80
+                    if (channelBW90mhz && bw == 80) bw = 90
+
                     val mimoLayers = it.getString("maxNumberMIMO-LayersPDSCH")
                     val mimo = maxOf(Int.fromLiteral(mimoLayers), 2)
 
@@ -1402,8 +1409,11 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val bwFr1OrFr2 =
                         supportedBandwidthUL?.getString("fr1")
                             ?: supportedBandwidthUL?.getString("fr2")
-                    val bw = parseBw(bwFr1OrFr2)
-                    val channelBW90mhz = it.getString("channelBW-90mhz") != null
+                    var bw = parseBw(bwFr1OrFr2)
+                    // Ignore bw 90MHz if max bw is < 80
+                    val channelBW90mhz = it.getString("channelBW-90mhz") != null && bw >= 80
+                    // Set maxBw to 90MHz if maxBw is 80
+                    if (channelBW90mhz && bw == 80) bw = 90
 
                     val mimoCbLayers =
                         it.getObject("mimo-CB-PUSCH")?.getString("maxNumberMIMO-LayersCB-PUSCH")
