@@ -27,7 +27,7 @@ val tstypesImplementation: Configuration by
     configurations.getting { extendsFrom(configurations.implementation.get()) }
 
 dependencies {
-    val mtsAsn1Version = "c4394ce"
+    val mtsAsn1Version = "24f52fc"
     val kmemVersion = "4.0.10"
     val javalinVersion = "5.6.2"
 
