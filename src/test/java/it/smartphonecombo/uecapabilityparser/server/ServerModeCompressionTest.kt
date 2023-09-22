@@ -24,8 +24,9 @@ import org.junit.jupiter.api.Test
 internal class ServerModeCompressionTest {
     private val resourcesPath = "src/test/resources/server"
     private val base64 = Base64.getEncoder()
-    private val endpointParse = "/parse/0.1.0/"
-    private val endpointStore = "/store/0.2.0/"
+    private val endpointParse =
+        arrayOf("/parse/0.1.0/", "/parse/", "/parse/0.1.0", "/parse").random()
+    private val endpointStore = arrayOf("/store/0.2.0/", "/store/").random()
     private val tmpStorePath = UUID.randomUUID().toString() + "-tmp"
     private val storedId = "12a9cc86-e5d8-4d26-afd5-7d4d53e88b66"
 

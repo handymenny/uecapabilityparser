@@ -38,12 +38,21 @@ internal class ServerModeOthersTest {
     @Test
     fun testStoreEnabled() {
         Config["store"] = "/store"
-        getTest("/store/0.2.0/status", buildJsonObject { put("enabled", true) })
+        val endpoint =
+            arrayOf(
+                    "/store/0.2.0/status/",
+                    "/store/status/",
+                    "/store/0.2.0/status",
+                    "/store/status"
+                )
+                .random()
+        getTest(endpoint, buildJsonObject { put("enabled", true) })
     }
 
     @Test
     fun testStoreOpenApi() {
-        getTest("/openapi", Json.parseToJsonElement(openapi))
+        val endpoint = arrayOf("/openapi", "/openapi/").random()
+        getTest(endpoint, Json.parseToJsonElement(openapi))
     }
 
     @Test
