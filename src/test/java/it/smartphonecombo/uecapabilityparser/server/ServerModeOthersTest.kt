@@ -17,12 +17,7 @@ internal class ServerModeOthersTest {
 
     private val parserVersion = Property.getProperty("project.version") ?: ""
     private val openapi =
-        {}.javaClass
-            .getResourceAsStream("/swagger/openapi.json")
-            ?.bufferedReader()
-            ?.readText()
-            ?.replace("http://localhost:8080", "/")
-            ?: ""
+        {}.javaClass.getResourceAsStream("/swagger/openapi.json")?.reader()?.readText() ?: ""
 
     @AfterEach
     fun tearDown() {
