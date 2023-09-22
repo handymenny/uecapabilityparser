@@ -55,12 +55,6 @@ class JavalinApp {
         }
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
-    private val openapi =
-        {}.javaClass
-            .getResourceAsStream("/swagger/openapi.json")
-            ?.bufferedReader()
-            ?.readText()
-            ?.replace("http://localhost:8080", "/")
 
     val app: Javalin =
         Javalin.create { config ->
@@ -203,9 +197,11 @@ class JavalinApp {
     }
 
     private fun getOpenApi(ctx: Context) {
+        val openapi = {}.javaClass.getResourceAsStream("/swagger/openapi.json")
         if (openapi != null) {
+            val text = openapi.reader().readText()
             ctx.contentType(ContentType.JSON)
-            ctx.result(openapi)
+            ctx.result(text)
         }
     }
 
