@@ -5,6 +5,7 @@ import io.javalin.apibuilder.ApiBuilder
 import io.javalin.config.SizeUnit
 import io.javalin.http.ContentType
 import io.javalin.http.Context
+import io.javalin.http.Handler
 import io.javalin.http.HttpStatus
 import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
@@ -99,21 +100,29 @@ class JavalinApp {
             }
         }
         app.routes {
-            ApiBuilder.post("/parse/0.1.0") { ctx ->
+            // Add / if missing
+            ApiBuilder.before("/swagger") { ctx ->
+                if (!ctx.path().endsWith("/")) {
+                    ctx.redirect("/swagger/")
+                }
+            }
+
+            apiBuilderPost("/parse", "/parse/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
-                val parsed = Parsing.fromJsonRequest(request) ?: return@post ctx.badRequest()
+                val parsed =
+                    Parsing.fromJsonRequest(request) ?: return@apiBuilderPost ctx.badRequest()
                 ctx.json(parsed.capabilities)
                 if (store != null) {
                     parsed.store(index, store, compression)
                 }
             }
-            ApiBuilder.post("/csv/0.1.0") { ctx ->
+            apiBuilderPost("/csv", "/csv/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
                 val type = request.getString("type")
                 val input = request.getArray("input")
 
                 if (input == null || type == null) {
-                    return@post ctx.badRequest()
+                    return@apiBuilderPost ctx.badRequest()
                 }
                 val comboList =
                     when (type) {
@@ -130,64 +139,61 @@ class JavalinApp {
                     ContentType.TEXT_CSV
                 )
             }
-            ApiBuilder.get("/openapi", ::getOpenApi)
-            ApiBuilder.get("/swagger/openapi.json", ::getOpenApi)
-            // Add / if missing
-            ApiBuilder.before("/swagger") { ctx ->
-                if (!ctx.path().endsWith("/")) {
-                    ctx.redirect("/swagger/")
-                }
-            }
-            ApiBuilder.get("/store/0.2.0/status") { ctx ->
+
+            apiBuilderGet("/openapi", "/swagger/openapi.json", handler = ::getOpenApi)
+
+            apiBuilderGet("/store/status", "/store/0.2.0/status") { ctx ->
                 val enabled = store != null
                 val json = buildJsonObject { put("enabled", enabled) }
                 ctx.json(json)
             }
-            ApiBuilder.get("/store/0.2.0/list") { ctx -> ctx.json(index) }
-            ApiBuilder.get("/store/0.2.0/getItem") { ctx ->
-                val id = ctx.queryParam("id") ?: return@get ctx.badRequest()
-                val item = index.find(id) ?: return@get ctx.notFound()
+            apiBuilderGet("/store/list", "/store/0.2.0/list") { ctx -> ctx.json(index) }
+            apiBuilderGet("/store/getItem", "/store/0.2.0/getItem") { ctx ->
+                val id = ctx.queryParam("id") ?: return@apiBuilderGet ctx.badRequest()
+                val item = index.find(id) ?: return@apiBuilderGet ctx.notFound()
                 ctx.json(item)
             }
-
-            ApiBuilder.get("/store/0.2.0/getOutput") { ctx ->
+            apiBuilderGet("/store/getOutput", "/store/0.2.0/getOutput") { ctx ->
                 val id = ctx.queryParam("id")
                 if (id == null || !id.matches(idRegex)) {
-                    return@get ctx.badRequest()
+                    return@apiBuilderGet ctx.badRequest()
                 }
 
-                val indexLine = index.findByOutput(id) ?: return@get ctx.notFound()
+                val indexLine = index.findByOutput(id) ?: return@apiBuilderGet ctx.notFound()
                 val compressed = indexLine.compressed
                 val filePath = "$store/output/$id.json"
 
                 try {
                     val text =
-                        IO.readTextFromFile(filePath, compressed) ?: return@get ctx.notFound()
+                        IO.readTextFromFile(filePath, compressed)
+                            ?: return@apiBuilderGet ctx.notFound()
                     val capabilities = Json.custom().decodeFromString<Capabilities>(text)
                     ctx.json(capabilities)
                 } catch (ex: Exception) {
                     ctx.internalError()
                 }
             }
-            ApiBuilder.get("/store/0.2.0/getInput") { ctx ->
+            apiBuilderGet("/store/getInput", "/store/0.2.0/getInput") { ctx ->
                 val id = ctx.queryParam("id")
                 if (id == null || !id.matches(idRegex)) {
-                    return@get ctx.badRequest()
+                    return@apiBuilderGet ctx.badRequest()
                 }
 
-                val indexLine = index.findByInput(id) ?: return@get ctx.notFound()
+                val indexLine = index.findByInput(id) ?: return@apiBuilderGet ctx.notFound()
                 val compressed = indexLine.compressed
                 val filePath = "$store/input/$id"
 
                 try {
                     val bytes =
-                        IO.readBytesFromFile(filePath, compressed) ?: return@get ctx.notFound()
+                        IO.readBytesFromFile(filePath, compressed)
+                            ?: return@apiBuilderGet ctx.notFound()
 
                     ctx.attachFile(bytes, id, ContentType.APPLICATION_OCTET_STREAM)
                 } catch (ex: Exception) {
                     ctx.internalError()
                 }
             }
+
             ApiBuilder.get("/version") { ctx ->
                 val version = Property.getProperty("project.version")
                 val json = buildJsonObject { put("version", version) }
@@ -284,6 +290,18 @@ class JavalinApp {
             description?.let { put("description", it) }
             put("type", type)
             put("defaultNR", defaultNR)
+        }
+    }
+
+    private fun apiBuilderGet(vararg paths: String, handler: Handler) {
+        for (path in paths) {
+            ApiBuilder.get(path, handler)
+        }
+    }
+
+    private fun apiBuilderPost(vararg paths: String, handler: Handler) {
+        for (path in paths) {
+            ApiBuilder.post(path, handler)
         }
     }
 }
