@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser
 
 import dev.adamko.kxstsgen.KxsTsGenerator
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.IO
 
 internal object TsTypesGenerator {
@@ -16,7 +17,8 @@ internal object TsTypesGenerator {
             |
             """
                 .trimMargin()
-        val typescriptDefinitions = tsGenerator.generate(Capabilities.serializer())
+        val typescriptDefinitions =
+            tsGenerator.generate(Capabilities.serializer(), LibraryIndex.serializer())
         IO.outputFileOrStdout(warning + typescriptDefinitions, "uecapabilityparser.d.ts")
         println("Typescript definitions exported to uecapabilityparser.d.ts")
     }
