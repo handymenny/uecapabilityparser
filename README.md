@@ -23,11 +23,11 @@ Despite its beta quality, it's the source of sites such as smartphonecombo.it, c
     ````
    a. Server mode example:
    ````
-   ./uecapabilityparser -s 8080
+   ./uecapabilityparser server -p 8080
     ````
    b. CLI mode example:
    ````
-   ./uecapabilityparser -t C -i input.xml -c output.csv
+   ./uecapabilityparser cli -t C -i input.xml -c output.csv
     ````
 
 ## Run with Docker - Server Mode
@@ -37,14 +37,14 @@ Despite its beta quality, it's the source of sites such as smartphonecombo.it, c
    Example:
 
    ````
-   docker run --name uecapabilityparser -p 8081:8080 -d ghcr.io/handymenny/uecapabilityparser:latest -s 8080
+   docker run --name uecapabilityparser -p 8081:8080 -d ghcr.io/handymenny/uecapabilityparser:latest server -p 8080
    ````
    Where:
    - ```--name``` sets the name of the container
    - ```-p 8081:8080``` map the port 8080 of the container to the port 8081 of the host
    - ```-d``` starts the container in detached mode (background)
    - ```ghcr.io/handymenny/uecapabilityparser:latest``` is the container image to use
-   - ```-s 8080``` are the options to be passed to the container, in this case start a server on port 8080
+   - ```server -p 8080``` are the options to be passed to the container, in this case start a server on port 8080
 
 ## Run with Docker - Cli Mode
 > **Warning**<br>
