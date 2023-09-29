@@ -26,8 +26,8 @@ internal fun ByteBuffer.readUnsignedShort(): Int {
     return this.short.toUShort().toInt()
 }
 
-/** Decompress a byte buffer using ZLIB. */
-fun ByteBuffer.zlibDecompress(): ByteBuffer {
+/** Decompress a byte array using ZLIB. */
+fun ByteArray.zlibDecompress(): ByteBuffer {
     val outputStream = ByteArrayOutputStream()
 
     outputStream.use {

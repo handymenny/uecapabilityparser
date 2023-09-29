@@ -46,7 +46,7 @@ object ImportNvItem : ImportCapabilities {
 
         // zlib header check
         if (byteBuffer.readUnsignedShort() == 0x789C) {
-            byteBuffer = byteBuffer.rewind().zlibDecompress()
+            byteBuffer = input.zlibDecompress()
         } else {
             byteBuffer.rewind()
         }
