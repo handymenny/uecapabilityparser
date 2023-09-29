@@ -54,7 +54,7 @@ class JavalinApp {
         }
     private val hasSubmodules = {}.javaClass.getResourceAsStream("/web") != null
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
-    private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
+    private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.reader()?.readText()
 
     val app: Javalin =
         Javalin.create { config ->
