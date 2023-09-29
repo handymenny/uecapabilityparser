@@ -52,6 +52,7 @@ class JavalinApp {
                 return Json.custom().encodeToString(serializer, obj)
             }
         }
+    private val hasSubmodules = {}.javaClass.getResourceAsStream("/web") != null
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
 
@@ -63,11 +64,13 @@ class JavalinApp {
             config.ignoreTrailingSlashes = true
             config.jsonMapper(jsonMapper)
             config.enableCorsForAllOrigins()
-            config.addStaticFiles("/web", Location.CLASSPATH)
-            config.addStaticFiles { staticFiles ->
-                staticFiles.hostedPath = "/swagger"
-                staticFiles.directory = "/swagger"
-                staticFiles.location = Location.CLASSPATH
+            if (hasSubmodules) {
+                config.addStaticFiles("/web", Location.CLASSPATH)
+                config.addStaticFiles { staticFiles ->
+                    staticFiles.hostedPath = "/swagger"
+                    staticFiles.directory = "/swagger"
+                    staticFiles.location = Location.CLASSPATH
+                }
             }
         }
 
@@ -86,12 +89,6 @@ class JavalinApp {
         }
 
         app.exception(Exception::class.java) { e, _ -> e.printStackTrace() }
-        app.error(HttpStatus.NOT_FOUND_404) { ctx ->
-            if (html404 != null) {
-                ctx.contentType(ContentType.HTML)
-                ctx.result(html404)
-            }
-        }
         app.routes {
             // Add / if missing
             ApiBuilder.before("/swagger") { ctx ->
@@ -133,7 +130,15 @@ class JavalinApp {
                 )
             }
 
-            apiBuilderGet("/openapi", "/swagger/openapi.json", handler = ::getOpenApi)
+            if (hasSubmodules) {
+                apiBuilderGet("/openapi", "/swagger/openapi.json", handler = ::getOpenApi)
+                app.error(HttpStatus.NOT_FOUND_404) { ctx ->
+                    if (html404 != null) {
+                        ctx.contentType(ContentType.HTML)
+                        ctx.result(html404)
+                    }
+                }
+            }
 
             apiBuilderGet("/store/status", "/store/0.2.0/status") { ctx ->
                 val enabled = store != null
