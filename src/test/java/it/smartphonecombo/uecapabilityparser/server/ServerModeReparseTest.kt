@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.util.Property
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 import java.util.*
 import kotlin.io.path.extension
 import kotlin.io.path.name
@@ -96,7 +97,7 @@ internal class ServerModeReparseTest {
     }
 
     private fun deleteDirectory(path: String) {
-        return Files.walk(Path.of(path))
+        return Files.walk(Paths.get(path))
             .sorted(Comparator.reverseOrder())
             .map(Path::toFile)
             .forEach(File::delete)
@@ -110,7 +111,7 @@ internal class ServerModeReparseTest {
     }
 
     private fun replaceVersion(directory: String, search: String, replace: String) {
-        Files.walk((Path.of(directory)))
+        Files.walk((Paths.get(directory)))
             .filter { it.name.endsWith(".json") || it.name.endsWith(".json.gz") }
             .forEach { path ->
                 val compression = path.extension == "gz"

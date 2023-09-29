@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 import java.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -228,7 +229,7 @@ internal class ServerModeStoreTest {
     }
 
     private fun deleteDirectory(path: String) {
-        return Files.walk(Path.of(path))
+        return Files.walk(Paths.get(path))
             .sorted(Comparator.reverseOrder())
             .map(Path::toFile)
             .forEach(File::delete)

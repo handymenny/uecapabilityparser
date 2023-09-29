@@ -11,7 +11,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import java.io.File
 import java.nio.file.Files
-import java.nio.file.Path
+import java.nio.file.Paths
 
 object IO {
 
@@ -56,7 +56,7 @@ object IO {
     /** See [Files.createDirectories] */
     fun createDirectories(path: String) {
         try {
-            Files.createDirectories(Path.of(path))
+            Files.createDirectories(Paths.get(path))
         } catch (ex: Exception) {
             System.err.println("Error ${ex.localizedMessage}")
         }
