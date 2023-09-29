@@ -28,7 +28,7 @@ val tstypesImplementation: Configuration by
     configurations.getting { extendsFrom(configurations.implementation.get()) }
 
 dependencies {
-    val mtsAsn1Version = "24f52fc"
+    val mtsAsn1Version = "a0d918b" // jdk8 branch
     val kmemVersion = "4.0.10"
     val javalinVersion = "4.6.8"
 
@@ -94,7 +94,7 @@ tasks {
 
 application { mainClass.set("it.smartphonecombo.uecapabilityparser.cli.Main") }
 
-kotlin { jvmToolchain(11) }
+kotlin { jvmToolchain(8) }
 
 spotless {
     format("misc") {
