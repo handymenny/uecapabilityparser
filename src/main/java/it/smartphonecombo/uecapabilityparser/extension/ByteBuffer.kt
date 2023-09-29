@@ -9,10 +9,11 @@ import kotlin.jvm.Throws
 @Throws(BufferUnderflowException::class)
 internal fun ByteBuffer.skipBytes(n: Int): ByteBuffer {
     try {
-        return this.position(this.position() + n)
+        this.position(this.position() + n)
     } catch (ignored: IllegalArgumentException) {
         throw BufferUnderflowException()
     }
+    return this
 }
 
 @Throws(BufferUnderflowException::class)
