@@ -38,7 +38,7 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     implementation("org.slf4j:slf4j-nop:2.0.9")
     implementation("com.soywiz.korlibs.kmem:kmem-jvm:$kmemVersion")
-    implementation("com.github.ajalt.clikt:clikt:4.2.0")
+    implementation("com.github.ajalt.clikt:clikt:4.2.1")
 
     // Override Jetty version
     implementation("org.eclipse.jetty:jetty-server:$jettyVersion")
