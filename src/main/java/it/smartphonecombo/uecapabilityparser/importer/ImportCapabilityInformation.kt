@@ -1586,12 +1586,9 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
         val ueCapFilter = UeCapabilityFilterNr(rat)
 
-        val filterCommon =
-            capability.nrRrcCapabilityV1560?.getObjectAtPath(
-                "receivedFilters.capabilityRequestFilterCommon"
-            )
-        if (filterCommon != null) {
-            parseUeFilterCommon(filterCommon, ueCapFilter)
+        val receivedFilters = capability.nrRrcCapabilityV1560?.getObjectAtPath("receivedFilters")
+        if (receivedFilters != null) {
+            parseReceivedFilters(receivedFilters, ueCapFilter)
         }
 
         val bandListFilterPath =
@@ -1703,6 +1700,18 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         return ueCapFilter
+    }
+
+    private fun parseReceivedFilters(
+        receivedFilters: JsonObject,
+        ueCapFilter: IUeCapabilityFilter
+    ) {
+        val filterCommon = receivedFilters.getObject("capabilityRequestFilterCommon")
+        if (filterCommon != null) {
+            parseUeFilterCommon(filterCommon, ueCapFilter)
+        }
+        val capabilityEnquiryV1610 = receivedFilters.getObject("nonCriticalExtension")
+        ueCapFilter.segAllowed = capabilityEnquiryV1610?.getString("rrc-SegAllowed-r16") != null
     }
 
     private fun parseUeFilterCommon(filterCommon: JsonObject, ueCapFilter: IUeCapabilityFilter) {
