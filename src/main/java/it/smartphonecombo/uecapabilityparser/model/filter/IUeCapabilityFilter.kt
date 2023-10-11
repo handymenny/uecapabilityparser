@@ -13,4 +13,5 @@ sealed interface IUeCapabilityFilter {
     var includeNeDc: Boolean
     var omitEnDc: Boolean
     var uplinkTxSwitchRequest: Boolean
+    var segAllowed: Boolean
 }

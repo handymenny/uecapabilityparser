@@ -22,4 +22,5 @@ data class UeCapabilityFilterLte(
     @SerialName("includeNeDc") override var includeNeDc: Boolean = false,
     @SerialName("omitEnDc") override var omitEnDc: Boolean = false,
     @SerialName("uplinkTxSwitchRequest") override var uplinkTxSwitchRequest: Boolean = false,
+    @SerialName("segAllowed") override var segAllowed: Boolean = false,
 ) : IUeCapabilityFilter
