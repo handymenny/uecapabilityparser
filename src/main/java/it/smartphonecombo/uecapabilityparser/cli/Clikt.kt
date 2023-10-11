@@ -100,14 +100,6 @@ object Cli :
 
     private val defaultNR by option("--nr", "--defaultNR", help = HelpMessage.DEFAULT_NR).flag()
 
-    private val multiple0xB826 by
-        option("--multi", "--multiple0xB826", help = HelpMessage.MULTIPLE_0XB826)
-            .flag()
-            .deprecated(
-                "WARNING: --multiple0xB826 is deprecated, it's the default behaviour",
-                "option deprecated, default behaviour"
-            )
-
     private val type by
         option("-t", "--type", help = HelpMessage.TYPE)
             .choice(

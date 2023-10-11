@@ -5,8 +5,6 @@ object HelpMessage {
     const val INPUT_NR = "NR UE Capability file"
     const val INPUT_ENDC = "ENDC UE Capability file"
     const val DEFAULT_NR = "Main capability input is NR (otherwise LTE)"
-    const val MULTIPLE_0XB826 =
-        """Use this option if input contains several 0xB0CD or 0xB826 hexdumps separated by blank lines and/or prefixed with "Payload :", "CA Combos RAW:" or "0x9801""""
     const val TYPE =
         """Type of capability. Valid values are: H (UE Capability Hex Dump), 
             W (Wireshark UE Capability Information), N (NSG UE Capability Information), 
