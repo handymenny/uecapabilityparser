@@ -470,15 +470,6 @@ internal class MainTest {
         )
     }
 
-    // Test wihtout subcommand/command
-    @Test
-    fun main0xB826MultiDeprecated() {
-        mainTest(
-            arrayOf("-i", "$path/input/0xB826Multi.txt", "-t", "QNR", "--debug"),
-            "0xB826MultiDebug.txt"
-        )
-    }
-
     private fun mainTest(args: Array<String>, oracleFilename: String) {
         setUpStreams()
         main.main(args)

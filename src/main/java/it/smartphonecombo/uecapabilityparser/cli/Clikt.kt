@@ -6,13 +6,9 @@ import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.output.MordantHelpFormatter
 import com.github.ajalt.clikt.parameters.groups.OptionGroup
 import com.github.ajalt.clikt.parameters.groups.cooccurring
-import com.github.ajalt.clikt.parameters.options.Option
-import com.github.ajalt.clikt.parameters.options.OptionDelegate
 import com.github.ajalt.clikt.parameters.options.default
-import com.github.ajalt.clikt.parameters.options.deprecated
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
-import com.github.ajalt.clikt.parameters.options.optionalValue
 import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
@@ -28,12 +24,7 @@ import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-object Clikt :
-    CliktCommand(
-        name = "uecapabilityparser",
-        printHelpOnEmptyArgs = true,
-        invokeWithoutSubcommand = true
-    ) {
+object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = true) {
 
     init {
         versionOption(version = Property.getProperty("project.version") ?: "")
@@ -41,21 +32,6 @@ object Clikt :
         val subcommands = arrayOf(Cli, Server)
         // Set subcommands
         subcommands(*subcommands)
-
-        // Register subcommands options, so cli doesn't fail if it's invoked without a subcommand
-        subcommands.forEach { command ->
-            val cmdName = command.commandName
-            val unfilteredNames = command.registeredOptions().flatMap(Option::names)
-            val names = unfilteredNames.filter { it != "-d" && it != "--debug" }.toTypedArray()
-
-            val deprecatedMessage =
-                "WARNING: running without a command is deprecated, add \"$cmdName\" before options"
-            val opt = option(*names, hidden = true).optionalValue("").deprecated(deprecatedMessage)
-
-            if (cmdName == "cli") oldCliOptions = opt else oldServerOptions = opt
-
-            registerOption(opt)
-        }
 
         // Customize help formatter
         context {
@@ -65,24 +41,8 @@ object Clikt :
         }
     }
 
-    // this is common to both oldCli and oldServer
-    private val debug by option("-d", "--debug", hidden = true).flag()
-    private lateinit var oldCliOptions: OptionDelegate<String?>
-    private lateinit var oldServerOptions: OptionDelegate<String?>
-
     override fun run() {
-        if (debug) Config["debug"] = "true"
-
-        if (currentContext.invokedSubcommand == null) {
-            // No subcommand, redirect to cli or server command
-            if (oldServerOptions.value != null) {
-                Server.main(currentContext.originalArgv)
-            } else if (oldCliOptions.value != null) {
-                Cli.main(currentContext.originalArgv)
-            } else {
-                echoFormattedHelp()
-            }
-        }
+        // We don't need to do nothing here
     }
 }
 
@@ -136,7 +96,7 @@ object Cli :
     private lateinit var parsing: Parsing
 
     override fun run() {
-        // Set debug if it's passed to subcommand
+        // Set debug
         if (debug) Config["debug"] = debug.toString()
 
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
@@ -220,7 +180,7 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
     override fun run() {
-        // Set debug if it's passed to subcommand
+        // Set debug
         if (debug) Config["debug"] = debug.toString()
 
         // Process store
