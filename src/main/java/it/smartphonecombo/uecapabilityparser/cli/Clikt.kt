@@ -215,13 +215,6 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
             .int()
             .default(DEFAULT_PORT)
 
-    // -p/--port was -s/--server in 0.1.0
-    private val server by
-        option("-s", "--server", help = HelpMessage.SERVER, metavar = "PORT")
-            .int()
-            .optionalValue(8080)
-            .deprecated("WARNING: option --server is deprecated, use --port instead", "")
-
     private val store by StoreOptions().cooccurring()
 
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
@@ -238,9 +231,8 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         }
 
         // Start server
-        val inputPort = server ?: port
         // if inputPort is 0, serverPort is random
-        val serverPort = ServerMode.run(inputPort)
+        val serverPort = ServerMode.run(port)
 
         echo(buildServerStartMessage(serverPort))
     }
