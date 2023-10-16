@@ -30,7 +30,7 @@ dependencies {
     val mtsAsn1Version = "24f52fc"
     val kmemVersion = "4.0.10"
     val javalinVersion = "5.6.2"
-    val jettyVersion = "11.0.16"
+    val jettyVersion = "11.0.17"
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
