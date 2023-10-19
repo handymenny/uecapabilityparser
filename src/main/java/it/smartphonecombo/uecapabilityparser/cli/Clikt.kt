@@ -131,6 +131,8 @@ object Cli :
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
         val subTypeIterator = subTypesList.iterator()
 
+        val parsedCapabilities = mutableListOf<Capabilities>()
+
         for (i in inputsList.indices) {
             val inputs = inputsList[i]
             val type = typeList[i]
@@ -162,6 +164,7 @@ object Cli :
             parsing = Parsing(inputArray, inputENDCArray, inputNRArray, defaultNr, type, jsonFormat)
 
             val capabilities = parsing.capabilities
+            parsedCapabilities.add(capabilities)
 
             ueLog?.let {
                 val ueLogOutput =
@@ -181,14 +184,18 @@ object Cli :
                     }
                 csvOutput(capabilities, csvOutput, type)
             }
-            json?.let {
-                val jsvOutput =
-                    when {
-                        it == "-" -> null
-                        i == 0 -> it
-                        else -> it.appendBeforeExtension("-${i+1}-")
-                    }
-                IO.outputFileOrStdout(jsonFormat.encodeToString(capabilities), jsvOutput)
+        }
+
+        // One json output
+        json?.let {
+            val jsonOutput = if (it == "-") null else it
+            if (inputsList.size > 1) {
+                IO.outputFileOrStdout(jsonFormat.encodeToString(parsedCapabilities), jsonOutput)
+            } else {
+                IO.outputFileOrStdout(
+                    jsonFormat.encodeToString(parsedCapabilities.first()),
+                    jsonOutput
+                )
             }
         }
     }

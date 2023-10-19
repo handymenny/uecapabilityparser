@@ -26,7 +26,8 @@ object HelpMessage {
     const val JSON_PRETTY_PRINT = "Specifies whether resulting JSONs should be pretty-printed"
     const val JSON =
         """Output a JSON file representing the serialization of capabilities data.
-         If "-" is provided in place of a file name, this will json be outputted to standard output."""
+         If "-" is provided in place of a file name, this will json be outputted to standard output.
+         For multiple --input an array is returned."""
     const val PORT = """Listen to the port passed as value, for value 0 a random port is used"""
     const val STORE = "Store the capabilities in the given directory for further retrieval"
     const val COMPRESSION =
