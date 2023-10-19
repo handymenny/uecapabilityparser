@@ -8,8 +8,11 @@ import com.github.ajalt.clikt.parameters.groups.OptionGroup
 import com.github.ajalt.clikt.parameters.groups.cooccurring
 import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.flag
+import com.github.ajalt.clikt.parameters.options.multiple
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
+import com.github.ajalt.clikt.parameters.options.split
+import com.github.ajalt.clikt.parameters.options.validate
 import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
@@ -52,15 +55,14 @@ object Cli :
         help = "Starts ue capability parser in cli mode",
         printHelpOnEmptyArgs = true
     ) {
-    private val input by option("-i", "--input", help = HelpMessage.INPUT).inputStream().required()
 
-    private val inputNR by option("--inputNR", help = HelpMessage.INPUT_NR).inputStream()
+    private val inputsList by
+        option("-i", "--input", help = HelpMessage.INPUT)
+            .inputStream()
+            .split("""\s*,\s*""".toRegex())
+            .multiple(required = true)
 
-    private val inputENDC by option("--inputENDC", help = HelpMessage.INPUT_ENDC).inputStream()
-
-    private val defaultNR by option("--nr", "--defaultNR", help = HelpMessage.DEFAULT_NR).flag()
-
-    private val type by
+    private val typeList by
         option("-t", "--type", help = HelpMessage.TYPE)
             .choice(
                 "H",
@@ -78,7 +80,34 @@ object Cli :
                 "RF",
                 ignoreCase = true
             )
-            .required()
+            .multiple(required = true)
+            .validate {
+                require(it.size == inputsList.size) { HelpMessage.ERROR_TYPE_INPUT_MISMATCH }
+
+                val nvItemInputs = inputsList.filterIndexed { index, _ -> it[index] == "E" }
+                require(nvItemInputs.all { inputs -> inputs.size == 1 }) {
+                    HelpMessage.ERROR_MULTIPLE_INPUTS_UNSUPPORTED
+                }
+            }
+
+    private val subTypesList by
+        option("--subTypes", help = HelpMessage.SUBTYPES)
+            .choice("LTE", "ENDC", "NR", ignoreCase = true)
+            .split("""\s*,\s*""".toRegex())
+            .multiple()
+            .validate {
+                val hexInputs = inputsList.filterIndexed { index, _ -> typeList[index] == "H" }
+
+                require(it.size == hexInputs.size) { HelpMessage.ERROR_SUBTYPES_TYPE_MISMATCH }
+
+                require(it.zip(hexInputs).all { (a, b) -> a.size == b.size }) {
+                    HelpMessage.ERROR_SUBTYPES_INPUT_MISMATCH
+                }
+
+                require(it.all { subTypes -> subTypes.size == subTypes.distinct().size }) {
+                    HelpMessage.ERROR_SUBTYPES_DUPLICATE
+                }
+            }
 
     private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
 
@@ -100,33 +129,56 @@ object Cli :
         if (debug) Config["debug"] = debug.toString()
 
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
-        parsing =
-            Parsing(
-                input.readBytes(),
-                inputNR?.readBytes(),
-                inputENDC?.readBytes(),
-                defaultNR,
-                type,
-                jsonFormat
-            )
+        val subTypeIterator = subTypesList.iterator()
 
-        val capabilities = parsing.capabilities
+        for (i in inputsList.indices) {
+            val inputs = inputsList[i]
+            val type = typeList[i]
+            var inputArray = ByteArray(0)
+            var inputENDCArray: ByteArray? = null
+            var inputNRArray: ByteArray? = null
+            var defaultNr = false
 
-        ueLog?.let {
-            val ueLogOutput = if (ueLog == "-") null else ueLog
-            IO.outputFileOrStdout(parsing.ueLog, ueLogOutput)
-        }
-        csv?.let {
-            val csvOutput = if (it == "-") null else it
-            csvOutput(capabilities, csvOutput)
-        }
-        json?.let {
-            val jsvOutput = if (it == "-") null else it
-            IO.outputFileOrStdout(jsonFormat.encodeToString(capabilities), jsvOutput)
+            if (type != "H") {
+                inputArray = inputs.fold(inputArray) { acc, it -> acc + it.readBytes() }
+            } else {
+                val subTypes = subTypeIterator.next()
+                for (j in inputs.indices) {
+                    val subType = subTypes[j]
+                    val input = inputs[j]
+                    when (subType) {
+                        "LTE" -> inputArray = input.readBytes()
+                        "ENDC" -> inputENDCArray = input.readBytes()
+                        "NR" -> inputNRArray = input.readBytes()
+                    }
+                }
+
+                if (inputNRArray?.isNotEmpty() == true && inputArray.isEmpty()) {
+                    inputArray = inputNRArray
+                    defaultNr = true
+                }
+            }
+
+            parsing = Parsing(inputArray, inputENDCArray, inputNRArray, defaultNr, type, jsonFormat)
+
+            val capabilities = parsing.capabilities
+
+            ueLog?.let {
+                val ueLogOutput = if (ueLog == "-") null else ueLog
+                IO.outputFileOrStdout(parsing.ueLog, ueLogOutput)
+            }
+            csv?.let {
+                val csvOutput = if (it == "-") null else it
+                csvOutput(capabilities, csvOutput, type)
+            }
+            json?.let {
+                val jsvOutput = if (it == "-") null else it
+                IO.outputFileOrStdout(jsonFormat.encodeToString(capabilities), jsvOutput)
+            }
         }
     }
 
-    private fun csvOutput(comboList: Capabilities, csvPath: String?) {
+    private fun csvOutput(comboList: Capabilities, csvPath: String?, type: String) {
         val lteOnlyTypes = arrayOf("C", "E", "Q", "QLTE", "M", "RF")
         if (type in lteOnlyTypes) {
             return IO.outputFileOrStdout(IO.toCsv(comboList.lteCombos), csvPath)
