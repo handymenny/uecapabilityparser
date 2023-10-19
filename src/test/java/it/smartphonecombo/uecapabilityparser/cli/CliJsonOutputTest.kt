@@ -484,21 +484,70 @@ internal class CliJsonOutputTest {
         )
     }
 
-    private fun cliTest(args: Array<String>, oracleFilename: String) {
+    @Test
+    fun mainMultiInputCsv() {
+        cliTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB826.hex",
+                "-t",
+                "QNR",
+                "-i",
+                "$path/input/0xB0CD.txt",
+                "-t",
+                "Q",
+                "-j",
+                "-"
+            ),
+            "0xB826-0xB0CD.json",
+            true
+        )
+    }
+
+    private fun cliTest(args: Array<String>, oracleFilename: String, multi: Boolean = false) {
         setUpStreams()
         cli.main(args)
         restoreStreams()
 
-        val actual = Json.decodeFromString<Capabilities>(out.toString())
-        val expected =
-            Json.decodeFromString<Capabilities>(File("$path/oracleJson/$oracleFilename").readText())
+        if (!multi) {
+            val actual = Json.decodeFromString<Capabilities>(out.toString())
+            val expected =
+                Json.decodeFromString<Capabilities>(
+                    File("$path/oracleJson/$oracleFilename").readText()
+                )
 
-        // Override dynamic properties
-        expected.parserVersion = actual.parserVersion
-        expected.timestamp = actual.timestamp
-        expected.id = actual.id
-        expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
+            // Override dynamic properties
+            expected.parserVersion = actual.parserVersion
+            expected.timestamp = actual.timestamp
+            expected.id = actual.id
+            expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
-        Assertions.assertEquals(expected, actual)
+            Assertions.assertEquals(expected, actual)
+        } else {
+            val actual = Json.decodeFromString<Array<Capabilities>>(out.toString())
+            val expected =
+                Json.decodeFromString<Array<Capabilities>>(
+                    File("$path/oracleJson/$oracleFilename").readText()
+                )
+
+            // Check size
+            Assertions.assertEquals(expected.size, actual.size)
+
+            // Override dynamic properties
+
+            for (i in expected.indices) {
+                val capA = actual[i]
+                val capE = expected[i]
+
+                capE.parserVersion = capA.parserVersion
+                capE.timestamp = capA.timestamp
+                capE.id = capA.id
+                capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
+            }
+
+            // check files
+            Assertions.assertArrayEquals(expected, actual)
+        }
     }
 }

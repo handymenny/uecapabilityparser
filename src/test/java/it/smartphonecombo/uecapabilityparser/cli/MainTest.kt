@@ -480,6 +480,26 @@ internal class MainTest {
         )
     }
 
+    @Test
+    fun mainMultiInputCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB826.hex",
+                "-t",
+                "QNR",
+                "-i",
+                "$path/input/0xB0CD.txt",
+                "-t",
+                "Q",
+                "-c",
+                "-"
+            ),
+            "0xB826-0xB0CD.txt"
+        )
+    }
+
     private fun mainTest(args: Array<String>, oracleFilename: String) {
         setUpStreams()
         main.main(args)
