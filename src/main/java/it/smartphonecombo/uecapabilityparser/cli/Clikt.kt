@@ -164,15 +164,30 @@ object Cli :
             val capabilities = parsing.capabilities
 
             ueLog?.let {
-                val ueLogOutput = if (ueLog == "-") null else ueLog
+                val ueLogOutput =
+                    when {
+                        it == "-" -> null
+                        i == 0 -> it
+                        else -> it.appendBeforeExtension("-${i+1}-")
+                    }
                 IO.outputFileOrStdout(parsing.ueLog, ueLogOutput)
             }
             csv?.let {
-                val csvOutput = if (it == "-") null else it
+                val csvOutput =
+                    when {
+                        it == "-" -> null
+                        i == 0 -> it
+                        else -> it.appendBeforeExtension("-${i+1}-")
+                    }
                 csvOutput(capabilities, csvOutput, type)
             }
             json?.let {
-                val jsvOutput = if (it == "-") null else it
+                val jsvOutput =
+                    when {
+                        it == "-" -> null
+                        i == 0 -> it
+                        else -> it.appendBeforeExtension("-${i+1}-")
+                    }
                 IO.outputFileOrStdout(jsonFormat.encodeToString(capabilities), jsvOutput)
             }
         }
