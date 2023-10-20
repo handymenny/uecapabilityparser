@@ -29,8 +29,7 @@ val tstypesImplementation: Configuration by
 dependencies {
     val mtsAsn1Version = "24f52fc"
     val kmemVersion = "4.0.10"
-    val javalinVersion = "5.6.2"
-    val jettyVersion = "11.0.16"
+    val javalinVersion = "5.6.3"
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
@@ -39,12 +38,6 @@ dependencies {
     implementation("org.slf4j:slf4j-nop:2.0.9")
     implementation("com.soywiz.korlibs.kmem:kmem-jvm:$kmemVersion")
     implementation("com.github.ajalt.clikt:clikt:4.2.1")
-
-    // Override Jetty version
-    implementation("org.eclipse.jetty:jetty-server:$jettyVersion")
-    implementation("org.eclipse.jetty:jetty-webapp:$jettyVersion")
-    implementation("org.eclipse.jetty.websocket:websocket-jetty-api:$jettyVersion")
-    implementation("org.eclipse.jetty.websocket:websocket-jetty-server:$jettyVersion")
 
     implementation("io.javalin:javalin:$javalinVersion")
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
