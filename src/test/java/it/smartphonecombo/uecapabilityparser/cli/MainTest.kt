@@ -159,16 +159,7 @@ internal class MainTest {
     @Test
     fun mainWiresharkNrCsv() {
         mainTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/wiresharkNr.txt",
-                "-t",
-                "W",
-                "--defaultNR",
-                "-c",
-                "-"
-            ),
+            arrayOf("cli", "-i", "$path/input/wiresharkNr.txt", "-t", "W", "-c", "-"),
             "wiresharkNrCsv.txt",
         )
     }
@@ -176,16 +167,7 @@ internal class MainTest {
     @Test
     fun mainWiresharkNrJson() {
         mainTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/wiresharkNr.txt",
-                "-t",
-                "W",
-                "--defaultNR",
-                "-l",
-                "-"
-            ),
+            arrayOf("cli", "-i", "$path/input/wiresharkNr.txt", "-t", "W", "-l", "-"),
             "wiresharkNrJson.txt",
         )
     }
@@ -220,9 +202,7 @@ internal class MainTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/wiresharkMrdcSplit_0.txt",
-                "--inputENDC",
-                "$path/input/wiresharkMrdcSplit_1.txt",
+                "$path/input/wiresharkMrdcSplit_0.txt, $path/input/wiresharkMrdcSplit_1.txt",
                 "-t",
                 "W",
                 "-c",
@@ -238,9 +218,7 @@ internal class MainTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/wiresharkMrdc.txt",
-                "--inputENDC",
-                "$path/input/wiresharkMrdcSplit_1.txt",
+                "$path/input/wiresharkMrdc.txt, $path/input/wiresharkMrdcSplit_1.txt",
                 "-t",
                 "W",
                 "-l",
@@ -269,7 +247,7 @@ internal class MainTest {
     @Test
     fun mainNsgNrCsv() {
         mainTest(
-            arrayOf("cli", "-i", "$path/input/nsgNr.txt", "-t", "N", "--defaultNR", "-c", "-"),
+            arrayOf("cli", "-i", "$path/input/nsgNr.txt", "-t", "N", "-c", "-"),
             "nsgNrCsv.txt",
         )
     }
@@ -277,7 +255,7 @@ internal class MainTest {
     @Test
     fun mainNsgNrJson() {
         mainTest(
-            arrayOf("cli", "-i", "$path/input/nsgNr.txt", "-t", "N", "--defaultNR", "-l", "-"),
+            arrayOf("cli", "-i", "$path/input/nsgNr.txt", "-t", "N", "-l", "-"),
             "nsgNrJson.txt",
         )
     }
@@ -304,9 +282,7 @@ internal class MainTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/nsgMrdcSplit_0.txt",
-                "--inputNR",
-                "$path/input/nsgMrdcSplit_1.txt",
+                "$path/input/nsgMrdcSplit_0.txt, $path/input/nsgMrdcSplit_1.txt",
                 "-t",
                 "N",
                 "-c",
@@ -322,9 +298,7 @@ internal class MainTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/nsgMrdc.txt",
-                "--inputNR",
-                "$path/input/nsgMrdcSplit_1.txt",
+                "$path/input/nsgMrdc.txt, $path/input/nsgMrdcSplit_1.txt",
                 "-t",
                 "N",
                 "-l",
@@ -369,7 +343,17 @@ internal class MainTest {
     @Test
     fun mainUeCapHexEutraCsv() {
         mainTest(
-            arrayOf("cli", "-i", "$path/input/ueCapHexEutra.hex", "-t", "H", "-c", "-"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/ueCapHexEutra.hex",
+                "-t",
+                "H",
+                "--subTypes",
+                "LTE",
+                "-c",
+                "-"
+            ),
             "ueCapHexEutraCsv.txt",
         )
     }
@@ -377,7 +361,17 @@ internal class MainTest {
     @Test
     fun mainUeCapHexEutraJson() {
         mainTest(
-            arrayOf("cli", "-i", "$path/input/ueCapHexEutra.hex", "-t", "H", "-l", "-"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/ueCapHexEutra.hex",
+                "-t",
+                "H",
+                "--subTypes",
+                "LTE",
+                "-l",
+                "-"
+            ),
             "ueCapHexEutraJson.txt",
         )
     }
@@ -385,7 +379,17 @@ internal class MainTest {
     @Test
     fun mainUeCapHexNrCsv() {
         mainTest(
-            arrayOf("cli", "-i", "$path/input/ueCapHexNr.hex", "-t", "H", "--defaultNR", "-c", "-"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/ueCapHexNr.hex",
+                "-t",
+                "H",
+                "--subTypes",
+                "NR",
+                "-c",
+                "-"
+            ),
             "ueCapHexNrCsv.txt",
         )
     }
@@ -393,7 +397,17 @@ internal class MainTest {
     @Test
     fun mainUeCapHexNrJson() {
         mainTest(
-            arrayOf("cli", "-i", "$path/input/ueCapHexNr.hex", "-t", "H", "--defaultNR", "-l", "-"),
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/ueCapHexNr.hex",
+                "-t",
+                "H",
+                "--subTypes",
+                "NR",
+                "-l",
+                "-"
+            ),
             "ueCapHexNrJson.txt",
         )
     }
@@ -404,13 +418,11 @@ internal class MainTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/ueCapHexMrdcSplit_eutra.hex",
-                "--inputNR",
-                "$path/input/ueCapHexMrdcSplit_nr.hex",
-                "--inputENDC",
-                "$path/input/ueCapHexMrdcSplit_eutra-nr.hex",
+                "$path/input/ueCapHexMrdcSplit_eutra.hex, $path/input/ueCapHexMrdcSplit_nr.hex, $path/input/ueCapHexMrdcSplit_eutra-nr.hex",
                 "-t",
                 "H",
+                "--subTypes",
+                "LTE,ENDC,NR",
                 "-c",
                 "-"
             ),
@@ -424,13 +436,11 @@ internal class MainTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/ueCapHexMrdcSplit_eutra.hex",
-                "--inputNR",
-                "$path/input/ueCapHexMrdcSplit_nr.hex",
-                "--inputENDC",
-                "$path/input/ueCapHexMrdcSplit_eutra-nr.hex",
+                "$path/input/ueCapHexMrdcSplit_eutra.hex, $path/input/ueCapHexMrdcSplit_nr.hex, $path/input/ueCapHexMrdcSplit_eutra-nr.hex",
                 "-t",
                 "H",
+                "--subTypes",
+                "LTE,ENDC,NR",
                 "-l",
                 "-"
             ),
@@ -467,6 +477,26 @@ internal class MainTest {
         mainTest(
             arrayOf("cli", "-i", "$path/input/qcatNrdc.txt", "-t", "QC", "-l", "-"),
             "qcatNrdcJson.txt"
+        )
+    }
+
+    @Test
+    fun mainMultiInputCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB826.hex",
+                "-t",
+                "QNR",
+                "-i",
+                "$path/input/0xB0CD.txt",
+                "-t",
+                "Q",
+                "-c",
+                "-"
+            ),
+            "0xB826-0xB0CD.txt"
         )
     }
 

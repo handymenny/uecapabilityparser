@@ -252,7 +252,6 @@ internal class CliJsonOutputTest {
                 "$path/input/wiresharkNr.txt",
                 "-t",
                 "W",
-                "--defaultNR",
                 "-j",
                 "-",
                 "--json-pretty-print"
@@ -284,9 +283,7 @@ internal class CliJsonOutputTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/wiresharkMrdcSplit_0.txt",
-                "--inputENDC",
-                "$path/input/wiresharkMrdcSplit_1.txt",
+                "$path/input/wiresharkMrdcSplit_0.txt, $path/input/wiresharkMrdcSplit_1.txt",
                 "-t",
                 "W",
                 "-j",
@@ -322,7 +319,6 @@ internal class CliJsonOutputTest {
                 "$path/input/nsgNr.txt",
                 "-t",
                 "N",
-                "--defaultNR",
                 "-j",
                 "-",
                 "--json-pretty-print"
@@ -354,9 +350,7 @@ internal class CliJsonOutputTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/nsgMrdcSplit_0.txt",
-                "--inputNR",
-                "$path/input/nsgMrdcSplit_1.txt",
+                "$path/input/nsgMrdcSplit_0.txt, $path/input/nsgMrdcSplit_1.txt",
                 "-t",
                 "N",
                 "-j",
@@ -407,6 +401,8 @@ internal class CliJsonOutputTest {
                 "cli",
                 "-i",
                 "$path/input/ueCapHexEutra.hex",
+                "--subTypes",
+                "LTE",
                 "-t",
                 "H",
                 "-j",
@@ -426,7 +422,8 @@ internal class CliJsonOutputTest {
                 "$path/input/ueCapHexNr.hex",
                 "-t",
                 "H",
-                "--defaultNR",
+                "--subTypes",
+                "NR",
                 "-j",
                 "-",
                 "--json-pretty-print"
@@ -441,11 +438,9 @@ internal class CliJsonOutputTest {
             arrayOf(
                 "cli",
                 "-i",
-                "$path/input/ueCapHexMrdcSplit_eutra.hex",
-                "--inputNR",
-                "$path/input/ueCapHexMrdcSplit_nr.hex",
-                "--inputENDC",
-                "$path/input/ueCapHexMrdcSplit_eutra-nr.hex",
+                "$path/input/ueCapHexMrdcSplit_eutra.hex, $path/input/ueCapHexMrdcSplit_nr.hex, $path/input/ueCapHexMrdcSplit_eutra-nr.hex",
+                "--subTypes",
+                "LTE,ENDC,NR",
                 "-t",
                 "H",
                 "-j",
@@ -489,21 +484,70 @@ internal class CliJsonOutputTest {
         )
     }
 
-    private fun cliTest(args: Array<String>, oracleFilename: String) {
+    @Test
+    fun mainMultiInputCsv() {
+        cliTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB826.hex",
+                "-t",
+                "QNR",
+                "-i",
+                "$path/input/0xB0CD.txt",
+                "-t",
+                "Q",
+                "-j",
+                "-"
+            ),
+            "0xB826-0xB0CD.json",
+            true
+        )
+    }
+
+    private fun cliTest(args: Array<String>, oracleFilename: String, multi: Boolean = false) {
         setUpStreams()
         cli.main(args)
         restoreStreams()
 
-        val actual = Json.decodeFromString<Capabilities>(out.toString())
-        val expected =
-            Json.decodeFromString<Capabilities>(File("$path/oracleJson/$oracleFilename").readText())
+        if (!multi) {
+            val actual = Json.decodeFromString<Capabilities>(out.toString())
+            val expected =
+                Json.decodeFromString<Capabilities>(
+                    File("$path/oracleJson/$oracleFilename").readText()
+                )
 
-        // Override dynamic properties
-        expected.parserVersion = actual.parserVersion
-        expected.timestamp = actual.timestamp
-        expected.id = actual.id
-        expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
+            // Override dynamic properties
+            expected.parserVersion = actual.parserVersion
+            expected.timestamp = actual.timestamp
+            expected.id = actual.id
+            expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
-        Assertions.assertEquals(expected, actual)
+            Assertions.assertEquals(expected, actual)
+        } else {
+            val actual = Json.decodeFromString<Array<Capabilities>>(out.toString())
+            val expected =
+                Json.decodeFromString<Array<Capabilities>>(
+                    File("$path/oracleJson/$oracleFilename").readText()
+                )
+
+            // Check size
+            Assertions.assertEquals(expected.size, actual.size)
+
+            // Override dynamic properties
+
+            for (i in expected.indices) {
+                val capA = actual[i]
+                val capE = expected[i]
+
+                capE.parserVersion = capA.parserVersion
+                capE.timestamp = capA.timestamp
+                capE.id = capA.id
+                capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
+            }
+
+            // check files
+            Assertions.assertArrayEquals(expected, actual)
+        }
     }
 }
