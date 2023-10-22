@@ -22,6 +22,7 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.server.ServerMode
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
+import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.encodeToString
@@ -122,50 +123,20 @@ object Cli :
 
     private lateinit var jsonFormat: Json
 
-    private lateinit var parsing: Parsing
-
     override fun run() {
         // Set debug
         if (debug) Config["debug"] = debug.toString()
 
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
-        val subTypeIterator = subTypesList.iterator()
 
-        val parsedCapabilities = mutableListOf<Capabilities>()
+        val inputsByteArray = inputsList.map { inputs -> inputs.map { it.readBytes() } }
 
-        for (i in inputsList.indices) {
-            val inputs = inputsList[i]
-            val type = typeList[i]
-            var inputArray = ByteArray(0)
-            var inputENDCArray: ByteArray? = null
-            var inputNRArray: ByteArray? = null
-            var defaultNr = false
+        val multiParsing = MultiParsing(inputsByteArray, typeList, subTypesList, jsonFormat)
 
-            if (type != "H") {
-                inputArray = inputs.fold(inputArray) { acc, it -> acc + it.readBytes() }
-            } else {
-                val subTypes = subTypeIterator.next()
-                for (j in inputs.indices) {
-                    val subType = subTypes[j]
-                    val input = inputs[j]
-                    when (subType) {
-                        "LTE" -> inputArray = input.readBytes()
-                        "ENDC" -> inputENDCArray = input.readBytes()
-                        "NR" -> inputNRArray = input.readBytes()
-                    }
-                }
+        val parsingList = multiParsing.parsingList
 
-                if (inputNRArray?.isNotEmpty() == true && inputArray.isEmpty()) {
-                    inputArray = inputNRArray
-                    defaultNr = true
-                }
-            }
-
-            parsing = Parsing(inputArray, inputENDCArray, inputNRArray, defaultNr, type, jsonFormat)
-
-            val capabilities = parsing.capabilities
-            parsedCapabilities.add(capabilities)
-
+        for (i in parsingList.indices) {
+            val parsing = parsingList[i]
             ueLog?.let {
                 val ueLogOutput =
                     when {
@@ -182,18 +153,19 @@ object Cli :
                         i == 0 -> it
                         else -> it.appendBeforeExtension("-${i+1}-")
                     }
-                csvOutput(capabilities, csvOutput, type)
+                csvOutput(parsing.capabilities, csvOutput, parsing.capabilities.logType)
             }
         }
 
         // One json output
         json?.let {
             val jsonOutput = if (it == "-") null else it
-            if (inputsList.size > 1) {
+            if (parsingList.size > 1) {
+                val parsedCapabilities = parsingList.map(Parsing::capabilities)
                 IO.outputFileOrStdout(jsonFormat.encodeToString(parsedCapabilities), jsonOutput)
             } else {
                 IO.outputFileOrStdout(
-                    jsonFormat.encodeToString(parsedCapabilities.first()),
+                    jsonFormat.encodeToString(parsingList.first().capabilities),
                     jsonOutput
                 )
             }
