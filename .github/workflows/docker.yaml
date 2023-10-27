@@ -52,6 +52,7 @@ jobs:
             type=semver,pattern=v{{major}}.{{minor}}
             type=schedule
             type=schedule,pattern={{date 'YYYY-MM-DD'}}
+            type=ref,event=branch
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'schedule' || ${{ env.NEW_COMMIT_COUNT > 0 }}
         uses: docker/login-action@v3
