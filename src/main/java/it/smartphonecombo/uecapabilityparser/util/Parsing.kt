@@ -89,7 +89,7 @@ class Parsing(
         return imports.parse(input)
     }
 
-    fun store(libraryIndex: LibraryIndex, path: String, compression: Boolean): Boolean {
+    fun store(libraryIndex: LibraryIndex, path: String, compression: Boolean): IndexLine {
         val inputDir = "$path/input"
         val outputDir = "$path/output"
         val id = capabilities.id
@@ -117,7 +117,7 @@ class Parsing(
                 capabilities.parserVersion
             )
         libraryIndex.addLine(indexLine)
-        return true
+        return indexLine
     }
 
     companion object {

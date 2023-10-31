@@ -10,6 +10,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.util.*
 import kotlin.io.path.extension
+import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -27,6 +28,7 @@ internal class ServerModeReparseTest {
             deleteDirectory(tmpStorePath)
         } catch (_: Exception) {}
         try {
+            createMultiDir("$resourcesPath/oracleForReparse")
             copyDirectory("$resourcesPath/inputForReparse", tmpStorePath)
             replaceVersion(tmpStorePath, "staging", parserVersion)
         } catch (_: Exception) {}
@@ -107,6 +109,12 @@ internal class ServerModeReparseTest {
         val dstFile = File(dst)
 
         srcFile.copyRecursively(dstFile)
+    }
+
+    private fun createMultiDir(path: String) {
+        File(path).listFiles()?.filter(File::isDirectory)?.forEach {
+            IO.createDirectories(it.absolutePath + "/multi")
+        }
     }
 
     private fun replaceVersion(directory: String, search: String, replace: String) {

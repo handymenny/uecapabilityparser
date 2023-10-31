@@ -1,12 +1,20 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
+import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
+import java.time.Instant
+import java.util.*
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class MultiParsing(
     private val inputsList: List<List<ByteArray>>,
     private val typeList: List<String>,
     private val subTypesList: List<List<String>>,
-    private val jsonFormat: Json = Json
+    private val jsonFormat: Json = Json,
+    private val description: String = "",
+    private var id: String = UUID.randomUUID().toString()
 ) {
     val parsingList = parseCapabilities()
 
@@ -48,5 +56,26 @@ class MultiParsing(
             parsedCapabilities.add(parsing)
         }
         return parsedCapabilities
+    }
+
+    fun store(libraryIndex: LibraryIndex, path: String, compression: Boolean): MultiIndexLine {
+        val multiDir = "$path/multi"
+        val outputPath = "$multiDir/$id.json"
+
+        val indexLines = parsingList.map { it.store(libraryIndex, path, compression) }
+
+        val multiIndexLine =
+            MultiIndexLine(
+                id,
+                timestamp = indexLines.lastOrNull()?.timestamp ?: Instant.now().toEpochMilli(),
+                description,
+                indexLines
+            )
+
+        val encodedString = Json.custom().encodeToString(multiIndexLine)
+
+        IO.outputFile(encodedString.toByteArray(), outputPath, compression)
+        libraryIndex.addMultiLine(multiIndexLine)
+        return multiIndexLine
     }
 }
