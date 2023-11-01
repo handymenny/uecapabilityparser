@@ -90,7 +90,8 @@ class MultiParsing(
                 id,
                 timestamp = indexLines.lastOrNull()?.timestamp ?: Instant.now().toEpochMilli(),
                 description,
-                indexLines
+                indexLines,
+                compression
             )
 
         // Don't store single capabilities as multi

@@ -7,5 +7,6 @@ data class MultiIndexLine(
     val id: String,
     val timestamp: Long,
     val description: String,
-    val indexLines: List<IndexLine>
+    val indexLines: List<IndexLine>,
+    val compressed: Boolean = false
 )
