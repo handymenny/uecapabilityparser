@@ -24,6 +24,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
+import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import it.smartphonecombo.uecapabilityparser.util.Property
 import java.lang.reflect.Type
@@ -106,6 +107,15 @@ class JavalinApp {
                 val parsed =
                     Parsing.fromJsonRequest(request) ?: return@apiBuilderPost ctx.badRequest()
                 ctx.json(parsed.capabilities)
+                if (store != null) {
+                    parsed.store(index, store, compression)
+                }
+            }
+            apiBuilderPost("/parse/multi") { ctx ->
+                val request = Json.parseToJsonElement(ctx.body())
+                val parsed =
+                    MultiParsing.fromJsonRequest(request) ?: return@apiBuilderPost ctx.badRequest()
+                ctx.json(parsed.getMultiCapabilities())
                 if (store != null) {
                     parsed.store(index, store, compression)
                 }

@@ -1,12 +1,18 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import it.smartphonecombo.uecapabilityparser.extension.asArrayOrNull
 import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.extension.getString
+import it.smartphonecombo.uecapabilityparser.extension.getStringList
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
 import java.time.Instant
 import java.util.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
 
 class MultiParsing(
     private val inputsList: List<List<ByteArray>>,
@@ -18,6 +24,11 @@ class MultiParsing(
     private var id: String = UUID.randomUUID().toString()
 ) {
     val parsingList = parseCapabilities()
+
+    fun getMultiCapabilities(): MultiCapabilities {
+        val capabilities = parsingList.map { it.capabilities }
+        return MultiCapabilities(capabilities, description, id)
+    }
 
     private fun parseCapabilities(): List<Parsing> {
         val parsedCapabilities = mutableListOf<Parsing>()
@@ -90,5 +101,45 @@ class MultiParsing(
         }
 
         return multiIndexLine
+    }
+
+    companion object {
+        fun fromJsonRequest(request: JsonElement): MultiParsing? {
+            val base64decoder = Base64.getDecoder()
+
+            val requestArray = request.asArrayOrNull() ?: return null
+            val inputsList: MutableList<List<ByteArray>> =
+                mutableListWithCapacity(requestArray.size)
+            val typeList: MutableList<String> = mutableListWithCapacity(requestArray.size)
+            val subTypesList: MutableList<List<String>> = mutableListWithCapacity(requestArray.size)
+            val descriptionList: MutableList<String> = mutableListWithCapacity(requestArray.size)
+
+            requestArray.forEach { req ->
+                val inputs =
+                    req.getStringList("inputs")?.map { base64 -> base64decoder.decode(base64) }
+                val type = req.getString("type")
+                val subTypes = req.getStringList("subTypes")
+                val description = req.getString("description")
+
+                if (inputs == null || type == null) {
+                    return@forEach
+                }
+
+                inputsList.add(inputs)
+                typeList.add(type)
+                subTypesList.add(subTypes ?: emptyList())
+                descriptionList.add(description?.trim() ?: "")
+            }
+
+            val description = descriptionList.distinct().joinToString(separator = " ").trim()
+
+            return MultiParsing(
+                inputsList,
+                typeList,
+                subTypesList,
+                descriptionList,
+                description = description
+            )
+        }
     }
 }
