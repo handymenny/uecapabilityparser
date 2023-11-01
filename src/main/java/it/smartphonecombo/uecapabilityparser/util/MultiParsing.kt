@@ -82,10 +82,13 @@ class MultiParsing(
                 indexLines
             )
 
-        val encodedString = Json.custom().encodeToString(multiIndexLine)
+        // Don't store single capabilities as multi
+        if (indexLines.size > 1) {
+            val encodedString = Json.custom().encodeToString(multiIndexLine)
+            IO.outputFile(encodedString.toByteArray(), outputPath, compression)
+            libraryIndex.addMultiLine(multiIndexLine)
+        }
 
-        IO.outputFile(encodedString.toByteArray(), outputPath, compression)
-        libraryIndex.addMultiLine(multiIndexLine)
         return multiIndexLine
     }
 }
