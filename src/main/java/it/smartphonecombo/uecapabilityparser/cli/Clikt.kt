@@ -131,7 +131,8 @@ object Cli :
 
         val inputsByteArray = inputsList.map { inputs -> inputs.map { it.readBytes() } }
 
-        val multiParsing = MultiParsing(inputsByteArray, typeList, subTypesList, jsonFormat)
+        val multiParsing =
+            MultiParsing(inputsByteArray, typeList, subTypesList, jsonFormat = jsonFormat)
 
         val parsingList = multiParsing.parsingList
 

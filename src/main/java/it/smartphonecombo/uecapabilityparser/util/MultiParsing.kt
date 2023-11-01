@@ -12,6 +12,7 @@ class MultiParsing(
     private val inputsList: List<List<ByteArray>>,
     private val typeList: List<String>,
     private val subTypesList: List<List<String>>,
+    private val descriptionList: List<String> = emptyList(),
     private val jsonFormat: Json = Json,
     private val description: String = "",
     private var id: String = UUID.randomUUID().toString()
@@ -49,9 +50,18 @@ class MultiParsing(
                     defaultNr = true
                 }
             }
+            val description = descriptionList.getOrElse(i) { "" }
 
             val parsing =
-                Parsing(inputArray, inputENDCArray, inputNRArray, defaultNr, type, jsonFormat)
+                Parsing(
+                    inputArray,
+                    inputENDCArray,
+                    inputNRArray,
+                    defaultNr,
+                    type,
+                    description,
+                    jsonFormat
+                )
 
             parsedCapabilities.add(parsing)
         }
