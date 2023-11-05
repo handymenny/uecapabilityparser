@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.getStringList
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
+import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
 import java.time.Instant
@@ -84,22 +85,19 @@ class MultiParsing(
         val outputPath = "$multiDir/$id.json"
 
         val indexLines = parsingList.map { it.store(libraryIndex, path, compression) }
-
+        val indexLineIds = indexLines.map(IndexLine::id)
         val multiIndexLine =
             MultiIndexLine(
                 id,
                 timestamp = indexLines.lastOrNull()?.timestamp ?: Instant.now().toEpochMilli(),
                 description,
-                indexLines,
+                indexLineIds,
                 compression
             )
 
-        // Don't store single capabilities as multi
-        if (indexLines.size > 1) {
-            val encodedString = Json.custom().encodeToString(multiIndexLine)
-            IO.outputFile(encodedString.toByteArray(), outputPath, compression)
-            libraryIndex.addMultiLine(multiIndexLine)
-        }
+        val encodedString = Json.custom().encodeToString(multiIndexLine)
+        IO.outputFile(encodedString.toByteArray(), outputPath, compression)
+        libraryIndex.addMultiLine(multiIndexLine)
 
         return multiIndexLine
     }
