@@ -440,7 +440,7 @@ internal class CliJsonOutputTest {
                 "-i",
                 "$path/input/ueCapHexMrdcSplit_eutra.hex, $path/input/ueCapHexMrdcSplit_nr.hex, $path/input/ueCapHexMrdcSplit_eutra-nr.hex",
                 "--subTypes",
-                "LTE,ENDC,NR",
+                "LTE,NR,ENDC",
                 "-t",
                 "H",
                 "-j",

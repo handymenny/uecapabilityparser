@@ -422,7 +422,7 @@ internal class MainTest {
                 "-t",
                 "H",
                 "--subTypes",
-                "LTE,ENDC,NR",
+                "LTE,NR,ENDC",
                 "-c",
                 "-"
             ),
@@ -440,7 +440,7 @@ internal class MainTest {
                 "-t",
                 "H",
                 "--subTypes",
-                "LTE,ENDC,NR",
+                "LTE,NR,ENDC",
                 "-l",
                 "-"
             ),
