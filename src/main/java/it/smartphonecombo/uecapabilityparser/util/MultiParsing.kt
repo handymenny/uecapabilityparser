@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.extension.asArrayOrNull
+import it.smartphonecombo.uecapabilityparser.extension.commonPrefix
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.getStringList
@@ -130,7 +131,15 @@ class MultiParsing(
                 descriptionList.add(description?.trim() ?: "")
             }
 
-            val description = descriptionList.distinct().joinToString(separator = " ").trim()
+            val uniqueDesc = descriptionList.distinct()
+            val commonPrefix = uniqueDesc.commonPrefix(true).dropLastWhile { !it.isWhitespace() }
+            val description =
+                if (commonPrefix.length < 3) {
+                    uniqueDesc.joinToString(" ")
+                } else {
+                    val trunc = uniqueDesc.joinToString(" ") { it.substring(commonPrefix.length) }
+                    commonPrefix + trunc
+                }
 
             return MultiParsing(
                 inputsList,
