@@ -94,7 +94,7 @@ internal class ServerModeMultiStoreTest {
                             add("NR")
                             add("ENDC")
                         }
-                        put("description", "This is a multi-test")
+                        put("description", "This is a multi")
                     }
                     addJsonObject {
                         put("type", "QLTE")
@@ -102,7 +102,7 @@ internal class ServerModeMultiStoreTest {
                             "inputs",
                             buildJsonArray { add(fileToBase64(oracleInputs[1][0])) },
                         )
-                        put("description", "This is a multi-test")
+                        put("description", "This is a multi test")
                     }
                     addJsonObject {
                         put("type", "QNR")
@@ -265,9 +265,9 @@ internal class ServerModeMultiStoreTest {
         val actualObj = Json.decodeFromString<MultiIndexLine>(actual)
         val expectedObj = Json.decodeFromString<MultiIndexLine>(expected)
 
-        Assertions.assertEquals(actualObj.compressed, expectedObj.compressed)
-        Assertions.assertEquals(actualObj.description, expectedObj.description)
-        Assertions.assertEquals(actualObj.indexLineIds.size, expectedObj.indexLineIds.size)
+        Assertions.assertEquals(expectedObj.compressed, actualObj.compressed)
+        Assertions.assertEquals(expectedObj.description, actualObj.description)
+        Assertions.assertEquals(expectedObj.indexLineIds.size, actualObj.indexLineIds.size)
     }
 
     private fun fileToBase64(path: String): String {
