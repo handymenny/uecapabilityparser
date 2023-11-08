@@ -157,6 +157,21 @@ internal class ServerModeMultiStoreTest {
     }
 
     @Test
+    fun getMultiElementBadRequest() {
+        Config["store"] = "$resourcesPath/oracleForMultiStore"
+        getTestError("${endpointStore}getMultiItem", HttpStatus.BAD_REQUEST.code)
+    }
+
+    @Test
+    fun getMultiElement404() {
+        Config["store"] = "$resourcesPath/oracleForMultiStore"
+        getTestError(
+            "${endpointStore}getMultiItem?id=${UUID.randomUUID()}",
+            HttpStatus.NOT_FOUND.code
+        )
+    }
+
+    @Test
     fun getMultiElement() {
         Config["store"] = "$resourcesPath/oracleForMultiStore"
         getTest(
@@ -190,6 +205,33 @@ internal class ServerModeMultiStoreTest {
         getTest(
             "${endpointStore}getMultiOutput?id=${storedMultiId}",
             "$resourcesPath/oracleForMultiStore/multiParseOutput.json",
+        )
+    }
+
+    @Test
+    fun getMultiOutputBadRequest() {
+        Config["store"] = "$resourcesPath/oracleForMultiStore"
+        getTestError(
+            "${endpointStore}getMultiOutput?id=../output/$storedMultiId",
+            HttpStatus.BAD_REQUEST.code
+        )
+    }
+
+    @Test
+    fun getMultiOutputBadRequest2() {
+        Config["store"] = "$resourcesPath/oracleForMultiStore"
+        getTestError(
+            "${endpointStore}getMultiOutput?idd=../output/$storedMultiId",
+            HttpStatus.BAD_REQUEST.code
+        )
+    }
+
+    @Test
+    fun getMultiOutput404() {
+        Config["store"] = "$resourcesPath/oracleForMultiStore"
+        getTestError(
+            "${endpointStore}getMultiOutput?id=${UUID.randomUUID()}",
+            HttpStatus.NOT_FOUND.code
         )
     }
 
@@ -280,4 +322,10 @@ internal class ServerModeMultiStoreTest {
             .map(Path::toFile)
             .forEach(File::delete)
     }
+
+    private fun getTestError(url: String, statusCode: Int) =
+        JavalinTest.test(JavalinApp().app) { _, client ->
+            val response = client.get(url)
+            Assertions.assertEquals(statusCode, response.code)
+        }
 }
