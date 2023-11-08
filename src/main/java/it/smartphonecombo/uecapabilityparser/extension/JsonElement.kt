@@ -34,3 +34,7 @@ internal fun JsonElement.asIntOrNull(): Int? {
 internal fun JsonElement.asArrayOrNull(): JsonArray? {
     return this as? JsonArray
 }
+
+internal fun JsonElement.getStringList(key: String): List<String>? {
+    return this.getArray(key)?.mapNotNull { (it as? JsonPrimitive)?.contentOrNull }
+}

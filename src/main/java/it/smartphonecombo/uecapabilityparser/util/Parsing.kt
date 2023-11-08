@@ -32,6 +32,7 @@ class Parsing(
     private val inputENDC: ByteArray?,
     private val defaultNR: Boolean = false,
     private val type: String,
+    private val description: String = "",
     private val jsonFormat: Json = Json
 ) {
     private var jsonUeCap: JsonObject? = null
@@ -47,6 +48,12 @@ class Parsing(
         capabilities.timestamp = Instant.now().toEpochMilli()
         capabilities.setMetadata("processingTime", "${processTime}ms")
         if (defaultNR) capabilities.setMetadata("defaultNR", "true")
+
+        // Set description
+        if (description.isNotEmpty()) {
+            capabilities.setMetadata("description", description)
+        }
+
         return capabilities
     }
 
@@ -89,7 +96,7 @@ class Parsing(
         return imports.parse(input)
     }
 
-    fun store(libraryIndex: LibraryIndex, path: String, compression: Boolean): Boolean {
+    fun store(libraryIndex: LibraryIndex, path: String, compression: Boolean): IndexLine {
         val inputDir = "$path/input"
         val outputDir = "$path/output"
         val id = capabilities.id
@@ -117,7 +124,7 @@ class Parsing(
                 capabilities.parserVersion
             )
         libraryIndex.addLine(indexLine)
-        return true
+        return indexLine
     }
 
     companion object {
@@ -143,20 +150,17 @@ class Parsing(
                 return null
             }
 
+            val description = request.getString("description")
+
             val parsing =
                 Parsing(
                     input ?: inputNR!!,
                     if (defaultNR) null else inputNR,
                     inputENDC,
                     defaultNR,
-                    type
+                    type,
+                    description ?: ""
                 )
-
-            // Set description
-            val description = request.getString("description")
-            if (!description.isNullOrEmpty()) {
-                parsing.capabilities.setMetadata("description", description)
-            }
 
             return parsing
         }

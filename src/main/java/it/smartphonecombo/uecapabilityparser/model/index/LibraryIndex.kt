@@ -11,7 +11,10 @@ import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class LibraryIndex(private val items: MutableList<IndexLine>) {
+data class LibraryIndex(
+    private val items: MutableList<IndexLine>,
+    private val multiItems: MutableList<MultiIndexLine> = mutableListOf()
+) {
     @Transient private val lock = Any()
 
     fun addLine(line: IndexLine): Boolean {
@@ -20,8 +23,18 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
         }
     }
 
+    fun addMultiLine(line: MultiIndexLine): Boolean {
+        synchronized(lock) {
+            return multiItems.add(line)
+        }
+    }
+
     fun find(id: String): IndexLine? {
         return items.find { it.id == id }
+    }
+
+    fun findMulti(id: String): MultiIndexLine? {
+        return multiItems.find { it.id == id }
     }
 
     fun findByInput(id: String): IndexLine? {
@@ -30,23 +43,25 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
 
     fun findByOutput(id: String): IndexLine? = find(id)
 
-    /** return a list of all elements */
+    /** return a list of all single-capability indexes */
     fun getAll() = items.toList()
 
     companion object {
         fun buildIndex(path: String): LibraryIndex {
             val outputDir = "$path/output"
             val inputDir = "$path/input"
+            val multiDir = "$path/multi"
 
             // Create directories if they don't exist
-            IO.createDirectories(outputDir)
-            IO.createDirectories(inputDir)
+            arrayOf(outputDir, inputDir, multiDir).forEach { IO.createDirectories(it) }
 
             val outputFiles = File(outputDir).listFiles() ?: emptyArray()
             val inputFiles = File(inputDir).listFiles() ?: emptyArray()
+            val multiFiles = File(multiDir).listFiles() ?: emptyArray()
+
             // Sort files to make library consistent
-            inputFiles.sort()
-            outputFiles.sort()
+            arrayOf(outputFiles, inputFiles, multiFiles).forEach { it.sort() }
+
             val items =
                 outputFiles
                     .mapNotNull { outputFile ->
@@ -80,8 +95,26 @@ data class LibraryIndex(private val items: MutableList<IndexLine>) {
                         }
                     }
                     .toMutableList()
+
+            val multiItems =
+                multiFiles
+                    .mapNotNull { multiFile ->
+                        try {
+                            val compressed = multiFile.extension == "gz"
+                            val jsonTxt = readTextFromFile(multiFile, compressed)
+
+                            jsonTxt?.let { Json.custom().decodeFromString<MultiIndexLine>(it) }
+                        } catch (ex: Exception) {
+                            System.err.println("Error ${ex.localizedMessage}")
+                            null
+                        }
+                    }
+                    .toMutableList()
+
             items.sortBy { it.timestamp }
-            return LibraryIndex(items)
+            multiItems.sortBy { it.timestamp }
+
+            return LibraryIndex(items, multiItems)
         }
     }
 }

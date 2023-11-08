@@ -15,8 +15,10 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.getArray
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.internalError
+import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.notFound
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -24,6 +26,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
+import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import it.smartphonecombo.uecapabilityparser.util.Property
 import java.lang.reflect.Type
@@ -110,6 +113,15 @@ class JavalinApp {
                     parsed.store(index, store, compression)
                 }
             }
+            apiBuilderPost("/parse/multi") { ctx ->
+                val request = Json.parseToJsonElement(ctx.body())
+                val parsed =
+                    MultiParsing.fromJsonRequest(request) ?: return@apiBuilderPost ctx.badRequest()
+                ctx.json(parsed.getMultiCapabilities())
+                if (store != null) {
+                    parsed.store(index, store, compression)
+                }
+            }
             apiBuilderPost("/csv", "/csv/0.1.0") { ctx ->
                 val request = Json.parseToJsonElement(ctx.body())
                 val type = request.getString("type")
@@ -147,6 +159,11 @@ class JavalinApp {
                 val item = index.find(id) ?: return@apiBuilderGet ctx.notFound()
                 ctx.json(item)
             }
+            apiBuilderGet("/store/getMultiItem") { ctx ->
+                val id = ctx.queryParam("id") ?: return@apiBuilderGet ctx.badRequest()
+                val item = index.findMulti(id) ?: return@apiBuilderGet ctx.notFound()
+                ctx.json(item)
+            }
             apiBuilderGet("/store/getOutput", "/store/0.2.0/getOutput") { ctx ->
                 val id = ctx.queryParam("id")
                 if (id == null || !id.matches(idRegex)) {
@@ -166,6 +183,38 @@ class JavalinApp {
                 } catch (ex: Exception) {
                     ctx.internalError()
                 }
+            }
+            apiBuilderGet("/store/getMultiOutput") { ctx ->
+                val id = ctx.queryParam("id")
+                if (id == null || !id.matches(idRegex)) {
+                    return@apiBuilderGet ctx.badRequest()
+                }
+
+                val multiIndexLine = index.findMulti(id) ?: return@apiBuilderGet ctx.notFound()
+                val indexLineIds = multiIndexLine.indexLineIds
+                val capabilitiesList = mutableListWithCapacity<Capabilities>(indexLineIds.size)
+                try {
+                    for (indexId in indexLineIds) {
+                        val indexLine = index.find(indexId) ?: continue
+                        val compressed = indexLine.compressed
+                        val outputId = indexLine.id
+                        val filePath = "$store/output/$outputId.json"
+                        val text =
+                            IO.readTextFromFile(filePath, compressed)
+                                ?: return@apiBuilderGet ctx.notFound()
+                        val capabilities = Json.custom().decodeFromString<Capabilities>(text)
+                        capabilitiesList.add(capabilities)
+                    }
+                } catch (ex: Exception) {
+                    ctx.internalError()
+                }
+                val multiCapabilities =
+                    MultiCapabilities(
+                        capabilitiesList,
+                        multiIndexLine.description,
+                        multiIndexLine.id
+                    )
+                ctx.json(multiCapabilities)
             }
             apiBuilderGet("/store/getInput", "/store/0.2.0/getInput") { ctx ->
                 val id = ctx.queryParam("id")
