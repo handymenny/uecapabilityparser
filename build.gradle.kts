@@ -41,7 +41,7 @@ dependencies {
 
     implementation("io.javalin:javalin:$javalinVersion")
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.3")
 }
 
