@@ -77,5 +77,7 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
         IO.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
     }
 
-    repeat(ulCCs - ulCount) { IO.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrMimoUl) }
+    repeat(ulCCs - ulCount) {
+        IO.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrMimoUl)
+    }
 }
