@@ -2,7 +2,6 @@ package it.smartphonecombo.uecapabilityparser.extension
 
 import korlibs.memory.finsert
 import korlibs.memory.isEven
-import kotlin.jvm.Throws
 
 internal fun String.indexOf(regex: Regex): Int = regex.find(this)?.range?.first ?: -1
 
@@ -22,6 +21,7 @@ internal fun String.preformatHex(): String {
         if (it.length.isEven) it else "${it}0"
     }
 }
+
 /**
  * Appends the given string before the last dot in the filename. If there isn't any dot, it appends
  * it to the end of the string.
@@ -34,4 +34,30 @@ internal fun String.appendBeforeExtension(strToAppend: String): String {
     }
 
     return split.dropLast(1).joinToString(".", postfix = "$strToAppend.${split.last()}")
+}
+
+internal fun List<String>.commonPrefix(ignoreCase: Boolean): String {
+    val indexOfDiff = indexOfDiff(ignoreCase)
+
+    return if (indexOfDiff > 0) first().substring(0, indexOfDiff) else ""
+}
+
+private fun List<String>.indexOfDiff(ignoreCase: Boolean): Int {
+    if (isEmpty()) return 0
+    if (size == 1) return this[0].length
+
+    val minLen = minOf(String::length)
+
+    for (charIndex in 0 until minLen) {
+        val charFirst = this[0][charIndex]
+
+        for (arrayIndex in 1 until size) {
+            val charCurrent = this[arrayIndex][charIndex]
+            if (!charCurrent.equals(charFirst, ignoreCase)) {
+                return charIndex
+            }
+        }
+    }
+
+    return minLen
 }
