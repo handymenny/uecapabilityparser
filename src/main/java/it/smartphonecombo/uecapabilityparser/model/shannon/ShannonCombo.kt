@@ -36,7 +36,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString.
      */
-    @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: UInt = 0u,
+    @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: UInt?,
 
     /**
      * The supportedBandwidthCombinationSet that applies to the IntraEnDc Components
@@ -45,7 +45,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString.
      */
-    @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: UInt = 0u,
+    @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: UInt?,
 
     /**
      * The supported Bandwidth Combination Set that applies to the Eutra Components
@@ -54,7 +54,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString.
      */
-    @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: UInt = 0u,
+    @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: UInt?,
 
     /**
      * Power Class of the whole combination, it's stored as an enum.
@@ -65,23 +65,23 @@ data class ComboFeatures(
      *
      * For FR2 0 -> Default
      */
-    @ProtoNumber(4) @SerialName("powerClass") private val rawPowerClass: Int = 0,
+    @ProtoNumber(4) @SerialName("powerClass") private val rawPowerClass: Int?,
 
     /**
      * intraBandENDC-Support is stored as an enum.
      *
      * 0 -> contiguous, 1 -> non-contiguous, 2 -> both.
      */
-    @ProtoNumber(5) @SerialName("intraBandEnDcSupport") private val rawIntraBandEnDcSupport: Int = 0
+    @ProtoNumber(5) @SerialName("intraBandEnDcSupport") private val rawIntraBandEnDcSupport: Int?
 ) {
     val bcsNr
-        get() = BCS.fromBinaryString(rawBcsNr.toString(2))
+        get() = BCS.fromBinaryString(rawBcsNr?.toString(2) ?: "0")
 
     val bcsIntraEndc
-        get() = BCS.fromBinaryString(rawBcsIntraEndc.toString(2))
+        get() = BCS.fromBinaryString(rawBcsIntraEndc?.toString(2) ?: "0")
 
     val bcsEutra
-        get() = BCS.fromBinaryString(rawBcsIntraEndc.toString(2))
+        get() = BCS.fromBinaryString(rawBcsIntraEndc?.toString(2) ?: "0")
 
     val powerClass
         get() =

@@ -21,7 +21,7 @@ data class ShannonNrUECap(
     /** ShannonNrUECap version. */
     @ProtoNumber(1) val version: UInt,
     /** ID assigned to this ShannonNrUECap. */
-    @ProtoNumber(2) val id: Int = 0,
+    @ProtoNumber(2) val id: Int?,
     /** List of combo groups. */
     @ProtoNumber(3) val comboGroups: List<ComboGroup> = emptyList(),
     /** List of FeatureSetDownlinkPerCC. */
