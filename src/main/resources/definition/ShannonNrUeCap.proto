@@ -1,6 +1,5 @@
 syntax = "proto2";
 
-// serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ShannonNrUECap'
 message ShannonNrUECap {
   // ShannonNrUECap version.
   required uint32 version = 1;
@@ -9,21 +8,19 @@ message ShannonNrUECap {
   // List of combo groups.
   repeated ComboGroup comboGroups = 3;
   // List of FeatureSetDownlinkPerCC.
-  repeated ShannonFeatureSetDlPerCCNr dlFeaturePerCCList = 6;
+  repeated FeatureDlPerCCNr dlFeaturePerCCList = 6;
   // List of FeatureSetUplinkPerCC.
-  repeated ShannonFeatureSetUlPerCCNr ulFeaturePerCCList = 7;
+  repeated FeatureUlPerCCNr ulFeaturePerCCList = 7;
 }
 
-// serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ComboGroup'
 message ComboGroup {
   // Some features that applies to the whole combo group.
   required ComboFeatures comboFeatures = 1;
   // List of combos that share the same ComboFeatures.
-  repeated ShannonCombo combos = 2;
+  repeated Combo combos = 2;
 }
 
-// serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ShannonFeatureSetDlPerCCNr'
-message ShannonFeatureSetDlPerCCNr {
+message FeatureDlPerCCNr {
   // Max SCS is stored as numerology + 1, i.e. 1 = 15kHz, 2 = 30kHz, 3 = 60kHz, 4 = 120kHz.
   required int32 maxScs = 1;
   // Max Mimo is stored as an enum. 0 -> not supported, 1 -> 2, 2 -> 4.
@@ -40,8 +37,7 @@ message ShannonFeatureSetDlPerCCNr {
   required bool bw90MHzSupported = 5;
 }
 
-// serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ShannonFeatureSetUlPerCCNr'
-message ShannonFeatureSetUlPerCCNr {
+message FeatureUlPerCCNr {
   // Max SCS is stored as numerology + 1, i.e. 1 = 15kHz, 2 = 30kHz, 3 = 60kHz, 4 = 120kHz.
   required int32 maxScs = 1;
   // Max Mimo CB is stored as an enum. Max Mimo CB UL: 0 -> not supported, 1 -> 1, 2 -> 2.
@@ -60,7 +56,6 @@ message ShannonFeatureSetUlPerCCNr {
   required int32 maxMimoNonCb = 6;
 }
 
-// serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ComboFeatures'
 message ComboFeatures {
   /*
      The supportedBandwidthCombinationSet that applies to the Nr Components.
@@ -93,22 +88,20 @@ message ComboFeatures {
   optional int32 intraBandEnDcSupport = 5;
 }
 
-// serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ShannonCombo'
-message ShannonCombo {
+message Combo {
   // List of Components.
-  repeated ShannonComponent components = 1;
+  repeated Component components = 1;
   // A bit mask stored as unsigned int that enables or disables some features.
   required uint32 bitMask = 2;
 }
 
-// serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ShannonComponent'
-message ShannonComponent {
+message Component {
   // LTE Bands are stored as they are, NR Bands are stored as band number + 10000.
   required int32 band = 1;
   // BwClass DL is stored as ASCII value - 0x40. 0 means DL not supported.
   required int32 bwClassDl = 2;
   // BwClass UL is stored as ASCII value - 0x40. 0 means UL not supported.
-  required int32 bwClassUL = 3;
+  required int32 bwClassUl = 3;
   /*
      For LTE this is FeatureSetEUTRA-DownlinkId, the corresponding FeatureSetDL-r15
      seems to be hardcoded elsewhere (see ShannonFeatureSetEutra).
