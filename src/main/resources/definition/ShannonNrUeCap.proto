@@ -111,7 +111,7 @@ message ShannonComponent {
   required int32 bwClassUL = 3;
   /*
      For LTE this is FeatureSetEUTRA-DownlinkId, the corresponding FeatureSetDL-r15
-     seems to be hardcoded elsewhere (see ShannonHardCodedFeatureSetEutra).
+     seems to be hardcoded elsewhere (see ShannonFeatureSetEutra).
      Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
 
      For NR this sets some features that applies to the whole component (not PerCC).
@@ -121,7 +121,7 @@ message ShannonComponent {
 
   /*
      For LTE this is FeatureSetEUTRA-UplinkId, the corresponding FeatureSetUL-r15
-     seems to be hardcoded elsewhere (see ShannonHardCodedFeatureSetEutra).
+     seems to be hardcoded elsewhere (see ShannonFeatureSetEutra).
      Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
 
      For NR this sets some features that applies to the whole component (not PerCC).
