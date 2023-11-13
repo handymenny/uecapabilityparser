@@ -281,7 +281,7 @@ data class ShannonFeatureSetUlPerCCNr(
  * be hardcoded.
  *
  * Analyzing the ue capabilities of different shannon devices, going from Galaxy SM-G977B to Pixel
- * GP4BC, the Eutra FeatureSet is always the same or at the least a truncated version that shares
+ * GP4BC, the Eutra FeatureSet is always the same or at the least a reduced version that shares
  * the same ids. That is, the proposed version has 10 ids, a reduced version has 6, but proposed id
  * 1 = reduced id 1 and so on.
  *
@@ -299,65 +299,23 @@ object ShannonHardCodedFeatureSetEutra {
 
     val downlink =
         listOf(
-            FeatureSet(type = LinkDirection.DOWNLINK, featureSetsPerCC = listOf(downlinkPerCC[0])),
-            FeatureSet(type = LinkDirection.DOWNLINK, featureSetsPerCC = listOf(downlinkPerCC[1])),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC = listOf(downlinkPerCC[0], downlinkPerCC[0]),
-            ),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC = listOf(downlinkPerCC[1], downlinkPerCC[0]),
-            ),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC = listOf(downlinkPerCC[0], downlinkPerCC[1]),
-            ),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC = listOf(downlinkPerCC[1], downlinkPerCC[1]),
-            ),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC = listOf(downlinkPerCC[0], downlinkPerCC[0], downlinkPerCC[0]),
-            ),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC = listOf(downlinkPerCC[1], downlinkPerCC[1], downlinkPerCC[1]),
-            ),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC =
-                    listOf(
-                        downlinkPerCC[0],
-                        downlinkPerCC[0],
-                        downlinkPerCC[0],
-                        downlinkPerCC[0],
-                    ),
-            ),
-            FeatureSet(
-                type = LinkDirection.DOWNLINK,
-                featureSetsPerCC =
-                    listOf(
-                        downlinkPerCC[1],
-                        downlinkPerCC[1],
-                        downlinkPerCC[1],
-                        downlinkPerCC[1],
-                    ),
-            ),
+            FeatureSet(listOf(downlinkPerCC[0]), LinkDirection.DOWNLINK),
+            FeatureSet(listOf(downlinkPerCC[1]), LinkDirection.DOWNLINK),
+            FeatureSet(List(2) { downlinkPerCC[0] }, LinkDirection.DOWNLINK),
+            FeatureSet(listOf(downlinkPerCC[1], downlinkPerCC[0]), LinkDirection.DOWNLINK),
+            FeatureSet(listOf(downlinkPerCC[0], downlinkPerCC[1]), LinkDirection.DOWNLINK),
+            FeatureSet(List(2) { downlinkPerCC[1] }, LinkDirection.DOWNLINK),
+            FeatureSet(List(3) { downlinkPerCC[0] }, LinkDirection.DOWNLINK),
+            FeatureSet(List(3) { downlinkPerCC[1] }, LinkDirection.DOWNLINK),
+            FeatureSet(List(4) { downlinkPerCC[0] }, LinkDirection.DOWNLINK),
+            FeatureSet(List(4) { downlinkPerCC[1] }, LinkDirection.DOWNLINK),
         )
 
     val uplink =
         listOf(
-            FeatureSet(type = LinkDirection.UPLINK, featureSetsPerCC = listOf(uplinkPerCC[0])),
-            FeatureSet(type = LinkDirection.UPLINK, featureSetsPerCC = listOf(uplinkPerCC[1])),
-            FeatureSet(
-                type = LinkDirection.UPLINK,
-                featureSetsPerCC = listOf(uplinkPerCC[0], uplinkPerCC[1]),
-            ),
-            FeatureSet(
-                type = LinkDirection.UPLINK,
-                featureSetsPerCC = listOf(uplinkPerCC[1], uplinkPerCC[1]),
-            ),
+            FeatureSet(listOf(uplinkPerCC[0]), LinkDirection.UPLINK),
+            FeatureSet(listOf(uplinkPerCC[1]), LinkDirection.UPLINK),
+            FeatureSet(listOf(uplinkPerCC[0], uplinkPerCC[1]), LinkDirection.UPLINK),
+            FeatureSet(List(2) { downlinkPerCC[1] }, LinkDirection.UPLINK),
         )
 }
