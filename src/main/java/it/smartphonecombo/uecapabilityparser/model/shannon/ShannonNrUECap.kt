@@ -54,7 +54,7 @@ data class ComboFeatures(
      * The supportedBandwidthCombinationSet that applies to the Nr Components.
      *
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
-     * Bit String.
+     * bit in the BitString.
      */
     @ProtoNumber(1) private val rawBcsNr: UInt = 0u,
 
@@ -63,7 +63,7 @@ data class ComboFeatures(
      * (supportedBandwidthCombinationSetIntraENDC).
      *
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
-     * Bit String.
+     * bit in the BitString.
      */
     @ProtoNumber(2) private val rawBcsIntraEndc: UInt = 0u,
 
@@ -72,16 +72,18 @@ data class ComboFeatures(
      * (supportedBandwidthCombinationSetEUTRA-v1530).
      *
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
-     * Bit String.
+     * bit in the BitString.
      */
     @ProtoNumber(3) private val rawBcsEutra: UInt = 0u,
 
     /**
-     * Power Class is stored as an enum.
+     * Power Class of the whole combination, it's stored as an enum.
      *
-     * For FR1 0 -> PC3 or Default, 1 -> PC2, 2 -> PC1.5
+     * Note that this doesn't override the powerclass of the uplink bands.
      *
-     * For FR2 0 -> PC3 or Default
+     * For FR1 0 -> Default, 1 -> PC2, 2 -> PC1.5
+     *
+     * For FR2 0 -> Default
      */
     @ProtoNumber(4) private val rawPowerClass: Int = 0,
 
@@ -104,7 +106,6 @@ data class ComboFeatures(
     val powerClass
         get() =
             when (rawPowerClass) {
-                0 -> PowerClass.PC3
                 1 -> PowerClass.PC2
                 2 -> PowerClass.PC1dot5
                 else -> PowerClass.NONE
@@ -115,7 +116,7 @@ data class ComboFeatures(
 data class ShannonCombo(
     /** List of Components. */
     @ProtoNumber(1) val components: List<ShannonComponent> = emptyList(),
-    /** A bit mask stored as unsigned integer that enables or disables some features. */
+    /** A bit mask stored as unsigned int that enables or disables some features. */
     @ProtoNumber(2) val bitMask: UInt
 )
 
@@ -139,7 +140,8 @@ data class ShannonComponent(
      * hardcoded elsewhere (see [ShannonHardCodedFeatureSetEutra]). Note that the index starts from
      * 1 as per 3GPP spec, 0 means DL not supported.
      *
-     * For NR this sets some features that applies to the whole component (not PerCC).
+     * For NR this sets some features that applies to the whole component (not PerCC). Empirically 1
+     * -> FR1, 2 -> FR2.
      */
     @ProtoNumber(4) val dlFeatureIndex: Int,
 
@@ -148,7 +150,8 @@ data class ShannonComponent(
      * hardcoded elsewhere (see [ShannonHardCodedFeatureSetEutra]). Note that the index starts from
      * 1 as per 3GPP spec, 0 means UL not supported.
      *
-     * For NR this sets some features that applies to the whole component (not PerCC).
+     * For NR this sets some features that applies to the whole component (not PerCC). Empirically 1
+     * -> SRS ports per resource 1, 2 -> SRS ports per resource 2.
      */
     @ProtoNumber(5) val ulFeatureIndex: Int,
 
@@ -278,11 +281,12 @@ data class ShannonFeatureSetUlPerCCNr(
  * be hardcoded.
  *
  * Analyzing the ue capabilities of different shannon devices, going from Galaxy SM-G977B to Pixel
- * GP4BC, it can be concluded that the Eutra FeatureSet is always the same or at the limit a reduced
- * version that still allows the correct mapping of initial elements.
+ * GP4BC, the Eutra FeatureSet is always the same or at the least a truncated version that shares
+ * the same ids. That is, the proposed version has 10 ids, a reduced version has 6, but proposed id
+ * 1 = reduced id 1 and so on.
  *
- * That almost 4 years old hardcoded Eutra FeatureSet is proposed below. Modulation is removed as
- * it's controlled by other bits.
+ * That hardcoded Eutra FeatureSet is proposed below. Modulation is removed as it's controlled by
+ * other bits.
  */
 object ShannonHardCodedFeatureSetEutra {
     private val downlinkPerCC =

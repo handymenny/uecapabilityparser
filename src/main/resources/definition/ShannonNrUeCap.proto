@@ -65,27 +65,28 @@ message ComboFeatures {
   /*
      The supportedBandwidthCombinationSet that applies to the Nr Components.
      It's stored as a 32bit unsigned int, each of its bits has the same value of
-     the corresponding Bit String.
+     the corresponding bit in the BitString.
   */
   optional uint32 bcsNr = 1;
   /*
      The supportedBandwidthCombinationSet that applies to the IntraEnDc
      Components (supportedBandwidthCombinationSetIntraENDC).
      It's stored as a 32bit unsigned int, each of its bits has the same value of
-     the corresponding Bit String.
+     the corresponding bit in the BitString.
   */
   optional uint32 bcsIntraEndc = 2;
   /*
      The supported Bandwidth Combination Set that applies to the Eutra
      Components (supportedBandwidthCombinationSetEUTRA-v1530).
      It's stored as a 32bit unsigned int, each of its bits has the same value of
-     the corresponding Bit String.
+     the corresponding bit in the BitString.
   */
   optional uint32 bcsEutra = 3;
   /*
-     Power Class is stored as an enum.
-     For FR1 0 -> PC3 or Default, 1 -> PC2, 2 -> PC1.5
-     For FR2 0 -> PC3 or Default
+     Power Class of the whole combination, it's stored as an enum.
+     Note that this doesn't override the powerclass of the uplink bands.
+     For FR1 0 -> Default, 1 -> PC2, 2 -> PC1.5
+     For FR2 0 -> Default
   */
   optional int32 powerClass = 4;
   //   intraBandENDC-Support is stored as an enum. 0 -> contiguous, 1 -> non-contiguous, 2 -> both.
@@ -96,13 +97,13 @@ message ComboFeatures {
 message ShannonCombo {
   // List of Components.
   repeated ShannonComponent components = 1;
-  // A bit mask stored as unsigned integer that enables or disables some features.
+  // A bit mask stored as unsigned int that enables or disables some features.
   required uint32 bitMask = 2;
 }
 
 // serial name 'it.smartphonecombo.uecapabilityparser.model.shannon.ShannonComponent'
 message ShannonComponent {
-  //   LTE Bands are stored as they are, NR Bands are stored as band number + 10000.
+  // LTE Bands are stored as they are, NR Bands are stored as band number + 10000.
   required int32 band = 1;
   // BwClass DL is stored as ASCII value - 0x40. 0 means DL not supported.
   required int32 bwClassDl = 2;
@@ -114,6 +115,7 @@ message ShannonComponent {
      Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
 
      For NR this sets some features that applies to the whole component (not PerCC).
+     Empirically 1 -> FR1, 2 -> FR2.
   */
   required int32 dlFeatureIndex = 4;
 
@@ -123,6 +125,7 @@ message ShannonComponent {
      Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
 
      For NR this sets some features that applies to the whole component (not PerCC).
+     Empirically 1 -> 1 SRS port per resource, 2 -> 2 SRS ports per resource.
   */
   required int32 ulFeatureIndex = 5;
   /*
