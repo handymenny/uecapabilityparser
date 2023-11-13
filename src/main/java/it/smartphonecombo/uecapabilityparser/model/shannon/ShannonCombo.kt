@@ -5,10 +5,12 @@ package it.smartphonecombo.uecapabilityparser.model.shannon
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
+@SerialName("ComboGroup")
 data class ComboGroup(
     /** Some features that applies to the whole combo group. */
     @ProtoNumber(1) val comboFeatures: ComboFeatures,
@@ -17,6 +19,7 @@ data class ComboGroup(
 )
 
 @Serializable
+@SerialName("Combo")
 data class ShannonCombo(
     /** List of Components. */
     @ProtoNumber(1) val components: List<ShannonComponent> = emptyList(),
@@ -25,6 +28,7 @@ data class ShannonCombo(
 )
 
 @Serializable
+@SerialName("ComboFeatures")
 data class ComboFeatures(
     /**
      * The supportedBandwidthCombinationSet that applies to the Nr Components.
@@ -32,7 +36,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString.
      */
-    @ProtoNumber(1) private val rawBcsNr: UInt = 0u,
+    @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: UInt = 0u,
 
     /**
      * The supportedBandwidthCombinationSet that applies to the IntraEnDc Components
@@ -41,7 +45,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString.
      */
-    @ProtoNumber(2) private val rawBcsIntraEndc: UInt = 0u,
+    @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: UInt = 0u,
 
     /**
      * The supported Bandwidth Combination Set that applies to the Eutra Components
@@ -50,7 +54,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString.
      */
-    @ProtoNumber(3) private val rawBcsEutra: UInt = 0u,
+    @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: UInt = 0u,
 
     /**
      * Power Class of the whole combination, it's stored as an enum.
@@ -61,14 +65,14 @@ data class ComboFeatures(
      *
      * For FR2 0 -> Default
      */
-    @ProtoNumber(4) private val rawPowerClass: Int = 0,
+    @ProtoNumber(4) @SerialName("powerClass") private val rawPowerClass: Int = 0,
 
     /**
      * intraBandENDC-Support is stored as an enum.
      *
      * 0 -> contiguous, 1 -> non-contiguous, 2 -> both.
      */
-    @ProtoNumber(5) private val rawIntraBandEnDcSupport: Int = 0
+    @ProtoNumber(5) @SerialName("intraBandEnDcSupport") private val rawIntraBandEnDcSupport: Int = 0
 ) {
     val bcsNr
         get() = BCS.fromBinaryString(rawBcsNr.toString(2))

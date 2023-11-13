@@ -5,6 +5,7 @@ package it.smartphonecombo.uecapabilityparser.model.shannon
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import kotlin.math.max
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
@@ -65,11 +66,12 @@ sealed class ShannonFeaturePerCCNr {
 }
 
 @Serializable
+@SerialName("FeatureDlPerCCNr")
 data class ShannonFeatureDlPerCCNr(
-    @ProtoNumber(1) override val rawMaxScs: Int,
-    @ProtoNumber(2) override val rawMaxMimo: Int,
+    @ProtoNumber(1) @SerialName("maxScs") override val rawMaxScs: Int,
+    @ProtoNumber(2) @SerialName("maxMimo") override val rawMaxMimo: Int,
     @ProtoNumber(3) override val maxBw: Int,
-    @ProtoNumber(4) override val rawMaxModOrder: Int,
+    @ProtoNumber(4) @SerialName("maxModOrder") override val rawMaxModOrder: Int,
     @ProtoNumber(5) override val bw90MHzSupported: Boolean
 ) : ShannonFeaturePerCCNr() {
     override val maxMimo
@@ -82,14 +84,15 @@ data class ShannonFeatureDlPerCCNr(
 }
 
 @Serializable
+@SerialName("FeatureUlPerCCNr")
 data class ShannonFeatureUlPerCCNr(
-    @ProtoNumber(1) override val rawMaxScs: Int,
-    @ProtoNumber(2) override val rawMaxMimo: Int,
+    @ProtoNumber(1) @SerialName("maxScs") override val rawMaxScs: Int,
+    @ProtoNumber(2) @SerialName("maxMimoCb") override val rawMaxMimo: Int,
     @ProtoNumber(3) override val maxBw: Int,
-    @ProtoNumber(4) override val rawMaxModOrder: Int,
+    @ProtoNumber(4) @SerialName("maxModOrder") override val rawMaxModOrder: Int,
     @ProtoNumber(5) override val bw90MHzSupported: Boolean,
     /** Same as [rawMaxMimo] but for non CB Uplink (with non-codebook precoding) */
-    @ProtoNumber(6) private val rawMaxMimoNonCb: Int
+    @ProtoNumber(6) @SerialName("maxMimoNonCb") private val rawMaxMimoNonCb: Int
 ) : ShannonFeaturePerCCNr() {
     override val maxMimo
         get() =

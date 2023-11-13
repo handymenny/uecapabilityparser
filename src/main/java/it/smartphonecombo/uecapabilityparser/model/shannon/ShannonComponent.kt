@@ -5,25 +5,27 @@ package it.smartphonecombo.uecapabilityparser.model.shannon
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.protobuf.ProtoNumber
 import kotlinx.serialization.protobuf.ProtoPacked
 
 @Serializable
+@SerialName("Component")
 data class ShannonComponent(
     /**
      * LTE Bands are stored as they are.
      *
      * NR Bands are stored as band number + 10000.
      */
-    @ProtoNumber(1) private val rawBand: Int,
+    @ProtoNumber(1) @SerialName("band") private val rawBand: Int,
 
     /** BwClass DL is stored as ASCII value - 0x40. 0 means DL not supported. */
-    @ProtoNumber(2) private val rawBwClassDl: Int,
+    @ProtoNumber(2) @SerialName("bwClassDl") private val rawBwClassDl: Int,
 
     /** BwClass UL is stored as ASCII value - 0x40. 0 means UL not supported. */
-    @ProtoNumber(3) private val rawBwClassUL: Int,
+    @ProtoNumber(3) @SerialName("bwClassUl") private val rawBwClassUL: Int,
 
     /**
      * For LTE this is FeatureSetEUTRA-DownlinkId, the corresponding FeatureSetDL-r15 seems to be

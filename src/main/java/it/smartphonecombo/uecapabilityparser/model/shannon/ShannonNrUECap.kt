@@ -3,6 +3,7 @@
 package it.smartphonecombo.uecapabilityparser.model.shannon
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
@@ -15,6 +16,7 @@ import kotlinx.serialization.protobuf.ProtoNumber
  * This work wouldn't have been possible without the help of @NXij.
  */
 @Serializable
+@SerialName("ShannonNrUECap")
 data class ShannonNrUECap(
     /** ShannonNrUECap version. */
     @ProtoNumber(1) val version: UInt,
