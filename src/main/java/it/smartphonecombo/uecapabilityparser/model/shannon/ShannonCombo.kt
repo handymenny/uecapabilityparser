@@ -3,6 +3,7 @@
 package it.smartphonecombo.uecapabilityparser.model.shannon
 
 import it.smartphonecombo.uecapabilityparser.model.BCS
+import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
@@ -34,7 +35,7 @@ data class ComboFeatures(
      * The supportedBandwidthCombinationSet that applies to the Nr Components.
      *
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
-     * bit in the BitString.
+     * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
     @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: UInt?,
 
@@ -43,7 +44,7 @@ data class ComboFeatures(
      * (supportedBandwidthCombinationSetIntraENDC).
      *
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
-     * bit in the BitString.
+     * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
     @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: UInt?,
 
@@ -52,7 +53,7 @@ data class ComboFeatures(
      * (supportedBandwidthCombinationSetEUTRA-v1530).
      *
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
-     * bit in the BitString.
+     * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
     @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: UInt?,
 
@@ -75,13 +76,13 @@ data class ComboFeatures(
     @ProtoNumber(5) @SerialName("intraBandEnDcSupport") private val rawIntraBandEnDcSupport: Int?
 ) {
     val bcsNr
-        get() = BCS.fromBinaryString(rawBcsNr?.toString(2) ?: "0")
+        get() = convertRawBcs(rawBcsNr)
 
     val bcsIntraEndc
-        get() = BCS.fromBinaryString(rawBcsIntraEndc?.toString(2) ?: "0")
+        get() = convertRawBcs(rawBcsIntraEndc)
 
     val bcsEutra
-        get() = BCS.fromBinaryString(rawBcsIntraEndc?.toString(2) ?: "0")
+        get() = convertRawBcs(rawBcsEutra)
 
     val powerClass
         get() =
@@ -90,4 +91,12 @@ data class ComboFeatures(
                 2 -> PowerClass.PC1dot5
                 else -> PowerClass.NONE
             }
+
+    private fun convertRawBcs(bcs: UInt?): BCS {
+        return when (bcs) {
+            0u -> BCS.fromQualcommCP("0")
+            null -> EmptyBCS
+            else -> bcs.toString(2).let { BCS.fromBinaryString(it) }
+        }
+    }
 }
