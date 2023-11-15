@@ -37,7 +37,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
-    @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: UInt?,
+    @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: UInt? = null,
 
     /**
      * The supportedBandwidthCombinationSet that applies to the IntraEnDc Components
@@ -46,7 +46,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
-    @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: UInt?,
+    @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: UInt? = null,
 
     /**
      * The supported Bandwidth Combination Set that applies to the Eutra Components
@@ -55,7 +55,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
-    @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: UInt?,
+    @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: UInt? = null,
 
     /**
      * Power Class of the whole combination, it's stored as an enum.
@@ -66,14 +66,16 @@ data class ComboFeatures(
      *
      * For FR2 0 -> Default
      */
-    @ProtoNumber(4) @SerialName("powerClass") private val rawPowerClass: Int?,
+    @ProtoNumber(4) @SerialName("powerClass") private val rawPowerClass: Int? = null,
 
     /**
      * intraBandENDC-Support is stored as an enum.
      *
      * 0 -> contiguous, 1 -> non-contiguous, 2 -> both.
      */
-    @ProtoNumber(5) @SerialName("intraBandEnDcSupport") private val rawIntraBandEnDcSupport: Int?
+    @ProtoNumber(5)
+    @SerialName("intraBandEnDcSupport")
+    private val rawIntraBandEnDcSupport: Int? = null
 ) {
     val bcsNr
         get() = convertRawBcs(rawBcsNr)
