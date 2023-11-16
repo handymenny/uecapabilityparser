@@ -2,7 +2,10 @@
 
 package it.smartphonecombo.uecapabilityparser.model.shannon
 
+import it.smartphonecombo.uecapabilityparser.model.LinkDirection
+import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.model.toMimo
 import kotlin.math.max
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
@@ -63,6 +66,24 @@ sealed class ShannonFeaturePerCCNr {
             }
 
     abstract val maxMimo: Int
+
+    fun toFeaturePerCCNr(): FeaturePerCCNr {
+        val direction =
+            if (this is ShannonFeatureDlPerCCNr) {
+                LinkDirection.DOWNLINK
+            } else {
+                LinkDirection.UPLINK
+            }
+
+        return FeaturePerCCNr(
+            direction,
+            maxMimo.toMimo(),
+            maxModOrder,
+            maxBw,
+            maxScs,
+            bw90MHzSupported,
+        )
+    }
 }
 
 @Serializable
