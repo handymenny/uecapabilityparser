@@ -1,22 +1,24 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
+import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.band.IBandDetails
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.Bandwidth
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 
 // Helper functions share between multiple importers
-
 internal fun mergeAndSplitEnDcBCS(
     lteComponents: List<ComponentLte>,
     nrComponents: List<ComponentNr>,
@@ -44,104 +46,121 @@ internal fun mergeAndSplitEnDcBCS(
     }
 }
 
-internal fun mergeComponentLteAndFeature(
-    component: ComponentLte,
+internal fun mergeComponentAndFeaturePerCC(
+    component: IComponent,
     dlFeature: List<IFeaturePerCC>?,
     ulFeature: List<IFeaturePerCC>?,
     bandDetails: IBandDetails
-): ComponentLte {
-    val componentLte = component.copy()
+): IComponent {
+    if (component is ComponentLte) {
+        val componentLte = component.copy()
 
-    if (!dlFeature.isNullOrEmpty()) {
-        if (dlFeature.size > 1) {
-            val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
-            componentLte.mimoDL = Mimo.from(mixedMimo)
-            val mixedModulation = dlFeature.map { it.qam }
-            componentLte.modDL = maxOf(bandDetails.modDL, Modulation.from(mixedModulation))
-        } else {
-            val firstFeature = dlFeature.first()
-            componentLte.mimoDL = firstFeature.mimo
-            componentLte.modDL = maxOf(bandDetails.modDL, firstFeature.qam.toModulation())
-        }
-    } else {
-        // only UL
-        componentLte.classDL = BwClass.NONE
-        componentLte.mimoDL = EmptyMimo
-    }
+        applyLteFeaturesPerCC(LinkDirection.DOWNLINK, componentLte, dlFeature, bandDetails.modDL)
+        applyLteFeaturesPerCC(LinkDirection.UPLINK, componentLte, ulFeature, bandDetails.modUL)
 
-    if (!ulFeature.isNullOrEmpty()) {
-        if (ulFeature.size > 1) {
-            val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
-            componentLte.mimoUL = Mimo.from(mixedMimo)
-            val mixedModulation = ulFeature.map { it.qam }
-            componentLte.modUL = maxOf(bandDetails.modUL, Modulation.from(mixedModulation))
-        } else {
-            val firstFeature = ulFeature.first()
-            componentLte.mimoUL = firstFeature.mimo
-            componentLte.modUL = maxOf(bandDetails.modUL, firstFeature.qam.toModulation())
-        }
+        return componentLte
     } else {
-        // only DL
-        componentLte.classUL = BwClass.NONE
-        componentLte.mimoUL = EmptyMimo
+        val componentNr = (component as ComponentNr).copy()
+        val dlFeatureNr = dlFeature?.typedList<FeaturePerCCNr>()
+        val ulFeatureNr = ulFeature?.typedList<FeaturePerCCNr>()
+
+        applyNrFeaturesPerCC(LinkDirection.DOWNLINK, componentNr, dlFeatureNr, bandDetails.modDL)
+        applyNrFeaturesPerCC(LinkDirection.UPLINK, componentNr, ulFeatureNr, bandDetails.modUL)
+
+        return componentNr
     }
-    return componentLte
 }
 
-internal fun mergeComponentNrAndFeature(
+private fun applyNrFeaturesPerCC(
+    direction: LinkDirection,
     component: ComponentNr,
-    dlFeature: List<FeaturePerCCNr>?,
-    ulFeature: List<FeaturePerCCNr>?,
-    nrBandDetails: IBandDetails
-): ComponentNr {
-    val componentNr = component.copy()
-    var dlChannelBW90mhz = false
-    var ulChannelBW90mhz = false
-
-    if (!dlFeature.isNullOrEmpty()) {
-        if (dlFeature.size > 1) {
-            val mixedMimo = dlFeature.map { it.mimo.average().toInt() }
-            componentNr.mimoDL = Mimo.from(mixedMimo)
-            val mixedBandwidth = dlFeature.map(FeaturePerCCNr::bw)
-            componentNr.maxBandwidthDl = Bandwidth.from(mixedBandwidth)
-        } else {
-            val firstFeature = dlFeature.first()
-            componentNr.mimoDL = firstFeature.mimo
-            componentNr.maxBandwidthDl = firstFeature.bw.toBandwidth()
-        }
-        dlChannelBW90mhz = dlFeature.any { it.channelBW90mhz }
-        componentNr.scs = dlFeature.maxOf(FeaturePerCCNr::scs)
-        // set mod dl from bandDetails, because modulation in NR features means something else
-        // (see TS 38 306)
-        componentNr.modDL = nrBandDetails.modDL
-    } else {
-        // only UL
-        componentNr.classDL = BwClass.NONE
-        componentNr.mimoDL = EmptyMimo
+    feature: List<FeaturePerCCNr>?,
+    bandMod: Modulation?
+) {
+    if (feature.isNullOrEmpty()) {
+        setSdlSul(direction, component)
+        return
     }
 
-    if (!ulFeature.isNullOrEmpty()) {
-        if (ulFeature.size > 1) {
-            val mixedMimo = ulFeature.map { it.mimo.average().toInt() }
-            componentNr.mimoUL = Mimo.from(mixedMimo)
-            val mixedBandwidth = ulFeature.map(FeaturePerCCNr::bw)
-            componentNr.maxBandwidthUl = Bandwidth.from(mixedBandwidth)
-        } else {
-            val firstFeature = ulFeature.first()
-            componentNr.mimoUL = firstFeature.mimo
-            componentNr.maxBandwidthUl = firstFeature.bw.toBandwidth()
-        }
-        ulChannelBW90mhz = ulFeature.any { it.channelBW90mhz }
-        componentNr.scs = maxOf(componentNr.scs, ulFeature.maxOf(FeaturePerCCNr::scs))
+    val mimo: Mimo
+    val bw: Bandwidth
+    var mod: Modulation
 
-        // set mod ul from bandDetails, because modulation in NR features means something else
-        // (see TS 38 306)
-        componentNr.modUL = nrBandDetails.modUL
+    // These are "single" features and shared between DL and UL
+    // So we take the current value into account
+    val scs = feature.maxOf(FeaturePerCCNr::scs)
+    component.scs = maxOf(scs, component.scs)
+    component.channelBW90mhz =
+        component.channelBW90mhz || feature.any(FeaturePerCCNr::channelBW90mhz)
+
+    if (feature.size > 1) {
+        mimo = Mimo.from(feature.map { it.mimo.average().toInt() })
+        bw = Bandwidth.from(feature.map(FeaturePerCCNr::bw))
+        mod = Modulation.from(feature.map(IFeaturePerCC::qam))
     } else {
-        // only DL
-        componentNr.classUL = BwClass.NONE
-        componentNr.mimoUL = EmptyMimo
+        val firstFeature = feature.first()
+        mimo = firstFeature.mimo
+        bw = firstFeature.bw.toBandwidth()
+        mod = firstFeature.qam.toModulation()
     }
-    componentNr.channelBW90mhz = dlChannelBW90mhz || ulChannelBW90mhz
-    return componentNr
+
+    /* mod in bandNrDetails takes precedence, because modulation in NR features means something else (see TS 38 306) */
+    mod = bandMod ?: mod
+
+    if (direction == LinkDirection.DOWNLINK) {
+        component.mimoDL = mimo
+        component.maxBandwidthDl = bw
+        component.modDL = mod
+    } else {
+        component.mimoUL = mimo
+        component.maxBandwidthUl = bw
+        component.modUL = mod
+    }
+}
+
+private fun applyLteFeaturesPerCC(
+    direction: LinkDirection,
+    component: ComponentLte,
+    feature: List<IFeaturePerCC>?,
+    bandMod: Modulation?
+) {
+    if (feature.isNullOrEmpty()) {
+        setSdlSul(direction, component)
+        return
+    }
+
+    val mimo: Mimo
+    var mod: Modulation
+
+    if (feature.size > 1) {
+        mimo = Mimo.from(feature.map { it.mimo.average().toInt() })
+        mod = Modulation.from(feature.map(IFeaturePerCC::qam))
+    } else {
+        val firstFeature = feature.first()
+        mimo = firstFeature.mimo
+        mod = firstFeature.qam.toModulation()
+    }
+
+    // Set the max between features mod and band mod
+    bandMod?.let { mod = maxOf(it, mod) }
+
+    if (direction == LinkDirection.DOWNLINK) {
+        component.mimoDL = mimo
+        component.modDL = mod
+    } else {
+        component.mimoUL = mimo
+        component.modUL = mod
+    }
+}
+
+private fun setSdlSul(direction: LinkDirection, component: IComponent) {
+    if (direction == LinkDirection.DOWNLINK) {
+        // SDL
+        component.classDL = BwClass.NONE
+        component.mimoDL = EmptyMimo
+    } else {
+        // SUL
+        component.classUL = BwClass.NONE
+        component.mimoUL = EmptyMimo
+    }
 }

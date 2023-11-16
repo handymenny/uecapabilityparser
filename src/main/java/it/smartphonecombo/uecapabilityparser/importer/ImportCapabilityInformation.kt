@@ -837,21 +837,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             return component.clone()
         }
 
-        return if (featureSet.isNR) {
-            mergeComponentNrAndFeature(
-                component as ComponentNr,
-                dlFeature?.typedList<FeaturePerCCNr>(),
-                ulFeature?.typedList<FeaturePerCCNr>(),
-                bandDetails
-            )
-        } else {
-            mergeComponentLteAndFeature(
-                component as ComponentLte,
-                dlFeature,
-                ulFeature,
-                bandDetails
-            )
-        }
+        return mergeComponentAndFeaturePerCC(component, dlFeature, ulFeature, bandDetails)
     }
 
     private fun getFeatureSetCombinations(
