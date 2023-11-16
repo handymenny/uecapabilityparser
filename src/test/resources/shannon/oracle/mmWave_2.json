@@ -1,0 +1,1249 @@
+{
+    "version": 553389753,
+    "id": 12,
+    "comboGroups": [
+        {
+            "comboFeatures": {
+                "bcsNr": 0,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 10003,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                6
+                            ],
+                            "ulFeaturePerCCIds": [
+                                4
+                            ]
+                        }
+                    ],
+                    "bitMask": 6156
+                },
+                {
+                    "components": [
+                        {
+                            "band": 10003,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                7
+                            ],
+                            "ulFeaturePerCCIds": [
+                                4
+                            ]
+                        }
+                    ],
+                    "bitMask": 26419
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 0,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                25
+                            ]
+                        }
+                    ],
+                    "bitMask": 30748
+                },
+                {
+                    "components": [
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                26
+                            ]
+                        }
+                    ],
+                    "bitMask": 1827
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 10003,
+                            "bwClassDl": 1,
+                            "bwClassUl": 0,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 0,
+                            "dlFeaturePerCCIds": [
+                                6
+                            ]
+                        },
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                25
+                            ]
+                        }
+                    ],
+                    "bitMask": 6144
+                },
+                {
+                    "components": [
+                        {
+                            "band": 10003,
+                            "bwClassDl": 1,
+                            "bwClassUl": 0,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 0,
+                            "dlFeaturePerCCIds": [
+                                7
+                            ]
+                        },
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                25
+                            ]
+                        }
+                    ],
+                    "bitMask": 24576
+                },
+                {
+                    "components": [
+                        {
+                            "band": 10003,
+                            "bwClassDl": 1,
+                            "bwClassUl": 0,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 0,
+                            "dlFeaturePerCCIds": [
+                                7
+                            ]
+                        },
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                26
+                            ]
+                        }
+                    ],
+                    "bitMask": 1792
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 10003,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                6
+                            ],
+                            "ulFeaturePerCCIds": [
+                                4
+                            ]
+                        },
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 0,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 0,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 6144
+                },
+                {
+                    "components": [
+                        {
+                            "band": 10003,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                7
+                            ],
+                            "ulFeaturePerCCIds": [
+                                4
+                            ]
+                        },
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 0,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 0,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 26368
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 0,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                25
+                            ]
+                        }
+                    ],
+                    "bitMask": 6156
+                },
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10077,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                25
+                            ]
+                        }
+                    ],
+                    "bitMask": 26419
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 0,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1313
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 7,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 33
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 7,
+                            "bwClassUl": 7,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28,
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1280
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 8,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 33
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 8,
+                            "bwClassUl": 7,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28,
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1280
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 9,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 33
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 9,
+                            "bwClassUl": 7,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28,
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1280
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 10,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1313
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 11,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29,
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1313
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 12,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29,
+                                29,
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1313
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 2147483648,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 3,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                0
+                            ],
+                            "ulFeaturePerCCIds": [
+                                0
+                            ]
+                        },
+                        {
+                            "band": 10257,
+                            "bwClassDl": 13,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 2,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                29,
+                                29,
+                                29,
+                                29,
+                                29,
+                                29,
+                                29,
+                                29
+                            ],
+                            "ulFeaturePerCCIds": [
+                                28
+                            ]
+                        }
+                    ],
+                    "bitMask": 1313
+                }
+            ]
+        }
+    ],
+    "dlFeaturePerCCList": [
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 5,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 15,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 15,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 60,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 1,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 1,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true
+        },
+        {
+            "maxScs": 4,
+            "maxMimo": 1,
+            "maxBw": 100,
+            "maxModOrder": 1,
+            "bw90MHzSupported": false
+        }
+    ],
+    "ulFeaturePerCCList": [
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 5,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 15,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 60,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 60,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 4,
+            "maxMimoCb": 1,
+            "maxBw": 100,
+            "maxModOrder": 1,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 4,
+            "maxMimoCb": 2,
+            "maxBw": 100,
+            "maxModOrder": 1,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        }
+    ]
+}
