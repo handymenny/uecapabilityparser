@@ -19,7 +19,7 @@ import kotlinx.serialization.protobuf.ProtoNumber
 @SerialName("ShannonNrUECap")
 data class ShannonNrUECap(
     /** ShannonNrUECap version. */
-    @ProtoNumber(1) val version: UInt,
+    @ProtoNumber(1) val version: Long,
     /** ID assigned to this ShannonNrUECap. */
     @ProtoNumber(2) val id: Int? = null,
     /** List of combo groups. */

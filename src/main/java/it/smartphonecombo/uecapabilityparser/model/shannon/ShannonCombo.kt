@@ -25,7 +25,7 @@ data class ShannonCombo(
     /** List of Components. */
     @ProtoNumber(1) val components: List<ShannonComponent> = emptyList(),
     /** A bit mask stored as unsigned int that enables or disables some features. */
-    @ProtoNumber(2) val bitMask: UInt
+    @ProtoNumber(2) val bitMask: Long
 )
 
 @Serializable
@@ -37,7 +37,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
-    @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: UInt? = null,
+    @ProtoNumber(1) @SerialName("bcsNr") private val rawBcsNr: Long? = null,
 
     /**
      * The supportedBandwidthCombinationSet that applies to the IntraEnDc Components
@@ -46,7 +46,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
-    @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: UInt? = null,
+    @ProtoNumber(2) @SerialName("bcsIntraEndc") private val rawBcsIntraEndc: Long? = null,
 
     /**
      * The supported Bandwidth Combination Set that applies to the Eutra Components
@@ -55,7 +55,7 @@ data class ComboFeatures(
      * It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
      * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
-    @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: UInt? = null,
+    @ProtoNumber(3) @SerialName("bcsEutra") private val rawBcsEutra: Long? = null,
 
     /**
      * Power Class of the whole combination, it's stored as an enum.
@@ -94,9 +94,9 @@ data class ComboFeatures(
                 else -> PowerClass.NONE
             }
 
-    private fun convertRawBcs(bcs: UInt?): BCS {
+    private fun convertRawBcs(bcs: Long?): BCS {
         return when (bcs) {
-            0u -> BCS.fromQualcommCP("0")
+            0L -> BCS.fromQualcommCP("0")
             null -> EmptyBCS
             else -> bcs.toString(2).let { BCS.fromBinaryString(it) }
         }
