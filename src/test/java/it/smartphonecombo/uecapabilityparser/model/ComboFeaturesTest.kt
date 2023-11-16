@@ -77,6 +77,34 @@ internal class ComboFeaturesTest {
         checkBcs(input, input, input, oracle, oracle, oracle)
     }
 
+    @Test
+    fun testPowerClassNone() {
+        val input = 0
+        val oracle = PowerClass.NONE
+        checkPowerClass(input, oracle)
+    }
+
+    @Test
+    fun testPowerClassNone2() {
+        val input = null
+        val oracle = PowerClass.NONE
+        checkPowerClass(input, oracle)
+    }
+
+    @Test
+    fun testPowerClassPC2() {
+        val input = 1
+        val oracle = PowerClass.PC2
+        checkPowerClass(input, oracle)
+    }
+
+    @Test
+    fun testPowerClassPC1dot5() {
+        val input = 2
+        val oracle = PowerClass.PC1dot5
+        checkPowerClass(input, oracle)
+    }
+
     private fun checkBcs(
         bcsNr: Long?,
         bcsIntraEndc: Long?,
@@ -89,5 +117,10 @@ internal class ComboFeaturesTest {
         assertEquals(oracleBcsNr, combo.bcsNr)
         assertEquals(oracleBcsIntraEndc, combo.bcsIntraEndc)
         assertEquals(oracleBcsEutra, combo.bcsEutra)
+    }
+
+    private fun checkPowerClass(input: Int?, oracle: PowerClass) {
+        val combo = ComboFeatures(rawPowerClass = input)
+        assertEquals(oracle, combo.powerClass)
     }
 }
