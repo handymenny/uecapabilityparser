@@ -98,7 +98,7 @@ data class ComboFeatures(
         return when (bcs) {
             0L -> BCS.fromQualcommCP("0")
             null -> EmptyBCS
-            else -> bcs.toString(2).let { BCS.fromBinaryString(it) }
+            else -> bcs.toString(2).padStart(32, '0').let { BCS.fromBinaryString(it) }
         }
     }
 }
