@@ -45,6 +45,6 @@ object ShannonFeatureSetEutra {
             FeatureSet(listOf(uplinkPerCC[0]), LinkDirection.UPLINK),
             FeatureSet(listOf(uplinkPerCC[1]), LinkDirection.UPLINK),
             FeatureSet(listOf(uplinkPerCC[0], uplinkPerCC[1]), LinkDirection.UPLINK),
-            FeatureSet(List(2) { downlinkPerCC[1] }, LinkDirection.UPLINK),
+            FeatureSet(List(2) { uplinkPerCC[1] }, LinkDirection.UPLINK),
         )
 }
