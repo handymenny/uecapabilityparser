@@ -1,0 +1,141 @@
+syntax = "proto2";
+
+message ShannonNrUECap {
+  // ShannonNrUECap version.
+  required uint32 version = 1;
+  // ID assigned to this ShannonNrUECap.
+  optional int32 id = 2;
+  // List of combo groups.
+  repeated ComboGroup comboGroups = 3;
+  // List of FeatureSetDownlinkPerCC.
+  repeated FeatureDlPerCCNr dlFeaturePerCCList = 6;
+  // List of FeatureSetUplinkPerCC.
+  repeated FeatureUlPerCCNr ulFeaturePerCCList = 7;
+}
+
+message ComboGroup {
+  // Some features that applies to the whole combo group.
+  required ComboFeatures comboFeatures = 1;
+  // List of combos that share the same ComboFeatures.
+  repeated Combo combos = 2;
+}
+
+message FeatureDlPerCCNr {
+  // Max SCS is stored as numerology + 1, i.e. 1 = 15kHz, 2 = 30kHz, 3 = 60kHz, 4 = 120kHz.
+  required int32 maxScs = 1;
+  // Max Mimo is stored as an enum. 0 -> not supported, 1 -> 2, 2 -> 4.
+  required int32 maxMimo = 2;
+  // Max Bandwidth is stored as it's.
+  required int32 maxBw = 3;
+  /*
+     Max Modulation Order is stored as an enum. 0 -> not supported, 1 -> QAM64, 2 -> QAM256.
+     Note that as TS 38 306 4.2.7.8 and 4.2.7.6, this doesn't specify the maximum (nor the minimum)
+     modulation supported.
+  */
+  required int32 maxModOrder = 4;
+  // BW 90MHz supported is stored as boolean.
+  required bool bw90MHzSupported = 5;
+}
+
+message FeatureUlPerCCNr {
+  // Max SCS is stored as numerology + 1, i.e. 1 = 15kHz, 2 = 30kHz, 3 = 60kHz, 4 = 120kHz.
+  required int32 maxScs = 1;
+  // Max Mimo CB is stored as an enum. Max Mimo CB UL: 0 -> not supported, 1 -> 1, 2 -> 2.
+  required int32 maxMimoCb = 2;
+  // Max Bandwidth is stored as it's.
+  required int32 maxBw = 3;
+  /*
+     Max Modulation Order is stored as an enum. 0 -> not supported, 1 -> QAM64, 2 -> QAM256.
+     Note that as TS 38 306 4.2.7.8 and 4.2.7.6, this doesn't specify the maximum (nor the minimum)
+     modulation supported.
+  */
+  required int32 maxModOrder = 4;
+  // BW 90MHz supported is stored as boolean.
+  required bool bw90MHzSupported = 5;
+  // Same as maxMimoCb but for non CB Uplink (with non-codebook precoding).
+  required int32 maxMimoNonCb = 6;
+}
+
+message ComboFeatures {
+  /*
+     The supportedBandwidthCombinationSet that applies to the Nr Components.
+     It's stored as a 32bit unsigned int, each of its bits has the same value of
+     the corresponding bit in the BitString.
+     0 means default i.e. only BCS 0 supported (if applicable).
+  */
+  optional uint32 bcsNr = 1;
+  /*
+     The supportedBandwidthCombinationSet that applies to the IntraEnDc
+     Components (supportedBandwidthCombinationSetIntraENDC).
+     It's stored as a 32bit unsigned int, each of its bits has the same value of
+     the corresponding bit in the BitString.
+     0 means default i.e. only BCS 0 supported (if applicable).
+  */
+  optional uint32 bcsIntraEndc = 2;
+  /*
+     The supported Bandwidth Combination Set that applies to the Eutra
+     Components (supportedBandwidthCombinationSetEUTRA-v1530).
+     It's stored as a 32bit unsigned int, each of its bits has the same value of
+     the corresponding bit in the BitString.
+     0 means default i.e. only BCS 0 supported (if applicable).
+  */
+  optional uint32 bcsEutra = 3;
+  /*
+     Power Class of the whole combination, it's stored as an enum.
+     Note that this doesn't override the powerclass of the uplink bands.
+     For FR1 0 -> Default, 1 -> PC2, 2 -> PC1.5
+     For FR2 0 -> Default
+  */
+  optional int32 powerClass = 4;
+  //   intraBandENDC-Support is stored as an enum. 0 -> contiguous, 1 -> non-contiguous, 2 -> both.
+  optional int32 intraBandEnDcSupport = 5;
+}
+
+message Combo {
+  // List of Components.
+  repeated Component components = 1;
+  // A bit mask stored as unsigned int that enables or disables some features.
+  required uint32 bitMask = 2;
+}
+
+message Component {
+  // LTE Bands are stored as they are, NR Bands are stored as band number + 10000.
+  required int32 band = 1;
+  // BwClass DL is stored as ASCII value - 0x40. 0 means DL not supported.
+  required int32 bwClassDl = 2;
+  // BwClass UL is stored as ASCII value - 0x40. 0 means UL not supported.
+  required int32 bwClassUl = 3;
+  /*
+     For LTE this is FeatureSetEUTRA-DownlinkId, the corresponding FeatureSetDL-r15
+     seems to be hardcoded elsewhere (see ShannonFeatureSetEutra).
+     Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
+
+     For NR this sets some features that applies to the whole component (not PerCC).
+     Empirically 1 -> FR1, 2 -> FR2.
+  */
+  required int32 dlFeatureIndex = 4;
+
+  /*
+     For LTE this is FeatureSetEUTRA-UplinkId, the corresponding FeatureSetUL-r15
+     seems to be hardcoded elsewhere (see ShannonFeatureSetEutra).
+     Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
+
+     For NR this sets some features that applies to the whole component (not PerCC).
+     Empirically 1 -> 1 SRS port per resource, 2 -> 2 SRS ports per resource.
+  */
+  required int32 ulFeatureIndex = 5;
+  /*
+     This is a list of FeatureSetDownlinkPerCC-Id per each CC. This only applies to NR.
+     The corresponding FeatureSetDownlinkPerCC are stored in dlFeaturePerCCList.
+
+     Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
+  */
+  repeated int32 dlFeaturePerCCIds = 6 [packed = true];
+  /*
+     This is a list of FeatureSetUplinkPerCC-Id per each CC. This only applies to NR.
+     The corresponding FeatureSetUplinkPerCC are stored in ulFeaturePerCCList.
+
+     Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
+  */
+  repeated int32 ulFeaturePerCCIds = 7 [packed = true];
+}

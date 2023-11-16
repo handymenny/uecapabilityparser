@@ -1,0 +1,511 @@
+{
+    "version": 553389753,
+    "id": 61,
+    "comboGroups": [
+        {
+            "comboFeatures": {
+                "bcsNr": 0,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 10048,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                25
+                            ]
+                        }
+                    ],
+                    "bitMask": 6156
+                },
+                {
+                    "components": [
+                        {
+                            "band": 10048,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 2,
+                            "dlFeaturePerCCIds": [
+                                28
+                            ],
+                            "ulFeaturePerCCIds": [
+                                26
+                            ]
+                        }
+                    ],
+                    "bitMask": 291
+                }
+            ]
+        },
+        {
+            "comboFeatures": {
+                "bcsNr": 0,
+                "bcsEutra": 0,
+                "powerClass": 0,
+                "intraBandEnDcSupport": 0
+            },
+            "combos": [
+                {
+                    "components": [
+                        {
+                            "band": 10071,
+                            "bwClassDl": 1,
+                            "bwClassUl": 1,
+                            "dlFeatureIndex": 1,
+                            "ulFeatureIndex": 1,
+                            "dlFeaturePerCCIds": [
+                                6
+                            ],
+                            "ulFeaturePerCCIds": [
+                                4
+                            ]
+                        }
+                    ],
+                    "bitMask": 5935
+                }
+            ]
+        }
+    ],
+    "dlFeaturePerCCList": [
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 5,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 15,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 15,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 1,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 1,
+            "maxMimo": 2,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 60,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 1,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 1,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true
+        },
+        {
+            "maxScs": 2,
+            "maxMimo": 2,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true
+        },
+        {
+            "maxScs": 4,
+            "maxMimo": 1,
+            "maxBw": 100,
+            "maxModOrder": 1,
+            "bw90MHzSupported": false
+        }
+    ],
+    "ulFeaturePerCCList": [
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 5,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 15,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 1,
+            "maxMimoCb": 1,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 10,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 20,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 25,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 30,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 40,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 50,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 60,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 60,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 80,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 1,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 2,
+            "maxMimoCb": 2,
+            "maxBw": 100,
+            "maxModOrder": 2,
+            "bw90MHzSupported": true,
+            "maxMimoNonCb": 2
+        },
+        {
+            "maxScs": 4,
+            "maxMimoCb": 1,
+            "maxBw": 100,
+            "maxModOrder": 1,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 1
+        },
+        {
+            "maxScs": 4,
+            "maxMimoCb": 2,
+            "maxBw": 100,
+            "maxModOrder": 1,
+            "bw90MHzSupported": false,
+            "maxMimoNonCb": 2
+        }
+    ]
+}
