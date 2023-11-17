@@ -5,7 +5,7 @@ on:
     tags:
       - 'v*'
   schedule:
-    - cron: '00 21 * * *' # runs daily at 20:00 UTC
+    - cron: '00 20 * * *' # runs daily at 20:00 UTC
 
 env:
   REGISTRY: ghcr.io
