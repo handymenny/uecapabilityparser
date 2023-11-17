@@ -165,6 +165,18 @@ internal class ServerModeParseTest {
     }
 
     @Test
+    fun shannonNrUeCapJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "SHNR")
+                    put("input", fileToBase64("$path/input/shannonNrUeCap.binarypb"))
+                },
+            oraclePath = "$path/oracleJson/shannonNrUeCap.json"
+        )
+    }
+
+    @Test
     fun wiresharkEutraJsonOutput() {
         javalinJsonTest(
             request =
