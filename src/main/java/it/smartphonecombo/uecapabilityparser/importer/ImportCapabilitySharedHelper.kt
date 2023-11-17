@@ -50,13 +50,13 @@ internal fun mergeComponentAndFeaturePerCC(
     component: IComponent,
     dlFeature: List<IFeaturePerCC>?,
     ulFeature: List<IFeaturePerCC>?,
-    bandDetails: IBandDetails
+    bandDetails: IBandDetails?
 ): IComponent {
     if (component is ComponentLte) {
         val componentLte = component.copy()
 
-        applyLteFeaturesPerCC(LinkDirection.DOWNLINK, componentLte, dlFeature, bandDetails.modDL)
-        applyLteFeaturesPerCC(LinkDirection.UPLINK, componentLte, ulFeature, bandDetails.modUL)
+        applyLteFeaturesPerCC(LinkDirection.DOWNLINK, componentLte, dlFeature, bandDetails?.modDL)
+        applyLteFeaturesPerCC(LinkDirection.UPLINK, componentLte, ulFeature, bandDetails?.modUL)
 
         return componentLte
     } else {
@@ -64,8 +64,8 @@ internal fun mergeComponentAndFeaturePerCC(
         val dlFeatureNr = dlFeature?.typedList<FeaturePerCCNr>()
         val ulFeatureNr = ulFeature?.typedList<FeaturePerCCNr>()
 
-        applyNrFeaturesPerCC(LinkDirection.DOWNLINK, componentNr, dlFeatureNr, bandDetails.modDL)
-        applyNrFeaturesPerCC(LinkDirection.UPLINK, componentNr, ulFeatureNr, bandDetails.modUL)
+        applyNrFeaturesPerCC(LinkDirection.DOWNLINK, componentNr, dlFeatureNr, bandDetails?.modDL)
+        applyNrFeaturesPerCC(LinkDirection.UPLINK, componentNr, ulFeatureNr, bandDetails?.modUL)
 
         return componentNr
     }
