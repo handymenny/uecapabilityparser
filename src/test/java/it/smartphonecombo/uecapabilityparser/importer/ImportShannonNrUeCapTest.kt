@@ -49,4 +49,9 @@ internal class ImportShannonNrUeCapTest {
     fun parseMmWave2() {
         parse("mmWave_2.binarypb", "mmWave_2.json")
     }
+
+    @Test
+    fun parseMmWaveSA() {
+        parse("mmWaveSA.binarypb", "mmWaveSA.json")
+    }
 }

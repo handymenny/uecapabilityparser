@@ -45,6 +45,11 @@ internal class ShannonNrUECapTest {
     }
 
     @Test
+    fun testToJsonMmWaveSA() {
+        protobufToJson("$resourcesPath/mmWaveSA.binarypb", "$oracleJsonPath/mmWaveSA.json")
+    }
+
+    @Test
     fun testReEncodeEmpty() {
         reEncodeProtobuf("$resourcesPath/empty.binarypb")
     }
@@ -69,15 +74,19 @@ internal class ShannonNrUECapTest {
         reEncodeProtobuf("$resourcesPath/mmWave_2.binarypb")
     }
 
+    @Test
+    fun testReEncodeMmWaveSA() {
+        reEncodeProtobuf("$resourcesPath/mmWaveSA.binarypb")
+    }
+
     private fun protobufToJson(inputPath: String, oraclePath: String) {
-        val json = Json { prettyPrint = true }
         val inputBinary =
             IO.readBytesFromFile(inputPath, false) ?: throw RuntimeException("Error reading input")
         val nrUECap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(inputBinary)
 
         val oracleText =
             IO.readTextFromFile(oraclePath, false) ?: throw RuntimeException("Error reading oracle")
-        val oracleObject = json.decodeFromString<ShannonNrUECap>(oracleText)
+        val oracleObject = Json.decodeFromString<ShannonNrUECap>(oracleText)
 
         assertEquals(oracleObject, nrUECap)
     }
