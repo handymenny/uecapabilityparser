@@ -75,11 +75,14 @@ sealed class ShannonFeaturePerCCNr {
                 LinkDirection.UPLINK
             }
 
+        // maxBw doesn't have a 90MHz field
+        val bw = if (bw90MHzSupported && maxBw == 80) 90 else maxBw
+
         return FeaturePerCCNr(
             direction,
             maxMimo.toMimo(),
             maxModOrder,
-            maxBw,
+            bw,
             maxScs,
             bw90MHzSupported,
         )
