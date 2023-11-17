@@ -27,22 +27,23 @@ internal fun mergeAndSplitEnDcBCS(
     bcsIntraEnDc: BCS
 ): Triple<BCS, BCS, BCS> {
     val intraBandEnDC = nrComponents.any { nr -> lteComponents.any { lte -> nr.band == lte.band } }
-    val interBandLte =
-        !intraBandEnDC || lteComponents.drop(1).any { it.band != lteComponents.firstOrNull()?.band }
-    val interBandNr =
-        !intraBandEnDC || nrComponents.drop(1).any { it.band != nrComponents.firstOrNull()?.band }
 
-    return if (!intraBandEnDC) {
+    if (!intraBandEnDC) {
         // Don't set bcsIntraEnDc for ENDC Combos without any intraEnDc component
-        Triple(bcsNr, bcsEutra, EmptyBCS)
-    } else if (!interBandLte && !interBandNr) {
-        // intraBandEnDc without additional interBand only has intraEnDc bcs
-        // Set it to the max between bcsNr and bcsIntraEnDc to handle cases
-        // where bcsIntraEnDc is missing
-        Triple(EmptyBCS, EmptyBCS, maxOf(bcsIntraEnDc, bcsNr))
-    } else {
+        return Triple(bcsNr, bcsEutra, EmptyBCS)
+    }
+
+    val interBandLte = lteComponents.drop(1).any { it.band != lteComponents[0].band }
+    val interBandNr = nrComponents.drop(1).any { it.band != nrComponents[0].band }
+
+    return if (interBandLte || interBandNr) {
         // interBand + intraBand, set all BCS available
         Triple(bcsNr, bcsEutra, bcsIntraEnDc)
+    } else {
+        /* intraBandEnDc without additional interBand only has intraEnDc bcs
+         * Set it to the max between bcsNr and bcsIntraEnDc to handle cases
+         * where bcsIntraEnDc is missing */
+        Triple(EmptyBCS, EmptyBCS, maxOf(bcsIntraEnDc, bcsNr))
     }
 }
 
