@@ -11,6 +11,7 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportMTKLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.ImportQctModemCap
+import it.smartphonecombo.uecapabilityparser.importer.ImportShannonNrUeCap
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
@@ -68,6 +69,7 @@ class Parsing(
                 "M" -> ImportMTKLte
                 "QNR" -> Import0xB826
                 "RF" -> ImportQctModemCap
+                "SHNR" -> ImportShannonNrUeCap
                 "W",
                 "N",
                 "O",
