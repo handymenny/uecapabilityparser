@@ -79,14 +79,15 @@ object Cli :
                 "O",
                 "QC",
                 "RF",
+                "SHNR",
                 ignoreCase = true
             )
             .multiple(required = true)
             .validate {
                 require(it.size == inputsList.size) { HelpMessage.ERROR_TYPE_INPUT_MISMATCH }
-
-                val nvItemInputs = inputsList.filterIndexed { index, _ -> it[index] == "E" }
-                require(nvItemInputs.all { inputs -> inputs.size == 1 }) {
+                val singleType = arrayOf("E", "SHNR")
+                val singleInputs = inputsList.filterIndexed { index, _ -> it[index] in singleType }
+                require(singleInputs.all { inputs -> inputs.size == 1 }) {
                     HelpMessage.ERROR_MULTIPLE_INPUTS_UNSUPPORTED
                 }
             }

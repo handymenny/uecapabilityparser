@@ -227,6 +227,23 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun mainShannonNrUeCap() {
+        cliTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/shannonNrUeCap.binarypb",
+                "-t",
+                "SHNR",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
+            "shannonNrUeCap.json"
+        )
+    }
+
+    @Test
     fun wiresharkEutraJsonOutput() {
         cliTest(
             arrayOf(

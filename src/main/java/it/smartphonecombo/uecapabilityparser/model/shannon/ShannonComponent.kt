@@ -4,6 +4,9 @@ package it.smartphonecombo.uecapabilityparser.model.shannon
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.BwClass
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -74,4 +77,12 @@ data class ShannonComponent(
 
     val bwClassUl: BwClass
         get() = BwClass.valueOf(rawBwClassUL)
+
+    fun toComponent(): IComponent {
+        return if (isNr) {
+            ComponentNr(band, bwClassDl, bwClassUl)
+        } else {
+            ComponentLte(band, bwClassDl, bwClassUl)
+        }
+    }
 }

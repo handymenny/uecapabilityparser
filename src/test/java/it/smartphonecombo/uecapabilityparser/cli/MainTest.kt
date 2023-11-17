@@ -132,6 +132,14 @@ internal class MainTest {
     }
 
     @Test
+    fun mainShannonNrUeCap() {
+        mainTest(
+            arrayOf("cli", "-i", "$path/input/shannonNrUeCap.binarypb", "-t", "SHNR", "-c", "-"),
+            "shannonNrUeCap.txt"
+        )
+    }
+
+    @Test
     fun mainWiresharkEutraCsv() {
         mainTest(
             arrayOf("cli", "-i", "$path/input/wiresharkEutra.txt", "-t", "W", "-c", "-"),
