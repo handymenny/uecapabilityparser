@@ -66,9 +66,27 @@ internal class TsharkTest {
         val expectedUeCapability = File(oraclePath).readLines()
 
         Assertions.assertLinesMatch(
-            ueCapability.dropLastWhile { it.isBlank() },
-            expectedUeCapability.dropLastWhile { it.isBlank() }
+            normalizeCapabilityText(expectedUeCapability),
+            normalizeCapabilityText(ueCapability)
         )
+    }
+
+    // Reduce differences between different versions of tshark
+    private fun normalizeCapabilityText(lines: List<String>): List<String> {
+        return lines
+            .dropLastWhile { it.isBlank() }
+            .mapNotNull {
+                if (it.startsWith("DLT") || it.endsWith("…") || it.contains("[truncated]")) {
+                    null
+                } else if (it.contains("maxNumberConfiguredTCIstatesPerCC")) {
+                    it.replace(
+                        "maxNumberConfiguredTCIstatesPerCC",
+                        "maxNumberConfiguredTCI-StatesPerCC"
+                    )
+                } else {
+                    it
+                }
+            }
     }
 
     @Test
