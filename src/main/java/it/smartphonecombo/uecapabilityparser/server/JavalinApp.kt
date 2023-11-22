@@ -23,6 +23,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
+import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
@@ -34,6 +35,13 @@ import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -42,6 +50,7 @@ import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.put
 import kotlinx.serialization.serializer
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class JavalinApp {
     private val jsonMapper =
         object : JsonMapper {
@@ -84,9 +93,11 @@ class JavalinApp {
 
         val reparseStrategy = Config.getOrDefault("reparse", "off")
         if (store != null && reparseStrategy != "off") {
-            reparseLibrary(reparseStrategy, store, index, compression)
-            // Rebuild index
-            index = LibraryIndex.buildIndex(store)
+            CoroutineScope(Dispatchers.IO).launch {
+                reparseLibrary(reparseStrategy, store, index, compression)
+                // Rebuild index
+                index = LibraryIndex.buildIndex(store)
+            }
         }
 
         app.exception(Exception::class.java) { e, _ -> e.printStackTrace() }
@@ -254,7 +265,7 @@ class JavalinApp {
         }
     }
 
-    private fun reparseLibrary(
+    private suspend fun reparseLibrary(
         strategy: String,
         store: String,
         index: LibraryIndex,
@@ -262,51 +273,66 @@ class JavalinApp {
     ) {
         val parserVersion = Property.getProperty("project.version")
         val auto = strategy !== "force"
+        val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 2)
+        val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
 
-        IO.createDirectories("$store/backup/output/")
-        IO.createDirectories("$store/backup/input/")
+        withContext(dispatcher) {
+            IO.createDirectories("$store/backup/output/")
+            IO.createDirectories("$store/backup/input/")
+            index
+                .getAll()
+                .filterNot { auto && it.parserVersion == parserVersion }
+                .map { async { reparseItem(it, store, compression) } }
+                .awaitAll()
+        }
+    }
 
+    private fun reparseItem(indexLine: IndexLine, store: String, compression: Boolean) {
         val base64 = Base64.getEncoder()
 
-        for (indexLine in index.getAll()) {
-
-            if (auto && indexLine.parserVersion == parserVersion) continue
-
-            try {
-                val compressed = indexLine.compressed
-                val capPath = "/output/${indexLine.id}.json"
-                val text =
-                    IO.readAndMove("$store$capPath", "$store/backup$capPath", compressed)
-                        ?.decodeToString()
-                        ?: continue
-
-                val capabilities = Json.decodeFromString<Capabilities>(text)
-                val inputMap =
-                    indexLine.inputs.mapNotNull { input ->
-                        val path = "/input/$input"
-                        val bytes = IO.readAndMove("$store$path", "$store/backup$path", compressed)
-                        bytes?.let { base64.encodeToString(bytes) }
-                    }
-
-                val json =
-                    buildParseJsonRequest(
-                        *inputMap.toTypedArray(),
-                        type = capabilities.logType,
-                        description = indexLine.description,
-                        defaultNR =
-                            indexLine.defaultNR ||
-                                capabilities.lteBands.isEmpty() && capabilities.nrBands.isNotEmpty()
+        try {
+            val compressed = indexLine.compressed
+            val capPath = "/output/${indexLine.id}.json"
+            val text =
+                IO.readAndMove(
+                        "$store$capPath",
+                        "$store/backup$capPath",
+                        compressed,
                     )
+                    ?.decodeToString()
+                    ?: return
 
-                Parsing.fromJsonRequest(json)?.let {
-                    // Reset capabilities id and timestamp
-                    it.capabilities.id = capabilities.id
-                    it.capabilities.timestamp = capabilities.timestamp
-                    it.store(index, store, compression)
+            val capabilities = Json.decodeFromString<Capabilities>(text)
+            val inputMap =
+                indexLine.inputs.mapNotNull { input ->
+                    val path = "/input/$input"
+                    val bytes =
+                        IO.readAndMove(
+                            "$store$path",
+                            "$store/backup$path",
+                            compressed,
+                        )
+                    bytes?.let { base64.encodeToString(bytes) }
                 }
-            } catch (ex: Exception) {
-                ex.printStackTrace()
+
+            val json =
+                buildParseJsonRequest(
+                    *inputMap.toTypedArray(),
+                    type = capabilities.logType,
+                    description = indexLine.description,
+                    defaultNR =
+                        indexLine.defaultNR ||
+                            capabilities.lteBands.isEmpty() && capabilities.nrBands.isNotEmpty(),
+                )
+
+            Parsing.fromJsonRequest(json)?.let {
+                // Reset capabilities id and timestamp
+                it.capabilities.id = capabilities.id
+                it.capabilities.timestamp = capabilities.timestamp
+                it.store(null, store, compression)
             }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
         }
     }
 
