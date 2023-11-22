@@ -31,6 +31,7 @@ dependencies {
     val kmemVersion = "4.0.10"
     val javalinVersion = "5.6.3"
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.6.1")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
@@ -43,6 +44,9 @@ dependencies {
     implementation("io.javalin:javalin:$javalinVersion")
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("io.mockk:mockk:1.13.8")
+
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.3")
 }
 

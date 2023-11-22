@@ -1,5 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.server
 
+import io.mockk.every
+import io.mockk.mockkStatic
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.dirsSimilar
 import it.smartphonecombo.uecapabilityparser.cli.Main
 import it.smartphonecombo.uecapabilityparser.util.Config
@@ -12,8 +14,11 @@ import java.util.*
 import kotlin.io.path.extension
 import kotlin.io.path.isDirectory
 import kotlin.io.path.name
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.StandardTestDispatcher
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -94,6 +99,7 @@ internal class ServerModeReparseTest {
 
     fun test(args: Array<String>, oraclePath: String) {
         Main.main(args)
+        dispatcher.scheduler.advanceUntilIdle()
         assertTrue(dirsSimilar(oraclePath, tmpStorePath))
     }
 
@@ -132,5 +138,16 @@ internal class ServerModeReparseTest {
                     )
                 }
             }
+    }
+
+    companion object {
+        private val dispatcher = StandardTestDispatcher()
+
+        @JvmStatic
+        @BeforeAll
+        fun mockDispatchers() {
+            mockkStatic(Dispatchers::class)
+            every { Dispatchers.IO } returns dispatcher
+        }
     }
 }
