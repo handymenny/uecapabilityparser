@@ -56,6 +56,34 @@ object MtsAsn1Helpers {
         return ASN1Translator(PERTranslatorFactory(false), tree)
     }
 
+    fun getRatListFromBytes(rrc: Rat, data: ByteArray): List<Rat> {
+        if (data.isEmpty()) return emptyList()
+
+        val ueCap = getRatContainersFromBytes(rrc, data)
+
+        return ueCap?.mapNotNull { Rat.of(it.getString("rat-Type")) } ?: emptyList()
+    }
+
+    private fun getRatContainersFromBytes(rrc: Rat, data: ByteArray): JsonArray? {
+        val jsonWriter = KotlinJsonFormatWriter()
+        val translator: ASN1Translator
+        val ratContainerListPath: String
+
+        if (rrc == Rat.EUTRA) {
+            translator = getAsn1Translator(Rat.EUTRA)
+            ratContainerListPath =
+                "message.c1.ueCapabilityInformation.criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
+        } else {
+            translator = getAsn1Translator(Rat.NR)
+            ratContainerListPath =
+                "message.c1.ueCapabilityInformation.criticalExtensions.ueCapabilityInformation.ue-CapabilityRAT-ContainerList"
+        }
+
+        translator.decode("UL-DCCH-Message", data.inputStream(), jsonWriter)
+
+        return jsonWriter.jsonNode?.getArrayAtPath(ratContainerListPath)
+    }
+
     fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
         val data = hexString.preformatHex().decodeHex()
 
@@ -70,27 +98,18 @@ object MtsAsn1Helpers {
             return ratContainerToJson(defaultRat, data)
         }
 
-        val jsonWriter = KotlinJsonFormatWriter()
-        val translator: ASN1Translator
-        val ratContainerListPath: String
+        val rrc: Rat
         val octetStringKey: String
 
         if (isLteCapInfo) {
-            translator = getAsn1Translator(Rat.EUTRA)
-            ratContainerListPath =
-                "message.c1.ueCapabilityInformation.criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
+            rrc = Rat.EUTRA
             octetStringKey = "ueCapabilityRAT-Container"
         } else {
-            translator = getAsn1Translator(Rat.NR)
-            ratContainerListPath =
-                "message.c1.ueCapabilityInformation.criticalExtensions.ueCapabilityInformation.ue-CapabilityRAT-ContainerList"
+            rrc = Rat.NR
             octetStringKey = "ue-CapabilityRAT-Container"
         }
 
-        translator.decode("UL-DCCH-Message", data.inputStream(), jsonWriter)
-
-        val ueCap =
-            jsonWriter.jsonNode?.getArrayAtPath(ratContainerListPath) ?: JsonArray(emptyList())
+        val ueCap = getRatContainersFromBytes(rrc, data) ?: JsonArray(emptyList())
         val map = mutableMapOf<String, JsonElement>()
 
         for (ueCapContainer in ueCap) {
