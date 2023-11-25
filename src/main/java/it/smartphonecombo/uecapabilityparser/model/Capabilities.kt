@@ -37,10 +37,11 @@ data class Capabilities(
     var parserVersion: String = Property.getProperty("project.version") ?: "",
     @Required @SerialName("timestamp") var timestamp: Long = 0,
     @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf(),
+) {
     @EncodeDefault(EncodeDefault.Mode.ALWAYS)
     @SerialName("id")
     var id: String = UUID.randomUUID().toString()
-) {
+
     fun addMetadata(key: String, value: Any) {
         if (key in metadata) {
             metadata[key] += ", $value"
