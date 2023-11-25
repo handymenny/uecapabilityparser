@@ -10,6 +10,8 @@ import com.ericsson.mts.asn1.converter.AbstractConverter
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getString
+import it.smartphonecombo.uecapabilityparser.extension.isLteUeCapInfoPayload
+import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import java.io.InputStream
@@ -91,8 +93,8 @@ object MtsAsn1Helpers {
             return buildJsonObject {}
         }
 
-        val isLteCapInfo = data[0] in 0x38.toByte()..0x3E.toByte()
-        val isNrCapInfo = data[0] in 0x48.toByte()..0x4E.toByte()
+        val isLteCapInfo = data.isLteUeCapInfoPayload()
+        val isNrCapInfo = data.isNrUeCapInfoPayload()
 
         if (!isLteCapInfo && !isNrCapInfo) {
             return ratContainerToJson(defaultRat, data)
