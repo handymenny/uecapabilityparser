@@ -17,11 +17,6 @@ internal class ImportShannonNrUeCapTest {
                 File("$path/oracleForImport/$oracleFilename").readText()
             )
 
-        // Override dynamic properties
-        expected.parserVersion = actual.parserVersion
-        expected.timestamp = actual.timestamp
-        expected.id = actual.id
-
         Assertions.assertEquals(expected, actual)
     }
 

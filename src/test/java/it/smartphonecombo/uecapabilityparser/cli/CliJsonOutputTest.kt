@@ -534,10 +534,6 @@ internal class CliJsonOutputTest {
                     File("$path/oracleJson/$oracleFilename").readText()
                 )
 
-            // Override dynamic properties
-            expected.parserVersion = actual.parserVersion
-            expected.timestamp = actual.timestamp
-            expected.id = actual.id
             expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
             Assertions.assertEquals(expected, actual)
@@ -557,9 +553,6 @@ internal class CliJsonOutputTest {
                 val capA = actual[i]
                 val capE = expected[i]
 
-                capE.parserVersion = capA.parserVersion
-                capE.timestamp = capA.timestamp
-                capE.id = capA.id
                 capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
             }
 

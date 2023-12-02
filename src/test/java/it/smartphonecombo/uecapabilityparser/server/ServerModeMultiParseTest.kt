@@ -326,9 +326,6 @@ internal class ServerModeMultiParseTest {
                 val actualCapability = actual.capabilities[i]
                 val expectedCapability = expected.capabilities[i]
 
-                expectedCapability.parserVersion = actualCapability.parserVersion
-                expectedCapability.timestamp = actualCapability.timestamp
-                expectedCapability.id = actualCapability.id
                 expectedCapability.setMetadata(
                     "processingTime",
                     actualCapability.getStringMetadata("processingTime") ?: ""

@@ -15,11 +15,6 @@ internal class ImportCapabilityInformationTest {
         val expected =
             Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
 
-        // Override dynamic properties
-        expected.parserVersion = actual.parserVersion
-        expected.timestamp = actual.timestamp
-        expected.id = actual.id
-
         assertEquals(expected, actual)
     }
 

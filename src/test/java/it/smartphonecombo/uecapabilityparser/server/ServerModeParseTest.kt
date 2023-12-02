@@ -382,9 +382,6 @@ internal class ServerModeParseTest {
             val expected = Json.custom().decodeFromString<Capabilities>(File(oraclePath).readText())
 
             // Override dynamic properties
-            expected.parserVersion = actual.parserVersion
-            expected.timestamp = actual.timestamp
-            expected.id = actual.id
             expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
             Assertions.assertEquals(expected, actual)
