@@ -48,6 +48,8 @@ dependencies {
     testImplementation("io.mockk:mockk:1.13.8")
 
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.3")
+
+    implementation("com.github.handymenny.pkts:pkts-core:206c79c")
 }
 
 group = "parser"
