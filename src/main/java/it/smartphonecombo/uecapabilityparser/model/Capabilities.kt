@@ -32,15 +32,18 @@ data class Capabilities(
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),
     @Required @SerialName("logType") var logType: String = "",
     @SerialName("ueCapFilters") var ueCapFilters: List<IUeCapabilityFilter> = emptyList(),
-    @Required
-    @SerialName("parserVersion")
-    var parserVersion: String = Property.getProperty("project.version") ?: "",
-    @Required @SerialName("timestamp") var timestamp: Long = 0,
-    @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf(),
+    @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf()
+) {
     @EncodeDefault(EncodeDefault.Mode.ALWAYS)
     @SerialName("id")
     var id: String = UUID.randomUUID().toString()
-) {
+
+    @Required
+    @SerialName("parserVersion")
+    var parserVersion: String = Property.getProperty("project.version") ?: ""
+
+    @Required @SerialName("timestamp") var timestamp: Long = 0
+
     fun addMetadata(key: String, value: Any) {
         if (key in metadata) {
             metadata[key] += ", $value"

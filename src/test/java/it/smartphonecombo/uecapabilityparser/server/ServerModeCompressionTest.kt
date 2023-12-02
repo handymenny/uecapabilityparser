@@ -156,9 +156,6 @@ internal class ServerModeCompressionTest {
         val expectedCap = Json.decodeFromString<Capabilities>(expected)
 
         // Override dynamic properties
-        expectedCap.parserVersion = actualCap.parserVersion
-        expectedCap.timestamp = actualCap.timestamp
-        expectedCap.id = actualCap.id
         expectedCap.setMetadata(
             "processingTime",
             actualCap.getStringMetadata("processingTime") ?: ""
