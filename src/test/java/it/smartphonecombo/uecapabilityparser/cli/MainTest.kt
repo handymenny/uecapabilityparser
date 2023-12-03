@@ -489,6 +489,11 @@ internal class MainTest {
     }
 
     @Test
+    fun mainPcapCsv() {
+        mainTest(arrayOf("cli", "-i", "$path/input/pcap.pcap", "-t", "P", "-c", "-"), "pcap.txt")
+    }
+
+    @Test
     fun mainMultiInputCsv() {
         mainTest(
             arrayOf(
