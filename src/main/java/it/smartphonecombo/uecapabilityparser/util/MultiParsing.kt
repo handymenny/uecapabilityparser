@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.getStringList
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
@@ -22,9 +23,10 @@ class MultiParsing(
     private val subTypesList: List<List<String>>,
     private val descriptionList: List<String> = emptyList(),
     private val jsonFormat: Json = Json,
-    private val description: String = "",
+    private var description: String = "",
     private var id: String = UUID.randomUUID().toString()
 ) {
+    private val subMultiParsingList = mutableListOf<MultiParsing>()
     val parsingList = parseCapabilities()
 
     fun getMultiCapabilities(): MultiCapabilities {
@@ -43,6 +45,16 @@ class MultiParsing(
             var inputENDCArray: ByteArray? = null
             var inputNRArray: ByteArray? = null
             var defaultNr = false
+            val description = descriptionList.getOrElse(i) { "" }
+
+            if (type == "P") {
+                val subMultiParsing = ImportPcap.parse(inputs.first().inputStream())
+                if (subMultiParsing != null) {
+                    subMultiParsing.description = description
+                    subMultiParsingList.add(subMultiParsing)
+                }
+                continue
+            }
 
             if (type != "H") {
                 inputArray = inputs.fold(inputArray) { acc, it -> acc + it }
@@ -63,7 +75,6 @@ class MultiParsing(
                     defaultNr = true
                 }
             }
-            val description = descriptionList.getOrElse(i) { "" }
 
             val parsing =
                 Parsing(
@@ -78,6 +89,7 @@ class MultiParsing(
 
             parsedCapabilities.add(parsing)
         }
+        parsedCapabilities.addAll(subMultiParsingList.flatMap { it.parsingList })
         return parsedCapabilities
     }
 
