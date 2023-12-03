@@ -308,6 +308,20 @@ internal class ServerModeMultiParseTest {
         )
     }
 
+    @Test
+    fun pcap() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "P")
+                        putJsonArray("inputs") { add(fileToBase64("$inputPath/pcap.pcap")) }
+                    }
+                },
+            oraclePath = "$oraclePath/pcap.json"
+        )
+    }
+
     private fun javalinJsonTest(request: JsonElement, oraclePath: String) =
         JavalinTest.test(app) { _, client ->
             val response = client.post(endpoint, request)

@@ -502,6 +502,24 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun pcapJsonOutput() {
+        cliTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/pcap.pcap",
+                "-t",
+                "P",
+                "-j",
+                "-",
+                "--json-pretty-print"
+            ),
+            "pcap.json",
+            true
+        )
+    }
+
+    @Test
     fun mainMultiInputCsv() {
         cliTest(
             arrayOf(
