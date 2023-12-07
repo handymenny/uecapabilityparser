@@ -55,7 +55,7 @@ object MtsAsn1Helpers {
             } else {
                 nrTree
             }
-        return ASN1Translator(PERTranslatorFactory(false), tree)
+        return ASN1Translator.fromExternalTrees(PERTranslatorFactory(false), listOf(tree))
     }
 
     fun getRatListFromBytes(rrc: Rat, data: ByteArray): List<Rat> {
