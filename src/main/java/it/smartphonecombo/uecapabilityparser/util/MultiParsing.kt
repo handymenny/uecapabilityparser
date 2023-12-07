@@ -72,6 +72,7 @@ class MultiParsing(
 
                 if (inputNRArray?.isNotEmpty() == true && inputArray.isEmpty()) {
                     inputArray = inputNRArray
+                    inputNRArray = null
                     defaultNr = true
                 }
             }
