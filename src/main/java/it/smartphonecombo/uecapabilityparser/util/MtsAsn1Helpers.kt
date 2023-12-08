@@ -26,36 +26,34 @@ import org.antlr.v4.runtime.tree.ParseTree
 
 object MtsAsn1Helpers {
 
-    private val lteTree: ParseTree by
+    private val lteTrees: List<ParseTree> by
         lazy(LazyThreadSafetyMode.PUBLICATION) {
-            val definition = getResourceAsStream("/definition/lte-rrc/EUTRA-RRC-Definitions.asn")!!
-            parseTree(definition)
+            parseTreeList(
+                basePath = "/definition/lte-rrc/",
+                "EUTRA-RRC-Definitions.asn",
+                "EUTRA-InterNodeDefinitions.asn"
+            )
         }
 
-    private val nrTree: ParseTree by
+    private val nrTrees: List<ParseTree> by
         lazy(LazyThreadSafetyMode.PUBLICATION) {
-            val definition = getResourceAsStream("/definition/nr-rrc/NR-RRC-Definitions.asn")!!
-            parseTree(definition)
+            parseTreeList(
+                basePath = "/definition/nr-rrc/",
+                "NR-RRC-Definitions.asn",
+                "NR-InterNodeDefinitions.asn"
+            )
         }
 
     fun getAsn1Converter(rat: Rat, converter: AbstractConverter): ASN1Converter {
-        val tree =
-            if (rat == Rat.EUTRA) {
-                lteTree
-            } else {
-                nrTree
-            }
-        return ASN1Converter(converter, tree)
+        val trees = if (rat == Rat.EUTRA) lteTrees else nrTrees
+
+        return ASN1Converter(converter, trees.first())
     }
 
     private fun getAsn1Translator(rat: Rat): ASN1Translator {
-        val tree =
-            if (rat == Rat.EUTRA) {
-                lteTree
-            } else {
-                nrTree
-            }
-        return ASN1Translator.fromExternalTrees(PERTranslatorFactory(false), listOf(tree))
+        val trees = if (rat == Rat.EUTRA) lteTrees else nrTrees
+
+        return ASN1Translator.fromExternalTrees(PERTranslatorFactory(false), trees)
     }
 
     fun getRatListFromBytes(rrc: Rat, data: ByteArray): List<Rat> {
@@ -140,6 +138,10 @@ object MtsAsn1Helpers {
             translator.decode(rat.ratCapabilityIdentifier, bytes.inputStream(), jsonWriter)
             jsonWriter.jsonNode?.let { put(rat.toString(), it) }
         }
+    }
+
+    private fun parseTreeList(basePath: String, vararg definitions: String): List<ParseTree> {
+        return definitions.map { parseTree(getResourceAsStream("$basePath$it")!!) }
     }
 
     private fun parseTree(stream: InputStream): ParseTree {
