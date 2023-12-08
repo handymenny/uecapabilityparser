@@ -553,8 +553,7 @@ HandoverCommandIEs S1AP-PROTOCOL-IES ::= {
 	{ ID id-eNB-UE-S1AP-ID							CRITICALITY reject	TYPE ENB-UE-S1AP-ID							PRESENCE mandatory}|
 	{ ID id-HandoverType							CRITICALITY reject	TYPE HandoverType							PRESENCE mandatory}|
 	{ ID id-NASSecurityParametersfromE-UTRAN		CRITICALITY reject	TYPE NASSecurityParametersfromE-UTRAN			PRESENCE conditional
-	-- This IE shall be present if HandoverType IE is set to value "LTEtoUTRAN" or "LTEtoGERAN" --
-}|
+	-- This IE shall be present if HandoverType IE is set to value "LTEtoUTRAN" or "LTEtoGERAN" --}|
 	{ ID id-E-RABSubjecttoDataForwardingList		CRITICALITY ignore	TYPE E-RABSubjecttoDataForwardingList			PRESENCE optional}|
 	{ ID id-E-RABtoReleaseListHOCmd					CRITICALITY ignore	TYPE E-RABList								PRESENCE optional}|
 	{ ID id-Target-ToSource-TransparentContainer	CRITICALITY reject	TYPE Target-ToSource-TransparentContainer		PRESENCE mandatory}|
