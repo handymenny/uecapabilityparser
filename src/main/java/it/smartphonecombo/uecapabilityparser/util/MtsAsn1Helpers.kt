@@ -28,13 +28,13 @@ object MtsAsn1Helpers {
 
     private val lteTree: ParseTree by
         lazy(LazyThreadSafetyMode.PUBLICATION) {
-            val definition = getResourceAsStream("/definition/EUTRA-RRC-Definitions.asn")!!
+            val definition = getResourceAsStream("/definition/lte-rrc/EUTRA-RRC-Definitions.asn")!!
             parseTree(definition)
         }
 
     private val nrTree: ParseTree by
         lazy(LazyThreadSafetyMode.PUBLICATION) {
-            val definition = getResourceAsStream("/definition/NR-RRC-Definitions.asn")!!
+            val definition = getResourceAsStream("/definition/nr-rrc/NR-RRC-Definitions.asn")!!
             parseTree(definition)
         }
 
