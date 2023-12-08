@@ -44,6 +44,32 @@ object MtsAsn1Helpers {
             )
         }
 
+    private val s1apTrees: List<ParseTree> by
+        lazy(LazyThreadSafetyMode.PUBLICATION) {
+            parseTreeList(
+                basePath = "/definition/s1ap/",
+                "S1AP-CommonDataTypes.asn",
+                "S1AP-Constants.asn",
+                "S1AP-Containers.asn",
+                "S1AP-IEs.asn",
+                "S1AP-PDU-Contents.asn",
+                "S1AP-PDU-Descriptions.asn"
+            )
+        }
+
+    private val ngapTrees: List<ParseTree> by
+        lazy(LazyThreadSafetyMode.PUBLICATION) {
+            parseTreeList(
+                basePath = "/definition/ngap/",
+                "NGAP-CommonDataTypes.asn",
+                "NGAP-Constants.asn",
+                "NGAP-Containers.asn",
+                "NGAP-IEs.asn",
+                "NGAP-PDU-Descriptions.asn",
+                "NGAP-PDU-Contents.asn"
+            )
+        }
+
     fun getAsn1Converter(rat: Rat, converter: AbstractConverter): ASN1Converter {
         val trees = if (rat == Rat.EUTRA) lteTrees else nrTrees
 
@@ -54,6 +80,21 @@ object MtsAsn1Helpers {
         val trees = if (rat == Rat.EUTRA) lteTrees else nrTrees
 
         return ASN1Translator.fromExternalTrees(PERTranslatorFactory(false), trees)
+    }
+
+    private fun getAsn1ApTranslator(rat: Rat): ASN1Translator {
+        val trees = if (rat == Rat.EUTRA) s1apTrees else ngapTrees
+
+        return ASN1Translator.fromExternalTrees(PERTranslatorFactory(true), trees)
+    }
+
+    fun apPDUtoJson(rat: Rat, pdu: ByteArray): JsonElement? {
+        val idPdu = if (rat == Rat.EUTRA) "S1AP-PDU" else "NGAP-PDU"
+        val jsonWriter = KotlinJsonFormatWriter()
+
+        getAsn1ApTranslator(rat).decode(idPdu, pdu.inputStream(), jsonWriter)
+
+        return jsonWriter.jsonNode
     }
 
     fun getRatListFromBytes(rrc: Rat, data: ByteArray): List<Rat> {
@@ -80,12 +121,27 @@ object MtsAsn1Helpers {
         return jsonWriter.jsonNode?.getArrayAtPath(ratContainerListPath)
     }
 
-    fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
-        val data = hexString.preformatHex().decodeHex()
+    fun ratContainersFromRadioCapability(rrc: Rat, hexString: String): JsonArray? {
+        val data = hexString.decodeHex().apply { if (isEmpty()) return null }
 
-        if (data.isEmpty()) {
-            return buildJsonObject {}
-        }
+        val jsonWriter = KotlinJsonFormatWriter()
+        val translator = getAsn1Translator(rrc)
+
+        translator.decode("UERadioAccessCapabilityInformation", data.inputStream(), jsonWriter)
+
+        val ratContainerListPath =
+            if (rrc == Rat.NR) {
+                "criticalExtensions.c1.ueRadioAccessCapabilityInformation.ue-RadioAccessCapabilityInfo"
+            } else {
+                "criticalExtensions.c1.ueRadioAccessCapabilityInformation-r8.ue-RadioAccessCapabilityInfo.criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
+            }
+
+        return jsonWriter.jsonNode?.getArrayAtPath(ratContainerListPath)
+    }
+
+    fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
+        val data =
+            hexString.preformatHex().decodeHex().apply { if (isEmpty()) return buildJsonObject {} }
 
         val isLteCapInfo = data.isLteUeCapInfoPayload()
         val isNrCapInfo = data.isNrUeCapInfoPayload()
