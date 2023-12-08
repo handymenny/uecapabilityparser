@@ -66,18 +66,14 @@ object MtsAsn1Helpers {
 
     private fun getRatContainersFromBytes(rrc: Rat, data: ByteArray): JsonArray? {
         val jsonWriter = KotlinJsonFormatWriter()
-        val translator: ASN1Translator
-        val ratContainerListPath: String
+        val translator = getAsn1Translator(rrc)
 
-        if (rrc == Rat.EUTRA) {
-            translator = getAsn1Translator(Rat.EUTRA)
-            ratContainerListPath =
+        val ratContainerListPath =
+            if (rrc == Rat.EUTRA) {
                 "message.c1.ueCapabilityInformation.criticalExtensions.c1.ueCapabilityInformation-r8.ue-CapabilityRAT-ContainerList"
-        } else {
-            translator = getAsn1Translator(Rat.NR)
-            ratContainerListPath =
+            } else {
                 "message.c1.ueCapabilityInformation.criticalExtensions.ueCapabilityInformation.ue-CapabilityRAT-ContainerList"
-        }
+            }
 
         translator.decode("UL-DCCH-Message", data.inputStream(), jsonWriter)
 
@@ -131,8 +127,7 @@ object MtsAsn1Helpers {
         }
 
         val jsonWriter = KotlinJsonFormatWriter()
-        val translator =
-            if (rat == Rat.EUTRA) getAsn1Translator(Rat.EUTRA) else getAsn1Translator(Rat.NR)
+        val translator = getAsn1Translator(rat)
 
         return buildJsonObject {
             translator.decode(rat.ratCapabilityIdentifier, bytes.inputStream(), jsonWriter)
