@@ -110,6 +110,12 @@ internal class ImportPcapTest {
         )
     }
 
+    // NGAP radio cap + S1AP radio cap + spurious data
+    @Test
+    fun testSCTP() {
+        testPcap("$path/input/sctpS1apNgap.pcap", "$path/oracle/sctpS1apNgap-capabilities.json")
+    }
+
     private fun testPcap(path: String, oracle: String) {
         val multi = ImportPcap.parse(File(path).inputStream())
 
