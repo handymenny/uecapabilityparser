@@ -33,7 +33,9 @@ object ImportPcap : ImportMultiCapabilities {
     private const val S1AP_PROTOCOL_IDENTIFIER = 18L
     private const val NGAP_PROTOCOL_IDENTIFIER = 60L
 
-    override fun parse(input: InputStream): MultiParsing? {
+    override fun parse(input: InputStream): MultiParsing? = parse(input, "PCAP")
+
+    fun parse(input: InputStream, srcName: String): MultiParsing? {
         val pcapStream = Pcap.openStream(input)
 
         var result: MultiParsing? = null
@@ -69,9 +71,7 @@ object ImportPcap : ImportMultiCapabilities {
                     .toMutableList()
             val descriptions =
                 distinctInputs
-                    .map {
-                        it.timestamps.joinToString(", ", prefix = "UE Cap from PCAP, Timestamps: ")
-                    }
+                    .map { it.timestamps.joinToString(", ", "UE Cap from $srcName, Timestamps: ") }
                     .toMutableList()
 
             val distinct0xB0Cd = b0cd.map { it.text }.distinct().joinToString("\n")
@@ -80,13 +80,13 @@ object ImportPcap : ImportMultiCapabilities {
                 inputsList += listOf(distinct0xB826.toByteArray())
                 typeList += "QNR"
                 subTypesList += emptyList<List<String>>()
-                descriptions += "0xB826 packets from PCAP"
+                descriptions += "0xB826 packets from $srcName"
             }
             if (distinct0xB0Cd.isNotEmpty()) {
                 inputsList += listOf(distinct0xB0Cd.toByteArray())
                 typeList += "QLTE"
                 subTypesList += emptyList<List<String>>()
-                descriptions += "0xB0CD packets from PCAP"
+                descriptions += "0xB0CD packets from $srcName"
             }
 
             ueRatContainersList
@@ -98,7 +98,8 @@ object ImportPcap : ImportMultiCapabilities {
                         typeList += "H"
                         inputsList += newInputs
                         subTypesList += newSubTypes
-                        descriptions += "${it.messageName} from PCAP, Timestamp: ${it.timestamp}"
+                        descriptions +=
+                            "${it.messageName} from $srcName, Timestamp: ${it.timestamp}"
                     }
                 }
 

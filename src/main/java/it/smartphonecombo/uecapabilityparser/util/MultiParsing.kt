@@ -7,10 +7,12 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.getStringList
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
+import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
+import it.smartphonecombo.uecapabilityparser.model.scat.ScatLogType
 import java.time.Instant
 import java.util.*
 import kotlinx.serialization.encodeToString
@@ -47,8 +49,13 @@ class MultiParsing(
             var defaultNr = false
             val description = descriptionList.getOrElse(i) { "" }
 
-            if (type == "P") {
-                val subMultiParsing = ImportPcap.parse(inputs.first().inputStream())
+            if (type in arrayOf("P", "DLF", "QMDL", "HDF", "SDM")) {
+                val subMultiParsing =
+                    if (type == "P") {
+                        ImportPcap.parse(inputs.first().inputStream())
+                    } else {
+                        ImportScat.parse(inputs.first().inputStream(), ScatLogType.valueOf(type))
+                    }
                 if (subMultiParsing != null) {
                     subMultiParsing.description = description
                     subMultiParsingList.add(subMultiParsing)

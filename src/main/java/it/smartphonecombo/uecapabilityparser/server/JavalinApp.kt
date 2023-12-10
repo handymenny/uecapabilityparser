@@ -72,7 +72,7 @@ class JavalinApp {
         Javalin.create { config ->
             config.compression.gzipOnly(4)
             config.http.prefer405over404 = true
-            config.http.maxRequestSize = 100L * SizeUnit.MB.multiplier
+            config.http.maxRequestSize = 256L * SizeUnit.MB.multiplier
             config.routing.treatMultipleSlashesAsSingleSlash = true
             config.jsonMapper(jsonMapper)
             config.plugins.enableCors { cors -> cors.add { it.anyHost() } }

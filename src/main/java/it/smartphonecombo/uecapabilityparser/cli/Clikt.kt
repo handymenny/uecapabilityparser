@@ -81,12 +81,16 @@ object Cli :
                 "RF",
                 "SHNR",
                 "P",
+                "DLF",
+                "QMDL",
+                "HDF",
+                "SDM",
                 ignoreCase = true
             )
             .multiple(required = true)
             .validate {
                 require(it.size == inputsList.size) { HelpMessage.ERROR_TYPE_INPUT_MISMATCH }
-                val singleType = arrayOf("E", "SHNR", "P")
+                val singleType = arrayOf("E", "SHNR", "P", "DLF", "QMDL", "HDF", "SDM")
                 val singleInputs = inputsList.filterIndexed { index, _ -> it[index] in singleType }
                 require(singleInputs.all { inputs -> inputs.size == 1 }) {
                     HelpMessage.ERROR_MULTIPLE_INPUTS_UNSUPPORTED

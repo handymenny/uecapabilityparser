@@ -10,7 +10,7 @@ object HelpMessage {
             C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem binary), 
             Q (QCAT 0xB0CD), QLTE (0xB0CD hexdump), QNR (0xB826 hexdump), M (MEDIATEK CA_COMB_INFO), 
             O (OSIX UE Capability Information), QC (QCAT UE Capability Information),
-            RF (QCT Modem Capabilities), SHNR (Shannon NR UE Cap Config Protobuf), PCAP"""
+            RF (QCT Modem Capabilities), SHNR (Shannon NR UE Cap Config Protobuf), P (PCAP), DLF, QMDL, HDF, SDM"""
     const val SUBTYPES =
         """A list of subtypes separated by comma, one for each capability source, applicable only to --type H.
             Valid values are: LTE (rat-type EUTRA or LTE UE capability information),
@@ -47,5 +47,5 @@ object HelpMessage {
     const val ERROR_SUBTYPES_DUPLICATE =
         "A subtype cannot appear multiple times in the same --subTypes."
     const val ERROR_MULTIPLE_INPUTS_UNSUPPORTED =
-        "Type P, E and SHNR don't support multiple inputs in one --input option. Use multiple --input instead."
+        "Type P, E, SHNR, DLF, QMDL, HDF, SDM don't support multiple inputs in one --input option. Use multiple --input instead."
 }
