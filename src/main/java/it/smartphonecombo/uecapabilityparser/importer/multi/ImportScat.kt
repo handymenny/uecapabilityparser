@@ -16,14 +16,13 @@ object ImportScat : ImportMultiCapabilities {
         try {
             val extension = type.name.lowercase()
             val scatVendor = if (type == ScatLogType.SDM) "sec" else "qc"
-            val combined = if (type != ScatLogType.SDM) "-C" else ""
 
             tempLogFile = File.createTempFile("SCAT-", ".$extension")
             tempLogFile.writeBytes(input.readAllBytes())
             tempPcapFile = File.createTempFile("PCAP-", ".pcap")
 
-            val builder =
-                ProcessBuilder(
+            val args =
+                mutableListOf(
                     "scat",
                     "-t",
                     scatVendor,
@@ -31,10 +30,14 @@ object ImportScat : ImportMultiCapabilities {
                     tempLogFile.path,
                     "-F",
                     tempPcapFile.path,
-                    combined,
-                    "--cacombos",
-                    "--disable-crc-check"
                 )
+
+            if (type != ScatLogType.SDM) {
+                args.add("-C")
+                args.add("--cacombos")
+                args.add("--disable-crc-check")
+            }
+            val builder = ProcessBuilder(args)
 
             val redirectIO =
                 if (debug) ProcessBuilder.Redirect.INHERIT else ProcessBuilder.Redirect.DISCARD
