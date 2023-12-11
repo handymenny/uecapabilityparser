@@ -12,3 +12,11 @@ internal fun File.nameWithoutAnyExtension() = this.name.substringBefore(".")
 internal fun File.moveTo(path: String) {
     Files.move(this.toPath(), Path(path), StandardCopyOption.REPLACE_EXISTING)
 }
+
+internal fun File.deleteIgnoreException() {
+    try {
+        Files.delete(toPath())
+    } catch (ex: Exception) {
+        ex.printStackTrace()
+    }
+}
