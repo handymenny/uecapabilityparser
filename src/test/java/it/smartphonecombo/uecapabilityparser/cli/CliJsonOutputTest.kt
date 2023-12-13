@@ -1,11 +1,13 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
+import it.smartphonecombo.uecapabilityparser.UtilityForTests
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.Test
 
 internal class CliJsonOutputTest {
@@ -520,7 +522,7 @@ internal class CliJsonOutputTest {
     }
 
     @Test
-    fun mainMultiInputCsv() {
+    fun mainMultiInputJsonOutput() {
         cliTest(
             arrayOf(
                 "cli",
@@ -536,6 +538,36 @@ internal class CliJsonOutputTest {
                 "-"
             ),
             "0xB826-0xB0CD.json",
+            true
+        )
+    }
+
+    @Test
+    fun mainMultiScatJsonOutput() {
+        Assumptions.assumeTrue(UtilityForTests.scatIsAvailable())
+        cliTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/scat.dlf",
+                "-t",
+                "DLF",
+                "-i",
+                "$path/input/scat.sdm",
+                "-t",
+                "SDM",
+                "-i",
+                "$path/input/scat.hdf",
+                "-t",
+                "HDF",
+                "-i",
+                "$path/input/scat.qmdl",
+                "-t",
+                "QMDL",
+                "-j",
+                "-"
+            ),
+            "scat.json",
             true
         )
     }
@@ -572,6 +604,7 @@ internal class CliJsonOutputTest {
                 val capE = expected[i]
 
                 capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
+                capA.getStringMetadata("description")?.let { capE.setMetadata("description", it) }
             }
 
             // check files

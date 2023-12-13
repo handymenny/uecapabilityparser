@@ -20,6 +20,8 @@ jobs:
         with:
           packages: tshark
           version: 1.0
+      - name: Install scat
+        run: pip3 install git+https://github.com/fgsect/scat
       - name: Setup jdk11
         uses: actions/setup-java@v4
         with:
