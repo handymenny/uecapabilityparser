@@ -1,0 +1,198 @@
+[
+    {
+        "lteca": [
+            {
+                "components": [
+                    {
+                        "band": 3,
+                        "bwClassDl": "A",
+                        "bwClassUl": "A",
+                        "mimoDl": {
+                            "type": "single",
+                            "value": 4
+                        },
+                        "mimoUl": {
+                            "type": "single",
+                            "value": 1
+                        },
+                        "modulationDl": {
+                            "type": "single",
+                            "value": "qam256"
+                        },
+                        "modulationUl": {
+                            "type": "single",
+                            "value": "qam256"
+                        }
+                    }
+                ],
+                "bcs": {
+                    "type": "single",
+                    "value": 0
+                }
+            },
+            {
+                "components": [
+                    {
+                        "band": 3,
+                        "bwClassDl": "C",
+                        "bwClassUl": "A",
+                        "mimoDl": {
+                            "type": "single",
+                            "value": 4
+                        },
+                        "mimoUl": {
+                            "type": "single",
+                            "value": 1
+                        },
+                        "modulationDl": {
+                            "type": "single",
+                            "value": "qam256"
+                        },
+                        "modulationUl": {
+                            "type": "single",
+                            "value": "qam256"
+                        }
+                    }
+                ],
+                "bcs": {
+                    "type": "single",
+                    "value": 0
+                }
+            },
+            {
+                "components": [
+                    {
+                        "band": 3,
+                        "bwClassDl": "A",
+                        "bwClassUl": "A",
+                        "mimoDl": {
+                            "type": "single",
+                            "value": 4
+                        },
+                        "mimoUl": {
+                            "type": "single",
+                            "value": 1
+                        },
+                        "modulationDl": {
+                            "type": "single",
+                            "value": "qam256"
+                        },
+                        "modulationUl": {
+                            "type": "single",
+                            "value": "qam256"
+                        }
+                    },
+                    {
+                        "band": 3,
+                        "bwClassDl": "A",
+                        "mimoDl": {
+                            "type": "single",
+                            "value": 4
+                        },
+                        "modulationDl": {
+                            "type": "single",
+                            "value": "qam256"
+                        }
+                    }
+                ],
+                "bcs": {
+                    "type": "multi",
+                    "value": [
+                        0,
+                        1,
+                        2
+                    ]
+                }
+            },
+            {
+                "components": [
+                    {
+                        "band": 3,
+                        "bwClassDl": "C",
+                        "bwClassUl": "C",
+                        "mimoDl": {
+                            "type": "single",
+                            "value": 4
+                        },
+                        "mimoUl": {
+                            "type": "single",
+                            "value": 1
+                        },
+                        "modulationDl": {
+                            "type": "single",
+                            "value": "qam256"
+                        },
+                        "modulationUl": {
+                            "type": "single",
+                            "value": "qam256"
+                        }
+                    }
+                ],
+                "bcs": {
+                    "type": "single",
+                    "value": 0
+                }
+            }
+        ],
+        "lteBands": [
+            {
+                "band": 3,
+                "mimoDl": {
+                    "type": "single",
+                    "value": 4
+                },
+                "mimoUl": {
+                    "type": "single",
+                    "value": 1
+                },
+                "modulationDl": {
+                    "type": "single",
+                    "value": "qam256"
+                },
+                "modulationUl": {
+                    "type": "single",
+                    "value": "qam256"
+                },
+                "powerClass": "pc3"
+            }
+        ],
+        "lteCategoryDl": 15,
+        "lteCategoryUl": 18,
+        "altTbsIndexes": [
+            "26a",
+            "33a",
+            "33b"
+        ],
+        "logType": "H",
+        "ueCapFilters": [
+            {
+                "type": "UeCapabilityFilterLte",
+                "rat": "EUTRA",
+                "lteBands": [
+                    {
+                        "band": 1
+                    },
+                    {
+                        "band": 3
+                    },
+                    {
+                        "band": 7
+                    },
+                    {
+                        "band": 20
+                    },
+                    {
+                        "band": 38
+                    }
+                ]
+            }
+        ],
+        "metadata": {
+            "processingTime": "487ms",
+            "description": "UE Cap from DLF, Timestamps: 1638043858674893"
+        },
+        "id": "1b15b58d-ed34-4796-996e-c80e3267d1ee",
+        "parserVersion": "staging",
+        "timestamp": 1702401097758
+    }
+]

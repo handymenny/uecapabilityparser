@@ -49,4 +49,14 @@ object UtilityForTests {
             }
         return result
     }
+
+    internal fun scatIsAvailable(): Boolean {
+        return try {
+            val process = Runtime.getRuntime().exec(arrayOf("scat", "-h"))
+            process.waitFor()
+            process.exitValue() == 0
+        } catch (ignored: Exception) {
+            false
+        }
+    }
 }

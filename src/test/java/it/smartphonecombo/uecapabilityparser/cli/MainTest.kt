@@ -1,10 +1,12 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
+import it.smartphonecombo.uecapabilityparser.UtilityForTests
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -510,6 +512,35 @@ internal class MainTest {
                 "-"
             ),
             "0xB826-0xB0CD.txt"
+        )
+    }
+
+    @Test
+    fun mainMultiScatCsv() {
+        Assumptions.assumeTrue(UtilityForTests.scatIsAvailable())
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/scat.dlf",
+                "-t",
+                "DLF",
+                "-i",
+                "$path/input/scat.sdm",
+                "-t",
+                "SDM",
+                "-i",
+                "$path/input/scat.hdf",
+                "-t",
+                "HDF",
+                "-i",
+                "$path/input/scat.qmdl",
+                "-t",
+                "QMDL",
+                "-c",
+                "-"
+            ),
+            "scat.txt"
         )
     }
 

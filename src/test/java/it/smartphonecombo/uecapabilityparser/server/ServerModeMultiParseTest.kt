@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import it.smartphonecombo.uecapabilityparser.UtilityForTests
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import java.io.File
@@ -14,6 +15,7 @@ import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.Test
 
 internal class ServerModeMultiParseTest {
@@ -319,6 +321,27 @@ internal class ServerModeMultiParseTest {
                     }
                 },
             oraclePath = "$oraclePath/pcap.json"
+        )
+    }
+
+    @Test
+    fun scat() {
+        Assumptions.assumeTrue(UtilityForTests.scatIsAvailable())
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "DLF")
+                        putJsonArray("inputs") { add(fileToBase64("$inputPath/scat.dlf")) }
+                        put("type", "SDM")
+                        putJsonArray("inputs") { add(fileToBase64("$inputPath/scat.sdm")) }
+                        put("type", "HDF")
+                        putJsonArray("inputs") { add(fileToBase64("$inputPath/scat.hdf")) }
+                        put("type", "QMDL")
+                        putJsonArray("inputs") { add(fileToBase64("$inputPath/scat.qmdl")) }
+                    }
+                },
+            oraclePath = "$oraclePath/scat.json"
         )
     }
 
