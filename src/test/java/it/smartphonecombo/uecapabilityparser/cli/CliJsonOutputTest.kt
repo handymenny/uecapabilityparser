@@ -604,6 +604,7 @@ internal class CliJsonOutputTest {
                 val capE = expected[i]
 
                 capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
+                capA.getStringMetadata("description")?.let { capE.setMetadata("description", it) }
             }
 
             // check files
