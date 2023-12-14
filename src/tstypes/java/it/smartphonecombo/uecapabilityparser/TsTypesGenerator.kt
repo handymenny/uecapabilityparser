@@ -4,6 +4,7 @@ import dev.adamko.kxstsgen.KxsTsGenerator
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
+import it.smartphonecombo.uecapabilityparser.server.ServerStatus
 import it.smartphonecombo.uecapabilityparser.util.IO
 
 internal object TsTypesGenerator {
@@ -22,7 +23,8 @@ internal object TsTypesGenerator {
             tsGenerator.generate(
                 Capabilities.serializer(),
                 LibraryIndex.serializer(),
-                MultiCapabilities.serializer()
+                MultiCapabilities.serializer(),
+                ServerStatus.serializer()
             )
         IO.outputFileOrStdout(warning + typescriptDefinitions, "uecapabilityparser.d.ts")
         println("Typescript definitions exported to uecapabilityparser.d.ts")

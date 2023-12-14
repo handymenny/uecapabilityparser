@@ -258,6 +258,14 @@ class JavalinApp {
                 val json = buildJsonObject { put("version", version) }
                 ctx.json(json)
             }
+
+            apiBuilderGet("/status") { ctx ->
+                val version = Config.getOrDefault("project.version", "")
+                val logTypes = LogType.validEntries
+                val requestMaxSize = app.cfg.http.maxRequestSize
+                val status = ServerStatus(version, endpoints, logTypes, requestMaxSize)
+                ctx.json(status)
+            }
         }
     }
 
