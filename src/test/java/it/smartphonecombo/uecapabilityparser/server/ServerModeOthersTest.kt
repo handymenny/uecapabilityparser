@@ -3,7 +3,6 @@ package it.smartphonecombo.uecapabilityparser.server
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.buildJsonObject
@@ -15,7 +14,7 @@ import org.junit.jupiter.api.Test
 
 internal class ServerModeOthersTest {
 
-    private val parserVersion = Property.getProperty("project.version") ?: ""
+    private val parserVersion = Config.getOrDefault("project.version", "")
     private val openapi =
         {}.javaClass.getResourceAsStream("/swagger/openapi.json")?.reader()?.readText() ?: ""
 

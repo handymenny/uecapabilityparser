@@ -6,13 +6,11 @@ import it.smartphonecombo.uecapabilityparser.UtilityForTests.dirsSimilar
 import it.smartphonecombo.uecapabilityparser.cli.Main
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
-import it.smartphonecombo.uecapabilityparser.util.Property
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.*
 import kotlin.io.path.extension
-import kotlin.io.path.isDirectory
 import kotlin.io.path.name
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -25,7 +23,7 @@ import org.junit.jupiter.api.Test
 internal class ServerModeReparseTest {
     private val resourcesPath = "src/test/resources/server"
     private val tmpStorePath = UUID.randomUUID().toString() + "-tmp"
-    private val parserVersion = Property.getProperty("project.version") ?: ""
+    private val parserVersion = Config.getOrDefault("project.version", "")
 
     @BeforeEach
     fun setup() {

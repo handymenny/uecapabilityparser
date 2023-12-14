@@ -24,14 +24,13 @@ import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
-import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = true) {
 
     init {
-        versionOption(version = Property.getProperty("project.version") ?: "")
+        versionOption(version = Config.getOrDefault("project.version", ""))
 
         val subcommands = arrayOf(Cli, Server)
         // Set subcommands

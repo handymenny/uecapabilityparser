@@ -29,7 +29,6 @@ import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
-import it.smartphonecombo.uecapabilityparser.util.Property
 import java.lang.reflect.Type
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -249,7 +248,7 @@ class JavalinApp {
             }
 
             ApiBuilder.get("/version") { ctx ->
-                val version = Property.getProperty("project.version")
+                val version = Config.getOrDefault("project.version", "")
                 val json = buildJsonObject { put("version", version) }
                 ctx.json(json)
             }
@@ -271,7 +270,7 @@ class JavalinApp {
         index: LibraryIndex,
         compression: Boolean
     ) {
-        val parserVersion = Property.getProperty("project.version")
+        val parserVersion = Config.getOrDefault("project.version", "")
         val auto = strategy !== "force"
         val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 2)
         val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)

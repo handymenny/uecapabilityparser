@@ -8,7 +8,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.filter.IUeCapabilityFilter
-import it.smartphonecombo.uecapabilityparser.util.Property
+import it.smartphonecombo.uecapabilityparser.util.Config
 import java.util.UUID
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -40,7 +40,7 @@ data class Capabilities(
 
     @Required
     @SerialName("parserVersion")
-    var parserVersion: String = Property.getProperty("project.version") ?: ""
+    var parserVersion: String = Config.getOrDefault("project.version", "")
 
     @Required @SerialName("timestamp") var timestamp: Long = 0
 
