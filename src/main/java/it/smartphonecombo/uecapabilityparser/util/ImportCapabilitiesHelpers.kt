@@ -7,13 +7,14 @@ import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterQcat
 import com.ericsson.mts.asn1.converter.ConverterWireshark
 import it.smartphonecombo.uecapabilityparser.extension.indexOf
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 
 object ImportCapabilitiesHelpers {
     fun convertUeCapabilityToJson(
-        type: String,
+        type: LogType,
         input: ByteArray,
         inputNR: ByteArray?,
         inputENDC: ByteArray?,
@@ -24,7 +25,7 @@ object ImportCapabilitiesHelpers {
         val inputENDCText = inputENDC?.decodeToString()
 
         val ratContainerMap =
-            if (type == "H") {
+            if (type == LogType.H) {
                 jsonFromHex(inputMainText, inputNRText, inputENDCText, defaultNR)
             } else {
                 var combined = inputMainText
@@ -36,7 +37,7 @@ object ImportCapabilitiesHelpers {
         return JsonObject(ratContainerMap)
     }
 
-    private fun jsonFromText(input: String, type: String): Map<String, JsonElement> {
+    private fun jsonFromText(input: String, type: LogType): Map<String, JsonElement> {
 
         lateinit var eutraIdentifier: Regex
         lateinit var nrIdentifier: Regex
@@ -44,25 +45,25 @@ object ImportCapabilitiesHelpers {
         lateinit var converter: AbstractConverter
 
         when (type) {
-            "W" -> {
+            LogType.W -> {
                 eutraIdentifier = "${Rat.EUTRA.ratCapabilityIdentifier}\\s".toRegex()
                 nrIdentifier = "${Rat.NR.ratCapabilityIdentifier}\\s".toRegex()
                 mrdcIdentifier = "${Rat.EUTRA_NR.ratCapabilityIdentifier}\\s".toRegex()
                 converter = ConverterWireshark()
             }
-            "N" -> {
+            LogType.N -> {
                 eutraIdentifier = "rat-Type : ${Rat.EUTRA}\\s".toRegex()
                 nrIdentifier = "rat-Type : ${Rat.NR}\\s".toRegex()
                 mrdcIdentifier = "rat-Type : ${Rat.EUTRA_NR}\\s".toRegex()
                 converter = ConverterNSG()
             }
-            "O" -> {
+            LogType.O -> {
                 eutraIdentifier = "${Rat.EUTRA.ratCapabilityIdentifier}\\s".toRegex()
                 nrIdentifier = "${Rat.NR.ratCapabilityIdentifier}\\s".toRegex()
                 mrdcIdentifier = "${Rat.EUTRA_NR.ratCapabilityIdentifier}\\s".toRegex()
                 converter = ConverterOsix()
             }
-            "QC" -> {
+            LogType.QC -> {
                 eutraIdentifier = "value ${Rat.EUTRA.ratCapabilityIdentifier} ::=\\s".toRegex()
                 nrIdentifier = "value ${Rat.NR.ratCapabilityIdentifier} ::=\\s".toRegex()
                 mrdcIdentifier = "value ${Rat.EUTRA_NR.ratCapabilityIdentifier} ::=\\s".toRegex()

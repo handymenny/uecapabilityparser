@@ -19,19 +19,19 @@ import com.github.ajalt.clikt.parameters.types.inputStream
 import com.github.ajalt.clikt.parameters.types.int
 import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.server.ServerMode
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
-import it.smartphonecombo.uecapabilityparser.util.Property
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = true) {
 
     init {
-        versionOption(version = Property.getProperty("project.version") ?: "")
+        versionOption(version = Config.getOrDefault("project.version", ""))
 
         val subcommands = arrayOf(Cli, Server)
         // Set subcommands
@@ -65,33 +65,13 @@ object Cli :
 
     private val typeList by
         option("-t", "--type", help = HelpMessage.TYPE)
-            .choice(
-                "H",
-                "W",
-                "N",
-                "C",
-                "CNR",
-                "E",
-                "Q",
-                "QLTE",
-                "QNR",
-                "M",
-                "O",
-                "QC",
-                "RF",
-                "SHNR",
-                "P",
-                "DLF",
-                "QMDL",
-                "HDF",
-                "SDM",
-                ignoreCase = true
-            )
+            .choice(*LogType.names, ignoreCase = true)
             .multiple(required = true)
             .validate {
                 require(it.size == inputsList.size) { HelpMessage.ERROR_TYPE_INPUT_MISMATCH }
-                val singleType = arrayOf("E", "SHNR", "P", "DLF", "QMDL", "HDF", "SDM")
-                val singleInputs = inputsList.filterIndexed { index, _ -> it[index] in singleType }
+                val singleType = LogType.singleInput
+                val singleInputs =
+                    inputsList.filterIndexed { index, _ -> LogType.of(it[index]) in singleType }
                 require(singleInputs.all { inputs -> inputs.size == 1 }) {
                     HelpMessage.ERROR_MULTIPLE_INPUTS_UNSUPPORTED
                 }
@@ -138,7 +118,12 @@ object Cli :
         val inputsByteArray = inputsList.map { inputs -> inputs.map { it.readBytes() } }
 
         val multiParsing =
-            MultiParsing(inputsByteArray, typeList, subTypesList, jsonFormat = jsonFormat)
+            MultiParsing(
+                inputsByteArray,
+                typeList.map(LogType::of),
+                subTypesList,
+                jsonFormat = jsonFormat
+            )
 
         val parsingList = multiParsing.parsingList
 
@@ -179,9 +164,8 @@ object Cli :
         }
     }
 
-    private fun csvOutput(comboList: Capabilities, csvPath: String?, type: String) {
-        val lteOnlyTypes = arrayOf("C", "E", "Q", "QLTE", "M", "RF")
-        if (type in lteOnlyTypes) {
+    private fun csvOutput(comboList: Capabilities, csvPath: String?, type: LogType) {
+        if (type in LogType.lteOnlyTypes) {
             return IO.outputFileOrStdout(IO.toCsv(comboList.lteCombos), csvPath)
         }
 

@@ -18,6 +18,7 @@ import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.notFound
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -29,7 +30,6 @@ import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
-import it.smartphonecombo.uecapabilityparser.util.Property
 import java.lang.reflect.Type
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -67,6 +67,7 @@ class JavalinApp {
         }
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
+    private val endpoints = mutableListOf<String>()
 
     val app: Javalin =
         Javalin.create { config ->
@@ -109,6 +110,7 @@ class JavalinApp {
         }
         app.routes {
             // Add / if missing
+            endpoints.add("/swagger")
             ApiBuilder.before("/swagger") { ctx ->
                 if (!ctx.path().endsWith("/")) {
                     ctx.redirect("/swagger/")
@@ -164,94 +166,105 @@ class JavalinApp {
                 val json = buildJsonObject { put("enabled", enabled) }
                 ctx.json(json)
             }
-            apiBuilderGet("/store/list", "/store/0.2.0/list") { ctx -> ctx.json(index) }
-            apiBuilderGet("/store/getItem", "/store/0.2.0/getItem") { ctx ->
-                val id = ctx.queryParam("id") ?: return@apiBuilderGet ctx.badRequest()
-                val item = index.find(id) ?: return@apiBuilderGet ctx.notFound()
-                ctx.json(item)
-            }
-            apiBuilderGet("/store/getMultiItem") { ctx ->
-                val id = ctx.queryParam("id") ?: return@apiBuilderGet ctx.badRequest()
-                val item = index.findMulti(id) ?: return@apiBuilderGet ctx.notFound()
-                ctx.json(item)
-            }
-            apiBuilderGet("/store/getOutput", "/store/0.2.0/getOutput") { ctx ->
-                val id = ctx.queryParam("id")
-                if (id == null || !id.matches(idRegex)) {
-                    return@apiBuilderGet ctx.badRequest()
-                }
 
-                val indexLine = index.findByOutput(id) ?: return@apiBuilderGet ctx.notFound()
-                val compressed = indexLine.compressed
-                val filePath = "$store/output/$id.json"
-
-                try {
-                    val text =
-                        IO.readTextFromFile(filePath, compressed)
-                            ?: return@apiBuilderGet ctx.notFound()
-                    val capabilities = Json.custom().decodeFromString<Capabilities>(text)
-                    ctx.json(capabilities)
-                } catch (ex: Exception) {
-                    ctx.internalError()
+            if (store != null) {
+                apiBuilderGet("/store/list", "/store/0.2.0/list") { ctx -> ctx.json(index) }
+                apiBuilderGet("/store/getItem", "/store/0.2.0/getItem") { ctx ->
+                    val id = ctx.queryParam("id") ?: return@apiBuilderGet ctx.badRequest()
+                    val item = index.find(id) ?: return@apiBuilderGet ctx.notFound()
+                    ctx.json(item)
                 }
-            }
-            apiBuilderGet("/store/getMultiOutput") { ctx ->
-                val id = ctx.queryParam("id")
-                if (id == null || !id.matches(idRegex)) {
-                    return@apiBuilderGet ctx.badRequest()
+                apiBuilderGet("/store/getMultiItem") { ctx ->
+                    val id = ctx.queryParam("id") ?: return@apiBuilderGet ctx.badRequest()
+                    val item = index.findMulti(id) ?: return@apiBuilderGet ctx.notFound()
+                    ctx.json(item)
                 }
+                apiBuilderGet("/store/getOutput", "/store/0.2.0/getOutput") { ctx ->
+                    val id = ctx.queryParam("id")
+                    if (id == null || !id.matches(idRegex)) {
+                        return@apiBuilderGet ctx.badRequest()
+                    }
 
-                val multiIndexLine = index.findMulti(id) ?: return@apiBuilderGet ctx.notFound()
-                val indexLineIds = multiIndexLine.indexLineIds
-                val capabilitiesList = mutableListWithCapacity<Capabilities>(indexLineIds.size)
-                try {
-                    for (indexId in indexLineIds) {
-                        val indexLine = index.find(indexId) ?: continue
-                        val compressed = indexLine.compressed
-                        val outputId = indexLine.id
-                        val filePath = "$store/output/$outputId.json"
+                    val indexLine = index.findByOutput(id) ?: return@apiBuilderGet ctx.notFound()
+                    val compressed = indexLine.compressed
+                    val filePath = "$store/output/$id.json"
+
+                    try {
                         val text =
                             IO.readTextFromFile(filePath, compressed)
                                 ?: return@apiBuilderGet ctx.notFound()
                         val capabilities = Json.custom().decodeFromString<Capabilities>(text)
-                        capabilitiesList.add(capabilities)
+                        ctx.json(capabilities)
+                    } catch (ex: Exception) {
+                        ctx.internalError()
                     }
-                } catch (ex: Exception) {
-                    ctx.internalError()
                 }
-                val multiCapabilities =
-                    MultiCapabilities(
-                        capabilitiesList,
-                        multiIndexLine.description,
-                        multiIndexLine.id
-                    )
-                ctx.json(multiCapabilities)
+                apiBuilderGet("/store/getMultiOutput") { ctx ->
+                    val id = ctx.queryParam("id")
+                    if (id == null || !id.matches(idRegex)) {
+                        return@apiBuilderGet ctx.badRequest()
+                    }
+
+                    val multiIndexLine = index.findMulti(id) ?: return@apiBuilderGet ctx.notFound()
+                    val indexLineIds = multiIndexLine.indexLineIds
+                    val capabilitiesList = mutableListWithCapacity<Capabilities>(indexLineIds.size)
+                    try {
+                        for (indexId in indexLineIds) {
+                            val indexLine = index.find(indexId) ?: continue
+                            val compressed = indexLine.compressed
+                            val outputId = indexLine.id
+                            val filePath = "$store/output/$outputId.json"
+                            val text =
+                                IO.readTextFromFile(filePath, compressed)
+                                    ?: return@apiBuilderGet ctx.notFound()
+                            val capabilities = Json.custom().decodeFromString<Capabilities>(text)
+                            capabilitiesList.add(capabilities)
+                        }
+                    } catch (ex: Exception) {
+                        ctx.internalError()
+                    }
+                    val multiCapabilities =
+                        MultiCapabilities(
+                            capabilitiesList,
+                            multiIndexLine.description,
+                            multiIndexLine.id
+                        )
+                    ctx.json(multiCapabilities)
+                }
+                apiBuilderGet("/store/getInput", "/store/0.2.0/getInput") { ctx ->
+                    val id = ctx.queryParam("id")
+                    if (id == null || !id.matches(idRegex)) {
+                        return@apiBuilderGet ctx.badRequest()
+                    }
+
+                    val indexLine = index.findByInput(id) ?: return@apiBuilderGet ctx.notFound()
+                    val compressed = indexLine.compressed
+                    val filePath = "$store/input/$id"
+
+                    try {
+                        val bytes =
+                            IO.readBytesFromFile(filePath, compressed)
+                                ?: return@apiBuilderGet ctx.notFound()
+
+                        ctx.attachFile(bytes, id, ContentType.APPLICATION_OCTET_STREAM)
+                    } catch (ex: Exception) {
+                        ctx.internalError()
+                    }
+                }
             }
-            apiBuilderGet("/store/getInput", "/store/0.2.0/getInput") { ctx ->
-                val id = ctx.queryParam("id")
-                if (id == null || !id.matches(idRegex)) {
-                    return@apiBuilderGet ctx.badRequest()
-                }
 
-                val indexLine = index.findByInput(id) ?: return@apiBuilderGet ctx.notFound()
-                val compressed = indexLine.compressed
-                val filePath = "$store/input/$id"
-
-                try {
-                    val bytes =
-                        IO.readBytesFromFile(filePath, compressed)
-                            ?: return@apiBuilderGet ctx.notFound()
-
-                    ctx.attachFile(bytes, id, ContentType.APPLICATION_OCTET_STREAM)
-                } catch (ex: Exception) {
-                    ctx.internalError()
-                }
-            }
-
-            ApiBuilder.get("/version") { ctx ->
-                val version = Property.getProperty("project.version")
+            apiBuilderGet("/version") { ctx ->
+                val version = Config.getOrDefault("project.version", "")
                 val json = buildJsonObject { put("version", version) }
                 ctx.json(json)
+            }
+
+            apiBuilderGet("/status") { ctx ->
+                val version = Config.getOrDefault("project.version", "")
+                val logTypes = LogType.validEntries
+                val requestMaxSize = app.cfg.http.maxRequestSize
+                val status = ServerStatus(version, endpoints, logTypes, requestMaxSize)
+                ctx.json(status)
             }
         }
     }
@@ -271,7 +284,7 @@ class JavalinApp {
         index: LibraryIndex,
         compression: Boolean
     ) {
-        val parserVersion = Property.getProperty("project.version")
+        val parserVersion = Config.getOrDefault("project.version", "")
         val auto = strategy !== "force"
         val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 2)
         val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
@@ -338,12 +351,12 @@ class JavalinApp {
 
     private fun buildParseJsonRequest(
         vararg inputs: String,
-        type: String,
+        type: LogType,
         description: String?,
         defaultNR: Boolean
     ): JsonObject {
-        // We don't support more than 3 inputs for type H and 1 for others
-        val maxInputs = if (type == "H") 3 else 1
+        // We don't currently support more than 3 inputs for type H and 1 for others
+        val maxInputs = if (type == LogType.H) 3 else 1
         val inputSize = minOf(inputs.size, maxInputs)
 
         return buildJsonObject {
@@ -351,7 +364,7 @@ class JavalinApp {
                 val input = inputs[i]
                 if (i == 0) {
                     put("input", input)
-                } else if (i == 2 || i == 1 && type == "H" && defaultNR) {
+                } else if (i == 2 || i == 1 && type == LogType.H && defaultNR) {
                     put("inputENDC", input)
                 } else {
                     put("inputNR", input)
@@ -359,7 +372,7 @@ class JavalinApp {
             }
 
             description?.let { put("description", it) }
-            put("type", type)
+            put("type", type.name)
             put("defaultNR", defaultNR)
         }
     }
@@ -367,12 +380,14 @@ class JavalinApp {
     private fun apiBuilderGet(vararg paths: String, handler: Handler) {
         for (path in paths) {
             ApiBuilder.get(path, handler)
+            endpoints.add(path)
         }
     }
 
     private fun apiBuilderPost(vararg paths: String, handler: Handler) {
         for (path in paths) {
             ApiBuilder.post(path, handler)
+            endpoints.add(path)
         }
     }
 }

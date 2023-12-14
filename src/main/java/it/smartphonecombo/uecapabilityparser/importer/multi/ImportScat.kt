@@ -2,7 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer.multi
 
 import it.smartphonecombo.uecapabilityparser.extension.closeIgnoreException
 import it.smartphonecombo.uecapabilityparser.extension.deleteIgnoreException
-import it.smartphonecombo.uecapabilityparser.model.scat.ScatLogType
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import java.io.File
 import java.io.InputStream
@@ -12,16 +12,16 @@ import kotlinx.coroutines.launch
 
 object ImportScat : ImportMultiCapabilities {
 
-    override fun parse(input: InputStream): MultiParsing? = parse(input, ScatLogType.QMDL)
+    override fun parse(input: InputStream): MultiParsing? = parse(input, LogType.QMDL)
 
-    fun parse(input: InputStream, type: ScatLogType): MultiParsing? {
+    fun parse(input: InputStream, type: LogType): MultiParsing? {
         var result: MultiParsing? = null
         var tempLogFile: File? = null
         var tempPcapFile: File? = null
         var pcapInputStream: InputStream? = null
         try {
             val extension = type.name.lowercase()
-            val scatVendor = if (type == ScatLogType.SDM) "sec" else "qc"
+            val scatVendor = if (type == LogType.SDM) "sec" else "qc"
 
             tempLogFile = File.createTempFile("SCAT-", ".$extension")
             tempLogFile.writeBytes(input.readAllBytes())
@@ -38,7 +38,7 @@ object ImportScat : ImportMultiCapabilities {
                     tempPcapFile.path,
                 )
 
-            if (type != ScatLogType.SDM) {
+            if (type != LogType.SDM) {
                 args.add("-C")
                 args.add("--cacombos")
                 args.add("--disable-crc-check")
