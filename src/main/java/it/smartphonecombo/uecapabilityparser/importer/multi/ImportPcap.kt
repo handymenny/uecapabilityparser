@@ -19,6 +19,7 @@ import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.ppid
 import it.smartphonecombo.uecapabilityparser.extension.toHex
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.pcap.OsmoCoreLog
 import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapInfo
@@ -64,7 +65,7 @@ object ImportPcap : ImportMultiCapabilities {
                 distinctInputs
                     .map { it.data.map { packet -> packet.byteArray.toHex().toByteArray() } }
                     .toMutableList()
-            val typeList = List(inputsList.size) { "H" }.toMutableList()
+            val typeList = List(inputsList.size) { LogType.H }.toMutableList()
             val subTypesList =
                 inputsList
                     .map { List(it.size) { index -> arrayOf("LTE", "ENDC", "NR")[index] } }
@@ -78,13 +79,13 @@ object ImportPcap : ImportMultiCapabilities {
             val distinct0xB826 = b826.map { it.text }.distinct().joinToString("\n")
             if (distinct0xB826.isNotEmpty()) {
                 inputsList += listOf(distinct0xB826.toByteArray())
-                typeList += "QNR"
+                typeList += LogType.QNR
                 subTypesList += emptyList<List<String>>()
                 descriptions += "0xB826 packets from $srcName"
             }
             if (distinct0xB0Cd.isNotEmpty()) {
                 inputsList += listOf(distinct0xB0Cd.toByteArray())
-                typeList += "QLTE"
+                typeList += LogType.QLTE
                 subTypesList += emptyList<List<String>>()
                 descriptions += "0xB0CD packets from $srcName"
             }
@@ -95,7 +96,7 @@ object ImportPcap : ImportMultiCapabilities {
                     val (newInputs, newSubTypes) = processUeRatContainers(it)
 
                     if (newInputs.isNotEmpty()) {
-                        typeList += "H"
+                        typeList += LogType.H
                         inputsList += newInputs
                         subTypesList += newSubTypes
                         descriptions +=

@@ -18,6 +18,7 @@ import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.notFound
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -342,12 +343,12 @@ class JavalinApp {
 
     private fun buildParseJsonRequest(
         vararg inputs: String,
-        type: String,
+        type: LogType,
         description: String?,
         defaultNR: Boolean
     ): JsonObject {
-        // We don't support more than 3 inputs for type H and 1 for others
-        val maxInputs = if (type == "H") 3 else 1
+        // We don't currently support more than 3 inputs for type H and 1 for others
+        val maxInputs = if (type == LogType.H) 3 else 1
         val inputSize = minOf(inputs.size, maxInputs)
 
         return buildJsonObject {
@@ -355,7 +356,7 @@ class JavalinApp {
                 val input = inputs[i]
                 if (i == 0) {
                     put("input", input)
-                } else if (i == 2 || i == 1 && type == "H" && defaultNR) {
+                } else if (i == 2 || i == 1 && type == LogType.H && defaultNR) {
                     put("inputENDC", input)
                 } else {
                     put("inputNR", input)
@@ -363,7 +364,7 @@ class JavalinApp {
             }
 
             description?.let { put("description", it) }
-            put("type", type)
+            put("type", type.name)
             put("defaultNR", defaultNR)
         }
     }

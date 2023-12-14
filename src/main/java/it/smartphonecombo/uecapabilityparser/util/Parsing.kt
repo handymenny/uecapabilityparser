@@ -2,17 +2,11 @@ package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.getString
-import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CD
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
-import it.smartphonecombo.uecapabilityparser.importer.ImportLteCarrierPolicy
-import it.smartphonecombo.uecapabilityparser.importer.ImportMTKLte
-import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
-import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
-import it.smartphonecombo.uecapabilityparser.importer.ImportQctModemCap
-import it.smartphonecombo.uecapabilityparser.importer.ImportShannonNrUeCap
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
@@ -32,7 +26,7 @@ class Parsing(
     private val inputNR: ByteArray?,
     private val inputENDC: ByteArray?,
     private val defaultNR: Boolean = false,
-    private val type: String,
+    private val type: LogType,
     private val description: String = "",
     private val jsonFormat: Json = Json
 ) {
@@ -59,24 +53,7 @@ class Parsing(
     }
 
     private fun parseCapabilities(): Capabilities {
-        val imports =
-            when (type) {
-                "E" -> ImportNvItem
-                "C" -> ImportLteCarrierPolicy
-                "CNR" -> ImportNrCapPrune
-                "Q" -> Import0xB0CD
-                "QLTE" -> Import0xB0CDBin
-                "M" -> ImportMTKLte
-                "QNR" -> Import0xB826
-                "RF" -> ImportQctModemCap
-                "SHNR" -> ImportShannonNrUeCap
-                "W",
-                "N",
-                "O",
-                "QC",
-                "H" -> ImportCapabilityInformation
-                else -> return Capabilities()
-            }
+        val imports = LogType.getImporter(type) ?: return Capabilities()
 
         if (imports == Import0xB826) {
             return parseMultiple0xB826(input.decodeToString())
@@ -146,9 +123,9 @@ class Parsing(
                 }
             val defaultNR =
                 request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
-            val type = request.getString("type")
+            val type = LogType.of(request.getString("type"))
 
-            if (input == null && inputNR == null || type == null) {
+            if (input == null && inputNR == null || type == LogType.INVALID) {
                 return null
             }
 

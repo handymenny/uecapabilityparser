@@ -3,7 +3,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.UtilityForTests
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.model.scat.ScatLogType
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.util.IO
 import java.io.File
 import kotlinx.serialization.json.Json
@@ -17,25 +17,25 @@ internal class ImportScatTest {
 
     @Test
     fun testDLF() {
-        testLog(ScatLogType.DLF, "$path/input/uecap.dlf", "$path/oracle/uecap.dlf.json")
+        testLog(LogType.DLF, "$path/input/uecap.dlf", "$path/oracle/uecap.dlf.json")
     }
 
     @Test
     fun testQMDL() {
-        testLog(ScatLogType.QMDL, "$path/input/hwcombos.qmdl", "$path/oracle/hwcombos.qmdl.json")
+        testLog(LogType.QMDL, "$path/input/hwcombos.qmdl", "$path/oracle/hwcombos.qmdl.json")
     }
 
     @Test
     fun testHDF() {
-        testLog(ScatLogType.HDF, "$path/input/hwcombos.hdf", "$path/oracle/hwcombos.hdf.json")
+        testLog(LogType.HDF, "$path/input/hwcombos.hdf", "$path/oracle/hwcombos.hdf.json")
     }
 
     @Test
     fun testSDM() {
-        testLog(ScatLogType.SDM, "$path/input/uecap.sdm", "$path/oracle/uecap.sdm.json")
+        testLog(LogType.SDM, "$path/input/uecap.sdm", "$path/oracle/uecap.sdm.json")
     }
 
-    private fun testLog(scatLogType: ScatLogType, path: String, oracle: String) {
+    private fun testLog(scatLogType: LogType, path: String, oracle: String) {
         val multi = ImportScat.parse(File(path).inputStream(), scatLogType)
 
         val actual = multi?.parsingList?.map { it.capabilities }!!

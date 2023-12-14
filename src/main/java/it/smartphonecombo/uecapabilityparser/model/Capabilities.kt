@@ -30,7 +30,7 @@ data class Capabilities(
     @SerialName("endc") var enDcCombos: List<ComboEnDc> = emptyList(),
     @SerialName("nrca") var nrCombos: List<ComboNr> = emptyList(),
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),
-    @Required @SerialName("logType") var logType: String = "",
+    @Required @SerialName("logType") var logType: LogType = LogType.INVALID,
     @SerialName("ueCapFilters") var ueCapFilters: List<IUeCapabilityFilter> = emptyList(),
     @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf()
 ) {
