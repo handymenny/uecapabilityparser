@@ -2,10 +2,12 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.util.Config
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
 import org.junit.jupiter.api.AfterEach
@@ -17,6 +19,56 @@ internal class ServerModeOthersTest {
     private val parserVersion = Config.getOrDefault("project.version", "")
     private val openapi =
         {}.javaClass.getResourceAsStream("/swagger/openapi.json")?.reader()?.readText() ?: ""
+
+    private val endpoints =
+        listOf(
+            "/swagger",
+            "/parse",
+            "/parse/0.1.0",
+            "/parse/multi",
+            "/csv",
+            "/csv/0.1.0",
+            "/openapi",
+            "/swagger/openapi.json",
+            "/store/status",
+            "/store/0.2.0/status",
+            "/store/list",
+            "/store/0.2.0/list",
+            "/store/getItem",
+            "/store/0.2.0/getItem",
+            "/store/getMultiItem",
+            "/store/getOutput",
+            "/store/0.2.0/getOutput",
+            "/store/getMultiOutput",
+            "/store/getInput",
+            "/store/0.2.0/getInput",
+            "/version",
+            "/status",
+        )
+
+    private val logTypes =
+        listOf(
+                "H",
+                "W",
+                "N",
+                "C",
+                "CNR",
+                "E",
+                "Q",
+                "QLTE",
+                "QNR",
+                "M",
+                "O",
+                "QC",
+                "RF",
+                "SHNR",
+                "P",
+                "DLF",
+                "QMDL",
+                "HDF",
+                "SDM"
+            )
+            .map(LogType::of)
 
     @AfterEach
     fun tearDown() {
@@ -52,6 +104,21 @@ internal class ServerModeOthersTest {
     @Test
     fun testStoreSwaggerOpenApi() {
         getTest("/swagger/openapi.json", Json.parseToJsonElement(openapi))
+    }
+
+    @Test
+    fun testStatusStoreEnable() {
+        Config["store"] = "/store"
+        val status = ServerStatus(parserVersion, endpoints, logTypes, 268435456)
+        getTest("/status", Json.encodeToJsonElement(status))
+    }
+
+    @Test
+    fun testStatusStoreOff() {
+        val endpointsNoStore =
+            endpoints.filterNot { it.startsWith("/store") && !it.endsWith("status") }
+        val status = ServerStatus(parserVersion, endpointsNoStore, logTypes, 268435456)
+        getTest("/status", Json.encodeToJsonElement(status))
     }
 
     private fun getTest(url: String, oracle: JsonElement) {
