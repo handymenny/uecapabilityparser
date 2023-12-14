@@ -66,6 +66,7 @@ class JavalinApp {
         }
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
+    private val endpoints = mutableListOf<String>()
 
     val app: Javalin =
         Javalin.create { config ->
@@ -108,6 +109,7 @@ class JavalinApp {
         }
         app.routes {
             // Add / if missing
+            endpoints.add("/swagger")
             ApiBuilder.before("/swagger") { ctx ->
                 if (!ctx.path().endsWith("/")) {
                     ctx.redirect("/swagger/")
@@ -250,7 +252,7 @@ class JavalinApp {
                 }
             }
 
-            ApiBuilder.get("/version") { ctx ->
+            apiBuilderGet("/version") { ctx ->
                 val version = Config.getOrDefault("project.version", "")
                 val json = buildJsonObject { put("version", version) }
                 ctx.json(json)
@@ -369,12 +371,14 @@ class JavalinApp {
     private fun apiBuilderGet(vararg paths: String, handler: Handler) {
         for (path in paths) {
             ApiBuilder.get(path, handler)
+            endpoints.add(path)
         }
     }
 
     private fun apiBuilderPost(vararg paths: String, handler: Handler) {
         for (path in paths) {
             ApiBuilder.post(path, handler)
+            endpoints.add(path)
         }
     }
 }
