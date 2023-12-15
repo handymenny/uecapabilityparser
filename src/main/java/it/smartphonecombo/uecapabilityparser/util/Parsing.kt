@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
-import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
@@ -10,15 +9,14 @@ import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
+import it.smartphonecombo.uecapabilityparser.server.RequestParse
 import it.smartphonecombo.uecapabilityparser.util.ImportCapabilitiesHelpers.convertUeCapabilityToJson
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers.parseMultiple0xB826
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers.parseMultiple0xBOCD
 import java.time.Instant
-import java.util.Base64
 import kotlin.system.measureTimeMillis
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 
 class Parsing(
@@ -107,41 +105,21 @@ class Parsing(
     }
 
     companion object {
-        fun fromJsonRequest(request: JsonElement): Parsing? {
-            val base64decoder = Base64.getDecoder()
-            val input =
-                request.getString("input").takeUnless(String?::isNullOrEmpty)?.let {
-                    base64decoder.decode(it)
-                }
-            val inputNR =
-                request.getString("inputNR").takeUnless(String?::isNullOrEmpty)?.let {
-                    base64decoder.decode(it)
-                }
-            val inputENDC =
-                request.getString("inputENDC").takeUnless(String?::isNullOrEmpty)?.let {
-                    base64decoder.decode(it)
-                }
-            val defaultNR =
-                request.getString("defaultNR")?.let { it.toBoolean() } ?: (input == null)
-            val type = LogType.of(request.getString("type"))
+        fun fromRequest(req: RequestParse): Parsing? {
+            val defaultNR = req.defaultNR || req.input == null
 
-            if (input == null && inputNR == null || type == LogType.INVALID) {
+            if (req.input == null && req.inputNR == null || req.type == LogType.INVALID) {
                 return null
             }
 
-            val description = request.getString("description")
-
-            val parsing =
-                Parsing(
-                    input ?: inputNR!!,
-                    if (defaultNR) null else inputNR,
-                    inputENDC,
-                    defaultNR,
-                    type,
-                    description ?: ""
-                )
-
-            return parsing
+            return Parsing(
+                req.input ?: req.inputNR!!,
+                if (defaultNR) null else req.inputNR,
+                req.inputENDC,
+                defaultNR,
+                req.type,
+                req.description
+            )
         }
     }
 }

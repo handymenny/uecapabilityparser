@@ -29,7 +29,6 @@ import java.lang.reflect.Type
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -39,7 +38,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.serializer
@@ -112,12 +110,15 @@ class JavalinApp {
             }
 
             apiBuilderPost("/parse", "/parse/0.1.0") { ctx ->
-                val request = Json.parseToJsonElement(ctx.body())
-                val parsed =
-                    Parsing.fromJsonRequest(request) ?: return@apiBuilderPost ctx.badRequest()
-                ctx.json(parsed.capabilities)
-                if (store != null) {
-                    parsed.store(index, store, compression)
+                try {
+                    val request = ctx.bodyAsClass<RequestParse>()
+                    val parsed = Parsing.fromRequest(request)!!
+                    ctx.json(parsed.capabilities)
+                    if (store != null) {
+                        parsed.store(index, store, compression)
+                    }
+                } catch (_: Exception) {
+                    return@apiBuilderPost ctx.badRequest()
                 }
             }
             apiBuilderPost("/parse/multi") { ctx ->
@@ -287,8 +288,6 @@ class JavalinApp {
     }
 
     private fun reparseItem(indexLine: IndexLine, store: String, compression: Boolean) {
-        val base64 = Base64.getEncoder()
-
         try {
             val compressed = indexLine.compressed
             val capPath = "/output/${indexLine.id}.json"
@@ -303,28 +302,21 @@ class JavalinApp {
 
             val capabilities = Json.decodeFromString<Capabilities>(text)
             val inputMap =
-                indexLine.inputs.mapNotNull { input ->
-                    val path = "/input/$input"
-                    val bytes =
-                        IO.readAndMove(
-                            "$store$path",
-                            "$store/backup$path",
-                            compressed,
-                        )
-                    bytes?.let { base64.encodeToString(bytes) }
+                indexLine.inputs.mapNotNull {
+                    IO.readAndMove("$store/input/$it", "$store/backup/input/$it", compressed)
                 }
 
-            val json =
-                buildParseJsonRequest(
+            val request =
+                RequestParse.buildRequest(
                     *inputMap.toTypedArray(),
                     type = capabilities.logType,
                     description = indexLine.description,
                     defaultNR =
                         indexLine.defaultNR ||
-                            capabilities.lteBands.isEmpty() && capabilities.nrBands.isNotEmpty(),
+                            capabilities.lteBands.isEmpty() && capabilities.nrBands.isNotEmpty()
                 )
 
-            Parsing.fromJsonRequest(json)?.let {
+            Parsing.fromRequest(request)?.let {
                 // Reset capabilities id and timestamp
                 it.capabilities.id = capabilities.id
                 it.capabilities.timestamp = capabilities.timestamp
@@ -332,34 +324,6 @@ class JavalinApp {
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
-        }
-    }
-
-    private fun buildParseJsonRequest(
-        vararg inputs: String,
-        type: LogType,
-        description: String?,
-        defaultNR: Boolean
-    ): JsonObject {
-        // We don't currently support more than 3 inputs for type H and 1 for others
-        val maxInputs = if (type == LogType.H) 3 else 1
-        val inputSize = minOf(inputs.size, maxInputs)
-
-        return buildJsonObject {
-            for (i in 0 until inputSize) {
-                val input = inputs[i]
-                if (i == 0) {
-                    put("input", input)
-                } else if (i == 2 || i == 1 && type == LogType.H && defaultNR) {
-                    put("inputENDC", input)
-                } else {
-                    put("inputNR", input)
-                }
-            }
-
-            description?.let { put("description", it) }
-            put("type", type.name)
-            put("defaultNR", defaultNR)
         }
     }
 
