@@ -7,7 +7,7 @@ import io.javalin.http.ContentType
 import io.javalin.http.Context
 import io.javalin.http.Handler
 import io.javalin.http.HttpStatus
-import io.javalin.http.bodyAsClass
+import io.javalin.http.bodyStreamAsClass
 import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
 import it.smartphonecombo.uecapabilityparser.extension.attachFile
@@ -25,6 +25,7 @@ import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
+import java.io.InputStream
 import java.lang.reflect.Type
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -36,13 +37,15 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.json.put
 import kotlinx.serialization.serializer
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class, ExperimentalSerializationApi::class)
 class JavalinApp {
     private val jsonMapper =
         object : JsonMapper {
@@ -50,6 +53,12 @@ class JavalinApp {
                 @Suppress("UNCHECKED_CAST")
                 val deserializer = serializer(targetType) as KSerializer<T>
                 return Json.custom().decodeFromString(deserializer, json)
+            }
+
+            override fun <T : Any> fromJsonStream(json: InputStream, targetType: Type): T {
+                @Suppress("UNCHECKED_CAST")
+                val deserializer = serializer(targetType) as KSerializer<T>
+                return Json.custom().decodeFromStream(deserializer, json)
             }
 
             override fun toJsonString(obj: Any, type: Type): String {
@@ -111,7 +120,7 @@ class JavalinApp {
 
             apiBuilderPost("/parse", "/parse/0.1.0") { ctx ->
                 try {
-                    val request = ctx.bodyAsClass<RequestParse>()
+                    val request = ctx.bodyStreamAsClass<RequestParse>()
                     val parsed = Parsing.fromRequest(request)!!
                     ctx.json(parsed.capabilities)
                     if (store != null) {
@@ -123,7 +132,7 @@ class JavalinApp {
             }
             apiBuilderPost("/parse/multi") { ctx ->
                 try {
-                    val request = ctx.bodyAsClass<List<RequestMultiParse>>()
+                    val request = ctx.bodyStreamAsClass<List<RequestMultiParse>>()
                     val parsed = MultiParsing.fromRequest(request)!!
                     ctx.json(parsed.getMultiCapabilities())
                     if (store != null) {
@@ -135,7 +144,7 @@ class JavalinApp {
             }
             apiBuilderPost("/csv", "/csv/0.1.0") { ctx ->
                 try {
-                    val request = ctx.bodyAsClass<RequestCsv>()
+                    val request = ctx.bodyStreamAsClass<RequestCsv>()
                     val comboList = request.input
                     val type = request.type
                     val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
