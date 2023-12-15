@@ -58,3 +58,11 @@ class RequestParse(
         }
     }
 }
+
+@Serializable
+class RequestMultiParse(
+    val inputs: List<@Serializable(with = ByteArrayBase64Serializer::class) ByteArray>,
+    val type: LogType,
+    val subTypes: List<String> = emptyList(),
+    val description: String = ""
+)

@@ -122,12 +122,15 @@ class JavalinApp {
                 }
             }
             apiBuilderPost("/parse/multi") { ctx ->
-                val request = Json.parseToJsonElement(ctx.body())
-                val parsed =
-                    MultiParsing.fromJsonRequest(request) ?: return@apiBuilderPost ctx.badRequest()
-                ctx.json(parsed.getMultiCapabilities())
-                if (store != null) {
-                    parsed.store(index, store, compression)
+                try {
+                    val request = ctx.bodyAsClass<List<RequestMultiParse>>()
+                    val parsed = MultiParsing.fromRequest(request)!!
+                    ctx.json(parsed.getMultiCapabilities())
+                    if (store != null) {
+                        parsed.store(index, store, compression)
+                    }
+                } catch (_: Exception) {
+                    return@apiBuilderPost ctx.badRequest()
                 }
             }
             apiBuilderPost("/csv", "/csv/0.1.0") { ctx ->

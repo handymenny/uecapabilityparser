@@ -1,10 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.util
 
-import it.smartphonecombo.uecapabilityparser.extension.asArrayOrNull
 import it.smartphonecombo.uecapabilityparser.extension.commonPrefix
 import it.smartphonecombo.uecapabilityparser.extension.custom
-import it.smartphonecombo.uecapabilityparser.extension.getString
-import it.smartphonecombo.uecapabilityparser.extension.getStringList
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
@@ -13,11 +10,11 @@ import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
+import it.smartphonecombo.uecapabilityparser.server.RequestMultiParse
 import java.time.Instant
 import java.util.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
 
 class MultiParsing(
     private val inputsList: List<List<ByteArray>>,
@@ -124,32 +121,27 @@ class MultiParsing(
     }
 
     companion object {
-        fun fromJsonRequest(request: JsonElement): MultiParsing? {
-            val base64decoder = Base64.getDecoder()
+        fun fromRequest(reqList: List<RequestMultiParse>): MultiParsing? {
+            val inputsList: MutableList<List<ByteArray>> = mutableListWithCapacity(reqList.size)
+            val typeList: MutableList<LogType> = mutableListWithCapacity(reqList.size)
+            val subTypesList: MutableList<List<String>> = mutableListWithCapacity(reqList.size)
+            val descriptionList: MutableList<String> = mutableListWithCapacity(reqList.size)
 
-            val requestArray = request.asArrayOrNull() ?: return null
-            val inputsList: MutableList<List<ByteArray>> =
-                mutableListWithCapacity(requestArray.size)
-            val typeList: MutableList<LogType> = mutableListWithCapacity(requestArray.size)
-            val subTypesList: MutableList<List<String>> = mutableListWithCapacity(requestArray.size)
-            val descriptionList: MutableList<String> = mutableListWithCapacity(requestArray.size)
+            reqList.forEach { req ->
+                val inputs = req.inputs
+                val type = req.type
+                val subTypes = req.subTypes
+                val description = req.description
 
-            requestArray.forEach { req ->
-                val inputs =
-                    req.getStringList("inputs")?.map { base64 -> base64decoder.decode(base64) }
-                val type = req.getString("type")
-                val subTypes = req.getStringList("subTypes")
-                val description = req.getString("description")
-
-                if (inputs == null || type == null) {
-                    return@forEach
-                }
+                if (inputs.isEmpty() || type == LogType.INVALID) return@forEach
 
                 inputsList.add(inputs)
-                typeList.add(LogType.of(type))
-                subTypesList.add(subTypes ?: emptyList())
-                descriptionList.add(description?.trim() ?: "")
+                typeList.add(type)
+                subTypesList.add(subTypes)
+                descriptionList.add(description.trim())
             }
+
+            if (inputsList.isEmpty()) return null
 
             val uniqueDesc = descriptionList.distinct()
             val commonPrefix = uniqueDesc.commonPrefix(true).dropLastWhile { !it.isWhitespace() }
