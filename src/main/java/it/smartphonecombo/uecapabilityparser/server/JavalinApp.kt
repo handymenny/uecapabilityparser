@@ -7,11 +7,11 @@ import io.javalin.http.ContentType
 import io.javalin.http.Context
 import io.javalin.http.Handler
 import io.javalin.http.HttpStatus
-import io.javalin.http.bodyStreamAsClass
 import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
 import it.smartphonecombo.uecapabilityparser.extension.attachFile
 import it.smartphonecombo.uecapabilityparser.extension.badRequest
+import it.smartphonecombo.uecapabilityparser.extension.bodyAsClassEfficient
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
@@ -120,7 +120,7 @@ class JavalinApp {
 
             apiBuilderPost("/parse", "/parse/0.1.0") { ctx ->
                 try {
-                    val request = ctx.bodyStreamAsClass<RequestParse>()
+                    val request = ctx.bodyAsClassEfficient<RequestParse>()
                     val parsed = Parsing.fromRequest(request)!!
                     ctx.json(parsed.capabilities)
                     if (store != null) {
@@ -132,7 +132,7 @@ class JavalinApp {
             }
             apiBuilderPost("/parse/multi") { ctx ->
                 try {
-                    val request = ctx.bodyStreamAsClass<List<RequestMultiParse>>()
+                    val request = ctx.bodyAsClassEfficient<List<RequestMultiParse>>()
                     val parsed = MultiParsing.fromRequest(request)!!
                     ctx.json(parsed.getMultiCapabilities())
                     if (store != null) {
@@ -144,7 +144,7 @@ class JavalinApp {
             }
             apiBuilderPost("/csv", "/csv/0.1.0") { ctx ->
                 try {
-                    val request = ctx.bodyStreamAsClass<RequestCsv>()
+                    val request = ctx.bodyAsClassEfficient<RequestCsv>()
                     val comboList = request.input
                     val type = request.type
                     val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
