@@ -7,23 +7,18 @@ import io.javalin.http.ContentType
 import io.javalin.http.Context
 import io.javalin.http.Handler
 import io.javalin.http.HttpStatus
+import io.javalin.http.bodyAsClass
 import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
 import it.smartphonecombo.uecapabilityparser.extension.attachFile
 import it.smartphonecombo.uecapabilityparser.extension.badRequest
 import it.smartphonecombo.uecapabilityparser.extension.custom
-import it.smartphonecombo.uecapabilityparser.extension.getArray
-import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.notFound
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
-import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
-import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
-import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
-import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
@@ -46,7 +41,6 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.put
 import kotlinx.serialization.serializer
 
@@ -136,27 +130,19 @@ class JavalinApp {
                 }
             }
             apiBuilderPost("/csv", "/csv/0.1.0") { ctx ->
-                val request = Json.parseToJsonElement(ctx.body())
-                val type = request.getString("type")
-                val input = request.getArray("input")
-
-                if (input == null || type == null) {
+                try {
+                    val request = ctx.bodyAsClass<RequestCsv>()
+                    val comboList = request.input
+                    val type = request.type
+                    val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
+                    ctx.attachFile(
+                        IO.toCsv(comboList).toByteArray(),
+                        "${type}-${date}.csv",
+                        ContentType.TEXT_CSV
+                    )
+                } catch (_: Exception) {
                     return@apiBuilderPost ctx.badRequest()
                 }
-                val comboList =
-                    when (type) {
-                        "lteca" -> Json.decodeFromJsonElement<List<ComboLte>>(input)
-                        "endc" -> Json.decodeFromJsonElement<List<ComboEnDc>>(input)
-                        "nrca" -> Json.decodeFromJsonElement<List<ComboNr>>(input)
-                        "nrdc" -> Json.decodeFromJsonElement<List<ComboNrDc>>(input)
-                        else -> emptyList()
-                    }
-                val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
-                ctx.attachFile(
-                    IO.toCsv(comboList).toByteArray(),
-                    "${type}-${date}.csv",
-                    ContentType.TEXT_CSV
-                )
             }
 
             apiBuilderGet("/openapi", "/swagger/openapi.json", handler = ::getOpenApi)
