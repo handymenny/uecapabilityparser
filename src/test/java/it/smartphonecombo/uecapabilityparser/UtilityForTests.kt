@@ -6,6 +6,12 @@ import java.nio.file.Path
 import java.util.stream.Collectors
 import kotlin.io.path.Path
 import kotlin.math.abs
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
+import okhttp3.MultipartBody
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.asRequestBody
 
 object UtilityForTests {
 
@@ -58,5 +64,24 @@ object UtilityForTests {
         } catch (ignored: Exception) {
             false
         }
+    }
+
+    internal fun multiPartRequest(url: String, json: JsonElement, files: List<String>): Request {
+
+        val bodyBuilder =
+            MultipartBody.Builder().apply {
+                setType(MultipartBody.FORM)
+                addFormDataPart("requests", Json.encodeToString(json))
+                files.forEach {
+                    val file = File(it)
+                    addFormDataPart("file", file.name, file.asRequestBody())
+                }
+            }
+        val reqBuilder =
+            Request.Builder().apply {
+                url(url)
+                post(bodyBuilder.build())
+            }
+        return reqBuilder.build()
     }
 }
