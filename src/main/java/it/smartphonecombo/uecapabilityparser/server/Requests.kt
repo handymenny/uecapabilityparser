@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.server
 
+import io.javalin.http.UploadedFile
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayBase64Serializer
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
@@ -66,3 +67,17 @@ class RequestMultiParse(
     val subTypes: List<String> = emptyList(),
     val description: String = ""
 )
+
+@Serializable
+class RequestMultiPart(
+    val inputIndexes: List<Int>,
+    val type: LogType,
+    val subTypes: List<String> = emptyList(),
+    val description: String = ""
+) {
+    fun toRequestMultiParse(files: List<UploadedFile>): RequestMultiParse {
+        val newInputs =
+            inputIndexes.map { index -> files[index].contentAndClose { it.readAllBytes() } }
+        return RequestMultiParse(newInputs, type, subTypes, description)
+    }
+}

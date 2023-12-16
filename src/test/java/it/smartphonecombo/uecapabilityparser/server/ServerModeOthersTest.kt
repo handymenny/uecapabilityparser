@@ -26,6 +26,7 @@ internal class ServerModeOthersTest {
             "/parse",
             "/parse/0.1.0",
             "/parse/multi",
+            "/parse/multiPart",
             "/csv",
             "/csv/0.1.0",
             "/openapi",

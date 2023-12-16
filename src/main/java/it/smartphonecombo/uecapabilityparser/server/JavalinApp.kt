@@ -75,6 +75,9 @@ class JavalinApp {
             config.compression.gzipOnly(4)
             config.http.prefer405over404 = true
             config.http.maxRequestSize = 256L * SizeUnit.MB.multiplier
+            config.jetty.multipartConfig.maxFileSize(256, SizeUnit.MB)
+            config.jetty.multipartConfig.maxTotalRequestSize(256, SizeUnit.MB)
+            config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
             config.routing.treatMultipleSlashesAsSingleSlash = true
             config.jsonMapper(jsonMapper)
             config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
@@ -134,6 +137,22 @@ class JavalinApp {
                 try {
                     val request = ctx.bodyAsClassEfficient<List<RequestMultiParse>>()
                     val parsed = MultiParsing.fromRequest(request)!!
+                    ctx.json(parsed.getMultiCapabilities())
+                    if (store != null) {
+                        parsed.store(index, store, compression)
+                    }
+                } catch (_: Exception) {
+                    return@apiBuilderPost ctx.badRequest()
+                }
+            }
+            apiBuilderPost("/parse/multiPart") { ctx ->
+                try {
+                    val requestsStr = ctx.formParam("requests")!!
+                    val requestsJson =
+                        Json.custom().decodeFromString<List<RequestMultiPart>>(requestsStr)
+                    val files = ctx.uploadedFiles()
+                    val requestMultiParse = requestsJson.map { it.toRequestMultiParse(files) }
+                    val parsed = MultiParsing.fromRequest(requestMultiParse)!!
                     ctx.json(parsed.getMultiCapabilities())
                     if (store != null) {
                         parsed.store(index, store, compression)
