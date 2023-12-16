@@ -137,7 +137,7 @@ class MultiParsing(
 
                 inputsList.add(inputs)
                 typeList.add(type)
-                subTypesList.add(subTypes)
+                if (type == LogType.H) subTypesList.add(subTypes)
                 descriptionList.add(description.trim())
             }
 
