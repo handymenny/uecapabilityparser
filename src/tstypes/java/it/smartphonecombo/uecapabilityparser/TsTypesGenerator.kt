@@ -34,7 +34,9 @@ internal object TsTypesGenerator {
                 RequestMultiParse.serializer(),
                 RequestMultiPart.serializer()
             )
-        IO.outputFileOrStdout(warning + typescriptDefinitions, "uecapabilityparser.d.ts")
+        val tsDefFixed =
+            typescriptDefinitions.replace(" = \"\"", "INVALID = \"\"") // fix empty enum
+        IO.outputFileOrStdout(warning + tsDefFixed, "uecapabilityparser.d.ts")
         println("Typescript definitions exported to uecapabilityparser.d.ts")
     }
 }
