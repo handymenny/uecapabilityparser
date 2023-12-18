@@ -17,6 +17,7 @@ import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
 import com.github.ajalt.clikt.parameters.types.int
+import com.github.ajalt.clikt.parameters.types.long
 import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
@@ -214,11 +215,17 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
 
     private val store by StoreOptions().cooccurring()
 
+    private val maxRequestSize by
+        option("-m", "--max-request-size", metavar = "Bytes", help = HelpMessage.MAX_REQUEST_SIZE)
+            .long()
+            .default(256 * 1000 * 1000)
+
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
     override fun run() {
         // Set debug
         if (debug) Config["debug"] = debug.toString()
+        Config["maxRequestSize"] = maxRequestSize.toString()
 
         // Process store
         store?.let {
@@ -244,10 +251,12 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
                 .trimMargin()
 
         val features = mutableListOf<String>()
+        features += "max request size ${maxRequestSize/(1000.0 * 1000.0)}MB"
         if (Config["debug"].toBoolean()) features += "debug"
         if (store != null) features += "store"
         if (Config["compression"].toBoolean()) features += "compression"
-        if (Config["reparse"] != "off") features += "reparse=${Config["reparse"]}"
+        if (Config.getOrDefault("reparse", "off") != "off")
+            features += "reparse ${Config["reparse"]}"
 
         val featuresString =
             if (features.isNotEmpty()) {

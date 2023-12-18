@@ -6,7 +6,6 @@ import io.javalin.http.Context
 import io.javalin.http.HttpStatus
 import io.javalin.http.bodyAsClass
 import io.javalin.http.bodyStreamAsClass
-import io.javalin.http.servlet.throwContentTooLargeIfContentTooLarge
 
 internal fun Context.badRequest(message: String = "Bad Request") {
     result(message)
@@ -30,13 +29,8 @@ internal fun Context.attachFile(data: ByteArray, filename: String, contentType: 
         .header("Access-Control-Expose-Headers", "Content-Disposition")
 }
 
-/**
- * Use bodyStreamAsClass for body > 1MiB, bodyAsClass for body <= 1MiB.
- *
- * Throw ContentTooLarge if content size is above max size.
- */
+/** Use bodyStreamAsClass for body > 1MiB, bodyAsClass for body <= 1MiB. */
 internal inline fun <reified T : Any> Context.bodyAsClassEfficient(): T {
-    throwContentTooLargeIfContentTooLarge()
     return if (req().contentLengthLong > SizeUnit.MB.multiplier) {
         bodyStreamAsClass<T>()
     } else {
