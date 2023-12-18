@@ -70,15 +70,18 @@ class JavalinApp {
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
     private val endpoints = mutableListOf<String>()
-
+    private val maxRequestSize = Config["maxRequestSize"]?.toLong() ?: (256 * 1000 * 1000)
     val app: Javalin =
         Javalin.create { config ->
             config.compression.gzipOnly(4)
             config.http.prefer405over404 = true
-            config.http.maxRequestSize = 256L * SizeUnit.MB.multiplier
-            config.jetty.multipartConfig.maxFileSize(256, SizeUnit.MB)
-            config.jetty.multipartConfig.maxTotalRequestSize(256, SizeUnit.MB)
+
+            // align all request size limits
+            config.http.maxRequestSize = maxRequestSize
+            config.jetty.multipartConfig.maxFileSize(maxRequestSize, SizeUnit.BYTES)
+            config.jetty.multipartConfig.maxTotalRequestSize(maxRequestSize, SizeUnit.MB)
             config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
+
             config.routing.treatMultipleSlashesAsSingleSlash = true
             config.jsonMapper(jsonMapper)
             config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
