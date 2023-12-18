@@ -7,6 +7,7 @@ import io.javalin.http.ContentType
 import io.javalin.http.Context
 import io.javalin.http.Handler
 import io.javalin.http.HttpStatus
+import io.javalin.http.servlet.throwContentTooLargeIfContentTooLarge
 import io.javalin.http.staticfiles.Location
 import io.javalin.json.JsonMapper
 import it.smartphonecombo.uecapabilityparser.extension.attachFile
@@ -113,8 +114,10 @@ class JavalinApp {
             }
         }
         app.routes {
-            // Add / if missing
+            ApiBuilder.before { ctx -> ctx.throwContentTooLargeIfContentTooLarge() }
+
             endpoints.add("/swagger")
+            // Add / if missing
             ApiBuilder.before("/swagger") { ctx ->
                 if (!ctx.path().endsWith("/")) {
                     ctx.redirect("/swagger/")
