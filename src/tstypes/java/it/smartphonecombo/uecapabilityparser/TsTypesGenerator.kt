@@ -5,7 +5,6 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.server.RequestCsv
-import it.smartphonecombo.uecapabilityparser.server.RequestMultiParse
 import it.smartphonecombo.uecapabilityparser.server.RequestMultiPart
 import it.smartphonecombo.uecapabilityparser.server.RequestParse
 import it.smartphonecombo.uecapabilityparser.server.ServerStatus
@@ -31,7 +30,6 @@ internal object TsTypesGenerator {
                 ServerStatus.serializer(),
                 RequestCsv.serializer(),
                 RequestParse.serializer(),
-                RequestMultiParse.serializer(),
                 RequestMultiPart.serializer()
             )
         val tsDefFixed =

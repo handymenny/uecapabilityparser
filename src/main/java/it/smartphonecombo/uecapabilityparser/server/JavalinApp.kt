@@ -148,8 +148,7 @@ class JavalinApp {
                     val requestsJson =
                         Json.custom().decodeFromString<List<RequestMultiPart>>(requestsStr)
                     val files = ctx.uploadedFiles()
-                    val requestMultiParse = requestsJson.map { it.toRequestMultiParse(files) }
-                    val parsed = MultiParsing.fromRequest(requestMultiParse)!!
+                    val parsed = MultiParsing.fromRequest(requestsJson, files)!!
                     ctx.json(parsed.getMultiCapabilities())
                     if (store != null) {
                         parsed.store(index, store, compression)

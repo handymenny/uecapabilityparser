@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import io.javalin.http.UploadedFile
 import it.smartphonecombo.uecapabilityparser.extension.commonPrefix
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
@@ -10,7 +11,7 @@ import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
-import it.smartphonecombo.uecapabilityparser.server.RequestMultiParse
+import it.smartphonecombo.uecapabilityparser.server.RequestMultiPart
 import java.time.Instant
 import java.util.*
 import kotlinx.serialization.encodeToString
@@ -121,14 +122,17 @@ class MultiParsing(
     }
 
     companion object {
-        fun fromRequest(reqList: List<RequestMultiParse>): MultiParsing? {
+        fun fromRequest(reqList: List<RequestMultiPart>, files: List<UploadedFile>): MultiParsing? {
             val inputsList: MutableList<List<ByteArray>> = mutableListWithCapacity(reqList.size)
             val typeList: MutableList<LogType> = mutableListWithCapacity(reqList.size)
             val subTypesList: MutableList<List<String>> = mutableListWithCapacity(reqList.size)
             val descriptionList: MutableList<String> = mutableListWithCapacity(reqList.size)
 
             reqList.forEach { req ->
-                val inputs = req.inputs
+                val inputs =
+                    req.inputIndexes.map { index ->
+                        files[index].contentAndClose { it.readBytes() }
+                    }
                 val type = req.type
                 val subTypes = req.subTypes
                 val description = req.description
