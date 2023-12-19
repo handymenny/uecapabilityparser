@@ -61,8 +61,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -75,8 +74,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -128,8 +126,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -155,8 +152,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -208,8 +204,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -235,8 +230,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -288,8 +282,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -315,8 +308,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -381,8 +373,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -395,8 +386,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -461,8 +451,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -475,8 +464,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -541,8 +529,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -555,8 +542,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -608,8 +594,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -635,8 +620,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -688,8 +672,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -715,8 +698,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -768,8 +750,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -795,8 +776,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -833,86 +813,6 @@
                     "mimoDl": {
                         "type": "single",
                         "value": 2
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "bwClassUl": "G",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxScs": 120,
-                    "maxBwDl": {
-                        "type": "single",
-                        "value": 100
-                    },
-                    "maxBwUl": {
-                        "type": "single",
-                        "value": 100
-                    },
-                    "maxBw": 100
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxScs": 120,
-                    "maxBwDl": {
-                        "type": "single",
-                        "value": 100
-                    },
-                    "maxBw": 100
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                },
-                {
-                    "band": 5,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
                     }
                 }
             ],
@@ -941,8 +841,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -955,8 +854,85 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
+                    }
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 5,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
                     },
-                    "maxBw": 100
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "bwClassUl": "G",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    }
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    }
                 }
             ]
         },
@@ -1008,8 +984,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1035,8 +1010,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1088,8 +1062,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1115,8 +1088,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1181,8 +1153,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1195,8 +1166,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1261,8 +1231,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1275,8 +1244,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1341,8 +1309,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1355,8 +1322,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1421,8 +1387,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1435,8 +1400,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1501,8 +1465,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1515,8 +1478,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1581,8 +1543,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1595,8 +1556,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1661,8 +1621,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1675,8 +1634,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1728,8 +1686,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1755,8 +1712,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1808,8 +1764,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1835,8 +1790,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1888,8 +1842,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1915,8 +1868,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -1968,8 +1920,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -1995,8 +1946,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2048,8 +1998,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2075,8 +2024,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2141,8 +2089,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2155,8 +2102,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2221,8 +2167,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2235,8 +2180,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2301,8 +2245,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2315,8 +2258,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2381,8 +2323,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2395,8 +2336,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2461,8 +2401,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2475,8 +2414,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2528,8 +2466,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2555,8 +2492,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2608,8 +2544,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2635,8 +2570,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2688,8 +2622,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2715,8 +2648,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2768,8 +2700,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2795,8 +2726,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2848,8 +2778,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2875,8 +2804,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -2941,8 +2869,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -2955,8 +2882,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3021,8 +2947,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3035,8 +2960,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3101,8 +3025,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3115,8 +3038,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3181,8 +3103,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3195,8 +3116,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3261,8 +3181,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3275,8 +3194,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3328,8 +3246,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3355,8 +3272,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3408,8 +3324,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3435,8 +3350,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3488,8 +3402,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3515,8 +3428,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3568,8 +3480,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3595,8 +3506,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3648,8 +3558,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3675,8 +3584,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3705,86 +3613,6 @@
                     "mimoDl": {
                         "type": "single",
                         "value": 2
-                    }
-                },
-                {
-                    "band": 2,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
-                    }
-                }
-            ],
-            "componentsNr": [
-                {
-                    "band": 261,
-                    "bwClassDl": "H",
-                    "bwClassUl": "G",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    },
-                    "maxScs": 120,
-                    "maxBwDl": {
-                        "type": "single",
-                        "value": 100
-                    },
-                    "maxBwUl": {
-                        "type": "single",
-                        "value": 100
-                    },
-                    "maxBw": 100
-                },
-                {
-                    "band": 261,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "maxScs": 120,
-                    "maxBwDl": {
-                        "type": "single",
-                        "value": 100
-                    },
-                    "maxBw": 100
-                }
-            ]
-        },
-        {
-            "componentsLte": [
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "bwClassUl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 2
-                    },
-                    "mimoUl": {
-                        "type": "single",
-                        "value": 1
-                    },
-                    "modulationUl": {
-                        "type": "single",
-                        "value": "qam256"
-                    }
-                },
-                {
-                    "band": 66,
-                    "bwClassDl": "A",
-                    "mimoDl": {
-                        "type": "single",
-                        "value": 4
                     }
                 },
                 {
@@ -3821,8 +3649,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3835,8 +3662,85 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
+                    }
+                }
+            ]
+        },
+        {
+            "componentsLte": [
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
                     },
-                    "maxBw": 100
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    }
+                },
+                {
+                    "band": 66,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                },
+                {
+                    "band": 2,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 4
+                    }
+                }
+            ],
+            "componentsNr": [
+                {
+                    "band": 261,
+                    "bwClassDl": "H",
+                    "bwClassUl": "G",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 100
+                    }
+                },
+                {
+                    "band": 261,
+                    "bwClassDl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "maxScs": 120,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 100
+                    }
                 }
             ]
         },
@@ -3901,8 +3805,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3915,8 +3818,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -3968,8 +3870,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -3995,8 +3896,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4048,8 +3948,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4075,8 +3974,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4128,8 +4026,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4155,8 +4052,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4221,8 +4117,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4235,8 +4130,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4301,8 +4195,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4315,8 +4208,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4381,8 +4273,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4395,8 +4286,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4453,8 +4343,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4467,8 +4356,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4512,8 +4400,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4539,8 +4426,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4597,8 +4483,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4611,8 +4496,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4656,8 +4540,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4683,8 +4566,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4741,8 +4623,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4755,8 +4636,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4800,8 +4680,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4827,8 +4706,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4893,8 +4771,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4907,8 +4784,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -4973,8 +4849,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -4987,8 +4862,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5053,8 +4927,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5067,8 +4940,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5133,8 +5005,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5147,8 +5018,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5213,8 +5083,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5227,8 +5096,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5293,8 +5161,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5307,8 +5174,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5373,8 +5239,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5387,8 +5252,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5453,8 +5317,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5467,8 +5330,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5520,8 +5382,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5547,8 +5408,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5600,8 +5460,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5627,8 +5486,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5680,8 +5538,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5707,8 +5564,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5760,8 +5616,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5787,8 +5642,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5840,8 +5694,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5867,8 +5720,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -5920,8 +5772,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -5947,8 +5798,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6013,8 +5863,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6027,8 +5876,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6093,8 +5941,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6107,8 +5954,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6173,8 +6019,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6187,8 +6032,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6253,8 +6097,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6267,8 +6110,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6333,8 +6175,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6347,8 +6188,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6413,8 +6253,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6427,8 +6266,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6480,8 +6318,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6507,8 +6344,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6560,8 +6396,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6587,8 +6422,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6640,8 +6474,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6667,8 +6500,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6720,8 +6552,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6747,8 +6578,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6800,8 +6630,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6827,8 +6656,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6880,8 +6708,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6907,8 +6734,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -6973,8 +6799,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -6987,8 +6812,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7053,8 +6877,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7067,8 +6890,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7133,8 +6955,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7147,8 +6968,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7213,8 +7033,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7227,8 +7046,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7293,8 +7111,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7307,8 +7124,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7373,8 +7189,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7387,8 +7202,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7440,8 +7254,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7467,8 +7280,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7520,8 +7332,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7547,8 +7358,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7600,8 +7410,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7627,8 +7436,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7680,8 +7488,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7707,8 +7514,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7760,8 +7566,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7787,8 +7592,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7840,8 +7644,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7867,8 +7670,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         },
@@ -7933,8 +7735,7 @@
                     "maxBwUl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 },
                 {
                     "band": 261,
@@ -7947,8 +7748,7 @@
                     "maxBwDl": {
                         "type": "single",
                         "value": 100
-                    },
-                    "maxBw": 100
+                    }
                 }
             ]
         }
