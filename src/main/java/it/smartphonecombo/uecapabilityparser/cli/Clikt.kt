@@ -80,7 +80,7 @@ object Cli :
             }
 
     private val subTypesList by
-        option("--subTypes", help = HelpMessage.SUBTYPES)
+        option("--sub-types", help = HelpMessage.SUBTYPES)
             .choice("LTE", "ENDC", "NR", ignoreCase = true)
             .split("""\s*,\s*""".toRegex())
             .multiple()

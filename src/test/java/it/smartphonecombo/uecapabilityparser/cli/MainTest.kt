@@ -485,7 +485,7 @@ internal class MainTest {
                 "$path/input/ueCapHexEutra.hex",
                 "-t",
                 "H",
-                "--subTypes",
+                "--sub-types",
                 "LTE",
                 "-c",
                 "-",
@@ -505,7 +505,7 @@ internal class MainTest {
                 "$path/input/ueCapHexEutra.hex",
                 "-t",
                 "H",
-                "--subTypes",
+                "--sub-types",
                 "LTE",
                 "-l",
                 "-"
@@ -523,7 +523,7 @@ internal class MainTest {
                 "$path/input/ueCapHexNr.hex",
                 "-t",
                 "H",
-                "--subTypes",
+                "--sub-types",
                 "NR",
                 "-c",
                 "-"
@@ -541,7 +541,7 @@ internal class MainTest {
                 "$path/input/ueCapHexNr.hex",
                 "-t",
                 "H",
-                "--subTypes",
+                "--sub-types",
                 "NR",
                 "-l",
                 "-"
@@ -559,7 +559,7 @@ internal class MainTest {
                 "$path/input/ueCapHexMrdcSplit_eutra.hex, $path/input/ueCapHexMrdcSplit_nr.hex, $path/input/ueCapHexMrdcSplit_eutra-nr.hex",
                 "-t",
                 "H",
-                "--subTypes",
+                "--sub-types",
                 "LTE,NR,ENDC",
                 "-c",
                 "-"
@@ -577,7 +577,7 @@ internal class MainTest {
                 "$path/input/ueCapHexMrdcSplit_eutra.hex, $path/input/ueCapHexMrdcSplit_nr.hex, $path/input/ueCapHexMrdcSplit_eutra-nr.hex",
                 "-t",
                 "H",
-                "--subTypes",
+                "--sub-types",
                 "LTE,NR,ENDC",
                 "-l",
                 "-"
