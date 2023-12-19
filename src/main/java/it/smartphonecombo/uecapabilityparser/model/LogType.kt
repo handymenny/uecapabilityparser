@@ -15,27 +15,27 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class LogType {
-    @SerialName("") INVALID,
-    H,
-    W,
-    N,
-    C,
-    CNR,
-    E,
-    Q,
-    QLTE,
-    QNR,
-    M,
-    O,
-    QC,
-    RF,
-    SHNR,
-    P,
-    DLF,
-    QMDL,
-    HDF,
-    SDM;
+enum class LogType(val description: String) {
+    @SerialName("") INVALID(""),
+    H("UE Capability Hex Dump"),
+    W("Wireshark UE Capability Information"),
+    N("NSG UE Capability Information"),
+    C("Carrier policy"),
+    CNR("NR Cap Prune"),
+    E("28874 nvitem binary"),
+    Q("QCAT 0xB0CD"),
+    QLTE("0xB0CD hexdump"),
+    QNR("0xB826 hexdump"),
+    M("MEDIATEK CA_COMB_INFO"),
+    O("OSIX UE Capability Information"),
+    QC("QCAT UE Capability Information"),
+    RF("QCT Modem Capabilities"),
+    SHNR("Shannon NR UE Cap Config Protobuf"),
+    P("PCAP"),
+    DLF("DLF baseband log"),
+    QMDL("QMDL baseband log"),
+    HDF("HDF baseband log"),
+    SDM("SDM baseband log");
 
     companion object {
         /** All entries except invalid ones */
