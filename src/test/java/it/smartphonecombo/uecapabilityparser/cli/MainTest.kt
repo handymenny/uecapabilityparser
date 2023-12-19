@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
-import it.smartphonecombo.uecapabilityparser.UtilityForTests
+import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -517,7 +517,7 @@ internal class MainTest {
 
     @Test
     fun mainMultiScatCsv() {
-        Assumptions.assumeTrue(UtilityForTests.scatIsAvailable())
+        Assumptions.assumeTrue(ImportScat.isScatAvailable())
         mainTest(
             arrayOf(
                 "cli",

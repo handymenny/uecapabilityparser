@@ -10,6 +10,7 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.ImportQctModemCap
 import it.smartphonecombo.uecapabilityparser.importer.ImportShannonNrUeCap
+import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat.isScatAvailable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -37,16 +38,22 @@ enum class LogType {
     SDM;
 
     companion object {
-        /** All entries except [INVALID] */
-        val validEntries = entries.drop(1)
+        /** All entries except invalid ones */
+        val validEntries =
+            if (isScatAvailable()) {
+                entries.drop(1)
+            } else {
+                System.err.println("Warning: scat not available, scat log types disabled")
+                entries.drop(1).dropLast(4)
+            }
         /** Name of all entries except [INVALID] */
         val names = validEntries.map { it.name }.toTypedArray()
         /** Entries that only supports LTE-CA */
         val lteOnlyTypes = listOf(C, E, Q, QLTE, M, RF)
         /** One input -> multi capabilities * */
-        val multiImporter = listOf(P, DLF, QMDL, HDF, SDM)
+        val multiImporter = validEntries.intersect(listOf(P, DLF, QMDL, HDF, SDM))
         /** One input -> multi or single capability * */
-        val singleInput = listOf(E, SHNR, P, DLF, QMDL, HDF, SDM)
+        val singleInput = validEntries.intersect(listOf(E, SHNR, P, DLF, QMDL, HDF, SDM))
 
         /** Return [INVALID] if conversion fails * */
         fun of(string: String?): LogType {
