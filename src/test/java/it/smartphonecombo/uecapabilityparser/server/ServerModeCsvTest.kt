@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 internal class ServerModeCsvTest {
     private val path = "src/test/resources/server"
     private val app = JavalinApp().app
-    private val endpoint = arrayOf("/csv/0.1.0/", "/csv/", "/csv/0.1.0", "/csv").random()
+    private val endpoint = arrayOf("/csv/", "/csv").random()
 
     @Test
     fun lteCaCsvConversion() {

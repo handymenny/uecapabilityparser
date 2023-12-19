@@ -24,25 +24,18 @@ internal class ServerModeOthersTest {
         listOf(
             "/swagger",
             "/parse",
-            "/parse/0.1.0",
             "/parse/multi",
             "/parse/multiPart",
             "/csv",
-            "/csv/0.1.0",
             "/openapi",
             "/swagger/openapi.json",
             "/store/status",
-            "/store/0.2.0/status",
             "/store/list",
-            "/store/0.2.0/list",
             "/store/getItem",
-            "/store/0.2.0/getItem",
             "/store/getMultiItem",
             "/store/getOutput",
-            "/store/0.2.0/getOutput",
             "/store/getMultiOutput",
             "/store/getInput",
-            "/store/0.2.0/getInput",
             "/version",
             "/status",
         )
@@ -85,14 +78,7 @@ internal class ServerModeOthersTest {
     @Test
     fun testStoreEnabled() {
         Config["store"] = "/store"
-        val endpoint =
-            arrayOf(
-                    "/store/0.2.0/status/",
-                    "/store/status/",
-                    "/store/0.2.0/status",
-                    "/store/status"
-                )
-                .random()
+        val endpoint = arrayOf("/store/status/", "/store/status").random()
         getTest(endpoint, buildJsonObject { put("enabled", true) })
     }
 
