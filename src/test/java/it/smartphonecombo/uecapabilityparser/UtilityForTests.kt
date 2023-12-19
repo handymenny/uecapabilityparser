@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser
 
+import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
@@ -74,4 +75,6 @@ object UtilityForTests {
             }
         return reqBuilder.build()
     }
+
+    val scatAvailable = ImportScat.isScatAvailable()
 }
