@@ -330,7 +330,7 @@ class JavalinApp {
                     ?.decodeToString()
                     ?: return
 
-            val capabilities = Json.decodeFromString<Capabilities>(text)
+            val capabilities = Json.custom().decodeFromString<Capabilities>(text)
             val inputMap =
                 indexLine.inputs.mapNotNull {
                     IO.readAndMove("$store/input/$it", "$store/backup/input/$it", compressed)
