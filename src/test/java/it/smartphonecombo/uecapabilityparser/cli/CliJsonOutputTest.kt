@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
-import it.smartphonecombo.uecapabilityparser.UtilityForTests
+import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -544,7 +544,7 @@ internal class CliJsonOutputTest {
 
     @Test
     fun mainMultiScatJsonOutput() {
-        Assumptions.assumeTrue(UtilityForTests.scatIsAvailable())
+        Assumptions.assumeTrue(ImportScat.isScatAvailable())
         cliTest(
             arrayOf(
                 "cli",

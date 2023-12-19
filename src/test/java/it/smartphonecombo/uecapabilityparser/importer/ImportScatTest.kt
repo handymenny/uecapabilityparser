@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.UtilityForTests
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
@@ -62,7 +61,7 @@ internal class ImportScatTest {
         @JvmStatic
         fun setup() {
             // Skip tests if scat isn't available
-            Assumptions.assumeTrue(UtilityForTests.scatIsAvailable())
+            Assumptions.assumeTrue(ImportScat.isScatAvailable())
         }
     }
 }

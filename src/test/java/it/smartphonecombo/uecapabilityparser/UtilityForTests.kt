@@ -56,16 +56,6 @@ object UtilityForTests {
         return result
     }
 
-    internal fun scatIsAvailable(): Boolean {
-        return try {
-            val process = Runtime.getRuntime().exec(arrayOf("scat", "-h"))
-            process.waitFor()
-            process.exitValue() == 0
-        } catch (ignored: Exception) {
-            false
-        }
-    }
-
     internal fun multiPartRequest(url: String, json: JsonElement, files: List<String>): Request {
 
         val bodyBuilder =

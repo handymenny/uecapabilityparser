@@ -10,43 +10,50 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.ImportQctModemCap
 import it.smartphonecombo.uecapabilityparser.importer.ImportShannonNrUeCap
+import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat.isScatAvailable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class LogType {
-    @SerialName("") INVALID,
-    H,
-    W,
-    N,
-    C,
-    CNR,
-    E,
-    Q,
-    QLTE,
-    QNR,
-    M,
-    O,
-    QC,
-    RF,
-    SHNR,
-    P,
-    DLF,
-    QMDL,
-    HDF,
-    SDM;
+enum class LogType(val description: String) {
+    @SerialName("") INVALID(""),
+    H("UE Capability Hex Dump"),
+    W("Wireshark UE Capability Information"),
+    N("NSG UE Capability Information"),
+    C("Carrier policy"),
+    CNR("NR Cap Prune"),
+    E("28874 nvitem binary"),
+    Q("QCAT 0xB0CD"),
+    QLTE("0xB0CD hexdump"),
+    QNR("0xB826 hexdump"),
+    M("MEDIATEK CA_COMB_INFO"),
+    O("OSIX UE Capability Information"),
+    QC("QCAT UE Capability Information"),
+    RF("QCT Modem Capabilities"),
+    SHNR("Shannon NR UE Cap Config Protobuf"),
+    P("PCAP"),
+    DLF("DLF baseband log"),
+    QMDL("QMDL baseband log"),
+    HDF("HDF baseband log"),
+    SDM("SDM baseband log");
 
     companion object {
-        /** All entries except [INVALID] */
-        val validEntries = entries.drop(1)
+        /** All entries except invalid ones */
+        val validEntries =
+            if (isScatAvailable()) {
+                entries.drop(1)
+            } else {
+                System.err.println("Warning: scat not available, scat log types disabled")
+                entries.drop(1).dropLast(4)
+            }
         /** Name of all entries except [INVALID] */
         val names = validEntries.map { it.name }.toTypedArray()
         /** Entries that only supports LTE-CA */
         val lteOnlyTypes = listOf(C, E, Q, QLTE, M, RF)
         /** One input -> multi capabilities * */
-        val multiImporter = listOf(P, DLF, QMDL, HDF, SDM)
+        val multiImporter = validEntries.intersect(listOf(P, DLF, QMDL, HDF, SDM))
         /** One input -> multi or single capability * */
-        val singleInput = listOf(E, SHNR, P, DLF, QMDL, HDF, SDM)
+        val singleInput = validEntries.intersect(listOf(E, SHNR, P, DLF, QMDL, HDF, SDM))
 
         /** Return [INVALID] if conversion fails * */
         fun of(string: String?): LogType {

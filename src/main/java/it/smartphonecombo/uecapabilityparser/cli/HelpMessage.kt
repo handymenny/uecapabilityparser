@@ -1,16 +1,16 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
+import it.smartphonecombo.uecapabilityparser.model.LogType
+
 object HelpMessage {
     const val INPUT =
         "A list of capability sources separated by comma. " +
             "These inputs combined must represent a single capability source, if you want to parse different capabilities you can provide multiple --input"
-    const val TYPE =
-        """Type of capability. Valid values are: H (UE Capability Hex Dump), 
-            W (Wireshark UE Capability Information), N (NSG UE Capability Information), 
-            C (Carrier policy), CNR (NR Cap Prune), E (28874 nvitem binary), 
-            Q (QCAT 0xB0CD), QLTE (0xB0CD hexdump), QNR (0xB826 hexdump), M (MEDIATEK CA_COMB_INFO), 
-            O (OSIX UE Capability Information), QC (QCAT UE Capability Information),
-            RF (QCT Modem Capabilities), SHNR (Shannon NR UE Cap Config Protobuf), P (PCAP), DLF, QMDL, HDF, SDM"""
+    val TYPE =
+        LogType.validEntries.joinToString(
+            prefix = "Type of capability. Valid values are: ",
+            transform = { "${it.name} (${it.description})" }
+        )
     const val SUBTYPES =
         """A list of subtypes separated by comma, one for each capability source, applicable only to --type H.
             Valid values are: LTE (rat-type EUTRA or LTE UE capability information),
