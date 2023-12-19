@@ -24,7 +24,6 @@ internal class ServerModeOthersTest {
         listOf(
             "/swagger",
             "/parse",
-            "/parse/multi",
             "/parse/multiPart",
             "/csv",
             "/openapi",

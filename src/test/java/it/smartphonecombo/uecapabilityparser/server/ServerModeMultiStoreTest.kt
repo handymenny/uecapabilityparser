@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import it.smartphonecombo.uecapabilityparser.UtilityForTests
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
@@ -28,7 +29,7 @@ import org.junit.jupiter.api.Test
 internal class ServerModeMultiStoreTest {
     private val resourcesPath = "src/test/resources/server"
     private val base64 = Base64.getEncoder()
-    private val endpointParse = arrayOf("/parse/multi/", "/parse/multi").random()
+    private val endpointParse = arrayOf("/parse/multiPart/", "/parse/multiPart").random()
     private val endpointStore = "/store/"
     private val tmpStorePath = UUID.randomUUID().toString() + "-tmp"
     private val storedIds =
@@ -85,10 +86,10 @@ internal class ServerModeMultiStoreTest {
                 buildJsonArray {
                     addJsonObject {
                         put("type", "H")
-                        putJsonArray("inputs") {
-                            add(fileToBase64(oracleInputs[0][0]))
-                            add(fileToBase64(oracleInputs[0][1]))
-                            add(fileToBase64(oracleInputs[0][2]))
+                        putJsonArray("inputIndexes") {
+                            add(0)
+                            add(1)
+                            add(2)
                         }
                         putJsonArray("subTypes") {
                             add("LTE")
@@ -100,20 +101,21 @@ internal class ServerModeMultiStoreTest {
                     addJsonObject {
                         put("type", "QLTE")
                         put(
-                            "inputs",
-                            buildJsonArray { add(fileToBase64(oracleInputs[1][0])) },
+                            "inputIndexes",
+                            buildJsonArray { add(3) },
                         )
                         put("description", "This is a multi test")
                     }
                     addJsonObject {
                         put("type", "QNR")
                         put(
-                            "inputs",
-                            buildJsonArray { add(fileToBase64(oracleInputs[2][0])) },
+                            "inputIndexes",
+                            buildJsonArray { add(4) },
                         )
                         put("description", "This is a multi-test")
                     }
                 },
+            files = oracleInputs.flatten(),
             oraclePath = "$resourcesPath/oracleForMultiStore/multiParseOutput.json",
         )
 
@@ -254,12 +256,19 @@ internal class ServerModeMultiStoreTest {
             }
         }
 
-    private fun storeTest(url: String, request: JsonElement, oraclePath: String) =
+    private fun storeTest(
+        url: String,
+        request: JsonElement,
+        files: List<String>,
+        oraclePath: String
+    ) =
         JavalinTest.test(JavalinApp().app) { _, client ->
-            val response = client.post(url, request)
+            val response =
+                client.request(
+                    UtilityForTests.multiPartRequest(client.origin + url, request, files)
+                )
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val result = response.body?.string() ?: ""
-            // IO.outputFileOrStdout(result, oraclePath)
             multiCapabilitiesAssertEquals(File(oraclePath).readText(), result)
         }
 

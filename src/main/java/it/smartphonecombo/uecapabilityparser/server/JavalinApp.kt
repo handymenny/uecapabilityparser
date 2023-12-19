@@ -142,18 +142,6 @@ class JavalinApp {
                     return@apiBuilderPost ctx.badRequest()
                 }
             }
-            apiBuilderPost("/parse/multi") { ctx ->
-                try {
-                    val request = ctx.bodyAsClassEfficient<List<RequestMultiParse>>()
-                    val parsed = MultiParsing.fromRequest(request)!!
-                    ctx.json(parsed.getMultiCapabilities())
-                    if (store != null) {
-                        parsed.store(index, store, compression)
-                    }
-                } catch (_: Exception) {
-                    return@apiBuilderPost ctx.badRequest()
-                }
-            }
             apiBuilderPost("/parse/multiPart") { ctx ->
                 try {
                     val requestsStr = ctx.formParam("requests")!!
