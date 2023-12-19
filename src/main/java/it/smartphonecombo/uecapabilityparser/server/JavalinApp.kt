@@ -69,7 +69,7 @@ class JavalinApp {
         }
     private val hasSubmodules = {}.javaClass.getResourceAsStream("/web") != null
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
-    private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
+    private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.use { it.readBytes() }
     private val endpoints = mutableListOf<String>()
     private val maxRequestSize = Config["maxRequestSize"]?.toLong() ?: (256 * 1000 * 1000)
     val app: Javalin =

@@ -24,7 +24,7 @@ object ImportScat : ImportMultiCapabilities {
             val scatVendor = if (type == LogType.SDM) "sec" else "qc"
 
             tempLogFile = File.createTempFile("SCAT-", ".$extension")
-            tempLogFile.writeBytes(input.readAllBytes())
+            tempLogFile.writeBytes(input.readBytes())
             tempPcapFile = File.createTempFile("PCAP-", ".pcap")
 
             val args =
