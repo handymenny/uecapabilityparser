@@ -14,6 +14,7 @@ import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.options.split
 import com.github.ajalt.clikt.parameters.options.validate
 import com.github.ajalt.clikt.parameters.options.versionOption
+import com.github.ajalt.clikt.parameters.types.boolean
 import com.github.ajalt.clikt.parameters.types.choice
 import com.github.ajalt.clikt.parameters.types.inputStream
 import com.github.ajalt.clikt.parameters.types.int
@@ -99,6 +100,9 @@ object Cli :
 
     private val csv by option("-c", "--csv", help = HelpMessage.CSV, metavar = "FILE")
 
+    private val newCsvFormat by
+        option("--new-csv-format", help = HelpMessage.NEW_CSV_FORMAT).boolean().default(false)
+
     private val json by option("-j", "--json", help = HelpMessage.JSON, metavar = "FILE")
 
     private val jsonPrettyPrint by
@@ -146,7 +150,12 @@ object Cli :
                         i == 0 -> it
                         else -> it.appendBeforeExtension("-${i+1}-")
                     }
-                csvOutput(parsing.capabilities, csvOutput, parsing.capabilities.logType)
+                csvOutput(
+                    parsing.capabilities,
+                    csvOutput,
+                    parsing.capabilities.logType,
+                    newCsvFormat
+                )
             }
         }
 
@@ -165,24 +174,27 @@ object Cli :
         }
     }
 
-    private fun csvOutput(comboList: Capabilities, csvPath: String?, type: LogType) {
+    private fun csvOutput(cap: Capabilities, csvPath: String?, type: LogType, newFmt: Boolean) {
         if (type in LogType.lteOnlyTypes) {
-            return IO.outputFileOrStdout(IO.toCsv(comboList.lteCombos), csvPath)
+            return IO.outputFileOrStdout(IO.toCsv(cap.lteCombos, newFmt), csvPath)
         }
 
-        val lteCombos = comboList.lteCombos
+        val lteCombos = cap.lteCombos
         if (lteCombos.isNotEmpty()) {
-            IO.outputFileOrStdout(IO.toCsv(lteCombos), csvPath?.appendBeforeExtension("-LTECA"))
+            IO.outputFileOrStdout(
+                IO.toCsv(lteCombos, newFmt),
+                csvPath?.appendBeforeExtension("-LTECA")
+            )
         }
-        val nrCombos = comboList.nrCombos
+        val nrCombos = cap.nrCombos
         if (nrCombos.isNotEmpty()) {
             IO.outputFileOrStdout(IO.toCsv(nrCombos), csvPath?.appendBeforeExtension("-NRCA"))
         }
-        val enDcCombos = comboList.enDcCombos
+        val enDcCombos = cap.enDcCombos
         if (enDcCombos.isNotEmpty()) {
             IO.outputFileOrStdout(IO.toCsv(enDcCombos), csvPath?.appendBeforeExtension("-ENDC"))
         }
-        val nrDcCombos = comboList.nrDcCombos
+        val nrDcCombos = cap.nrDcCombos
         if (nrDcCombos.isNotEmpty()) {
             IO.outputFileOrStdout(IO.toCsv(nrDcCombos), csvPath?.appendBeforeExtension("-NRDC"))
         }

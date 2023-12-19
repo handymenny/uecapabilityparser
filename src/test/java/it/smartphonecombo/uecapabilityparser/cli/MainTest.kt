@@ -38,8 +38,44 @@ internal class MainTest {
     }
 
     @Test
+    fun mainCarrierPolicyNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/carrierPolicy.xml",
+                "-t",
+                "C",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "carrierPolicyNewCsv.txt"
+        )
+    }
+
+    @Test
     fun main0xB0CD() {
         mainTest(arrayOf("cli", "-i", "$path/input/0xB0CD.txt", "-t", "Q", "-c", "-"), "0xB0CD.txt")
+    }
+
+    @Test
+    fun main0xB0CDNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB0CD.txt",
+                "-t",
+                "Q",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "0xB0CDNewCsv.txt"
+        )
     }
 
     @Test
@@ -65,8 +101,44 @@ internal class MainTest {
     }
 
     @Test
+    fun mainMtkLteNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/mtkLte.txt",
+                "-t",
+                "M",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "mtkLteNewCsv.txt"
+        )
+    }
+
+    @Test
     fun mainNvItem() {
         mainTest(arrayOf("cli", "-i", "$path/input/nvItem.bin", "-t", "E", "-c", "-"), "nvItem.txt")
+    }
+
+    @Test
+    fun mainNvItemNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/nvItem.bin",
+                "-t",
+                "E",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "nvItemNewCsv.txt"
+        )
     }
 
     @Test
@@ -134,6 +206,24 @@ internal class MainTest {
     }
 
     @Test
+    fun mainQctModemCapNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/qctModemCap.txt",
+                "-t",
+                "RF",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "qctModemCapNewCsv.txt"
+        )
+    }
+
+    @Test
     fun mainShannonNrUeCap() {
         mainTest(
             arrayOf("cli", "-i", "$path/input/shannonNrUeCap.binarypb", "-t", "SHNR", "-c", "-"),
@@ -146,6 +236,24 @@ internal class MainTest {
         mainTest(
             arrayOf("cli", "-i", "$path/input/wiresharkEutra.txt", "-t", "W", "-c", "-"),
             "wiresharkEutraCsv.txt",
+        )
+    }
+
+    @Test
+    fun mainWiresharkEutraNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/wiresharkEutra.txt",
+                "-t",
+                "W",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "wiresharkEutraNewCsv.txt",
         )
     }
 
@@ -243,6 +351,24 @@ internal class MainTest {
         mainTest(
             arrayOf("cli", "-i", "$path/input/nsgEutra.txt", "-t", "N", "-c", "-"),
             "nsgEutraCsv.txt"
+        )
+    }
+
+    @Test
+    fun mainNsgEutraNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/nsgEutra.txt",
+                "-t",
+                "N",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "nsgEutraNewCsv.txt"
         )
     }
 
@@ -351,7 +477,7 @@ internal class MainTest {
     }
 
     @Test
-    fun mainUeCapHexEutraCsv() {
+    fun mainUeCapHexEutraNewCsv() {
         mainTest(
             arrayOf(
                 "cli",
@@ -362,9 +488,11 @@ internal class MainTest {
                 "--subTypes",
                 "LTE",
                 "-c",
-                "-"
+                "-",
+                "--new-csv-format",
+                "true"
             ),
-            "ueCapHexEutraCsv.txt",
+            "ueCapHexEutraNewCsv.txt",
         )
     }
 
@@ -512,6 +640,28 @@ internal class MainTest {
                 "-"
             ),
             "0xB826-0xB0CD.txt"
+        )
+    }
+
+    @Test
+    fun mainMultiInputNewCsv() {
+        mainTest(
+            arrayOf(
+                "cli",
+                "-i",
+                "$path/input/0xB826.hex",
+                "-t",
+                "QNR",
+                "-i",
+                "$path/input/0xB0CD.txt",
+                "-t",
+                "Q",
+                "-c",
+                "-",
+                "--new-csv-format",
+                "true"
+            ),
+            "0xB826-0xB0CDNewCsv.txt"
         )
     }
 

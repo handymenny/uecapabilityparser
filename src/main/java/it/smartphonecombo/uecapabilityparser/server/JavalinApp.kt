@@ -163,8 +163,9 @@ class JavalinApp {
                     val comboList = request.input
                     val type = request.type
                     val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
+                    val newFmt = (request as? RequestCsv.LteCa)?.newCsvFormat ?: false
                     ctx.attachFile(
-                        IO.toCsv(comboList).toByteArray(),
+                        IO.toCsv(comboList, newFmt).toByteArray(),
                         "${type}-${date}.csv",
                         ContentType.TEXT_CSV
                     )

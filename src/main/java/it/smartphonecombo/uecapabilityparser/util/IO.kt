@@ -4,8 +4,10 @@ import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.moveTo
 import it.smartphonecombo.uecapabilityparser.extension.readText
+import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
+import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
@@ -62,7 +64,7 @@ object IO {
         }
     }
 
-    fun toCsv(lists: List<ICombo>): String {
+    fun toCsv(lists: List<ICombo>, newLteCaFormat: Boolean = false): String {
         if (lists.isEmpty()) return ""
         val standalone = lists.any { it is ComboNr }
         val nrDc = lists.any { it is ComboNrDc }
@@ -78,6 +80,7 @@ object IO {
 
         if (!isNr || enDc) {
             lteDlCC = maxDlCC(lists)
+            lteUlCC = maxUlCC(lists)
         } else {
             nrDlCC = maxDlCC(lists)
             nrUlCC = maxUlCC(lists)
@@ -88,27 +91,33 @@ object IO {
         }
 
         if (enDc) {
-            // LTE csv doesn't use UL CC
-            lteUlCC = maxUlCC(lists)
             nrDlCC = maxDlCC(lists, true)
             nrUlCC = maxUlCC(lists, true)
         }
 
         val contentFile: StringBuilder =
-            if (isNr) {
-                StringBuilder(getNrCsvHeader(lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
+            if (isNr || newLteCaFormat) {
+                StringBuilder(getCsvHeader(lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
             } else {
-                StringBuilder(getLteCsvHeader(lteDlCC))
+                StringBuilder(getOldLteCsvHeader(lteDlCC))
             }
-        for (x in lists) {
-            contentFile
-                .append(x.toCsv(";", lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
-                .append("\n")
+
+        if (isNr || newLteCaFormat) {
+            for (x in lists) {
+                contentFile
+                    .append(x.toCsv(";", lteDlCC, lteUlCC, nrDlCC, nrUlCC, nrDcDlCC, nrDcUlCC))
+                    .append("\n")
+            }
+        } else {
+            val lteCaList = lists.typedList<ComboLte>()
+            for (x in lteCaList) {
+                contentFile.append(x.toCsvOld(";", lteDlCC)).append("\n")
+            }
         }
         return contentFile.toString()
     }
 
-    private fun getNrCsvHeader(
+    private fun getCsvHeader(
         lteDlCC: Int,
         lteUlCC: Int,
         nrDlCC: Int,
@@ -130,6 +139,11 @@ object IO {
                 .append("MOD UL")
                 .append(i)
                 .append(separator)
+        }
+        if (nrDlCC == 0) {
+            for (i in 1..lteDlCC) {
+                header.append("MOD DL").append(i).append(separator)
+            }
         }
         for (i in 1..nrDlCC) {
             header
@@ -204,7 +218,7 @@ object IO {
             header.append("mimo FR2 UL").append(i).append(separator)
         }
 
-        if (lteDlCC > 0) {
+        if (lteDlCC > 0 && nrDlCC > 0) {
             header.append("BCS NR", separator, "BCS LTE", separator, "BCS intraENDC")
         } else {
             header.append("BCS")
@@ -214,12 +228,14 @@ object IO {
 
         return if (nrDcDlCC > 0) {
             header.toString().replace("NR", "FR1")
+        } else if (nrDlCC == 0) {
+            header.toString().replace(" LTE", "")
         } else {
             header.toString()
         }
     }
 
-    private fun getLteCsvHeader(lteDlCC: Int): String {
+    private fun getOldLteCsvHeader(lteDlCC: Int): String {
         val separator = ";"
         val header = StringBuilder("combo;")
         val columns = arrayOf("band", "class", "mimo", "ul", "ULmimo", "DLmod", "ULmod")

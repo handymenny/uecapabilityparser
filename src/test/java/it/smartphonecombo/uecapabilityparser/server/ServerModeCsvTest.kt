@@ -23,6 +23,22 @@ internal class ServerModeCsvTest {
     }
 
     @Test
+    fun lteCaCsvConversion2() {
+        javalinCsvTest(
+            inputPath = "$path/inputForCsv/ltecaNewFalse.json",
+            oraclePath = "$path/oracleForCsv/lteca.csv"
+        )
+    }
+
+    @Test
+    fun lteCaNewCsvConversion() {
+        javalinCsvTest(
+            inputPath = "$path/inputForCsv/ltecaNew.json",
+            oraclePath = "$path/oracleForCsv/ltecaNew.csv"
+        )
+    }
+
+    @Test
     fun enDcCsvConversion() {
         javalinCsvTest(
             inputPath = "$path/inputForCsv/endc.json",

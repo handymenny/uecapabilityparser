@@ -46,6 +46,48 @@ data class ComboLte(
         nrDcUlCC: Int
     ): String {
         val compact = this.toCompactStr() + separator
+
+        val lteDl = StringBuilder()
+        val lteUl = StringBuilder()
+        val lteModDl = StringBuilder()
+        val lteMimoDl = StringBuilder()
+        val lteMimoUl = StringBuilder()
+        var ulLteCount = 0
+
+        for (component in masterComponents) {
+            lteDl.append(component.band).append(component.classDL).append(separator)
+
+            lteModDl.append(component.modDL).append(separator)
+            lteMimoDl.append(component.mimoDL).append(separator)
+
+            if (component.classUL != BwClass.NONE) {
+                lteUl
+                    .append(component.band)
+                    .append(component.classUL)
+                    .append(separator)
+                    .append(component.modUL)
+                    .append(separator)
+
+                if (component.mimoUL != EmptyMimo) {
+                    lteMimoUl.append(component.mimoUL)
+                }
+                lteMimoUl.append(separator)
+
+                ulLteCount++
+            }
+        }
+
+        repeat(lteDlCC - masterComponents.size) {
+            IO.appendSeparator(separator, lteDl, lteModDl, lteMimoDl)
+        }
+
+        repeat(lteUlCC - ulLteCount) { IO.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
+
+        return "$compact$lteDl$lteUl$lteModDl$lteMimoDl$lteMimoUl$bcs;"
+    }
+
+    fun toCsvOld(separator: String, lteDlCC: Int): String {
+        val compact = this.toCompactStr() + separator
         val strBcs = bcs.toString()
 
         val strBand = StringBuilder()
