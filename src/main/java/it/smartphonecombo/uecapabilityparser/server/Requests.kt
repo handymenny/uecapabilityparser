@@ -18,7 +18,8 @@ sealed interface RequestCsv {
 
     @Serializable
     @SerialName("lteca")
-    data class LteCa(override val input: List<ComboLte>) : RequestCsv
+    data class LteCa(override val input: List<ComboLte>, val newCsvFormat: Boolean = false) :
+        RequestCsv
 
     @Serializable
     @SerialName("nrca")
