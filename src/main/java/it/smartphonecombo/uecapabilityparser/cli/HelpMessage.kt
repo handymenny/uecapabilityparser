@@ -41,11 +41,11 @@ object HelpMessage {
             Note: --compression affects the capabilities re-parsed."""
     const val ERROR_TYPE_INPUT_MISMATCH = "A --type must be provided for each --input."
     const val ERROR_SUBTYPES_TYPE_MISMATCH =
-        "A --subTypes must be provided for each --type H, it shouldn't be provided for other types."
+        "A --sub-types must be provided for each --type H, it shouldn't be provided for other types."
     const val ERROR_SUBTYPES_INPUT_MISMATCH =
-        "Each --subTypes must provide the same quantity of items as the corresponding --input."
+        "Each --sub-types must provide the same quantity of items as the corresponding --input."
     const val ERROR_SUBTYPES_DUPLICATE =
-        "A subtype cannot appear multiple times in the same --subTypes."
+        "A subtype cannot appear multiple times in the same --sub-types."
     const val ERROR_MULTIPLE_INPUTS_UNSUPPORTED =
         "Type P, E, SHNR, DLF, QMDL, HDF, SDM don't support multiple inputs in one --input option. Use multiple --input instead."
     const val MAX_REQUEST_SIZE = "Max request size (in Bytes) that this server should accept."
