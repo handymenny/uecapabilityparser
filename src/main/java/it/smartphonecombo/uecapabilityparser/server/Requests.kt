@@ -77,7 +77,7 @@ class RequestMultiPart(
 ) {
     fun toRequestMultiParse(files: List<UploadedFile>): RequestMultiParse {
         val newInputs =
-            inputIndexes.map { index -> files[index].contentAndClose { it.readAllBytes() } }
+            inputIndexes.map { index -> files[index].contentAndClose { it.readBytes() } }
         return RequestMultiParse(newInputs, type, subTypes, description)
     }
 }

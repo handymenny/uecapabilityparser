@@ -67,8 +67,9 @@ class JavalinApp {
                 return Json.custom().encodeToString(serializer, obj)
             }
         }
+    private val hasSubmodules = {}.javaClass.getResourceAsStream("/web") != null
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
-    private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.readAllBytes()
+    private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.use { it.readBytes() }
     private val endpoints = mutableListOf<String>()
     private val maxRequestSize = Config["maxRequestSize"]?.toLong() ?: (256 * 1000 * 1000)
     val app: Javalin =
@@ -85,11 +86,13 @@ class JavalinApp {
             config.routing.treatMultipleSlashesAsSingleSlash = true
             config.jsonMapper(jsonMapper)
             config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
-            config.staticFiles.add("/web", Location.CLASSPATH)
-            config.staticFiles.add { staticFiles ->
-                staticFiles.hostedPath = "/swagger"
-                staticFiles.directory = "/swagger"
-                staticFiles.location = Location.CLASSPATH
+            if (hasSubmodules) {
+                config.staticFiles.add("/web", Location.CLASSPATH)
+                config.staticFiles.add { staticFiles ->
+                    staticFiles.hostedPath = "/swagger"
+                    staticFiles.directory = "/swagger"
+                    staticFiles.location = Location.CLASSPATH
+                }
             }
         }
 
@@ -183,7 +186,9 @@ class JavalinApp {
                 }
             }
 
-            apiBuilderGet("/openapi", "/swagger/openapi.json", handler = ::getOpenApi)
+            if (hasSubmodules) {
+                apiBuilderGet("/openapi", "/swagger/openapi.json", handler = ::getOpenApi)
+            }
 
             apiBuilderGet("/store/status", "/store/0.2.0/status") { ctx ->
                 val enabled = store != null
