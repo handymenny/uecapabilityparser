@@ -3,8 +3,8 @@ package it.smartphonecombo.uecapabilityparser.server
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.multiPartRequest
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
 import it.smartphonecombo.uecapabilityparser.extension.custom
-import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import java.io.File
 import kotlinx.serialization.json.Json
@@ -349,7 +349,7 @@ internal class ServerModeMultiPartParseTest {
 
     @Test
     fun scat() {
-        Assumptions.assumeTrue(ImportScat.isScatAvailable())
+        Assumptions.assumeTrue(scatAvailable)
         javalinJsonTest(
             request =
                 buildJsonArray {

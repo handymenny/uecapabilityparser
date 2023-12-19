@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.util.Config
 import kotlinx.serialization.json.Json
@@ -39,6 +40,7 @@ internal class ServerModeOthersTest {
             "/status",
         )
 
+    private val scatTypes = arrayOf("HDF", "SDM", "DLF", "QMDL")
     private val logTypes =
         listOf(
                 "H",
@@ -61,6 +63,7 @@ internal class ServerModeOthersTest {
                 "HDF",
                 "SDM"
             )
+            .filter { scatAvailable || it !in scatTypes }
             .map(LogType::of)
 
     @AfterEach
