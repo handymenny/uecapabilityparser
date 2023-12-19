@@ -130,7 +130,7 @@ class JavalinApp {
                 }
             }
 
-            apiBuilderPost("/parse", "/parse/0.1.0") { ctx ->
+            apiBuilderPost("/parse") { ctx ->
                 try {
                     val request = ctx.bodyAsClassEfficient<RequestParse>()
                     val parsed = Parsing.fromRequest(request)!!
@@ -170,7 +170,7 @@ class JavalinApp {
                     return@apiBuilderPost ctx.badRequest()
                 }
             }
-            apiBuilderPost("/csv", "/csv/0.1.0") { ctx ->
+            apiBuilderPost("/csv") { ctx ->
                 try {
                     val request = ctx.bodyAsClassEfficient<RequestCsv>()
                     val comboList = request.input
@@ -190,15 +190,15 @@ class JavalinApp {
                 apiBuilderGet("/openapi", "/swagger/openapi.json", handler = ::getOpenApi)
             }
 
-            apiBuilderGet("/store/status", "/store/0.2.0/status") { ctx ->
+            apiBuilderGet("/store/status") { ctx ->
                 val enabled = store != null
                 val json = buildJsonObject { put("enabled", enabled) }
                 ctx.json(json)
             }
 
             if (store != null) {
-                apiBuilderGet("/store/list", "/store/0.2.0/list") { ctx -> ctx.json(index) }
-                apiBuilderGet("/store/getItem", "/store/0.2.0/getItem") { ctx ->
+                apiBuilderGet("/store/list") { ctx -> ctx.json(index) }
+                apiBuilderGet("/store/getItem") { ctx ->
                     val id = ctx.queryParam("id") ?: return@apiBuilderGet ctx.badRequest()
                     val item = index.find(id) ?: return@apiBuilderGet ctx.notFound()
                     ctx.json(item)
@@ -208,7 +208,7 @@ class JavalinApp {
                     val item = index.findMulti(id) ?: return@apiBuilderGet ctx.notFound()
                     ctx.json(item)
                 }
-                apiBuilderGet("/store/getOutput", "/store/0.2.0/getOutput") { ctx ->
+                apiBuilderGet("/store/getOutput") { ctx ->
                     val id = ctx.queryParam("id")
                     if (id == null || !id.matches(idRegex)) {
                         return@apiBuilderGet ctx.badRequest()
@@ -260,7 +260,7 @@ class JavalinApp {
                         )
                     ctx.json(multiCapabilities)
                 }
-                apiBuilderGet("/store/getInput", "/store/0.2.0/getInput") { ctx ->
+                apiBuilderGet("/store/getInput") { ctx ->
                     val id = ctx.queryParam("id")
                     if (id == null || !id.matches(idRegex)) {
                         return@apiBuilderGet ctx.badRequest()
