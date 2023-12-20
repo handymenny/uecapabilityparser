@@ -122,3 +122,5 @@ The server (alongside the uecapabilityparser API) also serves:
 Useful links:
 - [Swagger UI (online)](https://handymenny.github.io/uecapabilityparser-swagger/)
 - [Web UI source code](https://github.com/handymenny/uecapabilityparser-web)
+- [Preprocessor](https://github.com/HandyMenny/uecapabilityparser-preprocessor)
+- [Android App POC](https://github.com/HandyMenny/uecapabilityparser-app)
