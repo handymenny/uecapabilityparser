@@ -19,6 +19,7 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
+import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
 import java.nio.BufferUnderflowException
 import java.nio.ByteBuffer
@@ -68,20 +69,20 @@ object Import0xB826 : ImportCapabilities {
             val logSize = ImportQcHelpers.getQcDiagLogSize(byteBuffer, capabilities)
             capabilities.setMetadata("logSize", logSize)
             if (debug) {
-                println("Log file size: $logSize bytes")
+                echoSafe("Log file size: $logSize bytes")
             }
 
             val version = byteBuffer.readUnsignedShort()
             capabilities.setMetadata("version", version)
             if (debug) {
-                println("Version $version\n")
+                echoSafe("Version $version\n")
             }
 
             byteBuffer.skipBytes(2)
 
             val numCombos = getNumCombos(byteBuffer, version, capabilities)
             if (debug) {
-                println("Num Combos $numCombos\n")
+                echoSafe("Num Combos $numCombos\n")
             }
             capabilities.setMetadata("numCombos", numCombos)
 
@@ -89,7 +90,7 @@ object Import0xB826 : ImportCapabilities {
             source?.let {
                 capabilities.setMetadata("source", it)
                 if (debug) {
-                    println("source $it\n")
+                    echoSafe("source $it\n")
                 }
             }
 
@@ -104,7 +105,7 @@ object Import0xB826 : ImportCapabilities {
         }
 
         if (debug) {
-            println(
+            echoSafe(
                 listCombo.joinToString(
                     prefix = "[",
                     postfix = "]",
@@ -165,8 +166,8 @@ object Import0xB826 : ImportCapabilities {
         val index = byteBuffer.readUnsignedShort()
         capabilities.setMetadata("index", index)
         if (debug) {
-            println("Total Numb Combos $totalCombos\n")
-            println("Index $index\n")
+            echoSafe("Total Numb Combos $totalCombos\n")
+            echoSafe("Index $index\n")
         }
         return byteBuffer.readUnsignedShort()
     }

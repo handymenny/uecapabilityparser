@@ -243,7 +243,6 @@ internal class ServerModeMultiStoreTest {
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""
-            // IO.outputFileOrStdout(actualText, oraclePath)
             val expectedText = File(oraclePath).readText()
 
             if (json) {

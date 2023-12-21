@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test
 
 // This uses the same inputs and oracles of CliJsonOutputTest
 internal class ServerModeParseTest {
-    private val path = "src/test/resources/mainCli"
+    private val path = "src/test/resources/cli"
     private val app = JavalinApp().app
     private val base64 = Base64.getEncoder()
     private val endpoint = arrayOf("/parse/", "/parse").random()

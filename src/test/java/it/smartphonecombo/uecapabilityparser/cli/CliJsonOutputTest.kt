@@ -1,614 +1,419 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
-import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
+import com.github.ajalt.clikt.testing.test
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.PrintStream
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.Test
 
 internal class CliJsonOutputTest {
-    private val out: ByteArrayOutputStream = ByteArrayOutputStream()
-    private val originalOut = System.out
-    private val path = "src/test/resources/mainCli"
-    private val cli = Clikt
-
-    private fun setUpStreams() {
-        System.setOut(PrintStream(out))
-    }
-
-    private fun restoreStreams() {
-        System.setOut(originalOut)
-    }
+    private val path = "src/test/resources/cli"
 
     @Test
-    fun carrierPolicyJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/carrierPolicy.xml",
-                "-t",
-                "C",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "carrierPolicy.json"
+    fun testCarrierPolicy() {
+        test(
+            "-i",
+            "$path/input/carrierPolicy.xml",
+            "-t",
+            "C",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "carrierPolicy.json"
         )
     }
 
     @Test
-    fun b0CDJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB0CD.txt",
-                "-t",
-                "Q",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "0xB0CD.json"
+    fun test0xb0CD() {
+        test(
+            "-i",
+            "$path/input/0xB0CD.txt",
+            "-t",
+            "Q",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "0xB0CD.json"
         )
     }
 
     @Test
-    fun b0CDMultiHexJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB0CDMultiHex.txt",
-                "-t",
-                "QLTE",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "0xB0CDMultiHex.json"
+    fun test0xb0CDMultiHex() {
+        test(
+            "-i",
+            "$path/input/0xB0CDMultiHex.txt",
+            "-t",
+            "QLTE",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "0xB0CDMultiHex.json"
         )
     }
 
     @Test
-    fun mtkLteJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/mtkLte.txt",
-                "-t",
-                "M",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "mtkLte.json"
+    fun testMtkLte() {
+        test(
+            "-i",
+            "$path/input/mtkLte.txt",
+            "-t",
+            "M",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "mtkLte.json"
         )
     }
 
     @Test
-    fun nvItemJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/nvItem.bin",
-                "-t",
-                "E",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "nvItem.json"
+    fun testNvItem() {
+        test(
+            "-i",
+            "$path/input/nvItem.bin",
+            "-t",
+            "E",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "nvItem.json"
         )
     }
 
     @Test
-    fun b826JsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB826.hex",
-                "-t",
-                "QNR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "0xB826.json"
+    fun test0xB826() {
+        test(
+            "-i",
+            "$path/input/0xB826.hex",
+            "-t",
+            "QNR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "0xB826.json"
         )
     }
 
     @Test
-    fun b826MultiJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB826Multi.txt",
-                "-t",
-                "QNR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "0xB826Multi.json"
+    fun test0xB826Multi() {
+        test(
+            "-i",
+            "$path/input/0xB826Multi.txt",
+            "-t",
+            "QNR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "0xB826Multi.json"
         )
     }
 
     @Test
-    fun b826MultiV14JsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB826MultiV14.txt",
-                "-t",
-                "QNR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "0xB826MultiV14.json"
+    fun test0xB826MultiV14() {
+        test(
+            "-i",
+            "$path/input/0xB826MultiV14.txt",
+            "-t",
+            "QNR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "0xB826MultiV14.json"
         )
     }
 
     @Test
-    fun b826MultiScatJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB826MultiScat.txt",
-                "-t",
-                "QNR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "0xB826MultiScat.json"
+    fun test0xB826MultiScat() {
+        test(
+            "-i",
+            "$path/input/0xB826MultiScat.txt",
+            "-t",
+            "QNR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "0xB826MultiScat.json"
         )
     }
 
     @Test
-    fun b826Multi0x9801JsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB826Multi0x9801.txt",
-                "-t",
-                "QNR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "0xB826Multi0x9801.json"
+    fun test0xB826Multi0x9801() {
+        test(
+            "-i",
+            "$path/input/0xB826Multi0x9801.txt",
+            "-t",
+            "QNR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "0xB826Multi0x9801.json"
         )
     }
 
     @Test
-    fun nrCapPruneJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/nrCapPrune.txt",
-                "-t",
-                "CNR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "nrCapPrune.json"
+    fun testNrCapPrune() {
+        test(
+            "-i",
+            "$path/input/nrCapPrune.txt",
+            "-t",
+            "CNR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "nrCapPrune.json"
         )
     }
 
     @Test
-    fun mainQctModemCap() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/qctModemCap.txt",
-                "-t",
-                "RF",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "qctModemCap.json"
+    fun testQctModemCap() {
+        test(
+            "-i",
+            "$path/input/qctModemCap.txt",
+            "-t",
+            "RF",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "qctModemCap.json"
         )
     }
 
     @Test
-    fun mainShannonNrUeCap() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/shannonNrUeCap.binarypb",
-                "-t",
-                "SHNR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "shannonNrUeCap.json"
+    fun testShannonNrUeCap() {
+        test(
+            "-i",
+            "$path/input/shannonNrUeCap.binarypb",
+            "-t",
+            "SHNR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "shannonNrUeCap.json"
         )
     }
 
     @Test
-    fun wiresharkEutraJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/wiresharkEutra.txt",
-                "-t",
-                "W",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "wiresharkEutra.json",
+    fun testWiresharkEutra() {
+        test(
+            "-i",
+            "$path/input/wiresharkEutra.txt",
+            "-t",
+            "W",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "wiresharkEutra.json",
         )
     }
 
     @Test
-    fun wiresharkNrJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/wiresharkNr.txt",
-                "-t",
-                "W",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "wiresharkNr.json",
+    fun testWiresharkNr() {
+        test(
+            "-i",
+            "$path/input/wiresharkNr.txt",
+            "-t",
+            "W",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "wiresharkNr.json",
         )
     }
 
     @Test
-    fun wiresharkMrdcJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/wiresharkMrdc.txt",
-                "-t",
-                "W",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "wiresharkMrdc.json",
+    fun testWiresharkMrdc() {
+        test(
+            "-i",
+            "$path/input/wiresharkMrdc.txt",
+            "-t",
+            "W",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "wiresharkMrdc.json",
         )
     }
 
     @Test
-    fun wiresharkMrdcSplitJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/wiresharkMrdcSplit_0.txt, $path/input/wiresharkMrdcSplit_1.txt",
-                "-t",
-                "W",
-                "-j",
-                "-"
-            ),
-            "wiresharkMrdcSplit.json",
+    fun testWiresharkMrdcSplit() {
+        test(
+            "-i",
+            "$path/input/wiresharkMrdcSplit_0.txt,$path/input/wiresharkMrdcSplit_1.txt",
+            "-t",
+            "W",
+            "-j",
+            "-",
+            oracleFilename = "wiresharkMrdcSplit.json",
         )
     }
 
     @Test
-    fun nsgEutraJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/nsgEutra.txt",
-                "-t",
-                "N",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "nsgEutra.json"
+    fun testNsgEutra() {
+        test(
+            "-i",
+            "$path/input/nsgEutra.txt",
+            "-t",
+            "N",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "nsgEutra.json"
         )
     }
 
     @Test
-    fun nsgNrJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/nsgNr.txt",
-                "-t",
-                "N",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "nsgNr.json",
+    fun testNsgNr() {
+        test(
+            "-i",
+            "$path/input/nsgNr.txt",
+            "-t",
+            "N",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "nsgNr.json",
         )
     }
 
     @Test
-    fun nsgMrdcJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/nsgMrdc.txt",
-                "-t",
-                "N",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "nsgMrdc.json"
+    fun testNsgMrdc() {
+        test(
+            "-i",
+            "$path/input/nsgMrdc.txt",
+            "-t",
+            "N",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "nsgMrdc.json"
         )
     }
 
     @Test
-    fun nsgMrdcSplitJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/nsgMrdcSplit_0.txt, $path/input/nsgMrdcSplit_1.txt",
-                "-t",
-                "N",
-                "-j",
-                "-"
-            ),
-            "nsgMrdcSplit.json",
+    fun testNsgMrdcSplit() {
+        test(
+            "-i",
+            "$path/input/nsgMrdcSplit_0.txt,$path/input/nsgMrdcSplit_1.txt",
+            "-t",
+            "N",
+            "-j",
+            "-",
+            oracleFilename = "nsgMrdcSplit.json",
         )
     }
 
     @Test
-    fun nsgSulJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/nsgSul.txt",
-                "-t",
-                "N",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "nsgSul.json"
+    fun testNsgSul() {
+        test(
+            "-i",
+            "$path/input/nsgSul.txt",
+            "-t",
+            "N",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "nsgSul.json"
         )
     }
 
     @Test
-    fun osixMrdcJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/osixMrdc.txt",
-                "-t",
-                "O",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "osixMrdc.json"
+    fun testOsixMrdc() {
+        test(
+            "-i",
+            "$path/input/osixMrdc.txt",
+            "-t",
+            "O",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "osixMrdc.json"
         )
     }
 
     @Test
-    fun ueCapHexEutraJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/ueCapHexEutra.hex",
-                "--sub-types",
-                "LTE",
-                "-t",
-                "H",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "ueCapHexEutra.json",
+    fun testUeCapHexEutra() {
+        test(
+            "-i",
+            "$path/input/ueCapHexEutra.hex",
+            "--sub-types",
+            "LTE",
+            "-t",
+            "H",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "ueCapHexEutra.json",
         )
     }
 
     @Test
-    fun ueCapHexNrJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/ueCapHexNr.hex",
-                "-t",
-                "H",
-                "--sub-types",
-                "NR",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "ueCapHexNr.json",
+    fun testUeCapHexNr() {
+        test(
+            "-i",
+            "$path/input/ueCapHexNr.hex",
+            "-t",
+            "H",
+            "--sub-types",
+            "NR",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "ueCapHexNr.json",
         )
     }
 
     @Test
-    fun ueCapHexMrdcSplitJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/ueCapHexMrdcSplit_eutra.hex, $path/input/ueCapHexMrdcSplit_nr.hex, $path/input/ueCapHexMrdcSplit_eutra-nr.hex",
-                "--sub-types",
-                "LTE,NR,ENDC",
-                "-t",
-                "H",
-                "-j",
-                "-"
-            ),
-            "ueCapHexMrdcSplit.json",
+    fun testUeCapHexMrdcSplit() {
+        test(
+            "-i",
+            "$path/input/ueCapHexMrdcSplit_eutra.hex,$path/input/ueCapHexMrdcSplit_nr.hex,$path/input/ueCapHexMrdcSplit_eutra-nr.hex",
+            "--sub-types",
+            "LTE,NR,ENDC",
+            "-t",
+            "H",
+            "-j",
+            "-",
+            oracleFilename = "ueCapHexMrdcSplit.json",
         )
     }
 
     @Test
-    fun qcatMrdcJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/qcatMrdc.txt",
-                "-t",
-                "QC",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "qcatMrdc.json"
+    fun testQcatMrdc() {
+        test(
+            "-i",
+            "$path/input/qcatMrdc.txt",
+            "-t",
+            "QC",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "qcatMrdc.json"
         )
     }
 
     @Test
-    fun qcatNrdcJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/qcatNrdc.txt",
-                "-t",
-                "QC",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "qcatNrdc.json"
+    fun testQcatNrdc() {
+        test(
+            "-i",
+            "$path/input/qcatNrdc.txt",
+            "-t",
+            "QC",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "qcatNrdc.json"
         )
     }
 
-    @Test
-    fun pcapJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/pcap.pcap",
-                "-t",
-                "P",
-                "-j",
-                "-",
-                "--json-pretty-print"
-            ),
-            "pcap.json",
-            true
-        )
-    }
+    private fun test(vararg args: String, oracleFilename: String) {
+        val oraclePath = "$path/oracleJson/$oracleFilename"
 
-    @Test
-    fun mainMultiInputJsonOutput() {
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/0xB826.hex",
-                "-t",
-                "QNR",
-                "-i",
-                "$path/input/0xB0CD.txt",
-                "-t",
-                "Q",
-                "-j",
-                "-"
-            ),
-            "0xB826-0xB0CD.json",
-            true
-        )
-    }
+        val result = Cli.test(*args)
+        val actual = Json.decodeFromString<Capabilities>(result.stdout)
+        val expected = Json.decodeFromString<Capabilities>(File(oraclePath).readText())
 
-    @Test
-    fun mainMultiScatJsonOutput() {
-        Assumptions.assumeTrue(scatAvailable)
-        cliTest(
-            arrayOf(
-                "cli",
-                "-i",
-                "$path/input/scat.dlf",
-                "-t",
-                "DLF",
-                "-i",
-                "$path/input/scat.sdm",
-                "-t",
-                "SDM",
-                "-i",
-                "$path/input/scat.hdf",
-                "-t",
-                "HDF",
-                "-i",
-                "$path/input/scat.qmdl",
-                "-t",
-                "QMDL",
-                "-j",
-                "-"
-            ),
-            "scat.json",
-            true
-        )
-    }
+        expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
 
-    private fun cliTest(args: Array<String>, oracleFilename: String, multi: Boolean = false) {
-        setUpStreams()
-        cli.main(args)
-        restoreStreams()
-
-        if (!multi) {
-            val actual = Json.decodeFromString<Capabilities>(out.toString())
-            val expected =
-                Json.decodeFromString<Capabilities>(
-                    File("$path/oracleJson/$oracleFilename").readText()
-                )
-
-            expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
-
-            Assertions.assertEquals(expected, actual)
-        } else {
-            val actual = Json.decodeFromString<Array<Capabilities>>(out.toString())
-            val expected =
-                Json.decodeFromString<Array<Capabilities>>(
-                    File("$path/oracleJson/$oracleFilename").readText()
-                )
-
-            // Check size
-            Assertions.assertEquals(expected.size, actual.size)
-
-            // Override dynamic properties
-
-            for (i in expected.indices) {
-                val capA = actual[i]
-                val capE = expected[i]
-
-                capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
-                capA.getStringMetadata("description")?.let { capE.setMetadata("description", it) }
-            }
-
-            // check files
-            Assertions.assertArrayEquals(expected, actual)
-        }
+        Assertions.assertEquals(expected, actual)
     }
 }

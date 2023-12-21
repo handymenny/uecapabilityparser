@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.util
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
 import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import java.io.*
 import kotlin.system.exitProcess
 
@@ -73,7 +74,7 @@ class Tshark {
             }
             bri.close()
             while (bre.readLine().also { line = it } != null) {
-                System.err.println(line)
+                echoSafe(line, true)
             }
             bre.close()
             if (p.waitFor() == 1) {

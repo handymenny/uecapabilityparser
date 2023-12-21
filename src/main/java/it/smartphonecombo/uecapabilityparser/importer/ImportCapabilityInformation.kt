@@ -60,6 +60,7 @@ import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.toMimo
+import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -108,10 +109,10 @@ object ImportCapabilityInformation : ImportCapabilities {
             comboList.nrSAbands = getNrBands(eutra, false).sorted()
 
             if (debug) {
-                println(
+                echoSafe(
                     "NR NSA bands (from eutra capability): [${comboList.nrNSAbands.joinToString(transform = {it.band.toString()})}]"
                 )
-                println(
+                echoSafe(
                     "NR SA bands (from eutra capability): [${comboList.nrSAbands.joinToString(transform = {it.band.toString()})}]"
                 )
             }
@@ -196,7 +197,7 @@ object ImportCapabilityInformation : ImportCapabilities {
             )
             comboList.nrBands = nrBandsMap.values.sorted()
             if (debug) {
-                comboList.nrBands.forEach { println(it.bwsToString()) }
+                comboList.nrBands.forEach { echoSafe(it.bwsToString()) }
             }
         }
 
@@ -1184,9 +1185,9 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         if (debug) {
-            println("\nLTE FeatureSets")
-            println(downlink.joinToString(separator = "\n"))
-            println(uplink.joinToString(separator = "\n"))
+            echoSafe("\nLTE FeatureSets")
+            echoSafe(downlink.joinToString(separator = "\n"))
+            echoSafe(uplink.joinToString(separator = "\n"))
         }
         return FeatureSets(downlink, uplink)
     }
@@ -1302,9 +1303,9 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         if (debug) {
-            println("\nNr FeatureSets")
-            println(downlink.joinToString(separator = "\n"))
-            println(uplink.joinToString(separator = "\n"))
+            echoSafe("\nNr FeatureSets")
+            echoSafe(downlink.joinToString(separator = "\n"))
+            echoSafe(uplink.joinToString(separator = "\n"))
         }
         return FeatureSets(downlink, uplink)
     }

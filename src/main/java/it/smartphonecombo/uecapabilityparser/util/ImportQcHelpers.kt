@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import java.nio.ByteBuffer
 
 object ImportQcHelpers {
@@ -141,7 +142,7 @@ object ImportQcHelpers {
         val logItem = byteBuffer.readUnsignedShort().toString(16).uppercase()
         capabilities.setMetadata("logItem", "0x$logItem")
         if (debug) {
-            println("Log Item: 0x$logItem")
+            echoSafe("Log Item: 0x$logItem")
         }
         // Skip the rest of the header
         byteBuffer.skipBytes(8)

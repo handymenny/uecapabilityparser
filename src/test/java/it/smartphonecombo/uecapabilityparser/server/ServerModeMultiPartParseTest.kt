@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.Test
 
 internal class ServerModeMultiPartParseTest {
-    private val inputPath = "src/test/resources/mainCli/input/"
+    private val inputPath = "src/test/resources/cli/input/"
     private val oraclePath = "src/test/resources/server/oracleForMultiParse/"
     private val app = JavalinApp().app
     private val endpoint = arrayOf("/parse/multiPart", "/parse/multiPart/").random()

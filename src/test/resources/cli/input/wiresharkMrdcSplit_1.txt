@@ -1,0 +1,2207 @@
+UL-DCCH-Message
+  message: c1 (0)
+    c1: ueCapabilityInformation (7)
+      ueCapabilityInformation
+        rrc-TransactionIdentifier: 3
+        criticalExtensions: c1 (0)
+          c1: ueCapabilityInformation-r8 (0)
+            ueCapabilityInformation-r8
+              ue-CapabilityRAT-ContainerList: 2 items
+                Item 0
+                  UE-CapabilityRAT-Container
+                    rat-Type: nr (5)
+                    ueCapabilityRAT-Container: f920700047d0ffb17df8e6bc0a03c06938f3489e7500c06301f01f8080d8100ea0f805efÔÇª
+                      UE-NR-Capability
+                        accessStratumRelease: rel15 (0)
+                        pdcp-Parameters
+                          supportedROHC-Profiles
+                            .... ..0. profile0x0000: False
+                            .... ...0 profile0x0001: False
+                            0... .... profile0x0002: False
+                            .0.. .... profile0x0003: False
+                            ..0. .... profile0x0004: False
+                            ...0 .... profile0x0006: False
+                            .... 0... profile0x0101: False
+                            .... .0.. profile0x0102: False
+                            .... ..0. profile0x0103: False
+                            .... ...0 profile0x0104: False
+                          maxNumberROHC-ContextSessions: cs16 (4)
+                          continueROHC-Context: supported (0)
+                          outOfOrderDelivery: supported (0)
+                          shortSN: supported (0)
+                        rlc-Parameters
+                          am-WithShortSN: supported (0)
+                          um-WithShortSN: supported (0)
+                          um-WithLongSN: supported (0)
+                        mac-Parameters
+                          mac-ParametersCommon
+                            lcp-Restriction: supported (0)
+                          mac-ParametersXDD-Diff
+                            logicalChannelSR-DelayTimer: supported (0)
+                            longDRX-Cycle: supported (0)
+                            shortDRX-Cycle: supported (0)
+                            multipleSR-Configurations: supported (0)
+                            multipleConfiguredGrants: supported (0)
+                        phy-Parameters
+                          phy-ParametersCommon
+                            csi-RS-CFRA-ForHO: supported (0)
+                            nzp-CSI-RS-IntefMgmt: supported (0)
+                            precoderGranularityCORESET: supported (0)
+                            dynamicHARQ-ACK-Codebook: supported (0)
+                            semiStaticHARQ-ACK-Codebook: supported (0)
+                            spatialBundlingHARQ-ACK: supported (0)
+                            dynamicBetaOffsetInd-HARQ-ACK-CSI: supported (0)
+                            ra-Type0-PUSCH: supported (0)
+                            dynamicSwitchRA-Type0-1-PDSCH: supported (0)
+                            dynamicSwitchRA-Type0-1-PUSCH: supported (0)
+                            pdsch-MappingTypeA: supported (0)
+                            pdsch-MappingTypeB: supported (0)
+                            interleavingVRB-ToPRB-PDSCH: supported (0)
+                            pusch-RepetitionMultiSlots: supported (0)
+                            pdsch-RepetitionMultiSlots: supported (0)
+                            downlinkSPS: supported (0)
+                            pre-EmptIndication-DL: supported (0)
+                            cbg-TransIndication-DL: supported (0)
+                            cbg-FlushIndication-DL: supported (0)
+                            rateMatchingResrcSetSemi-Static: supported (0)
+                            rateMatchingResrcSetDynamic: supported (0)
+                            bwp-SwitchingDelay: type2 (1)
+                            maxNumberSearchSpaces: n10 (0)
+                            rateMatchingCtrlResrcSetDynamic: supported (0)
+                            maxLayersMIMO-Indication: supported (0)
+                          phy-ParametersXDD-Diff
+                            twoPUCCH-F0-2-ConsecSymbols: supported (0)
+                            twoDifferentTPC-Loop-PUSCH: supported (0)
+                          phy-ParametersFRX-Diff
+                            twoFL-DMRS: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                            supportedDMRS-TypeDL: type1 (0)
+                            supportedDMRS-TypeUL: type1And2 (1)
+                            semiOpenLoopCSI: supported (0)
+                            twoPUCCH-F0-2-ConsecSymbols: supported (0)
+                            pucch-F2-WithFH: supported (0)
+                            pucch-F3-WithFH: supported (0)
+                            pucch-F4-WithFH: supported (0)
+                            mux-SR-HARQ-ACK-CSI-PUCCH-MultiPerSlot: supported (0)
+                            uci-CodeBlockSegmentation: supported (0)
+                            twoPUCCH-AnyOthersInSlot: supported (0)
+                            pdcch-BlindDetectionCA: 8
+                            absoluteTPC-Command: supported (0)
+                            pusch-HalfPi-BPSK: supported (0)
+                            pucch-F3-4-HalfPi-BPSK: supported (0)
+                            almostContiguousCP-OFDM-UL: supported (0)
+                            sp-CSI-RS: supported (0)
+                            multipleCORESET: supported (0)
+                            mux-SR-HARQ-ACK-CSI-PUCCH-OncePerSlot
+                              sameSymbol: supported (0)
+                              diffSymbol: supported (0)
+                            mux-SR-HARQ-ACK-PUCCH: supported (0)
+                            oneFL-DMRS-TwoAdditionalDMRS-UL: supported (0)
+                            twoFL-DMRS-TwoAdditionalDMRS-UL: supported (0)
+                            oneFL-DMRS-ThreeAdditionalDMRS-UL: supported (0)
+                          phy-ParametersFR1
+                            pdcch-MonitoringSingleOccasion: supported (0)
+                            scs-60kHz: supported (0)
+                            pdsch-256QAM-FR1: supported (0)
+                            pdsch-RE-MappingFR1-PerSymbol: n20 (1)
+                            pdsch-RE-MappingFR1-PerSlot: n112 (6)
+                        rf-Parameters
+                          supportedBandListNR: 4 items
+                            Item 0
+                              BandNR
+                                bandNR: 3
+                                mimo-ParametersPerBand
+                                  tci-StatePDSCH
+                                    maxNumberConfiguredTCIstatesPerCC: n16 (2)
+                                    maxNumberActiveTCI-PerBWP: n1 (0)
+                                  additionalActiveTCI-StatePDCCH: supported (0)
+                                  pusch-TransCoherence: nonCoherent (0)
+                                  periodicBeamReport: supported (0)
+                                  aperiodicBeamReport: supported (0)
+                                  sp-BeamReportPUCCH: supported (0)
+                                  sp-BeamReportPUSCH: supported (0)
+                                  maxNumberRxBeam: 8
+                                  maxNumberNonGroupBeamReporting: n4 (2)
+                                  groupBeamReporting: supported (0)
+                                  maxNumberCSI-RS-BFD: 2
+                                  maxNumberCSI-RS-SSB-CBD: 8
+                                  dummy2: supported (0)
+                                  dummy3: 1
+                                  beamReportTiming
+                                    scs-15kHz: sym8 (2)
+                                    scs-30kHz: sym28 (3)
+                                    scs-60kHz: sym28 (2)
+                                  beamManagementSSB-CSI-RS
+                                    maxNumberSSB-CSI-RS-ResourceOneTx: n8 (1)
+                                    maxNumberCSI-RS-Resource: n16 (3)
+                                    maxNumberCSI-RS-ResourceTwoTx: n8 (2)
+                                    supportedCSI-RS-Density: oneAndThree (2)
+                                    maxNumberAperiodicCSI-RS-Resource: n16 (4)
+                                  codebookParameters
+                                    type1
+                                      singlePanel
+                                        supportedCSI-RS-ResourceList: 3 items
+                                          Item 0
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p32 (6)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 1
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p8 (2)
+                                              maxNumberResourcesPerBand: 8
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 2
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p16 (4)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 32
+                                        modes: mode1 (0)
+                                        maxNumberCSI-RS-PerResourceSet: 4
+                                  csi-RS-IM-ReceptionForFeedback
+                                    maxConfigNumberNZP-CSI-RS-PerCC: 8
+                                    maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC: 64
+                                    maxConfigNumberCSI-IM-PerCC: n8 (3)
+                                    maxNumberSimultaneousNZP-CSI-RS-PerCC: 4
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-PerCC: 32
+                                  csi-ReportFramework
+                                    maxNumberPeriodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report: 0
+                                    maxNumberPeriodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-triggeringStatePerCC: n63 (4)
+                                    maxNumberSemiPersistentCSI-PerBWP-ForBeamReport: 0
+                                    simultaneousCSI-ReportsPerCC: 4
+                                  csi-RS-ForTracking
+                                    maxBurstLength: 2
+                                    maxSimultaneousResourceSetsPerCC: 1
+                                    maxConfiguredResourceSetsPerCC: 8
+                                    maxConfiguredResourceSetsAllCC: 16
+                                multipleTCI: supported (0)
+                                pusch-256QAM: supported (0)
+                                ue-PowerClass: pc3 (2)
+                                rateMatchingLTE-CRS: supported (0)
+                                channelBWs-DL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: fe00 [bit length 10, 6 LSB pad bits, 1111 1110  00.. .... decimal value 1016]
+                                    scs-30kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                channelBWs-UL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: fe00 [bit length 10, 6 LSB pad bits, 1111 1110  00.. .... decimal value 1016]
+                                    scs-30kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                pucch-SpatialRelInfoMAC-CE: supported (0)
+                            Item 1
+                              BandNR
+                                bandNR: 78
+                                mimo-ParametersPerBand
+                                  tci-StatePDSCH
+                                    maxNumberConfiguredTCIstatesPerCC: n16 (2)
+                                    maxNumberActiveTCI-PerBWP: n1 (0)
+                                  additionalActiveTCI-StatePDCCH: supported (0)
+                                  pusch-TransCoherence: nonCoherent (0)
+                                  periodicBeamReport: supported (0)
+                                  aperiodicBeamReport: supported (0)
+                                  sp-BeamReportPUCCH: supported (0)
+                                  sp-BeamReportPUSCH: supported (0)
+                                  maxNumberRxBeam: 8
+                                  maxNumberNonGroupBeamReporting: n4 (2)
+                                  groupBeamReporting: supported (0)
+                                  maxNumberCSI-RS-BFD: 2
+                                  maxNumberCSI-RS-SSB-CBD: 8
+                                  dummy2: supported (0)
+                                  dummy3: 1
+                                  beamReportTiming
+                                    scs-15kHz: sym8 (2)
+                                    scs-30kHz: sym28 (3)
+                                    scs-60kHz: sym28 (2)
+                                  beamManagementSSB-CSI-RS
+                                    maxNumberSSB-CSI-RS-ResourceOneTx: n8 (1)
+                                    maxNumberCSI-RS-Resource: n16 (3)
+                                    maxNumberCSI-RS-ResourceTwoTx: n8 (2)
+                                    supportedCSI-RS-Density: oneAndThree (2)
+                                    maxNumberAperiodicCSI-RS-Resource: n16 (4)
+                                  codebookParameters
+                                    type1
+                                      singlePanel
+                                        supportedCSI-RS-ResourceList: 3 items
+                                          Item 0
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p32 (6)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 1
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p8 (2)
+                                              maxNumberResourcesPerBand: 8
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 2
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p16 (4)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 32
+                                        modes: mode1 (0)
+                                        maxNumberCSI-RS-PerResourceSet: 4
+                                  csi-RS-IM-ReceptionForFeedback
+                                    maxConfigNumberNZP-CSI-RS-PerCC: 8
+                                    maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC: 64
+                                    maxConfigNumberCSI-IM-PerCC: n8 (3)
+                                    maxNumberSimultaneousNZP-CSI-RS-PerCC: 4
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-PerCC: 32
+                                  csi-ReportFramework
+                                    maxNumberPeriodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report: 0
+                                    maxNumberPeriodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-triggeringStatePerCC: n63 (4)
+                                    maxNumberSemiPersistentCSI-PerBWP-ForBeamReport: 0
+                                    simultaneousCSI-ReportsPerCC: 4
+                                  csi-RS-ForTracking
+                                    maxBurstLength: 2
+                                    maxSimultaneousResourceSetsPerCC: 1
+                                    maxConfiguredResourceSetsPerCC: 8
+                                    maxConfiguredResourceSetsAllCC: 16
+                                multipleTCI: supported (0)
+                                pusch-256QAM: supported (0)
+                                ue-PowerClass: pc3 (2)
+                                rateMatchingLTE-CRS: supported (0)
+                                channelBWs-DL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-30kHz: 7fc0 [bit length 10, 6 LSB pad bits, 0111 1111  11.. .... decimal value 511]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                channelBWs-UL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-30kHz: 7fc0 [bit length 10, 6 LSB pad bits, 0111 1111  11.. .... decimal value 511]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                pucch-SpatialRelInfoMAC-CE: supported (0)
+                                channelBWs-DL-v1590: fr1 (0)
+                                  fr1
+                                channelBWs-UL-v1590: fr1 (0)
+                                  fr1
+                            Item 2
+                              BandNR
+                                bandNR: 1
+                                mimo-ParametersPerBand
+                                  tci-StatePDSCH
+                                    maxNumberConfiguredTCIstatesPerCC: n16 (2)
+                                    maxNumberActiveTCI-PerBWP: n1 (0)
+                                  additionalActiveTCI-StatePDCCH: supported (0)
+                                  pusch-TransCoherence: nonCoherent (0)
+                                  periodicBeamReport: supported (0)
+                                  aperiodicBeamReport: supported (0)
+                                  sp-BeamReportPUCCH: supported (0)
+                                  sp-BeamReportPUSCH: supported (0)
+                                  maxNumberRxBeam: 8
+                                  maxNumberNonGroupBeamReporting: n4 (2)
+                                  groupBeamReporting: supported (0)
+                                  maxNumberCSI-RS-BFD: 2
+                                  maxNumberCSI-RS-SSB-CBD: 8
+                                  dummy2: supported (0)
+                                  dummy3: 1
+                                  beamReportTiming
+                                    scs-15kHz: sym8 (2)
+                                    scs-30kHz: sym28 (3)
+                                    scs-60kHz: sym28 (2)
+                                  beamManagementSSB-CSI-RS
+                                    maxNumberSSB-CSI-RS-ResourceOneTx: n8 (1)
+                                    maxNumberCSI-RS-Resource: n16 (3)
+                                    maxNumberCSI-RS-ResourceTwoTx: n8 (2)
+                                    supportedCSI-RS-Density: oneAndThree (2)
+                                    maxNumberAperiodicCSI-RS-Resource: n16 (4)
+                                  codebookParameters
+                                    type1
+                                      singlePanel
+                                        supportedCSI-RS-ResourceList: 3 items
+                                          Item 0
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p32 (6)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 1
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p8 (2)
+                                              maxNumberResourcesPerBand: 8
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 2
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p16 (4)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 32
+                                        modes: mode1 (0)
+                                        maxNumberCSI-RS-PerResourceSet: 4
+                                  csi-RS-IM-ReceptionForFeedback
+                                    maxConfigNumberNZP-CSI-RS-PerCC: 8
+                                    maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC: 64
+                                    maxConfigNumberCSI-IM-PerCC: n8 (3)
+                                    maxNumberSimultaneousNZP-CSI-RS-PerCC: 4
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-PerCC: 32
+                                  csi-ReportFramework
+                                    maxNumberPeriodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report: 0
+                                    maxNumberPeriodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-triggeringStatePerCC: n63 (4)
+                                    maxNumberSemiPersistentCSI-PerBWP-ForBeamReport: 0
+                                    simultaneousCSI-ReportsPerCC: 4
+                                  csi-RS-ForTracking
+                                    maxBurstLength: 2
+                                    maxSimultaneousResourceSetsPerCC: 1
+                                    maxConfiguredResourceSetsPerCC: 8
+                                    maxConfiguredResourceSetsAllCC: 16
+                                multipleTCI: supported (0)
+                                pusch-256QAM: supported (0)
+                                ue-PowerClass: pc3 (2)
+                                rateMatchingLTE-CRS: supported (0)
+                                channelBWs-DL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: ff00 [bit length 10, 6 LSB pad bits, 1111 1111  00.. .... decimal value 1020]
+                                    scs-30kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                channelBWs-UL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: ff00 [bit length 10, 6 LSB pad bits, 1111 1111  00.. .... decimal value 1020]
+                                    scs-30kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                pucch-SpatialRelInfoMAC-CE: supported (0)
+                            Item 3
+                              BandNR
+                                bandNR: 7
+                                mimo-ParametersPerBand
+                                  tci-StatePDSCH
+                                    maxNumberConfiguredTCIstatesPerCC: n16 (2)
+                                    maxNumberActiveTCI-PerBWP: n1 (0)
+                                  additionalActiveTCI-StatePDCCH: supported (0)
+                                  pusch-TransCoherence: nonCoherent (0)
+                                  periodicBeamReport: supported (0)
+                                  aperiodicBeamReport: supported (0)
+                                  sp-BeamReportPUCCH: supported (0)
+                                  sp-BeamReportPUSCH: supported (0)
+                                  maxNumberRxBeam: 8
+                                  maxNumberNonGroupBeamReporting: n4 (2)
+                                  groupBeamReporting: supported (0)
+                                  maxNumberCSI-RS-BFD: 2
+                                  maxNumberCSI-RS-SSB-CBD: 8
+                                  dummy2: supported (0)
+                                  dummy3: 1
+                                  beamReportTiming
+                                    scs-15kHz: sym8 (2)
+                                    scs-30kHz: sym28 (3)
+                                    scs-60kHz: sym28 (2)
+                                  beamManagementSSB-CSI-RS
+                                    maxNumberSSB-CSI-RS-ResourceOneTx: n8 (1)
+                                    maxNumberCSI-RS-Resource: n16 (3)
+                                    maxNumberCSI-RS-ResourceTwoTx: n8 (2)
+                                    supportedCSI-RS-Density: oneAndThree (2)
+                                    maxNumberAperiodicCSI-RS-Resource: n16 (4)
+                                  codebookParameters
+                                    type1
+                                      singlePanel
+                                        supportedCSI-RS-ResourceList: 3 items
+                                          Item 0
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p32 (6)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 1
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p8 (2)
+                                              maxNumberResourcesPerBand: 8
+                                              totalNumberTxPortsPerBand: 64
+                                          Item 2
+                                            SupportedCSI-RS-Resource
+                                              maxNumberTxPortsPerResource: p16 (4)
+                                              maxNumberResourcesPerBand: 2
+                                              totalNumberTxPortsPerBand: 32
+                                        modes: mode1 (0)
+                                        maxNumberCSI-RS-PerResourceSet: 4
+                                  csi-RS-IM-ReceptionForFeedback
+                                    maxConfigNumberNZP-CSI-RS-PerCC: 8
+                                    maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC: 64
+                                    maxConfigNumberCSI-IM-PerCC: n8 (3)
+                                    maxNumberSimultaneousNZP-CSI-RS-PerCC: 4
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-PerCC: 32
+                                  csi-ReportFramework
+                                    maxNumberPeriodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForCSI-Report: 2
+                                    maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report: 0
+                                    maxNumberPeriodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-PerBWP-ForBeamReport: 2
+                                    maxNumberAperiodicCSI-triggeringStatePerCC: n63 (4)
+                                    maxNumberSemiPersistentCSI-PerBWP-ForBeamReport: 0
+                                    simultaneousCSI-ReportsPerCC: 4
+                                  csi-RS-ForTracking
+                                    maxBurstLength: 2
+                                    maxSimultaneousResourceSetsPerCC: 1
+                                    maxConfiguredResourceSetsPerCC: 8
+                                    maxConfiguredResourceSetsAllCC: 16
+                                multipleTCI: supported (0)
+                                pusch-256QAM: supported (0)
+                                ue-PowerClass: pc3 (2)
+                                rateMatchingLTE-CRS: supported (0)
+                                channelBWs-DL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: ff00 [bit length 10, 6 LSB pad bits, 1111 1111  00.. .... decimal value 1020]
+                                    scs-30kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                channelBWs-UL: fr1 (0)
+                                  fr1
+                                    scs-15kHz: ff00 [bit length 10, 6 LSB pad bits, 1111 1111  00.. .... decimal value 1020]
+                                    scs-30kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                    scs-60kHz: 0000 [bit length 10, 6 LSB pad bits, 0000 0000  00.. .... decimal value 0]
+                                pucch-SpatialRelInfoMAC-CE: supported (0)
+                          appliedFreqBandListFilter: 8 items
+                            Item 0
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 1
+                            Item 1
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 3
+                            Item 2
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 7
+                            Item 3
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 20
+                            Item 4
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 38
+                            Item 5
+                              FreqBandInformation: bandInformationNR (1)
+                                bandInformationNR
+                                  bandNR: 3
+                            Item 6
+                              FreqBandInformation: bandInformationNR (1)
+                                bandInformationNR
+                                  bandNR: 7
+                            Item 7
+                              FreqBandInformation: bandInformationNR (1)
+                                bandInformationNR
+                                  bandNR: 78
+                        measAndMobParameters
+                          measAndMobParametersCommon
+                            supportedGapPattern: 000000 [bit length 22, 2 LSB pad bits, 0000 0000  0000 0000  0000 00.. decimal value 0]
+                            ssb-RLM: supported (0)
+                            ssb-AndCSI-RS-RLM: supported (0)
+                            nr-CGI-Reporting: supported (0)
+                            independentGapConfig: supported (0)
+                          measAndMobParametersXDD-Diff
+                            intraAndInterF-MeasAndReport: supported (0)
+                            eventA-MeasAndReport: supported (0)
+                            handoverInterF: supported (0)
+                          measAndMobParametersFRX-Diff
+                            ss-SINR-Meas: supported (0)
+                            csi-RSRP-AndRSRQ-MeasWithSSB: supported (0)
+                            csi-RSRP-AndRSRQ-MeasWithoutSSB: supported (0)
+                            csi-SINR-Meas: supported (0)
+                            handoverInterF: supported (0)
+                        fdd-Add-UE-NR-Capabilities
+                          phy-ParametersXDD-Diff
+                          mac-ParametersXDD-Diff
+                        tdd-Add-UE-NR-Capabilities
+                          phy-ParametersXDD-Diff
+                          mac-ParametersXDD-Diff
+                        featureSets
+                          featureSetsDownlink: 3 items
+                            Item 0
+                              FeatureSetDownlink
+                                featureSetListPerDownlinkCC: 1 item
+                                  Item 0
+                                    FeatureSetDownlinkPerCC-Id: 1
+                                intraBandFreqSeparationDL: mhz1200 (1)
+                                dummy8: supported (0)
+                                scellWithoutSSB: supported (0)
+                                csi-RS-MeasSCellWithoutSSB: supported (0)
+                                pdcch-MonitoringAnyOccasions: withoutDCI-Gap (0)
+                                ue-SpecificUL-DL-Assignment: supported (0)
+                                searchSpaceSharingCA-DL: supported (0)
+                                pdsch-ProcessingType1-DifferentTB-PerSlot
+                                  scs-15kHz: upto2 (0)
+                                  scs-30kHz: upto2 (0)
+                                  scs-60kHz: upto2 (0)
+                            Item 1
+                              FeatureSetDownlink
+                                featureSetListPerDownlinkCC: 1 item
+                                  Item 0
+                                    FeatureSetDownlinkPerCC-Id: 2
+                                intraBandFreqSeparationDL: mhz1200 (1)
+                                dummy8: supported (0)
+                                scellWithoutSSB: supported (0)
+                                csi-RS-MeasSCellWithoutSSB: supported (0)
+                                pdcch-MonitoringAnyOccasions: withoutDCI-Gap (0)
+                                ue-SpecificUL-DL-Assignment: supported (0)
+                                searchSpaceSharingCA-DL: supported (0)
+                                pdsch-ProcessingType1-DifferentTB-PerSlot
+                                  scs-15kHz: upto2 (0)
+                                  scs-30kHz: upto2 (0)
+                                  scs-60kHz: upto2 (0)
+                            Item 2
+                              FeatureSetDownlink
+                                featureSetListPerDownlinkCC: 1 item
+                                  Item 0
+                                    FeatureSetDownlinkPerCC-Id: 3
+                                intraBandFreqSeparationDL: mhz1200 (1)
+                                dummy8: supported (0)
+                                scellWithoutSSB: supported (0)
+                                csi-RS-MeasSCellWithoutSSB: supported (0)
+                                pdcch-MonitoringAnyOccasions: withoutDCI-Gap (0)
+                                ue-SpecificUL-DL-Assignment: supported (0)
+                                searchSpaceSharingCA-DL: supported (0)
+                                pdsch-ProcessingType1-DifferentTB-PerSlot
+                                  scs-15kHz: upto2 (0)
+                                  scs-30kHz: upto2 (0)
+                                  scs-60kHz: upto2 (0)
+                          featureSetsDownlinkPerCC: 3 items
+                            Item 0
+                              FeatureSetDownlinkPerCC
+                                supportedSubcarrierSpacingDL: kHz30 (1)
+                                supportedBandwidthDL: fr1 (0)
+                                  fr1: mhz20 (3)
+                                maxNumberMIMO-LayersPDSCH: fourLayers (1)
+                                supportedModulationOrderDL: qam256 (5)
+                            Item 1
+                              FeatureSetDownlinkPerCC
+                                supportedSubcarrierSpacingDL: kHz15 (0)
+                                supportedBandwidthDL: fr1 (0)
+                                  fr1: mhz20 (3)
+                                maxNumberMIMO-LayersPDSCH: fourLayers (1)
+                                supportedModulationOrderDL: qam256 (5)
+                            Item 2
+                              FeatureSetDownlinkPerCC
+                                supportedSubcarrierSpacingDL: kHz15 (0)
+                                supportedBandwidthDL: fr1 (0)
+                                  fr1: mhz20 (3)
+                                maxNumberMIMO-LayersPDSCH: twoLayers (0)
+                                supportedModulationOrderDL: qam256 (5)
+                          featureSetsUplink: 2 items
+                            Item 0
+                              FeatureSetUplink
+                                featureSetListPerUplinkCC: 1 item
+                                  Item 0
+                                    FeatureSetUplinkPerCC-Id: 1
+                                supportedSRS-Resources
+                                  maxNumberAperiodicSRS-PerBWP: n1 (0)
+                                  maxNumberAperiodicSRS-PerBWP-PerSlot: 1
+                                  maxNumberPeriodicSRS-PerBWP: n8 (3)
+                                  maxNumberPeriodicSRS-PerBWP-PerSlot: 1
+                                  maxNumberSemiPersistentSRS-PerBWP: n1 (0)
+                                  maxNumberSemiPersistentSRS-PerBWP-PerSlot: 1
+                                  maxNumberSRS-Ports-PerResource: n1 (0)
+                                twoPUCCH-Group: supported (0)
+                            Item 1
+                              FeatureSetUplink
+                                featureSetListPerUplinkCC: 1 item
+                                  Item 0
+                                    FeatureSetUplinkPerCC-Id: 2
+                                supportedSRS-Resources
+                                  maxNumberAperiodicSRS-PerBWP: n1 (0)
+                                  maxNumberAperiodicSRS-PerBWP-PerSlot: 1
+                                  maxNumberPeriodicSRS-PerBWP: n8 (3)
+                                  maxNumberPeriodicSRS-PerBWP-PerSlot: 1
+                                  maxNumberSemiPersistentSRS-PerBWP: n1 (0)
+                                  maxNumberSemiPersistentSRS-PerBWP-PerSlot: 1
+                                  maxNumberSRS-Ports-PerResource: n1 (0)
+                                twoPUCCH-Group: supported (0)
+                          featureSetsUplinkPerCC: 2 items
+                            Item 0
+                              FeatureSetUplinkPerCC
+                                supportedSubcarrierSpacingUL: kHz30 (1)
+                                supportedBandwidthUL: fr1 (0)
+                                  fr1: mhz20 (3)
+                                mimo-CB-PUSCH
+                                  maxNumberMIMO-LayersCB-PUSCH: oneLayer (0)
+                                  maxNumberSRS-ResourcePerSet: 1
+                                maxNumberMIMO-LayersNonCB-PUSCH: oneLayer (0)
+                                supportedModulationOrderUL: qam256 (5)
+                            Item 1
+                              FeatureSetUplinkPerCC
+                                supportedSubcarrierSpacingUL: kHz15 (0)
+                                supportedBandwidthUL: fr1 (0)
+                                  fr1: mhz20 (3)
+                                mimo-CB-PUSCH
+                                  maxNumberMIMO-LayersCB-PUSCH: oneLayer (0)
+                                  maxNumberSRS-ResourcePerSet: 1
+                                maxNumberMIMO-LayersNonCB-PUSCH: oneLayer (0)
+                                supportedModulationOrderUL: qam256 (5)
+                          featureSetsDownlink-v1540: 3 items
+                            Item 0
+                              FeatureSetDownlink-v1540
+                                oneFL-DMRS-TwoAdditionalDMRS-DL: supported (0)
+                                additionalDMRS-DL-Alt: supported (0)
+                                twoFL-DMRS-TwoAdditionalDMRS-DL: supported (0)
+                                oneFL-DMRS-ThreeAdditionalDMRS-DL: supported (0)
+                            Item 1
+                              FeatureSetDownlink-v1540
+                                oneFL-DMRS-TwoAdditionalDMRS-DL: supported (0)
+                                additionalDMRS-DL-Alt: supported (0)
+                                twoFL-DMRS-TwoAdditionalDMRS-DL: supported (0)
+                                oneFL-DMRS-ThreeAdditionalDMRS-DL: supported (0)
+                            Item 2
+                              FeatureSetDownlink-v1540
+                                oneFL-DMRS-TwoAdditionalDMRS-DL: supported (0)
+                                additionalDMRS-DL-Alt: supported (0)
+                                twoFL-DMRS-TwoAdditionalDMRS-DL: supported (0)
+                                oneFL-DMRS-ThreeAdditionalDMRS-DL: supported (0)
+                        nonCriticalExtension
+                          nonCriticalExtension
+                            fr1-fr2-Add-UE-NR-Capabilities
+                              measAndMobParametersFRX-Diff
+                                csi-RSRP-AndRSRQ-MeasWithSSB: supported (0)
+                Item 1
+                  UE-CapabilityRAT-Container
+                    rat-Type: eutra-nr (6)
+                    ueCapabilityRAT-Container: a11e78c50480018100713400000010e4741300004041c4d00000204391d0480018300700ÔÇª
+                      UE-MRDC-Capability
+                        measAndMobParametersMRDC
+                          measAndMobParametersMRDC-Common
+                            independentGapConfig: supported (0)
+                          measAndMobParametersMRDC-XDD-Diff
+                          measAndMobParametersMRDC-FRX-Diff
+                            simultaneousRxDataSSB-DiffNumerology: supported (0)
+                        rf-ParametersMRDC
+                          supportedBandCombinationList: 24 items
+                            Item 0
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 0
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 1
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 1
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 2
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 3
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 2
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 3
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 3
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 3
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 4
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 0
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 5
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 1
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 6
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 3
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 3
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 7
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 3
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 4
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 8
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 5
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 9
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 1
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 6
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 10
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 0
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 11
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 1
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 12
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 7
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 4
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 13
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 5
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 14
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 6
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: c0 [bit length 2, 6 LSB pad bits, 11.. .... decimal value 3]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 15
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 38
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 7
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 16
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 3
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 38
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 1
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 17
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 3
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 3
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 18
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 3
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 4
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 19
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 5
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 20
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 7
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 6
+                                ca-ParametersEUTRA
+                                  supportedBandwidthCombinationSetEUTRA-v1530: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 21
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 38
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 7
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 22
+                              BandCombination
+                                bandList: 3 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 20
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 38
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                  Item 2
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 78
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 8
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                            Item 23
+                              BandCombination
+                                bandList: 2 items
+                                  Item 0
+                                    BandParameters: eutra (0)
+                                      eutra
+                                        bandEUTRA: 38
+                                        ca-BandwidthClassDL-EUTRA: a (0)
+                                        ca-BandwidthClassUL-EUTRA: a (0)
+                                  Item 1
+                                    BandParameters: nr (1)
+                                      nr
+                                        bandNR: 3
+                                        ca-BandwidthClassDL-NR: a (0)
+                                        ca-BandwidthClassUL-NR: a (0)
+                                featureSetCombination: 9
+                                mrdc-Parameters
+                                  dynamicPowerSharingENDC: supported (0)
+                                  simultaneousRxTxInterBandENDC: supported (0)
+                                  asyncIntraBandENDC: supported (0)
+                          appliedFreqBandListFilter: 8 items
+                            Item 0
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 1
+                            Item 1
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 3
+                            Item 2
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 7
+                            Item 3
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 20
+                            Item 4
+                              FreqBandInformation: bandInformationEUTRA (0)
+                                bandInformationEUTRA
+                                  bandEUTRA: 38
+                            Item 5
+                              FreqBandInformation: bandInformationNR (1)
+                                bandInformationNR
+                                  bandNR: 3
+                            Item 6
+                              FreqBandInformation: bandInformationNR (1)
+                                bandInformationNR
+                                  bandNR: 7
+                            Item 7
+                              FreqBandInformation: bandInformationNR (1)
+                                bandInformationNR
+                                  bandNR: 78
+                          supportedBandCombinationList-v1540: 24 items
+                            Item 0
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 1
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 2
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 3
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 4
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 5
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 6
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 7
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 8
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 9
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 10
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 11
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 12
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 13
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 14
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 15
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 16
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 17
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 18
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 19
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 20
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 21
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 22
+                              BandCombination-v1540
+                                bandList-v1540: 3 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                  Item 2
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                            Item 23
+                              BandCombination-v1540
+                                bandList-v1540: 2 items
+                                  Item 0
+                                    BandParameters-v1540
+                                  Item 1
+                                    BandParameters-v1540
+                                      srs-TxSwitch
+                                        supportedSRS-TxPortSwitch: notSupported (7)
+                                ca-ParametersNR-v1540
+                                  csi-RS-IM-ReceptionForFeedbackPerBandComb
+                                    maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC: 8
+                                    totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC: 64
+                                  simultaneousCSI-ReportsAllCC: 8
+                          supportedBandCombinationList-v1560: 24 items
+                            Item 0
+                              BandCombination-v1560
+                            Item 1
+                              BandCombination-v1560
+                            Item 2
+                              BandCombination-v1560
+                            Item 3
+                              BandCombination-v1560
+                            Item 4
+                              BandCombination-v1560
+                            Item 5
+                              BandCombination-v1560
+                            Item 6
+                              BandCombination-v1560
+                            Item 7
+                              BandCombination-v1560
+                            Item 8
+                              BandCombination-v1560
+                            Item 9
+                              BandCombination-v1560
+                            Item 10
+                              BandCombination-v1560
+                            Item 11
+                              BandCombination-v1560
+                            Item 12
+                              BandCombination-v1560
+                            Item 13
+                              BandCombination-v1560
+                            Item 14
+                              BandCombination-v1560
+                            Item 15
+                              BandCombination-v1560
+                            Item 16
+                              BandCombination-v1560
+                            Item 17
+                              BandCombination-v1560
+                            Item 18
+                              BandCombination-v1560
+                            Item 19
+                              BandCombination-v1560
+                            Item 20
+                              BandCombination-v1560
+                            Item 21
+                              BandCombination-v1560
+                            Item 22
+                              BandCombination-v1560
+                            Item 23
+                              BandCombination-v1560
+                          supportedBandCombinationList-v1570: 24 items
+                            Item 0
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 1
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 2
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 3
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 4
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 5
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 6
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 7
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 8
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 9
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 10
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 11
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 12
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 13
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 14
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 15
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 16
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 17
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 18
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 19
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 20
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 21
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 22
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                            Item 23
+                              BandCombination-v1570
+                                ca-ParametersEUTRA-v1570
+                          supportedBandCombinationList-v1580: 24 items
+                            Item 0
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 1
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 2
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 3
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 4
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 5
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 6
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 7
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 8
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 9
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 10
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 11
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 12
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 13
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 14
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 15
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 16
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 17
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 18
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 19
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 20
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 21
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 22
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                            Item 23
+                              BandCombination-v1580
+                                mrdc-Parameters-v1580
+                          supportedBandCombinationList-v1590: 24 items
+                            Item 0
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 1
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 2
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 3
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 4
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 5
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 6
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 7
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 8
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 9
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 10
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 11
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 12
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 13
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 14
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 15
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 16
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 17
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 18
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 19
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 20
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 21
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 22
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                            Item 23
+                              BandCombination-v1590
+                                mrdc-Parameters-v1590
+                        generalParametersMRDC
+                          splitDRB-withUL-Both-MCG-SCG: supported (0)
+                          srb3: supported (0)
+                        featureSetCombinations: 10 items
+                          Item 0
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 0
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 2
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 1
+                                        uplinkSetNR: 1
+                          Item 1
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 2
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 0
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 1
+                                        uplinkSetNR: 1
+                          Item 2
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 0
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 2
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 2
+                                        uplinkSetNR: 2
+                          Item 3
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 2
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 0
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 2
+                                        uplinkSetNR: 2
+                          Item 4
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 0
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 2
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 2
+                                        uplinkSetNR: 2
+                          Item 5
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 0
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 2
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 1
+                                        uplinkSetNR: 1
+                          Item 6
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 2
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 0
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 1
+                                        uplinkSetNR: 1
+                          Item 7
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 0
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 2
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 1
+                                        uplinkSetNR: 1
+                          Item 8
+                            FeatureSetCombination: 3 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 2
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 1
+                                        uplinkSetEUTRA: 0
+                              Item 2
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 1
+                                        uplinkSetNR: 1
+                          Item 9
+                            FeatureSetCombination: 2 items
+                              Item 0
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: eutra (0)
+                                      eutra
+                                        downlinkSetEUTRA: 2
+                                        uplinkSetEUTRA: 2
+                              Item 1
+                                FeatureSetsPerBand: 1 item
+                                  Item 0
+                                    FeatureSet: nr (1)
+                                      nr
+                                        downlinkSetNR: 3
+                                        uplinkSetNR: 2

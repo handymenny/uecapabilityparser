@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.IO
+import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import it.smartphonecombo.uecapabilityparser.util.IO.readTextFromFile
 import java.io.File
 import kotlinx.serialization.Serializable
@@ -90,7 +91,7 @@ data class LibraryIndex(
                                 capabilities.parserVersion
                             )
                         } catch (ex: Exception) {
-                            System.err.println("Error ${ex.localizedMessage}")
+                            echoSafe("Error ${ex.localizedMessage}", true)
                             null
                         }
                     }
@@ -105,7 +106,7 @@ data class LibraryIndex(
 
                             jsonTxt?.let { Json.custom().decodeFromString<MultiIndexLine>(it) }
                         } catch (ex: Exception) {
-                            System.err.println("Error ${ex.localizedMessage}")
+                            echoSafe("Error ${ex.localizedMessage}", true)
                             null
                         }
                     }

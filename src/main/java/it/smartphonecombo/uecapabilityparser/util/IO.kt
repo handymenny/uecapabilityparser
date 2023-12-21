@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.util
 
+import it.smartphonecombo.uecapabilityparser.cli.Cli.echo
 import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.moveTo
@@ -17,6 +18,20 @@ import java.nio.file.Paths
 
 object IO {
 
+    /** Call [echo] or [println] if Cli isn't initialized * */
+    fun echoSafe(message: Any?, err: Boolean = false) {
+        try {
+            echo(message, err = err)
+        } catch (_: Exception) {
+            // Context not initialized
+            if (err) {
+                System.err.println(message)
+            } else {
+                println(message)
+            }
+        }
+    }
+
     /**
      * Output the given [text] to [outputFile]
      *
@@ -27,10 +42,10 @@ object IO {
             if (!outputFile.isNullOrBlank()) {
                 File(outputFile).writeText(text)
             } else {
-                println(text)
+                echoSafe(text)
             }
         } catch (ex: Exception) {
-            System.err.println("Error ${ex.localizedMessage}")
+            echoSafe("Error ${ex.localizedMessage}", true)
         }
     }
 
@@ -51,7 +66,7 @@ object IO {
         try {
             File(path).writeBytes(bytes)
         } catch (ex: Exception) {
-            System.err.println("Error ${ex.localizedMessage}")
+            echoSafe("Error ${ex.localizedMessage}", true)
         }
     }
 
@@ -60,7 +75,7 @@ object IO {
         try {
             Files.createDirectories(Paths.get(path))
         } catch (ex: Exception) {
-            System.err.println("Error ${ex.localizedMessage}")
+            echoSafe("Error ${ex.localizedMessage}", true)
         }
     }
 

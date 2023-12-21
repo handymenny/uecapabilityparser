@@ -13,6 +13,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
 import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import java.nio.BufferUnderflowException
@@ -46,18 +47,18 @@ object Import0xB0CDBin : ImportCapabilities {
             val logSize = ImportQcHelpers.getQcDiagLogSize(byteBuffer, capabilities)
             capabilities.setMetadata("logSize", logSize)
             if (debug) {
-                println("Log file size: $logSize bytes")
+                echoSafe("Log file size: $logSize bytes")
             }
 
             val version = byteBuffer.readUnsignedByte()
             capabilities.setMetadata("version", version)
             if (debug) {
-                println("Version $version\n")
+                echoSafe("Version $version\n")
             }
 
             val numCombos = byteBuffer.readUnsignedByte()
             if (debug) {
-                println("Num Combos $numCombos\n")
+                echoSafe("Num Combos $numCombos\n")
             }
             capabilities.setMetadata("numCombos", numCombos)
 
@@ -76,7 +77,7 @@ object Import0xB0CDBin : ImportCapabilities {
         }
 
         if (debug) {
-            println(
+            echoSafe(
                 listCombo.joinToString(
                     prefix = "[",
                     postfix = "]",
