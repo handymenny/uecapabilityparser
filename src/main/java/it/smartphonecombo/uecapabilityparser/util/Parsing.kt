@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
@@ -22,9 +23,9 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
 class Parsing(
-    private val input: ByteArray,
-    private val inputNR: ByteArray?,
-    private val inputENDC: ByteArray?,
+    private val input: InputSource,
+    private val inputNR: InputSource?,
+    private val inputENDC: InputSource?,
     private val defaultNR: Boolean = false,
     private val type: LogType,
     private val description: String = "",
@@ -34,7 +35,7 @@ class Parsing(
     val capabilities = parseCapabilitiesAndSetMetadata()
 
     val ueLog: String
-        get() = jsonUeCap?.let { jsonFormat.encodeToString(jsonUeCap) } ?: input.decodeToString()
+        get() = jsonUeCap?.let { jsonFormat.encodeToString(jsonUeCap) } ?: input.readText()
 
     private fun parseCapabilitiesAndSetMetadata(): Capabilities {
         val capabilities: Capabilities
@@ -56,15 +57,22 @@ class Parsing(
         val imports = LogType.getImporter(type) ?: return Capabilities()
 
         if (imports == Import0xB826) {
-            return parseMultiple0xB826(input.decodeToString())
+            return parseMultiple0xB826(input.readText())
         }
 
         if (imports == Import0xB0CDBin) {
-            return parseMultiple0xBOCD(input.decodeToString())
+            return parseMultiple0xBOCD(input.readText())
         }
 
         if (imports == ImportCapabilityInformation) {
-            jsonUeCap = convertUeCapabilityToJson(type, input, inputNR, inputENDC, defaultNR)
+            jsonUeCap =
+                convertUeCapabilityToJson(
+                    type,
+                    input.readBytes(),
+                    inputNR?.readBytes(),
+                    inputENDC?.readBytes(),
+                    defaultNR
+                )
             val eutra = jsonUeCap?.get(Rat.EUTRA.toString()) as? JsonObject
             val eutraNr = jsonUeCap?.get(Rat.EUTRA_NR.toString()) as? JsonObject
             val nr = jsonUeCap?.get(Rat.NR.toString()) as? JsonObject
@@ -72,7 +80,7 @@ class Parsing(
             return (imports as ImportCapabilityInformation).parse(eutra, eutraNr, nr)
         }
 
-        return imports.parse(input.toInputSource())
+        return imports.parse(input)
     }
 
     fun store(libraryIndex: LibraryIndex?, path: String, compression: Boolean): IndexLine {
@@ -82,12 +90,14 @@ class Parsing(
         val inputs = arrayOf(input, inputNR, inputENDC)
         val inputsPath = mutableListOf<String>()
 
-        inputs.filterNotNull().filterNot(ByteArray::isEmpty).forEachIndexed { index, data ->
-            val fileName = "$id-$index"
-            val inputPath = "$inputDir/$fileName"
-            IOUtils.outputFile(data, inputPath, compression)
-            inputsPath.add(fileName)
-        }
+        inputs
+            .filterNot { it == null || it.size() == 0L }
+            .forEachIndexed { index, data ->
+                val fileName = "$id-$index"
+                val inputPath = "$inputDir/$fileName"
+                IOUtils.outputFile(data!!.readBytes(), inputPath, compression)
+                inputsPath.add(fileName)
+            }
 
         val encodedString = Json.custom().encodeToString(capabilities)
         val outputPath = "$outputDir/$id.json"
@@ -115,9 +125,9 @@ class Parsing(
             }
 
             return Parsing(
-                req.input ?: req.inputNR!!,
-                if (defaultNR) null else req.inputNR,
-                req.inputENDC,
+                req.input?.toInputSource() ?: req.inputNR!!.toInputSource(),
+                if (defaultNR) null else req.inputNR?.toInputSource(),
+                req.inputENDC?.toInputSource(),
                 defaultNR,
                 req.type,
                 req.description

@@ -86,9 +86,9 @@ class MultiParsing(
 
             val parsing =
                 Parsing(
-                    inputArray,
-                    inputNRArray,
-                    inputENDCArray,
+                    inputArray.toInputSource(),
+                    inputNRArray?.toInputSource(),
+                    inputENDCArray?.toInputSource(),
                     defaultNr,
                     type,
                     description,
