@@ -7,6 +7,7 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
@@ -51,9 +52,9 @@ class MultiParsing(
             if (type in LogType.multiImporter) {
                 val subMultiParsing =
                     if (type == LogType.P) {
-                        ImportPcap.parse(inputs.first().inputStream())
+                        ImportPcap.parse(inputs.first().toInputSource())
                     } else {
-                        ImportScat.parse(inputs.first().inputStream(), type)
+                        ImportScat.parse(inputs.first().toInputSource(), type)
                     }
                 if (subMultiParsing != null) {
                     subMultiParsing.description = description

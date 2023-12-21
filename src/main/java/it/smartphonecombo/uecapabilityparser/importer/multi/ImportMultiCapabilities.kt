@@ -1,12 +1,12 @@
 package it.smartphonecombo.uecapabilityparser.importer.multi
 
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
-import java.io.InputStream
 
 sealed interface ImportMultiCapabilities {
     val debug
         get() = Config.getOrDefault("debug", "false").toBoolean()
 
-    fun parse(input: InputStream): MultiParsing?
+    fun parse(input: InputSource): MultiParsing?
 }

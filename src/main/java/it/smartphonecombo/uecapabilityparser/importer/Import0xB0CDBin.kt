@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
@@ -25,7 +26,7 @@ object Import0xB0CDBin : ImportCapabilities {
     private val cacheQamIndex = WeakConcurrentHashMap<Int, Modulation>()
 
     /**
-     * This parser take as [input] a [ByteArray] of a 0xB0CD (binary)
+     * This parser take as [input] a [InputSource] of a 0xB0CD (binary)
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
      * [lteCombos][Capabilities.lteCombos].
@@ -37,10 +38,10 @@ object Import0xB0CDBin : ImportCapabilities {
      * If you have a 0xB0CD of a different version, please share it with info at smartphonecombo dot
      * it.
      */
-    override fun parse(input: ByteArray): Capabilities {
+    override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
         var listCombo = emptyList<ComboLte>()
-        val byteBuffer = ByteBuffer.wrap(input)
+        val byteBuffer = ByteBuffer.wrap(input.readBytes())
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
 
         try {

@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -71,7 +72,7 @@ class Parsing(
             return (imports as ImportCapabilityInformation).parse(eutra, eutraNr, nr)
         }
 
-        return imports.parse(input)
+        return imports.parse(input.toInputSource())
     }
 
     fun store(libraryIndex: LibraryIndex?, path: String, compression: Boolean): IndexLine {

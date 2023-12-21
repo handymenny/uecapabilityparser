@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import java.io.File
@@ -36,7 +37,7 @@ internal class ImportScatTest {
     }
 
     private fun testLog(scatLogType: LogType, path: String, oracle: String) {
-        val multi = ImportScat.parse(File(path).inputStream(), scatLogType)
+        val multi = ImportScat.parse(File(path).toInputSource(), scatLogType)
 
         val actual = multi?.parsingList?.map { it.capabilities }!!
         val expected =

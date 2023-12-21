@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.extension.zlibDecompress
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
@@ -30,7 +31,8 @@ private const val MAX_CC = 5
 object ImportNvItem : ImportCapabilities {
 
     /**
-     * This parser take as [input] a [ByteArray] of an uncompressed or zlib-compressed NVItem 28874.
+     * This parser take as [input] a [InputSource] of an uncompressed or zlib-compressed
+     * NVItem 28874.
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
      * [lteCombos][Capabilities.lteCombos].
@@ -40,13 +42,14 @@ object ImportNvItem : ImportCapabilities {
      * Throws an [IllegalArgumentException] if an invalid or unsupported descriptor type is found.
      */
     @Throws(IllegalArgumentException::class)
-    override fun parse(input: ByteArray): Capabilities {
+    override fun parse(input: InputSource): Capabilities {
+        val bytearray = input.readBytes()
         var dlComponents = emptyList<ComponentLte>()
-        var byteBuffer = ByteBuffer.wrap(input)
+        var byteBuffer = ByteBuffer.wrap(bytearray)
 
         // zlib header check
         if (byteBuffer.readUnsignedShort() == 0x789C) {
-            byteBuffer = input.zlibDecompress()
+            byteBuffer = bytearray.zlibDecompress()
         } else {
             byteBuffer.rewind()
         }

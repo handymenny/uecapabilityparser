@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
@@ -45,7 +46,7 @@ import korlibs.memory.isOdd
 object Import0xB826 : ImportCapabilities {
 
     /**
-     * This parser take as [input] a [ByteArray] of a 0xB826 (binary)
+     * This parser take as [input] a [InputSource] of a 0xB826 (binary)
      *
      * The output is a [Capabilities] with the list of parsed NR CA combos stored in
      * [nrCombos][Capabilities.nrCombos], the list of parsed EN DC combos stored in
@@ -59,10 +60,10 @@ object Import0xB826 : ImportCapabilities {
      * If you have a 0xB826 of a different version, please share it with info at smartphonecombo dot
      * it.
      */
-    override fun parse(input: ByteArray): Capabilities {
+    override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
         var listCombo = emptyList<ICombo>()
-        val byteBuffer = ByteBuffer.wrap(input)
+        val byteBuffer = ByteBuffer.wrap(input.readBytes())
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
 
         try {

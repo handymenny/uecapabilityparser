@@ -18,6 +18,7 @@ import it.smartphonecombo.uecapabilityparser.extension.isLteUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.ppid
 import it.smartphonecombo.uecapabilityparser.extension.toHex
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -26,7 +27,6 @@ import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapInfo
 import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapRatContainers
 import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
-import java.io.InputStream
 import kotlin.math.absoluteValue
 
 object ImportPcap : ImportMultiCapabilities {
@@ -34,10 +34,11 @@ object ImportPcap : ImportMultiCapabilities {
     private const val S1AP_PROTOCOL_IDENTIFIER = 18L
     private const val NGAP_PROTOCOL_IDENTIFIER = 60L
 
-    override fun parse(input: InputStream): MultiParsing? = parse(input, "PCAP")
+    override fun parse(input: InputSource): MultiParsing? = parse(input, "PCAP")
 
-    fun parse(input: InputStream, srcName: String): MultiParsing? {
-        val pcapStream = Pcap.openStream(input)
+    fun parse(input: InputSource, srcName: String): MultiParsing? {
+        val inputStream = input.inputStream()
+        val pcapStream = Pcap.openStream(inputStream)
 
         var result: MultiParsing? = null
 
@@ -108,6 +109,7 @@ object ImportPcap : ImportMultiCapabilities {
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
+        inputStream.close()
         return result
     }
 

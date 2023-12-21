@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -13,7 +14,7 @@ import it.smartphonecombo.uecapabilityparser.model.toMimo
 object ImportLteCarrierPolicy : ImportCapabilities {
 
     /**
-     * This parser take as [input] a [ByteArray] containing LTE Combinations using the same format
+     * This parser take as [input] a [InputSource] containing LTE Combinations using the same format
      * used in Qualcomm Carrier Policies.
      *
      * In this format each combination is separated from the other by a ";".
@@ -37,8 +38,8 @@ object ImportLteCarrierPolicy : ImportCapabilities {
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
      * [lteCombos][Capabilities.lteCombos].
      */
-    override fun parse(input: ByteArray): Capabilities {
-        val caBandCombosString = input.decodeToString()
+    override fun parse(input: InputSource): Capabilities {
+        val caBandCombosString = input.readText()
 
         val listCombo =
             caBandCombosString

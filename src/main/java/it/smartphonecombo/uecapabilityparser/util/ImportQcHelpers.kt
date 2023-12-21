@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.nio.ByteBuffer
 
@@ -76,7 +77,7 @@ object ImportQcHelpers {
         for (it in inputArray) {
             if (it.isBlank()) continue
             try {
-                val inputStream = it.preformatHex().decodeHex()
+                val inputStream = it.preformatHex().decodeHex().toInputSource()
                 list.add(importer.parse(inputStream))
             } catch (err: IllegalArgumentException) {
                 throw IllegalArgumentException("Invalid hexdump", err)
