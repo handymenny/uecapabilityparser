@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -83,13 +84,13 @@ class Parsing(
         inputs.filterNotNull().filterNot(ByteArray::isEmpty).forEachIndexed { index, data ->
             val fileName = "$id-$index"
             val inputPath = "$inputDir/$fileName"
-            IO.outputFile(data, inputPath, compression)
+            IOUtils.outputFile(data, inputPath, compression)
             inputsPath.add(fileName)
         }
 
         val encodedString = Json.custom().encodeToString(capabilities)
         val outputPath = "$outputDir/$id.json"
-        IO.outputFile(encodedString.toByteArray(), outputPath, compression)
+        IOUtils.outputFile(encodedString.toByteArray(), outputPath, compression)
         val indexLine =
             IndexLine(
                 id,

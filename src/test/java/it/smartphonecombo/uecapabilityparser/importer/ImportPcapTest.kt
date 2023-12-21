@@ -1,8 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.util.IO
 import java.io.File
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
@@ -122,7 +122,7 @@ internal class ImportPcapTest {
         val actual = multi?.parsingList?.map { it.capabilities }!!
 
         val expected =
-            Json.decodeFromString<List<Capabilities>>(IO.readTextFromFile(oracle, false)!!)
+            Json.decodeFromString<List<Capabilities>>(IOUtils.readTextFromFile(oracle, false)!!)
 
         // Check size
         Assertions.assertEquals(expected.size, actual.size)

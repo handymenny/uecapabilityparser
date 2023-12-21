@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
@@ -115,7 +116,7 @@ class MultiParsing(
             )
 
         val encodedString = Json.custom().encodeToString(multiIndexLine)
-        IO.outputFile(encodedString.toByteArray(), outputPath, compression)
+        IOUtils.outputFile(encodedString.toByteArray(), outputPath, compression)
         libraryIndex.addMultiLine(multiIndexLine)
 
         return multiIndexLine

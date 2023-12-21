@@ -2,10 +2,10 @@ package it.smartphonecombo.uecapabilityparser.model.index
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.readTextFromFile
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.util.IO
-import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
-import it.smartphonecombo.uecapabilityparser.util.IO.readTextFromFile
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -54,7 +54,7 @@ data class LibraryIndex(
             val multiDir = "$path/multi"
 
             // Create directories if they don't exist
-            arrayOf(outputDir, inputDir, multiDir).forEach { IO.createDirectories(it) }
+            arrayOf(outputDir, inputDir, multiDir).forEach { IOUtils.createDirectories(it) }
 
             val outputFiles = File(outputDir).listFiles() ?: emptyArray()
             val inputFiles = File(inputDir).listFiles() ?: emptyArray()

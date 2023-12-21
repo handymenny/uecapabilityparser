@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser
 
 import dev.adamko.kxstsgen.KxsTsGenerator
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
@@ -8,7 +9,6 @@ import it.smartphonecombo.uecapabilityparser.server.RequestCsv
 import it.smartphonecombo.uecapabilityparser.server.RequestMultiPart
 import it.smartphonecombo.uecapabilityparser.server.RequestParse
 import it.smartphonecombo.uecapabilityparser.server.ServerStatus
-import it.smartphonecombo.uecapabilityparser.util.IO
 
 internal object TsTypesGenerator {
 
@@ -34,7 +34,7 @@ internal object TsTypesGenerator {
             )
         val tsDefFixed =
             typescriptDefinitions.replace(" = \"\"", "INVALID = \"\"") // fix empty enum
-        IO.outputFileOrStdout(warning + tsDefFixed, "uecapabilityparser.d.ts")
+        IOUtils.outputFileOrStdout(warning + tsDefFixed, "uecapabilityparser.d.ts")
         println("Typescript definitions exported to uecapabilityparser.d.ts")
     }
 }

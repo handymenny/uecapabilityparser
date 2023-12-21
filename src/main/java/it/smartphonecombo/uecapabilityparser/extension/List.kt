@@ -2,11 +2,11 @@
 
 package it.smartphonecombo.uecapabilityparser.extension
 
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.EmptyBandwidth
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
-import it.smartphonecombo.uecapabilityparser.util.IO
 
 internal inline operator fun <T> List<T>.component6(): T = get(5)
 
@@ -74,10 +74,10 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
     }
 
     repeat(dlCCs - dlCount) {
-        IO.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
+        IOUtils.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
     }
 
     repeat(ulCCs - ulCount) {
-        IO.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrMimoUl)
+        IOUtils.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrMimoUl)
     }
 }

@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
 import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
@@ -13,7 +14,6 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
-import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
 import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import java.nio.BufferUnderflowException

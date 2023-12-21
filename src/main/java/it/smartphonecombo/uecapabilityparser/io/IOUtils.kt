@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.util
+package it.smartphonecombo.uecapabilityparser.io
 
 import it.smartphonecombo.uecapabilityparser.cli.Cli.echo
 import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
@@ -16,7 +16,7 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
-object IO {
+object IOUtils {
 
     /** Call [echo] or [println] if Cli isn't initialized * */
     fun echoSafe(message: Any?, err: Boolean = false) {
