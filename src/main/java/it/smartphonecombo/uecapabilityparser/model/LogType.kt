@@ -11,6 +11,7 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.ImportQctModemCap
 import it.smartphonecombo.uecapabilityparser.importer.ImportShannonNrUeCap
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat.isScatAvailable
+import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -43,7 +44,7 @@ enum class LogType(val description: String) {
             if (isScatAvailable()) {
                 entries.drop(1)
             } else {
-                System.err.println("Warning: scat not available, scat log types disabled")
+                echoSafe("Warning: scat not available, scat log types disabled", true)
                 entries.drop(1).dropLast(4)
             }
         /** Name of all entries except [INVALID] */
