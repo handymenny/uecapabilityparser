@@ -63,9 +63,9 @@ object ImportPcap : ImportMultiCapabilities {
             }
             val distinctInputs = inputs.distinctBy { it.data }.sortedBy { it.timestamps.first() }
 
-            val inputsList =
+            val inputsList: MutableList<List<InputSource>> =
                 distinctInputs
-                    .map { it.data.map { packet -> packet.byteArray.toHex().toByteArray() } }
+                    .map { it.data.map { packet -> packet.byteArray.toHex().toInputSource() } }
                     .toMutableList()
             val typeList = List(inputsList.size) { LogType.H }.toMutableList()
             val subTypesList =
@@ -80,13 +80,13 @@ object ImportPcap : ImportMultiCapabilities {
             val distinct0xB0Cd = b0cd.map { it.text }.distinct().joinToString("\n")
             val distinct0xB826 = b826.map { it.text }.distinct().joinToString("\n")
             if (distinct0xB826.isNotEmpty()) {
-                inputsList += listOf(distinct0xB826.toByteArray())
+                inputsList += listOf(distinct0xB826.toInputSource())
                 typeList += LogType.QNR
                 subTypesList += emptyList<List<String>>()
                 descriptions += "0xB826 packets from $srcName"
             }
             if (distinct0xB0Cd.isNotEmpty()) {
-                inputsList += listOf(distinct0xB0Cd.toByteArray())
+                inputsList += listOf(distinct0xB0Cd.toInputSource())
                 typeList += LogType.QLTE
                 subTypesList += emptyList<List<String>>()
                 descriptions += "0xB0CD packets from $srcName"
@@ -106,8 +106,7 @@ object ImportPcap : ImportMultiCapabilities {
                     }
                 }
 
-            val inputsSources = inputsList.map { it.map { it.toInputSource() } }
-            result = MultiParsing(inputsSources, typeList, subTypesList, descriptions)
+            result = MultiParsing(inputsList, typeList, subTypesList, descriptions)
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
@@ -117,11 +116,11 @@ object ImportPcap : ImportMultiCapabilities {
 
     private fun processUeRatContainers(
         cap: UeCapRatContainers
-    ): Pair<List<ByteArray>, List<String>> {
+    ): Pair<List<InputSource>, List<String>> {
         val octetString =
             if (cap.isNrRrc) "ue-CapabilityRAT-Container" else "ueCapabilityRAT-Container"
 
-        val inputs = mutableListOf<ByteArray>()
+        val inputs = mutableListOf<InputSource>()
         val subTypes = mutableListOf<String>()
 
         for (container in cap.ratContainers) {
@@ -135,7 +134,7 @@ object ImportPcap : ImportMultiCapabilities {
                     else -> continue
                 }
 
-            inputs += payload.toByteArray()
+            inputs += payload.toInputSource()
             subTypes += subType
         }
         return Pair(inputs, subTypes)
@@ -288,7 +287,7 @@ object ImportPcap : ImportMultiCapabilities {
     }
 
     private fun processGSMTAPLog(gsmTap: GsmTapPacket): OsmoCoreLog? {
-        val text = String(gsmTap.payload.array.drop(84).toByteArray())
+        val text = gsmTap.payload.array.drop(84).toByteArray().decodeToString()
         if (!text.contains("CA Combos Raw")) return null
         val isNr = text.startsWith("NR")
 
