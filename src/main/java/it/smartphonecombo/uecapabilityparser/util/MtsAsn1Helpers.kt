@@ -13,6 +13,7 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.isLteUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import java.io.InputStream
 import kotlinx.serialization.json.JsonArray
@@ -139,9 +140,11 @@ object MtsAsn1Helpers {
         return jsonWriter.jsonNode?.getArrayAtPath(ratContainerListPath)
     }
 
-    fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexString: String): JsonObject {
+    fun getUeCapabilityJsonFromHex(defaultRat: Rat, hexInput: InputSource): JsonObject {
         val data =
-            hexString.preformatHex().decodeHex().apply { if (isEmpty()) return buildJsonObject {} }
+            hexInput.readText().preformatHex().decodeHex().apply {
+                if (isEmpty()) return buildJsonObject {}
+            }
 
         val isLteCapInfo = data.isLteUeCapInfoPayload()
         val isNrCapInfo = data.isNrUeCapInfoPayload()

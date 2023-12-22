@@ -65,14 +65,7 @@ class Parsing(
         }
 
         if (imports == ImportCapabilityInformation) {
-            jsonUeCap =
-                convertUeCapabilityToJson(
-                    type,
-                    input.readBytes(),
-                    inputNR?.readBytes(),
-                    inputENDC?.readBytes(),
-                    defaultNR
-                )
+            jsonUeCap = convertUeCapabilityToJson(type, input, inputNR, inputENDC, defaultNR)
             val eutra = jsonUeCap?.get(Rat.EUTRA.toString()) as? JsonObject
             val eutraNr = jsonUeCap?.get(Rat.EUTRA_NR.toString()) as? JsonObject
             val nr = jsonUeCap?.get(Rat.NR.toString()) as? JsonObject
