@@ -14,10 +14,13 @@ import it.smartphonecombo.uecapabilityparser.extension.attachFile
 import it.smartphonecombo.uecapabilityparser.extension.badRequest
 import it.smartphonecombo.uecapabilityparser.extension.bodyAsClassEfficient
 import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.notFound
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.NullInputSource
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
@@ -165,7 +168,7 @@ class JavalinApp {
                     val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
                     val newFmt = (request as? RequestCsv.LteCa)?.newCsvFormat ?: false
                     ctx.attachFile(
-                        IOUtils.toCsv(comboList, newFmt).toByteArray(),
+                        IOUtils.toCsv(comboList, newFmt).toInputSource(),
                         "${type}-${date}.csv",
                         ContentType.TEXT_CSV
                     )
@@ -208,9 +211,9 @@ class JavalinApp {
 
                     try {
                         val text =
-                            IOUtils.readTextFromFile(filePath, compressed)
+                            IOUtils.getInputSource(filePath, compressed)
                                 ?: return@apiBuilderGet ctx.notFound()
-                        val capabilities = Json.custom().decodeFromString<Capabilities>(text)
+                        val capabilities = Json.custom().decodeFromInputSource<Capabilities>(text)
                         ctx.json(capabilities)
                     } catch (ex: Exception) {
                         ctx.internalError()
@@ -232,9 +235,10 @@ class JavalinApp {
                             val outputId = indexLine.id
                             val filePath = "$store/output/$outputId.json"
                             val text =
-                                IOUtils.readTextFromFile(filePath, compressed)
+                                IOUtils.getInputSource(filePath, compressed)
                                     ?: return@apiBuilderGet ctx.notFound()
-                            val capabilities = Json.custom().decodeFromString<Capabilities>(text)
+                            val capabilities =
+                                Json.custom().decodeFromInputSource<Capabilities>(text)
                             capabilitiesList.add(capabilities)
                         }
                     } catch (ex: Exception) {
@@ -259,11 +263,10 @@ class JavalinApp {
                     val filePath = "$store/input/$id"
 
                     try {
-                        val bytes =
-                            IOUtils.readBytesFromFile(filePath, compressed)
+                        val file =
+                            IOUtils.getInputSource(filePath, compressed)
                                 ?: return@apiBuilderGet ctx.notFound()
-
-                        ctx.attachFile(bytes, id, ContentType.APPLICATION_OCTET_STREAM)
+                        ctx.attachFile(file, id, ContentType.APPLICATION_OCTET_STREAM)
                     } catch (ex: Exception) {
                         ctx.internalError()
                     }
@@ -321,16 +324,11 @@ class JavalinApp {
         try {
             val compressed = indexLine.compressed
             val capPath = "/output/${indexLine.id}.json"
-            val text =
-                IOUtils.readAndMove(
-                        "$store$capPath",
-                        "$store/backup$capPath",
-                        compressed,
-                    )
-                    ?.decodeToString()
-                    ?: return
+            val capText =
+                IOUtils.inputSourceAndMove("$store$capPath", "$store/backup$capPath", compressed)
+                    ?: NullInputSource
 
-            val capabilities = Json.custom().decodeFromString<Capabilities>(text)
+            val capabilities = Json.custom().decodeFromInputSource<Capabilities>(capText)
             val inputMap =
                 indexLine.inputs.mapNotNull {
                     IOUtils.inputSourceAndMove(
