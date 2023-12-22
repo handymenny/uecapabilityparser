@@ -4,14 +4,6 @@ import java.io.EOFException
 import java.io.IOException
 import java.io.InputStream
 
-internal fun InputStream.closeIgnoreException() {
-    try {
-        this.close()
-    } catch (ex: Exception) {
-        ex.printStackTrace()
-    }
-}
-
 /**
  * Read an unsigned byte from the stream. Throw [EOFException] if end of stream has been reached.
  */
