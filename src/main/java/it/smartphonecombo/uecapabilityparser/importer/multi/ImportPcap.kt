@@ -19,6 +19,7 @@ import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.ppid
 import it.smartphonecombo.uecapabilityparser.extension.toHex
 import it.smartphonecombo.uecapabilityparser.io.InputSource
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -105,7 +106,8 @@ object ImportPcap : ImportMultiCapabilities {
                     }
                 }
 
-            result = MultiParsing(inputsList, typeList, subTypesList, descriptions)
+            val inputsSources = inputsList.map { it.map { it.toInputSource() } }
+            result = MultiParsing(inputsSources, typeList, subTypesList, descriptions)
         } catch (ex: Exception) {
             ex.printStackTrace()
         }

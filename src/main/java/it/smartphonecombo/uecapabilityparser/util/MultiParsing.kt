@@ -7,6 +7,11 @@ import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.InputSource
+import it.smartphonecombo.uecapabilityparser.io.NullInputSource
+import it.smartphonecombo.uecapabilityparser.io.SequenceInputSource
+import it.smartphonecombo.uecapabilityparser.io.isEmpty
+import it.smartphonecombo.uecapabilityparser.io.isNotEmpty
 import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
@@ -20,7 +25,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class MultiParsing(
-    private val inputsList: List<List<ByteArray>>,
+    private val inputsList: List<List<InputSource>>,
     private val typeList: List<LogType>,
     private val subTypesList: List<List<String>>,
     private val descriptionList: List<String> = emptyList(),
@@ -43,18 +48,18 @@ class MultiParsing(
         for (i in inputsList.indices) {
             val inputs = inputsList[i]
             val type = typeList[i]
-            var inputArray = ByteArray(0)
-            var inputENDCArray: ByteArray? = null
-            var inputNRArray: ByteArray? = null
+            var inputSource: InputSource = inputs.first()
+            var inputENDCSource: InputSource? = null
+            var inputNRSource: InputSource? = null
             var defaultNr = false
             val description = descriptionList.getOrElse(i) { "" }
 
             if (type in LogType.multiImporter) {
                 val subMultiParsing =
                     if (type == LogType.P) {
-                        ImportPcap.parse(inputs.first().toInputSource())
+                        ImportPcap.parse(inputs.first())
                     } else {
-                        ImportScat.parse(inputs.first().toInputSource(), type)
+                        ImportScat.parse(inputs.first(), type)
                     }
                 if (subMultiParsing != null) {
                     subMultiParsing.description = description
@@ -63,32 +68,33 @@ class MultiParsing(
                 continue
             }
 
-            if (type != LogType.H) {
-                inputArray = inputs.fold(inputArray) { acc, it -> acc + it }
-            } else {
+            if (type == LogType.H) {
                 val subTypes = subTypeIterator.next()
+                inputSource = NullInputSource
                 for (j in inputs.indices) {
                     val subType = subTypes[j]
                     val input = inputs[j]
                     when (subType) {
-                        "LTE" -> inputArray = input
-                        "ENDC" -> inputENDCArray = input
-                        "NR" -> inputNRArray = input
+                        "LTE" -> inputSource = input
+                        "ENDC" -> inputENDCSource = input
+                        "NR" -> inputNRSource = input
                     }
                 }
 
-                if (inputNRArray?.isNotEmpty() == true && inputArray.isEmpty()) {
-                    inputArray = inputNRArray
-                    inputNRArray = null
+                if (inputNRSource?.isNotEmpty() == true && inputSource.isEmpty()) {
+                    inputSource = inputNRSource
+                    inputNRSource = null
                     defaultNr = true
                 }
+            } else if (inputs.size > 1) {
+                inputSource = SequenceInputSource(inputs)
             }
 
             val parsing =
                 Parsing(
-                    inputArray.toInputSource(),
-                    inputNRArray?.toInputSource(),
-                    inputENDCArray?.toInputSource(),
+                    inputSource,
+                    inputNRSource,
+                    inputENDCSource,
                     defaultNr,
                     type,
                     description,
@@ -125,16 +131,13 @@ class MultiParsing(
 
     companion object {
         fun fromRequest(reqList: List<RequestMultiPart>, files: List<UploadedFile>): MultiParsing? {
-            val inputsList: MutableList<List<ByteArray>> = mutableListWithCapacity(reqList.size)
+            val inputsList: MutableList<List<InputSource>> = mutableListWithCapacity(reqList.size)
             val typeList: MutableList<LogType> = mutableListWithCapacity(reqList.size)
             val subTypesList: MutableList<List<String>> = mutableListWithCapacity(reqList.size)
             val descriptionList: MutableList<String> = mutableListWithCapacity(reqList.size)
 
             reqList.forEach { req ->
-                val inputs =
-                    req.inputIndexes.map { index ->
-                        files[index].contentAndClose { it.readBytes() }
-                    }
+                val inputs = req.inputIndexes.map { index -> files[index].toInputSource() }
                 val type = req.type
                 val subTypes = req.subTypes
                 val description = req.description
