@@ -24,34 +24,36 @@ object ImportQctModemCap : ImportCapabilities {
      */
     override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
-        val lines = input.readLines().iterator()
         val listCombo = mutableListOf<ComboLte>()
 
-        try {
-            while (lines.hasNext()) {
-                val source = getValue(lines, "Source")
-                val type = getValue(lines, "Type")
-                val numCombos = getValue(lines, "Combos")?.toIntOrNull() ?: 0
-                val combosHeader = lines.firstOrNull { it.contains("""^\s+#\s+""".toRegex()) }
+        input.useLines { seq ->
+            try {
+                val lines = seq.iterator()
+                while (lines.hasNext()) {
+                    val source = getValue(lines, "Source")
+                    val type = getValue(lines, "Type")
+                    val numCombos = getValue(lines, "Combos")?.toIntOrNull() ?: 0
+                    val combosHeader = lines.firstOrNull { it.contains("""^\s+#\s+""".toRegex()) }
 
-                if (combosHeader == null) {
-                    continue
+                    if (combosHeader == null) {
+                        continue
+                    }
+
+                    val sourceStr = "${source}-${type}".uppercase()
+                    capabilities.addMetadata("source", sourceStr)
+                    capabilities.addMetadata("numCombos", numCombos)
+
+                    val indexDl = combosHeader.indexOf("DL Bands", ignoreCase = true)
+                    val indexUl = combosHeader.indexOf("UL Bands", ignoreCase = true)
+
+                    repeat(numCombos) {
+                        val combo = parseCombo(lines.next(), indexDl, indexUl)
+                        listCombo.add(combo)
+                    }
                 }
-
-                val sourceStr = "${source}-${type}".uppercase()
-                capabilities.addMetadata("source", sourceStr)
-                capabilities.addMetadata("numCombos", numCombos)
-
-                val indexDl = combosHeader.indexOf("DL Bands", ignoreCase = true)
-                val indexUl = combosHeader.indexOf("UL Bands", ignoreCase = true)
-
-                repeat(numCombos) {
-                    val combo = parseCombo(lines.next(), indexDl, indexUl)
-                    listCombo.add(combo)
-                }
+            } catch (ignored: NoSuchElementException) {
+                // Do nothing
             }
-        } catch (ignored: NoSuchElementException) {
-            // Do nothing
         }
 
         capabilities.lteCombos = listCombo

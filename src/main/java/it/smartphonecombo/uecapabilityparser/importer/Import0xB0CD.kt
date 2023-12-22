@@ -29,19 +29,21 @@ object Import0xB0CD : ImportCapabilities {
      */
     override fun parse(input: InputSource): Capabilities {
         val listCombo = mutableListOf<ComboLte>()
-        val lines = input.readLines().iterator()
 
-        while (lines.hasNext()) {
-            val headers = getHeaders(lines)
-            val version = getVersionFromHeaders(headers)
-
-            if (version == -1) {
-                break
-            }
-
+        input.useLines {
+            val lines = it.iterator()
             while (lines.hasNext()) {
-                val combo = processCombo(lines, version) ?: break
-                listCombo.add(combo)
+                val headers = getHeaders(lines)
+                val version = getVersionFromHeaders(headers)
+
+                if (version == -1) {
+                    break
+                }
+
+                while (lines.hasNext()) {
+                    val combo = processCombo(lines, version) ?: break
+                    listCombo.add(combo)
+                }
             }
         }
 
