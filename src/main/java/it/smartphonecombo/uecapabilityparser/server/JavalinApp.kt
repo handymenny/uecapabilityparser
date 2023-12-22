@@ -333,7 +333,11 @@ class JavalinApp {
             val capabilities = Json.custom().decodeFromString<Capabilities>(text)
             val inputMap =
                 indexLine.inputs.mapNotNull {
-                    IOUtils.readAndMove("$store/input/$it", "$store/backup/input/$it", compressed)
+                    IOUtils.inputSourceAndMove(
+                        "$store/input/$it",
+                        "$store/backup/input/$it",
+                        compressed
+                    )
                 }
 
             val request =

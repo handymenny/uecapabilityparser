@@ -6,7 +6,6 @@ import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.InputSource
-import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -118,9 +117,9 @@ class Parsing(
             }
 
             return Parsing(
-                req.input?.toInputSource() ?: req.inputNR!!.toInputSource(),
-                if (defaultNR) null else req.inputNR?.toInputSource(),
-                req.inputENDC?.toInputSource(),
+                req.input ?: req.inputNR!!,
+                if (defaultNR) null else req.inputNR,
+                req.inputENDC,
                 defaultNR,
                 req.type,
                 req.description

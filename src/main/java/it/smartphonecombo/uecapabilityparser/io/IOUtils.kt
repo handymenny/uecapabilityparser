@@ -332,4 +332,18 @@ object IOUtils {
 
         return bytes
     }
+
+    /**
+     * if [compressed] is true, automatically appends ".gz". Return null if file doesn't exist. File
+     * is moved from [srcPath] to [dstPath] and it's inputSource is returned.
+     */
+    fun inputSourceAndMove(srcPath: String, dstPath: String, compressed: Boolean): InputSource? {
+        val addExtension = if (compressed) ".gz" else ""
+        val inputFile = File(srcPath + addExtension)
+        if (!inputFile.exists()) return null
+
+        val dstFile = File(dstPath + addExtension)
+        inputFile.moveTo(dstFile.path)
+        return dstFile.toInputSource(compressed)
+    }
 }
