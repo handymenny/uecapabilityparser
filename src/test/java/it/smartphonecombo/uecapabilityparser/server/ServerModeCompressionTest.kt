@@ -2,8 +2,7 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
-import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
-import it.smartphonecombo.uecapabilityparser.extension.readText
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
@@ -71,12 +70,12 @@ internal class ServerModeCompressionTest {
         assumeTrue(pushedCap != null)
         val id = pushedCap?.id ?: ""
         capabilitiesAssertEquals(
-            File(oracle).gzipDecompress().readText(),
-            File("$tmpStorePath/output/$id.json.gz").gzipDecompress().readText()
+            File(oracle).toInputSource(true).readText(),
+            File("$tmpStorePath/output/$id.json.gz").toInputSource(true).readText()
         )
         Assertions.assertLinesMatch(
-            File(input0).gzipDecompress().readText().lines(),
-            File("$tmpStorePath/input/$id-0.gz").gzipDecompress().readText().lines()
+            File(input0).toInputSource(true).readText().lines(),
+            File("$tmpStorePath/input/$id-0.gz").toInputSource(true).readText().lines()
         )
     }
 
@@ -128,7 +127,7 @@ internal class ServerModeCompressionTest {
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""
             val expectedText =
-                if (gzip) File(oraclePath).gzipDecompress().readText()
+                if (gzip) File(oraclePath).toInputSource(true).readText()
                 else File(oraclePath).readText()
 
             if (json) {
@@ -145,7 +144,7 @@ internal class ServerModeCompressionTest {
             val response = client.post(url, request)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             capabilitiesAssertEquals(
-                File(oraclePath).gzipDecompress().readText(),
+                File(oraclePath).toInputSource(true).readText(),
                 response.body?.string() ?: ""
             )
         }
@@ -165,7 +164,7 @@ internal class ServerModeCompressionTest {
     }
 
     private fun fileToBase64(path: String): String {
-        return base64.encodeToString(File(path).gzipDecompress().use { it.readBytes() })
+        return base64.encodeToString(File(path).toInputSource(true).readBytes())
     }
 
     private fun deleteDirectory(path: String) {
