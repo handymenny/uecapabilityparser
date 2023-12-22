@@ -1,11 +1,14 @@
 package it.smartphonecombo.uecapabilityparser.importer.multi
 
 import it.smartphonecombo.uecapabilityparser.extension.deleteIgnoreException
+import it.smartphonecombo.uecapabilityparser.io.FileInputSource
 import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,8 +25,18 @@ object ImportScat : ImportMultiCapabilities {
             val extension = type.name.lowercase()
             val scatVendor = if (type == LogType.SDM) "sec" else "qc"
 
-            tempLogFile = File.createTempFile("SCAT-", ".$extension")
-            tempLogFile.writeBytes(input.readBytes())
+            val logFilePath =
+                if (input is FileInputSource) {
+                    // Don't need to store it in temp
+                    input.file.path
+                } else {
+                    tempLogFile = File.createTempFile("SCAT-", ".$extension")
+                    input.inputStream().use {
+                        Files.copy(it, tempLogFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
+                    }
+                    tempLogFile.path
+                }
+
             tempPcapFile = File.createTempFile("PCAP-", ".pcap")
 
             val args =
@@ -32,7 +45,7 @@ object ImportScat : ImportMultiCapabilities {
                     "-t",
                     scatVendor,
                     "-d",
-                    tempLogFile.path,
+                    logFilePath,
                     "-F",
                     tempPcapFile.path,
                 )
