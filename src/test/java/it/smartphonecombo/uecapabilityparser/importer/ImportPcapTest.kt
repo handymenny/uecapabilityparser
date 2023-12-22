@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
-import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
@@ -122,8 +121,7 @@ internal class ImportPcapTest {
 
         val actual = multi?.parsingList?.map { it.capabilities }!!
 
-        val expected =
-            Json.decodeFromString<List<Capabilities>>(IOUtils.readTextFromFile(oracle, false)!!)
+        val expected = Json.decodeFromString<List<Capabilities>>(File(oracle).readText())
 
         // Check size
         Assertions.assertEquals(expected.size, actual.size)

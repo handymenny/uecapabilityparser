@@ -5,6 +5,7 @@ import io.mockk.mockkStatic
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.dirsSimilar
 import it.smartphonecombo.uecapabilityparser.cli.Main
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
 import java.nio.file.Files
@@ -127,15 +128,13 @@ internal class ServerModeReparseTest {
             .filter { it.name.endsWith(".json") || it.name.endsWith(".json.gz") }
             .forEach { path ->
                 val compression = path.extension == "gz"
-                val text = IOUtils.readTextFromFile(path.toFile(), compression)
-                text?.let {
-                    val newText = it.replace(search, replace)
-                    IOUtils.outputFile(
-                        newText.toByteArray(),
-                        path.toString().substringBeforeLast(".gz"),
-                        compression
-                    )
-                }
+                val text = path.toFile().toInputSource(compression).readText()
+                val newText = text.replace(search, replace)
+                IOUtils.outputFile(
+                    newText.toByteArray(),
+                    path.toString().substringBeforeLast(".gz"),
+                    compression
+                )
             }
     }
 

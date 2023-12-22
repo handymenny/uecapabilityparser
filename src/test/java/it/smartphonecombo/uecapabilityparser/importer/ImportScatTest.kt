@@ -2,7 +2,6 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
-import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
@@ -40,8 +39,7 @@ internal class ImportScatTest {
         val multi = ImportScat.parse(File(path).toInputSource(), scatLogType)
 
         val actual = multi?.parsingList?.map { it.capabilities }!!
-        val expected =
-            Json.decodeFromString<List<Capabilities>>(IOUtils.readTextFromFile(oracle, false)!!)
+        val expected = Json.decodeFromString<List<Capabilities>>(File(oracle).readText())
 
         // Check size
         Assertions.assertEquals(expected.size, actual.size)
