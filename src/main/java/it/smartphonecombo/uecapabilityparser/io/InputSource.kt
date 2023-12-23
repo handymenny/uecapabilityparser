@@ -59,7 +59,7 @@ class UploadedFileInputSource(private val file: UploadedFile) : BasicInputSource
     override fun size() = file.size()
 }
 
-class GzipFileInputSource(val file: File) : BasicInputSource() {
+class GzipFileInputSource(private val file: File) : BasicInputSource() {
     override fun inputStream() = GZIPInputStream(file.inputStream(), 4096)
 
     override fun size() = file.length()
