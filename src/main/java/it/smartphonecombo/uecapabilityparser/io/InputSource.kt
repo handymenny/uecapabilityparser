@@ -65,6 +65,18 @@ class GzipFileInputSource(val file: File) : BasicInputSource() {
     override fun size() = file.length()
 }
 
+class ByteArrayInputSource(private val byteArray: ByteArray) : BasicInputSource() {
+    override fun inputStream() = byteArray.inputStream()
+
+    override fun readText() = byteArray.decodeToString()
+
+    override fun readLines() = byteArray.decodeToString().lines()
+
+    override fun readBytes() = byteArray.copyOf()
+
+    override fun size() = byteArray.size.toLong()
+}
+
 class FileInputSource(val file: File) : InputSource {
     override fun inputStream() = file.inputStream()
 
@@ -91,19 +103,4 @@ class StringInputSource(private val string: String) : InputSource {
     override fun readBytes() = string.toByteArray()
 
     override fun size() = string.length.toLong()
-}
-
-class ByteArrayInputSource(private val byteArray: ByteArray) : InputSource {
-    override fun inputStream() = byteArray.inputStream()
-
-    override fun readText() = byteArray.decodeToString()
-
-    override fun readLines() = byteArray.decodeToString().lines()
-
-    override fun <T> useLines(block: (Sequence<String>) -> T): T =
-        byteArray.inputStream().bufferedReader().useLines(block)
-
-    override fun readBytes() = byteArray.copyOf()
-
-    override fun size() = byteArray.size.toLong()
 }
