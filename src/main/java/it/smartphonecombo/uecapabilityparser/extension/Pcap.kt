@@ -1,13 +1,20 @@
+package it.smartphonecombo.uecapabilityparser.extension
+
 import io.pkts.buffer.Buffer
+import io.pkts.packet.sctp.SctpDataChunk
 import io.pkts.packet.upperpdu.PDUOption
 import io.pkts.packet.upperpdu.UpperPDUPacket
 
-fun UpperPDUPacket.getIPv4Dst(): String? {
+/** [SctpDataChunk.getPayloadProtocolIdentifier] with a shorter name */
+internal inline val SctpDataChunk.ppid
+    get() = payloadProtocolIdentifier
+
+internal fun UpperPDUPacket.getIPv4Dst(): String? {
     val tag = options.find { it.type == PDUOption.TagOption.IPV4_DST } ?: return null
     return ipv4BufferToStr(tag.value)
 }
 
-fun UpperPDUPacket.getIPv4Src(): String? {
+internal fun UpperPDUPacket.getIPv4Src(): String? {
     val tag = options.find { it.type == PDUOption.TagOption.IPV4_SRC } ?: return null
     return ipv4BufferToStr(tag.value)
 }

@@ -1,7 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.importer.multi
 
-import getIPv4Dst
-import getIPv4Src
 import io.pkts.Pcap
 import io.pkts.packet.IPPacket
 import io.pkts.packet.Packet
@@ -11,6 +9,8 @@ import io.pkts.packet.sctp.SctpPacket
 import io.pkts.packet.upperpdu.UpperPDUPacket
 import io.pkts.protocol.Protocol
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
+import it.smartphonecombo.uecapabilityparser.extension.getIPv4Dst
+import it.smartphonecombo.uecapabilityparser.extension.getIPv4Src
 import it.smartphonecombo.uecapabilityparser.extension.getInt
 import it.smartphonecombo.uecapabilityparser.extension.getObject
 import it.smartphonecombo.uecapabilityparser.extension.getString
@@ -171,8 +171,7 @@ object ImportPcap : ImportMultiCapabilities {
         prevSctpFragments: MutableList<SctpDataChunk>
     ): UeCapRatContainers? {
         val ppidSet = setOf(S1AP_PROTOCOL_IDENTIFIER, NGAP_PROTOCOL_IDENTIFIER)
-        val chunk =
-            pkt.chunks.filterIsInstance<SctpDataChunk>().firstOrNull { it.ppid() in ppidSet }
+        val chunk = pkt.chunks.filterIsInstance<SctpDataChunk>().firstOrNull { it.ppid in ppidSet }
         if (chunk == null) return null
 
         val rrc =
