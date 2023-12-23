@@ -1,8 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.extension
 
-import korlibs.memory.finsert
-import korlibs.memory.isEven
-
 internal fun String.indexOf(regex: Regex): Int = regex.find(this)?.range?.first ?: -1
 
 internal fun String.repeat(n: Int, separator: String) =
@@ -12,13 +9,13 @@ internal fun String.repeat(n: Int, separator: String) =
 internal fun String.decodeHex(): ByteArray {
     return ByteArray(length / 2) {
         val i = it * 2
-        this[i + 1].digitToInt(16).finsert(this[i].digitToInt(16), 4).toByte()
+        this[i + 1].digitToInt(16).insert(this[i].digitToInt(16), 4).toByte()
     }
 }
 
 internal fun String.preformatHex(): String {
     return filterNot(Char::isWhitespace).replace(",", "").replace("0x", "").let {
-        if (it.length.isEven) it else "${it}0"
+        if (it.length.isEven()) it else "${it}0"
     }
 }
 
