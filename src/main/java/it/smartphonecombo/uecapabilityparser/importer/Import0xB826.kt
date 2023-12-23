@@ -1,8 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
-import it.smartphonecombo.uecapabilityparser.extension.readUnsignedByte
-import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
+import it.smartphonecombo.uecapabilityparser.extension.readUByte
+import it.smartphonecombo.uecapabilityparser.extension.readUShortLE
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
@@ -22,9 +22,9 @@ import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
-import java.nio.BufferUnderflowException
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import java.io.BufferedInputStream
+import java.io.IOException
+import java.io.InputStream
 import korlibs.memory.extract
 import korlibs.memory.extract1
 import korlibs.memory.extract10
@@ -63,31 +63,31 @@ object Import0xB826 : ImportCapabilities {
     override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
         var listCombo = emptyList<ICombo>()
-        val byteBuffer = ByteBuffer.wrap(input.readBytes())
-        byteBuffer.order(ByteOrder.LITTLE_ENDIAN)
+        val stream = BufferedInputStream(input.inputStream())
 
         try {
-            val logSize = ImportQcHelpers.getQcDiagLogSize(byteBuffer, capabilities)
+            val logSize =
+                ImportQcHelpers.getQcDiagLogSize(stream, input.size().toInt(), capabilities)
             capabilities.setMetadata("logSize", logSize)
             if (debug) {
                 echoSafe("Log file size: $logSize bytes")
             }
 
-            val version = byteBuffer.readUnsignedShort()
+            val version = stream.readUShortLE()
             capabilities.setMetadata("version", version)
             if (debug) {
                 echoSafe("Version $version\n")
             }
 
-            byteBuffer.skipBytes(2)
+            stream.skipBytes(2)
 
-            val numCombos = getNumCombos(byteBuffer, version, capabilities)
+            val numCombos = getNumCombos(stream, version, capabilities)
             if (debug) {
                 echoSafe("Num Combos $numCombos\n")
             }
             capabilities.setMetadata("numCombos", numCombos)
 
-            val source: String? = getSource(version, byteBuffer)
+            val source: String? = getSource(version, stream)
             source?.let {
                 capabilities.setMetadata("source", it)
                 if (debug) {
@@ -98,12 +98,13 @@ object Import0xB826 : ImportCapabilities {
             listCombo = mutableListWithCapacity(numCombos)
 
             for (i in 1..numCombos) {
-                val combo = parseCombo(byteBuffer, version, source)
+                val combo = parseCombo(stream, version, source)
                 listCombo.add(combo)
             }
-        } catch (ignored: BufferUnderflowException) {
+        } catch (_: IOException) {
             // Do nothing
         }
+        stream.close()
 
         if (debug) {
             echoSafe(
@@ -136,14 +137,14 @@ object Import0xB826 : ImportCapabilities {
      */
     private fun getSource(
         version: Int,
-        byteBuffer: ByteBuffer,
+        stream: InputStream,
     ): String? {
         if (version <= 3) {
             return null
         }
 
         // Parse source field
-        val sourceIndex = byteBuffer.readUnsignedByte()
+        val sourceIndex = stream.readUByte()
         return getSourceFromIndex(sourceIndex)
     }
 
@@ -151,50 +152,46 @@ object Import0xB826 : ImportCapabilities {
      * Return the num of combos in this log. Also set index and totalCombos in [capabilities] if
      * available.
      */
-    private fun getNumCombos(
-        byteBuffer: ByteBuffer,
-        version: Int,
-        capabilities: Capabilities
-    ): Int {
+    private fun getNumCombos(stream: InputStream, version: Int, capabilities: Capabilities): Int {
         // Version < 3 only has the num of combos of this log
         // version > 3 also have the total combos of the series and the index of this specific log
         if (version <= 3) {
-            return byteBuffer.readUnsignedShort()
+            return stream.readUShortLE()
         }
 
-        val totalCombos = byteBuffer.readUnsignedShort()
+        val totalCombos = stream.readUShortLE()
         capabilities.setMetadata("totalCombos", totalCombos)
-        val index = byteBuffer.readUnsignedShort()
+        val index = stream.readUShortLE()
         capabilities.setMetadata("index", index)
         if (debug) {
             echoSafe("Total Numb Combos $totalCombos\n")
             echoSafe("Index $index\n")
         }
-        return byteBuffer.readUnsignedShort()
+        return stream.readUShortLE()
     }
 
     /** Parses a combo */
     private fun parseCombo(
-        byteBuffer: ByteBuffer,
+        stream: InputStream,
         version: Int,
         source: String?,
     ): ICombo {
         if (version >= 8) {
-            byteBuffer.skipBytes(3)
+            stream.skipBytes(3)
         }
-        val numComponents = getNumComponents(byteBuffer, version)
+        val numComponents = getNumComponents(stream, version)
         val bands = mutableListWithCapacity<ComponentLte>(numComponents)
         var nrBands = mutableListWithCapacity<ComponentNr>(numComponents)
         var nrDcBands = mutableListWithCapacity<ComponentNr>(numComponents)
         when (version) {
             6,
-            8 -> byteBuffer.skipBytes(1)
-            7 -> byteBuffer.skipBytes(3)
-            in 9..13 -> byteBuffer.skipBytes(9)
-            in 14..Int.MAX_VALUE -> byteBuffer.skipBytes(25)
+            8 -> stream.skipBytes(1)
+            7 -> stream.skipBytes(3)
+            in 9..13 -> stream.skipBytes(9)
+            in 14..Int.MAX_VALUE -> stream.skipBytes(25)
         }
         for (i in 0 until numComponents) {
-            val component = parseComponent(byteBuffer, version)
+            val component = parseComponent(stream, version)
             if (component is ComponentNr) {
                 nrBands.add(component)
             } else {
@@ -230,8 +227,8 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /** Return the num of components of a combo. */
-    private fun getNumComponents(byteBuffer: ByteBuffer, version: Int): Int {
-        val numBands = byteBuffer.readUnsignedByte()
+    private fun getNumComponents(stream: InputStream, version: Int): Int {
+        val numBands = stream.readUByte()
 
         val offset =
             if (version < 3) {
@@ -250,18 +247,18 @@ object Import0xB826 : ImportCapabilities {
      *
      * This just calls [parseComponentV8] if version >= 8 or [parseComponentPreV8] otherwise.
      */
-    private fun parseComponent(byteBuffer: ByteBuffer, version: Int): IComponent {
+    private fun parseComponent(stream: InputStream, version: Int): IComponent {
         return if (version >= 8) {
-            parseComponentV8(byteBuffer, version)
+            parseComponentV8(stream, version)
         } else {
-            parseComponentPreV8(byteBuffer, version)
+            parseComponentPreV8(stream, version)
         }
     }
 
     /** Parse a component. It only supports versions < 8 */
-    private fun parseComponentPreV8(byteBuffer: ByteBuffer, version: Int): IComponent {
-        val band = byteBuffer.readUnsignedShort()
-        val byte = byteBuffer.readUnsignedByte()
+    private fun parseComponentPreV8(stream: InputStream, version: Int): IComponent {
+        val band = stream.readUShortLE()
+        val byte = stream.readUByte()
         val bwClass = BwClass.valueOf(byte.extract8(1))
         val isNr = byte.isOdd
 
@@ -273,22 +270,22 @@ object Import0xB826 : ImportCapabilities {
             }
 
         component.classDL = bwClass
-        component.mimoDL = Mimo.fromQcIndex(byteBuffer.readUnsignedByte())
-        val ulClass = byteBuffer.readUnsignedByte().extract8(1)
+        component.mimoDL = Mimo.fromQcIndex(stream.readUByte())
+        val ulClass = stream.readUByte().extract8(1)
         component.classUL = BwClass.valueOf(ulClass)
-        val mimoUL = byteBuffer.readUnsignedByte()
+        val mimoUL = stream.readUByte()
         component.mimoUL = Mimo.fromQcIndex(mimoUL)
         // Only values 0, 1, 2 have been seen on the wild
-        val modUL = byteBuffer.readUnsignedByte()
+        val modUL = stream.readUByte()
         if (component.classUL != BwClass.NONE) {
             component.modUL = getQamFromIndex(modUL, true).toModulation()
         }
 
         if (isNr) {
             val nrBand = component as ComponentNr
-            byteBuffer.skipBytes(1)
+            stream.skipBytes(1)
 
-            val short = byteBuffer.readUnsignedShort()
+            val short = stream.readUShortLE()
 
             var scsIndex = short.extract4(0)
             if (version < 3) {
@@ -315,14 +312,14 @@ object Import0xB826 : ImportCapabilities {
                 }
             }
         } else {
-            byteBuffer.skipBytes(3)
+            stream.skipBytes(3)
         }
         return component
     }
 
     /** Parse a component. It supports versions >= 8 */
-    private fun parseComponentV8(byteBuffer: ByteBuffer, version: Int): IComponent {
-        val short = byteBuffer.readUnsignedShort()
+    private fun parseComponentV8(stream: InputStream, version: Int): IComponent {
+        val short = stream.readUShortLE()
 
         val band = short.extract(0, 9)
         val isNr = short.extract(9)
@@ -335,14 +332,14 @@ object Import0xB826 : ImportCapabilities {
                 ComponentLte(band)
             }
         component.classDL = bwClass
-        val byte = byteBuffer.readUnsignedByte()
+        val byte = stream.readUByte()
 
         val mimoLeft = byte.extract6(0)
         val mimoRight = short.extract1(15)
         val mimo = mimoRight.finsert(mimoLeft, 1)
         component.mimoDL = Mimo.fromQcIndex(mimo)
 
-        val byte2 = byteBuffer.readUnsignedByte()
+        val byte2 = stream.readUByte()
         val mimoUL = byte2.extract7(3)
         component.mimoUL = Mimo.fromQcIndex(mimoUL)
 
@@ -351,7 +348,7 @@ object Import0xB826 : ImportCapabilities {
         val classUl = classUlRight.finsert(classUlLeft, 2)
         component.classUL = BwClass.valueOf(classUl)
 
-        val byte3 = byteBuffer.readUnsignedByte()
+        val byte3 = stream.readUByte()
         // Only values 0, 1 have been seen on the wild
         val modULSecondBit = byte3.extract1(1)
         val modULFirstBit = byte3.extract1(2)
@@ -364,8 +361,8 @@ object Import0xB826 : ImportCapabilities {
 
         if (isNr) {
             val nrBand = component as ComponentNr
-            val byte4 = byteBuffer.readUnsignedByte()
-            val byte5 = byteBuffer.readUnsignedByte()
+            val byte4 = stream.readUByte()
+            val byte5 = stream.readUByte()
 
             val scsLeft = byte4.extract2(0)
             val scsRight = byte3.extract1(7)
@@ -385,12 +382,12 @@ object Import0xB826 : ImportCapabilities {
                 nrBand.maxBandwidthUl = getBWFromIndexV8(maxBwIndexUl)
             }
 
-            byteBuffer.skipBytes(1)
+            stream.skipBytes(1)
         } else {
-            byteBuffer.skipBytes(3)
+            stream.skipBytes(3)
         }
         if (version > 14) {
-            byteBuffer.skipBytes(1)
+            stream.skipBytes(1)
         }
         return component
     }
