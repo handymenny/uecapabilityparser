@@ -1,3 +1,5 @@
+package it.smartphonecombo.uecapabilityparser.extension
+
 import io.pkts.buffer.Buffer
 import io.pkts.packet.upperpdu.PDUOption
 import io.pkts.packet.upperpdu.UpperPDUPacket
