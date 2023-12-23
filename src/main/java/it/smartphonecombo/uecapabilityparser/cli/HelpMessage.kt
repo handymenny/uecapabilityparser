@@ -6,11 +6,13 @@ object HelpMessage {
     const val INPUT =
         "A list of capability sources separated by comma. " +
             "These inputs combined must represent a single capability source, if you want to parse different capabilities you can provide multiple --input"
-    val TYPE =
-        LogType.validEntries.joinToString(
-            prefix = "Type of capability. Valid values are: ",
-            transform = { "${it.name} (${it.description})" }
-        )
+    val TYPE: String
+        get() =
+            LogType.validEntries.joinToString(
+                prefix = "Type of capability. Valid values are: ",
+                transform = { "${it.name} (${it.description})" }
+            )
+
     const val SUBTYPES =
         """A list of subtypes separated by comma, one for each capability source, applicable only to --type H.
             Valid values are: LTE (rat-type EUTRA or LTE UE capability information),
