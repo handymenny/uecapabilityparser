@@ -12,3 +12,6 @@ internal fun Int.readNBits(count: Int): Int = this and ((1 shl count) - 1)
 
 internal fun Int.readNBits(count: Int, offset: Int): Int =
     (this ushr offset) and ((1 shl count) - 1)
+
+/** Converts this byte to unsigned int using [java.lang.Byte.toUnsignedInt] */
+internal fun Byte.toUnsignedInt() = java.lang.Byte.toUnsignedInt(this)

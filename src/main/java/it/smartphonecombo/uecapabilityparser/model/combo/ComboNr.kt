@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
-import it.smartphonecombo.uecapabilityparser.extension.populateCsvStringBuilders
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
@@ -8,6 +7,7 @@ import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import populateCsvStringBuilders
 
 @Serializable
 data class ComboNr(
