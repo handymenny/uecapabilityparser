@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.extension
 
-fun IntArray.indexOfMin(): Int {
+internal fun IntArray.indexOfMin(): Int {
     if (isEmpty()) {
         return -1
     }

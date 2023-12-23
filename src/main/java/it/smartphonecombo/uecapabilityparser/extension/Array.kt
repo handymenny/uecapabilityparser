@@ -1,6 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.extension
 
-fun <E : Comparable<E>> Array<E>.indexOfMin(): Int {
+internal fun <E : Comparable<E>> Array<E>.indexOfMin(): Int {
     if (isEmpty()) {
         return -1
     }
