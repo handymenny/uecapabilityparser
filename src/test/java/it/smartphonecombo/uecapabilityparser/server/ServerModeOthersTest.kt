@@ -24,6 +24,8 @@ internal class ServerModeOthersTest {
     private val endpoints =
         listOf(
             "/swagger",
+            "custom.js",
+            "custom.css",
             "/parse",
             "/parse/multiPart",
             "/csv",

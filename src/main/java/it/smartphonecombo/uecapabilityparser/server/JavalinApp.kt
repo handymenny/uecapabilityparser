@@ -372,9 +372,14 @@ class JavalinApp {
     }
 
     private fun addStaticGet(webPath: String, filePath: String?, contentType: ContentType) {
-        if (filePath.isNullOrEmpty()) return
+        val source =
+            if (filePath.isNullOrEmpty()) {
+                NullInputSource
+            } else {
+                File(filePath).toInputSource()
+            }
         apiBuilderGet(webPath) { ctx ->
-            ctx.result(File(filePath).toInputSource().inputStream())
+            ctx.result(source.inputStream())
             ctx.contentType(contentType)
         }
     }
