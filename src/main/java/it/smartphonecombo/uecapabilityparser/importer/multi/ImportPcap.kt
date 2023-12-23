@@ -172,7 +172,7 @@ object ImportPcap : ImportMultiCapabilities {
     ): UeCapRatContainers? {
         val ppidSet = setOf(S1AP_PROTOCOL_IDENTIFIER, NGAP_PROTOCOL_IDENTIFIER)
         val chunk =
-            pkt.chunks.filterIsInstance<SctpDataChunk>().firstOrNull { it.ppid() in ppidSet }
+            pkt.chunks.filterIsInstance<SctpDataChunk>().firstOrNull { it.ppid in ppidSet }
         if (chunk == null) return null
 
         val rrc =
