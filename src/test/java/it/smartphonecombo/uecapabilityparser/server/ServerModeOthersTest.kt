@@ -24,6 +24,8 @@ internal class ServerModeOthersTest {
     private val endpoints =
         listOf(
             "/swagger",
+            "custom.js",
+            "custom.css",
             "/parse",
             "/parse/multiPart",
             "/csv",
@@ -110,6 +112,28 @@ internal class ServerModeOthersTest {
         getTest("/status", Json.encodeToJsonElement(status))
     }
 
+    @Test
+    fun testCustomCssOff() {
+        getTestText("/custom.css", "")
+    }
+
+    @Test
+    fun testCustomJsOff() {
+        getTestText("/custom.js", "")
+    }
+
+    @Test
+    fun testCustomCssOn() {
+        Config["customCss"] = "src/test/resources/server/inputForOthers/custom.css"
+        getTestText("/custom.css", ".max-w-7xl { max-width: 136rem !important; }\n")
+    }
+
+    @Test
+    fun testCustomJsOn() {
+        Config["customJs"] = "src/test/resources/server/inputForOthers/custom.js"
+        getTestText("/custom.js", "alert(\"hello all\")\n")
+    }
+
     private fun getTest(url: String, oracle: JsonElement) {
         JavalinTest.test(JavalinApp().app) { _, client ->
             val response = client.get(url)
@@ -117,6 +141,15 @@ internal class ServerModeOthersTest {
             val actualText = response.body?.string() ?: ""
             val actual = Json.parseToJsonElement(actualText)
             Assertions.assertEquals(oracle.jsonObject, actual.jsonObject)
+        }
+    }
+
+    private fun getTestText(url: String, oracle: String) {
+        JavalinTest.test(JavalinApp().app) { _, client ->
+            val response = client.get(url)
+            Assertions.assertEquals(HttpStatus.OK.code, response.code)
+            val actualText = response.body?.string() ?: ""
+            Assertions.assertEquals(oracle, actualText)
         }
     }
 }

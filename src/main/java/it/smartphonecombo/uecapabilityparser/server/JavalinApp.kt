@@ -29,6 +29,7 @@ import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
+import java.io.File
 import java.io.InputStream
 import java.lang.reflect.Type
 import java.time.ZoneOffset
@@ -132,6 +133,10 @@ class JavalinApp {
                     ctx.redirect("/swagger/")
                 }
             }
+
+            // Add custom js and custom css
+            addStaticGet("custom.js", Config["customJs"], ContentType.TEXT_JS)
+            addStaticGet("custom.css", Config["customCss"], ContentType.TEXT_CSS)
 
             apiBuilderPost("/parse") { ctx ->
                 try {
@@ -363,6 +368,19 @@ class JavalinApp {
         for (path in paths) {
             ApiBuilder.get(path, handler)
             endpoints.add(path)
+        }
+    }
+
+    private fun addStaticGet(webPath: String, filePath: String?, contentType: ContentType) {
+        val source =
+            if (filePath.isNullOrEmpty()) {
+                NullInputSource
+            } else {
+                File(filePath).toInputSource()
+            }
+        apiBuilderGet(webPath) { ctx ->
+            ctx.result(source.inputStream())
+            ctx.contentType(contentType)
         }
     }
 
