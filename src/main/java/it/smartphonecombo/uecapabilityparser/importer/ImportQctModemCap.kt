@@ -2,19 +2,19 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.firstOrNull
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.toMimo
-import java.io.InputStreamReader
 
 /** A parser for LTE Combinations as reported by Qct Modem Capabilities */
 object ImportQctModemCap : ImportCapabilities {
 
     /**
-     * This parser take as [input] a [ByteArray] containing LTE Combinations as reported by Qct
+     * This parser take as [input] a [InputSource] containing LTE Combinations as reported by Qct
      * Modem Capabilities.
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
@@ -22,37 +22,38 @@ object ImportQctModemCap : ImportCapabilities {
      *
      * It can parse multiple messages in the same input.
      */
-    override fun parse(input: ByteArray): Capabilities {
+    override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
-        val lines =
-            input.inputStream().use { it.reader().use(InputStreamReader::readLines).iterator() }
         val listCombo = mutableListOf<ComboLte>()
 
-        try {
-            while (lines.hasNext()) {
-                val source = getValue(lines, "Source")
-                val type = getValue(lines, "Type")
-                val numCombos = getValue(lines, "Combos")?.toIntOrNull() ?: 0
-                val combosHeader = lines.firstOrNull { it.contains("""^\s+#\s+""".toRegex()) }
+        input.useLines { seq ->
+            try {
+                val lines = seq.iterator()
+                while (lines.hasNext()) {
+                    val source = getValue(lines, "Source")
+                    val type = getValue(lines, "Type")
+                    val numCombos = getValue(lines, "Combos")?.toIntOrNull() ?: 0
+                    val combosHeader = lines.firstOrNull { it.contains("""^\s+#\s+""".toRegex()) }
 
-                if (combosHeader == null) {
-                    continue
+                    if (combosHeader == null) {
+                        continue
+                    }
+
+                    val sourceStr = "${source}-${type}".uppercase()
+                    capabilities.addMetadata("source", sourceStr)
+                    capabilities.addMetadata("numCombos", numCombos)
+
+                    val indexDl = combosHeader.indexOf("DL Bands", ignoreCase = true)
+                    val indexUl = combosHeader.indexOf("UL Bands", ignoreCase = true)
+
+                    repeat(numCombos) {
+                        val combo = parseCombo(lines.next(), indexDl, indexUl)
+                        listCombo.add(combo)
+                    }
                 }
-
-                val sourceStr = "${source}-${type}".uppercase()
-                capabilities.addMetadata("source", sourceStr)
-                capabilities.addMetadata("numCombos", numCombos)
-
-                val indexDl = combosHeader.indexOf("DL Bands", ignoreCase = true)
-                val indexUl = combosHeader.indexOf("UL Bands", ignoreCase = true)
-
-                repeat(numCombos) {
-                    val combo = parseCombo(lines.next(), indexDl, indexUl)
-                    listCombo.add(combo)
-                }
+            } catch (ignored: NoSuchElementException) {
+                // Do nothing
             }
-        } catch (ignored: NoSuchElementException) {
-            // Do nothing
         }
 
         capabilities.lteCombos = listCombo

@@ -1,10 +1,9 @@
-package it.smartphonecombo.uecapabilityparser.util
+package it.smartphonecombo.uecapabilityparser.io
 
 import it.smartphonecombo.uecapabilityparser.cli.Cli.echo
 import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
-import it.smartphonecombo.uecapabilityparser.extension.gzipDecompress
 import it.smartphonecombo.uecapabilityparser.extension.moveTo
-import it.smartphonecombo.uecapabilityparser.extension.readText
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
@@ -16,7 +15,7 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
-object IO {
+object IOUtils {
 
     /** Call [echo] or [println] if Cli isn't initialized * */
     fun echoSafe(message: Any?, err: Boolean = false) {
@@ -288,48 +287,26 @@ object IO {
     }
 
     /** if [compressed] is true, automatically appends ".gz". Return null if file doesn't exist */
-    fun readTextFromFile(filePath: String, compressed: Boolean): String? {
+    fun getInputSource(filePath: String, compressed: Boolean): InputSource? {
         val addExtension = if (compressed) ".gz" else ""
+        val file = File(filePath + addExtension)
 
-        return readTextFromFile(File(filePath + addExtension), compressed)
-    }
-
-    /** Return null if file doesn't exist */
-    fun readTextFromFile(file: File, compressed: Boolean): String? {
         if (!file.exists()) return null
 
-        return if (compressed) file.gzipDecompress().readText() else file.readText()
-    }
-
-    /** if [compressed] is true, automatically appends ".gz". Return null if file doesn't exist */
-    fun readBytesFromFile(filePath: String, compressed: Boolean): ByteArray? {
-        val addExtension = if (compressed) ".gz" else ""
-
-        return readBytesFromFile(File(filePath + addExtension), compressed)
-    }
-
-    /** Return null if file doesn't exist */
-    fun readBytesFromFile(file: File, compressed: Boolean): ByteArray? {
-        if (!file.exists()) return null
-
-        return if (compressed) {
-            file.gzipDecompress().use { it.readBytes() }
-        } else {
-            file.readBytes()
-        }
+        return file.toInputSource(compressed)
     }
 
     /**
      * if [compressed] is true, automatically appends ".gz". Return null if file doesn't exist. File
-     * is moved [srcPath] to [dstPath] after a successful read.
+     * is moved from [srcPath] to [dstPath] and it's inputSource is returned.
      */
-    fun readAndMove(srcPath: String, dstPath: String, compressed: Boolean): ByteArray? {
+    fun inputSourceAndMove(srcPath: String, dstPath: String, compressed: Boolean): InputSource? {
         val addExtension = if (compressed) ".gz" else ""
-
         val inputFile = File(srcPath + addExtension)
-        val bytes = readBytesFromFile(inputFile, compressed)
-        inputFile.moveTo(dstPath + addExtension)
+        if (!inputFile.exists()) return null
 
-        return bytes
+        val dstFile = File(dstPath + addExtension)
+        inputFile.moveTo(dstFile.path)
+        return dstFile.toInputSource(compressed)
     }
 }

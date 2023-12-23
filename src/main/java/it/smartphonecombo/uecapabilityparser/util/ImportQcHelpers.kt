@@ -3,13 +3,14 @@ package it.smartphonecombo.uecapabilityparser.util
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
-import it.smartphonecombo.uecapabilityparser.extension.readUnsignedShort
+import it.smartphonecombo.uecapabilityparser.extension.readUShortLE
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
-import java.nio.ByteBuffer
+import java.io.InputStream
 
 object ImportQcHelpers {
     private val debug
@@ -76,7 +77,7 @@ object ImportQcHelpers {
         for (it in inputArray) {
             if (it.isBlank()) continue
             try {
-                val inputStream = it.preformatHex().decodeHex()
+                val inputStream = it.preformatHex().decodeHex().toInputSource()
                 list.add(importer.parse(inputStream))
             } catch (err: IllegalArgumentException) {
                 throw IllegalArgumentException("Invalid hexdump", err)
@@ -120,32 +121,35 @@ object ImportQcHelpers {
      *
      * It supports qualcomm diag packets with or without header.
      *
-     * Note: it advances the [byteBuffer].
+     * Note: it advances the [stream].
      */
-    fun getQcDiagLogSize(byteBuffer: ByteBuffer, capabilities: Capabilities): Int {
-        // Try to read fileSize from the header
-        var fileSize = byteBuffer.readUnsignedShort()
+    fun getQcDiagLogSize(stream: InputStream, streamLength: Int, capabilities: Capabilities): Int {
+        // Set mark for future reset
+        stream.mark(32)
 
-        // if fileSize = bufferSize 0xB826/0xB0CD has a standard header
-        if (fileSize != byteBuffer.limit()) {
+        // Try to read fileSize from the header
+        var fileSize = stream.readUShortLE()
+
+        // if fileSize = stream length 0xB826/0xB0CD has a standard header
+        if (fileSize != streamLength) {
             // check if there's an additional header (0x9801 + 8 bytes + file length + header)
             if (fileSize == 0x0198) {
-                byteBuffer.skipBytes(10)
-                fileSize = byteBuffer.readUnsignedShort()
+                stream.skipBytes(10)
+                fileSize = stream.readUShortLE()
             } else {
-                // header missing, logSize is buffer size
-                byteBuffer.rewind()
-                return byteBuffer.limit()
+                // header missing, logSize is stream length
+                stream.reset()
+                return streamLength
             }
         }
 
-        val logItem = byteBuffer.readUnsignedShort().toString(16).uppercase()
+        val logItem = stream.readUShortLE().toString(16).uppercase()
         capabilities.setMetadata("logItem", "0x$logItem")
         if (debug) {
             echoSafe("Log Item: 0x$logItem")
         }
         // Skip the rest of the header
-        byteBuffer.skipBytes(8)
+        stream.skipBytes(8)
         return fileSize
     }
 }

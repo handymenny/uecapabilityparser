@@ -2,8 +2,8 @@ package it.smartphonecombo.uecapabilityparser.util
 
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.preformatHex
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.model.Rat
-import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
 import java.io.*
 import kotlin.system.exitProcess
 

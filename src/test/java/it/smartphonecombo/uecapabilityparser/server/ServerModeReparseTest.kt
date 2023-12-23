@@ -4,8 +4,9 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.dirsSimilar
 import it.smartphonecombo.uecapabilityparser.cli.Main
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.IO
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
@@ -118,7 +119,7 @@ internal class ServerModeReparseTest {
 
     private fun createMultiDir(path: String) {
         File(path).listFiles()?.filter(File::isDirectory)?.forEach {
-            IO.createDirectories(it.absolutePath + "/multi")
+            IOUtils.createDirectories(it.absolutePath + "/multi")
         }
     }
 
@@ -127,15 +128,13 @@ internal class ServerModeReparseTest {
             .filter { it.name.endsWith(".json") || it.name.endsWith(".json.gz") }
             .forEach { path ->
                 val compression = path.extension == "gz"
-                val text = IO.readTextFromFile(path.toFile(), compression)
-                text?.let {
-                    val newText = it.replace(search, replace)
-                    IO.outputFile(
-                        newText.toByteArray(),
-                        path.toString().substringBeforeLast(".gz"),
-                        compression
-                    )
-                }
+                val text = path.toFile().toInputSource(compression).readText()
+                val newText = text.replace(search, replace)
+                IOUtils.outputFile(
+                    newText.toByteArray(),
+                    path.toString().substringBeforeLast(".gz"),
+                    compression
+                )
             }
     }
 

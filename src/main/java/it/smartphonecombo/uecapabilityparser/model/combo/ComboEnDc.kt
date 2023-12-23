@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
 import it.smartphonecombo.uecapabilityparser.extension.populateCsvStringBuilders
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
@@ -8,7 +9,6 @@ import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.util.IO
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -128,9 +128,11 @@ data class ComboEnDc(
             }
         }
 
-        repeat(lteDlCC - componentsLte.size) { IO.appendSeparator(separator, lteDl, lteMimoDl) }
+        repeat(lteDlCC - componentsLte.size) {
+            IOUtils.appendSeparator(separator, lteDl, lteMimoDl)
+        }
 
-        repeat(lteUlCC - ulLteCount) { IO.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
+        repeat(lteUlCC - ulLteCount) { IOUtils.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
 
         return "$compact$lteDl$lteUl$nrBandBwScs$nrUlBwScsMod$lteMimoDl$nrMimoDl$lteMimoUl$nrMimoUl$bcs;$bcsEutra;$bcsIntraEnDc"
     }

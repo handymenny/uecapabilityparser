@@ -4,6 +4,8 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB0CDBin
 import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
@@ -20,9 +22,9 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 
 class Parsing(
-    private val input: ByteArray,
-    private val inputNR: ByteArray?,
-    private val inputENDC: ByteArray?,
+    private val input: InputSource,
+    private val inputNR: InputSource?,
+    private val inputENDC: InputSource?,
     private val defaultNR: Boolean = false,
     private val type: LogType,
     private val description: String = "",
@@ -32,7 +34,7 @@ class Parsing(
     val capabilities = parseCapabilitiesAndSetMetadata()
 
     val ueLog: String
-        get() = jsonUeCap?.let { jsonFormat.encodeToString(jsonUeCap) } ?: input.decodeToString()
+        get() = jsonUeCap?.let { jsonFormat.encodeToString(jsonUeCap) } ?: input.readText()
 
     private fun parseCapabilitiesAndSetMetadata(): Capabilities {
         val capabilities: Capabilities
@@ -54,11 +56,11 @@ class Parsing(
         val imports = LogType.getImporter(type) ?: return Capabilities()
 
         if (imports == Import0xB826) {
-            return parseMultiple0xB826(input.decodeToString())
+            return parseMultiple0xB826(input.readText())
         }
 
         if (imports == Import0xB0CDBin) {
-            return parseMultiple0xBOCD(input.decodeToString())
+            return parseMultiple0xBOCD(input.readText())
         }
 
         if (imports == ImportCapabilityInformation) {
@@ -80,16 +82,18 @@ class Parsing(
         val inputs = arrayOf(input, inputNR, inputENDC)
         val inputsPath = mutableListOf<String>()
 
-        inputs.filterNotNull().filterNot(ByteArray::isEmpty).forEachIndexed { index, data ->
-            val fileName = "$id-$index"
-            val inputPath = "$inputDir/$fileName"
-            IO.outputFile(data, inputPath, compression)
-            inputsPath.add(fileName)
-        }
+        inputs
+            .filterNot { it == null || it.size() == 0L }
+            .forEachIndexed { index, data ->
+                val fileName = "$id-$index"
+                val inputPath = "$inputDir/$fileName"
+                IOUtils.outputFile(data!!.readBytes(), inputPath, compression)
+                inputsPath.add(fileName)
+            }
 
         val encodedString = Json.custom().encodeToString(capabilities)
         val outputPath = "$outputDir/$id.json"
-        IO.outputFile(encodedString.toByteArray(), outputPath, compression)
+        IOUtils.outputFile(encodedString.toByteArray(), outputPath, compression)
         val indexLine =
             IndexLine(
                 id,

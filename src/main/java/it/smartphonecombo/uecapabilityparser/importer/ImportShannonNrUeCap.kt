@@ -3,6 +3,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -24,9 +25,10 @@ import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 
 object ImportShannonNrUeCap : ImportCapabilities {
-    override fun parse(input: ByteArray): Capabilities {
+    override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
-        val nrUeCap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(input)
+        val byteArray = input.readBytes()
+        val nrUeCap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(byteArray)
 
         capabilities.setMetadata("shannonUeCapVersion", nrUeCap.version)
         if (nrUeCap.id != null) capabilities.setMetadata("shannonUeCapId", nrUeCap.id)

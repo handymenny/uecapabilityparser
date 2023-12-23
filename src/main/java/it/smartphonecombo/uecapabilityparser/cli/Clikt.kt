@@ -16,15 +16,16 @@ import com.github.ajalt.clikt.parameters.options.validate
 import com.github.ajalt.clikt.parameters.options.versionOption
 import com.github.ajalt.clikt.parameters.types.boolean
 import com.github.ajalt.clikt.parameters.types.choice
-import com.github.ajalt.clikt.parameters.types.inputStream
+import com.github.ajalt.clikt.parameters.types.file
 import com.github.ajalt.clikt.parameters.types.int
 import com.github.ajalt.clikt.parameters.types.long
 import it.smartphonecombo.uecapabilityparser.extension.appendBeforeExtension
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.server.ServerMode
 import it.smartphonecombo.uecapabilityparser.util.Config
-import it.smartphonecombo.uecapabilityparser.util.IO
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import kotlinx.serialization.encodeToString
@@ -61,7 +62,7 @@ object Cli :
 
     private val inputsList by
         option("-i", "--input", help = HelpMessage.INPUT)
-            .inputStream()
+            .file(mustExist = true, canBeDir = false, mustBeReadable = true)
             .split("""\s*,\s*""".toRegex())
             .multiple(required = true)
 
@@ -120,11 +121,11 @@ object Cli :
 
         jsonFormat = if (jsonPrettyPrint) Json { prettyPrint = true } else Json
 
-        val inputsByteArray = inputsList.map { inputs -> inputs.map { it.readBytes() } }
+        val inputsSource = inputsList.map { inputs -> inputs.map { it.toInputSource() } }
 
         val multiParsing =
             MultiParsing(
-                inputsByteArray,
+                inputsSource,
                 typeList.map(LogType::of),
                 subTypesList,
                 jsonFormat = jsonFormat
@@ -141,7 +142,7 @@ object Cli :
                         i == 0 -> it
                         else -> it.appendBeforeExtension("-${i+1}-")
                     }
-                IO.outputFileOrStdout(parsing.ueLog, ueLogOutput)
+                IOUtils.outputFileOrStdout(parsing.ueLog, ueLogOutput)
             }
             csv?.let {
                 val csvOutput =
@@ -164,9 +165,12 @@ object Cli :
             val jsonOutput = if (it == "-") null else it
             if (parsingList.size > 1) {
                 val parsedCapabilities = parsingList.map(Parsing::capabilities)
-                IO.outputFileOrStdout(jsonFormat.encodeToString(parsedCapabilities), jsonOutput)
+                IOUtils.outputFileOrStdout(
+                    jsonFormat.encodeToString(parsedCapabilities),
+                    jsonOutput
+                )
             } else {
-                IO.outputFileOrStdout(
+                IOUtils.outputFileOrStdout(
                     jsonFormat.encodeToString(parsingList.first().capabilities),
                     jsonOutput
                 )
@@ -176,27 +180,36 @@ object Cli :
 
     private fun csvOutput(cap: Capabilities, csvPath: String?, type: LogType, newFmt: Boolean) {
         if (type in LogType.lteOnlyTypes) {
-            return IO.outputFileOrStdout(IO.toCsv(cap.lteCombos, newFmt), csvPath)
+            return IOUtils.outputFileOrStdout(IOUtils.toCsv(cap.lteCombos, newFmt), csvPath)
         }
 
         val lteCombos = cap.lteCombos
         if (lteCombos.isNotEmpty()) {
-            IO.outputFileOrStdout(
-                IO.toCsv(lteCombos, newFmt),
+            IOUtils.outputFileOrStdout(
+                IOUtils.toCsv(lteCombos, newFmt),
                 csvPath?.appendBeforeExtension("-LTECA")
             )
         }
         val nrCombos = cap.nrCombos
         if (nrCombos.isNotEmpty()) {
-            IO.outputFileOrStdout(IO.toCsv(nrCombos), csvPath?.appendBeforeExtension("-NRCA"))
+            IOUtils.outputFileOrStdout(
+                IOUtils.toCsv(nrCombos),
+                csvPath?.appendBeforeExtension("-NRCA")
+            )
         }
         val enDcCombos = cap.enDcCombos
         if (enDcCombos.isNotEmpty()) {
-            IO.outputFileOrStdout(IO.toCsv(enDcCombos), csvPath?.appendBeforeExtension("-ENDC"))
+            IOUtils.outputFileOrStdout(
+                IOUtils.toCsv(enDcCombos),
+                csvPath?.appendBeforeExtension("-ENDC")
+            )
         }
         val nrDcCombos = cap.nrDcCombos
         if (nrDcCombos.isNotEmpty()) {
-            IO.outputFileOrStdout(IO.toCsv(nrDcCombos), csvPath?.appendBeforeExtension("-NRDC"))
+            IOUtils.outputFileOrStdout(
+                IOUtils.toCsv(nrDcCombos),
+                csvPath?.appendBeforeExtension("-NRDC")
+            )
         }
     }
 }

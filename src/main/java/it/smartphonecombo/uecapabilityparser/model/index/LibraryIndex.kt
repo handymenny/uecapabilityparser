@@ -1,11 +1,12 @@
 package it.smartphonecombo.uecapabilityparser.model.index
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
 import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import it.smartphonecombo.uecapabilityparser.util.IO
-import it.smartphonecombo.uecapabilityparser.util.IO.echoSafe
-import it.smartphonecombo.uecapabilityparser.util.IO.readTextFromFile
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -54,7 +55,7 @@ data class LibraryIndex(
             val multiDir = "$path/multi"
 
             // Create directories if they don't exist
-            arrayOf(outputDir, inputDir, multiDir).forEach { IO.createDirectories(it) }
+            arrayOf(outputDir, inputDir, multiDir).forEach { createDirectories(it) }
 
             val outputFiles = File(outputDir).listFiles() ?: emptyArray()
             val inputFiles = File(inputDir).listFiles() ?: emptyArray()
@@ -69,13 +70,13 @@ data class LibraryIndex(
                         try {
                             val compressed = outputFile.extension == "gz"
 
-                            val capStr =
-                                readTextFromFile(outputFile, compressed) ?: return@mapNotNull null
+                            val capTxt = outputFile.toInputSource(compressed)
 
                             // Drop any extension
                             val id = outputFile.nameWithoutAnyExtension()
 
-                            val capabilities = Json.custom().decodeFromString<Capabilities>(capStr)
+                            val capabilities =
+                                Json.custom().decodeFromInputSource<Capabilities>(capTxt)
                             val inputs =
                                 inputFiles
                                     .filter { it.name.startsWith(id) }
@@ -102,9 +103,8 @@ data class LibraryIndex(
                     .mapNotNull { multiFile ->
                         try {
                             val compressed = multiFile.extension == "gz"
-                            val jsonTxt = readTextFromFile(multiFile, compressed)
-
-                            jsonTxt?.let { Json.custom().decodeFromString<MultiIndexLine>(it) }
+                            val jsonTxt = multiFile.toInputSource(compressed)
+                            Json.custom().decodeFromInputSource<MultiIndexLine>(jsonTxt)
                         } catch (ex: Exception) {
                             echoSafe("Error ${ex.localizedMessage}", true)
                             null

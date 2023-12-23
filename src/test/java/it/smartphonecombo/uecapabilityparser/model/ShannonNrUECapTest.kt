@@ -3,8 +3,7 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonNrUECap
-import it.smartphonecombo.uecapabilityparser.util.IO
-import java.lang.RuntimeException
+import java.io.File
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
@@ -80,20 +79,17 @@ internal class ShannonNrUECapTest {
     }
 
     private fun protobufToJson(inputPath: String, oraclePath: String) {
-        val inputBinary =
-            IO.readBytesFromFile(inputPath, false) ?: throw RuntimeException("Error reading input")
+        val inputBinary = File(inputPath).readBytes()
         val nrUECap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(inputBinary)
 
-        val oracleText =
-            IO.readTextFromFile(oraclePath, false) ?: throw RuntimeException("Error reading oracle")
+        val oracleText = File(oraclePath).readText()
         val oracleObject = Json.decodeFromString<ShannonNrUECap>(oracleText)
 
         assertEquals(oracleObject, nrUECap)
     }
 
     private fun reEncodeProtobuf(inputPath: String) {
-        val inputBinary =
-            IO.readBytesFromFile(inputPath, false) ?: throw RuntimeException("Error reading input")
+        val inputBinary = File(inputPath).readBytes()
         val nrUECap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(inputBinary)
 
         val reEncodedBinary = ProtoBuf.encodeToByteArray<ShannonNrUECap>(nrUECap)

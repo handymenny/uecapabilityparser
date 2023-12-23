@@ -6,6 +6,7 @@ import io.javalin.http.Context
 import io.javalin.http.HttpStatus
 import io.javalin.http.bodyAsClass
 import io.javalin.http.bodyStreamAsClass
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 
 internal fun Context.badRequest(message: String = "Bad Request") {
     result(message)
@@ -22,8 +23,8 @@ internal fun Context.internalError(message: String = "Internal Server Error") {
     status(HttpStatus.INTERNAL_SERVER_ERROR)
 }
 
-internal fun Context.attachFile(data: ByteArray, filename: String, contentType: ContentType) {
-    result(data)
+internal fun Context.attachFile(data: InputSource, filename: String, contentType: ContentType) {
+    result(data.inputStream())
         .contentType(contentType)
         .header("Content-Disposition", "attachment; filename=$filename")
         .header("Access-Control-Expose-Headers", "Content-Disposition")

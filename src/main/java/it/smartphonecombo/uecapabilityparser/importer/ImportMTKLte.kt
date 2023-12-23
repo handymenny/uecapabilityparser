@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.firstOrNull
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
@@ -9,7 +10,6 @@ import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.toMimo
-import java.io.InputStreamReader
 import java.lang.NumberFormatException
 import java.math.BigInteger
 import java.util.NoSuchElementException
@@ -24,7 +24,7 @@ import java.util.NoSuchElementException
 object ImportMTKLte : ImportCapabilities {
 
     /**
-     * This parser take as [input] a [ByteArray] containing the ELT text representation of the
+     * This parser take as [input] a [InputSource] containing the ELT text representation of the
      * *MSG_ID_ERRC_RCM_UE_PRE_CA_COMB_INFO* and *MSG_ID_ERRC_RCM_UE_CA_COMB_INFO*.
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
@@ -32,12 +32,10 @@ object ImportMTKLte : ImportCapabilities {
      *
      * It can parse multiple messages in the same input.
      */
-    override fun parse(input: ByteArray): Capabilities {
+    override fun parse(input: InputSource): Capabilities {
         val listCombos: MutableList<ComboLte> = mutableListOf()
-        val lines =
-            input.inputStream().use {
-                it.reader().use(InputStreamReader::readLines).map(String::trim)
-            }
+        val lines = input.readLines().map(String::trim)
+
         try {
             val bcsIterator = getBCSArray(lines.iterator()).iterator()
             val iterator = lines.iterator() // New iterator

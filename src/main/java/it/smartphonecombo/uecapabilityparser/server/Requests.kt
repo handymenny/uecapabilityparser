@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.server
 
-import it.smartphonecombo.uecapabilityparser.model.ByteArrayBase64Serializer
+import it.smartphonecombo.uecapabilityparser.io.InputSource
+import it.smartphonecombo.uecapabilityparser.io.InputSourceBase64Serializer
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
@@ -36,16 +37,16 @@ sealed interface RequestCsv {
 
 @Serializable
 class RequestParse(
-    @Serializable(with = ByteArrayBase64Serializer::class) val input: ByteArray? = null,
-    @Serializable(with = ByteArrayBase64Serializer::class) val inputNR: ByteArray? = null,
-    @Serializable(with = ByteArrayBase64Serializer::class) val inputENDC: ByteArray? = null,
+    @Serializable(with = InputSourceBase64Serializer::class) val input: InputSource? = null,
+    @Serializable(with = InputSourceBase64Serializer::class) val inputNR: InputSource? = null,
+    @Serializable(with = InputSourceBase64Serializer::class) val inputENDC: InputSource? = null,
     val defaultNR: Boolean = false,
     val type: LogType,
     val description: String = ""
 ) {
     companion object {
         fun buildRequest(
-            vararg inputs: ByteArray,
+            vararg inputs: InputSource,
             type: LogType,
             description: String,
             defaultNR: Boolean

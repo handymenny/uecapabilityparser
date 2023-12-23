@@ -1,10 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
-import it.smartphonecombo.uecapabilityparser.util.IO
 import java.io.File
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
@@ -36,11 +36,10 @@ internal class ImportScatTest {
     }
 
     private fun testLog(scatLogType: LogType, path: String, oracle: String) {
-        val multi = ImportScat.parse(File(path).inputStream(), scatLogType)
+        val multi = ImportScat.parse(File(path).toInputSource(), scatLogType)
 
         val actual = multi?.parsingList?.map { it.capabilities }!!
-        val expected =
-            Json.decodeFromString<List<Capabilities>>(IO.readTextFromFile(oracle, false)!!)
+        val expected = Json.decodeFromString<List<Capabilities>>(File(oracle).readText())
 
         // Check size
         Assertions.assertEquals(expected.size, actual.size)

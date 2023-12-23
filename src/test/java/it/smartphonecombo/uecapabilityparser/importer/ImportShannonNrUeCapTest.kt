@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
 import kotlinx.serialization.json.Json
@@ -11,7 +12,7 @@ internal class ImportShannonNrUeCapTest {
 
     private fun parse(inputFilename: String, oracleFilename: String) {
         val filePath = "$path/input/$inputFilename"
-        val actual = ImportShannonNrUeCap.parse(File(filePath).readBytes())
+        val actual = ImportShannonNrUeCap.parse(File(filePath).toInputSource())
         val expected =
             Json.decodeFromString<Capabilities>(
                 File("$path/oracleForImport/$oracleFilename").readText()

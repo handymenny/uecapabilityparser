@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
@@ -11,13 +12,12 @@ import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.toMimo
-import java.io.InputStreamReader
 
 /** A parser for 0xB0CD LTE RRC Supported CA Combos * */
 object Import0xB0CD : ImportCapabilities {
 
     /**
-     * This parser take as [input] a [ByteArray] containing the QCAT text representation of the
+     * This parser take as [input] a [InputSource] containing the QCAT text representation of the
      * 0xB0CD (LTE RRC Supported CA Combos) log item.
      *
      * The output is a [Capabilities] with the list of parsed LTE combos stored in
@@ -27,22 +27,23 @@ object Import0xB0CD : ImportCapabilities {
      *
      * It supports 0xB0CD version 32, 40 and 41.
      */
-    override fun parse(input: ByteArray): Capabilities {
+    override fun parse(input: InputSource): Capabilities {
         val listCombo = mutableListOf<ComboLte>()
-        val lines =
-            input.inputStream().use { it.reader().use(InputStreamReader::readLines).iterator() }
 
-        while (lines.hasNext()) {
-            val headers = getHeaders(lines)
-            val version = getVersionFromHeaders(headers)
-
-            if (version == -1) {
-                break
-            }
-
+        input.useLines {
+            val lines = it.iterator()
             while (lines.hasNext()) {
-                val combo = processCombo(lines, version) ?: break
-                listCombo.add(combo)
+                val headers = getHeaders(lines)
+                val version = getVersionFromHeaders(headers)
+
+                if (version == -1) {
+                    break
+                }
+
+                while (lines.hasNext()) {
+                    val combo = processCombo(lines, version) ?: break
+                    listCombo.add(combo)
+                }
             }
         }
 

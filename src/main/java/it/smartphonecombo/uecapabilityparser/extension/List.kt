@@ -2,11 +2,14 @@
 
 package it.smartphonecombo.uecapabilityparser.extension
 
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.EmptyBandwidth
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
-import it.smartphonecombo.uecapabilityparser.util.IO
+import java.util.Collections
+import java.util.Enumeration
+import kotlin.collections.ArrayList
 
 internal inline operator fun <T> List<T>.component6(): T = get(5)
 
@@ -17,6 +20,8 @@ internal inline fun <T> mutableListWithCapacity(capacity: Int): MutableList<T> =
 /** Return this list as List<[T]>. It's an unchecked cast, no check is done. */
 @Suppress("UNCHECKED_CAST")
 internal inline fun <reified T : Any> List<*>.typedList() = this as List<T>
+
+internal inline fun <T> List<T>.toEnumeration(): Enumeration<T> = Collections.enumeration(this)
 
 internal fun List<ComponentNr>.populateCsvStringBuilders(
     nrBandBwScs: StringBuilder,
@@ -74,10 +79,10 @@ internal fun List<ComponentNr>.populateCsvStringBuilders(
     }
 
     repeat(dlCCs - dlCount) {
-        IO.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
+        IOUtils.appendSeparator(separator, nrBandBwScs, nrBandBwScs, nrBandBwScs, nrMimoDl)
     }
 
     repeat(ulCCs - ulCount) {
-        IO.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrMimoUl)
+        IOUtils.appendSeparator(separator, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrUlBwMod, nrMimoUl)
     }
 }

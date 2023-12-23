@@ -1,12 +1,12 @@
 package it.smartphonecombo.uecapabilityparser.model.combo
 
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
-import it.smartphonecombo.uecapabilityparser.util.IO
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -78,10 +78,10 @@ data class ComboLte(
         }
 
         repeat(lteDlCC - masterComponents.size) {
-            IO.appendSeparator(separator, lteDl, lteModDl, lteMimoDl)
+            IOUtils.appendSeparator(separator, lteDl, lteModDl, lteMimoDl)
         }
 
-        repeat(lteUlCC - ulLteCount) { IO.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
+        repeat(lteUlCC - ulLteCount) { IOUtils.appendSeparator(separator, lteUl, lteUl, lteMimoUl) }
 
         return "$compact$lteDl$lteUl$lteModDl$lteMimoDl$lteMimoUl$bcs;"
     }
@@ -114,7 +114,7 @@ data class ComboLte(
                 if (ulMimo != EmptyMimo) strULmimo.append(ulMimo)
             }
 
-            IO.appendSeparator(
+            IOUtils.appendSeparator(
                 separator,
                 strBand,
                 strBw,
@@ -127,7 +127,7 @@ data class ComboLte(
         }
 
         repeat(lteDlCC - masterComponents.size) {
-            IO.appendSeparator(
+            IOUtils.appendSeparator(
                 separator,
                 strBand,
                 strBw,

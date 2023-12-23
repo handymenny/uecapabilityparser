@@ -7,6 +7,8 @@ import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterQcat
 import com.ericsson.mts.asn1.converter.ConverterWireshark
 import it.smartphonecombo.uecapabilityparser.extension.indexOf
+import it.smartphonecombo.uecapabilityparser.io.InputSource
+import it.smartphonecombo.uecapabilityparser.io.SequenceInputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import kotlinx.serialization.json.JsonElement
@@ -15,29 +17,23 @@ import kotlinx.serialization.json.JsonObject
 object ImportCapabilitiesHelpers {
     fun convertUeCapabilityToJson(
         type: LogType,
-        input: ByteArray,
-        inputNR: ByteArray?,
-        inputENDC: ByteArray?,
+        input: InputSource,
+        inputNR: InputSource?,
+        inputENDC: InputSource?,
         defaultNR: Boolean
     ): JsonObject {
-        val inputMainText = input.decodeToString()
-        val inputNRText = inputNR?.decodeToString()
-        val inputENDCText = inputENDC?.decodeToString()
-
         val ratContainerMap =
             if (type == LogType.H) {
-                jsonFromHex(inputMainText, inputNRText, inputENDCText, defaultNR)
+                jsonFromHex(input, inputNR, inputENDC, defaultNR)
             } else {
-                var combined = inputMainText
-                // Combine all inputs
-                inputENDCText?.let { combined += it }
-                inputNRText?.let { combined += it }
-                jsonFromText(combined, type)
+                val list = listOfNotNull(input, inputNR, inputENDC)
+                val inputSource = if (list.size > 1) SequenceInputSource(list) else list.first()
+                jsonFromText(inputSource, type)
             }
         return JsonObject(ratContainerMap)
     }
 
-    private fun jsonFromText(input: String, type: LogType): Map<String, JsonElement> {
+    private fun jsonFromText(textSource: InputSource, type: LogType): Map<String, JsonElement> {
 
         lateinit var eutraIdentifier: Regex
         lateinit var nrIdentifier: Regex
@@ -76,6 +72,7 @@ object ImportCapabilitiesHelpers {
         val formatWriter = KotlinJsonFormatWriter()
         val ratContainerMap = mutableMapOf<String, JsonElement>()
 
+        val input = textSource.readText()
         val list =
             listOf(
                     Rat.EUTRA to input.indexOf(eutraIdentifier),
@@ -141,9 +138,9 @@ object ImportCapabilitiesHelpers {
     }
 
     private fun jsonFromHex(
-        inputMainText: String,
-        inputNRText: String?,
-        inputENDCText: String?,
+        inputMainText: InputSource,
+        inputNRText: InputSource?,
+        inputENDCText: InputSource?,
         defaultNR: Boolean
     ): Map<String, JsonElement> {
         val ratContainerMap = mutableMapOf<String, JsonElement>()

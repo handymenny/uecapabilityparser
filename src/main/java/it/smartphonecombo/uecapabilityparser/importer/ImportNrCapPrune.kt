@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.component6
 import it.smartphonecombo.uecapabilityparser.extension.component7
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.typedList
+import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
@@ -20,7 +21,7 @@ import it.smartphonecombo.uecapabilityparser.model.toMimo
 object ImportNrCapPrune : ImportCapabilities {
 
     /**
-     * This parser take as [input] a [ByteArray] containing NR Combinations using the same format
+     * This parser take as [input] a [InputSource] containing NR Combinations using the same format
      * used in Qualcomm cap_prune.
      *
      * In this format each combination is separated from the other by a ";".
@@ -43,8 +44,8 @@ object ImportNrCapPrune : ImportCapabilities {
      * This parser doesn't support NR DC or SUL combos, if you have an example of cap_prune
      * containing such combos, please share it with info at smartphonecombo dot it
      */
-    override fun parse(input: ByteArray): Capabilities {
-        val caBandCombosString = input.decodeToString()
+    override fun parse(input: InputSource): Capabilities {
+        val caBandCombosString = input.readText()
 
         val listCombo =
             caBandCombosString.split(';').filter(String::isNotBlank).mapNotNull(::parseCombo)
