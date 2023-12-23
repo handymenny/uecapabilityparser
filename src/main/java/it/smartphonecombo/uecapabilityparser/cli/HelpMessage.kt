@@ -52,4 +52,6 @@ object HelpMessage {
         "Type P, E, SHNR, DLF, QMDL, HDF, SDM don't support multiple inputs in one --input option. Use multiple --input instead."
     const val MAX_REQUEST_SIZE = "Max request size (in Bytes) that this server should accept."
     const val NEW_CSV_FORMAT = "Use new CSV format for LTE CA"
+    const val CUSTOM_CSS = "Inject custom css in Web UI"
+    const val CUSTOM_JS = "Inject custom js in Web UI"
 }

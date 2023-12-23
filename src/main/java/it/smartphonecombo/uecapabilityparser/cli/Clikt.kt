@@ -245,12 +245,22 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
             .long()
             .default(256 * 1000 * 1000)
 
+    private val customCss by
+        option("--custom-css", metavar = "FILE", help = HelpMessage.CUSTOM_CSS)
+            .file(mustExist = true, canBeDir = false, mustBeReadable = true)
+
+    private val customJs by
+        option("--custom-js", metavar = "FILE", help = HelpMessage.CUSTOM_JS)
+            .file(mustExist = true, canBeDir = false, mustBeReadable = true)
+
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
     override fun run() {
         // Set debug
         if (debug) Config["debug"] = debug.toString()
         Config["maxRequestSize"] = maxRequestSize.toString()
+        Config["customCss"] = customCss?.path ?: ""
+        Config["customJs"] = customJs?.path ?: ""
 
         // Process store
         store?.let {
