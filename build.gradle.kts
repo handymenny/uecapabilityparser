@@ -29,7 +29,6 @@ val tstypesImplementation: Configuration by
 
 dependencies {
     val mtsAsn1Version = "b532fec"
-    val kmemVersion = "4.0.10"
     val javalinVersion = "5.6.3"
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
@@ -39,7 +38,6 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     implementation("org.slf4j:slf4j-nop:2.0.9")
-    implementation("com.soywiz.korlibs.kmem:kmem-jvm:$kmemVersion")
     implementation("com.github.ajalt.clikt:clikt:4.2.1")
 
     implementation("io.javalin:javalin:$javalinVersion")
@@ -84,11 +82,8 @@ tasks {
     }
 
     shadowJar {
-        // Omit jna-platform dependency (required by kmem but not used in this project)
-        dependencies { exclude(dependency("net.java.dev.jna:jna-platform:.*")) }
-
-        // slf4j-nop silence slf4k warning and jna needed by mordant/clikt
-        val keepDependencies = listOf("org.slf4j:slf4j-nop:.*", "net.java.dev.jna:jna:.*")
+        // slf4j-nop to silence slf4j warning
+        val keepDependencies = listOf("org.slf4j:slf4j-nop:.*")
         // Enable shadow minify
         minimize { keepDependencies.forEach { exclude(dependency(it)) } }
     }

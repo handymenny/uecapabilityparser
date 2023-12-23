@@ -1,6 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.extension.insert
+import it.smartphonecombo.uecapabilityparser.extension.isOdd
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.extension.readNBits
 import it.smartphonecombo.uecapabilityparser.extension.readUByte
 import it.smartphonecombo.uecapabilityparser.extension.readUShortLE
 import it.smartphonecombo.uecapabilityparser.extension.skipBytes
@@ -25,18 +28,6 @@ import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
 import java.io.BufferedInputStream
 import java.io.IOException
 import java.io.InputStream
-import korlibs.memory.extract
-import korlibs.memory.extract1
-import korlibs.memory.extract10
-import korlibs.memory.extract2
-import korlibs.memory.extract3
-import korlibs.memory.extract4
-import korlibs.memory.extract5
-import korlibs.memory.extract6
-import korlibs.memory.extract7
-import korlibs.memory.extract8
-import korlibs.memory.finsert
-import korlibs.memory.isOdd
 
 /**
  * A parser for Qualcomm 0xB826 Log Item (NR5G RRC Supported CA Combos).
@@ -239,7 +230,7 @@ object Import0xB826 : ImportCapabilities {
                 3
             }
 
-        return numBands.extract4(offset)
+        return numBands.readNBits(4, offset)
     }
 
     /**
@@ -259,8 +250,8 @@ object Import0xB826 : ImportCapabilities {
     private fun parseComponentPreV8(stream: InputStream, version: Int): IComponent {
         val band = stream.readUShortLE()
         val byte = stream.readUByte()
-        val bwClass = BwClass.valueOf(byte.extract8(1))
-        val isNr = byte.isOdd
+        val bwClass = BwClass.valueOf(byte.readNBits(8, offset = 1))
+        val isNr = byte.isOdd()
 
         val component =
             if (isNr) {
@@ -271,7 +262,7 @@ object Import0xB826 : ImportCapabilities {
 
         component.classDL = bwClass
         component.mimoDL = Mimo.fromQcIndex(stream.readUByte())
-        val ulClass = stream.readUByte().extract8(1)
+        val ulClass = stream.readUByte().readNBits(8, offset = 1)
         component.classUL = BwClass.valueOf(ulClass)
         val mimoUL = stream.readUByte()
         component.mimoUL = Mimo.fromQcIndex(mimoUL)
@@ -287,7 +278,7 @@ object Import0xB826 : ImportCapabilities {
 
             val short = stream.readUShortLE()
 
-            var scsIndex = short.extract4(0)
+            var scsIndex = short.readNBits(4)
             if (version < 3) {
                 scsIndex += 1
             }
@@ -295,16 +286,16 @@ object Import0xB826 : ImportCapabilities {
             nrBand.scs = getSCSFromIndex(scsIndex)
 
             if (version >= 6) {
-                val bwIndex = short.extract5(6)
+                val bwIndex = short.readNBits(5, offset = 6)
                 nrBand.maxBandwidthDl = getBWFromIndexV6(bwIndex).toBandwidth()
 
                 if (component.classUL != BwClass.NONE) {
-                    val bwIndexUl = short.extract5(11)
+                    val bwIndexUl = short.readNBits(5, offset = 11)
                     nrBand.maxBandwidthUl = getBWFromIndexV6(bwIndexUl).toBandwidth()
                 }
             } else {
                 // v2-v5 stores the max bw as a 10 bit integer
-                nrBand.maxBandwidthDl = short.extract10(6).toBandwidth()
+                nrBand.maxBandwidthDl = short.readNBits(10, offset = 6).toBandwidth()
 
                 // version <= 5 don't have a separate field for maxBwUl
                 if (component.classUL != BwClass.NONE) {
@@ -321,9 +312,9 @@ object Import0xB826 : ImportCapabilities {
     private fun parseComponentV8(stream: InputStream, version: Int): IComponent {
         val short = stream.readUShortLE()
 
-        val band = short.extract(0, 9)
-        val isNr = short.extract(9)
-        val bwClass = BwClass.valueOf(short.extract5(10))
+        val band = short.readNBits(9)
+        val isNr = short.readNBits(1, offset = 9) == 1
+        val bwClass = BwClass.valueOf(short.readNBits(5, offset = 10))
 
         val component =
             if (isNr) {
@@ -334,25 +325,25 @@ object Import0xB826 : ImportCapabilities {
         component.classDL = bwClass
         val byte = stream.readUByte()
 
-        val mimoLeft = byte.extract6(0)
-        val mimoRight = short.extract1(15)
-        val mimo = mimoRight.finsert(mimoLeft, 1)
+        val mimoLeft = byte.readNBits(6)
+        val mimoRight = short.readNBits(1, offset = 15)
+        val mimo = mimoRight.insert(mimoLeft, 1)
         component.mimoDL = Mimo.fromQcIndex(mimo)
 
         val byte2 = stream.readUByte()
-        val mimoUL = byte2.extract7(3)
+        val mimoUL = byte2.readNBits(7, offset = 3)
         component.mimoUL = Mimo.fromQcIndex(mimoUL)
 
-        val classUlLeft = byte2.extract3(0)
-        val classUlRight = byte.extract2(6)
-        val classUl = classUlRight.finsert(classUlLeft, 2)
+        val classUlLeft = byte2.readNBits(3)
+        val classUlRight = byte.readNBits(2, offset = 6)
+        val classUl = classUlRight.insert(classUlLeft, 2)
         component.classUL = BwClass.valueOf(classUl)
 
         val byte3 = stream.readUByte()
         // Only values 0, 1 have been seen on the wild
-        val modULSecondBit = byte3.extract1(1)
-        val modULFirstBit = byte3.extract1(2)
-        val modUL = modULFirstBit.finsert(modULSecondBit, 1)
+        val modULSecondBit = byte3.readNBits(1, offset = 1)
+        val modULFirstBit = byte3.readNBits(1, offset = 2)
+        val modUL = modULFirstBit.insert(modULSecondBit, 1)
 
         if (component.classUL != BwClass.NONE) {
             // v8 doesn't have 64qam
@@ -364,21 +355,21 @@ object Import0xB826 : ImportCapabilities {
             val byte4 = stream.readUByte()
             val byte5 = stream.readUByte()
 
-            val scsLeft = byte4.extract2(0)
-            val scsRight = byte3.extract1(7)
-            val scsIndex = scsRight.finsert(scsLeft, 1)
+            val scsLeft = byte4.readNBits(2)
+            val scsRight = byte3.readNBits(1, offset = 7)
+            val scsIndex = scsRight.insert(scsLeft, 1)
             nrBand.scs = getSCSFromIndex(scsIndex)
 
             if (version >= 10) {
-                val maxBWindex = byte4.extract6(2)
+                val maxBWindex = byte4.readNBits(6, offset = 2)
                 nrBand.maxBandwidthDl = getBWFromIndexV10(maxBWindex)
                 val ulOffset = if (version <= 14) 0 else 1
-                val maxBwIndexUl = byte5.extract6(ulOffset)
+                val maxBwIndexUl = byte5.readNBits(6, offset = ulOffset)
                 nrBand.maxBandwidthUl = getBWFromIndexV10(maxBwIndexUl)
             } else {
-                val maxBWindex = byte4.extract5(2)
+                val maxBWindex = byte4.readNBits(5, offset = 2)
                 nrBand.maxBandwidthDl = getBWFromIndexV8(maxBWindex)
-                val maxBwIndexUl = byte4.extract1(7).finsert(byte5.extract4(0), 1)
+                val maxBwIndexUl = byte4.readNBits(1, offset = 7).insert(byte5.readNBits(4), 1)
                 nrBand.maxBandwidthUl = getBWFromIndexV8(maxBwIndexUl)
             }
 
