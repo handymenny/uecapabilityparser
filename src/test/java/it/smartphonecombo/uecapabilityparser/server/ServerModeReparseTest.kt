@@ -4,8 +4,8 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.dirsSimilar
 import it.smartphonecombo.uecapabilityparser.cli.Main
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
-import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
 import java.nio.file.Files

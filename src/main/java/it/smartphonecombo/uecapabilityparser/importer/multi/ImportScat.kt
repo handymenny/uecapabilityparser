@@ -1,9 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.importer.multi
 
 import it.smartphonecombo.uecapabilityparser.extension.deleteIgnoreException
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.FileInputSource
 import it.smartphonecombo.uecapabilityparser.io.InputSource
-import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import java.io.File

@@ -3,16 +3,15 @@ package it.smartphonecombo.uecapabilityparser.util
 import io.javalin.http.UploadedFile
 import it.smartphonecombo.uecapabilityparser.extension.commonPrefix
 import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.extension.isEmpty
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportPcap
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.io.NullInputSource
 import it.smartphonecombo.uecapabilityparser.io.SequenceInputSource
-import it.smartphonecombo.uecapabilityparser.io.isEmpty
-import it.smartphonecombo.uecapabilityparser.io.isNotEmpty
-import it.smartphonecombo.uecapabilityparser.io.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
@@ -81,7 +80,7 @@ class MultiParsing(
                     }
                 }
 
-                if (inputNRSource?.isNotEmpty() == true && inputSource.isEmpty()) {
+                if (inputNRSource?.isEmpty() == false && inputSource.isEmpty()) {
                     inputSource = inputNRSource
                     inputNRSource = null
                     defaultNr = true

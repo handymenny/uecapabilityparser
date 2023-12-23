@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.io
 import it.smartphonecombo.uecapabilityparser.cli.Cli.echo
 import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.extension.moveTo
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc

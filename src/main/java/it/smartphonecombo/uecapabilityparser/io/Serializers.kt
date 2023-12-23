@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.io
 
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import java.util.*
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind

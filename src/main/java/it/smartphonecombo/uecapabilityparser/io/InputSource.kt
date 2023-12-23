@@ -107,18 +107,3 @@ class ByteArrayInputSource(private val byteArray: ByteArray) : InputSource {
 
     override fun size() = byteArray.size.toLong()
 }
-
-fun ByteArray.toInputSource() = ByteArrayInputSource(this)
-
-fun String.toInputSource() = StringInputSource(this)
-
-fun File.toInputSource(gzip: Boolean = false) =
-    if (gzip) GzipFileInputSource(this) else FileInputSource(this)
-
-fun UploadedFile.toInputSource() = UploadedFileInputSource(this)
-
-@Suppress("NOTHING_TO_INLINE") inline fun InputSource.isEmpty() = size() == 0L
-
-@Suppress("NOTHING_TO_INLINE") inline fun InputSource.isNotEmpty() = !isEmpty()
-
-@Suppress("NOTHING_TO_INLINE") inline fun InputSource?.isNullOrEmpty() = this == null || isEmpty()
