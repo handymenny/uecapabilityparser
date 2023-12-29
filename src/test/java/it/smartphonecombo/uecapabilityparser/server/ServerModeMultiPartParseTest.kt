@@ -276,6 +276,24 @@ internal class ServerModeMultiPartParseTest {
     }
 
     @Test
+    fun temsMrdcSplitJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "T")
+                        putJsonArray("inputIndexes") {
+                            add(0)
+                            add(1)
+                        }
+                    }
+                },
+            files = listOf("$inputPath/temsMrdcSplit_0.txt", "$inputPath/temsMrdcSplit_1.txt"),
+            oraclePath = "$oraclePath/temsMrdcSplit.json",
+        )
+    }
+
+    @Test
     fun carrierPolicyAndNrCapPrune() {
         javalinJsonTest(
             request =

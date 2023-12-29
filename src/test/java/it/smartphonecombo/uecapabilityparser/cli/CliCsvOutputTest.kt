@@ -325,6 +325,32 @@ internal class CliCsvOutputTest {
     }
 
     @Test
+    fun testTemsEutra() {
+        test(
+            "-i",
+            "$path/input/temsEutra.txt",
+            "-t",
+            "T",
+            "-c",
+            "-",
+            oracleFilename = "temsEutra.csv"
+        )
+    }
+
+    @Test
+    fun testTemsMrdcSplit() {
+        test(
+            "-i",
+            "$path/input/temsMrdcSplit_0.txt,$path/input/temsMrdcSplit_1.txt",
+            "-t",
+            "T",
+            "-c",
+            "-",
+            oracleFilename = "temsMrdcSplit.csv"
+        )
+    }
+
+    @Test
     fun testPcap() {
         test("-i", "$path/input/pcap.pcap", "-t", "P", "-c", "-", oracleFilename = "pcap.txt")
     }
