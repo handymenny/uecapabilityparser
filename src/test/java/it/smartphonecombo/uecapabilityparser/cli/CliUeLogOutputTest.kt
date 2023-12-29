@@ -224,6 +224,34 @@ internal class CliUeLogOutputTest {
         )
     }
 
+    @Test
+    fun testTemsEutra() {
+        test(
+            "-i",
+            "$path/input/temsEutra.txt",
+            "-t",
+            "T",
+            "-l",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "temsEutra.json"
+        )
+    }
+
+    @Test
+    fun testTemsMrdcSplit() {
+        test(
+            "-i",
+            "$path/input/temsMrdcSplit_0.txt,$path/input/temsMrdcSplit_1.txt",
+            "-t",
+            "T",
+            "-l",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "temsMrdcSplit.json"
+        )
+    }
+
     private fun test(vararg args: String, oracleFilename: String) {
         val oraclePath = "$path/oracleUeLog/$oracleFilename"
 

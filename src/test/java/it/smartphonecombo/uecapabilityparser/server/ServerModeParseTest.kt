@@ -373,6 +373,31 @@ internal class ServerModeParseTest {
         )
     }
 
+    @Test
+    fun temsEutraJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "T")
+                    put("input", fileToBase64("$path/input/temsEutra.txt"))
+                },
+            oraclePath = "$path/oracleJson/temsEutra.json"
+        )
+    }
+
+    @Test
+    fun temsMrdcSplitJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "T")
+                    put("input", fileToBase64("$path/input/temsMrdcSplit_0.txt"))
+                    put("inputNR", fileToBase64("$path/input/temsMrdcSplit_1.txt"))
+                },
+            oraclePath = "$path/oracleJson/temsMrdcSplit.json"
+        )
+    }
+
     private fun javalinJsonTest(request: JsonObject, oraclePath: String) =
         JavalinTest.test(app) { _, client ->
             val response = client.post(endpoint, request)

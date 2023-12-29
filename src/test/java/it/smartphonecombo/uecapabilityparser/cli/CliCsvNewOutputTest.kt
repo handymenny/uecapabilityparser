@@ -114,6 +114,21 @@ internal class CliCsvNewOutputTest {
     }
 
     @Test
+    fun testTemsEutra() {
+        test(
+            "-i",
+            "$path/input/temsEutra.txt",
+            "-t",
+            "T",
+            "-c",
+            "-",
+            "--new-csv-format",
+            "true",
+            oracleFilename = "temsEutra.csv"
+        )
+    }
+
+    @Test
     fun testUeCapHexEutra() {
         test(
             "-i",
