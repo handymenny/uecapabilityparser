@@ -5,6 +5,7 @@ import com.ericsson.mts.asn1.converter.AbstractConverter
 import com.ericsson.mts.asn1.converter.ConverterNSG
 import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterQcat
+import com.ericsson.mts.asn1.converter.ConverterTems
 import com.ericsson.mts.asn1.converter.ConverterWireshark
 import it.smartphonecombo.uecapabilityparser.extension.indexOf
 import it.smartphonecombo.uecapabilityparser.io.InputSource
@@ -64,6 +65,16 @@ object ImportCapabilitiesHelpers {
                 nrIdentifier = "value ${Rat.NR.ratCapabilityIdentifier} ::=\\s".toRegex()
                 mrdcIdentifier = "value ${Rat.EUTRA_NR.ratCapabilityIdentifier} ::=\\s".toRegex()
                 converter = ConverterQcat()
+            }
+            LogType.T -> {
+                eutraIdentifier =
+                    "${Rat.EUTRA.ratCapabilityIdentifier.replace("-", " ")}\\s"
+                        .toRegex(RegexOption.IGNORE_CASE)
+                nrIdentifier =
+                    "${Rat.NR.ratCapabilityIdentifier}\\s".toRegex(RegexOption.IGNORE_CASE)
+                mrdcIdentifier =
+                    "${Rat.EUTRA_NR.ratCapabilityIdentifier}\\s".toRegex(RegexOption.IGNORE_CASE)
+                converter = ConverterTems()
             }
             else -> {
                 throw IllegalArgumentException()

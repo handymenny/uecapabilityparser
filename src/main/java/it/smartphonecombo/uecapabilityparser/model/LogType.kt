@@ -29,6 +29,7 @@ enum class LogType(val description: String) {
     M("MEDIATEK CA_COMB_INFO"),
     O("OSIX UE Capability Information"),
     QC("QCAT UE Capability Information"),
+    T("TEMS UE Capability Information"),
     RF("QCT Modem Capabilities"),
     SHNR("Shannon NR UE Cap Config Protobuf"),
     P("PCAP"),
@@ -79,7 +80,8 @@ enum class LogType(val description: String) {
                 N,
                 O,
                 QC,
-                H -> ImportCapabilityInformation
+                H,
+                T -> ImportCapabilityInformation
                 else -> null
             }
     }
