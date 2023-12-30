@@ -28,7 +28,7 @@ val tstypesImplementation: Configuration by
     configurations.getting { extendsFrom(configurations.implementation.get()) }
 
 dependencies {
-    val mtsAsn1Version = "7ee563f"
+    val mtsAsn1Version = "45cc560"
     val javalinVersion = "5.6.3"
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
