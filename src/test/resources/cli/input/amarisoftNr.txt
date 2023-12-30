@@ -1,0 +1,1853 @@
+16:47:36.300 [RRC] UL 0001 01 DCCH-NR: UE capability information
+        {
+          message c1: ueCapabilityInformation: {
+            rrc-TransactionIdentifier 0,
+            criticalExtensions ueCapabilityInformation: {
+              ue-CapabilityRAT-ContainerList {
+                {
+                  rat-Type nr,
+                  ue-CapabilityRAT-Container {
+                    accessStratumRelease rel15,
+                    pdcp-Parameters {
+                      supportedROHC-Profiles {
+                        profile0x0000 TRUE,
+                        profile0x0001 TRUE,
+                        profile0x0002 TRUE,
+                        profile0x0003 FALSE,
+                        profile0x0004 FALSE,
+                        profile0x0006 FALSE,
+                        profile0x0101 FALSE,
+                        profile0x0102 FALSE,
+                        profile0x0103 FALSE,
+                        profile0x0104 FALSE
+                      },
+                      maxNumberROHC-ContextSessions cs24,
+                      uplinkOnlyROHC-Profiles supported,
+                      continueROHC-Context supported,
+                      shortSN supported
+                    },
+                    rlc-Parameters {
+                      am-WithShortSN supported,
+                      um-WithShortSN supported,
+                      um-WithLongSN supported
+                    },
+                    mac-Parameters {
+                      mac-ParametersXDD-Diff {
+                        logicalChannelSR-DelayTimer supported,
+                        longDRX-Cycle supported,
+                        multipleSR-Configurations supported
+                      }
+                    },
+                    phy-Parameters {
+                      phy-ParametersCommon {
+                        nzp-CSI-RS-IntefMgmt supported,
+                        dynamicHARQ-ACK-Codebook supported,
+                        semiStaticHARQ-ACK-Codebook supported,
+                        ra-Type0-PUSCH supported,
+                        dynamicSwitchRA-Type0-1-PUSCH supported,
+                        pdsch-MappingTypeA supported,
+                        rateMatchingResrcSetSemi-Static supported,
+                        rateMatchingResrcSetDynamic supported,
+                        bwp-SwitchingDelay type2,
+                        rateMatchingCtrlResrcSetDynamic supported,
+                        maxLayersMIMO-Indication supported
+                      },
+                      phy-ParametersFRX-Diff {
+                        twoFL-DMRS '11'B,
+                        supportedDMRS-TypeDL type1And2,
+                        supportedDMRS-TypeUL type1And2,
+                        onePortsPTRS '01'B,
+                        pucch-F2-WithFH supported,
+                        pucch-F3-WithFH supported,
+                        tpc-SRS-RNTI supported,
+                        absoluteTPC-Command supported,
+                        pusch-HalfPi-BPSK supported,
+                        pucch-F3-4-HalfPi-BPSK supported,
+                        almostContiguousCP-OFDM-UL supported,
+                        csi-RS-IM-ReceptionForFeedback {
+                          maxConfigNumberNZP-CSI-RS-PerCC 8,
+                          maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                          maxConfigNumberCSI-IM-PerCC n8,
+                          maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                          totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                        },
+                        csi-ReportFramework {
+                          maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                          maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                          maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                          maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                          maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                          maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                          maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                          simultaneousCSI-ReportsPerCC 4
+                        },
+                        mux-SR-HARQ-ACK-CSI-PUCCH-OncePerSlot {
+                          sameSymbol supported
+                        },
+                        dl-SchedulingOffset-PDSCH-TypeA supported,
+                        oneFL-DMRS-TwoAdditionalDMRS-UL supported,
+                        twoFL-DMRS-TwoAdditionalDMRS-UL supported
+                      },
+                      phy-ParametersFR1 {
+                        pdsch-256QAM-FR1 supported,
+                        pdsch-RE-MappingFR1-PerSymbol n10,
+                        pdsch-RE-MappingFR1-PerSlot n32
+                      }
+                    },
+                    rf-Parameters {
+                      supportedBandListNR {
+                        {
+                          bandNR 78,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-30kHz sym14
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p16,
+                                      maxNumberResourcesPerBand 4,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p32,
+                                      maxNumberResourcesPerBand 2,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          bwp-SameNumerology upto2,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-DL-v1590 fr1: {
+                            scs-30kHz '8000'H
+                          },
+                          channelBWs-UL-v1590 fr1: {
+                            scs-30kHz '8000'H
+                          }
+                        },
+                        {
+                          bandNR 41,
+                          modifiedMPR-Behaviour 'C0'H,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-30kHz sym14
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p16,
+                                      maxNumberResourcesPerBand 4,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p32,
+                                      maxNumberResourcesPerBand 2,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          bwp-SameNumerology upto2,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-DL-v1590 fr1: {
+                            scs-30kHz '8000'H
+                          },
+                          channelBWs-UL-v1590 fr1: {
+                            scs-30kHz '8000'H
+                          }
+                        },
+                        {
+                          bandNR 40,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-30kHz sym14
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p16,
+                                      maxNumberResourcesPerBand 4,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p32,
+                                      maxNumberResourcesPerBand 2,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          bwp-SameNumerology upto2,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 28,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111010000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111010000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 8,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111000000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111000000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 7,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111111100'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111111100'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 5,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111000000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111000000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 3,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111110000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111110000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 1,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111011100'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111011100'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 77,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-30kHz sym14
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p16,
+                                      maxNumberResourcesPerBand 4,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p32,
+                                      maxNumberResourcesPerBand 2,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          bwp-SameNumerology upto2,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011111'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-DL-v1590 fr1: {
+                            scs-30kHz '8000'H
+                          },
+                          channelBWs-UL-v1590 fr1: {
+                            scs-30kHz '8000'H
+                          }
+                        },
+                        {
+                          bandNR 66,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111011000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111011000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          asymmetricBandwidthCombinationSet '1'B
+                        },
+                        {
+                          bandNR 38,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-30kHz sym14
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p16,
+                                      maxNumberResourcesPerBand 4,
+                                      totalNumberTxPortsPerBand 64
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p32,
+                                      maxNumberResourcesPerBand 2,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          bwp-SameNumerology upto2,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '0000000000'B,
+                            scs-30kHz '0001011000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        },
+                        {
+                          bandNR 20,
+                          mimo-ParametersPerBand {
+                            tci-StatePDSCH {
+                              maxNumberConfiguredTCIstatesPerCC n16,
+                              maxNumberActiveTCI-PerBWP n1
+                            },
+                            pusch-TransCoherence nonCoherent,
+                            periodicBeamReport supported,
+                            aperiodicBeamReport supported,
+                            maxNumberNonGroupBeamReporting n4,
+                            maxNumberSSB-BFD 2,
+                            maxNumberCSI-RS-SSB-CBD 8,
+                            beamReportTiming {
+                              scs-15kHz sym8
+                            },
+                            beamManagementSSB-CSI-RS {
+                              maxNumberSSB-CSI-RS-ResourceOneTx n8,
+                              maxNumberCSI-RS-Resource n32,
+                              maxNumberCSI-RS-ResourceTwoTx n8,
+                              supportedCSI-RS-Density oneAndThree,
+                              maxNumberAperiodicCSI-RS-Resource n32
+                            },
+                            codebookParameters {
+                              type1 {
+                                singlePanel {
+                                  supportedCSI-RS-ResourceList {
+                                    {
+                                      maxNumberTxPortsPerResource p4,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 32
+                                    },
+                                    {
+                                      maxNumberTxPortsPerResource p8,
+                                      maxNumberResourcesPerBand 8,
+                                      totalNumberTxPortsPerBand 64
+                                    }
+                                  },
+                                  modes mode1,
+                                  maxNumberCSI-RS-PerResourceSet 4
+                                }
+                              }
+                            },
+                            csi-RS-IM-ReceptionForFeedback {
+                              maxConfigNumberNZP-CSI-RS-PerCC 8,
+                              maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC 64,
+                              maxConfigNumberCSI-IM-PerCC n8,
+                              maxNumberSimultaneousNZP-CSI-RS-PerCC 4,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-PerCC 32
+                            },
+                            csi-ReportFramework {
+                              maxNumberPeriodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberAperiodicCSI-PerBWP-ForCSI-Report 2,
+                              maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report 0,
+                              maxNumberPeriodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-PerBWP-ForBeamReport 2,
+                              maxNumberAperiodicCSI-triggeringStatePerCC n63,
+                              maxNumberSemiPersistentCSI-PerBWP-ForBeamReport 0,
+                              simultaneousCSI-ReportsPerCC 4
+                            },
+                            csi-RS-ForTracking {
+                              maxBurstLength 2,
+                              maxSimultaneousResourceSetsPerCC 1,
+                              maxConfiguredResourceSetsPerCC 8,
+                              maxConfiguredResourceSetsAllCC 16
+                            }
+                          },
+                          multipleTCI supported,
+                          pusch-256QAM supported,
+                          ue-PowerClass pc3,
+                          rateMatchingLTE-CRS supported,
+                          channelBWs-DL fr1: {
+                            scs-15kHz '1111000000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          },
+                          channelBWs-UL fr1: {
+                            scs-15kHz '1111000000'B,
+                            scs-30kHz '0000000000'B,
+                            scs-60kHz '0000000000'B
+                          }
+                        }
+                      },
+                      supportedBandCombinationList {
+                        {
+                          bandList {
+                            nr: {
+                              bandNR 38,
+                              ca-BandwidthClassDL-NR a,
+                              ca-BandwidthClassUL-NR a
+                            }
+                          },
+                          featureSetCombination 0
+                        }
+                      },
+                      appliedFreqBandListFilter {
+                        bandInformationNR: {
+                          bandNR 38
+                        }
+                      },
+                      supportedBandCombinationList-v1540 {
+                        {
+                          bandList-v1540 {
+                            {
+                              srs-TxSwitch {
+                                supportedSRS-TxPortSwitch t1r2
+                              }
+                            }
+                          },
+                          ca-ParametersNR-v1540 {
+                            csi-RS-IM-ReceptionForFeedbackPerBandComb {
+                              maxNumberSimultaneousNZP-CSI-RS-ActBWP-AllCC 8,
+                              totalNumberPortsSimultaneousNZP-CSI-RS-ActBWP-AllCC 64
+                            },
+                            simultaneousCSI-ReportsAllCC 8
+                          }
+                        }
+                      },
+                      supportedBandCombinationList-v1560 {
+                        {
+                          ca-ParametersNR-v1560 {
+                            diffNumerologyWithinPUCCH-GroupLargerSCS supported
+                          }
+                        }
+                      }
+                    },
+                    measAndMobParameters {
+                      measAndMobParametersCommon {
+                        ssb-RLM supported,
+                        eventB-MeasAndReport supported,
+                        handoverFDD-TDD supported,
+                        eutra-CGI-Reporting supported,
+                        nr-CGI-Reporting supported,
+                        periodicEUTRA-MeasAndReport supported
+                      },
+                      measAndMobParametersXDD-Diff {
+                        intraAndInterF-MeasAndReport supported,
+                        eventA-MeasAndReport supported,
+                        handoverInterF supported,
+                        handoverLTE-EPC supported
+                      },
+                      measAndMobParametersFRX-Diff {
+                        ss-SINR-Meas supported,
+                        handoverInterF supported,
+                        handoverLTE-EPC supported,
+                        simultaneousRxDataSSB-DiffNumerology supported
+                      }
+                    },
+                    tdd-Add-UE-NR-Capabilities {
+                      phy-ParametersXDD-Diff {
+                        dl-SchedulingOffset-PDSCH-TypeA supported
+                      }
+                    },
+                    featureSets {
+                      featureSetsDownlink {
+                        {
+                          featureSetListPerDownlinkCC {
+                            1
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            2
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            3
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            4
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            5
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            6
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            7
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            8
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            9
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            10
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            11
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            12
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            13
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            14
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            15
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        },
+                        {
+                          featureSetListPerDownlinkCC {
+                            16
+                          },
+                          ue-SpecificUL-DL-Assignment supported
+                        }
+                      },
+                      featureSetsDownlinkPerCC {
+                        {
+                          supportedSubcarrierSpacingDL kHz30,
+                          supportedBandwidthDL fr1: mhz50,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz20,
+                          maxNumberMIMO-LayersPDSCH twoLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz30,
+                          supportedBandwidthDL fr1: mhz100,
+                          channelBW-90mhz supported,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz10,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz30,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz30,
+                          supportedBandwidthDL fr1: mhz80,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz30,
+                          supportedBandwidthDL fr1: mhz40,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz40,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz10,
+                          maxNumberMIMO-LayersPDSCH twoLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz30,
+                          maxNumberMIMO-LayersPDSCH twoLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz20,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz40,
+                          maxNumberMIMO-LayersPDSCH twoLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz15,
+                          supportedBandwidthDL fr1: mhz50,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz30,
+                          supportedBandwidthDL fr1: mhz60,
+                          maxNumberMIMO-LayersPDSCH fourLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz30,
+                          supportedBandwidthDL fr1: mhz80,
+                          maxNumberMIMO-LayersPDSCH twoLayers,
+                          supportedModulationOrderDL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingDL kHz30,
+                          supportedBandwidthDL fr1: mhz40,
+                          maxNumberMIMO-LayersPDSCH twoLayers,
+                          supportedModulationOrderDL qam256
+                        }
+                      },
+                      featureSetsUplink {
+                        {
+                          featureSetListPerUplinkCC {
+                            1
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            2
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            3
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            4
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            5
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            6
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            7
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            8
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            9
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        },
+                        {
+                          featureSetListPerUplinkCC {
+                            10
+                          },
+                          supportedSRS-Resources {
+                            maxNumberAperiodicSRS-PerBWP n16,
+                            maxNumberAperiodicSRS-PerBWP-PerSlot 6,
+                            maxNumberPeriodicSRS-PerBWP n16,
+                            maxNumberPeriodicSRS-PerBWP-PerSlot 6,
+                            maxNumberSemiPersistentSRS-PerBWP n2,
+                            maxNumberSemiPersistentSRS-PerBWP-PerSlot 2,
+                            maxNumberSRS-Ports-PerResource n1
+                          }
+                        }
+                      },
+                      featureSetsUplinkPerCC {
+                        {
+                          supportedSubcarrierSpacingUL kHz30,
+                          supportedBandwidthUL fr1: mhz50,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz30,
+                          supportedBandwidthUL fr1: mhz100,
+                          channelBW-90mhz supported,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz15,
+                          supportedBandwidthUL fr1: mhz20,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz15,
+                          supportedBandwidthUL fr1: mhz10,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz15,
+                          supportedBandwidthUL fr1: mhz30,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz30,
+                          supportedBandwidthUL fr1: mhz80,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz30,
+                          supportedBandwidthUL fr1: mhz40,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz15,
+                          supportedBandwidthUL fr1: mhz40,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz15,
+                          supportedBandwidthUL fr1: mhz50,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        },
+                        {
+                          supportedSubcarrierSpacingUL kHz30,
+                          supportedBandwidthUL fr1: mhz60,
+                          mimo-CB-PUSCH {
+                            maxNumberMIMO-LayersCB-PUSCH oneLayer,
+                            maxNumberSRS-ResourcePerSet 1
+                          },
+                          supportedModulationOrderUL qam256
+                        }
+                      },
+                      featureSetsDownlink-v1540 {
+                        {
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          additionalDMRS-DL-Alt supported,
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        },
+                        {
+                          twoFL-DMRS-TwoAdditionalDMRS-DL supported
+                        }
+                      }
+                    },
+                    featureSetCombinations {
+                      {
+                        {
+                          nr: {
+                            downlinkSetNR 7,
+                            uplinkSetNR 7
+                          }
+                        }
+                      }
+                    },
+                    nonCriticalExtension {
+                      interRAT-Parameters {
+                        eutra {
+                          supportedBandListEUTRA {
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            7,
+                            8,
+                            12,
+                            13,
+                            17,
+                            18,
+                            19,
+                            20,
+                            26,
+                            28,
+                            38,
+                            39,
+                            40,
+                            41,
+                            66
+                          },
+                          eutra-ParametersCommon {
+                            mfbi-EUTRA supported
+                          }
+                        }
+                      },
+                      nonCriticalExtension {
+                        ims-Parameters {
+                          ims-ParametersFRX-Diff {
+                            voiceOverNR supported
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+

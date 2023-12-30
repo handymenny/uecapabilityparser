@@ -351,6 +351,32 @@ internal class CliCsvOutputTest {
     }
 
     @Test
+    fun testAmarisoftEutra() {
+        test(
+            "-i",
+            "$path/input/amarisoftEutra.txt",
+            "-t",
+            "A",
+            "-c",
+            "-",
+            oracleFilename = "amarisoftEutra.csv"
+        )
+    }
+
+    @Test
+    fun testAmarisoftNr() {
+        test(
+            "-i",
+            "$path/input/amarisoftNr.txt",
+            "-t",
+            "A",
+            "-c",
+            "-",
+            oracleFilename = "amarisoftNr.csv"
+        )
+    }
+
+    @Test
     fun testPcap() {
         test("-i", "$path/input/pcap.pcap", "-t", "P", "-c", "-", oracleFilename = "pcap.txt")
     }

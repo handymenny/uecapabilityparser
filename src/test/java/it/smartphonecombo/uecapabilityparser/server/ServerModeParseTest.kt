@@ -398,6 +398,30 @@ internal class ServerModeParseTest {
         )
     }
 
+    @Test
+    fun amarisoftEutraJsonOutput() {
+        javalinJsonTest(
+            request =
+            buildJsonObject {
+                put("type", "A")
+                put("input", fileToBase64("$path/input/amarisoftEutra.txt"))
+            },
+            oraclePath = "$path/oracleJson/amarisoftEutra.json"
+        )
+    }
+
+    @Test
+    fun amarisoftNrJsonOutput() {
+        javalinJsonTest(
+            request =
+            buildJsonObject {
+                put("type", "A")
+                put("input", fileToBase64("$path/input/amarisoftNr.txt"))
+            },
+            oraclePath = "$path/oracleJson/amarisoftNr.json"
+        )
+    }
+
     private fun javalinJsonTest(request: JsonObject, oraclePath: String) =
         JavalinTest.test(app) { _, client ->
             val response = client.post(endpoint, request)
