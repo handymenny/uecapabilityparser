@@ -238,7 +238,6 @@ internal class CliUeLogOutputTest {
         )
     }
 
-
     @Test
     fun testAmarisoftEutra() {
         test(

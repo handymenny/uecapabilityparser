@@ -402,10 +402,10 @@ internal class ServerModeParseTest {
     fun amarisoftEutraJsonOutput() {
         javalinJsonTest(
             request =
-            buildJsonObject {
-                put("type", "A")
-                put("input", fileToBase64("$path/input/amarisoftEutra.txt"))
-            },
+                buildJsonObject {
+                    put("type", "A")
+                    put("input", fileToBase64("$path/input/amarisoftEutra.txt"))
+                },
             oraclePath = "$path/oracleJson/amarisoftEutra.json"
         )
     }
@@ -414,10 +414,10 @@ internal class ServerModeParseTest {
     fun amarisoftNrJsonOutput() {
         javalinJsonTest(
             request =
-            buildJsonObject {
-                put("type", "A")
-                put("input", fileToBase64("$path/input/amarisoftNr.txt"))
-            },
+                buildJsonObject {
+                    put("type", "A")
+                    put("input", fileToBase64("$path/input/amarisoftNr.txt"))
+                },
             oraclePath = "$path/oracleJson/amarisoftNr.json"
         )
     }
