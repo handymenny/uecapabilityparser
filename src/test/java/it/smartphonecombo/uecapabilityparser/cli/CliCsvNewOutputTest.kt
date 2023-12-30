@@ -129,6 +129,21 @@ internal class CliCsvNewOutputTest {
     }
 
     @Test
+    fun testAmarisoftEutra() {
+        test(
+            "-i",
+            "$path/input/amarisoftEutra.txt",
+            "-t",
+            "A",
+            "-c",
+            "-",
+            "--new-csv-format",
+            "true",
+            oracleFilename = "amarisoftEutra.csv"
+        )
+    }
+
+    @Test
     fun testUeCapHexEutra() {
         test(
             "-i",

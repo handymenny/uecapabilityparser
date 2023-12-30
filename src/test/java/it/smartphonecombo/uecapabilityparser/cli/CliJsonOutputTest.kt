@@ -433,6 +433,34 @@ internal class CliJsonOutputTest {
         )
     }
 
+    @Test
+    fun testAmarisoftEutra() {
+        test(
+            "-i",
+            "$path/input/amarisoftEutra.txt",
+            "-t",
+            "A",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "amarisoftEutra.json"
+        )
+    }
+
+    @Test
+    fun testAmarisoftNr() {
+        test(
+            "-i",
+            "$path/input/amarisoftNr.txt",
+            "-t",
+            "A",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "amarisoftNr.json"
+        )
+    }
+
     private fun test(vararg args: String, oracleFilename: String) {
         val oraclePath = "$path/oracleJson/$oracleFilename"
 

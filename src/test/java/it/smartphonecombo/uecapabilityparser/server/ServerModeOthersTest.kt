@@ -58,6 +58,7 @@ internal class ServerModeOthersTest {
                 "O",
                 "QC",
                 "T",
+                "A",
                 "RF",
                 "SHNR",
                 "P",

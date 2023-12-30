@@ -239,6 +239,34 @@ internal class CliUeLogOutputTest {
     }
 
     @Test
+    fun testAmarisoftEutra() {
+        test(
+            "-i",
+            "$path/input/amarisoftEutra.txt",
+            "-t",
+            "A",
+            "-l",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "amarisoftEutra.json"
+        )
+    }
+
+    @Test
+    fun testAmarisoftNr() {
+        test(
+            "-i",
+            "$path/input/amarisoftNr.txt",
+            "-t",
+            "A",
+            "-l",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "amarisoftNr.json"
+        )
+    }
+
+    @Test
     fun testTemsMrdcSplit() {
         test(
             "-i",

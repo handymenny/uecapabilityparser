@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.util
 
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
 import com.ericsson.mts.asn1.converter.AbstractConverter
+import com.ericsson.mts.asn1.converter.ConverterAmarisoft
 import com.ericsson.mts.asn1.converter.ConverterNSG
 import com.ericsson.mts.asn1.converter.ConverterOsix
 import com.ericsson.mts.asn1.converter.ConverterQcat
@@ -75,6 +76,14 @@ object ImportCapabilitiesHelpers {
                 mrdcIdentifier =
                     "${Rat.EUTRA_NR.ratCapabilityIdentifier}\\s".toRegex(RegexOption.IGNORE_CASE)
                 converter = ConverterTems()
+            }
+            LogType.A -> {
+                eutraIdentifier =
+                    "rat-Type ${Rat.EUTRA},\\s+ue-CapabilityRAT-Container\\s\\{".toRegex()
+                nrIdentifier = "rat-Type ${Rat.NR},\\s+ue-CapabilityRAT-Container\\s\\{".toRegex()
+                mrdcIdentifier =
+                    "rat-Type ${Rat.EUTRA_NR},\\s+ue-CapabilityRAT-Container\\s\\{".toRegex()
+                converter = ConverterAmarisoft()
             }
             else -> {
                 throw IllegalArgumentException()
