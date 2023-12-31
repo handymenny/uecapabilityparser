@@ -6,7 +6,6 @@ import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
-import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -75,22 +74,16 @@ data class LibraryIndex(
                             // Drop any extension
                             val id = outputFile.nameWithoutAnyExtension()
 
-                            val capabilities =
-                                Json.custom().decodeFromInputSource<Capabilities>(capTxt)
                             val inputs =
                                 inputFiles
                                     .filter { it.name.startsWith(id) }
                                     .map(File::nameWithoutAnyExtension)
 
-                            IndexLine(
-                                id,
-                                capabilities.timestamp,
-                                capabilities.getStringMetadata("description") ?: "",
-                                inputs,
-                                compressed,
-                                capabilities.getStringMetadata("defaultNR").toBoolean(),
-                                capabilities.parserVersion
-                            )
+                            val index = Json.custom().decodeFromInputSource<IndexLine>(capTxt)
+                            index.compressed = compressed
+                            index.inputs = inputs
+
+                            return@mapNotNull index
                         } catch (ex: Exception) {
                             echoSafe("Error ${ex.localizedMessage}", true)
                             null
