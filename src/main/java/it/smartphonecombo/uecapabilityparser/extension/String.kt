@@ -33,7 +33,7 @@ internal fun String.appendBeforeExtension(strToAppend: String): String {
     return split.dropLast(1).joinToString(".", postfix = "$strToAppend.${split.last()}")
 }
 
-internal fun List<String>.commonPrefix(ignoreCase: Boolean): String {
+fun List<String>.commonPrefix(ignoreCase: Boolean): String {
     val indexOfDiff = indexOfDiff(ignoreCase)
 
     return if (indexOfDiff > 0) first().substring(0, indexOfDiff) else ""

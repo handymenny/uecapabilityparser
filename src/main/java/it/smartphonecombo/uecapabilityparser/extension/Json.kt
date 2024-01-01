@@ -9,7 +9,7 @@ import kotlinx.serialization.json.*
 private val json = Json { ignoreUnknownKeys = true }
 
 // custom Json instance
-internal fun Json.custom() = json
+fun Json.custom() = json
 
 @OptIn(ExperimentalSerializationApi::class)
 internal inline fun <reified T> Json.decodeFromInputSource(input: InputSource): T {

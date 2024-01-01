@@ -9,6 +9,7 @@ plugins {
     id("com.diffplug.spotless") version "6.22.0"
     id("org.jetbrains.kotlinx.kover") version "0.7.5"
     id("maven-publish")
+    id("me.champeau.jmh") version "0.7.2"
     application
 }
 
@@ -47,10 +48,16 @@ dependencies {
     testImplementation("io.mockk:mockk:1.13.8")
 
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.3")
+    jmh("org.openjdk.jmh:jmh-core:1.37")
+    jmh("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+    jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
 
     implementation("com.github.handymenny.pkts:pkts-core:00971fd")
 }
 
+jmh {
+    profilers.set(listOf("gc", "jfr"))
+}
 group = "parser"
 
 val properties =
