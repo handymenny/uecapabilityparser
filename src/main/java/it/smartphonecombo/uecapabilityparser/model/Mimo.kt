@@ -10,6 +10,8 @@ sealed interface Mimo : Comparable<Mimo> {
 
     fun average(): Double
 
+    fun max(): Int
+
     override fun compareTo(other: Mimo): Int = average().compareTo(other.average())
 
     companion object {
@@ -85,6 +87,8 @@ object EmptyMimo : Mimo {
     override fun toString(): String = ""
 
     override fun average(): Double = 0.0
+
+    override fun max(): Int = 0
 }
 
 @Serializable
@@ -95,6 +99,8 @@ data class SingleMimo(@SerialName("value") private val mimo: Int) : Mimo {
     override fun toString(): String = mimo.toString()
 
     override fun average(): Double = mimo.toDouble()
+
+    override fun max(): Int = mimo
 }
 
 @Serializable
@@ -105,6 +111,8 @@ data class MixedMimo(@SerialName("value") private val mimoList: List<Int>) : Mim
     override fun toString(): String = mimoList.joinToString(", ")
 
     override fun average(): Double = mimoList.average()
+
+    override fun max(): Int = mimoList.max()
 }
 
 fun Int.toMimo(): Mimo = Mimo.from(this)
