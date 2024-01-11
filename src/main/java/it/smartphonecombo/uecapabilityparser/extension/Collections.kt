@@ -5,6 +5,9 @@ package it.smartphonecombo.uecapabilityparser.extension
 import java.util.Collections
 import java.util.Enumeration
 import kotlin.collections.ArrayList
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 
 internal fun <E : Comparable<E>> Array<E>.indexOfMin(): Int {
     if (isEmpty()) {
@@ -63,3 +66,8 @@ internal fun <T> List<T>.trimToSize() {
         this.trimToSize()
     }
 }
+
+internal suspend fun <T, R> List<T>.mapAsync(transform: suspend (T) -> R): List<R> =
+    coroutineScope {
+        map { async { transform(it) } }.awaitAll()
+    }

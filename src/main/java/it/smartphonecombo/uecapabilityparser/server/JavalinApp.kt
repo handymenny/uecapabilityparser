@@ -26,6 +26,7 @@ import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
+import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
@@ -260,6 +261,15 @@ class JavalinApp {
                             IOUtils.getInputSource(filePath, compressed)
                                 ?: return@apiBuilderGet ctx.notFound()
                         ctx.attachFile(file, id, ContentType.APPLICATION_OCTET_STREAM)
+                    } catch (ex: Exception) {
+                        ctx.internalError()
+                    }
+                }
+                apiBuilderPost("/store/list/filtered") { ctx ->
+                    try {
+                        val request = ctx.bodyAsClassEfficient<Query>()
+                        val result = index.filterByQuery(request, store)
+                        ctx.json(result)
                     } catch (ex: Exception) {
                         ctx.internalError()
                     }
