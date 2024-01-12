@@ -16,14 +16,11 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers
-import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import java.io.BufferedInputStream
 import java.io.IOException
 import java.io.InputStream
 
 object Import0xB0CDBin : ImportCapabilities {
-
-    private val cacheQamIndex = WeakConcurrentHashMap<Int, Modulation>()
 
     /**
      * This parser take as [input] a [InputSource] of a 0xB0CD (binary)
@@ -157,11 +154,6 @@ object Import0xB0CDBin : ImportCapabilities {
      * The sequence generator is guessed, so it can be wrong or incomplete.
      */
     fun getQamFromIndex(index: Int): Modulation {
-        val cachedResult = cacheQamIndex[index]
-        if (cachedResult != null) {
-            return cachedResult
-        }
-
         /*
             Some examples:
             0 -> INVALID
@@ -187,7 +179,6 @@ object Import0xB0CDBin : ImportCapabilities {
         }
 
         val resultQam = Modulation.from(result.toList())
-        cacheQamIndex[index] = resultQam
 
         return resultQam
     }

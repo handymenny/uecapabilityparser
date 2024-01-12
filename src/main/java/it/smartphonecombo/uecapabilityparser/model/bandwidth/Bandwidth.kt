@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.model.bandwidth
 
-import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,15 +12,7 @@ sealed interface Bandwidth : Comparable<Bandwidth> {
     override fun compareTo(other: Bandwidth): Int = average().compareTo(other.average())
 
     companion object {
-        private val cacheInt = WeakConcurrentHashMap<Int, Bandwidth>()
-        private val cacheIntList = WeakConcurrentHashMap<List<Int>, Bandwidth>()
-
         fun from(int: Int): Bandwidth {
-            val cachedResult = cacheInt[int]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             val result =
                 if (int == 0) {
                     EmptyBandwidth
@@ -29,16 +20,10 @@ sealed interface Bandwidth : Comparable<Bandwidth> {
                     SingleBandwidth(int)
                 }
 
-            cacheInt[int] = result
             return result
         }
 
         fun from(list: List<Int>): Bandwidth {
-            val cachedResult = cacheIntList[list]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             val result =
                 if (list.isEmpty()) {
                     EmptyBandwidth
@@ -48,7 +33,6 @@ sealed interface Bandwidth : Comparable<Bandwidth> {
                     MixedBandwidth(list.sortedDescending())
                 }
 
-            cacheIntList[list] = result
             return result
         }
     }
