@@ -9,6 +9,7 @@ import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.LruCache
+import it.smartphonecombo.uecapabilityparser.util.optimize
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -59,7 +60,7 @@ data class LibraryIndex(
         val filePath = "$libraryPath/output/$id.json"
         val text = IOUtils.getInputSource(filePath, compressed) ?: return null
         val res = Json.custom().decodeFromInputSource<Capabilities>(text)
-        outputCache.put(id, res)
+        if (outputCache.put(id, res)) res.optimize()
         return res
     }
 
