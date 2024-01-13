@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
-import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -11,11 +10,6 @@ sealed interface BCS : Comparable<BCS> {
     fun toCompactStr(): String
 
     companion object {
-        // Cache used by fromBinaryString
-        private val cacheBinary = WeakConcurrentHashMap<String, BCS>()
-        // Cache used by fromQualcommCP
-        private val cacheCP = WeakConcurrentHashMap<String, BCS>()
-
         /**
          * Converts the given binaryString to an instance of [BCS]
          * - If binaryString has no bit with value 1 return [EmptyBCS]
@@ -24,11 +18,6 @@ sealed interface BCS : Comparable<BCS> {
          * - otherwise it returns a [MultiBCS]
          */
         fun fromBinaryString(binaryString: String): BCS {
-            val cachedResult = cacheBinary[binaryString]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             val bcsList = mutableListWithCapacity<Int>(binaryString.length)
             for (x in binaryString.indices) {
                 if (binaryString[x] == '1') {
@@ -43,7 +32,6 @@ sealed interface BCS : Comparable<BCS> {
                     32 -> AllBCS
                     else -> MultiBCS(bcsList.toIntArray())
                 }
-            cacheBinary[binaryString] = result
             return result
         }
 
@@ -56,11 +44,6 @@ sealed interface BCS : Comparable<BCS> {
          */
         @Throws(NumberFormatException::class)
         fun fromQualcommCP(bcsString: String): BCS {
-            val cachedResult = cacheCP[bcsString]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             val result =
                 when {
                     bcsString.isEmpty() -> EmptyBCS
@@ -72,7 +55,6 @@ sealed interface BCS : Comparable<BCS> {
                     }
                     else -> SingleBCS(bcsString.toInt())
                 }
-            cacheCP[bcsString] = result
             return result
         }
     }

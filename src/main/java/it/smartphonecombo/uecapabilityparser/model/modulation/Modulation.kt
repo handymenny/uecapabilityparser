@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.model.modulation
 
-import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -23,17 +22,10 @@ sealed interface Modulation : Comparable<Modulation> {
                     SingleModulation(it)
                 }
             }
-        private val cacheModulationArray =
-            WeakConcurrentHashMap<List<ModulationOrder>, Modulation>()
 
         fun from(modulationOrder: ModulationOrder) = singleModulations[modulationOrder.ordinal]
 
         fun from(modulationList: List<ModulationOrder>): Modulation {
-            val cachedResult = cacheModulationArray[modulationList]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             val result =
                 if (modulationList.isEmpty()) {
                     EmptyModulation
@@ -43,7 +35,6 @@ sealed interface Modulation : Comparable<Modulation> {
                     MixedModulation(modulationList.sortedDescending())
                 }
 
-            cacheModulationArray[modulationList] = result
             return result
         }
     }

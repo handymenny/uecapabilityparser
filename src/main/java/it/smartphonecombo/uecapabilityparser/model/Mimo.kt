@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.extension.indexOfMin
-import it.smartphonecombo.uecapabilityparser.util.WeakConcurrentHashMap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,16 +13,7 @@ sealed interface Mimo : Comparable<Mimo> {
     override fun compareTo(other: Mimo): Int = average().compareTo(other.average())
 
     companion object {
-        private val cacheInt = WeakConcurrentHashMap<Int, Mimo>()
-        private val cacheIntArray = WeakConcurrentHashMap<List<Int>, Mimo>()
-        private val cacheQcIndex = WeakConcurrentHashMap<Int, Mimo>()
-
         fun from(int: Int): Mimo {
-            val cachedResult = cacheInt[int]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             val result =
                 if (int == 0) {
                     EmptyMimo
@@ -33,16 +23,10 @@ sealed interface Mimo : Comparable<Mimo> {
                     SingleMimo(int)
                 }
 
-            cacheInt[int] = result
             return result
         }
 
         fun from(list: List<Int>): Mimo {
-            val cachedResult = cacheIntArray[list]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             val result =
                 if (list.isEmpty()) {
                     EmptyMimo
@@ -52,7 +36,6 @@ sealed interface Mimo : Comparable<Mimo> {
                     MixedMimo(list.sortedDescending())
                 }
 
-            cacheIntArray[list] = result
             return result
         }
 
@@ -62,11 +45,6 @@ sealed interface Mimo : Comparable<Mimo> {
          * The sequence generator is guessed, so it can be wrong or incomplete.
          */
         fun fromQcIndex(index: Int): Mimo {
-            val cachedResult = cacheQcIndex[index]
-            if (cachedResult != null) {
-                return cachedResult
-            }
-
             /*
                 Some examples:
                 0 -> 0
@@ -94,8 +72,6 @@ sealed interface Mimo : Comparable<Mimo> {
             }
 
             val resultMimo = from(result.toList())
-            cacheQcIndex[index] = resultMimo
-
             return resultMimo
         }
     }
