@@ -4,8 +4,10 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
 import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -46,6 +48,14 @@ data class LibraryIndex(
 
     /** return a list of all single-capability indexes */
     fun getAll() = items.toList()
+
+    fun getOutput(id: String, libraryPath: String): Capabilities? {
+        val indexLine = findByOutput(id) ?: return null
+        val compressed = indexLine.compressed
+        val filePath = "$libraryPath/output/$id.json"
+        val text = IOUtils.getInputSource(filePath, compressed) ?: return null
+        return Json.custom().decodeFromInputSource<Capabilities>(text)
+    }
 
     companion object {
         fun buildIndex(path: String): LibraryIndex {

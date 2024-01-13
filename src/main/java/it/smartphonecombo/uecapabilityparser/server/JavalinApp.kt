@@ -210,15 +210,9 @@ class JavalinApp {
                         return@apiBuilderGet ctx.badRequest()
                     }
 
-                    val indexLine = index.findByOutput(id) ?: return@apiBuilderGet ctx.notFound()
-                    val compressed = indexLine.compressed
-                    val filePath = "$store/output/$id.json"
-
                     try {
-                        val text =
-                            IOUtils.getInputSource(filePath, compressed)
-                                ?: return@apiBuilderGet ctx.notFound()
-                        val capabilities = Json.custom().decodeFromInputSource<Capabilities>(text)
+                        val capabilities =
+                            index.getOutput(id, store) ?: return@apiBuilderGet ctx.notFound()
                         ctx.json(capabilities)
                     } catch (ex: Exception) {
                         ctx.internalError()
@@ -235,15 +229,7 @@ class JavalinApp {
                     val capabilitiesList = mutableListWithCapacity<Capabilities>(indexLineIds.size)
                     try {
                         for (indexId in indexLineIds) {
-                            val indexLine = index.find(indexId) ?: continue
-                            val compressed = indexLine.compressed
-                            val outputId = indexLine.id
-                            val filePath = "$store/output/$outputId.json"
-                            val text =
-                                IOUtils.getInputSource(filePath, compressed)
-                                    ?: return@apiBuilderGet ctx.notFound()
-                            val capabilities =
-                                Json.custom().decodeFromInputSource<Capabilities>(text)
+                            val capabilities = index.getOutput(indexId, store) ?: continue
                             capabilitiesList.add(capabilities)
                         }
                     } catch (ex: Exception) {
