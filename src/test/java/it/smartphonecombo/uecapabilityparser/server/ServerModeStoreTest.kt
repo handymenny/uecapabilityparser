@@ -51,12 +51,14 @@ internal class ServerModeStoreTest {
     @Test
     fun emptyList() {
         Config["store"] = tmpStorePath
+        Config["cache"] = "0"
         getTest(endpointStore + "list", "$resourcesPath/oracleForStore/emptyList.json")
     }
 
     @Test
     fun storeElement() {
         Config["store"] = tmpStorePath
+        Config["cache"] = "-1"
         val oracle = "$resourcesPath/oracleForStore/output/$storedId.json"
         val input0 = "$resourcesPath/oracleForStore/input/$storedId-0"
         val input1 = "$resourcesPath/oracleForStore/input/$storedId-1"
@@ -121,6 +123,7 @@ internal class ServerModeStoreTest {
 
     @Test
     fun getOutput() {
+        Config["cache"] = "1000"
         Config["store"] = "$resourcesPath/oracleForStore"
         getTest(
             "${endpointStore}getOutput?id=$storedId",

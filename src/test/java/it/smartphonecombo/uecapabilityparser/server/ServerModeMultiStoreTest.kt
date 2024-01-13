@@ -205,6 +205,7 @@ internal class ServerModeMultiStoreTest {
     @Test
     fun getMultiOutput() {
         Config["store"] = "$resourcesPath/oracleForMultiStore"
+        Config["cache"] = "-1"
         getTest(
             "${endpointStore}getMultiOutput?id=${storedMultiId}",
             "$resourcesPath/oracleForMultiStore/multiParseOutput.json",

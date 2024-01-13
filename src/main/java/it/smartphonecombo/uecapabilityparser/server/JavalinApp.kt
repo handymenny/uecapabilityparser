@@ -103,8 +103,10 @@ class JavalinApp {
     init {
         val store = Config["store"]
         val compression = Config["compression"] == "true"
+        val maxOutputCache = Config.getOrDefault("cache", "0").toInt().takeIf { it >= 0 }
         var index: LibraryIndex =
-            store?.let { LibraryIndex.buildIndex(it) } ?: LibraryIndex(mutableListOf())
+            store?.let { LibraryIndex.buildIndex(it, maxOutputCache) }
+                ?: LibraryIndex(mutableListOf())
         val idRegex = "[a-f0-9-]{36}(?:-[0-9]+)?".toRegex()
 
         val reparseStrategy = Config.getOrDefault("reparse", "off")
@@ -112,7 +114,7 @@ class JavalinApp {
             CoroutineScope(Dispatchers.IO).launch {
                 reparseLibrary(reparseStrategy, store, index, compression)
                 // Rebuild index
-                index = LibraryIndex.buildIndex(store)
+                index = LibraryIndex.buildIndex(store, maxOutputCache)
             }
         }
 
@@ -210,15 +212,9 @@ class JavalinApp {
                         return@apiBuilderGet ctx.badRequest()
                     }
 
-                    val indexLine = index.findByOutput(id) ?: return@apiBuilderGet ctx.notFound()
-                    val compressed = indexLine.compressed
-                    val filePath = "$store/output/$id.json"
-
                     try {
-                        val text =
-                            IOUtils.getInputSource(filePath, compressed)
-                                ?: return@apiBuilderGet ctx.notFound()
-                        val capabilities = Json.custom().decodeFromInputSource<Capabilities>(text)
+                        val capabilities =
+                            index.getOutput(id, store) ?: return@apiBuilderGet ctx.notFound()
                         ctx.json(capabilities)
                     } catch (ex: Exception) {
                         ctx.internalError()
@@ -235,15 +231,7 @@ class JavalinApp {
                     val capabilitiesList = mutableListWithCapacity<Capabilities>(indexLineIds.size)
                     try {
                         for (indexId in indexLineIds) {
-                            val indexLine = index.find(indexId) ?: continue
-                            val compressed = indexLine.compressed
-                            val outputId = indexLine.id
-                            val filePath = "$store/output/$outputId.json"
-                            val text =
-                                IOUtils.getInputSource(filePath, compressed)
-                                    ?: return@apiBuilderGet ctx.notFound()
-                            val capabilities =
-                                Json.custom().decodeFromInputSource<Capabilities>(text)
+                            val capabilities = index.getOutput(indexId, store) ?: continue
                             capabilitiesList.add(capabilities)
                         }
                     } catch (ex: Exception) {

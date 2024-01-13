@@ -4,8 +4,12 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
 import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.util.LruCache
+import it.smartphonecombo.uecapabilityparser.util.optimize
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -14,9 +18,11 @@ import kotlinx.serialization.json.Json
 @Serializable
 data class LibraryIndex(
     private val items: MutableList<IndexLine>,
-    private val multiItems: MutableList<MultiIndexLine> = mutableListOf()
+    private val multiItems: MutableList<MultiIndexLine> = mutableListOf(),
+    @Transient private val outputCacheSize: Int? = 0
 ) {
     @Transient private val lock = Any()
+    @Transient private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
 
     fun addLine(line: IndexLine): Boolean {
         synchronized(lock) {
@@ -42,13 +48,24 @@ data class LibraryIndex(
         return items.find { item -> item.inputs.any { it == id } }
     }
 
-    fun findByOutput(id: String): IndexLine? = find(id)
-
     /** return a list of all single-capability indexes */
     fun getAll() = items.toList()
 
+    fun getOutput(id: String, libraryPath: String): Capabilities? {
+        val cached = outputCache[id]
+        if (cached != null) return cached
+
+        val indexLine = find(id) ?: return null
+        val compressed = indexLine.compressed
+        val filePath = "$libraryPath/output/$id.json"
+        val text = IOUtils.getInputSource(filePath, compressed) ?: return null
+        val res = Json.custom().decodeFromInputSource<Capabilities>(text)
+        if (outputCache.put(id, res)) res.optimize()
+        return res
+    }
+
     companion object {
-        fun buildIndex(path: String): LibraryIndex {
+        fun buildIndex(path: String, outputCacheSize: Int?): LibraryIndex {
             val outputDir = "$path/output"
             val inputDir = "$path/input"
             val multiDir = "$path/multi"
@@ -108,7 +125,7 @@ data class LibraryIndex(
             items.sortBy { it.timestamp }
             multiItems.sortBy { it.timestamp }
 
-            return LibraryIndex(items, multiItems)
+            return LibraryIndex(items, multiItems, outputCacheSize)
         }
     }
 }

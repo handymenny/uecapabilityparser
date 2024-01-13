@@ -57,3 +57,9 @@ internal fun BwMap.merge(other: BwMap) {
         this[key] = this[key]?.plus(value) ?: value
     }
 }
+
+internal fun <T> List<T>.trimToSize() {
+    if (this is ArrayList) {
+        this.trimToSize()
+    }
+}

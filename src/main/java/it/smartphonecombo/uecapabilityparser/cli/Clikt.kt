@@ -229,6 +229,10 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
             option("--reparse", help = HelpMessage.REPARSE, metavar = "Strategy")
                 .choice("off", "auto", "force")
                 .default("off")
+        val cache by
+            option("--cache", metavar = "Items", help = HelpMessage.LIBRARY_CACHE)
+                .int()
+                .default(1000)
     }
 
     private const val DEFAULT_PORT = 0
@@ -267,6 +271,7 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
             Config["store"] = it.path
             Config["compression"] = it.compression.toString()
             Config["reparse"] = it.reparse
+            Config["cache"] = it.cache.toString()
         }
 
         // Start server
@@ -292,6 +297,13 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
         if (Config["compression"].toBoolean()) features += "compression"
         if (Config.getOrDefault("reparse", "off") != "off")
             features += "reparse ${Config["reparse"]}"
+
+        features +=
+            when (val items = Config["cache"]?.toIntOrNull()?.takeIf { it >= 0 }) {
+                0 -> "cache disabled"
+                null -> "cache unlimited"
+                else -> "cache $items items"
+            }
 
         val featuresString =
             if (features.isNotEmpty()) {
