@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.util.LruCache
 import java.io.File
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -19,6 +20,7 @@ data class LibraryIndex(
     private val multiItems: MutableList<MultiIndexLine> = mutableListOf()
 ) {
     @Transient private val lock = Any()
+    @Transient private val outputCache = LruCache<String, Capabilities>()
 
     fun addLine(line: IndexLine): Boolean {
         synchronized(lock) {
@@ -50,11 +52,16 @@ data class LibraryIndex(
     fun getAll() = items.toList()
 
     fun getOutput(id: String, libraryPath: String): Capabilities? {
+        val cached = outputCache[id]
+        if (cached != null) return cached
+
         val indexLine = findByOutput(id) ?: return null
         val compressed = indexLine.compressed
         val filePath = "$libraryPath/output/$id.json"
         val text = IOUtils.getInputSource(filePath, compressed) ?: return null
-        return Json.custom().decodeFromInputSource<Capabilities>(text)
+        val res = Json.custom().decodeFromInputSource<Capabilities>(text)
+        outputCache.put(id, res)
+        return res
     }
 
     companion object {
