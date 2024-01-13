@@ -17,10 +17,11 @@ import kotlinx.serialization.json.Json
 @Serializable
 data class LibraryIndex(
     private val items: MutableList<IndexLine>,
-    private val multiItems: MutableList<MultiIndexLine> = mutableListOf()
+    private val multiItems: MutableList<MultiIndexLine> = mutableListOf(),
+    @Transient private val outputCacheSize: Int? = 0
 ) {
     @Transient private val lock = Any()
-    @Transient private val outputCache = LruCache<String, Capabilities>()
+    @Transient private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
 
     fun addLine(line: IndexLine): Boolean {
         synchronized(lock) {
@@ -63,7 +64,7 @@ data class LibraryIndex(
     }
 
     companion object {
-        fun buildIndex(path: String): LibraryIndex {
+        fun buildIndex(path: String, outputCacheSize: Int?): LibraryIndex {
             val outputDir = "$path/output"
             val inputDir = "$path/input"
             val multiDir = "$path/multi"
@@ -123,7 +124,7 @@ data class LibraryIndex(
             items.sortBy { it.timestamp }
             multiItems.sortBy { it.timestamp }
 
-            return LibraryIndex(items, multiItems)
+            return LibraryIndex(items, multiItems, outputCacheSize)
         }
     }
 }

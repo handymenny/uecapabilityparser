@@ -54,4 +54,6 @@ object HelpMessage {
     const val NEW_CSV_FORMAT = "Use new CSV format for LTE CA"
     const val CUSTOM_CSS = "Inject custom css in Web UI"
     const val CUSTOM_JS = "Inject custom js in Web UI"
+    const val LIBRARY_CACHE =
+        "Number of items to cache, each items occupies ~0.2MB of RAM. 0 = disabled, -1 = unlimited."
 }

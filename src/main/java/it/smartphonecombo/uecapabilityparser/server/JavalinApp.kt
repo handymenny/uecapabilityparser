@@ -103,8 +103,10 @@ class JavalinApp {
     init {
         val store = Config["store"]
         val compression = Config["compression"] == "true"
+        val maxOutputCache = Config.getOrDefault("cache", "0").toInt().takeIf { it >= 0 }
         var index: LibraryIndex =
-            store?.let { LibraryIndex.buildIndex(it) } ?: LibraryIndex(mutableListOf())
+            store?.let { LibraryIndex.buildIndex(it, maxOutputCache) }
+                ?: LibraryIndex(mutableListOf())
         val idRegex = "[a-f0-9-]{36}(?:-[0-9]+)?".toRegex()
 
         val reparseStrategy = Config.getOrDefault("reparse", "off")
@@ -112,7 +114,7 @@ class JavalinApp {
             CoroutineScope(Dispatchers.IO).launch {
                 reparseLibrary(reparseStrategy, store, index, compression)
                 // Rebuild index
-                index = LibraryIndex.buildIndex(store)
+                index = LibraryIndex.buildIndex(store, maxOutputCache)
             }
         }
 
