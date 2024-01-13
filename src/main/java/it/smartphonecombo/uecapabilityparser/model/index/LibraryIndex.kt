@@ -46,8 +46,6 @@ data class LibraryIndex(
         return items.find { item -> item.inputs.any { it == id } }
     }
 
-    fun findByOutput(id: String): IndexLine? = find(id)
-
     /** return a list of all single-capability indexes */
     fun getAll() = items.toList()
 
@@ -55,7 +53,7 @@ data class LibraryIndex(
         val cached = outputCache[id]
         if (cached != null) return cached
 
-        val indexLine = findByOutput(id) ?: return null
+        val indexLine = find(id) ?: return null
         val compressed = indexLine.compressed
         val filePath = "$libraryPath/output/$id.json"
         val text = IOUtils.getInputSource(filePath, compressed) ?: return null
