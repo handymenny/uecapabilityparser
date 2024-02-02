@@ -12,12 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup jdk11
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-      - name: Setup gradle
-        uses: gradle/actions/setup-gradle@v3
-      - name: Gradle Dependency Submission
-        uses: mikepenz/gradle-dependency-submission@v0.9.1
+      - name: Generate and submit dependency graph
+        uses: gradle/actions/dependency-submission@v3
+        env:
+          # Exclude dependencies that are only resolved in test and tstypes classpaths
+          DEPENDENCY_GRAPH_EXCLUDE_CONFIGURATIONS: '.*(test|tstypes)(Compile|Runtime)Classpath'
