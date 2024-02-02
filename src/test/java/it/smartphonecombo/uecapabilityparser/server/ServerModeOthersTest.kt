@@ -38,6 +38,7 @@ internal class ServerModeOthersTest {
             "/store/getOutput",
             "/store/getMultiOutput",
             "/store/getInput",
+            "/store/list/filtered",
             "/version",
             "/status",
         )
