@@ -46,7 +46,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("io.mockk:mockk:1.13.9")
 
-    tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.3")
+    tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.4")
 
     implementation("com.github.handymenny.pkts:pkts-core:00971fd")
 }
