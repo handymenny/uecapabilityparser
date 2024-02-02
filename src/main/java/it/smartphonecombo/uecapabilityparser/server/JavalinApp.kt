@@ -27,6 +27,7 @@ import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.query.Query
+import it.smartphonecombo.uecapabilityparser.query.SearchableField
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
@@ -286,7 +287,14 @@ class JavalinApp {
                 val version = Config.getOrDefault("project.version", "")
                 val logTypes = LogType.validEntries
                 val requestMaxSize = app.cfg.http.maxRequestSize
-                val status = ServerStatus(version, endpoints, logTypes, requestMaxSize)
+                val status =
+                    ServerStatus(
+                        version,
+                        endpoints,
+                        logTypes,
+                        requestMaxSize,
+                        SearchableField.getAllSearchableFields()
+                    )
                 ctx.json(status)
             }
         }

@@ -3,6 +3,33 @@ package it.smartphonecombo.uecapabilityparser.query
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.band.IBandDetails
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class SearchableField(val name: String, val type: FieldType) {
+    companion object {
+        fun getAllSearchableFields() = buildList {
+            addAll(FieldNumber.entries.map { SearchableField(it.name, FieldType.FieldNumber) })
+            addAll(FieldString.entries.map { SearchableField(it.name, FieldType.FieldString) })
+            addAll(FieldStrings.entries.map { SearchableField(it.name, FieldType.FieldStrings) })
+            addAll(
+                FieldBandsDetails.entries.map {
+                    SearchableField(it.name, FieldType.FieldBandsDetails)
+                }
+            )
+            addAll(FieldCombos.entries.map { SearchableField(it.name, FieldType.FieldCombos) })
+        }
+    }
+}
+
+enum class FieldType {
+    @SerialName("number") FieldNumber,
+    @SerialName("string") FieldString,
+    @SerialName("strings") FieldStrings,
+    @SerialName("bandDetails") FieldBandsDetails,
+    @SerialName("combos") FieldCombos
+}
 
 enum class FieldNumber {
     LTE_CATEGORY_DL,

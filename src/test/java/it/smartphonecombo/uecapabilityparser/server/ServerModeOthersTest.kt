@@ -4,6 +4,7 @@ import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
 import it.smartphonecombo.uecapabilityparser.model.LogType
+import it.smartphonecombo.uecapabilityparser.query.SearchableField
 import it.smartphonecombo.uecapabilityparser.util.Config
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -71,6 +72,8 @@ internal class ServerModeOthersTest {
             .filter { scatAvailable || it !in scatTypes }
             .map(LogType::of)
 
+    private val searchableFields = SearchableField.getAllSearchableFields()
+
     @AfterEach
     fun tearDown() {
         Config.clear()
@@ -103,7 +106,7 @@ internal class ServerModeOthersTest {
     @Test
     fun testStatusStoreEnable() {
         Config["store"] = "/store"
-        val status = ServerStatus(parserVersion, endpoints, logTypes, 256000000)
+        val status = ServerStatus(parserVersion, endpoints, logTypes, 256000000, searchableFields)
         getTest("/status", Json.encodeToJsonElement(status))
     }
 
@@ -111,7 +114,8 @@ internal class ServerModeOthersTest {
     fun testStatusStoreOff() {
         val endpointsNoStore =
             endpoints.filterNot { it.startsWith("/store") && !it.endsWith("status") }
-        val status = ServerStatus(parserVersion, endpointsNoStore, logTypes, 256000000)
+        val status =
+            ServerStatus(parserVersion, endpointsNoStore, logTypes, 256000000, searchableFields)
         getTest("/status", Json.encodeToJsonElement(status))
     }
 
