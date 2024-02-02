@@ -28,7 +28,7 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Test
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: check
       - name: Upload coverage reports to Codecov
