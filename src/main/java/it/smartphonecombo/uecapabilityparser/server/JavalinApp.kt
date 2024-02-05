@@ -272,7 +272,11 @@ class JavalinApp {
                         val result = index.filterByQuery(request, store)
                         ctx.json(result)
                     } catch (ex: Exception) {
-                        ctx.internalError()
+                        if (ex is IllegalArgumentException) {
+                            ctx.badRequest()
+                        } else {
+                            ctx.internalError()
+                        }
                     }
                 }
             }
