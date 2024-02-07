@@ -240,7 +240,7 @@ internal class ServerModeMultiStoreTest {
     }
 
     private fun getTest(url: String, oraclePath: String, json: Boolean = true) =
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""
@@ -262,7 +262,7 @@ internal class ServerModeMultiStoreTest {
         files: List<String>,
         oraclePath: String
     ) =
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response =
                 client.request(
                     UtilityForTests.multiPartRequest(client.origin + url, request, files)
@@ -328,7 +328,7 @@ internal class ServerModeMultiStoreTest {
     }
 
     private fun getTestError(url: String, statusCode: Int) =
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(statusCode, response.code)
         }

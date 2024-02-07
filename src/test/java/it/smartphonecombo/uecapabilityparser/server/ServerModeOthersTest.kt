@@ -118,7 +118,7 @@ internal class ServerModeOthersTest {
     }
 
     private fun getTest(url: String, oracle: JsonElement) {
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""
@@ -128,7 +128,7 @@ internal class ServerModeOthersTest {
     }
 
     private fun getTestText(url: String, oracle: String) {
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""

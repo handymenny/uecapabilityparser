@@ -41,7 +41,6 @@ class JavalinApp {
     private val maxOutputCache = Config.getOrDefault("cache", "0").toInt().takeIf { it >= 0 }
     private val store = Config["store"]
     private var index = LibraryIndex(mutableListOf())
-    var app: Javalin
 
     init {
         if (store != null) {
@@ -55,11 +54,10 @@ class JavalinApp {
                 }
             }
         }
-        app = createJavalin()
     }
 
-    private fun createJavalin(): Javalin {
-        val app =
+    fun newServer(): Javalin {
+        val server =
             Javalin.create { config ->
                 config.compression.gzipOnly(4)
                 config.http.prefer405over404 = true
@@ -83,7 +81,7 @@ class JavalinApp {
                 }
             }
 
-        app.exception(Exception::class.java) { e, ctx ->
+        server.exception(Exception::class.java) { e, ctx ->
             e.printStackTrace()
             if (e is IllegalArgumentException || e is NullPointerException) {
                 ctx.badRequest()
@@ -92,15 +90,15 @@ class JavalinApp {
             }
         }
 
-        app.error(HttpStatus.NOT_FOUND) { ctx ->
+        server.error(HttpStatus.NOT_FOUND) { ctx ->
             if (html404 != null) {
                 ctx.contentType(ContentType.HTML)
                 ctx.result(html404)
             }
         }
 
-        app.routes(buildRoutes(store, index, compression))
-        return app
+        server.routes(buildRoutes(store, index, compression))
+        return server
     }
 
     private suspend fun reparseLibrary(

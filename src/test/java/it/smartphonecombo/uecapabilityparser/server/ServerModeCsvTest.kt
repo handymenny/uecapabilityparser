@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 
 internal class ServerModeCsvTest {
     private val path = "src/test/resources/server"
-    private val app = JavalinApp().app
+    private val app = JavalinApp().newServer()
     private val endpoint = arrayOf("/csv/", "/csv").random()
 
     @Test
