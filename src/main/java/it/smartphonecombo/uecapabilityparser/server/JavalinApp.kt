@@ -103,35 +103,33 @@ class JavalinApp {
                         ctx.redirect("/swagger/")
                     }
                 }
-                apiBuilderGet("/openapi", "/swagger/openapi.json") { Routes.getOpenApi(it) }
+                addRoute("/openapi", "/swagger/openapi.json") { Routes.getOpenApi(it) }
             }
 
             // Add custom js and custom css
             addStaticGet("custom.js", Config["customJs"], ContentType.TEXT_JS)
             addStaticGet("custom.css", Config["customCss"], ContentType.TEXT_CSS)
 
-            apiBuilderPost("/parse") { Routes.parse(it, store, index, compression) }
-            apiBuilderPost("/parse/multiPart") {
+            addRoute("/parse", post = true) { Routes.parse(it, store, index, compression) }
+            addRoute("/parse/multiPart", post = true) {
                 Routes.parseMultiPart(it, store, index, compression)
             }
 
-            apiBuilderPost("/csv") { Routes.csv(it) }
+            addRoute("/csv", post = true) { Routes.csv(it) }
 
             if (store != null) {
-                apiBuilderGet("/store/list") { Routes.storeList(it, index) }
-                apiBuilderGet("/store/getItem") { Routes.storeGetItem(it, index) }
-                apiBuilderGet("/store/getMultiItem") { Routes.storeGetMultiItem(it, index) }
-                apiBuilderGet("/store/getOutput") { Routes.storeGetOutput(it, index, store) }
-                apiBuilderGet("/store/getMultiOutput") {
-                    Routes.storeGetMultiOutput(it, index, store)
-                }
-                apiBuilderGet("/store/getInput") { Routes.storeGetInput(it, index, store) }
-                apiBuilderPost("/store/list/filtered") {
+                addRoute("/store/list") { Routes.storeList(it, index) }
+                addRoute("/store/getItem") { Routes.storeGetItem(it, index) }
+                addRoute("/store/getMultiItem") { Routes.storeGetMultiItem(it, index) }
+                addRoute("/store/getOutput") { Routes.storeGetOutput(it, index, store) }
+                addRoute("/store/getMultiOutput") { Routes.storeGetMultiOutput(it, index, store) }
+                addRoute("/store/getInput") { Routes.storeGetInput(it, index, store) }
+                addRoute("/store/list/filtered", post = true) {
                     Routes.storeListFiltered(it, index, store)
                 }
             }
 
-            apiBuilderGet("/status") { Routes.status(it, maxRequestSize, endpoints) }
+            addRoute("/status") { Routes.status(it, maxRequestSize, endpoints) }
         }
     }
 
@@ -196,9 +194,13 @@ class JavalinApp {
         }
     }
 
-    private fun apiBuilderGet(vararg paths: String, handler: Handler) {
+    private fun addRoute(vararg paths: String, post: Boolean = false, handler: Handler) {
         for (path in paths) {
-            ApiBuilder.get(path, handler)
+            if (post) {
+                ApiBuilder.post(path, handler)
+            } else {
+                ApiBuilder.get(path, handler)
+            }
             endpoints.add(path)
         }
     }
@@ -210,16 +212,9 @@ class JavalinApp {
             } else {
                 File(filePath).toInputSource()
             }
-        apiBuilderGet(webPath) { ctx ->
+        addRoute(webPath) { ctx ->
             ctx.result(source.inputStream())
             ctx.contentType(contentType)
-        }
-    }
-
-    private fun apiBuilderPost(vararg paths: String, handler: Handler) {
-        for (path in paths) {
-            ApiBuilder.post(path, handler)
-            endpoints.add(path)
         }
     }
 }
