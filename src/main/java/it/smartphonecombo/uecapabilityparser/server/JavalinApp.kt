@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder
+import io.javalin.apibuilder.EndpointGroup
 import io.javalin.config.SizeUnit
 import io.javalin.http.ContentType
 import io.javalin.http.Handler
@@ -92,45 +93,8 @@ class JavalinApp {
                 ctx.result(html404)
             }
         }
-        app.routes {
-            ApiBuilder.before { ctx -> ctx.throwContentTooLargeIfContentTooLarge() }
 
-            if (hasSubmodules) {
-                endpoints.add("/swagger")
-                // Add / if missing
-                ApiBuilder.before("/swagger") { ctx ->
-                    if (!ctx.path().endsWith("/")) {
-                        ctx.redirect("/swagger/")
-                    }
-                }
-                addRoute("/openapi", "/swagger/openapi.json") { Routes.getOpenApi(it) }
-            }
-
-            // Add custom js and custom css
-            addStaticGet("custom.js", Config["customJs"], ContentType.TEXT_JS)
-            addStaticGet("custom.css", Config["customCss"], ContentType.TEXT_CSS)
-
-            addRoute("/parse", post = true) { Routes.parse(it, store, index, compression) }
-            addRoute("/parse/multiPart", post = true) {
-                Routes.parseMultiPart(it, store, index, compression)
-            }
-
-            addRoute("/csv", post = true) { Routes.csv(it) }
-
-            if (store != null) {
-                addRoute("/store/list") { Routes.storeList(it, index) }
-                addRoute("/store/getItem") { Routes.storeGetItem(it, index) }
-                addRoute("/store/getMultiItem") { Routes.storeGetMultiItem(it, index) }
-                addRoute("/store/getOutput") { Routes.storeGetOutput(it, index, store) }
-                addRoute("/store/getMultiOutput") { Routes.storeGetMultiOutput(it, index, store) }
-                addRoute("/store/getInput") { Routes.storeGetInput(it, index, store) }
-                addRoute("/store/list/filtered", post = true) {
-                    Routes.storeListFiltered(it, index, store)
-                }
-            }
-
-            addRoute("/status") { Routes.status(it, maxRequestSize, endpoints) }
-        }
+        app.routes(buildRoutes(store, index, compression))
     }
 
     private suspend fun reparseLibrary(
@@ -193,6 +157,47 @@ class JavalinApp {
             ex.printStackTrace()
         }
     }
+
+    private fun buildRoutes(store: String?, index: LibraryIndex, compression: Boolean) =
+        EndpointGroup {
+            ApiBuilder.before { ctx -> ctx.throwContentTooLargeIfContentTooLarge() }
+
+            if (hasSubmodules) {
+                endpoints.add("/swagger")
+                // Add / if missing
+                ApiBuilder.before("/swagger") { ctx ->
+                    if (!ctx.path().endsWith("/")) {
+                        ctx.redirect("/swagger/")
+                    }
+                }
+                addRoute("/openapi", "/swagger/openapi.json") { Routes.getOpenApi(it) }
+            }
+
+            // Add custom js and custom css
+            addStaticGet("custom.js", Config["customJs"], ContentType.TEXT_JS)
+            addStaticGet("custom.css", Config["customCss"], ContentType.TEXT_CSS)
+
+            addRoute("/parse", post = true) { Routes.parse(it, store, index, compression) }
+            addRoute("/parse/multiPart", post = true) {
+                Routes.parseMultiPart(it, store, index, compression)
+            }
+
+            addRoute("/csv", post = true) { Routes.csv(it) }
+
+            if (store != null) {
+                addRoute("/store/list") { Routes.storeList(it, index) }
+                addRoute("/store/getItem") { Routes.storeGetItem(it, index) }
+                addRoute("/store/getMultiItem") { Routes.storeGetMultiItem(it, index) }
+                addRoute("/store/getOutput") { Routes.storeGetOutput(it, index, store) }
+                addRoute("/store/getMultiOutput") { Routes.storeGetMultiOutput(it, index, store) }
+                addRoute("/store/getInput") { Routes.storeGetInput(it, index, store) }
+                addRoute("/store/list/filtered", post = true) {
+                    Routes.storeListFiltered(it, index, store)
+                }
+            }
+
+            addRoute("/status") { Routes.status(it, maxRequestSize, endpoints) }
+        }
 
     private fun addRoute(vararg paths: String, post: Boolean = false, handler: Handler) {
         for (path in paths) {
