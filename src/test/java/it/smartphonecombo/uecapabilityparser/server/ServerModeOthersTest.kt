@@ -25,13 +25,13 @@ internal class ServerModeOthersTest {
     private val endpoints =
         listOf(
             "/swagger",
+            "/openapi",
+            "/swagger/openapi.json",
             "custom.js",
             "custom.css",
             "/parse",
             "/parse/multiPart",
             "/csv",
-            "/openapi",
-            "/swagger/openapi.json",
             "/store/status",
             "/store/list",
             "/store/getItem",
@@ -41,7 +41,7 @@ internal class ServerModeOthersTest {
             "/store/getInput",
             "/store/list/filtered",
             "/version",
-            "/status",
+            "/status"
         )
 
     private val scatTypes = arrayOf("HDF", "SDM", "DLF", "QMDL")
