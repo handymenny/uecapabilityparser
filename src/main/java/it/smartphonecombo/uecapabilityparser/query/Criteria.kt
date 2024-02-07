@@ -54,8 +54,8 @@ data class CriteriaString(
             Comparator.NOT_EQUALS -> !field.equals(value!!, ignoreCase = true)
             Comparator.CONTAINS -> field.contains(value!!, ignoreCase = true)
             Comparator.NOT_CONTAINS -> !field.contains(value!!, ignoreCase = true)
-            Comparator.IS_EMPTY -> field.isEmpty()
-            Comparator.IS_NOT_EMPTY -> field.isNotEmpty()
+            Comparator.IS_EMPTY -> false
+            Comparator.IS_NOT_EMPTY -> true
             else -> throw IllegalArgumentException()
         }
     }
@@ -79,8 +79,8 @@ data class CriteriaStrings(
             Comparator.HAS_ANY -> valueUpperCase.any { field.contains(it) }
             Comparator.HAS_ALL -> valueUpperCase.let { field.containsAll(it) }
             Comparator.HAS_NONE -> valueUpperCase.none { field.contains(it) }
-            Comparator.IS_EMPTY -> field.isEmpty()
-            Comparator.IS_NOT_EMPTY -> field.isNotEmpty()
+            Comparator.IS_EMPTY -> false
+            Comparator.IS_NOT_EMPTY -> true
             else -> throw IllegalArgumentException()
         }
     }
@@ -102,8 +102,8 @@ data class CriteriaBands(
             Comparator.HAS_ANY -> value!!.any { it.matchesAny(field) }
             Comparator.HAS_ALL -> value!!.all { it.matchesAny(field) }
             Comparator.HAS_NONE -> value!!.none { it.matchesAny(field) }
-            Comparator.IS_EMPTY -> field.isEmpty()
-            Comparator.IS_NOT_EMPTY -> field.isNotEmpty()
+            Comparator.IS_EMPTY -> false
+            Comparator.IS_NOT_EMPTY -> true
             else -> throw IllegalArgumentException()
         }
     }
@@ -125,8 +125,8 @@ data class CriteriaCombos(
             Comparator.HAS_ANY -> value!!.any { criteria -> criteria.matchesAny(fieldList) }
             Comparator.HAS_ALL -> value!!.all { criteria -> criteria.matchesAny(fieldList) }
             Comparator.HAS_NONE -> value!!.none { criteria -> criteria.matchesAny(fieldList) }
-            Comparator.IS_EMPTY -> fieldList.isEmpty()
-            Comparator.IS_NOT_EMPTY -> fieldList.isNotEmpty()
+            Comparator.IS_EMPTY -> false
+            Comparator.IS_NOT_EMPTY -> true
             else -> throw IllegalArgumentException()
         }
     }
