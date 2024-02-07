@@ -8,10 +8,8 @@ import it.smartphonecombo.uecapabilityparser.query.SearchableField
 import it.smartphonecombo.uecapabilityparser.util.Config
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.put
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -25,14 +23,13 @@ internal class ServerModeOthersTest {
     private val endpoints =
         listOf(
             "/swagger",
+            "/openapi",
+            "/swagger/openapi.json",
             "custom.js",
             "custom.css",
             "/parse",
             "/parse/multiPart",
             "/csv",
-            "/openapi",
-            "/swagger/openapi.json",
-            "/store/status",
             "/store/list",
             "/store/getItem",
             "/store/getMultiItem",
@@ -40,8 +37,7 @@ internal class ServerModeOthersTest {
             "/store/getMultiOutput",
             "/store/getInput",
             "/store/list/filtered",
-            "/version",
-            "/status",
+            "/status"
         )
 
     private val scatTypes = arrayOf("HDF", "SDM", "DLF", "QMDL")
@@ -80,20 +76,7 @@ internal class ServerModeOthersTest {
     }
 
     @Test
-    fun testVersion() {
-
-        getTest("/version", buildJsonObject { put("version", parserVersion) })
-    }
-
-    @Test
-    fun testStoreEnabled() {
-        Config["store"] = "/store"
-        val endpoint = arrayOf("/store/status/", "/store/status").random()
-        getTest(endpoint, buildJsonObject { put("enabled", true) })
-    }
-
-    @Test
-    fun testStoreOpenApi() {
+    fun testOpenApi() {
         val endpoint = arrayOf("/openapi", "/openapi/").random()
         getTest(endpoint, Json.parseToJsonElement(openapi))
     }
@@ -101,13 +84,6 @@ internal class ServerModeOthersTest {
     @Test
     fun testStoreSwaggerOpenApi() {
         getTest("/swagger/openapi.json", Json.parseToJsonElement(openapi))
-    }
-
-    @Test
-    fun testStatusStoreEnable() {
-        Config["store"] = "/store"
-        val status = ServerStatus(parserVersion, endpoints, logTypes, 256000000, searchableFields)
-        getTest("/status", Json.encodeToJsonElement(status))
     }
 
     @Test
@@ -142,7 +118,7 @@ internal class ServerModeOthersTest {
     }
 
     private fun getTest(url: String, oracle: JsonElement) {
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""
@@ -152,7 +128,7 @@ internal class ServerModeOthersTest {
     }
 
     private fun getTestText(url: String, oracle: String) {
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""

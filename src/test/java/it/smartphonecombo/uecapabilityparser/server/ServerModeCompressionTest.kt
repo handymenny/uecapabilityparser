@@ -122,7 +122,7 @@ internal class ServerModeCompressionTest {
         json: Boolean = true,
         gzip: Boolean = false
     ) =
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""
@@ -140,7 +140,7 @@ internal class ServerModeCompressionTest {
         }
 
     private fun storeTest(url: String, request: JsonObject, oraclePath: String) =
-        JavalinTest.test(JavalinApp().app) { _, client ->
+        JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.post(url, request)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             capabilitiesAssertEquals(

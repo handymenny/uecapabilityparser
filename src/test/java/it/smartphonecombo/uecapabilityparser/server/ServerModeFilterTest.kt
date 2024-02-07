@@ -1,6 +1,5 @@
 package it.smartphonecombo.uecapabilityparser.server
 
-import io.javalin.Javalin
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.extension.custom
@@ -31,6 +30,7 @@ import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.MethodOrderer
@@ -40,7 +40,6 @@ import org.junit.jupiter.api.TestMethodOrder
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 internal class ServerModeFilterTest {
     private val endpoint = arrayOf("/store/list/filtered/", "/store/list/filtered").random()
-    private var app: Javalin = JavalinApp().app
 
     @Test
     fun emptyResult() {
@@ -302,7 +301,7 @@ internal class ServerModeFilterTest {
     }
 
     private fun javalinTest(request: JsonObject, oraclePath: String) {
-        JavalinTest.test(app) { _, client ->
+        JavalinTest.test(app.newServer()) { _, client ->
             val response = client.post(endpoint, request)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
 
@@ -314,7 +313,7 @@ internal class ServerModeFilterTest {
     }
 
     private fun javalinErrorTest(request: JsonObject, errorCode: Int) {
-        JavalinTest.test(app) { _, client ->
+        JavalinTest.test(app.newServer()) { _, client ->
             val response = client.post(endpoint, request)
             Assertions.assertEquals(errorCode, response.code)
         }
@@ -322,11 +321,20 @@ internal class ServerModeFilterTest {
 
     companion object {
         private val path = "src/test/resources/server/"
+        private lateinit var app: JavalinApp
 
         @JvmStatic
         @BeforeAll
         fun setup() {
             Config["store"] = "$path/inputForQuery/"
+            Config["cache"] = "100"
+            app = JavalinApp()
+        }
+
+        @JvmStatic
+        @AfterAll
+        fun teardown() {
+            Config.clear()
         }
     }
 }
