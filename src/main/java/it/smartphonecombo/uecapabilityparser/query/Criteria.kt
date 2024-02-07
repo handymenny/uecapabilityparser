@@ -47,7 +47,6 @@ data class CriteriaString(
 ) : Criteria {
     override fun evaluateCriteria(item: Capabilities): Boolean {
         val field = field.extractField(item)
-        if (field.isEmpty()) return false
 
         return when (comparator) {
             Comparator.EQUALS -> field.equals(value, ignoreCase = true)
@@ -71,13 +70,7 @@ data class CriteriaStrings(
 
     override fun evaluateCriteria(item: Capabilities): Boolean {
         val field = field.extractField(item)
-        if (field.isEmpty()) {
-            return when (comparator) {
-                Comparator.IS_EMPTY -> true
-                Comparator.IS_NOT_EMPTY -> false
-                else -> false
-            }
-        }
+        if (field.isEmpty()) return evaluateEmpty(comparator)
 
         return when (comparator) {
             Comparator.HAS_ANY -> valueUpperCase.any { field.contains(it) }
@@ -100,13 +93,7 @@ data class CriteriaBands(
 
     override fun evaluateCriteria(item: Capabilities): Boolean {
         val field = field.extractField(item)
-        if (field.isEmpty()) {
-            return when (comparator) {
-                Comparator.IS_EMPTY -> true
-                Comparator.IS_NOT_EMPTY -> false
-                else -> false
-            }
-        }
+        if (field.isEmpty()) return evaluateEmpty(comparator)
 
         return when (comparator) {
             Comparator.HAS_ANY -> value!!.any { it.matchesAny(field) }
@@ -129,13 +116,7 @@ data class CriteriaCombos(
 
     override fun evaluateCriteria(item: Capabilities): Boolean {
         val fieldList = field.extractField(item)
-        if (fieldList.isEmpty()) {
-            return when (comparator) {
-                Comparator.IS_EMPTY -> true
-                Comparator.IS_NOT_EMPTY -> false
-                else -> false
-            }
-        }
+        if (fieldList.isEmpty()) return evaluateEmpty(comparator)
 
         return when (comparator) {
             Comparator.HAS_ANY -> value!!.any { criteria -> criteria.matchesAny(fieldList) }
@@ -147,3 +128,11 @@ data class CriteriaCombos(
         }
     }
 }
+
+// Helper
+private fun evaluateEmpty(comparator: Comparator): Boolean =
+    when (comparator) {
+        Comparator.IS_EMPTY -> true
+        Comparator.IS_NOT_EMPTY -> false
+        else -> false
+    }
