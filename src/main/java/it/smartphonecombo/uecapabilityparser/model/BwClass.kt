@@ -58,3 +58,5 @@ value class BwClass(private val bwClass: Char) : Comparable<BwClass> {
         return if (bwClass != NONE.bwClass) bwClass.toString() else ""
     }
 }
+
+fun String.toBwClass(): BwClass = BwClass.valueOf(this)

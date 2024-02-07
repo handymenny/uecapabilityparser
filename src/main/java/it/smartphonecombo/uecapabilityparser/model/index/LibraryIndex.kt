@@ -2,15 +2,22 @@ package it.smartphonecombo.uecapabilityparser.model.index
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
+import it.smartphonecombo.uecapabilityparser.extension.mapAsync
 import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.util.LruCache
 import it.smartphonecombo.uecapabilityparser.util.optimize
 import java.io.File
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
@@ -51,7 +58,7 @@ data class LibraryIndex(
     /** return a list of all single-capability indexes */
     fun getAll() = items.toList()
 
-    fun getOutput(id: String, libraryPath: String): Capabilities? {
+    fun getOutput(id: String, libraryPath: String, cacheIfFull: Boolean = true): Capabilities? {
         val cached = outputCache[id]
         if (cached != null) return cached
 
@@ -60,8 +67,30 @@ data class LibraryIndex(
         val filePath = "$libraryPath/output/$id.json"
         val text = IOUtils.getInputSource(filePath, compressed) ?: return null
         val res = Json.custom().decodeFromInputSource<Capabilities>(text)
-        if (outputCache.put(id, res)) res.optimize()
+        if (outputCache.put(id, res, !cacheIfFull)) res.optimize()
         return res
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun filterByQuery(query: Query, libraryPath: String): LibraryIndex {
+        val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 4)
+        val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
+
+        val validIdsDeferred =
+            CoroutineScope(dispatcher).async {
+                items.mapAsync { cap ->
+                    val res = getOutput(cap.id, libraryPath, false)?.let { query.evaluateQuery(it) }
+                    if (res == true) cap.id else null
+                }
+            }
+
+        val validIds = runBlocking { validIdsDeferred.await().filterNotNull().toSet() }
+
+        val multiItemsFiltered =
+            multiItems.filter { it.indexLineIds.any { id -> validIds.contains(id) } }
+        val itemsFiltered = items.filter { validIds.contains(it.id) }
+
+        return LibraryIndex(itemsFiltered.toMutableList(), multiItemsFiltered.toMutableList())
     }
 
     companion object {

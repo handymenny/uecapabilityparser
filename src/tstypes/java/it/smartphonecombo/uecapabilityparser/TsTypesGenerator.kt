@@ -5,6 +5,7 @@ import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
+import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.server.RequestCsv
 import it.smartphonecombo.uecapabilityparser.server.RequestMultiPart
 import it.smartphonecombo.uecapabilityparser.server.RequestParse
@@ -30,7 +31,8 @@ internal object TsTypesGenerator {
                 ServerStatus.serializer(),
                 RequestCsv.serializer(),
                 RequestParse.serializer(),
-                RequestMultiPart.serializer()
+                RequestMultiPart.serializer(),
+                Query.serializer()
             )
         val tsDefFixed =
             typescriptDefinitions.replace(" = \"\"", "INVALID = \"\"") // fix empty enum
