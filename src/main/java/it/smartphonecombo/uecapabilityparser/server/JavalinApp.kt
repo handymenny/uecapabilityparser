@@ -37,46 +37,51 @@ class JavalinApp {
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.use { it.readBytes() }
     private val endpoints = mutableListOf<String>()
     private val maxRequestSize = Config["maxRequestSize"]?.toLong() ?: (256 * 1000 * 1000)
-    val app: Javalin =
-        Javalin.create { config ->
-            config.compression.gzipOnly(4)
-            config.http.prefer405over404 = true
+    private val compression = Config["compression"] == "true"
+    private val maxOutputCache = Config.getOrDefault("cache", "0").toInt().takeIf { it >= 0 }
+    private val store = Config["store"]
+    private var index = LibraryIndex(mutableListOf())
+    var app: Javalin
 
-            // align all request size limits
-            config.http.maxRequestSize = maxRequestSize
-            config.jetty.multipartConfig.maxFileSize(maxRequestSize, SizeUnit.BYTES)
-            config.jetty.multipartConfig.maxTotalRequestSize(maxRequestSize, SizeUnit.MB)
-            config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
-
-            config.routing.treatMultipleSlashesAsSingleSlash = true
-            config.jsonMapper(CustomJsonMapper)
-            config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
-            if (hasSubmodules) {
-                config.staticFiles.add("/web", Location.CLASSPATH)
-                config.staticFiles.add { staticFiles ->
-                    staticFiles.hostedPath = "/swagger"
-                    staticFiles.directory = "/swagger"
-                    staticFiles.location = Location.CLASSPATH
+    init {
+        if (store != null) {
+            index = LibraryIndex.buildIndex(store, maxOutputCache)
+            val reparseStrategy = Config.getOrDefault("reparse", "off")
+            if (reparseStrategy != "off") {
+                CoroutineScope(Dispatchers.IO).launch {
+                    reparseLibrary(reparseStrategy, store, index, compression)
+                    // Rebuild index
+                    index = LibraryIndex.buildIndex(store, maxOutputCache)
                 }
             }
         }
+        app = createJavalin()
+    }
 
-    init {
-        val store = Config["store"]
-        val compression = Config["compression"] == "true"
-        val maxOutputCache = Config.getOrDefault("cache", "0").toInt().takeIf { it >= 0 }
-        var index: LibraryIndex =
-            store?.let { LibraryIndex.buildIndex(it, maxOutputCache) }
-                ?: LibraryIndex(mutableListOf())
+    private fun createJavalin(): Javalin {
+        val app =
+            Javalin.create { config ->
+                config.compression.gzipOnly(4)
+                config.http.prefer405over404 = true
 
-        val reparseStrategy = Config.getOrDefault("reparse", "off")
-        if (store != null && reparseStrategy != "off") {
-            CoroutineScope(Dispatchers.IO).launch {
-                reparseLibrary(reparseStrategy, store, index, compression)
-                // Rebuild index
-                index = LibraryIndex.buildIndex(store, maxOutputCache)
+                // align all request size limits
+                config.http.maxRequestSize = maxRequestSize
+                config.jetty.multipartConfig.maxFileSize(maxRequestSize, SizeUnit.BYTES)
+                config.jetty.multipartConfig.maxTotalRequestSize(maxRequestSize, SizeUnit.MB)
+                config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
+
+                config.routing.treatMultipleSlashesAsSingleSlash = true
+                config.jsonMapper(CustomJsonMapper)
+                config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
+                if (hasSubmodules) {
+                    config.staticFiles.add("/web", Location.CLASSPATH)
+                    config.staticFiles.add { staticFiles ->
+                        staticFiles.hostedPath = "/swagger"
+                        staticFiles.directory = "/swagger"
+                        staticFiles.location = Location.CLASSPATH
+                    }
+                }
             }
-        }
 
         app.exception(Exception::class.java) { e, ctx ->
             e.printStackTrace()
@@ -95,6 +100,7 @@ class JavalinApp {
         }
 
         app.routes(buildRoutes(store, index, compression))
+        return app
     }
 
     private suspend fun reparseLibrary(
