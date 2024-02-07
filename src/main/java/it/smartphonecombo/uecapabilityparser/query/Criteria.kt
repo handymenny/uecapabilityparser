@@ -43,16 +43,19 @@ data class CriteriaNumber(
 data class CriteriaString(
     override val field: FieldString,
     override val comparator: Comparator,
-    override val value: String
+    override val value: String? = null
 ) : Criteria {
     override fun evaluateCriteria(item: Capabilities): Boolean {
         val field = field.extractField(item)
+        if (field.isEmpty()) return evaluateEmpty(comparator)
 
         return when (comparator) {
-            Comparator.EQUALS -> field.equals(value, ignoreCase = true)
-            Comparator.NOT_EQUALS -> !field.equals(value, ignoreCase = true)
-            Comparator.CONTAINS -> field.contains(value, ignoreCase = true)
-            Comparator.NOT_CONTAINS -> !field.contains(value, ignoreCase = true)
+            Comparator.EQUALS -> field.equals(value!!, ignoreCase = true)
+            Comparator.NOT_EQUALS -> !field.equals(value!!, ignoreCase = true)
+            Comparator.CONTAINS -> field.contains(value!!, ignoreCase = true)
+            Comparator.NOT_CONTAINS -> !field.contains(value!!, ignoreCase = true)
+            Comparator.IS_EMPTY -> field.isEmpty()
+            Comparator.IS_NOT_EMPTY -> field.isNotEmpty()
             else -> throw IllegalArgumentException()
         }
     }
