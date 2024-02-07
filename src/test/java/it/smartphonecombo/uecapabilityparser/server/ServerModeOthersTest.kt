@@ -8,10 +8,8 @@ import it.smartphonecombo.uecapabilityparser.query.SearchableField
 import it.smartphonecombo.uecapabilityparser.util.Config
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.put
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -32,7 +30,6 @@ internal class ServerModeOthersTest {
             "/parse",
             "/parse/multiPart",
             "/csv",
-            "/store/status",
             "/store/list",
             "/store/getItem",
             "/store/getMultiItem",
@@ -40,7 +37,6 @@ internal class ServerModeOthersTest {
             "/store/getMultiOutput",
             "/store/getInput",
             "/store/list/filtered",
-            "/version",
             "/status"
         )
 
@@ -80,20 +76,7 @@ internal class ServerModeOthersTest {
     }
 
     @Test
-    fun testVersion() {
-
-        getTest("/version", buildJsonObject { put("version", parserVersion) })
-    }
-
-    @Test
-    fun testStoreEnabled() {
-        Config["store"] = "/store"
-        val endpoint = arrayOf("/store/status/", "/store/status").random()
-        getTest(endpoint, buildJsonObject { put("enabled", true) })
-    }
-
-    @Test
-    fun testStoreOpenApi() {
+    fun testOpenApi() {
         val endpoint = arrayOf("/openapi", "/openapi/").random()
         getTest(endpoint, Json.parseToJsonElement(openapi))
     }
@@ -101,13 +84,6 @@ internal class ServerModeOthersTest {
     @Test
     fun testStoreSwaggerOpenApi() {
         getTest("/swagger/openapi.json", Json.parseToJsonElement(openapi))
-    }
-
-    @Test
-    fun testStatusStoreEnable() {
-        Config["store"] = "/store"
-        val status = ServerStatus(parserVersion, endpoints, logTypes, 256000000, searchableFields)
-        getTest("/status", Json.encodeToJsonElement(status))
     }
 
     @Test

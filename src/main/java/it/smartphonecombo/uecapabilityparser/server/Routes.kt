@@ -23,8 +23,6 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.contracts.ExperimentalContracts
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.put
 
 object Routes {
     private val dataFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")
@@ -63,18 +61,6 @@ object Routes {
             "${type}-${date}.csv",
             ContentType.TEXT_CSV
         )
-    }
-
-    fun storeStatus(ctx: Context, store: String?) {
-        val enabled = store != null
-        val json = buildJsonObject { put("enabled", enabled) }
-        ctx.json(json)
-    }
-
-    fun version(ctx: Context) {
-        val version = Config.getOrDefault("project.version", "")
-        val json = buildJsonObject { put("version", version) }
-        ctx.json(json)
     }
 
     fun status(ctx: Context, maxRequestSize: Long, endpoints: List<String>) {

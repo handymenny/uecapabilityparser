@@ -143,8 +143,6 @@ class JavalinApp {
 
             apiBuilderPost("/csv") { Routes.csv(it) }
 
-            apiBuilderGet("/store/status") { Routes.storeStatus(it, store) }
-
             if (store != null) {
                 apiBuilderGet("/store/list") { Routes.storeList(it, index) }
                 apiBuilderGet("/store/getItem") { Routes.storeGetItem(it, index) }
@@ -158,8 +156,6 @@ class JavalinApp {
                     Routes.storeListFiltered(it, index, store)
                 }
             }
-
-            apiBuilderGet("/version") { Routes.version(it) }
 
             apiBuilderGet("/status") { Routes.status(it, maxRequestSize, endpoints) }
         }
