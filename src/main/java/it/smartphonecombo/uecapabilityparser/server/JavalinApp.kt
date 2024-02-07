@@ -8,7 +8,6 @@ import io.javalin.http.Handler
 import io.javalin.http.HttpStatus
 import io.javalin.http.servlet.throwContentTooLargeIfContentTooLarge
 import io.javalin.http.staticfiles.Location
-import io.javalin.json.JsonMapper
 import it.smartphonecombo.uecapabilityparser.extension.badRequest
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
@@ -22,8 +21,6 @@ import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.io.File
-import java.io.InputStream
-import java.lang.reflect.Type
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -31,33 +28,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromStream
-import kotlinx.serialization.serializer
 
-@OptIn(ExperimentalCoroutinesApi::class, ExperimentalSerializationApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 class JavalinApp {
-    private val jsonMapper =
-        object : JsonMapper {
-            override fun <T : Any> fromJsonString(json: String, targetType: Type): T {
-                @Suppress("UNCHECKED_CAST")
-                val deserializer = serializer(targetType) as KSerializer<T>
-                return Json.custom().decodeFromString(deserializer, json)
-            }
-
-            override fun <T : Any> fromJsonStream(json: InputStream, targetType: Type): T {
-                @Suppress("UNCHECKED_CAST")
-                val deserializer = serializer(targetType) as KSerializer<T>
-                return Json.custom().decodeFromStream(deserializer, json)
-            }
-
-            override fun toJsonString(obj: Any, type: Type): String {
-                val serializer = serializer(obj.javaClass)
-                return Json.custom().encodeToString(serializer, obj)
-            }
-        }
     private val hasSubmodules = {}.javaClass.getResourceAsStream("/web") != null
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.use { it.readBytes() }
     private val endpoints = mutableListOf<String>()
@@ -74,7 +48,7 @@ class JavalinApp {
             config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
 
             config.routing.treatMultipleSlashesAsSingleSlash = true
-            config.jsonMapper(jsonMapper)
+            config.jsonMapper(CustomJsonMapper)
             config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
             if (hasSubmodules) {
                 config.staticFiles.add("/web", Location.CLASSPATH)
