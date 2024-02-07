@@ -31,6 +31,7 @@ import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.MethodOrderer
@@ -327,6 +328,12 @@ internal class ServerModeFilterTest {
         @BeforeAll
         fun setup() {
             Config["store"] = "$path/inputForQuery/"
+        }
+
+        @JvmStatic
+        @AfterAll
+        fun teardown() {
+            Config.clear()
         }
     }
 }
