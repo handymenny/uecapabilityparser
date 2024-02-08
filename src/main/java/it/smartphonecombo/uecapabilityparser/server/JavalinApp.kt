@@ -7,12 +7,12 @@ import io.javalin.config.SizeUnit
 import io.javalin.http.ContentType
 import io.javalin.http.Handler
 import io.javalin.http.HttpStatus
-import io.javalin.http.servlet.throwContentTooLargeIfContentTooLarge
 import io.javalin.http.staticfiles.Location
 import it.smartphonecombo.uecapabilityparser.extension.badRequest
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
 import it.smartphonecombo.uecapabilityparser.extension.internalError
+import it.smartphonecombo.uecapabilityparser.extension.throwContentTooLargeIfContentTooLarge
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.NullInputSource
@@ -59,7 +59,7 @@ class JavalinApp {
     fun newServer(): Javalin {
         val server =
             Javalin.create { config ->
-                config.compression.gzipOnly(4)
+                config.http.gzipOnlyCompression(4)
                 config.http.prefer405over404 = true
 
                 // align all request size limits
@@ -68,9 +68,11 @@ class JavalinApp {
                 config.jetty.multipartConfig.maxTotalRequestSize(maxRequestSize, SizeUnit.MB)
                 config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
 
-                config.routing.treatMultipleSlashesAsSingleSlash = true
+                config.router.treatMultipleSlashesAsSingleSlash = true
+                config.router.apiBuilder(buildRoutes(store, index, compression))
                 config.jsonMapper(CustomJsonMapper)
-                config.plugins.enableCors { cors -> cors.add { it.anyHost() } }
+                config.bundledPlugins.enableCors { cors -> cors.addRule { it.anyHost() } }
+
                 if (hasSubmodules) {
                     config.staticFiles.add("/web", Location.CLASSPATH)
                     config.staticFiles.add { staticFiles ->
@@ -97,7 +99,6 @@ class JavalinApp {
             }
         }
 
-        server.routes(buildRoutes(store, index, compression))
         return server
     }
 
@@ -164,7 +165,7 @@ class JavalinApp {
 
     private fun buildRoutes(store: String?, index: LibraryIndex, compression: Boolean) =
         EndpointGroup {
-            ApiBuilder.before { ctx -> ctx.throwContentTooLargeIfContentTooLarge() }
+            ApiBuilder.before { ctx -> ctx.throwContentTooLargeIfContentTooLarge(maxRequestSize) }
 
             if (hasSubmodules) {
                 endpoints.add("/swagger")
