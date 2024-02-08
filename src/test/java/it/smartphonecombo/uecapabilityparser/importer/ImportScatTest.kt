@@ -50,7 +50,6 @@ internal class ImportScatTest {
             val capE = expected[i]
 
             capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
-            capE.setMetadata("description", capA.getStringMetadata("description") ?: "")
         }
 
         Assertions.assertEquals(expected, actual)
