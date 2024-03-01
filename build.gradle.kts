@@ -31,10 +31,11 @@ dependencies {
     val mtsAsn1Version = "45cc560"
     val javalinVersion = "6.1.2"
     val coroutinesVersion = "1.8.0"
+    val kotlinxSerializationVer = "1.6.3"
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVer")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinxSerializationVer")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
