@@ -34,7 +34,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.6.3")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
