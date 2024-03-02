@@ -2,6 +2,7 @@ package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.testing.test
 import java.io.File
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -284,9 +285,9 @@ internal class CliUeLogOutputTest {
         val oraclePath = "$path/oracleUeLog/$oracleFilename"
 
         val result = Cli.test(*args)
-        val stdoutLines = result.stdout.lines().dropLastWhile(String::isBlank)
-        val oracleLines = File(oraclePath).readLines().dropLastWhile(String::isBlank)
+        val stdout = Json.parseToJsonElement(result.stdout)
+        val oracle = Json.parseToJsonElement(File(oraclePath).readText())
 
-        Assertions.assertLinesMatch(oracleLines, stdoutLines)
+        Assertions.assertEquals(oracle, stdout)
     }
 }
