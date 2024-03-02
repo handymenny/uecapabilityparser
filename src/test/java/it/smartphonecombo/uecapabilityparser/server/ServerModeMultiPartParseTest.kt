@@ -416,9 +416,6 @@ internal class ServerModeMultiPartParseTest {
                     "processingTime",
                     actualCapability.getStringMetadata("processingTime") ?: "",
                 )
-                actualCapability.getStringMetadata("description")?.let {
-                    expectedCapability.setMetadata("description", it)
-                }
             }
             expected.id = actual.id
 
