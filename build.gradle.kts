@@ -29,7 +29,7 @@ val tstypesImplementation: Configuration by
 
 dependencies {
     val mtsAsn1Version = "45cc560"
-    val javalinVersion = "6.1.2"
+    val javalinVersion = "6.1.3"
     val coroutinesVersion = "1.8.0"
     val kotlinxSerializationVer = "1.6.3"
 
