@@ -46,7 +46,7 @@ dependencies {
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
-    testImplementation("io.mockk:mockk:1.13.9")
+    testImplementation("io.mockk:mockk:1.13.10")
 
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.4")
 
