@@ -8,6 +8,8 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
+import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
+import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.toMimo
 
 /** A parser for LTE Combinations as reported by Qct Modem Capabilities */
@@ -135,11 +137,14 @@ object ImportQctModemCap : ImportCapabilities {
      * Mixed mimo is represented with the highest value as normal digit and the others as subscript
      * separated by space (MMSP).
      *
-     * Example: 40D4 ₄ ₂
+     * Modulation is represented as superscript digits.
      *
-     * Note: in old versions bwClass was lowercase.
+     * Example: 40D4 ₄ ₂²⁵⁶
+     *
+     * Note: in some versions bwClass is lowercase.
      */
-    private val componentRegex = """(\d{1,3})([A-Fa-f])([124]?(:?\p{Zs}[₁₂₄]){0,4})""".toRegex()
+    private val componentRegex =
+        """(\d{1,3})([A-Fa-f])([124]?(?:\p{Zs}[₁₂₄]){0,4})([⁰¹²⁴⁵⁶]{0,4})""".toRegex()
 
     /**
      * Converts the given componentString to a [ComponentLte].
@@ -149,7 +154,7 @@ object ImportQctModemCap : ImportCapabilities {
     private fun parseComponent(componentString: String, isDl: Boolean): ComponentLte? {
         val result = componentRegex.find(componentString) ?: return null
 
-        val (_, bandRegex, bwClassRegex, mimoRegex) = result.groupValues
+        val (_, bandRegex, bwClassRegex, mimoRegex, modRegex) = result.groupValues
 
         val baseBand = bandRegex.toInt()
         val bwClass = BwClass.valueOf(bwClassRegex)
@@ -159,7 +164,8 @@ object ImportQctModemCap : ImportCapabilities {
         return if (isDl) {
             ComponentLte(baseBand, classDL = bwClass, mimoDL = mimo)
         } else {
-            ComponentLte(baseBand, classUL = bwClass, mimoUL = mimo)
+            val modUL = ModulationOrder.of(modRegex.superscriptToDigit()).toModulation()
+            ComponentLte(baseBand, classUL = bwClass, mimoUL = mimo, modUL = modUL)
         }
     }
 
@@ -179,6 +185,21 @@ object ImportQctModemCap : ImportCapabilities {
                 char - '₀'.code + '0'.code
             } else {
                 char
+            }
+        }
+        return String(listChar.toCharArray())
+    }
+
+    /** Converts all the superscript in the given string to digit */
+    private fun String.superscriptToDigit(): String {
+        val listChar = map { char ->
+            when (char) {
+                '¹' -> '1'
+                '²' -> '2'
+                '³' -> '3'
+                '⁰',
+                in '⁴'..'⁹' -> char - '⁰'.code + '0'.code
+                else -> char
             }
         }
         return String(listChar.toCharArray())

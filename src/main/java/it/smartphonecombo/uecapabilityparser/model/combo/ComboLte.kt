@@ -157,6 +157,7 @@ data class ComboLte(
 
                 matchingComponent.classUL = ulComponent.classUL
                 matchingComponent.mimoUL = ulComponent.mimoUL
+                matchingComponent.modUL = ulComponent.modUL
             }
 
             components.sortDescending()
