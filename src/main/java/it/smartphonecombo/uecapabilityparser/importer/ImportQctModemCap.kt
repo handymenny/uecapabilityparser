@@ -52,7 +52,7 @@ object ImportQctModemCap : ImportCapabilities {
 
                     repeat(numCombos) {
                         val combo = parseCombo(lines.next(), indexDl, indexUl)
-                        listCombo.add(combo)
+                        combo?.let { listCombo.add(it) }
                     }
                 }
             } catch (ignored: NoSuchElementException) {
@@ -70,12 +70,16 @@ object ImportQctModemCap : ImportCapabilities {
      *
      * Returns null if parsing fails
      */
-    private fun parseCombo(comboString: String, indexDl: Int, indexUl: Int): ComboLte {
-        val dlComponents = parseComponents(comboString.substring(indexDl, indexUl), true)
+    private fun parseCombo(comboString: String, indexDl: Int, indexUl: Int): ComboLte? {
+        try {
+            val dlComponents = parseComponents(comboString.substring(indexDl, indexUl), true)
 
-        val ulComponents = parseComponents(comboString.substring(indexUl), false)
+            val ulComponents = parseComponents(comboString.substring(indexUl), false)
 
-        return ComboLte(dlComponents, ulComponents)
+            return ComboLte(dlComponents, ulComponents)
+        } catch (ignored: Exception) {
+            return null
+        }
     }
 
     /**
