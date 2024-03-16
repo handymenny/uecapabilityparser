@@ -46,12 +46,21 @@ object ImportQctModemCap : ImportCapabilities {
                     val indexDl = combosHeader.indexOf("DL Bands", ignoreCase = true)
                     val indexUl = combosHeader.indexOf("UL Bands", ignoreCase = true)
 
-                    if (indexDl < 0 || indexUl < 0) {
+                    // This is used for DLCA > 5
+                    val indexBands = combosHeader.indexOf("Bands", ignoreCase = true)
+                    val twoRowFormat = indexBands > -1 && indexDl < 0
+
+                    if (!twoRowFormat && (indexDl < 0 || indexUl < 0)) {
                         continue
                     }
 
                     repeat(numCombos) {
-                        val combo = parseCombo(lines.next(), indexDl, indexUl)
+                        val combo =
+                            if (twoRowFormat) {
+                                parseComboTwoRow(lines.next(), lines.next(), indexBands)
+                            } else {
+                                parseCombo(lines.next(), indexDl, indexUl)
+                            }
                         combo?.let { listCombo.add(it) }
                     }
                 }
@@ -83,10 +92,27 @@ object ImportQctModemCap : ImportCapabilities {
     }
 
     /**
-     * Converts the given componentsString to a List of [ComponentLte].
+     * Converts the given comboString to a [ComboLte].
      *
-     * Returns null if parsing fails.
+     * Returns null if parsing fails
      */
+    private fun parseComboTwoRow(
+        comboStringDl: String,
+        comboStringUl: String,
+        index: Int
+    ): ComboLte? {
+        try {
+            val dlComponents = parseComponents(comboStringDl.substring(index), true)
+
+            val ulComponents = parseComponents(comboStringUl.substring(index), false)
+
+            return ComboLte(dlComponents, ulComponents)
+        } catch (ignored: Exception) {
+            return null
+        }
+    }
+
+    /** Converts the given componentsString to a List of [ComponentLte]. */
     private fun parseComponents(componentsString: String, isDl: Boolean): List<ComponentLte> {
         val components = mutableListWithCapacity<ComponentLte>(6)
         for (componentStr in componentsString.split('-', ' ')) {
