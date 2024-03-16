@@ -39,6 +39,11 @@ object ImportQctModemCap : ImportCapabilities {
                         continue
                     }
 
+                    if (source.equals("RRC", true) && type?.contains("NR", true) == true) {
+                        // NR RRC CA combos not supported
+                        continue
+                    }
+
                     val sourceStr = "${source}-${type}".uppercase()
                     capabilities.addMetadata("source", sourceStr)
                     capabilities.addMetadata("numCombos", numCombos)
