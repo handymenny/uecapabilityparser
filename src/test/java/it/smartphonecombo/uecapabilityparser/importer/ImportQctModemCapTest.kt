@@ -36,6 +36,11 @@ internal class ImportQctModemCapTest {
     }
 
     @Test
+    fun parseTwoRow() {
+        parse("two-row.txt", "two-row.json")
+    }
+
+    @Test
     fun parseMulti() {
         parse("multi.txt", "multi.json")
     }
