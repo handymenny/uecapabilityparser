@@ -46,6 +46,10 @@ object ImportQctModemCap : ImportCapabilities {
                     val indexDl = combosHeader.indexOf("DL Bands", ignoreCase = true)
                     val indexUl = combosHeader.indexOf("UL Bands", ignoreCase = true)
 
+                    if (indexDl < 0 || indexUl < 0) {
+                        continue
+                    }
+
                     repeat(numCombos) {
                         val combo = parseCombo(lines.next(), indexDl, indexUl)
                         listCombo.add(combo)
