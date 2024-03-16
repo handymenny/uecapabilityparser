@@ -36,6 +36,27 @@ internal class ImportQctModemCapTest {
     }
 
     @Test
+    fun parseTwoRow() {
+        parse("two-row.txt", "two-row.json")
+    }
+
+    @Test
+    fun parseNrRrc() {
+        // empty result
+        parse("nr-rrc.txt", "nr-rrc.json")
+    }
+
+    @Test
+    fun parseLteRrc() {
+        parse("lte-rrc.txt", "lte-rrc.json")
+    }
+
+    @Test
+    fun parseLteRrcInvalid() {
+        parse("lte-rrc-invalid.txt", "lte-rrc-invalid.json")
+    }
+
+    @Test
     fun parseMulti() {
         parse("multi.txt", "multi.json")
     }
