@@ -28,4 +28,9 @@ internal class ImportMtkLteTest {
     fun parseUeCaCombInfo() {
         parse("UE_CA_COMB_INFO.txt", "UE_CA_COMB_INFO.json")
     }
+
+    @Test
+    fun parseReversed() {
+        parse("REVERSED.txt", "REVERSED.json")
+    }
 }

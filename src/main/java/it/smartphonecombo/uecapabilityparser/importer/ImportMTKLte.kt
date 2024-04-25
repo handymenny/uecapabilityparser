@@ -62,21 +62,86 @@ object ImportMTKLte : ImportCapabilities {
      */
     @Throws(NoSuchElementException::class)
     private fun parseCombo(input: Iterator<String>): MutableList<ComponentLte>? {
-        val numCCs = extractInt(input.next())
+        val numCCs: Int
+        val linesIterator: Iterator<String>
+
+        val firstLine = input.next()
+        if (firstLine.startsWith("band_mimo = Array")) {
+            // some logs are reversed (mimo before bands)
+            val reversed = reverseBandsMimo(firstLine, input) ?: return null
+
+            linesIterator = reversed
+            numCCs = extractInt(linesIterator.next())
+        } else {
+            linesIterator = input
+            numCCs = extractInt(firstLine)
+        }
 
         // Check if combo contains any CCs
         if (numCCs < 1) {
             return null
         }
 
-        val arrayLength = extractArraySize(input.next())
-        val bands = parseComponents(minOf(numCCs, arrayLength), input)
+        val arrayLength = extractArraySize(linesIterator.next())
+        val bands = parseComponents(minOf(numCCs, arrayLength), linesIterator)
 
-        val line = input.firstOrNull { it.startsWith("band_mimo = Array") } ?: return null
+        val line = linesIterator.firstOrNull { it.startsWith("band_mimo = Array") } ?: return null
         val mimoArrayLength = extractArraySize(line)
 
-        parseMimo(minOf(numCCs, mimoArrayLength), input, bands)
+        parseMimo(minOf(numCCs, mimoArrayLength), linesIterator, bands)
+
         return bands
+    }
+
+    /**
+     * Rewrite first + other lines, reversing the order of mimo and bands.
+     *
+     * Return a new iterator.
+     *
+     * Return null if rewriting fails.
+     */
+    private fun reverseBandsMimo(
+        firstLine: String,
+        otherLines: Iterator<String>,
+    ): MutableIterator<String>? {
+        val reversed = mutableListOf<String>()
+        val bandReveredLines = mutableListOf<String>()
+        val mimoReversedLines = mutableListOf<String>()
+
+        // mimo
+        mimoReversedLines.add(firstLine)
+        var line =
+            otherLines.firstOrNull {
+                if (it.startsWith("band_param = Array")) {
+                    true
+                } else {
+                    mimoReversedLines.add(it)
+                    false
+                }
+            }
+
+        if (line == null) return null
+
+        // bands
+        bandReveredLines.add(line)
+        line =
+            otherLines.firstOrNull {
+                if (it.startsWith("band_param_num =")) {
+                    true
+                } else {
+                    bandReveredLines.add(it)
+                    false
+                }
+            }
+
+        if (line == null) return null
+
+        // combine
+        reversed.add(line)
+        reversed.addAll(bandReveredLines)
+        reversed.addAll(mimoReversedLines)
+
+        return reversed.iterator()
     }
 
     /** Extract MIMO information and update [bands] accordingly. */
