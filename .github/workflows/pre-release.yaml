@@ -26,11 +26,12 @@ jobs:
       - name: Set Version
         run: |
           sed -i "s/\(project.version=\).*/\1nightly-${{ steps.date.outputs.date }}/g" src/main/resources/application.properties
-      - name: Build & Test
+      - name: Setup gradle
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: genTsTypes build
+      - name: Build & Test
+        if: ${{ env.NEW_COMMIT_COUNT > 0 }}
+        run: ./gradlew genTsTypes build
       - name: Save dist zip
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         run: cp build/distributions/*.zip .
