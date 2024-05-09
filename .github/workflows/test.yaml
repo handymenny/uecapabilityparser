@@ -27,10 +27,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - name: Test
+      - name: Setup gradle
         uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: check
+      - name: Test
+        run: ./gradlew check
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         with:
