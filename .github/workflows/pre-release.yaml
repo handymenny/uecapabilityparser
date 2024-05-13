@@ -39,8 +39,8 @@ jobs:
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "nightly-${{ steps.date.outputs.date }}"
-          title: "Nightly ${{ steps.date.outputs.date }}"
+          automatic_release_tag: "nightly-${{ env.date }}"
+          title: "Nightly ${{ env.date }}"
           prerelease: true
           files: |
             *.zip
