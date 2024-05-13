@@ -26,7 +26,7 @@ jobs:
         run: echo "NEW_COMMIT_COUNT=$(git log --oneline --since '24 hours ago' | wc -l)" >> $GITHUB_ENV
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: echo "date=$(date +'%Y-%m-%d')" >> "$GITHUB_ENV"
       - name: Set version Relese
         if: github.event_name == 'push'
         run: |
@@ -34,7 +34,7 @@ jobs:
       - name: Set version Nightly
         if: github.event_name != 'push'
         run: |
-          sed -i "s/\(project.version=\).*/\1nightly-${{ steps.date.outputs.date }}/g" src/main/resources/application.properties
+          sed -i "s/\(project.version=\).*/\1nightly-$date/g" src/main/resources/application.properties
       - name: Set up QEMU
         if: ${{ github.event_name != 'schedule' || env.NEW_COMMIT_COUNT > 0 }}
         uses: docker/setup-qemu-action@v3
