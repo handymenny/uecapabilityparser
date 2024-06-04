@@ -29,7 +29,7 @@ val tstypesImplementation: Configuration by
 
 dependencies {
     val mtsAsn1Version = "45cc560"
-    val javalinVersion = "6.1.4"
+    val javalinVersion = "6.1.6"
     val coroutinesVersion = "1.8.1"
     val kotlinxSerializationVer = "1.6.3"
 
@@ -46,7 +46,7 @@ dependencies {
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
-    testImplementation("io.mockk:mockk:1.13.10")
+    testImplementation("io.mockk:mockk:1.13.11")
 
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.4")
 
