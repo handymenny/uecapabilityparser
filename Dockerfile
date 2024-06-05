@@ -1,5 +1,6 @@
 FROM --platform=$BUILDPLATFORM gradle:8-jdk11-jammy AS build
 
+ARG SCAT_TAG=v1.3.0
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 # update and install pip/venv
@@ -8,7 +9,7 @@ RUN apt update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip  python3-venv --no-install-recommends
 # Install scat
 RUN python3 -m venv /scat \
-    && /scat/bin/python -m pip install git+https://github.com/fgsect/scat \
+    && /scat/bin/python -m pip install git+https://github.com/fgsect/scat@${SCAT_TAG} \
     && /scat/bin/python -m pip install packaging
 
 COPY --chown=gradle:gradle . /home/gradle/
