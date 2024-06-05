@@ -22,7 +22,7 @@ RUN git config --global --add safe.directory "*" \
 RUN gradle build --no-daemon
 
 
-FROM eclipse-temurin:17-jre-jammy AS deploy
+FROM eclipse-temurin:21-jre-jammy AS deploy
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
