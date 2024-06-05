@@ -1,17 +1,5 @@
 FROM --platform=$BUILDPLATFORM gradle:8-jdk11-jammy AS build
 
-ARG SCAT_TAG=v1.3.0
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
-# update and install pip/venv
-RUN apt update \
-    && apt upgrade -y \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip  python3-venv --no-install-recommends
-# Install scat
-RUN python3 -m venv /scat \
-    && /scat/bin/python -m pip install git+https://github.com/fgsect/scat@${SCAT_TAG} \
-    && /scat/bin/python -m pip install packaging
-
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
 # Replace project.version=staging with project.version=commit@hash
@@ -25,6 +13,7 @@ RUN gradle build --no-daemon
 
 FROM eclipse-temurin:21-jre-jammy AS deploy
 
+ARG SCAT_TAG=v1.3.0
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH="${PATH}:/scat/bin"
@@ -33,12 +22,16 @@ RUN groupadd -r -g 2000 java && useradd -m -d /home/java/ -s /bin/bash -u 2000 -
     && apt update \
     && apt upgrade -y \
     && echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y tshark python3 --no-install-recommends \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y tshark python3 python3-venv --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && tshark -v
 
 COPY --from=build /home/gradle/build/libs/*-all.jar /app/uecapabilityparser.jar
-COPY --from=build /scat /scat
+
+# Install scat
+RUN python3 -m venv /scat \
+    && /scat/bin/python -m pip install --no-cache-dir https://github.com/fgsect/scat/archive/${SCAT_TAG}.tar.gz \
+    && /scat/bin/python -m pip install --no-cache-dir packaging
 
 USER java
 WORKDIR /home/java
