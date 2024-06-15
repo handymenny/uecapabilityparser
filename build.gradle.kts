@@ -50,7 +50,7 @@ dependencies {
 
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.4")
 
-    implementation("com.github.handymenny.pkts:pkts-core:00971fd")
+    implementation("com.github.handymenny.pkts:pkts-core:8f78357")
 }
 
 group = "parser"
