@@ -13,7 +13,7 @@ RUN gradle build --no-daemon
 
 FROM eclipse-temurin:21-jre-jammy AS deploy
 
-ARG SCAT_TAG=v1.3.0
+ARG SCAT_TAG=2a76b80
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH="${PATH}:/scat/bin"
@@ -30,8 +30,7 @@ COPY --from=build /home/gradle/build/libs/*-all.jar /app/uecapabilityparser.jar
 
 # Install scat
 RUN python3 -m venv /scat \
-    && /scat/bin/python -m pip install --no-cache-dir https://github.com/fgsect/scat/archive/${SCAT_TAG}.tar.gz \
-    && /scat/bin/python -m pip install --no-cache-dir packaging
+    && /scat/bin/python -m pip install --no-cache-dir https://github.com/fgsect/scat/archive/${SCAT_TAG}.tar.gz
 
 USER java
 WORKDIR /home/java
