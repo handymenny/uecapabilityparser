@@ -116,6 +116,12 @@ internal class ImportPcapTest {
         testPcap("$path/input/sctpS1apNgap.pcap", "$path/oracle/sctpS1apNgap-capabilities.json")
     }
 
+    // GSMTAPv3 Draft/proposal
+    @Test
+    fun testGsmTapV3() {
+        testPcap("$path/input/gsmTapV3.pcap", "$path/oracle/gsmTapV3.json")
+    }
+
     private fun testPcap(path: String, oracle: String) {
         val multi = ImportPcap.parse(File(path).toInputSource())
 
