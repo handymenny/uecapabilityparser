@@ -1,15 +1,20 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.io.BwClassSerializer
 import kotlinx.serialization.Serializable
 
 /**
  * Represents a bandwidth class, it's backed by a char.
  *
+ * Use [valueOf] to create an instance of this class
+ *
  * BwClass of '0' has a special meaning, it's [NONE].
  */
 @Serializable
 @JvmInline
-value class BwClass(private val bwClass: Char) : Comparable<BwClass> {
+value class BwClass
+private constructor(@Serializable(with = BwClassSerializer::class) private val bwClass: Char) :
+    Comparable<BwClass> {
     companion object {
         val NONE = BwClass('0')
 

@@ -196,7 +196,7 @@ object Import0xB0CD : ImportCapabilities {
         if (value.isEmpty() || value.endsWith("NONE")) {
             return BwClass.NONE
         }
-        return BwClass(value.last())
+        return BwClass.valueOf(value.last().toString())
     }
 
     /**

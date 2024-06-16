@@ -36,15 +36,15 @@ internal class ShannonComponentTest {
     fun testBwClass() {
         val componentLte = ShannonComponent(3, 3, 1, 0, 0, List(2) { 0 }, List(2) { 0 })
 
-        assertEquals(BwClass('C'), componentLte.bwClassDl)
-        assertEquals(BwClass('A'), componentLte.bwClassUl)
+        assertEquals("C".toBwClass(), componentLte.bwClassDl)
+        assertEquals("A".toBwClass(), componentLte.bwClassUl)
     }
 
     @Test
     fun testBwClassNone() {
         val componentLte = ShannonComponent(3, 2, 0, 0, 0, List(2) { 0 })
 
-        assertEquals(BwClass('B'), componentLte.bwClassDl)
+        assertEquals("B".toBwClass(), componentLte.bwClassDl)
         assertEquals(BwClass.NONE, componentLte.bwClassUl)
     }
 
@@ -52,7 +52,7 @@ internal class ShannonComponentTest {
     fun testBwClassMmWave() {
         val componentLte = ShannonComponent(10257, 13, 1, 0, 0, List(8) { 0 }, List(8) { 0 })
 
-        assertEquals(BwClass('M'), componentLte.bwClassDl)
-        assertEquals(BwClass('A'), componentLte.bwClassUl)
+        assertEquals("M".toBwClass(), componentLte.bwClassDl)
+        assertEquals("A".toBwClass(), componentLte.bwClassUl)
     }
 }

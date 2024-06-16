@@ -23,3 +23,12 @@ object InputSourceBase64Serializer : KSerializer<InputSource> {
         return Base64.getDecoder().decode(string).toInputSource()
     }
 }
+
+object BwClassSerializer : KSerializer<Char> {
+    override val descriptor: SerialDescriptor =
+        PrimitiveSerialDescriptor("BwClass", PrimitiveKind.CHAR)
+
+    override fun serialize(encoder: Encoder, value: Char) = encoder.encodeChar(value)
+
+    override fun deserialize(decoder: Decoder): Char = decoder.decodeChar().uppercaseChar()
+}
