@@ -23,6 +23,7 @@ import java.text.ParseException
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
@@ -779,6 +780,47 @@ internal class QueryTest {
                         )
                 )
             )
+
+        val oracleList = listOf("3da2cb67-e263-4f3f-b9b0-d30abbb2bd4e")
+
+        test(Query(criteriaList), oracleList)
+    }
+
+    @Test
+    // testNrCombos3 with bw class lowercase
+    fun testNrCombos4() {
+        var criteriaList =
+            listOf(
+                CriteriaCombos(
+                    NR_COMBOS,
+                    comparator = HAS_ANY,
+                    value =
+                        listOf(
+                            ComboValue(
+                                dlComponents = listOf(),
+                                ulComponents =
+                                    listOf(NrComponentUlValue(78, minMimo = 2, minMaxBwPerCC = 200))
+                            ),
+                            ComboValue(
+                                dlComponents =
+                                    listOf(
+                                        NrComponentDlValue(
+                                            7,
+                                            minMimo = 2,
+                                            minBwClass = "B".toBwClass(),
+                                            minMaxBwPerCC = 40
+                                        )
+                                    ),
+                                ulComponents = listOf()
+                            )
+                        )
+                )
+            )
+
+        // Replace bw class B with b
+        val criteriaJson = Json.encodeToString(criteriaList).replace("\"B\"", "\"b\"")
+
+        criteriaList = Json.decodeFromString<List<CriteriaCombos>>(criteriaJson)
 
         val oracleList = listOf("3da2cb67-e263-4f3f-b9b0-d30abbb2bd4e")
 

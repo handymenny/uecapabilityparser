@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model
 
+import it.smartphonecombo.uecapabilityparser.io.BwClassSerializer
 import kotlinx.serialization.Serializable
 
 /**
@@ -11,7 +12,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 @JvmInline
-value class BwClass private constructor(private val bwClass: Char) : Comparable<BwClass> {
+value class BwClass
+private constructor(@Serializable(with = BwClassSerializer::class) private val bwClass: Char) :
+    Comparable<BwClass> {
     companion object {
         val NONE = BwClass('0')
 
