@@ -198,6 +198,22 @@ internal class CliUeLogOutputTest {
     }
 
     @Test
+    fun testUeCapHexSegmented() {
+        test(
+            "-i",
+            "$path/input/ueCapHexSegmented.hex",
+            "--sub-types",
+            "LTE",
+            "-t",
+            "H",
+            "-l",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "ueCapHexSegmented.json",
+        )
+    }
+
+    @Test
     fun testQcatMrdc() {
         test(
             "-i",

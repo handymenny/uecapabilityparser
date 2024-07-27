@@ -5,7 +5,7 @@ import com.ericsson.mts.asn1.ASN1Lexer
 import com.ericsson.mts.asn1.ASN1Parser
 import com.ericsson.mts.asn1.ASN1Translator
 import com.ericsson.mts.asn1.KotlinJsonFormatWriter
-import com.ericsson.mts.asn1.PERTranslatorFactory
+import com.ericsson.mts.asn1.PERTranslatorFactoryKT
 import com.ericsson.mts.asn1.converter.AbstractConverter
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
@@ -80,13 +80,13 @@ object MtsAsn1Helpers {
     private fun getAsn1Translator(rat: Rat): ASN1Translator {
         val trees = if (rat == Rat.EUTRA) lteTrees else nrTrees
 
-        return ASN1Translator.fromExternalTrees(PERTranslatorFactory(false), trees)
+        return ASN1Translator.fromExternalTrees(PERTranslatorFactoryKT(false), trees)
     }
 
     private fun getAsn1ApTranslator(rat: Rat): ASN1Translator {
         val trees = if (rat == Rat.EUTRA) s1apTrees else ngapTrees
 
-        return ASN1Translator.fromExternalTrees(PERTranslatorFactory(true), trees)
+        return ASN1Translator.fromExternalTrees(PERTranslatorFactoryKT(true), trees)
     }
 
     fun apPDUtoJson(rat: Rat, pdu: ByteArray): JsonElement? {

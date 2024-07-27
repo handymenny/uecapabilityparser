@@ -299,6 +299,21 @@ internal class CliCsvOutputTest {
     }
 
     @Test
+    fun testUeCapHexSegmented() {
+        test(
+            "-i",
+            "$path/input/ueCapHexSegmented.hex",
+            "--sub-types",
+            "LTE",
+            "-t",
+            "H",
+            "-c",
+            "-",
+            oracleFilename = "ueCapHexSegmented.csv",
+        )
+    }
+
+    @Test
     fun testQcatMrdc() {
         test(
             "-i",

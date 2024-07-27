@@ -350,6 +350,18 @@ internal class ServerModeParseTest {
     }
 
     @Test
+    fun ueCapHexSegmentedJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonObject {
+                    put("type", "H")
+                    put("input", fileToBase64("$path/input/ueCapHexSegmented.hex"))
+                },
+            oraclePath = "$path/oracleJson/ueCapHexSegmented.json"
+        )
+    }
+
+    @Test
     fun qcatMrdcJsonOutput() {
         javalinJsonTest(
             request =

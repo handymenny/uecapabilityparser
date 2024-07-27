@@ -28,7 +28,7 @@ val tstypesImplementation: Configuration by
     configurations.getting { extendsFrom(configurations.implementation.get()) }
 
 dependencies {
-    val mtsAsn1Version = "45cc560"
+    val mtsAsn1Version = "3800c8a165"
     val javalinVersion = "6.1.6"
     val coroutinesVersion = "1.8.1"
     val kotlinxSerializationVer = "1.7.1"
@@ -38,6 +38,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinxSerializationVer")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-converter:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-per:$mtsAsn1Version")
+    implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlin-per:$mtsAsn1Version")
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     implementation("org.slf4j:slf4j-nop:2.0.13")
     implementation("com.github.ajalt.clikt:clikt:4.4.0")

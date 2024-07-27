@@ -378,6 +378,22 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun testUeCapHexSegmented() {
+        test(
+            "-i",
+            "$path/input/ueCapHexSegmented.hex",
+            "--sub-types",
+            "LTE",
+            "-t",
+            "H",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "ueCapHexSegmented.json",
+        )
+    }
+
+    @Test
     fun testQcatMrdc() {
         test(
             "-i",
