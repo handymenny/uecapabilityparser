@@ -15,6 +15,7 @@ import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.throwContentTooLargeIfContentTooLarge
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.io.NullInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
@@ -125,9 +126,9 @@ class JavalinApp {
     }
 
     private fun reparseItem(indexLine: IndexLine, store: String, compression: Boolean) {
+        val compressed = indexLine.compressed
+        val capPath = "/output/${indexLine.id}.json"
         try {
-            val compressed = indexLine.compressed
-            val capPath = "/output/${indexLine.id}.json"
             val capText =
                 IOUtils.inputSourceAndMove("$store$capPath", "$store/backup$capPath", compressed)
                     ?: NullInputSource
@@ -158,8 +159,18 @@ class JavalinApp {
                 it.capabilities.timestamp = capabilities.timestamp
                 it.store(null, store, compression)
             }
+                ?: throw NullPointerException("Reparsed Capabilities is null")
         } catch (ex: Exception) {
-            ex.printStackTrace()
+            echoSafe("Error re-parsing ${indexLine.id}:\t${ex.message}", true)
+            try {
+                // restore prev version
+                IOUtils.copy("$store/backup$capPath", "$store$capPath", compressed)
+                indexLine.inputs.forEach {
+                    IOUtils.copy("$store/backup/input/$it", "$store/input/$it", compressed)
+                }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
         }
     }
 
