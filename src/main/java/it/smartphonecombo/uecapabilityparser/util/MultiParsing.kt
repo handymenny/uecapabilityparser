@@ -14,6 +14,7 @@ import it.smartphonecombo.uecapabilityparser.io.NullInputSource
 import it.smartphonecombo.uecapabilityparser.io.SequenceInputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
+import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
@@ -50,7 +51,7 @@ class MultiParsing(
             var inputSource: InputSource = inputs.first()
             var inputENDCSource: InputSource? = null
             var inputNRSource: InputSource? = null
-            var defaultNr = false
+            var defaultRat = Rat.EUTRA
             val description = descriptionList.getOrElse(i) { "" }
 
             if (type in LogType.multiImporter) {
@@ -80,10 +81,16 @@ class MultiParsing(
                     }
                 }
 
-                if (inputNRSource?.isEmpty() == false && inputSource.isEmpty()) {
-                    inputSource = inputNRSource
-                    inputNRSource = null
-                    defaultNr = true
+                if (inputSource.isEmpty()) {
+                    if (inputNRSource?.isEmpty() == false) {
+                        inputSource = inputNRSource
+                        inputNRSource = null
+                        defaultRat = Rat.NR
+                    } else if (inputENDCSource?.isEmpty() == false) {
+                        inputSource = inputENDCSource
+                        inputENDCSource = null
+                        defaultRat = Rat.EUTRA_NR
+                    }
                 }
             } else if (inputs.size > 1) {
                 inputSource = SequenceInputSource(inputs)
@@ -94,7 +101,7 @@ class MultiParsing(
                     inputSource,
                     inputNRSource,
                     inputENDCSource,
-                    defaultNr,
+                    defaultRat,
                     type,
                     description,
                     jsonFormat

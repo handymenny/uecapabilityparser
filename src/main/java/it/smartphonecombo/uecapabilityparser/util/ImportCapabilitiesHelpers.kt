@@ -22,11 +22,11 @@ object ImportCapabilitiesHelpers {
         input: InputSource,
         inputNR: InputSource?,
         inputENDC: InputSource?,
-        defaultNR: Boolean
+        defaultRat: Rat
     ): JsonObject {
         val ratContainerMap =
             if (type == LogType.H) {
-                jsonFromHex(input, inputNR, inputENDC, defaultNR)
+                jsonFromHex(input, inputNR, inputENDC, defaultRat)
             } else {
                 val list = listOfNotNull(input, inputNR, inputENDC)
                 val inputSource = if (list.size > 1) SequenceInputSource(list) else list.first()
@@ -161,10 +161,9 @@ object ImportCapabilitiesHelpers {
         inputMainText: InputSource,
         inputNRText: InputSource?,
         inputENDCText: InputSource?,
-        defaultNR: Boolean
+        defaultRat: Rat
     ): Map<String, JsonElement> {
         val ratContainerMap = mutableMapOf<String, JsonElement>()
-        val defaultRat = if (defaultNR) Rat.NR else Rat.EUTRA
         ratContainerMap += MtsAsn1Helpers.getUeCapabilityJsonFromHex(defaultRat, inputMainText)
         if (inputNRText != null) {
             ratContainerMap += MtsAsn1Helpers.getUeCapabilityJsonFromHex(Rat.NR, inputNRText)

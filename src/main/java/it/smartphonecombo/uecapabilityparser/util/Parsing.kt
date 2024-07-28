@@ -25,7 +25,7 @@ class Parsing(
     private val input: InputSource,
     private val inputNR: InputSource?,
     private val inputENDC: InputSource?,
-    private val defaultNR: Boolean = false,
+    private val defaultRat: Rat = Rat.EUTRA,
     private val type: LogType,
     private val description: String = "",
     private val jsonFormat: Json = Json
@@ -42,7 +42,7 @@ class Parsing(
         capabilities.logType = type
         capabilities.timestamp = Instant.now().toEpochMilli()
         capabilities.setMetadata("processingTime", "${processTime}ms")
-        if (defaultNR) capabilities.setMetadata("defaultNR", "true")
+        if (defaultRat == Rat.NR) capabilities.setMetadata("defaultNR", "true")
 
         // Set description
         if (description.isNotEmpty()) {
@@ -64,7 +64,7 @@ class Parsing(
         }
 
         if (imports == ImportCapabilityInformation) {
-            jsonUeCap = convertUeCapabilityToJson(type, input, inputNR, inputENDC, defaultNR)
+            jsonUeCap = convertUeCapabilityToJson(type, input, inputNR, inputENDC, defaultRat)
             val eutra = jsonUeCap?.get(Rat.EUTRA.toString()) as? JsonObject
             val eutraNr = jsonUeCap?.get(Rat.EUTRA_NR.toString()) as? JsonObject
             val nr = jsonUeCap?.get(Rat.NR.toString()) as? JsonObject
@@ -110,17 +110,23 @@ class Parsing(
 
     companion object {
         fun fromRequest(req: RequestParse): Parsing? {
-            val defaultNR = req.defaultNR || req.input == null
+            val defaultRat =
+                when {
+                    req.defaultNR || req.input == null && req.inputNR != null -> Rat.NR
+                    req.input == null && req.inputENDC != null -> Rat.EUTRA_NR
+                    req.input != null -> Rat.EUTRA
+                    else -> null
+                }
 
-            if (req.input == null && req.inputNR == null || req.type == LogType.INVALID) {
+            if (defaultRat == null || req.type == LogType.INVALID) {
                 return null
             }
 
             return Parsing(
-                req.input ?: req.inputNR!!,
-                if (defaultNR) null else req.inputNR,
-                req.inputENDC,
-                defaultNR,
+                req.input ?: req.inputNR ?: req.inputENDC!!,
+                if (defaultRat == Rat.NR) null else req.inputNR,
+                if (defaultRat == Rat.EUTRA_NR) null else req.inputENDC,
+                defaultRat,
                 req.type,
                 req.description
             )
