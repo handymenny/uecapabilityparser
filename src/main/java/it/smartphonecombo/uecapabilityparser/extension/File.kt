@@ -8,9 +8,14 @@ import kotlin.io.path.Path
 /** Remove all extensions * */
 internal fun File.nameWithoutAnyExtension() = this.name.substringBefore(".")
 
-/** Move file to the given path, replacing and existing file if it exists */
+/** Move file to the given path, replacing an existing file if it exists */
 internal fun File.moveTo(path: String) {
     Files.move(this.toPath(), Path(path), StandardCopyOption.REPLACE_EXISTING)
+}
+
+/** Copy file to the given path, replacing an existing file if it exists */
+internal fun File.copyTo(path: String) {
+    Files.copy(this.toPath(), Path(path), StandardCopyOption.REPLACE_EXISTING)
 }
 
 internal fun File.deleteIgnoreException() {

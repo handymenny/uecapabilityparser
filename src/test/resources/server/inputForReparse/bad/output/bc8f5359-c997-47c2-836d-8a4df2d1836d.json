@@ -1,0 +1,40 @@
+{
+  "logType": "H",
+  "ueCapFilters": [
+    {
+      "type": "UeCapabilityFilterNr",
+      "rat": "EUTRA_NR",
+      "lteBands": [
+        {
+          "band": 1
+        },
+        {
+          "band": 3
+        },
+        {
+          "band": 7
+        },
+        {
+          "band": 20
+        }
+      ],
+      "nrBands": [
+        {
+          "band": 38
+        },
+        {
+          "band": 28
+        },
+        {
+          "band": 78
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "processingTime": "1204ms"
+  },
+  "id": "bc8f5359-c997-47c2-836d-8a4df2d1836d",
+  "parserVersion": "staging",
+  "timestamp": 1722175900693
+}

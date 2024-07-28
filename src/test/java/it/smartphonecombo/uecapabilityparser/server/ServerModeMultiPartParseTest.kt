@@ -261,6 +261,22 @@ internal class ServerModeMultiPartParseTest {
     }
 
     @Test
+    fun ueCapHexMrDcOnlyJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "H")
+                        putJsonArray("inputIndexes") { add(0) }
+                        putJsonArray("subTypes") { add("ENDC") }
+                    }
+                },
+            files = listOf("$inputPath/ueCapHexMrdcSplit_eutra-nr.hex"),
+            oraclePath = "$oraclePath/ueCapHexMrdcSplit_eutra_nr.json",
+        )
+    }
+
+    @Test
     fun ueCapHexSegmentedJsonOutput() {
         javalinJsonTest(
             request =

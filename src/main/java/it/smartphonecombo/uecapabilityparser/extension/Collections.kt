@@ -2,6 +2,8 @@
 
 package it.smartphonecombo.uecapabilityparser.extension
 
+import it.smartphonecombo.uecapabilityparser.model.Rat
+import it.smartphonecombo.uecapabilityparser.model.filter.IUeCapabilityFilter
 import java.util.Collections
 import java.util.Enumeration
 import kotlin.collections.ArrayList
@@ -71,3 +73,5 @@ internal suspend fun <T, R> List<T>.mapAsync(transform: suspend (T) -> R): List<
     coroutineScope {
         map { async { transform(it) } }.awaitAll()
     }
+
+internal fun List<IUeCapabilityFilter>.hasRat(rat: Rat) = any { it.rat == rat }

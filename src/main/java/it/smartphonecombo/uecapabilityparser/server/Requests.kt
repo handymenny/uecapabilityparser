@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.server
 import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.io.InputSourceBase64Serializer
 import it.smartphonecombo.uecapabilityparser.model.LogType
+import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -49,14 +50,26 @@ class RequestParse(
             vararg inputs: InputSource,
             type: LogType,
             description: String,
-            defaultNR: Boolean
+            ratList: List<Rat>
         ): RequestParse {
-            val input = inputs.firstOrNull()
-            val firstInputIsNr = type == LogType.H && defaultNR
-            val inputNR = if (firstInputIsNr) null else inputs.getOrNull(1)
-            val inputENDC = if (firstInputIsNr) inputs.getOrNull(1) else inputs.getOrNull(2)
+            val inputIndex = ratList.indexOf(Rat.EUTRA)
+            val inputNrIndex = ratList.indexOf(Rat.NR)
+            val inputEnDcIndex = ratList.indexOf(Rat.EUTRA_NR)
 
-            return RequestParse(input, inputNR, inputENDC, defaultNR, type, description)
+            val input = inputs.getOrNull(inputIndex)
+            val inputNR = inputs.getOrNull(inputNrIndex)
+            val inputENDC = inputs.getOrNull(inputEnDcIndex)
+
+            require(ratList.size >= inputs.size) { "Something weird, inputs list >= rat List" }
+
+            return RequestParse(
+                input,
+                inputNR,
+                inputENDC,
+                ratList.first() == Rat.NR,
+                type,
+                description
+            )
         }
     }
 }

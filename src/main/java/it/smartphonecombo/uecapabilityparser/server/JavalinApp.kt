@@ -11,12 +11,16 @@ import io.javalin.http.staticfiles.Location
 import it.smartphonecombo.uecapabilityparser.extension.badRequest
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
+import it.smartphonecombo.uecapabilityparser.extension.hasRat
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.throwContentTooLargeIfContentTooLarge
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.io.NullInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.LogType
+import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
@@ -125,9 +129,9 @@ class JavalinApp {
     }
 
     private fun reparseItem(indexLine: IndexLine, store: String, compression: Boolean) {
+        val compressed = indexLine.compressed
+        val capPath = "/output/${indexLine.id}.json"
         try {
-            val compressed = indexLine.compressed
-            val capPath = "/output/${indexLine.id}.json"
             val capText =
                 IOUtils.inputSourceAndMove("$store$capPath", "$store/backup$capPath", compressed)
                     ?: NullInputSource
@@ -147,9 +151,7 @@ class JavalinApp {
                     *inputMap.toTypedArray(),
                     type = capabilities.logType,
                     description = indexLine.description,
-                    defaultNR =
-                        indexLine.defaultNR ||
-                            capabilities.lteBands.isEmpty() && capabilities.nrBands.isNotEmpty()
+                    ratList = guessRats(capabilities, inputMap.size)
                 )
 
             Parsing.fromRequest(request)?.let {
@@ -158,9 +160,50 @@ class JavalinApp {
                 it.capabilities.timestamp = capabilities.timestamp
                 it.store(null, store, compression)
             }
+                ?: throw NullPointerException("Reparsed Capabilities is null")
         } catch (ex: Exception) {
-            ex.printStackTrace()
+            echoSafe("Error re-parsing ${indexLine.id}:\t${ex.message}", true)
+            try {
+                // restore prev version
+                IOUtils.copy("$store/backup$capPath", "$store$capPath", compressed)
+                indexLine.inputs.forEach {
+                    IOUtils.copy("$store/backup/input/$it", "$store/input/$it", compressed)
+                }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
         }
+    }
+
+    private fun guessRats(capabilities: Capabilities, inputsLength: Int): List<Rat> {
+        if (capabilities.logType != LogType.H) {
+            return listOf(Rat.EUTRA)
+        }
+
+        val defaultRatList = listOf(Rat.EUTRA, Rat.NR, Rat.EUTRA_NR)
+
+        if (inputsLength == 3) {
+            return defaultRatList
+        }
+
+        val ratList = mutableListOf<Rat>()
+        if (capabilities.lteBands.isNotEmpty() || capabilities.ueCapFilters.hasRat(Rat.EUTRA)) {
+            ratList.add(Rat.EUTRA)
+        }
+        if (capabilities.nrBands.isNotEmpty() || capabilities.ueCapFilters.hasRat(Rat.NR)) {
+            ratList.add(Rat.NR)
+        }
+        if (
+            capabilities.enDcCombos.isNotEmpty() || capabilities.ueCapFilters.hasRat(Rat.EUTRA_NR)
+        ) {
+            ratList.add(Rat.EUTRA_NR)
+        }
+
+        if (ratList.isEmpty()) {
+            return defaultRatList
+        }
+
+        return ratList
     }
 
     private fun buildRoutes(store: String?, index: LibraryIndex, compression: Boolean) =

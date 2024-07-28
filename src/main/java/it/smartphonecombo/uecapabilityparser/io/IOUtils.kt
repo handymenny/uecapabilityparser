@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.io
 
 import it.smartphonecombo.uecapabilityparser.cli.Cli.echo
+import it.smartphonecombo.uecapabilityparser.extension.copyTo
 import it.smartphonecombo.uecapabilityparser.extension.gzipCompress
 import it.smartphonecombo.uecapabilityparser.extension.moveTo
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
@@ -308,5 +309,18 @@ object IOUtils {
         val dstFile = File(dstPath + addExtension)
         inputFile.moveTo(dstFile.path)
         return dstFile.toInputSource(compressed)
+    }
+
+    /**
+     * if [compressed] is true, automatically appends ".gz". File is copied from [srcPath] to
+     * [dstPath].
+     */
+    fun copy(srcPath: String, dstPath: String, compressed: Boolean) {
+        val addExtension = if (compressed) ".gz" else ""
+        val inputFile = File(srcPath + addExtension)
+        if (!inputFile.exists()) return
+
+        val dstFile = File(dstPath + addExtension)
+        return inputFile.copyTo(dstFile.path)
     }
 }

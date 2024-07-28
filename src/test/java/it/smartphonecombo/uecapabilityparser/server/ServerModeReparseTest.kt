@@ -35,7 +35,7 @@ internal class ServerModeReparseTest {
         try {
             createMultiDir("$resourcesPath/oracleForReparse")
             copyDirectory("$resourcesPath/inputForReparse", tmpStorePath)
-            replaceVersion(tmpStorePath, "staging", parserVersion)
+            replaceVersion("$tmpStorePath/good", "staging", parserVersion)
         } catch (_: Exception) {}
     }
 
@@ -50,8 +50,9 @@ internal class ServerModeReparseTest {
     @Test
     fun testReparseAuto() {
         test(
-            arrayOf("server", "-p", "0", "--store", tmpStorePath, "--reparse", "auto"),
-            "$resourcesPath/oracleForReparse/auto"
+            arrayOf("server", "-p", "0", "--store", "$tmpStorePath/good", "--reparse", "auto"),
+            "$resourcesPath/oracleForReparse/auto",
+            "$tmpStorePath/good"
         )
     }
 
@@ -63,20 +64,22 @@ internal class ServerModeReparseTest {
                 "-p",
                 "0",
                 "--store",
-                tmpStorePath,
+                "$tmpStorePath/good",
                 "--reparse",
                 "auto",
                 "--compression"
             ),
-            "$resourcesPath/oracleForReparse/autoCompress"
+            "$resourcesPath/oracleForReparse/autoCompress",
+            "$tmpStorePath/good"
         )
     }
 
     @Test
     fun testReparseForce() {
         test(
-            arrayOf("server", "-p", "0", "--store", tmpStorePath, "--reparse", "force"),
-            "$resourcesPath/oracleForReparse/force"
+            arrayOf("server", "-p", "0", "--store", "$tmpStorePath/good", "--reparse", "force"),
+            "$resourcesPath/oracleForReparse/force",
+            "$tmpStorePath/good"
         )
     }
 
@@ -88,19 +91,38 @@ internal class ServerModeReparseTest {
                 "-p",
                 "0",
                 "--store",
-                tmpStorePath,
+                "$tmpStorePath/good",
                 "--reparse",
                 "force",
                 "--compression"
             ),
-            "$resourcesPath/oracleForReparse/forceCompress"
+            "$resourcesPath/oracleForReparse/forceCompress",
+            "$tmpStorePath/good"
         )
     }
 
-    fun test(args: Array<String>, oraclePath: String) {
+    @Test
+    fun testReparseForceBad() {
+        test(
+            arrayOf(
+                "server",
+                "-p",
+                "0",
+                "--store",
+                "$tmpStorePath/bad",
+                "--reparse",
+                "force",
+                "--compression"
+            ),
+            "$resourcesPath/oracleForReparse/forceBad",
+            "$tmpStorePath/bad"
+        )
+    }
+
+    fun test(args: Array<String>, storePath: String, oraclePath: String) {
         Main.main(args)
         dispatcher.scheduler.advanceUntilIdle()
-        assertTrue(dirsSimilar(oraclePath, tmpStorePath))
+        assertTrue(dirsSimilar(oraclePath, storePath))
     }
 
     private fun deleteDirectory(path: String) {
