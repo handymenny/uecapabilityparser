@@ -101,6 +101,24 @@ internal class ServerModeReparseTest {
         )
     }
 
+    @Test
+    fun testReparseForceBad() {
+        test(
+            arrayOf(
+                "server",
+                "-p",
+                "0",
+                "--store",
+                "$tmpStorePath/bad",
+                "--reparse",
+                "force",
+                "--compression"
+            ),
+            "$resourcesPath/oracleForReparse/forceBad",
+            "$tmpStorePath/bad"
+        )
+    }
+
     fun test(args: Array<String>, storePath: String, oraclePath: String) {
         Main.main(args)
         dispatcher.scheduler.advanceUntilIdle()
