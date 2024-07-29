@@ -36,6 +36,11 @@ internal class Import0xB0CDBinTest {
     }
 
     @Test
+    fun parseV324rx() {
+        parse("0xB0CD-v32-4rx.bin", "0xB0CD-v32-4rx.json")
+    }
+
+    @Test
     fun parseV40() {
         parse("0xB0CD-v40.bin", "0xB0CD-v40.json")
     }
