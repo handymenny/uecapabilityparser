@@ -66,7 +66,7 @@ object Import0xB0CDBin : ImportCapabilities {
 
             listCombo = mutableListWithCapacity(numCombos)
 
-            for (i in 1..numCombos) {
+            repeat(numCombos) {
                 val combo = parseCombo(stream, version)
                 listCombo.add(combo)
             }
@@ -95,7 +95,7 @@ object Import0xB0CDBin : ImportCapabilities {
     private fun parseCombo(stream: InputStream, version: Int): ComboLte {
         val numComponents = getNumComponents(stream, version)
         val bands = mutableListWithCapacity<ComponentLte>(numComponents)
-        for (i in 0 until numComponents) {
+        repeat(numComponents) {
             val component = parseComponent(stream, version)
             if (component.band != 0) {
                 bands.add(component)
@@ -164,7 +164,7 @@ object Import0xB0CDBin : ImportCapabilities {
      *
      * The sequence generator is guessed, so it can be wrong or incomplete.
      */
-    fun getQamFromIndex(index: Int): Modulation {
+    private fun getQamFromIndex(index: Int): Modulation {
         /*
             Some examples:
             0 -> INVALID
@@ -180,7 +180,7 @@ object Import0xB0CDBin : ImportCapabilities {
             ...
         */
         var result = arrayOf(ModulationOrder.NONE)
-        for (i in 1..index) {
+        repeat(index) {
             val indexOfMin = result.indexOfMin()
             when (result[indexOfMin]) {
                 ModulationOrder.QAM256 -> result = Array(result.size + 1) { ModulationOrder.QAM64 }
