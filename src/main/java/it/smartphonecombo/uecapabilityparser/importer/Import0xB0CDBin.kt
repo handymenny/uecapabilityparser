@@ -66,7 +66,7 @@ object Import0xB0CDBin : ImportCapabilities {
 
             listCombo = mutableListWithCapacity(numCombos)
 
-            for (i in 1..numCombos) {
+            repeat(numCombos) {
                 val combo = parseCombo(stream, version)
                 listCombo.add(combo)
             }
@@ -95,7 +95,7 @@ object Import0xB0CDBin : ImportCapabilities {
     private fun parseCombo(stream: InputStream, version: Int): ComboLte {
         val numComponents = getNumComponents(stream, version)
         val bands = mutableListWithCapacity<ComponentLte>(numComponents)
-        for (i in 0 until numComponents) {
+        repeat(numComponents) {
             val component = parseComponent(stream, version)
             if (component.band != 0) {
                 bands.add(component)
@@ -127,12 +127,15 @@ object Import0xB0CDBin : ImportCapabilities {
 
         if (version >= 41) {
             component.classUL = BwClass.valueOf(stream.readUByte())
-            component.mimoDL = Mimo.fromQcIndex(stream.readUByte())
-            component.mimoUL = Mimo.fromQcIndex(stream.readUByte())
+            component.mimoDL = parseMimo(stream.readUByte(), true)
+            component.mimoUL = parseMimo(stream.readUByte(), true)
         } else if (version >= 32) {
-            component.mimoDL = Mimo.fromQcIndex(stream.readUByte())
+            // versions < 40 don't have an indexed mimo
+            val mimoIsIndexed = version >= 40
+
+            component.mimoDL = parseMimo(stream.readUByte(), mimoIsIndexed)
             component.classUL = BwClass.valueOf(stream.readUByte())
-            component.mimoUL = Mimo.fromQcIndex(stream.readUByte())
+            component.mimoUL = parseMimo(stream.readUByte(), mimoIsIndexed)
         } else {
             component.classUL = BwClass.valueOf(stream.readUByte())
         }
@@ -149,11 +152,19 @@ object Import0xB0CDBin : ImportCapabilities {
     }
 
     /**
+     * Convert the given "raw" value to mimo. If indexed is true (version >= 40) calls
+     * [Mimo.fromQcIndex], otherwise calls [Mimo.from]
+     */
+    private fun parseMimo(value: Int, indexed: Boolean): Mimo {
+        return if (indexed) Mimo.fromQcIndex(value) else Mimo.from(value)
+    }
+
+    /**
      * Return qam from Qualcomm diag index.
      *
      * The sequence generator is guessed, so it can be wrong or incomplete.
      */
-    fun getQamFromIndex(index: Int): Modulation {
+    private fun getQamFromIndex(index: Int): Modulation {
         /*
             Some examples:
             0 -> INVALID
@@ -169,7 +180,7 @@ object Import0xB0CDBin : ImportCapabilities {
             ...
         */
         var result = arrayOf(ModulationOrder.NONE)
-        for (i in 1..index) {
+        repeat(index) {
             val indexOfMin = result.indexOfMin()
             when (result[indexOfMin]) {
                 ModulationOrder.QAM256 -> result = Array(result.size + 1) { ModulationOrder.QAM64 }
