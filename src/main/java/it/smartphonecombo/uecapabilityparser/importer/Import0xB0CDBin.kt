@@ -127,12 +127,15 @@ object Import0xB0CDBin : ImportCapabilities {
 
         if (version >= 41) {
             component.classUL = BwClass.valueOf(stream.readUByte())
-            component.mimoDL = Mimo.fromQcIndex(stream.readUByte())
-            component.mimoUL = Mimo.fromQcIndex(stream.readUByte())
+            component.mimoDL = parseMimo(stream.readUByte(), true)
+            component.mimoUL = parseMimo(stream.readUByte(), true)
         } else if (version >= 32) {
-            component.mimoDL = Mimo.fromQcIndex(stream.readUByte())
+            // versions < 40 don't have an indexed mimo
+            val mimoIsIndexed = version >= 40
+
+            component.mimoDL = parseMimo(stream.readUByte(), mimoIsIndexed)
             component.classUL = BwClass.valueOf(stream.readUByte())
-            component.mimoUL = Mimo.fromQcIndex(stream.readUByte())
+            component.mimoUL = parseMimo(stream.readUByte(), mimoIsIndexed)
         } else {
             component.classUL = BwClass.valueOf(stream.readUByte())
         }
@@ -146,6 +149,14 @@ object Import0xB0CDBin : ImportCapabilities {
         }
 
         return component
+    }
+
+    /**
+     * Convert the given "raw" value to mimo. If indexed is true (version >= 40) calls
+     * [Mimo.fromQcIndex], otherwise calls [Mimo.from]
+     */
+    private fun parseMimo(value: Int, indexed: Boolean): Mimo {
+        return if (indexed) Mimo.fromQcIndex(value) else Mimo.from(value)
     }
 
     /**
