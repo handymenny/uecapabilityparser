@@ -8,6 +8,8 @@ import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 
 open class InternMap<T>(maxCapacity: Int) {
+    @Transient private val lock = Any()
+
     private val internalMap: LinkedHashMap<T, T> =
         object : LinkedHashMap<T, T>(minOf(16, maxCapacity), 0.75f) {
             override fun removeEldestEntry(eldest: Map.Entry<T, T>): Boolean {
@@ -16,7 +18,7 @@ open class InternMap<T>(maxCapacity: Int) {
         }
 
     private fun put(value: T): T {
-        internalMap[value] = value
+        synchronized(lock) { internalMap[value] = value }
         return value
     }
 
