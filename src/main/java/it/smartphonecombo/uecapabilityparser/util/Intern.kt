@@ -11,7 +11,7 @@ open class InternMap<T>(maxCapacity: Int) {
     @Transient private val lock = Any()
 
     private val internalMap: LinkedHashMap<T, T> =
-        object : LinkedHashMap<T, T>(minOf(16, maxCapacity), 0.75f) {
+        object : LinkedHashMap<T, T>(computeInitialCapacity(maxCapacity)) {
             override fun removeEldestEntry(eldest: Map.Entry<T, T>): Boolean {
                 return size > maxCapacity
             }
@@ -23,6 +23,16 @@ open class InternMap<T>(maxCapacity: Int) {
     }
 
     fun intern(value: T): T = internalMap[value] ?: put(value)
+
+    companion object {
+        private fun computeInitialCapacity(maxCapacity: Int): Int {
+            // A value that ensures no re-hash is maxCapacity / 0.75 + 1
+            // Compute that value / 2
+            val initialCapacity = Math.floorDiv(maxCapacity * 2, 3) + 1
+
+            return maxOf(16, initialCapacity)
+        }
+    }
 }
 
 object MimoInternMap : InternMap<Mimo>(100)
