@@ -55,5 +55,5 @@ object HelpMessage {
     const val CUSTOM_CSS = "Inject custom css in Web UI"
     const val CUSTOM_JS = "Inject custom js in Web UI"
     const val LIBRARY_CACHE =
-        "Number of items to cache, each items occupies ~0.15MB of RAM. 0 = disabled, -1 = unlimited."
+        "Number of items to cache, each items occupies ~4-80KB of RAM. 0 = disabled, -1 = unlimited."
 }

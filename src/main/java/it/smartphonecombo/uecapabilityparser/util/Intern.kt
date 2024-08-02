@@ -1,11 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.util
 
-import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
-import it.smartphonecombo.uecapabilityparser.model.Mimo
-import it.smartphonecombo.uecapabilityparser.model.bandwidth.Bandwidth
-import it.smartphonecombo.uecapabilityparser.model.bandwidth.EmptyBandwidth
-import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
-import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
+import it.smartphonecombo.uecapabilityparser.model.band.IBandDetails
+import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 
 open class InternMap<T>(maxCapacity: Int) {
     @Transient private val lock = Any()
@@ -24,6 +21,10 @@ open class InternMap<T>(maxCapacity: Int) {
 
     fun intern(value: T): T = internalMap[value] ?: put(value)
 
+    fun contains(value: T): Boolean = internalMap.contains(value)
+
+    fun size() = internalMap.size
+
     companion object {
         private fun computeInitialCapacity(maxCapacity: Int): Int {
             // A value that ensures no re-hash is maxCapacity / 0.75 + 1
@@ -35,16 +36,16 @@ open class InternMap<T>(maxCapacity: Int) {
     }
 }
 
-object MimoInternMap : InternMap<Mimo>(100)
+private object IBandDetailsInternMap : InternMap<IBandDetails>(1000)
 
-object ModulationInternMap : InternMap<Modulation>(100)
+private object IComponentInternMap : InternMap<IComponent>(10000)
 
-object BandwidthInternMap : InternMap<Bandwidth>(100)
+private object IComboInternMap : InternMap<ICombo>(100000)
 
-internal fun Mimo.intern(): Mimo = if (this == EmptyMimo) this else MimoInternMap.intern(this)
+internal fun IBandDetails.intern() = IBandDetailsInternMap.intern(this)
 
-internal fun Modulation.intern() =
-    if (this == EmptyModulation) this else ModulationInternMap.intern(this)
+internal fun IComponent.intern() = IComponentInternMap.intern(this)
 
-internal fun Bandwidth.intern() =
-    if (this == EmptyBandwidth) this else BandwidthInternMap.intern(this)
+internal fun ICombo.intern() = IComboInternMap.intern(this)
+
+internal fun ICombo.alreadyInterned() = IComboInternMap.contains(this)
