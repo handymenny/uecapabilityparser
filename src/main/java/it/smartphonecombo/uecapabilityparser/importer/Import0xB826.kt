@@ -46,7 +46,7 @@ object Import0xB826 : ImportCapabilities {
      *
      * It supports 0xB826 with or without header.
      *
-     * It has been tested with the following 0xB826 versions: 2, 3, 4, 6, 7, 8, 9, 10, 13, 14.
+     * It has been tested with the following 0xB826 versions: 2, 3, 4, 6, 7, 8, 9, 10, 13, 14, 17.
      *
      * If you have a 0xB826 of a different version, please share it with info at smartphonecombo dot
      * it.
@@ -360,11 +360,15 @@ object Import0xB826 : ImportCapabilities {
             val scsIndex = scsRight.insert(scsLeft, 1)
             nrBand.scs = getSCSFromIndex(scsIndex)
 
-            if (version >= 10) {
+            if (version >= 17) {
+                val maxBWindex = byte4.readNBits(6, offset = 2).insert(byte5.readNBits(1), 6)
+                nrBand.maxBandwidthDl = getBWFromIndexV17(maxBWindex)
+                val maxBwIndexUl = byte5.readNBits(7, offset = 1)
+                nrBand.maxBandwidthUl = getBWFromIndexV17(maxBwIndexUl)
+            } else if (version >= 10) {
                 val maxBWindex = byte4.readNBits(6, offset = 2)
                 nrBand.maxBandwidthDl = getBWFromIndexV10(maxBWindex)
-                val ulOffset = if (version <= 14) 0 else 1
-                val maxBwIndexUl = byte5.readNBits(6, offset = ulOffset)
+                val maxBwIndexUl = byte5.readNBits(6)
                 nrBand.maxBandwidthUl = getBWFromIndexV10(maxBwIndexUl)
             } else {
                 val maxBWindex = byte4.readNBits(5, offset = 2)
@@ -377,7 +381,7 @@ object Import0xB826 : ImportCapabilities {
         } else {
             stream.skipBytes(3)
         }
-        if (version > 14) {
+        if (version >= 17) {
             stream.skipBytes(1)
         }
         return component
@@ -494,6 +498,32 @@ object Import0xB826 : ImportCapabilities {
             }
 
         return single.toBandwidth()
+    }
+
+    /**
+     * Return maxBw from index for 0xB826 versions >= 17.
+     *
+     * The first 64 values are decoded by [getBWFromIndexV10]
+     *
+     * Some values are guessed, so they can be wrong or incomplete.
+     */
+    private fun getBWFromIndexV17(index: Int): Bandwidth {
+        if (index < 64) {
+            // V10 Decodes the range 0-63
+            return getBWFromIndexV10(index)
+        }
+
+        val mixed =
+            when (index) {
+                64 -> listOf(100, 50)
+                65 -> listOf(100, 80)
+                else -> {
+                    echoSafe("Warning: 0xB826 BW index is above 65: $index", err = true)
+                    emptyList()
+                }
+            }
+
+        return Bandwidth.from(mixed)
     }
 
     /**
