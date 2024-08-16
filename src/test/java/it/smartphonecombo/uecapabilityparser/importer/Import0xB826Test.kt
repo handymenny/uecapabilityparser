@@ -226,4 +226,24 @@ internal class Import0xB826Test {
     fun parseV14SA() {
         parse("0xB826-v14-SA.bin", "0xB826-v14-SA.json")
     }
+
+    @Test
+    fun parseV17NSA() {
+        parse("0xB826-v17-NSA.bin", "0xB826-v17-NSA.json")
+    }
+
+    @Test
+    fun parseV17SA() {
+        parse("0xB826-v17-SA.bin", "0xB826-v17-SA.json")
+    }
+
+    @Test
+    fun parseV17SA2() {
+        parse("0xB826-v17-SA2.bin", "0xB826-v17-SA2.json")
+    }
+
+    @Test
+    fun parseV17NRDC() {
+        parse("0xB826-v17-NRDC.bin", "0xB826-v17-NRDC.json")
+    }
 }
