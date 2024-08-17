@@ -19,12 +19,6 @@ internal class Import0xB0CDBinTest {
         Assertions.assertEquals(expected, actual)
     }
 
-    // Unknown version below v24
-    @Test
-    fun parsePreV24() {
-        parse("0xB0CD-preV24-headless.bin", "0xB0CD-preV24-headless.json")
-    }
-
     @Test
     fun parseV24() {
         parse("0xB0CD-v24-headless.bin", "0xB0CD-v24-headless.json")
@@ -58,5 +52,29 @@ internal class Import0xB0CDBinTest {
     @Test
     fun parseV41qam64UL() {
         parse("0xB0CD-v41-64qamUL.bin", "0xB0CD-v41-64qamUL.json")
+    }
+
+    // declared as v24 but real version below v24
+    @Test
+    fun parseV24Fake() {
+        parse("0xB0CD-V24fake-headless.bin", "0xB0CD-V24fake-headless.json")
+    }
+
+    // declared as v32 but real version is v24
+    @Test
+    fun parseV32Fake() {
+        parse("0xB0CD-V32fake.bin", "0xB0CD-v32fake.json")
+    }
+
+    // declared as v40 but real version is v32
+    @Test
+    fun parseV40Fake() {
+        parse("0xB0CD-v40fake.bin", "0xB0CD-v40fake.json")
+    }
+
+    // declared as v41 but real version is v40
+    @Test
+    fun parseV41Fake() {
+        parse("0xB0CD-v41fake.bin", "0xB0CD-v41fake.json")
     }
 }

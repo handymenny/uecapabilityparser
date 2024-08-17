@@ -36,6 +36,23 @@ object Import0xB0CDBin : ImportCapabilities {
      * it.
      */
     override fun parse(input: InputSource): Capabilities {
+        var capabilities = parse(input, null)
+
+        if (invalidResult(capabilities)) {
+            // some 0xB0CD logs have wrong version in header
+            // try to downgrade it
+            val newVersion = getDowngradedVersion(capabilities)
+            if (newVersion != null) capabilities = parse(input, newVersion)
+        }
+
+        return capabilities
+    }
+
+    /**
+     * Like [parse], but with ability to override version. Set [overrideVersion] to null to disable
+     * version override.
+     */
+    fun parse(input: InputSource, overrideVersion: Int?): Capabilities {
         val capabilities = Capabilities()
         var listCombo = emptyList<ComboLte>()
         val stream = BufferedInputStream(input.inputStream())
@@ -48,10 +65,16 @@ object Import0xB0CDBin : ImportCapabilities {
                 echoSafe("Log file size: $logSize bytes")
             }
 
-            val version = stream.readUByte()
+            var version = stream.readUByte()
             capabilities.setMetadata("version", version)
             if (debug) {
                 echoSafe("Version $version\n")
+            }
+
+            if (overrideVersion != null) {
+                capabilities.setMetadata("realVersion", overrideVersion)
+                echoSafe("Warning 0xB0CD: overriding version $version with $overrideVersion", true)
+                version = overrideVersion
             }
 
             val numCombos = stream.readUByte()
@@ -192,5 +215,34 @@ object Import0xB0CDBin : ImportCapabilities {
         val resultQam = Modulation.from(result.toList())
 
         return resultQam
+    }
+
+    /** Check if [Capabilities] looks invalid */
+    private fun invalidResult(capabilities: Capabilities): Boolean {
+        // invalid bands
+        val hasInvalidBands =
+            capabilities.lteCombos.any { combo ->
+                combo.masterComponents.any { component -> component.band > 255 }
+            }
+
+        return hasInvalidBands
+    }
+
+    /**
+     * Return the highest known version below the version of the given capabilities. Return null if
+     * such version doesn't exist.
+     */
+    private fun getDowngradedVersion(capabilities: Capabilities): Int? {
+        val decodeVersion = capabilities.getStringMetadata("version")?.toIntOrNull() ?: -1
+
+        // downgrade doesn't make sense
+        if (decodeVersion < 24 || decodeVersion > 41) return null
+
+        return when (decodeVersion) {
+            32 -> 24
+            40 -> 32
+            41 -> 40
+            else -> 0
+        }
     }
 }
