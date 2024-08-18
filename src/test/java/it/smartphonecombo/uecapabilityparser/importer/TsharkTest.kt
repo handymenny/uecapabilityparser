@@ -76,7 +76,12 @@ internal class TsharkTest {
         return lines
             .dropLastWhile { it.isBlank() }
             .mapNotNull {
-                if (it.startsWith("DLT") || it.endsWith("…") || it.contains("[truncated]")) {
+                if (
+                    it.startsWith("DLT") ||
+                        it.endsWith("…") ||
+                        it.contains("[truncated]") ||
+                        it.contains("[…]")
+                ) {
                     null
                 } else if (it.contains("maxNumberConfiguredTCIstatesPerCC")) {
                     it.replace(
