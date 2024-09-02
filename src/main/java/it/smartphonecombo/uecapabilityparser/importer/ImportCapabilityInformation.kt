@@ -950,15 +950,17 @@ object ImportCapabilityInformation : ImportCapabilities {
         val list =
             bandCombinationsList?.mapIndexedNotNull { i, bandCombination ->
                 val nrCombo = nrCombos.getOrNull(i)
-                val featureSet =
-                    bandCombination
-                        .getObject("ca-ParametersNRDC")
-                        ?.getInt("featureSetCombinationDC")
+                val nrdc = bandCombination.getObject("ca-ParametersNRDC")
 
-                if (nrCombo == null || featureSet == null) {
+                // if nrdc is absent, nrdc isn't supported
+                if (nrCombo == null || nrdc == null) {
                     return@mapIndexedNotNull null
                 }
-                nrCombo.copy(featureSet = featureSet)
+
+                // if featureSetDc isn't set, use standard featureSet
+                val featureSetDc = nrdc.getInt("featureSetCombinationDC") ?: nrCombo.featureSet
+
+                nrCombo.copy(featureSet = featureSetDc)
             }
                 ?: emptyList()
         return list
