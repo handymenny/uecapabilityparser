@@ -121,6 +121,16 @@ internal class ImportCapabilityInformationTest {
     }
 
     @Test
+    fun ueCapNrDcShannon() {
+        parse("ueCapNrDcShannon.json", "ueCapNrDcShannon.json")
+    }
+
+    @Test
+    fun ueCapNrCaMmWave() {
+        parse("ueCapNrCaMmWave.json", "ueCapNrCaMmWave.json")
+    }
+
+    @Test
     fun ueCapNrSUL() {
         parse("ueCapNrSUL.json", "ueCapNrSUL.json")
     }
