@@ -32,6 +32,6 @@ RUN python3 -m venv /scat \
 
 USER java
 WORKDIR /home/java
-ENV JAVA_TOOL_OPTIONS -XX:MaxRAMPercentage=70.0 -XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:ShenandoahUncommitDelay=30000 -XX:ShenandoahGuaranteedGCInterval=60000
+ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=70.0 -XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:ShenandoahUncommitDelay=30000 -XX:ShenandoahGuaranteedGCInterval=60000"
 
 ENTRYPOINT [ "java", "-jar", "/app/uecapabilityparser.jar" ]
