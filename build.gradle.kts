@@ -85,8 +85,9 @@ tasks {
     }
 
     shadowJar {
-        // slf4j-nop to silence slf4j warning
-        val keepDependencies = listOf("org.slf4j:slf4j-nop:.*")
+        // slf4j-nop to silence slf4j warning, mordant-jvm-jna-jvm for clikt
+        val keepDependencies =
+            listOf("org.slf4j:slf4j-nop:.*", "com.github.ajalt.mordant:mordant-jvm-jna-jvm:.*")
         // Enable shadow minify
         minimize { keepDependencies.forEach { exclude(dependency(it)) } }
     }
