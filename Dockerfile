@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM gradle:8-jdk11-jammy AS build
+FROM --platform=$BUILDPLATFORM gradle:8.8-jdk11-jammy AS build
 
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
