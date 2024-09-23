@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.Context
 import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.output.MordantHelpFormatter
@@ -31,7 +32,9 @@ import it.smartphonecombo.uecapabilityparser.util.Parsing
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = true) {
+object Clikt : CliktCommand(name = "uecapabilityparser") {
+
+    override val printHelpOnEmptyArgs = true
 
     init {
         versionOption(version = Config.getOrDefault("project.version", ""))
@@ -53,12 +56,8 @@ object Clikt : CliktCommand(name = "uecapabilityparser", printHelpOnEmptyArgs = 
     }
 }
 
-object Cli :
-    CliktCommand(
-        name = "cli",
-        help = "Starts ue capability parser in cli mode",
-        printHelpOnEmptyArgs = true
-    ) {
+object Cli : CliktCommand(name = "cli") {
+    override val printHelpOnEmptyArgs = true
 
     private val inputsList by
         option("-i", "--input", help = HelpMessage.INPUT)
@@ -114,6 +113,8 @@ object Cli :
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
     private lateinit var jsonFormat: Json
+
+    override fun help(context: Context) = "Starts ue capability parser in cli mode"
 
     override fun run() {
         // Set debug
@@ -214,8 +215,7 @@ object Cli :
     }
 }
 
-object Server : CliktCommand(name = "server", help = "Starts ue capability parser in server mode") {
-
+object Server : CliktCommand(name = "server") {
     init {
         // Disable required mark
         context { helpFormatter = { MordantHelpFormatter(it, showDefaultValues = true) } }
@@ -258,6 +258,8 @@ object Server : CliktCommand(name = "server", help = "Starts ue capability parse
             .file(mustExist = true, canBeDir = false, mustBeReadable = true)
 
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
+
+    override fun help(context: Context) = "Starts ue capability parser in server mode"
 
     override fun run() {
         // Set debug
