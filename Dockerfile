@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM gradle:8-jdk11-jammy AS build
+FROM --platform=$BUILDPLATFORM gradle:8.8-jdk11-jammy AS build
 
 COPY --chown=gradle:gradle . /home/gradle/
 WORKDIR /home/gradle/
@@ -11,20 +11,18 @@ RUN git config --global --add safe.directory "*" \
 RUN gradle build --no-daemon
 
 
-FROM eclipse-temurin:21-jre-jammy AS deploy
+FROM eclipse-temurin:21-jre-noble AS deploy
 
-ARG SCAT_TAG=2a76b80
+ARG SCAT_TAG=b2c9253
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH="${PATH}:/scat/bin"
 
 RUN groupadd -r -g 2000 java && useradd -m -d /home/java/ -s /bin/bash -u 2000 -r -g java java \
-    && apt update \
-    && apt upgrade -y \
-    && echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y tshark python3 python3-venv --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/* \
-    && tshark -v
+    && apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y tshark python3 python3-venv --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /home/gradle/build/libs/*-all.jar /app/uecapabilityparser.jar
 
@@ -34,6 +32,6 @@ RUN python3 -m venv /scat \
 
 USER java
 WORKDIR /home/java
-ENV JAVA_TOOL_OPTIONS -XX:MaxRAMPercentage=70.0 -XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:ShenandoahUncommitDelay=30000 -XX:ShenandoahGuaranteedGCInterval=60000
+ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=70.0 -XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:ShenandoahUncommitDelay=30000 -XX:ShenandoahGuaranteedGCInterval=60000"
 
 ENTRYPOINT [ "java", "-jar", "/app/uecapabilityparser.jar" ]
