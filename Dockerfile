@@ -11,7 +11,7 @@ RUN git config --global --add safe.directory "*" \
 RUN gradle build --no-daemon
 
 
-FROM eclipse-temurin:21-jre-jammy AS deploy
+FROM eclipse-temurin:21-jre-noble AS deploy
 
 ARG SCAT_TAG=2a76b80
 ENV PYTHONDONTWRITEBYTECODE=1 \
