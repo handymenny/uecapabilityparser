@@ -1,3 +1,5 @@
+package it.smartphonecombo.uecapabilityparser.extension
+
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.EmptyMimo
