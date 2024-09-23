@@ -19,12 +19,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PATH="${PATH}:/scat/bin"
 
 RUN groupadd -r -g 2000 java && useradd -m -d /home/java/ -s /bin/bash -u 2000 -r -g java java \
-    && apt update \
-    && apt upgrade -y \
-    && echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y tshark python3 python3-venv --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/* \
-    && tshark -v
+    && apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y tshark python3 python3-venv --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /home/gradle/build/libs/*-all.jar /app/uecapabilityparser.jar
 
