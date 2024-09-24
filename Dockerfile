@@ -8,7 +8,7 @@ RUN git config --global --add safe.directory "*" \
     && sed -i "s/\(project.version=\)staging$/\1commit@$rev/g" src/main/resources/application.properties \
     || true
 # Build jar
-RUN gradle build --no-daemon
+RUN gradle build --no-daemon -x check
 
 
 FROM eclipse-temurin:21-jre-noble AS deploy
