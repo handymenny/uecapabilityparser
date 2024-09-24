@@ -63,12 +63,6 @@ internal fun BwMap.merge(other: BwMap) {
     }
 }
 
-internal fun <T> List<T>.trimToSize() {
-    if (this is ArrayList) {
-        this.trimToSize()
-    }
-}
-
 internal suspend fun <T, R> List<T>.mapAsync(transform: suspend (T) -> R): List<R> =
     coroutineScope {
         map { async { transform(it) } }.awaitAll()
