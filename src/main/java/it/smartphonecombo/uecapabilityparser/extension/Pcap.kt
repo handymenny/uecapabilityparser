@@ -1,9 +1,11 @@
 package it.smartphonecombo.uecapabilityparser.extension
 
 import io.pkts.buffer.Buffer
+import io.pkts.packet.Packet
 import io.pkts.packet.sctp.SctpDataChunk
 import io.pkts.packet.upperpdu.PDUOption
 import io.pkts.packet.upperpdu.UpperPDUPacket
+import io.pkts.protocol.Protocol
 
 /** [SctpDataChunk.getPayloadProtocolIdentifier] with a shorter name */
 internal inline val SctpDataChunk.ppid
@@ -26,3 +28,5 @@ private fun ipv4BufferToStr(buffer: Buffer): String {
     val d = buffer.getUnsignedByte(3)
     return "$a.$b.$c.$d"
 }
+
+internal operator fun Packet.contains(p: Protocol): Boolean = hasProtocol(p)

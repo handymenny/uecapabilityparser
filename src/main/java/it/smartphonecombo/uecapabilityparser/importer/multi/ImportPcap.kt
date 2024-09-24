@@ -12,6 +12,7 @@ import io.pkts.packet.sctp.SctpDataChunk
 import io.pkts.packet.sctp.SctpPacket
 import io.pkts.packet.upperpdu.UpperPDUPacket
 import io.pkts.protocol.Protocol
+import it.smartphonecombo.uecapabilityparser.extension.contains
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getIPv4Dst
 import it.smartphonecombo.uecapabilityparser.extension.getIPv4Src
@@ -155,14 +156,9 @@ object ImportPcap : ImportMultiCapabilities {
         ueRatContainersList: MutableList<UeCapRatContainers>,
         prevSctpPackets: MutableList<SctpDataChunk>
     ) {
-        val data =
-            getGsmTapOrNull(pkt)
-                ?: getGsmTapV3OrNull(pkt)
-                ?: getUpperPduOrNull(pkt)
-                ?: getSCTPOrNull(pkt)
-                ?: return
+        val packetContainer = getPacketContainer(pkt) ?: return
 
-        when (data) {
+        when (val data = pkt.getPacket(packetContainer)) {
             is SctpPacket -> {
                 processSCTP(data, prevSctpPackets)?.let { ueRatContainersList.add(it) }
             }
@@ -269,30 +265,6 @@ object ImportPcap : ImportMultiCapabilities {
         return payload
     }
 
-    private fun getGsmTapOrNull(pkt: Packet): GsmTapPacket? {
-        return if (pkt.hasProtocol(Protocol.GSMTAP)) {
-            pkt.getPacket(Protocol.GSMTAP) as GsmTapPacket
-        } else null
-    }
-
-    private fun getGsmTapV3OrNull(pkt: Packet): GsmTapV3Packet? {
-        return if (pkt.hasProtocol(Protocol.GSMTAPV3)) {
-            pkt.getPacket(Protocol.GSMTAPV3) as GsmTapV3Packet
-        } else null
-    }
-
-    private fun getUpperPduOrNull(pkt: Packet): UpperPDUPacket? {
-        return if (pkt.hasProtocol(Protocol.UPPPER_PDU)) {
-            pkt.getPacket(Protocol.UPPPER_PDU) as UpperPDUPacket
-        } else null
-    }
-
-    private fun getSCTPOrNull(pkt: Packet): SctpPacket? {
-        return if (pkt.hasProtocol(Protocol.SCTP)) {
-            pkt.getPacket(Protocol.SCTP) as SctpPacket
-        } else null
-    }
-
     private fun processExportedPDU(pdu: UpperPDUPacket): UeCapInfo? {
         val isLteUlDcch = pdu.dissector == "lte-rrc.ul.dcch"
         val isNrUlDcch = pdu.dissector == "nr-rrc.ul.dcch"
@@ -378,5 +350,15 @@ object ImportPcap : ImportMultiCapabilities {
             }
 
         return UeCapInfo(byteArray, ratList, pkt.arrivalTime, nr, arfcn, ip)
+    }
+
+    private fun getPacketContainer(pkt: Packet): Protocol? {
+        return when {
+            Protocol.GSMTAP in pkt -> Protocol.GSMTAP
+            Protocol.GSMTAPV3 in pkt -> Protocol.GSMTAPV3
+            Protocol.UPPPER_PDU in pkt -> Protocol.UPPPER_PDU
+            Protocol.SCTP in pkt -> Protocol.SCTP
+            else -> null
+        }
     }
 }
