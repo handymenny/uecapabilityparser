@@ -157,7 +157,10 @@ object ImportPcap : ImportMultiCapabilities {
     ) {
         val data =
             getGsmTapOrNull(pkt)
-                ?: getGsmTapV3OrNull(pkt) ?: getUpperPduOrNull(pkt) ?: getSCTPOrNull(pkt) ?: return
+                ?: getGsmTapV3OrNull(pkt)
+                ?: getUpperPduOrNull(pkt)
+                ?: getSCTPOrNull(pkt)
+                ?: return
 
         when (data) {
             is SctpPacket -> {

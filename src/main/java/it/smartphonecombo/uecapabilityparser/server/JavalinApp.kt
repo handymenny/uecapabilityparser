@@ -159,8 +159,7 @@ class JavalinApp {
                 it.capabilities.id = capabilities.id
                 it.capabilities.timestamp = capabilities.timestamp
                 it.store(null, store, compression)
-            }
-                ?: throw NullPointerException("Reparsed Capabilities is null")
+            } ?: throw NullPointerException("Reparsed Capabilities is null")
         } catch (ex: Exception) {
             echoSafe("Error re-parsing ${indexLine.id}:\t${ex.message}", true)
             try {
