@@ -55,7 +55,25 @@ object ImportPcap : ImportMultiCapabilities {
             val prevSctpPackets = mutableListOf<SctpDataChunk>()
 
             pcapStream.loop { pkt ->
-                processPacket(pkt, b826, b0cd, ueCapabilities, ueRatContainersList, prevSctpPackets)
+                val container = getContainer(pkt) ?: return@loop true
+                when (val type = getMessageType(container)) {
+                    PcapMessageType.LTE_RRC_UL_DCCH,
+                    PcapMessageType.NR_RRC_UL_DCCH -> {
+                        val isNr = type == PcapMessageType.NR_RRC_UL_DCCH
+                        pktToUeCapMetadata(container, isNr)?.let { ueCapabilities.add(it) }
+                    }
+                    PcapMessageType.OSMOCORE_LOG ->
+                        processGSMTAPLog(container)?.let {
+                            if (it.isNr) b826.add(it) else b0cd.add(it)
+                        }
+                    PcapMessageType.SCTPDATA_CHUNK ->
+                        processSCTP(container as SctpPacket, prevSctpPackets)?.let {
+                            ueRatContainersList.add(it)
+                        }
+                    null -> {
+                        // nothing
+                    }
+                }
                 true
             }
 
@@ -145,34 +163,6 @@ object ImportPcap : ImportMultiCapabilities {
             subTypes += subType
         }
         return Pair(inputs, subTypes)
-    }
-
-    private fun processPacket(
-        pkt: Packet,
-        b826: MutableList<OsmoCoreLog>,
-        b0cd: MutableList<OsmoCoreLog>,
-        ueCapabilities: MutableList<UeCapInfo>,
-        ueRatContainersList: MutableList<UeCapRatContainers>,
-        prevSctpPackets: MutableList<SctpDataChunk>
-    ) {
-        val packetContainer = getPacketContainer(pkt) ?: return
-
-        val data = pkt.getPacket(packetContainer)
-
-        when (getMessageType(data)) {
-            PcapMessageType.OSMOCORE_LOG ->
-                processGSMTAPLog(data)?.let { if (it.isNr) b826.add(it) else b0cd.add(it) }
-            PcapMessageType.LTE_RRC_UL_DCCH ->
-                pktToUeCapMetadata(data, false)?.let { ueCapabilities.add(it) }
-            PcapMessageType.NR_RRC_UL_DCCH ->
-                pktToUeCapMetadata(data, true)?.let { ueCapabilities.add(it) }
-            PcapMessageType.SCTPDATA_CHUNK ->
-                processSCTP(data as SctpPacket, prevSctpPackets)?.let {
-                    ueRatContainersList.add(it)
-                }
-            null -> { // nothing
-            }
-        }
     }
 
     private fun processSCTP(
@@ -314,7 +304,7 @@ object ImportPcap : ImportMultiCapabilities {
         return UeCapInfo(byteArray, ratList, pkt.arrivalTime, nr, arfcn, ip)
     }
 
-    private fun getPacketContainer(pkt: Packet): Protocol? {
+    private fun getContainerProtocol(pkt: Packet): Protocol? {
         return when {
             Protocol.GSMTAP in pkt -> Protocol.GSMTAP
             Protocol.GSMTAPV3 in pkt -> Protocol.GSMTAPV3
@@ -323,6 +313,9 @@ object ImportPcap : ImportMultiCapabilities {
             else -> null
         }
     }
+
+    private fun getContainer(pkt: Packet): Packet? =
+        getContainerProtocol(pkt)?.let { pkt.getPacket(it) }
 
     private fun getMessageType(pkt: Packet): PcapMessageType? {
         if (pkt is SctpPacket) return PcapMessageType.SCTPDATA_CHUNK
