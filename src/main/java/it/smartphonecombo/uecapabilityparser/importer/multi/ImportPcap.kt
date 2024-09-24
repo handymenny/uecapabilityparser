@@ -5,9 +5,6 @@ import io.pkts.packet.IPPacket
 import io.pkts.packet.Packet
 import io.pkts.packet.gsmtap.GsmTapPacket
 import io.pkts.packet.gsmtap.GsmTapV3Packet
-import io.pkts.packet.gsmtap.GsmTapV3SubType
-import io.pkts.packet.gsmtap.GsmTapV3Type
-import io.pkts.packet.impl.ApplicationPacket
 import io.pkts.packet.sctp.SctpDataChunk
 import io.pkts.packet.sctp.SctpPacket
 import io.pkts.packet.upperpdu.UpperPDUPacket
@@ -29,8 +26,10 @@ import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.pcap.OsmoCoreLog
+import it.smartphonecombo.uecapabilityparser.model.pcap.PcapMessageType
 import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapInfo
 import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapRatContainers
+import it.smartphonecombo.uecapabilityparser.model.pcap.getMessageTypeForParser
 import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import kotlin.math.absoluteValue
@@ -158,26 +157,20 @@ object ImportPcap : ImportMultiCapabilities {
     ) {
         val packetContainer = getPacketContainer(pkt) ?: return
 
-        when (val data = pkt.getPacket(packetContainer)) {
-            is SctpPacket -> {
-                processSCTP(data, prevSctpPackets)?.let { ueRatContainersList.add(it) }
-            }
-            is UpperPDUPacket -> {
-                processExportedPDU(data)?.let { ueCapabilities.add(it) }
-            }
-            is GsmTapV3Packet -> {
-                if (data.type == GsmTapV3Type.OSMOCORE_LOG) {
-                    processGSMTAPLog(data)?.let { if (it.isNr) b826.add(it) else b0cd.add(it) }
-                } else {
-                    processGSMTAPV3(data)?.let { ueCapabilities.add(it) }
+        val data = pkt.getPacket(packetContainer)
+
+        when (getMessageType(data)) {
+            PcapMessageType.OSMOCORE_LOG ->
+                processGSMTAPLog(data)?.let { if (it.isNr) b826.add(it) else b0cd.add(it) }
+            PcapMessageType.LTE_RRC_UL_DCCH ->
+                pktToUeCapMetadata(data, false)?.let { ueCapabilities.add(it) }
+            PcapMessageType.NR_RRC_UL_DCCH ->
+                pktToUeCapMetadata(data, true)?.let { ueCapabilities.add(it) }
+            PcapMessageType.SCTPDATA_CHUNK ->
+                processSCTP(data as SctpPacket, prevSctpPackets)?.let {
+                    ueRatContainersList.add(it)
                 }
-            }
-            is GsmTapPacket -> {
-                if (data.type == GsmTapPacket.Type.OSMOCORE_LOG) {
-                    processGSMTAPLog(data)?.let { if (it.isNr) b826.add(it) else b0cd.add(it) }
-                } else {
-                    processGSMTAP(data)?.let { ueCapabilities.add(it) }
-                }
+            null -> { // nothing
             }
         }
     }
@@ -265,38 +258,7 @@ object ImportPcap : ImportMultiCapabilities {
         return payload
     }
 
-    private fun processExportedPDU(pdu: UpperPDUPacket): UeCapInfo? {
-        val isLteUlDcch = pdu.dissector == "lte-rrc.ul.dcch"
-        val isNrUlDcch = pdu.dissector == "nr-rrc.ul.dcch"
-
-        if (!isLteUlDcch && !isNrUlDcch) return null
-
-        return pktToUeCapMetadata(pdu, isNrUlDcch)
-    }
-
-    private fun processGSMTAP(gsmTap: GsmTapPacket): UeCapInfo? {
-        val isLteRrc = gsmTap.type == GsmTapPacket.Type.LTE_RRC
-        val isUlDcch = gsmTap.subType == GsmTapPacket.LteRRCSubType.UL_DCCH
-
-        if (!isLteRrc || !isUlDcch) return null
-
-        return pktToUeCapMetadata(gsmTap, false)
-    }
-
-    private fun processGSMTAPV3(gsmTap: GsmTapV3Packet): UeCapInfo? {
-        val isLteUlDcch =
-            gsmTap.type == GsmTapV3Type.LTE_RRC &&
-                gsmTap.subType == GsmTapV3SubType.LteRRCSubType.UL_DCCH
-        val isNrUlDcch =
-            gsmTap.type == GsmTapV3Type.NR_RRC &&
-                gsmTap.subType == GsmTapV3SubType.NrRRCSubType.UL_DCCH
-
-        if (!isLteUlDcch && !isNrUlDcch) return null
-
-        return pktToUeCapMetadata(gsmTap, isNrUlDcch)
-    }
-
-    private fun processGSMTAPLog(gsmTap: ApplicationPacket): OsmoCoreLog? {
+    private fun processGSMTAPLog(gsmTap: Packet): OsmoCoreLog? {
         val text = gsmTap.payload.array.drop(84).toByteArray().decodeToString()
         if (!text.contains("CA Combos Raw")) return null
         val isNr = text.startsWith("NR")
@@ -360,5 +322,13 @@ object ImportPcap : ImportMultiCapabilities {
             Protocol.SCTP in pkt -> Protocol.SCTP
             else -> null
         }
+    }
+
+    private fun getMessageType(pkt: Packet): PcapMessageType? {
+        if (pkt is SctpPacket) return PcapMessageType.SCTPDATA_CHUNK
+        if (pkt is GsmTapPacket) return pkt.getMessageTypeForParser()
+        if (pkt is GsmTapV3Packet) return pkt.getMessageTypeForParser()
+        if (pkt is UpperPDUPacket) return pkt.getMessageTypeForParser()
+        return null
     }
 }
