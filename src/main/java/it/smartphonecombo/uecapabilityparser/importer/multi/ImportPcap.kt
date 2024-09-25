@@ -7,9 +7,9 @@ import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
-import it.smartphonecombo.uecapabilityparser.model.pcap.OsmoCoreLog
-import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapInfo
-import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapRatContainers
+import it.smartphonecombo.uecapabilityparser.model.pcap.capability.CaCombosSupported
+import it.smartphonecombo.uecapabilityparser.model.pcap.capability.UeCapInfo
+import it.smartphonecombo.uecapabilityparser.model.pcap.capability.UeRadioCap
 import it.smartphonecombo.uecapabilityparser.model.pcap.container.PduContainer
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import kotlin.math.absoluteValue
@@ -27,9 +27,9 @@ object ImportPcap : ImportMultiCapabilities {
 
         try {
             val ueCapabilities = mutableListOf<UeCapInfo>()
-            val b0cd = mutableListOf<OsmoCoreLog>()
-            val b826 = mutableListOf<OsmoCoreLog>()
-            val ueRatContainersList = mutableListOf<UeCapRatContainers>()
+            val ueRadioCaps = mutableListOf<UeRadioCap>()
+            val b0cd = mutableListOf<CaCombosSupported>()
+            val b826 = mutableListOf<CaCombosSupported>()
             var prevFragments = listOf<PduContainer>()
 
             pcapStream.loop { pkt ->
@@ -49,7 +49,7 @@ object ImportPcap : ImportMultiCapabilities {
                 }
 
                 // collect ue radio cap if available
-                container.getRadioCap()?.let { ueRatContainersList.add(it) }
+                container.getRadioCap()?.let { ueRadioCaps.add(it) }
 
                 true
             }
@@ -94,10 +94,10 @@ object ImportPcap : ImportMultiCapabilities {
                 descriptions += "0xB0CD packets from $srcName"
             }
 
-            ueRatContainersList
+            ueRadioCaps
                 .distinctBy { it.ratContainers }
                 .forEach {
-                    val (newInputs, newSubTypes) = processUeRatContainers(it)
+                    val (newInputs, newSubTypes) = processUeRadioCap(it)
 
                     if (newInputs.isNotEmpty()) {
                         typeList += LogType.H
@@ -116,9 +116,7 @@ object ImportPcap : ImportMultiCapabilities {
         return result
     }
 
-    private fun processUeRatContainers(
-        cap: UeCapRatContainers
-    ): Pair<List<InputSource>, List<String>> {
+    private fun processUeRadioCap(cap: UeRadioCap): Pair<List<InputSource>, List<String>> {
         val octetString =
             if (cap.isNrRrc) "ue-CapabilityRAT-Container" else "ueCapabilityRAT-Container"
 

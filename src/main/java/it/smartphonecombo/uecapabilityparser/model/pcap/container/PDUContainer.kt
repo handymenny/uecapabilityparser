@@ -7,9 +7,9 @@ import it.smartphonecombo.uecapabilityparser.extension.isLteUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
 import it.smartphonecombo.uecapabilityparser.model.Rat
-import it.smartphonecombo.uecapabilityparser.model.pcap.OsmoCoreLog
-import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapInfo
-import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapRatContainers
+import it.smartphonecombo.uecapabilityparser.model.pcap.capability.CaCombosSupported
+import it.smartphonecombo.uecapabilityparser.model.pcap.capability.UeCapInfo
+import it.smartphonecombo.uecapabilityparser.model.pcap.capability.UeRadioCap
 import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 
 sealed class PduContainer(private val pkt: Packet) {
@@ -47,12 +47,12 @@ sealed class PduContainer(private val pkt: Packet) {
             isNrULDCCH() && capabilityPayload.isNrUeCapInfoPayload()
 
     /** The default implementation works for GSMTAPv2, GSMTAPv3 * */
-    fun getCaCombosSupported(): OsmoCoreLog? {
+    fun getCaCombosSupported(): CaCombosSupported? {
         raiseExceptionIfFragmented()
         if (!hasHwCombos()) return null
 
         val isNr = logText.startsWith("NR")
-        return OsmoCoreLog(logText, isNr)
+        return CaCombosSupported(logText, isNr)
     }
 
     /** The default implementation works for all containers * */
@@ -71,7 +71,7 @@ sealed class PduContainer(private val pkt: Packet) {
     }
 
     // No default implementation
-    abstract fun getRadioCap(): UeCapRatContainers?
+    abstract fun getRadioCap(): UeRadioCap?
 
     // No default implementation
     // return left fragments

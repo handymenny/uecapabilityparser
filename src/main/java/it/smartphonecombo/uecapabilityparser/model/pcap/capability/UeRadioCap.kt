@@ -1,8 +1,9 @@
-package it.smartphonecombo.uecapabilityparser.model.pcap
+package it.smartphonecombo.uecapabilityparser.model.pcap.capability
 
 import kotlinx.serialization.json.JsonArray
 
-class UeCapRatContainers(
+//  Cap from S1/NG
+class UeRadioCap(
     val ratContainers: JsonArray,
     val timestamp: Long,
     val isNrRrc: Boolean,

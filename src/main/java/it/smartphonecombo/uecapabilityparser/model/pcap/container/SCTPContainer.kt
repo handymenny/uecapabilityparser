@@ -11,7 +11,7 @@ import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.ppid
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.model.Rat
-import it.smartphonecombo.uecapabilityparser.model.pcap.UeCapRatContainers
+import it.smartphonecombo.uecapabilityparser.model.pcap.capability.UeRadioCap
 import it.smartphonecombo.uecapabilityparser.util.MtsAsn1Helpers
 
 data class SCTPContainer(private val pkt: SctpPacket) : PduContainer(pkt) {
@@ -48,7 +48,7 @@ data class SCTPContainer(private val pkt: SctpPacket) : PduContainer(pkt) {
     }
 
     // Call defragmentSctp before calling this function
-    override fun getRadioCap(): UeCapRatContainers? {
+    override fun getRadioCap(): UeRadioCap? {
         raiseExceptionIfFragmented()
 
         if (capabilityPayload.isEmpty()) return null
@@ -82,7 +82,7 @@ data class SCTPContainer(private val pkt: SctpPacket) : PduContainer(pkt) {
                 ?.getString("UERadioCapability")
         val res = MtsAsn1Helpers.ratContainersFromRadioCapability(rrc, radioCap ?: "")
 
-        return if (res == null) null else UeCapRatContainers(res, pkt.arrivalTime, rrc == Rat.NR)
+        return if (res == null) null else UeRadioCap(res, pkt.arrivalTime, rrc == Rat.NR)
     }
 
     /*

@@ -1,8 +1,9 @@
-package it.smartphonecombo.uecapabilityparser.model.pcap
+package it.smartphonecombo.uecapabilityparser.model.pcap.capability
 
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
 import it.smartphonecombo.uecapabilityparser.model.Rat
 
+// Cap from RRC
 class UeCapInfo(
     data: ByteArrayDeepEquals,
     ratTypes: Set<Rat>,
