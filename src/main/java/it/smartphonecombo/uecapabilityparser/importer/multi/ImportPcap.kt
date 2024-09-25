@@ -33,11 +33,22 @@ object ImportPcap : ImportMultiCapabilities {
             var prevFragments = listOf<PduContainer>()
 
             pcapStream.loop { pkt ->
-                val container = PduContainer.from(pkt) ?: return@loop true
+                var container = PduContainer.from(pkt) ?: return@loop true
 
                 // defragment if needed
                 if (container.needDefragmentation) {
                     prevFragments = container.defragment(prevFragments)
+                }
+
+                // check if this is a dedicated message segment
+                container.getDedicatedMessageSegment()?.let {
+                    // replace outer container, with dedicated message segment
+                    container = it
+
+                    // re-defragment if needed
+                    if (container.needDefragmentation) {
+                        prevFragments = container.defragment(prevFragments)
+                    }
                 }
 
                 // Collect ue cap info if available

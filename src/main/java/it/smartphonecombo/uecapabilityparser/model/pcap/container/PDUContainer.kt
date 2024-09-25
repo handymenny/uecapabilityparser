@@ -4,7 +4,9 @@ import io.pkts.packet.Packet
 import io.pkts.protocol.Protocol
 import it.smartphonecombo.uecapabilityparser.extension.contains
 import it.smartphonecombo.uecapabilityparser.extension.isLteUeCapInfoPayload
+import it.smartphonecombo.uecapabilityparser.extension.isLteUlDcchSegment
 import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
+import it.smartphonecombo.uecapabilityparser.extension.isNrUlDcchSegment
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.pcap.capability.CaCombosSupported
@@ -46,6 +48,10 @@ sealed class PduContainer(private val pkt: Packet) {
         isLteULDCCH() && capabilityPayload.isLteUeCapInfoPayload() ||
             isNrULDCCH() && capabilityPayload.isNrUeCapInfoPayload()
 
+    private fun isDedicatedMessageSegment() =
+        isLteULDCCH() && capabilityPayload.isLteUlDcchSegment() ||
+            isNrULDCCH() && capabilityPayload.isNrUlDcchSegment()
+
     /** The default implementation works for GSMTAPv2, GSMTAPv3 * */
     fun getCaCombosSupported(): CaCombosSupported? {
         raiseExceptionIfFragmented()
@@ -72,6 +78,13 @@ sealed class PduContainer(private val pkt: Packet) {
 
     // No default implementation
     abstract fun getRadioCap(): UeRadioCap?
+
+    fun getDedicatedMessageSegment(): DedicatedMessageSegment? {
+        raiseExceptionIfFragmented()
+
+        if (!isDedicatedMessageSegment()) return null
+        return DedicatedMessageSegment(pkt, isNrULDCCH(), getArfcn(), getIp())
+    }
 
     // No default implementation
     // return left fragments

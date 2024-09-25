@@ -7,6 +7,10 @@ internal fun ByteArray.isLteUeCapInfoPayload() = isNotEmpty() && this[0] in 0x38
 
 internal fun ByteArray.isNrUeCapInfoPayload() = isNotEmpty() && this[0] in 0x48..0x4E
 
+internal fun ByteArray.isLteUlDcchSegment() = isNotEmpty() && this[0].toUnsignedInt() in 0xAC..0xAD
+
+internal fun ByteArray.isNrUlDcchSegment() = isNotEmpty() && this[0].toUnsignedInt() in 0x80..0x81
+
 @OptIn(ExperimentalStdlibApi::class) internal fun ByteArray.toHex() = this.toHexString()
 
 /** Compress bytearray to gzip * */
