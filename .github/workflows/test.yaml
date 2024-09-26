@@ -30,7 +30,7 @@ jobs:
       - name: Setup gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Test
-        run: ./gradlew check
+        run: ./gradlew test --rerun
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         with:

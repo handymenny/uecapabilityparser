@@ -1,0 +1,21 @@
+name: style-check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  tests:
+    name: Style Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Style Check
+        run: ./gradlew spotlessCheck
