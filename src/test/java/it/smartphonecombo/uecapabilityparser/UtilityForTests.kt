@@ -76,5 +76,5 @@ object UtilityForTests {
         return reqBuilder.build()
     }
 
-    val scatAvailable = ImportScat.isScatAvailable()
+    val scatAvailable = ImportScat.isScatAvailable() == 1
 }
