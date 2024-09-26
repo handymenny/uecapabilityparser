@@ -122,6 +122,30 @@ internal class ImportPcapTest {
         testPcap("$path/input/gsmTapV3.pcap", "$path/oracle/gsmTapV3.json")
     }
 
+    // GSMTAPv3 Draft/proposal  NR ue capability segmented
+    @Test
+    fun testGsmTapV3NrRrcSegmented() {
+        testPcap(
+            "$path/input/gsmTapV3NrRrcSegmented.pcap",
+            "$path/oracle/gsmTapV3NrRrcSegmented.json"
+        )
+    }
+
+    // GSMTAPv2 MRDC ue capability segmented
+    @Test
+    fun testGsmTapMrdcSegmented() {
+        testPcap("$path/input/gsmTapMrdcSegmented.pcap", "$path/oracle/gsmTapMrdcSegmented.json")
+    }
+
+    // Exported PDU MRDC ue capability segmented
+    @Test
+    fun testPduSegmented() {
+        testPcap(
+            "$path/input/exportedPduMrdcSegmented.pcap",
+            "$path/oracle/exportedPduMrdcSegmented.json"
+        )
+    }
+
     private fun testPcap(path: String, oracle: String) {
         val multi = ImportPcap.parse(File(path).toInputSource())
 

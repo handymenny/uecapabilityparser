@@ -397,6 +397,19 @@ internal class CliCsvOutputTest {
     }
 
     @Test
+    fun testPcapSegmented() {
+        test(
+            "-i",
+            "$path/input/segmented.pcap",
+            "-t",
+            "P",
+            "-c",
+            "-",
+            oracleFilename = "segmented.txt"
+        )
+    }
+
+    @Test
     fun testMultiInput() {
         test(
             "-i",
