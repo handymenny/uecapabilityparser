@@ -84,13 +84,19 @@ object ImportScat : ImportMultiCapabilities {
         }
     }
 
-    fun isScatAvailable(): Boolean {
-        return try {
-            val process = Runtime.getRuntime().exec(arrayOf("scat", "-h"))
+    // try-state 1 = ok, 0 = not found, -1 = too old
+    fun isScatAvailable(): Int {
+        try {
+            var process = Runtime.getRuntime().exec(arrayOf("scat", "-h"))
             process.waitFor()
-            process.exitValue() == 0
-        } catch (ignored: Exception) {
-            false
-        }
+
+            // check if it's too old, scat < 1.3.0 doesn't have --version
+            if (process.exitValue() == 0) {
+                process = Runtime.getRuntime().exec(arrayOf("scat", "--version"))
+                process.waitFor()
+                return if (process.exitValue() == 0) 1 else -1
+            }
+        } catch (ignored: Exception) {}
+        return 0
     }
 }

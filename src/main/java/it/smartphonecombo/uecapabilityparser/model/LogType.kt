@@ -42,11 +42,16 @@ enum class LogType(val description: String) {
     companion object {
         /** All entries except invalid ones */
         val validEntries =
-            if (isScatAvailable()) {
-                entries.drop(1)
-            } else {
-                System.err.println("Warning: scat not available, scat log types disabled")
-                entries.drop(1).dropLast(4)
+            when (isScatAvailable()) {
+                1 -> entries.drop(1)
+                0 -> {
+                    System.err.println("Warning: scat not available, scat log types disabled")
+                    entries.drop(1).dropLast(4)
+                }
+                else -> {
+                    System.err.println("Warning: scat is too old, scat log types disabled")
+                    entries.drop(1).dropLast(4)
+                }
             }
         /** Name of all entries except [INVALID] */
         val names = validEntries.map { it.name }.toTypedArray()
