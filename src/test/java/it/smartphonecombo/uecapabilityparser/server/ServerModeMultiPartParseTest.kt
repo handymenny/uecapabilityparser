@@ -398,6 +398,21 @@ internal class ServerModeMultiPartParseTest {
     }
 
     @Test
+    fun pcapSegmented() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "P")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/segmented.pcap"),
+            oraclePath = "$oraclePath/segmented.json",
+        )
+    }
+
+    @Test
     fun scat() {
         Assumptions.assumeTrue(scatAvailable)
         javalinJsonTest(

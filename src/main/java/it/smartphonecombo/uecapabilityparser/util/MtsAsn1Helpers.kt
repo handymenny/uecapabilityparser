@@ -9,6 +9,7 @@ import com.ericsson.mts.asn1.PERTranslatorFactoryKT
 import com.ericsson.mts.asn1.converter.AbstractConverter
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.getArrayAtPath
+import it.smartphonecombo.uecapabilityparser.extension.getObjectAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.isLteUeCapInfoPayload
 import it.smartphonecombo.uecapabilityparser.extension.isNrUeCapInfoPayload
@@ -104,6 +105,19 @@ object MtsAsn1Helpers {
         val ueCap = getRatContainersFromBytes(rrc, data)
 
         return ueCap?.mapNotNull { Rat.of(it.getString("rat-Type")) } ?: emptyList()
+    }
+
+    fun getDedicatedMessageSegmentFromBytes(rrc: Rat, data: ByteArray): JsonObject? {
+        val jsonWriter = KotlinJsonFormatWriter()
+        val translator = getAsn1Translator(rrc)
+
+        translator.decode("UL-DCCH-Message", data.inputStream(), jsonWriter)
+
+        val path =
+            "message.messageClassExtension.c2.ulDedicatedMessageSegment-r16.criticalExtensions" +
+                ".ulDedicatedMessageSegment-r16"
+
+        return jsonWriter.jsonNode?.getObjectAtPath(path)
     }
 
     private fun getRatContainersFromBytes(rrc: Rat, data: ByteArray): JsonArray? {

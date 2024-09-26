@@ -27,6 +27,20 @@ internal class CliMultiJsonOutputTest {
     }
 
     @Test
+    fun testPcapSegmented() {
+        test(
+            "-i",
+            "$path/input/segmented.pcap",
+            "-t",
+            "P",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "segmented.json"
+        )
+    }
+
+    @Test
     fun testMultiInput() {
         test(
             "-i",
