@@ -452,6 +452,23 @@ internal class CliCsvOutputTest {
         )
     }
 
+    @Test
+    fun testMultiNsgJson() {
+        test(
+            "-i",
+            "$path/input/nsgExy.json",
+            "-t",
+            "NSG",
+            "-i",
+            "$path/input/airscreenQcom.json",
+            "-t",
+            "NSG",
+            "-c",
+            "-",
+            oracleFilename = "nsgJson.txt"
+        )
+    }
+
     private fun test(vararg args: String, oracleFilename: String) {
         val oraclePath = "$path/oracleCsv/$oracleFilename"
 

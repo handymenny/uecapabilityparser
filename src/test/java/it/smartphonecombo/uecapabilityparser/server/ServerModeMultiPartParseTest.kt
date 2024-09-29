@@ -440,6 +440,25 @@ internal class ServerModeMultiPartParseTest {
         )
     }
 
+    @Test
+    fun nsg() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "NSG")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                    addJsonObject {
+                        put("type", "NSG")
+                        putJsonArray("inputIndexes") { add(1) }
+                    }
+                },
+            files = listOf("$inputPath/nsgExy.json", "$inputPath/airscreenQcom.json"),
+            oraclePath = "$oraclePath/nsgJson.json",
+        )
+    }
+
     private fun javalinJsonTest(request: JsonElement, files: List<String>, oraclePath: String) =
         JavalinTest.test(app) { _, client ->
             val response =
