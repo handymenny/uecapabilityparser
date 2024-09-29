@@ -63,7 +63,8 @@ internal class ServerModeOthersTest {
                 "DLF",
                 "QMDL",
                 "HDF",
-                "SDM"
+                "SDM",
+                "NSG"
             )
             .filter { scatAvailable || it !in scatTypes }
             .map(LogType::of)

@@ -58,3 +58,5 @@ private fun List<String>.indexOfDiff(ignoreCase: Boolean): Int {
 
     return minLen
 }
+
+internal fun String.capitalize() = replaceFirstChar { it.uppercaseChar() }

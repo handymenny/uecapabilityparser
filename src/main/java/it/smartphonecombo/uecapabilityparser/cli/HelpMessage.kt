@@ -49,7 +49,7 @@ object HelpMessage {
     const val ERROR_SUBTYPES_DUPLICATE =
         "A subtype cannot appear multiple times in the same --sub-types."
     const val ERROR_MULTIPLE_INPUTS_UNSUPPORTED =
-        "Type P, E, SHNR, DLF, QMDL, HDF, SDM don't support multiple inputs in one --input option. Use multiple --input instead."
+        "Type P, E, SHNR, DLF, QMDL, HDF, SDM, NSG don't support multiple inputs in one --input option. Use multiple --input instead."
     const val MAX_REQUEST_SIZE = "Max request size (in Bytes) that this server should accept."
     const val NEW_CSV_FORMAT = "Use new CSV format for LTE CA"
     const val CUSTOM_CSS = "Inject custom css in Web UI"

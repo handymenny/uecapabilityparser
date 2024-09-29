@@ -83,6 +83,23 @@ internal class CliMultiJsonOutputTest {
         )
     }
 
+    @Test
+    fun testMultiNsgJson() {
+        test(
+            "-i",
+            "$path/input/nsgExy.json",
+            "-t",
+            "NSG",
+            "-i",
+            "$path/input/airscreenQcom.json",
+            "-t",
+            "NSG",
+            "-j",
+            "-",
+            oracleFilename = "nsgJson.json"
+        )
+    }
+
     private fun test(vararg args: String, oracleFilename: String) {
         val oraclePath = "$path/oracleMultiJson/$oracleFilename"
 
