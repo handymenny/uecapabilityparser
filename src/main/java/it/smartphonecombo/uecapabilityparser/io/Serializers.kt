@@ -1,6 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.io
 
+import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -31,4 +35,33 @@ object BwClassSerializer : KSerializer<Char> {
     override fun serialize(encoder: Encoder, value: Char) = encoder.encodeChar(value)
 
     override fun deserialize(decoder: Decoder): Char = decoder.decodeChar().uppercaseChar()
+}
+
+object HexSerializer : KSerializer<ByteArrayDeepEquals> {
+    override val descriptor: SerialDescriptor =
+        PrimitiveSerialDescriptor("HexString", PrimitiveKind.STRING)
+
+    override fun serialize(encoder: Encoder, value: ByteArrayDeepEquals) {
+        throw NotImplementedError("Serialization not implemented.")
+    }
+
+    override fun deserialize(decoder: Decoder): ByteArrayDeepEquals {
+        val string = decoder.decodeString()
+        return ByteArrayDeepEquals(string.decodeHex())
+    }
+}
+
+object DateTimeSerializer : KSerializer<Long> {
+    override val descriptor: SerialDescriptor =
+        PrimitiveSerialDescriptor("DateTimeSerializer", PrimitiveKind.STRING)
+
+    override fun serialize(encoder: Encoder, value: Long) {
+        throw NotImplementedError("Serialization not implemented.")
+    }
+
+    override fun deserialize(decoder: Decoder): Long {
+        val string = decoder.decodeString()
+        val formatter = DateTimeFormatter.ISO_DATE_TIME
+        return Instant.from(formatter.parse(string)).toEpochMilli()
+    }
 }

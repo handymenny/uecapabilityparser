@@ -37,7 +37,8 @@ enum class LogType(val description: String) {
     DLF("DLF baseband log"),
     QMDL("QMDL baseband log"),
     HDF("HDF baseband log"),
-    SDM("SDM baseband log");
+    SDM("SDM baseband log"),
+    NSG("NSG baseband log json");
 
     companion object {
         /** All entries except invalid ones */
@@ -58,9 +59,9 @@ enum class LogType(val description: String) {
         /** Entries that only supports LTE-CA */
         val lteOnlyTypes = listOf(C, E, Q, QLTE, M, RF)
         /** One input -> multi capabilities * */
-        val multiImporter = validEntries.intersect(listOf(P, DLF, QMDL, HDF, SDM))
+        val multiImporter = validEntries.intersect(listOf(P, DLF, QMDL, HDF, SDM, NSG))
         /** One input -> multi or single capability * */
-        val singleInput = validEntries.intersect(listOf(E, SHNR, P, DLF, QMDL, HDF, SDM))
+        val singleInput = validEntries.intersect(listOf(E, SHNR, P, DLF, QMDL, HDF, SDM, NSG))
 
         /** Return [INVALID] if conversion fails * */
         fun of(string: String?): LogType {
