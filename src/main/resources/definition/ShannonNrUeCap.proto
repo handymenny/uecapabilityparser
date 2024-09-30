@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-message ShannonUECapNr {
+message ShannonNrUECap {
   // ShannonNrUECap version.
   optional uint32 version = 1;
   // ID assigned to this ShannonNrUECap.

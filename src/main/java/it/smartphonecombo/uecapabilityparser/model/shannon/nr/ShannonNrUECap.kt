@@ -16,8 +16,8 @@ import kotlinx.serialization.protobuf.ProtoNumber
  * This work wouldn't have been possible without the help of @NXij.
  */
 @Serializable
-@SerialName("ShannonUECapNr")
-data class ShannonUECapNr(
+@SerialName("ShannonNrUECap")
+data class ShannonNrUECap(
     /** ShannonNrUECap version. */
     @ProtoNumber(1) val version: Long = 0,
     /** ID assigned to this ShannonNrUECap. */
