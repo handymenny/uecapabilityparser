@@ -22,61 +22,66 @@ data class ShannonComponent(
      *
      * NR Bands are stored as band number + 10000.
      */
-    @ProtoNumber(1) @SerialName("band") private val rawBand: Int,
+    @ProtoNumber(1) @SerialName("band") private val rawBand: Long,
 
     /** BwClass DL is stored as ASCII value - 0x40. 0 means DL not supported. */
-    @ProtoNumber(2) @SerialName("bwClassDl") private val rawBwClassDl: Int,
+    @ProtoNumber(2) @SerialName("bwClassDl") private val rawBwClassDl: Long,
 
     /** BwClass UL is stored as ASCII value - 0x40. 0 means UL not supported. */
-    @ProtoNumber(3) @SerialName("bwClassUl") private val rawBwClassUL: Int,
+    @ProtoNumber(3) @SerialName("bwClassUl") private val rawBwClassUL: Long,
 
     /**
      * For LTE this is FeatureSetEUTRA-DownlinkId, the corresponding FeatureSetDL-r15 seems to be
-     * hardcoded elsewhere (see [ShannonFeatureSetEutra]). Note that the index starts from 1 as per
-     * 3GPP spec, 0 means DL not supported.
+     * hardcoded elsewhere (see [ShannonFeatureSetEutra]).
      *
-     * For NR this sets some features that applies to the whole component (not PerCC). Empirically 1
-     * -> FR1, 2 -> FR2.
+     * For NR this is FeatureSetDownlinkId, the corresponding FeatureSetDownlink is stored in
+     * [ShannonNrUECap.dlFeatureList].
+     *
+     * Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
      */
-    @ProtoNumber(4) val dlFeatureIndex: Int,
+    @ProtoNumber(4) val dlFeatureIndex: Long,
 
     /**
      * For LTE this is FeatureSetEUTRA-UplinkId, the corresponding FeatureSetUL-r15 seems to be
-     * hardcoded elsewhere (see [ShannonFeatureSetEutra]). Note that the index starts from 1 as per
-     * 3GPP spec, 0 means UL not supported.
+     * hardcoded elsewhere (see [ShannonFeatureSetEutra]).
      *
-     * For NR this sets some features that applies to the whole component (not PerCC). Empirically 1
-     * -> SRS ports per resource 1, 2 -> SRS ports per resource 2.
+     * For NR this is FeatureSetUplinkId, the corresponding FeatureSetUplink is stored in
+     * [ShannonNrUECap.ulFeatureList].
+     *
+     * Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
      */
-    @ProtoNumber(5) val ulFeatureIndex: Int,
+    @ProtoNumber(5) val ulFeatureIndex: Long,
 
     /**
      * This is a list of FeatureSetDownlinkPerCC-Id per each CC. This only applies to NR.
      *
-     * The corresponding FeatureSetDownlinkPerCC are stored in [ShannonNrUECap.dlFeaturePerCCList].
-     *
-     * Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
+     * The corresponding FeatureSetDownlinkPerCC is stored in [ShannonNrUECap.dlFeaturePerCCList].
      */
-    @ProtoNumber(6) @ProtoPacked val dlFeaturePerCCIds: List<Int> = emptyList(),
+    @ProtoNumber(6) @ProtoPacked val dlFeaturePerCCIds: List<Long> = emptyList(),
 
     /**
      * This is a list of FeatureSetUplinkPerCC-Id per each CC. This only applies to NR.
      *
      * The corresponding FeatureSetUplinkPerCC are stored in [ShannonNrUECap.ulFeaturePerCCList].
-     *
-     * Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
      */
-    @ProtoNumber(7) @ProtoPacked val ulFeaturePerCCIds: List<Int> = emptyList()
+    @ProtoNumber(7) @ProtoPacked val ulFeaturePerCCIds: List<Long> = emptyList(),
+
+    /**
+     * SupportedSRS-TxPortSwitch is stored as enum.
+     *
+     * 1 -> t1r1, 2 -> t1r2, 3 -> t1r4, 4 -> t2r2, 5 -> t2r4, 6 -> t1r4-t2r4
+     */
+    @ProtoNumber(8) val srsTxSwitch: Int? = null
 ) {
     @Transient val isNr = rawBand > 10000
     val band: Band
-        get() = if (isNr) rawBand - 10000 else rawBand
+        get() = (if (isNr) rawBand - 10000 else rawBand).toInt()
 
     val bwClassDl: BwClass
-        get() = BwClass.valueOf(rawBwClassDl)
+        get() = BwClass.valueOf(rawBwClassDl.toInt())
 
     val bwClassUl: BwClass
-        get() = BwClass.valueOf(rawBwClassUL)
+        get() = BwClass.valueOf(rawBwClassUL.toInt())
 
     fun toComponent(): IComponent {
         return if (isNr) {

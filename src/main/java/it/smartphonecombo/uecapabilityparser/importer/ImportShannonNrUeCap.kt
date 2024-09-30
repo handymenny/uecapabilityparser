@@ -152,8 +152,10 @@ object ImportShannonNrUeCap : ImportCapabilities {
         featureSetsDl: List<FeatureSet>,
         featureSetsUl: List<FeatureSet>
     ): ComponentLte {
-        val dlFeature = featureSetsDl.getOrNull(shComponent.dlFeatureIndex - 1)?.featureSetsPerCC
-        val ulFeature = featureSetsUl.getOrNull(shComponent.ulFeatureIndex - 1)?.featureSetsPerCC
+        val dlFeature =
+            featureSetsDl.getOrNull((shComponent.dlFeatureIndex - 1).toInt())?.featureSetsPerCC
+        val ulFeature =
+            featureSetsUl.getOrNull((shComponent.ulFeatureIndex - 1).toInt())?.featureSetsPerCC
         val component =
             mergeComponentAndFeaturePerCC(shComponent.toComponent(), dlFeature, ulFeature, null)
 
@@ -166,9 +168,9 @@ object ImportShannonNrUeCap : ImportCapabilities {
         featuresPerCCUl: List<FeaturePerCCNr>
     ): ComponentNr {
         val dlFeature =
-            shComponent.dlFeaturePerCCIds.mapNotNull { featuresPerCCDl.getOrNull(it - 1) }
+            shComponent.dlFeaturePerCCIds.mapNotNull { featuresPerCCDl.getOrNull((it - 1).toInt()) }
         val ulFeature =
-            shComponent.ulFeaturePerCCIds.mapNotNull { featuresPerCCUl.getOrNull(it - 1) }
+            shComponent.ulFeaturePerCCIds.mapNotNull { featuresPerCCUl.getOrNull((it - 1).toInt()) }
         val component =
             mergeComponentAndFeaturePerCC(shComponent.toComponent(), dlFeature, ulFeature, null)
 

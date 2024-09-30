@@ -6,7 +6,6 @@ import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.toMimo
-import kotlin.math.max
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -20,14 +19,14 @@ sealed class ShannonFeaturePerCCNr {
     /**
      * Max Mimo is stored as an enum.
      *
-     * Max Mimo DL: 0 -> not supported, 1 -> 2, 2 -> 4.
+     * Max Mimo DL: 0 -> not supported, 1 -> 2, 2 -> 4, 3 -> 8.
      *
-     * Max Mimo CB UL: 0 -> not supported, 1 -> 1, 2 -> 2.
+     * Max Mimo UL: 0 -> not supported, 1 -> 1, 2 -> 2, 3 -> 4.
      */
     protected abstract val rawMaxMimo: Int
 
     /** Max Bandwidth is stored as it's. */
-    abstract val maxBw: Int
+    abstract val maxBw: Long
 
     /**
      * Max Modulation Order is stored as an enum.
@@ -76,13 +75,13 @@ sealed class ShannonFeaturePerCCNr {
             }
 
         // maxBw doesn't have a 90MHz field
-        val bw = if (bw90MHzSupported && maxBw == 80) 90 else maxBw
+        val bw = if (bw90MHzSupported && maxBw == 80L) 90L else maxBw
 
         return FeaturePerCCNr(
             direction,
             maxMimo.toMimo(),
             maxModOrder,
-            bw,
+            bw.toInt(),
             maxScs,
             bw90MHzSupported,
         )
@@ -94,7 +93,7 @@ sealed class ShannonFeaturePerCCNr {
 data class ShannonFeatureDlPerCCNr(
     @ProtoNumber(1) @SerialName("maxScs") override val rawMaxScs: Int,
     @ProtoNumber(2) @SerialName("maxMimo") override val rawMaxMimo: Int,
-    @ProtoNumber(3) override val maxBw: Int,
+    @ProtoNumber(3) override val maxBw: Long,
     @ProtoNumber(4) @SerialName("maxModOrder") override val rawMaxModOrder: Int,
     @ProtoNumber(5) override val bw90MHzSupported: Boolean
 ) : ShannonFeaturePerCCNr() {
@@ -103,6 +102,7 @@ data class ShannonFeatureDlPerCCNr(
             when (rawMaxMimo) {
                 1 -> 2
                 2 -> 4
+                3 -> 8
                 else -> 0
             }
 }
@@ -111,18 +111,19 @@ data class ShannonFeatureDlPerCCNr(
 @SerialName("FeatureUlPerCCNr")
 data class ShannonFeatureUlPerCCNr(
     @ProtoNumber(1) @SerialName("maxScs") override val rawMaxScs: Int,
-    @ProtoNumber(2) @SerialName("maxMimoCb") override val rawMaxMimo: Int,
-    @ProtoNumber(3) override val maxBw: Int,
+    @ProtoNumber(2) @SerialName("maxMimo") override val rawMaxMimo: Int,
+    @ProtoNumber(3) override val maxBw: Long,
     @ProtoNumber(4) @SerialName("maxModOrder") override val rawMaxModOrder: Int,
     @ProtoNumber(5) override val bw90MHzSupported: Boolean,
-    /** Same as [rawMaxMimo] but for non CB Uplink (with non-codebook precoding) */
-    @ProtoNumber(6) @SerialName("maxMimoNonCb") private val rawMaxMimoNonCb: Int
+    /** MaxNumberSRS-ResourcePerSet is stored as unsigned int */
+    @ProtoNumber(6) @SerialName("maxNumSRSResPerSet") val maxNumSRSResPerSet: Long
 ) : ShannonFeaturePerCCNr() {
     override val maxMimo
         get() =
-            when (max(rawMaxMimo, rawMaxMimoNonCb)) {
+            when (rawMaxMimo) {
                 1 -> 1
                 2 -> 2
+                3 -> 4
                 else -> 0
             }
 }

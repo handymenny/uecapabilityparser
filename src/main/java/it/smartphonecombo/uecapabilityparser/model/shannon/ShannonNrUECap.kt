@@ -19,13 +19,21 @@ import kotlinx.serialization.protobuf.ProtoNumber
 @SerialName("ShannonNrUECap")
 data class ShannonNrUECap(
     /** ShannonNrUECap version. */
-    @ProtoNumber(1) val version: Long,
+    @ProtoNumber(1) val version: Long = 0,
     /** ID assigned to this ShannonNrUECap. */
     @ProtoNumber(2) val id: Int? = null,
     /** List of combo groups. */
     @ProtoNumber(3) val comboGroups: List<ComboGroup> = emptyList(),
     /** List of FeatureSetDownlinkPerCC. */
+    @ProtoNumber(4) val dlFeatureList: List<ShannonFeatureNr> = emptyList(),
+    /** List of FeatureSetUplinkPerCC. */
+    @ProtoNumber(5) val ulFeatureList: List<ShannonFeatureNr> = emptyList(),
+    /** List of FeatureSetDownlinkPerCC. */
     @ProtoNumber(6) val dlFeaturePerCCList: List<ShannonFeatureDlPerCCNr> = emptyList(),
     /** List of FeatureSetUplinkPerCC. */
-    @ProtoNumber(7) val ulFeaturePerCCList: List<ShannonFeatureUlPerCCNr> = emptyList()
+    @ProtoNumber(7) val ulFeaturePerCCList: List<ShannonFeatureUlPerCCNr> = emptyList(),
+    /** A field with extra features * */
+    @ProtoNumber(8) val extraFeatures: ShannonExtraFeatures? = null,
+    /** An "integrity" field stored as uint * */
+    @ProtoNumber(9) val integrity: Long? = null,
 )

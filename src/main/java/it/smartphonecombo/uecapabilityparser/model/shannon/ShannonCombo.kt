@@ -24,8 +24,8 @@ data class ComboGroup(
 data class ShannonCombo(
     /** List of Components. */
     @ProtoNumber(1) val components: List<ShannonComponent> = emptyList(),
-    /** A bit mask stored as unsigned int that enables or disables some features. */
-    @ProtoNumber(2) val bitMask: Long
+    /** A bit mask stored as unsigned int that enables or disables this combo for specific SKUs. */
+    @ProtoNumber(2) val skuBitMask: Long
 )
 
 @Serializable
@@ -69,13 +69,15 @@ data class ComboFeatures(
     @ProtoNumber(4) @SerialName("powerClass") private val rawPowerClass: Int? = null,
 
     /**
-     * intraBandENDC-Support is stored as an enum.
+     * IntraBandENDC-Support is stored as an enum.
      *
      * 0 -> contiguous, 1 -> non-contiguous, 2 -> both.
      */
     @ProtoNumber(5)
     @SerialName("intraBandEnDcSupport")
-    private val rawIntraBandEnDcSupport: Int? = null
+    private val rawIntraBandEnDcSupport: Int? = null,
+    /** SupportedNumberTAG is stored as unsigned int. */
+    @ProtoNumber(6) val supportedNumTag: Long? = null,
 ) {
     val bcsNr
         get() = convertRawBcs(rawBcsNr)
