@@ -34,11 +34,11 @@ enum class LogType(val description: String) {
     RF("QCT Modem Capabilities"),
     SHNR("Shannon NR UE Cap Config Protobuf"),
     P("PCAP"),
+    NSG("NSG baseband log json"),
     DLF("DLF baseband log"),
     QMDL("QMDL baseband log"),
     HDF("HDF baseband log"),
-    SDM("SDM baseband log"),
-    NSG("NSG baseband log json");
+    SDM("SDM baseband log");
 
     companion object {
         /** All entries except invalid ones */
