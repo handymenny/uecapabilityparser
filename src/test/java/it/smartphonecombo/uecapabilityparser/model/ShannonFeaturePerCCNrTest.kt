@@ -3,8 +3,8 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonFeatureDlPerCCNr
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonFeatureUlPerCCNr
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeatureDlPerCCNr
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeatureUlPerCCNr
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -87,6 +87,12 @@ internal class ShannonFeaturePerCCNrTest {
     }
 
     @Test
+    fun testMaxMimo8Ul() {
+        val feature = ShannonFeatureDlPerCCNr(1, 3, 0, 0, false)
+        assertEquals(8, feature.maxMimo)
+    }
+
+    @Test
     fun testMaxMimoInvalidDl() {
         val feature = ShannonFeatureDlPerCCNr(1, 100, 0, 0, false)
         assertEquals(0, feature.maxMimo)
@@ -105,20 +111,14 @@ internal class ShannonFeaturePerCCNrTest {
     }
 
     @Test
+    fun testMaxMimo4Ul() {
+        val feature = ShannonFeatureUlPerCCNr(1, 3, 0, 0, false, 2)
+        assertEquals(4, feature.maxMimo)
+    }
+
+    @Test
     fun testMaxMimoInvalidUl() {
         val feature = ShannonFeatureUlPerCCNr(1, 1000, 0, 0, false, 100)
         assertEquals(0, feature.maxMimo)
-    }
-
-    @Test
-    fun testMaxMimoCbHigher() {
-        val feature = ShannonFeatureUlPerCCNr(1, 1, 0, 0, false, 2)
-        assertEquals(2, feature.maxMimo)
-    }
-
-    @Test
-    fun testMaxMimoNonCbHigher() {
-        val feature = ShannonFeatureUlPerCCNr(1, 2, 0, 0, false, 1)
-        assertEquals(2, feature.maxMimo)
     }
 }

@@ -1,7 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.extension.isOdd
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonFeatureSetEutra
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeatureSetEutra
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

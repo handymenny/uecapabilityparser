@@ -26,7 +26,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 6156
+                    "skuBitMask": 6156
                 },
                 {
                     "components": [
@@ -44,7 +44,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 26419
+                    "skuBitMask": 26419
                 }
             ]
         },
@@ -72,7 +72,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 30748
+                    "skuBitMask": 30748
                 },
                 {
                     "components": [
@@ -90,7 +90,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1827
+                    "skuBitMask": 1827
                 }
             ]
         },
@@ -128,7 +128,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 6144
+                    "skuBitMask": 6144
                 },
                 {
                     "components": [
@@ -156,7 +156,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 24576
+                    "skuBitMask": 24576
                 },
                 {
                     "components": [
@@ -184,7 +184,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1792
+                    "skuBitMask": 1792
                 }
             ]
         },
@@ -222,7 +222,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 6144
+                    "skuBitMask": 6144
                 },
                 {
                     "components": [
@@ -250,7 +250,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 26368
+                    "skuBitMask": 26368
                 }
             ]
         },
@@ -291,7 +291,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 6156
+                    "skuBitMask": 6156
                 },
                 {
                     "components": [
@@ -322,7 +322,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 26419
+                    "skuBitMask": 26419
                 }
             ]
         },
@@ -363,7 +363,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1313
+                    "skuBitMask": 1313
                 }
             ]
         },
@@ -405,7 +405,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 33
+                    "skuBitMask": 33
                 }
             ]
         },
@@ -448,7 +448,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1280
+                    "skuBitMask": 1280
                 }
             ]
         },
@@ -491,7 +491,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 33
+                    "skuBitMask": 33
                 }
             ]
         },
@@ -535,7 +535,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1280
+                    "skuBitMask": 1280
                 }
             ]
         },
@@ -579,7 +579,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 33
+                    "skuBitMask": 33
                 }
             ]
         },
@@ -624,7 +624,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1280
+                    "skuBitMask": 1280
                 }
             ]
         },
@@ -669,7 +669,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1313
+                    "skuBitMask": 1313
                 }
             ]
         },
@@ -715,7 +715,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1313
+                    "skuBitMask": 1313
                 }
             ]
         },
@@ -762,7 +762,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1313
+                    "skuBitMask": 1313
                 }
             ]
         },
@@ -810,7 +810,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 1313
+                    "skuBitMask": 1313
                 }
             ]
         }
@@ -1023,227 +1023,227 @@
     "ulFeaturePerCCList": [
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 5,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 10,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 15,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 20,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 25,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 30,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 40,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 50,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 10,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 20,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 20,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 25,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 25,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 30,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 40,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 40,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 50,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 50,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 60,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 60,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 100,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 100,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 4,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 100,
             "maxModOrder": 1,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 4,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 100,
             "maxModOrder": 1,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         }
     ]
 }

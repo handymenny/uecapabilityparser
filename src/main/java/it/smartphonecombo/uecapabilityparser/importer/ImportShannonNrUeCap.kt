@@ -13,13 +13,13 @@ import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
-import it.smartphonecombo.uecapabilityparser.model.shannon.ComboFeatures
-import it.smartphonecombo.uecapabilityparser.model.shannon.ComboGroup
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonCombo
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonComponent
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonFeaturePerCCNr
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonFeatureSetEutra
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonNrUECap
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ComboNrFeatures
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ComboNrGroup
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonComboNr
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonComponentNr
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeaturePerCCNr
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeatureSetEutra
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonUECapNr
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
@@ -28,7 +28,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
         val byteArray = input.readBytes()
-        val nrUeCap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(byteArray)
+        val nrUeCap = ProtoBuf.decodeFromByteArray<ShannonUECapNr>(byteArray)
 
         capabilities.setMetadata("shannonUeCapVersion", nrUeCap.version)
         if (nrUeCap.id != null) capabilities.setMetadata("shannonUeCapId", nrUeCap.id)
@@ -58,7 +58,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     }
 
     private fun processComboGroups(
-        comboGroups: List<ComboGroup>,
+        comboGroups: List<ComboNrGroup>,
         lteFeatureSetsDl: List<FeatureSet>,
         lteFeatureSetsUl: List<FeatureSet>,
         nrFeaturesPerCCDl: List<FeaturePerCCNr>,
@@ -88,12 +88,12 @@ object ImportShannonNrUeCap : ImportCapabilities {
     }
 
     private fun processShannonCombo(
-        shCombo: ShannonCombo,
+        shCombo: ShannonComboNr,
         lteFeatureSetsDl: List<FeatureSet>,
         lteFeatureSetsUl: List<FeatureSet>,
         nrFeaturesPerCCDl: List<FeaturePerCCNr>,
         nrFeaturesPerCCUl: List<FeaturePerCCNr>,
-        groupFeatures: ComboFeatures
+        groupFeatures: ComboNrFeatures
     ): ICombo {
         val (nrComponents, lteComponents) = shCombo.components.partition { it.isNr }
         val lte = processShannonComponentsLte(lteComponents, lteFeatureSetsDl, lteFeatureSetsUl)
@@ -126,7 +126,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     }
 
     private fun processShannonComponentsLte(
-        shComponents: List<ShannonComponent>,
+        shComponents: List<ShannonComponentNr>,
         featureSetsDl: List<FeatureSet>,
         featureSetsUl: List<FeatureSet>
     ): List<ComponentLte> {
@@ -137,7 +137,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     }
 
     private fun processShannonComponentsNr(
-        shComponents: List<ShannonComponent>,
+        shComponents: List<ShannonComponentNr>,
         featuresPerCCDl: List<FeaturePerCCNr>,
         featuresPerCCUl: List<FeaturePerCCNr>
     ): List<ComponentNr> {
@@ -148,12 +148,14 @@ object ImportShannonNrUeCap : ImportCapabilities {
     }
 
     private fun processShannonComponentLte(
-        shComponent: ShannonComponent,
+        shComponent: ShannonComponentNr,
         featureSetsDl: List<FeatureSet>,
         featureSetsUl: List<FeatureSet>
     ): ComponentLte {
-        val dlFeature = featureSetsDl.getOrNull(shComponent.dlFeatureIndex - 1)?.featureSetsPerCC
-        val ulFeature = featureSetsUl.getOrNull(shComponent.ulFeatureIndex - 1)?.featureSetsPerCC
+        val dlFeature =
+            featureSetsDl.getOrNull((shComponent.dlFeatureIndex - 1).toInt())?.featureSetsPerCC
+        val ulFeature =
+            featureSetsUl.getOrNull((shComponent.ulFeatureIndex - 1).toInt())?.featureSetsPerCC
         val component =
             mergeComponentAndFeaturePerCC(shComponent.toComponent(), dlFeature, ulFeature, null)
 
@@ -161,14 +163,14 @@ object ImportShannonNrUeCap : ImportCapabilities {
     }
 
     private fun processShannonComponentNr(
-        shComponent: ShannonComponent,
+        shComponent: ShannonComponentNr,
         featuresPerCCDl: List<FeaturePerCCNr>,
         featuresPerCCUl: List<FeaturePerCCNr>
     ): ComponentNr {
         val dlFeature =
-            shComponent.dlFeaturePerCCIds.mapNotNull { featuresPerCCDl.getOrNull(it - 1) }
+            shComponent.dlFeaturePerCCIds.mapNotNull { featuresPerCCDl.getOrNull((it - 1).toInt()) }
         val ulFeature =
-            shComponent.ulFeaturePerCCIds.mapNotNull { featuresPerCCUl.getOrNull(it - 1) }
+            shComponent.ulFeaturePerCCIds.mapNotNull { featuresPerCCUl.getOrNull((it - 1).toInt()) }
         val component =
             mergeComponentAndFeaturePerCC(shComponent.toComponent(), dlFeature, ulFeature, null)
 
