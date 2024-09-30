@@ -1,4 +1,4 @@
-package it.smartphonecombo.uecapabilityparser.model.shannon
+package it.smartphonecombo.uecapabilityparser.model.shannon.nr
 
 import it.smartphonecombo.uecapabilityparser.model.LinkDirection
 import it.smartphonecombo.uecapabilityparser.model.SingleMimo

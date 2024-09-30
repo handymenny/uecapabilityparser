@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package it.smartphonecombo.uecapabilityparser.model.shannon
+package it.smartphonecombo.uecapabilityparser.model.shannon.nr
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
@@ -16,14 +16,14 @@ import kotlinx.serialization.protobuf.ProtoNumber
  * This work wouldn't have been possible without the help of @NXij.
  */
 @Serializable
-@SerialName("ShannonNrUECap")
-data class ShannonNrUECap(
+@SerialName("ShannonUECapNr")
+data class ShannonUECapNr(
     /** ShannonNrUECap version. */
     @ProtoNumber(1) val version: Long = 0,
     /** ID assigned to this ShannonNrUECap. */
     @ProtoNumber(2) val id: Int? = null,
     /** List of combo groups. */
-    @ProtoNumber(3) val comboGroups: List<ComboGroup> = emptyList(),
+    @ProtoNumber(3) val comboGroups: List<ComboNrGroup> = emptyList(),
     /** List of FeatureSetDownlinkPerCC. */
     @ProtoNumber(4) val dlFeatureList: List<ShannonFeatureNr> = emptyList(),
     /** List of FeatureSetUplinkPerCC. */
@@ -33,7 +33,7 @@ data class ShannonNrUECap(
     /** List of FeatureSetUplinkPerCC. */
     @ProtoNumber(7) val ulFeaturePerCCList: List<ShannonFeatureUlPerCCNr> = emptyList(),
     /** A field with extra features * */
-    @ProtoNumber(8) val extraFeatures: ShannonExtraFeatures? = null,
+    @ProtoNumber(8) val extraFeatures: ShannonExtraFeaturesNr? = null,
     /** An "integrity" field stored as uint * */
     @ProtoNumber(9) val integrity: Long? = null,
 )

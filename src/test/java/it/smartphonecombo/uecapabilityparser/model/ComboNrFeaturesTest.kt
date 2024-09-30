@@ -1,10 +1,10 @@
 package it.smartphonecombo.uecapabilityparser.model
 
-import it.smartphonecombo.uecapabilityparser.model.shannon.ComboFeatures
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ComboNrFeatures
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class ComboFeaturesTest {
+internal class ComboNrFeaturesTest {
 
     @Test
     fun testBcsAllNull() {
@@ -113,14 +113,14 @@ internal class ComboFeaturesTest {
         oracleBcsIntraEndc: BCS,
         oracleBcsEutra: BCS
     ) {
-        val combo = ComboFeatures(bcsNr, bcsIntraEndc, bcsEutra, null, null)
+        val combo = ComboNrFeatures(bcsNr, bcsIntraEndc, bcsEutra, null, null)
         assertEquals(oracleBcsNr, combo.bcsNr)
         assertEquals(oracleBcsIntraEndc, combo.bcsIntraEndc)
         assertEquals(oracleBcsEutra, combo.bcsEutra)
     }
 
     private fun checkPowerClass(input: Int?, oracle: PowerClass) {
-        val combo = ComboFeatures(rawPowerClass = input)
+        val combo = ComboNrFeatures(rawPowerClass = input)
         assertEquals(oracle, combo.powerClass)
     }
 }

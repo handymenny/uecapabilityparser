@@ -1,13 +1,15 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package it.smartphonecombo.uecapabilityparser.model.shannon
+package it.smartphonecombo.uecapabilityparser.model.shannon.nr
 
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-data class ShannonExtraFeatures(
+@SerialName("ExtraFeatures")
+data class ShannonExtraFeaturesNr(
     @ProtoNumber(1) val caParamEutraBitmap: Long? = null,
     @ProtoNumber(2) val caParamEutraSupportedNaics2CrSAp: Long? = null,
     @ProtoNumber(3) val caParamNrBitmap: Long? = null,

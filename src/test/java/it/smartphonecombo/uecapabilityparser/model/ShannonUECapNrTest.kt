@@ -2,7 +2,7 @@
 
 package it.smartphonecombo.uecapabilityparser.model
 
-import it.smartphonecombo.uecapabilityparser.model.shannon.ShannonNrUECap
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonUECapNr
 import java.io.File
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromByteArray
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class ShannonNrUECapTest {
+internal class ShannonUECapNrTest {
 
     private val resourcesPath = "src/test/resources/shannon/input"
     private val oracleJsonPath = "src/test/resources/shannon/oracle"
@@ -80,19 +80,19 @@ internal class ShannonNrUECapTest {
 
     private fun protobufToJson(inputPath: String, oraclePath: String) {
         val inputBinary = File(inputPath).readBytes()
-        val nrUECap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(inputBinary)
+        val nrUECap = ProtoBuf.decodeFromByteArray<ShannonUECapNr>(inputBinary)
 
         val oracleText = File(oraclePath).readText()
-        val oracleObject = Json.decodeFromString<ShannonNrUECap>(oracleText)
+        val oracleObject = Json.decodeFromString<ShannonUECapNr>(oracleText)
 
         assertEquals(oracleObject, nrUECap)
     }
 
     private fun reEncodeProtobuf(inputPath: String) {
         val inputBinary = File(inputPath).readBytes()
-        val nrUECap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(inputBinary)
+        val nrUECap = ProtoBuf.decodeFromByteArray<ShannonUECapNr>(inputBinary)
 
-        val reEncodedBinary = ProtoBuf.encodeToByteArray<ShannonNrUECap>(nrUECap)
+        val reEncodedBinary = ProtoBuf.encodeToByteArray<ShannonUECapNr>(nrUECap)
 
         assertArrayEquals(inputBinary, reEncodedBinary)
     }

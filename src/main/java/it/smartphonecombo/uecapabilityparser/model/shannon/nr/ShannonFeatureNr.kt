@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package it.smartphonecombo.uecapabilityparser.model.shannon
+package it.smartphonecombo.uecapabilityparser.model.shannon.nr
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName

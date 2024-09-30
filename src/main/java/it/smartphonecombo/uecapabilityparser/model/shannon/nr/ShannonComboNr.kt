@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package it.smartphonecombo.uecapabilityparser.model.shannon
+package it.smartphonecombo.uecapabilityparser.model.shannon.nr
 
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
@@ -12,25 +12,25 @@ import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
 @SerialName("ComboGroup")
-data class ComboGroup(
+data class ComboNrGroup(
     /** Some features that applies to the whole combo group. */
-    @ProtoNumber(1) val comboFeatures: ComboFeatures,
-    /** List of combos that share the same [ComboFeatures]. */
-    @ProtoNumber(2) val combos: List<ShannonCombo> = emptyList(),
+    @ProtoNumber(1) val comboFeatures: ComboNrFeatures,
+    /** List of combos that share the same [ComboNrFeatures]. */
+    @ProtoNumber(2) val combos: List<ShannonComboNr> = emptyList(),
 )
 
 @Serializable
 @SerialName("Combo")
-data class ShannonCombo(
+data class ShannonComboNr(
     /** List of Components. */
-    @ProtoNumber(1) val components: List<ShannonComponent> = emptyList(),
+    @ProtoNumber(1) val components: List<ShannonComponentNr> = emptyList(),
     /** A bit mask stored as unsigned int that enables or disables this combo for specific SKUs. */
     @ProtoNumber(2) val skuBitMask: Long
 )
 
 @Serializable
 @SerialName("ComboFeatures")
-data class ComboFeatures(
+data class ComboNrFeatures(
     /**
      * The supportedBandwidthCombinationSet that applies to the Nr Components.
      *

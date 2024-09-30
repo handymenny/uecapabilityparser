@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalSerializationApi::class)
 
-package it.smartphonecombo.uecapabilityparser.model.shannon
+package it.smartphonecombo.uecapabilityparser.model.shannon.nr
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.model.BwClass
@@ -16,7 +16,7 @@ import kotlinx.serialization.protobuf.ProtoPacked
 
 @Serializable
 @SerialName("Component")
-data class ShannonComponent(
+data class ShannonComponentNr(
     /**
      * LTE Bands are stored as they are.
      *
@@ -35,7 +35,7 @@ data class ShannonComponent(
      * hardcoded elsewhere (see [ShannonFeatureSetEutra]).
      *
      * For NR this is FeatureSetDownlinkId, the corresponding FeatureSetDownlink is stored in
-     * [ShannonNrUECap.dlFeatureList].
+     * [ShannonUECapNr.dlFeatureList].
      *
      * Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
      */
@@ -46,7 +46,7 @@ data class ShannonComponent(
      * hardcoded elsewhere (see [ShannonFeatureSetEutra]).
      *
      * For NR this is FeatureSetUplinkId, the corresponding FeatureSetUplink is stored in
-     * [ShannonNrUECap.ulFeatureList].
+     * [ShannonUECapNr.ulFeatureList].
      *
      * Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
      */
@@ -55,14 +55,14 @@ data class ShannonComponent(
     /**
      * This is a list of FeatureSetDownlinkPerCC-Id per each CC. This only applies to NR.
      *
-     * The corresponding FeatureSetDownlinkPerCC is stored in [ShannonNrUECap.dlFeaturePerCCList].
+     * The corresponding FeatureSetDownlinkPerCC is stored in [ShannonUECapNr.dlFeaturePerCCList].
      */
     @ProtoNumber(6) @ProtoPacked val dlFeaturePerCCIds: List<Long> = emptyList(),
 
     /**
      * This is a list of FeatureSetUplinkPerCC-Id per each CC. This only applies to NR.
      *
-     * The corresponding FeatureSetUplinkPerCC are stored in [ShannonNrUECap.ulFeaturePerCCList].
+     * The corresponding FeatureSetUplinkPerCC are stored in [ShannonUECapNr.ulFeaturePerCCList].
      */
     @ProtoNumber(7) @ProtoPacked val ulFeaturePerCCIds: List<Long> = emptyList(),
 

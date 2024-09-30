@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-message ShannonNrUECap {
+message ShannonUECapNr {
   // ShannonNrUECap version.
   optional uint32 version = 1;
   // ID assigned to this ShannonNrUECap.
@@ -16,7 +16,7 @@ message ShannonNrUECap {
   // List of FeatureSetUplinkPerCC.
   repeated FeatureUlPerCCNr ulFeaturePerCCList = 7;
   // Extra features
-  optional ShannonExtraFeatures extraFeatures = 8;
+  optional ExtraFeatures extraFeatures = 8;
   // Integrity protection
   optional uint32 integrity = 9;
 }
@@ -69,7 +69,7 @@ message FeatureUlPerCCNr {
   required uint32 maxNumSRSResPerSet = 6;
 }
 
-message ShannonExtraFeatures {
+message ExtraFeatures {
   optional uint32 caParamEutraBitmap = 1;
   optional uint32 caParamEutraSupportedNaics2CrSAp = 2;
   optional uint32 caParamNrBitmap = 3;
