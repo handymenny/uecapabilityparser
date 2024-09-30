@@ -35,7 +35,7 @@ data class ShannonComponentNr(
      * hardcoded elsewhere (see [ShannonFeatureSetEutra]).
      *
      * For NR this is FeatureSetDownlinkId, the corresponding FeatureSetDownlink is stored in
-     * [ShannonUECapNr.dlFeatureList].
+     * [ShannonNrUECap.dlFeatureList].
      *
      * Note that the index starts from 1 as per 3GPP spec, 0 means DL not supported.
      */
@@ -46,7 +46,7 @@ data class ShannonComponentNr(
      * hardcoded elsewhere (see [ShannonFeatureSetEutra]).
      *
      * For NR this is FeatureSetUplinkId, the corresponding FeatureSetUplink is stored in
-     * [ShannonUECapNr.ulFeatureList].
+     * [ShannonNrUECap.ulFeatureList].
      *
      * Note that the index starts from 1 as per 3GPP spec, 0 means UL not supported.
      */
@@ -55,14 +55,14 @@ data class ShannonComponentNr(
     /**
      * This is a list of FeatureSetDownlinkPerCC-Id per each CC. This only applies to NR.
      *
-     * The corresponding FeatureSetDownlinkPerCC is stored in [ShannonUECapNr.dlFeaturePerCCList].
+     * The corresponding FeatureSetDownlinkPerCC is stored in [ShannonNrUECap.dlFeaturePerCCList].
      */
     @ProtoNumber(6) @ProtoPacked val dlFeaturePerCCIds: List<Long> = emptyList(),
 
     /**
      * This is a list of FeatureSetUplinkPerCC-Id per each CC. This only applies to NR.
      *
-     * The corresponding FeatureSetUplinkPerCC are stored in [ShannonUECapNr.ulFeaturePerCCList].
+     * The corresponding FeatureSetUplinkPerCC are stored in [ShannonNrUECap.ulFeaturePerCCList].
      */
     @ProtoNumber(7) @ProtoPacked val ulFeaturePerCCIds: List<Long> = emptyList(),
 

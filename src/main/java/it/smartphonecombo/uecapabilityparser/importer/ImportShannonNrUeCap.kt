@@ -19,7 +19,7 @@ import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonComboNr
 import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonComponentNr
 import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeatureSetEutra
-import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonUECapNr
+import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonNrUECap
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
@@ -28,7 +28,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
         val byteArray = input.readBytes()
-        val nrUeCap = ProtoBuf.decodeFromByteArray<ShannonUECapNr>(byteArray)
+        val nrUeCap = ProtoBuf.decodeFromByteArray<ShannonNrUECap>(byteArray)
 
         capabilities.setMetadata("shannonUeCapVersion", nrUeCap.version)
         if (nrUeCap.id != null) capabilities.setMetadata("shannonUeCapId", nrUeCap.id)
