@@ -421,10 +421,16 @@ internal class ServerModeMultiPartParseTest {
                     addJsonObject {
                         put("type", "DLF")
                         putJsonArray("inputIndexes") { add(1) }
+                    }
+                    addJsonObject {
                         put("type", "SDM")
                         putJsonArray("inputIndexes") { add(0) }
+                    }
+                    addJsonObject {
                         put("type", "HDF")
                         putJsonArray("inputIndexes") { add(3) }
+                    }
+                    addJsonObject {
                         put("type", "QMDL")
                         putJsonArray("inputIndexes") { add(2) }
                     }
