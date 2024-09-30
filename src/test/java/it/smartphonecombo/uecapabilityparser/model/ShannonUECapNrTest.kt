@@ -49,6 +49,11 @@ internal class ShannonUECapNrTest {
     }
 
     @Test
+    fun testToJsonPixel9() {
+        protobufToJson("$resourcesPath/pixel9.binarypb", "$oracleJsonPath/pixel9.json")
+    }
+
+    @Test
     fun testReEncodeEmpty() {
         reEncodeProtobuf("$resourcesPath/empty.binarypb")
     }
@@ -76,6 +81,11 @@ internal class ShannonUECapNrTest {
     @Test
     fun testReEncodeMmWaveSA() {
         reEncodeProtobuf("$resourcesPath/mmWaveSA.binarypb")
+    }
+
+    @Test
+    fun testReEncodePixel9() {
+        reEncodeProtobuf("$resourcesPath/pixel9.binarypb")
     }
 
     private fun protobufToJson(inputPath: String, oraclePath: String) {
