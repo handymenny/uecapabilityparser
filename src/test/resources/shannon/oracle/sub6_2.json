@@ -26,7 +26,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 6156
+                    "skuBitMask": 6156
                 },
                 {
                     "components": [
@@ -44,7 +44,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 291
+                    "skuBitMask": 291
                 }
             ]
         },
@@ -72,7 +72,7 @@
                             ]
                         }
                     ],
-                    "bitMask": 5935
+                    "skuBitMask": 5935
                 }
             ]
         }
@@ -285,227 +285,227 @@
     "ulFeaturePerCCList": [
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 5,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 10,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 15,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 20,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 25,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 30,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 40,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 1,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 50,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 10,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 20,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 20,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 25,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 25,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 30,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 40,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 40,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 50,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 50,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 60,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 60,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 80,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 100,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 2,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 100,
             "maxModOrder": 2,
             "bw90MHzSupported": true,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         },
         {
             "maxScs": 4,
-            "maxMimoCb": 1,
+            "maxMimo": 1,
             "maxBw": 100,
             "maxModOrder": 1,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 1
+            "maxNumSRSResPerSet": 1
         },
         {
             "maxScs": 4,
-            "maxMimoCb": 2,
+            "maxMimo": 2,
             "maxBw": 100,
             "maxModOrder": 1,
             "bw90MHzSupported": false,
-            "maxMimoNonCb": 2
+            "maxNumSRSResPerSet": 2
         }
     ]
 }
