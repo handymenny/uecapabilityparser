@@ -193,6 +193,20 @@ internal class CliJsonOutputTest {
     }
 
     @Test
+    fun testShannonLteUeCap() {
+        test(
+            "-i",
+            "$path/input/shannonLteUeCap.binarypb",
+            "-t",
+            "SHLTE",
+            "-j",
+            "-",
+            "--json-pretty-print",
+            oracleFilename = "shannonLteUeCap.json"
+        )
+    }
+
+    @Test
     fun testWiresharkEutra() {
         test(
             "-i",
