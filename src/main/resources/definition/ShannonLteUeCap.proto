@@ -1,0 +1,44 @@
+syntax = "proto2";
+
+message ShannonLteUECap {
+  // ShannonUECapLte version.
+  required uint32 version = 1;
+  // List of combos.
+  repeated Combo combos = 2;
+  // Unknown bitmask.
+  required uint32 bitmask = 3;
+}
+
+message Combo {
+  // List of Components.
+  repeated Component components = 1;
+  /*
+     The supportedBandwidthCombinationSet of this combo.
+     It's stored as a 32bit unsigned int, each of its bits has the same value of the corresponding
+     bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
+   */
+  optional uint32 bcs = 2;
+  // Unknown bitmask.
+  required uint32 unknown1 = 3;
+  // Unknown bitmask.
+  required uint32 unknown2 = 4;
+}
+
+message Component {
+  // LTE Bands are stored as int
+  required int32 band = 1;
+  /*
+     First 8 bits encode mimo, second 8 bits encode bw class. Bw class is encoded setting to 1 the
+     bit representing the bw class index.
+     Ex. 1000 0000 = class A (index 0), 0100 0000 = class B (index 1), 00100 0000 = class C (index 2)
+     Mimo is encoded as enum, 0 -> 2, 1 -> 4
+   */
+  required int32 bwClassMimoDl = 2;
+  /*
+     First 8 bits encode mimo, second 8 bits encode bw class. Bw class is encoded setting to 1 the
+     bit representing the bw class index.
+     Ex. 1000 0000 = class A (index 0), 0100 0000 = class B (index 1), 00100 0000 = class C (index 2)
+     Mimo is encoded as enum, 0 -> 1, 1 -> 2
+   */
+  required int32 bwClassMimoUl = 3;
+}

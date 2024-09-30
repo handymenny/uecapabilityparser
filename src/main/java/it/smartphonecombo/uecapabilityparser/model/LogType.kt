@@ -9,6 +9,7 @@ import it.smartphonecombo.uecapabilityparser.importer.ImportMTKLte
 import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.ImportQctModemCap
+import it.smartphonecombo.uecapabilityparser.importer.ImportShannonLteUeCap
 import it.smartphonecombo.uecapabilityparser.importer.ImportShannonNrUeCap
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat.isScatAvailable
 import kotlinx.serialization.SerialName
@@ -32,6 +33,7 @@ enum class LogType(val description: String) {
     T("TEMS UE Capability Information"),
     A("Amarisoft UE Capability Information"),
     RF("QCT Modem Capabilities"),
+    SHLTE("Shannon LTE UE Cap Config Protobuf"),
     SHNR("Shannon NR UE Cap Config Protobuf"),
     P("PCAP"),
     NSG("NSG baseband log json"),
@@ -61,7 +63,8 @@ enum class LogType(val description: String) {
         /** One input -> multi capabilities * */
         val multiImporter = validEntries.intersect(listOf(P, DLF, QMDL, HDF, SDM, NSG))
         /** One input -> multi or single capability * */
-        val singleInput = validEntries.intersect(listOf(E, SHNR, P, DLF, QMDL, HDF, SDM, NSG))
+        val singleInput =
+            validEntries.intersect(listOf(E, SHNR, SHLTE, P, DLF, QMDL, HDF, SDM, NSG))
 
         /** Return [INVALID] if conversion fails * */
         fun of(string: String?): LogType {
@@ -82,6 +85,7 @@ enum class LogType(val description: String) {
                 M -> ImportMTKLte
                 QNR -> Import0xB826
                 RF -> ImportQctModemCap
+                SHLTE -> ImportShannonLteUeCap
                 SHNR -> ImportShannonNrUeCap
                 W,
                 N,

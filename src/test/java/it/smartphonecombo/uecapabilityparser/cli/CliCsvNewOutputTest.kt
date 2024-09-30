@@ -179,6 +179,19 @@ internal class CliCsvNewOutputTest {
         )
     }
 
+    @Test
+    fun testShannonLteUeCap() {
+        test(
+            "-i",
+            "$path/input/shannonLteUeCap.binarypb",
+            "-t",
+            "SHLTE",
+            "-c",
+            "-",
+            oracleFilename = "shannonLteUeCap.csv"
+        )
+    }
+
     private fun test(vararg args: String, oracleFilename: String) {
         val oraclePath = "$path/oracleCsvNew/$oracleFilename"
 

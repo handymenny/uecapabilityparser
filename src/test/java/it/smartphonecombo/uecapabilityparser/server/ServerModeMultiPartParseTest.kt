@@ -465,6 +465,21 @@ internal class ServerModeMultiPartParseTest {
         )
     }
 
+    @Test
+    fun shannonLteUeCapJsonOutput() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "SHLTE")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/shannonLteUeCap.binarypb"),
+            oraclePath = "$oraclePath/shannonLteUeCap.json"
+        )
+    }
+
     private fun javalinJsonTest(request: JsonElement, files: List<String>, oraclePath: String) =
         JavalinTest.test(app) { _, client ->
             val response =
