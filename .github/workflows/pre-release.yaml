@@ -32,6 +32,12 @@ jobs:
       - name: Build & Test
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         run: ./gradlew genTsTypes build
+      - name: Store reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: build/reports/
       - name: Save dist zip
         if: ${{ env.NEW_COMMIT_COUNT > 0 }}
         run: cp build/distributions/*.zip .
