@@ -82,6 +82,8 @@ tasks {
         useJUnitPlatform()
         // generate kover report
         finalizedBy(named("koverXmlReport"))
+        // Raise max heap size to 1G (default 512 MB)
+        maxHeapSize = "1G"
     }
 
     shadowJar {
