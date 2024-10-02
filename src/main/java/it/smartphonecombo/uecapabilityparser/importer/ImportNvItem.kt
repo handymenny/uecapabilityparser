@@ -70,7 +70,9 @@ object ImportNvItem : ImportCapabilities {
                         // Get UL Components
                         val ulComponents = parseItem(stream, itemType)
                         // merge DL and UL Components
-                        listCombo.add(ComboLte(dlComponents, ulComponents))
+                        val combo = ComboLte(dlComponents, ulComponents)
+                        // add to list if not dummy
+                        if (!combo.isDummy()) listCombo.add(combo)
                     }
                     else -> throw IllegalArgumentException("Invalid item type")
                 }
@@ -149,4 +151,7 @@ object ImportNvItem : ImportCapabilities {
 
         return lteComponents
     }
+
+    /** Return true if the combo has no UL component */
+    private fun ComboLte.isDummy() = masterComponents.none { it.classUL != BwClass.NONE }
 }
