@@ -43,4 +43,9 @@ internal class ImportNvItemTest {
     fun parseNvItemZlib() {
         parse("28874_zlib.bin", "28874_zlib.json")
     }
+
+    @Test
+    fun parseNvItemDummy() {
+        parse("28874_137_dummy.bin", "28874_137_dummy.json")
+    }
 }
