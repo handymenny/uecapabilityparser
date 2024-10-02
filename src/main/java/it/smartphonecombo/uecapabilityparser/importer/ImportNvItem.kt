@@ -17,7 +17,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.zip.InflaterInputStream
 
-private const val MAX_CC = 5
+private const val MAX_CC = 6
 
 /**
  * A parser for Qualcomm NVItem 28874 (RFNV_LTE_CA_BW_CLASS_COMBO_I).
@@ -70,7 +70,9 @@ object ImportNvItem : ImportCapabilities {
                         // Get UL Components
                         val ulComponents = parseItem(stream, itemType)
                         // merge DL and UL Components
-                        listCombo.add(ComboLte(dlComponents, ulComponents))
+                        val combo = ComboLte(dlComponents, ulComponents)
+                        // add to list if not dummy
+                        if (!combo.isDummy()) listCombo.add(combo)
                     }
                     else -> throw IllegalArgumentException("Invalid item type")
                 }
@@ -110,7 +112,7 @@ object ImportNvItem : ImportCapabilities {
     ): List<ComponentLte> {
         val lteComponents = mutableListWithCapacity<ComponentLte>(MAX_CC)
 
-        for (i in 0..MAX_CC) {
+        for (i in 0 until MAX_CC) {
             // read band and bwClass
             val band = input.readUShortLE()
             val bwClass = BwClass.valueOf(input.readUByte())
@@ -149,4 +151,7 @@ object ImportNvItem : ImportCapabilities {
 
         return lteComponents
     }
+
+    /** Return true if the combo has no UL component */
+    private fun ComboLte.isDummy() = masterComponents.none { it.classUL != BwClass.NONE }
 }
