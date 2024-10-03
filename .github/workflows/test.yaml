@@ -29,6 +29,8 @@ jobs:
           java-version: '11'
       - name: Setup gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
       - name: Test
         run: ./gradlew test --rerun
       - name: Store reports
