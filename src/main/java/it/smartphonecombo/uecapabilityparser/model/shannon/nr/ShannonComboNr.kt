@@ -25,7 +25,7 @@ data class ShannonComboNr(
     /** List of Components. */
     @ProtoNumber(1) val components: List<ShannonComponentNr> = emptyList(),
     /** A bit mask stored as unsigned int that enables or disables this combo for specific SKUs. */
-    @ProtoNumber(2) val skuBitMask: Long
+    @ProtoNumber(2) val skuBitMask: Long,
 )
 
 @Serializable

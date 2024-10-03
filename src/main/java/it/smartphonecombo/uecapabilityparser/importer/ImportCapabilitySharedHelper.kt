@@ -24,7 +24,7 @@ internal fun mergeAndSplitEnDcBCS(
     nrComponents: List<ComponentNr>,
     bcsNr: BCS,
     bcsEutra: BCS,
-    bcsIntraEnDc: BCS
+    bcsIntraEnDc: BCS,
 ): Triple<BCS, BCS, BCS> {
     val intraBandEnDC = nrComponents.any { nr -> lteComponents.any { lte -> nr.band == lte.band } }
 
@@ -51,7 +51,7 @@ internal fun mergeComponentAndFeaturePerCC(
     component: IComponent,
     dlFeature: List<IFeaturePerCC>?,
     ulFeature: List<IFeaturePerCC>?,
-    bandDetails: IBandDetails?
+    bandDetails: IBandDetails?,
 ): IComponent {
     if (component is ComponentLte) {
         val componentLte = component.copy()
@@ -76,7 +76,7 @@ private fun applyNrFeaturesPerCC(
     direction: LinkDirection,
     component: ComponentNr,
     feature: List<FeaturePerCCNr>?,
-    bandMod: Modulation?
+    bandMod: Modulation?,
 ) {
     if (feature.isNullOrEmpty()) {
         setSdlSul(direction, component)
@@ -123,7 +123,7 @@ private fun applyLteFeaturesPerCC(
     direction: LinkDirection,
     component: ComponentLte,
     feature: List<IFeaturePerCC>?,
-    bandMod: Modulation?
+    bandMod: Modulation?,
 ) {
     if (feature.isNullOrEmpty()) {
         setSdlSul(direction, component)

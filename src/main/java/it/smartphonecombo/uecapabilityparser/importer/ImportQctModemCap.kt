@@ -106,7 +106,7 @@ object ImportQctModemCap : ImportCapabilities {
     private fun parseComboTwoRow(
         comboStringDl: String,
         comboStringUl: String,
-        index: Int
+        index: Int,
     ): ComboLte? {
         try {
             val dlComponents = parseComponents(comboStringDl.substring(index), true)

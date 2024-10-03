@@ -16,7 +16,7 @@ internal class ImportPcapTest {
     fun testPduUtra() {
         testPcap(
             "$path/input/exportedPduUtra.pcap",
-            "$path/oracle/exportedPduUtra-capabilities.json"
+            "$path/oracle/exportedPduUtra-capabilities.json",
         )
     }
 
@@ -25,7 +25,7 @@ internal class ImportPcapTest {
     fun testPduEutra() {
         testPcap(
             "$path/input/exportedPduEutra.pcap",
-            "$path/oracle/exportedPduEutra-capabilities.json"
+            "$path/oracle/exportedPduEutra-capabilities.json",
         )
     }
 
@@ -34,7 +34,7 @@ internal class ImportPcapTest {
     fun testPduEutraDifferentFilters() {
         testPcap(
             "$path/input/exportedPduEutraDifferentFilters.pcap",
-            "$path/oracle/exportedPduEutraDifferentFilters-capabilities.json"
+            "$path/oracle/exportedPduEutraDifferentFilters-capabilities.json",
         )
     }
 
@@ -43,7 +43,7 @@ internal class ImportPcapTest {
     fun testPDUNrRrcLteRrc() {
         testPcap(
             "$path/input/exportedPduNrRrcLteRrc.pcap",
-            "$path/oracle/exportedPduNrRrcLteRrc-capabilities.json"
+            "$path/oracle/exportedPduNrRrcLteRrc-capabilities.json",
         )
     }
 
@@ -52,7 +52,7 @@ internal class ImportPcapTest {
     fun testPduMrdcFullSplit() {
         testPcap(
             "$path/input/exportedPduMrdcFullSplit.pcap",
-            "$path/oracle/exportedPduMrdcFullSplit-capabilities.json"
+            "$path/oracle/exportedPduMrdcFullSplit-capabilities.json",
         )
     }
 
@@ -61,7 +61,7 @@ internal class ImportPcapTest {
     fun testPduMrdcMixedSplit() {
         testPcap(
             "$path/input/exportedPduMrdcMixedSplit.pcap",
-            "$path/oracle/exportedPduMrdcMixedSplit-capabilities.json"
+            "$path/oracle/exportedPduMrdcMixedSplit-capabilities.json",
         )
     }
 
@@ -76,7 +76,7 @@ internal class ImportPcapTest {
     fun testGsmTapDualSimSameIp() {
         testPcap(
             "$path/input/gsmTapDualSimSameIP.pcap",
-            "$path/oracle/gsmTapDualSimSameIP-capabilities.json"
+            "$path/oracle/gsmTapDualSimSameIP-capabilities.json",
         )
     }
 
@@ -91,7 +91,7 @@ internal class ImportPcapTest {
     fun testGsmTapMrdcSemiSplit() {
         testPcap(
             "$path/input/gsmTapMrdcSemiSplit.pcap",
-            "$path/oracle/gsmTapMrdcSemiSplit-capabilities.json"
+            "$path/oracle/gsmTapMrdcSemiSplit-capabilities.json",
         )
     }
 
@@ -106,7 +106,7 @@ internal class ImportPcapTest {
     fun testGsmTapSpuriousData() {
         testPcap(
             "$path/input/gsmTapSpuriousData.pcap",
-            "$path/oracle/gsmTapSpuriousData-capabilities.json"
+            "$path/oracle/gsmTapSpuriousData-capabilities.json",
         )
     }
 
@@ -127,7 +127,7 @@ internal class ImportPcapTest {
     fun testGsmTapV3NrRrcSegmented() {
         testPcap(
             "$path/input/gsmTapV3NrRrcSegmented.pcap",
-            "$path/oracle/gsmTapV3NrRrcSegmented.json"
+            "$path/oracle/gsmTapV3NrRrcSegmented.json",
         )
     }
 
@@ -142,7 +142,7 @@ internal class ImportPcapTest {
     fun testPduSegmented() {
         testPcap(
             "$path/input/exportedPduMrdcSegmented.pcap",
-            "$path/oracle/exportedPduMrdcSegmented.json"
+            "$path/oracle/exportedPduMrdcSegmented.json",
         )
     }
 

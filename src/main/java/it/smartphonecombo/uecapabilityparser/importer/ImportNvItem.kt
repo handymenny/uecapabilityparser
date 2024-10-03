@@ -108,7 +108,7 @@ object ImportNvItem : ImportCapabilities {
         input: InputStream,
         hasMimo: Boolean = false,
         hasMultiMimo: Boolean = false,
-        isDL: Boolean = true
+        isDL: Boolean = true,
     ): List<ComponentLte> {
         val lteComponents = mutableListWithCapacity<ComponentLte>(MAX_CC)
 

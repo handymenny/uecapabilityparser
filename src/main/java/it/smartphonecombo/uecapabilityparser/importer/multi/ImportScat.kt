@@ -40,15 +40,7 @@ object ImportScat : ImportMultiCapabilities {
             tempPcapFile = File.createTempFile("PCAP-", ".pcap")
 
             val args =
-                mutableListOf(
-                    "scat",
-                    "-t",
-                    scatVendor,
-                    "-d",
-                    logFilePath,
-                    "-F",
-                    tempPcapFile.path,
-                )
+                mutableListOf("scat", "-t", scatVendor, "-d", logFilePath, "-F", tempPcapFile.path)
 
             if (type != LogType.SDM) {
                 args.add("-C")

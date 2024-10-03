@@ -95,7 +95,7 @@ object ImportLteCarrierPolicy : ImportCapabilities {
             BwClass.valueOf(classUL),
             mimoDL.toIntOrNull()?.toMimo() ?: EmptyMimo,
             // no support for UL MIMO
-            if (classUL.isEmpty()) EmptyMimo else 1.toMimo()
+            if (classUL.isEmpty()) EmptyMimo else 1.toMimo(),
         )
     }
 }

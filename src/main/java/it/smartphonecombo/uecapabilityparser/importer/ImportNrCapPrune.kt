@@ -88,6 +88,7 @@ object ImportNrCapPrune : ImportCapabilities {
     // Regex used to extract the various parts of a component
     private val componentsRegex =
         """([bn])(\d{1,3})([A-Q]?)\[?([\d,]{0,8})]?([A-Q]?)\[?([\d,]{0,8})]?""".toRegex()
+
     /** Converts the given componentString to a [IComponent]. Returns null if parsing fails */
     private fun parseComponent(componentString: String): IComponent? {
         val result = componentsRegex.find(componentString) ?: return null
@@ -100,7 +101,7 @@ object ImportNrCapPrune : ImportCapabilities {
                 BwClass.valueOf(classDL),
                 BwClass.valueOf(classUL),
                 mimoParsing(mimoDL),
-                mimoParsing(mimoUL)
+                mimoParsing(mimoUL),
             )
         } else {
             return ComponentNr(
@@ -108,7 +109,7 @@ object ImportNrCapPrune : ImportCapabilities {
                 BwClass.valueOf(classDL),
                 BwClass.valueOf(classUL),
                 mimoParsing(mimoDL),
-                mimoParsing(mimoUL)
+                mimoParsing(mimoUL),
             )
         }
     }

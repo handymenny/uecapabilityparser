@@ -20,7 +20,7 @@ data class BandNrDetails(
     @SerialName("maxUplinkDutyCycle") var maxUplinkDutyCycle: Int = 0,
     @SerialName("powerClass") override var powerClass: PowerClass = PowerClass.NONE,
     @SerialName("bandwidths") var bandwidths: List<BwsNr> = emptyList(),
-    @SerialName("rateMatchingLteCrs") var rateMatchingLteCrs: Boolean = false
+    @SerialName("rateMatchingLteCrs") var rateMatchingLteCrs: Boolean = false,
 ) : IBandDetails {
 
     fun bwsToString(): String {

@@ -19,5 +19,5 @@ data class ShannonExtraFeaturesNr(
     @ProtoNumber(7) val caParamNrSimultaneousCsiReportsAllCc: Long? = null,
     @ProtoNumber(8) val caParamMrdcBitmap: Long? = null,
     @ProtoNumber(9) val caParamMrdcUlSharingEutraNr: Long? = null,
-    @ProtoNumber(10) val caParamMrdcUlSwitchingTimeEutraNr: Long? = null
+    @ProtoNumber(10) val caParamMrdcUlSwitchingTimeEutraNr: Long? = null,
 )

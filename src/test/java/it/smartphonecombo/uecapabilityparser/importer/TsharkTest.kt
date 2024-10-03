@@ -67,7 +67,7 @@ internal class TsharkTest {
 
         Assertions.assertLinesMatch(
             normalizeCapabilityText(expectedUeCapability),
-            normalizeCapabilityText(ueCapability)
+            normalizeCapabilityText(ueCapability),
         )
     }
 
@@ -86,7 +86,7 @@ internal class TsharkTest {
                 } else if (it.contains("maxNumberConfiguredTCIstatesPerCC")) {
                     it.replace(
                         "maxNumberConfiguredTCIstatesPerCC",
-                        "maxNumberConfiguredTCI-StatesPerCC"
+                        "maxNumberConfiguredTCI-StatesPerCC",
                     )
                 } else {
                     it

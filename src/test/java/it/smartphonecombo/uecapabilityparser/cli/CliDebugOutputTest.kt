@@ -25,7 +25,7 @@ internal class CliDebugOutputTest {
             "-t",
             "QLTE",
             "-d",
-            oracleFilename = "0xB0CDMultiHex.txt"
+            oracleFilename = "0xB0CDMultiHex.txt",
         )
     }
 
@@ -49,7 +49,7 @@ internal class CliDebugOutputTest {
             "-t",
             "W",
             "-d",
-            oracleFilename = "wiresharkMrdc.txt"
+            oracleFilename = "wiresharkMrdc.txt",
         )
     }
 

@@ -71,7 +71,7 @@ data class ShannonComponentNr(
      *
      * 1 -> t1r1, 2 -> t1r2, 3 -> t1r4, 4 -> t2r2, 5 -> t2r4, 6 -> t1r4-t2r4
      */
-    @ProtoNumber(8) val srsTxSwitch: Int? = null
+    @ProtoNumber(8) val srsTxSwitch: Int? = null,
 ) {
     @Transient val isNr = rawBand > 10000
     val band: Band

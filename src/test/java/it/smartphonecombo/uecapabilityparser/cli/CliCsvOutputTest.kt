@@ -19,7 +19,7 @@ internal class CliCsvOutputTest {
             "C",
             "-c",
             "-",
-            oracleFilename = "carrierPolicy.csv"
+            oracleFilename = "carrierPolicy.csv",
         )
     }
 
@@ -37,7 +37,7 @@ internal class CliCsvOutputTest {
             "QLTE",
             "-c",
             "-",
-            oracleFilename = "0xB0CDMultiHex.csv"
+            oracleFilename = "0xB0CDMultiHex.csv",
         )
     }
 
@@ -65,7 +65,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
-            oracleFilename = "0xB826Multi.csv"
+            oracleFilename = "0xB826Multi.csv",
         )
     }
 
@@ -78,7 +78,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
-            oracleFilename = "0xB826MultiV14.csv"
+            oracleFilename = "0xB826MultiV14.csv",
         )
     }
 
@@ -91,7 +91,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
-            oracleFilename = "0xB826MultiScat.csv"
+            oracleFilename = "0xB826MultiScat.csv",
         )
     }
 
@@ -104,7 +104,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
-            oracleFilename = "0xB826MultiScat0x9801.csv"
+            oracleFilename = "0xB826MultiScat0x9801.csv",
         )
     }
 
@@ -117,7 +117,7 @@ internal class CliCsvOutputTest {
             "CNR",
             "-c",
             "-",
-            oracleFilename = "nrCapPrune.csv"
+            oracleFilename = "nrCapPrune.csv",
         )
     }
 
@@ -130,7 +130,7 @@ internal class CliCsvOutputTest {
             "RF",
             "-c",
             "-",
-            oracleFilename = "qctModemCap.csv"
+            oracleFilename = "qctModemCap.csv",
         )
     }
 
@@ -143,7 +143,7 @@ internal class CliCsvOutputTest {
             "SHNR",
             "-c",
             "-",
-            oracleFilename = "shannonNrUeCap.csv"
+            oracleFilename = "shannonNrUeCap.csv",
         )
     }
 
@@ -156,7 +156,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
-            oracleFilename = "wiresharkEutra.csv"
+            oracleFilename = "wiresharkEutra.csv",
         )
     }
 
@@ -169,7 +169,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
-            oracleFilename = "wiresharkNr.csv"
+            oracleFilename = "wiresharkNr.csv",
         )
     }
 
@@ -182,7 +182,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
-            oracleFilename = "wiresharkMrdc.csv"
+            oracleFilename = "wiresharkMrdc.csv",
         )
     }
 
@@ -195,7 +195,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
-            oracleFilename = "wiresharkMrdcSplit.csv"
+            oracleFilename = "wiresharkMrdcSplit.csv",
         )
     }
 
@@ -208,7 +208,7 @@ internal class CliCsvOutputTest {
             "N",
             "-c",
             "-",
-            oracleFilename = "nsgEutra.csv"
+            oracleFilename = "nsgEutra.csv",
         )
     }
 
@@ -231,7 +231,7 @@ internal class CliCsvOutputTest {
             "N",
             "-c",
             "-",
-            oracleFilename = "nsgMrdcSplit.csv"
+            oracleFilename = "nsgMrdcSplit.csv",
         )
     }
 
@@ -249,7 +249,7 @@ internal class CliCsvOutputTest {
             "O",
             "-c",
             "-",
-            oracleFilename = "osixMrdc.csv"
+            oracleFilename = "osixMrdc.csv",
         )
     }
 
@@ -264,7 +264,7 @@ internal class CliCsvOutputTest {
             "LTE",
             "-c",
             "-",
-            oracleFilename = "ueCapHexEutra.csv"
+            oracleFilename = "ueCapHexEutra.csv",
         )
     }
 
@@ -279,7 +279,7 @@ internal class CliCsvOutputTest {
             "NR",
             "-c",
             "-",
-            oracleFilename = "ueCapHexNr.csv"
+            oracleFilename = "ueCapHexNr.csv",
         )
     }
 
@@ -294,7 +294,7 @@ internal class CliCsvOutputTest {
             "LTE,NR,ENDC",
             "-c",
             "-",
-            oracleFilename = "ueCapHexMrdcSplit.csv"
+            oracleFilename = "ueCapHexMrdcSplit.csv",
         )
     }
 
@@ -322,7 +322,7 @@ internal class CliCsvOutputTest {
             "QC",
             "-c",
             "-",
-            oracleFilename = "qcatMrdc.csv"
+            oracleFilename = "qcatMrdc.csv",
         )
     }
 
@@ -335,7 +335,7 @@ internal class CliCsvOutputTest {
             "QC",
             "-c",
             "-",
-            oracleFilename = "qcatNrdc.csv"
+            oracleFilename = "qcatNrdc.csv",
         )
     }
 
@@ -348,7 +348,7 @@ internal class CliCsvOutputTest {
             "T",
             "-c",
             "-",
-            oracleFilename = "temsEutra.csv"
+            oracleFilename = "temsEutra.csv",
         )
     }
 
@@ -361,7 +361,7 @@ internal class CliCsvOutputTest {
             "T",
             "-c",
             "-",
-            oracleFilename = "temsMrdcSplit.csv"
+            oracleFilename = "temsMrdcSplit.csv",
         )
     }
 
@@ -374,7 +374,7 @@ internal class CliCsvOutputTest {
             "A",
             "-c",
             "-",
-            oracleFilename = "amarisoftEutra.csv"
+            oracleFilename = "amarisoftEutra.csv",
         )
     }
 
@@ -387,7 +387,7 @@ internal class CliCsvOutputTest {
             "A",
             "-c",
             "-",
-            oracleFilename = "amarisoftNr.csv"
+            oracleFilename = "amarisoftNr.csv",
         )
     }
 
@@ -405,7 +405,7 @@ internal class CliCsvOutputTest {
             "P",
             "-c",
             "-",
-            oracleFilename = "segmented.txt"
+            oracleFilename = "segmented.txt",
         )
     }
 
@@ -422,7 +422,7 @@ internal class CliCsvOutputTest {
             "Q",
             "-c",
             "-",
-            oracleFilename = "0xB826-0xB0CD.csv"
+            oracleFilename = "0xB826-0xB0CD.csv",
         )
     }
 
@@ -448,7 +448,7 @@ internal class CliCsvOutputTest {
             "QMDL",
             "-c",
             "-",
-            oracleFilename = "scat.csv"
+            oracleFilename = "scat.csv",
         )
     }
 
@@ -465,7 +465,7 @@ internal class CliCsvOutputTest {
             "NSG",
             "-c",
             "-",
-            oracleFilename = "nsgJson.txt"
+            oracleFilename = "nsgJson.txt",
         )
     }
 

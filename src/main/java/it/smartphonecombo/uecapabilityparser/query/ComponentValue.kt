@@ -46,7 +46,7 @@ data class NrComponentDlValue(
     val band: Band,
     val minBwClass: BwClass = "A".toBwClass(),
     val minMimo: Int = 0,
-    val minMaxBwPerCC: Int = 0
+    val minMaxBwPerCC: Int = 0,
 ) : IComponentValue {
     override fun matches(component: IComponent): Boolean {
         if (component !is ComponentNr) return false
@@ -64,7 +64,7 @@ data class NrComponentUlValue(
     val band: Band,
     val minBwClass: BwClass = "A".toBwClass(),
     val minMimo: Int = 0,
-    val minMaxBwPerCC: Int = 0
+    val minMaxBwPerCC: Int = 0,
 ) : IComponentValue {
     override fun matches(component: IComponent): Boolean {
         if (component !is ComponentNr) return false

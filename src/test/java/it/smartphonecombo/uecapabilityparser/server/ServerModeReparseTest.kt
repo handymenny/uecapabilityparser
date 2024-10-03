@@ -52,7 +52,7 @@ internal class ServerModeReparseTest {
         test(
             arrayOf("server", "-p", "0", "--store", "$tmpStorePath/good", "--reparse", "auto"),
             "$resourcesPath/oracleForReparse/auto",
-            "$tmpStorePath/good"
+            "$tmpStorePath/good",
         )
     }
 
@@ -67,10 +67,10 @@ internal class ServerModeReparseTest {
                 "$tmpStorePath/good",
                 "--reparse",
                 "auto",
-                "--compression"
+                "--compression",
             ),
             "$resourcesPath/oracleForReparse/autoCompress",
-            "$tmpStorePath/good"
+            "$tmpStorePath/good",
         )
     }
 
@@ -79,7 +79,7 @@ internal class ServerModeReparseTest {
         test(
             arrayOf("server", "-p", "0", "--store", "$tmpStorePath/good", "--reparse", "force"),
             "$resourcesPath/oracleForReparse/force",
-            "$tmpStorePath/good"
+            "$tmpStorePath/good",
         )
     }
 
@@ -94,10 +94,10 @@ internal class ServerModeReparseTest {
                 "$tmpStorePath/good",
                 "--reparse",
                 "force",
-                "--compression"
+                "--compression",
             ),
             "$resourcesPath/oracleForReparse/forceCompress",
-            "$tmpStorePath/good"
+            "$tmpStorePath/good",
         )
     }
 
@@ -112,10 +112,10 @@ internal class ServerModeReparseTest {
                 "$tmpStorePath/bad",
                 "--reparse",
                 "force",
-                "--compression"
+                "--compression",
             ),
             "$resourcesPath/oracleForReparse/forceBad",
-            "$tmpStorePath/bad"
+            "$tmpStorePath/bad",
         )
     }
 
@@ -155,7 +155,7 @@ internal class ServerModeReparseTest {
                 IOUtils.outputFile(
                     newText.toByteArray(),
                     path.toString().substringBeforeLast(".gz"),
-                    compression
+                    compression,
                 )
             }
     }

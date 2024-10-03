@@ -8,5 +8,5 @@ import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 data class FeaturePerCCLte(
     override val type: LinkDirection = LinkDirection.DOWNLINK,
     override val mimo: Mimo = EmptyMimo,
-    override val qam: ModulationOrder = ModulationOrder.NONE
+    override val qam: ModulationOrder = ModulationOrder.NONE,
 ) : IFeaturePerCC

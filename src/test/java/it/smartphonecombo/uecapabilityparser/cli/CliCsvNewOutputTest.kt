@@ -19,7 +19,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "carrierPolicy.csv"
+            oracleFilename = "carrierPolicy.csv",
         )
     }
 
@@ -34,7 +34,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "0xB0CD.csv"
+            oracleFilename = "0xB0CD.csv",
         )
     }
 
@@ -49,7 +49,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "mtkLte.csv"
+            oracleFilename = "mtkLte.csv",
         )
     }
 
@@ -64,7 +64,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "nvItem.csv"
+            oracleFilename = "nvItem.csv",
         )
     }
 
@@ -79,7 +79,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "qctModemCap.csv"
+            oracleFilename = "qctModemCap.csv",
         )
     }
 
@@ -94,7 +94,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "wiresharkEutra.csv"
+            oracleFilename = "wiresharkEutra.csv",
         )
     }
 
@@ -109,7 +109,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "nsgEutra.csv"
+            oracleFilename = "nsgEutra.csv",
         )
     }
 
@@ -124,7 +124,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "temsEutra.csv"
+            oracleFilename = "temsEutra.csv",
         )
     }
 
@@ -139,7 +139,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "amarisoftEutra.csv"
+            oracleFilename = "amarisoftEutra.csv",
         )
     }
 
@@ -156,7 +156,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "ueCapHexEutra.csv"
+            oracleFilename = "ueCapHexEutra.csv",
         )
     }
 
@@ -175,7 +175,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
-            oracleFilename = "0xB826-0xB0CD.csv"
+            oracleFilename = "0xB826-0xB0CD.csv",
         )
     }
 
@@ -188,7 +188,7 @@ internal class CliCsvNewOutputTest {
             "SHLTE",
             "-c",
             "-",
-            oracleFilename = "shannonLteUeCap.csv"
+            oracleFilename = "shannonLteUeCap.csv",
         )
     }
 

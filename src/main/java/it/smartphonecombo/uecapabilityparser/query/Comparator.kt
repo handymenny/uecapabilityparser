@@ -11,5 +11,5 @@ enum class Comparator {
     IS_NOT_EMPTY,
     HAS_ANY,
     HAS_ALL,
-    HAS_NONE
+    HAS_NONE,
 }

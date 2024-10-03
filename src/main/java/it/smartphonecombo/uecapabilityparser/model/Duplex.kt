@@ -5,5 +5,5 @@ enum class Duplex {
     FDD,
     TDD,
     SDL,
-    SUL
+    SUL,
 }

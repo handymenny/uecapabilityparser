@@ -47,7 +47,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
                 lteFeatureSetsDl,
                 lteFeatureSetsUl,
                 nrFeaturesPerCCDl,
-                nrFeaturesPerCCUl
+                nrFeaturesPerCCUl,
             )
 
         capabilities.enDcCombos = combos.filterIsInstance<ComboEnDc>()
@@ -62,7 +62,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
         lteFeatureSetsDl: List<FeatureSet>,
         lteFeatureSetsUl: List<FeatureSet>,
         nrFeaturesPerCCDl: List<FeaturePerCCNr>,
-        nrFeaturesPerCCUl: List<FeaturePerCCNr>
+        nrFeaturesPerCCUl: List<FeaturePerCCNr>,
     ): List<ICombo> {
         val list = mutableListWithCapacity<ICombo>(comboGroups.size * 2)
 
@@ -77,7 +77,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
                         lteFeatureSetsUl,
                         nrFeaturesPerCCDl,
                         nrFeaturesPerCCUl,
-                        groupFeatures
+                        groupFeatures,
                     )
                 }
 
@@ -93,7 +93,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
         lteFeatureSetsUl: List<FeatureSet>,
         nrFeaturesPerCCDl: List<FeaturePerCCNr>,
         nrFeaturesPerCCUl: List<FeaturePerCCNr>,
-        groupFeatures: ComboNrFeatures
+        groupFeatures: ComboNrFeatures,
     ): ICombo {
         val (nrComponents, lteComponents) = shCombo.components.partition { it.isNr }
         val lte = processShannonComponentsLte(lteComponents, lteFeatureSetsDl, lteFeatureSetsUl)
@@ -118,7 +118,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
                     nr,
                     groupFeatures.bcsNr,
                     groupFeatures.bcsEutra,
-                    groupFeatures.bcsIntraEndc
+                    groupFeatures.bcsIntraEndc,
                 )
             combo = ComboEnDc(lte, nr, bcsNr, bcsEutra, bcsIntraEnDc)
         }
@@ -128,7 +128,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     private fun processShannonComponentsLte(
         shComponents: List<ShannonComponentNr>,
         featureSetsDl: List<FeatureSet>,
-        featureSetsUl: List<FeatureSet>
+        featureSetsUl: List<FeatureSet>,
     ): List<ComponentLte> {
         val components =
             shComponents.map { processShannonComponentLte(it, featureSetsDl, featureSetsUl) }
@@ -139,7 +139,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     private fun processShannonComponentsNr(
         shComponents: List<ShannonComponentNr>,
         featuresPerCCDl: List<FeaturePerCCNr>,
-        featuresPerCCUl: List<FeaturePerCCNr>
+        featuresPerCCUl: List<FeaturePerCCNr>,
     ): List<ComponentNr> {
         val components =
             shComponents.map { processShannonComponentNr(it, featuresPerCCDl, featuresPerCCUl) }
@@ -150,7 +150,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     private fun processShannonComponentLte(
         shComponent: ShannonComponentNr,
         featureSetsDl: List<FeatureSet>,
-        featureSetsUl: List<FeatureSet>
+        featureSetsUl: List<FeatureSet>,
     ): ComponentLte {
         val dlFeature =
             featureSetsDl.getOrNull((shComponent.dlFeatureIndex - 1).toInt())?.featureSetsPerCC
@@ -165,7 +165,7 @@ object ImportShannonNrUeCap : ImportCapabilities {
     private fun processShannonComponentNr(
         shComponent: ShannonComponentNr,
         featuresPerCCDl: List<FeaturePerCCNr>,
-        featuresPerCCUl: List<FeaturePerCCNr>
+        featuresPerCCUl: List<FeaturePerCCNr>,
     ): ComponentNr {
         val dlFeature =
             shComponent.dlFeaturePerCCIds.mapNotNull { featuresPerCCDl.getOrNull((it - 1).toInt()) }

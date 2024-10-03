@@ -37,7 +37,7 @@ internal fun Context.throwContentTooLargeIfContentTooLarge(maxRequestSize: Long)
         echoSafe("Body greater than max size ($maxRequestSize bytes)", err = true)
         throw HttpResponseException(
             HttpStatus.CONTENT_TOO_LARGE,
-            HttpStatus.CONTENT_TOO_LARGE.message
+            HttpStatus.CONTENT_TOO_LARGE.message,
         )
     }
 }

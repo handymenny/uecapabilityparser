@@ -32,7 +32,7 @@ class MultiParsing(
     private val descriptionList: List<String> = emptyList(),
     private val jsonFormat: Json = Json,
     private var description: String = "",
-    private var id: String = UUID.randomUUID().toString()
+    private var id: String = UUID.randomUUID().toString(),
 ) {
     private val subMultiParsingList = mutableListOf<MultiParsing>()
     val parsingList = parseCapabilities()
@@ -105,7 +105,7 @@ class MultiParsing(
                     defaultRat,
                     type,
                     description,
-                    jsonFormat
+                    jsonFormat,
                 )
 
             parsedCapabilities.add(parsing)
@@ -126,7 +126,7 @@ class MultiParsing(
                 timestamp = indexLines.lastOrNull()?.timestamp ?: Instant.now().toEpochMilli(),
                 description,
                 indexLineIds,
-                compression
+                compression,
             )
 
         val encodedString = Json.custom().encodeToString(multiIndexLine)
@@ -174,7 +174,7 @@ class MultiParsing(
                 typeList,
                 subTypesList,
                 descriptionList,
-                description = description
+                description = description,
             )
         }
     }

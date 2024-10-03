@@ -29,6 +29,4 @@ interface IBandBoxed : Comparable<IBandBoxed> {
  *
  * It only contains the attribute [band].
  */
-data class BandBoxed(
-    @SerialName("band") override var band: Band,
-) : IBandBoxed
+data class BandBoxed(@SerialName("band") override var band: Band) : IBandBoxed

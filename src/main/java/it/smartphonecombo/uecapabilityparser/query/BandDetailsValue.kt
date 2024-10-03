@@ -33,7 +33,7 @@ sealed interface IBandDetailsValue {
 data class BandLteDetailsValue(
     override val band: Band,
     override val minMimoDl: Int = 0,
-    override val minPowerClass: PowerClass = PowerClass.NONE
+    override val minPowerClass: PowerClass = PowerClass.NONE,
 ) : IBandDetailsValue
 
 @Serializable

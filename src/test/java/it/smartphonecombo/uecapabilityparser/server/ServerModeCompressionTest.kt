@@ -64,18 +64,18 @@ internal class ServerModeCompressionTest {
                     put("type", "W")
                     put("input", fileToBase64(input0))
                 },
-            oraclePath = oracle
+            oraclePath = oracle,
         )
 
         assumeTrue(pushedCap != null)
         val id = pushedCap?.id ?: ""
         capabilitiesAssertEquals(
             File(oracle).toInputSource(true).readText(),
-            File("$tmpStorePath/output/$id.json.gz").toInputSource(true).readText()
+            File("$tmpStorePath/output/$id.json.gz").toInputSource(true).readText(),
         )
         Assertions.assertLinesMatch(
             File(input0).toInputSource(true).readText().lines(),
-            File("$tmpStorePath/input/$id-0.gz").toInputSource(true).readText().lines()
+            File("$tmpStorePath/input/$id-0.gz").toInputSource(true).readText().lines(),
         )
     }
 
@@ -90,7 +90,7 @@ internal class ServerModeCompressionTest {
         Config["store"] = "$resourcesPath/oracleForCompression"
         getTest(
             "${endpointStore}getItem?id=$storedId",
-            "$resourcesPath/oracleForCompression/item.json"
+            "$resourcesPath/oracleForCompression/item.json",
         )
     }
 
@@ -101,7 +101,7 @@ internal class ServerModeCompressionTest {
             "${endpointStore}getOutput?id=$storedId",
             "$resourcesPath/oracleForCompression/output/$storedId.json.gz",
             json = true,
-            gzip = true
+            gzip = true,
         )
     }
 
@@ -112,7 +112,7 @@ internal class ServerModeCompressionTest {
             "${endpointStore}getInput?id=$storedId-0",
             "$resourcesPath/oracleForCompression/input/$storedId-0.gz",
             json = false,
-            gzip = true
+            gzip = true,
         )
     }
 
@@ -120,7 +120,7 @@ internal class ServerModeCompressionTest {
         url: String,
         oraclePath: String,
         json: Boolean = true,
-        gzip: Boolean = false
+        gzip: Boolean = false,
     ) =
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
@@ -145,7 +145,7 @@ internal class ServerModeCompressionTest {
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             capabilitiesAssertEquals(
                 File(oraclePath).toInputSource(true).readText(),
-                response.body?.string() ?: ""
+                response.body?.string() ?: "",
             )
         }
 
@@ -157,7 +157,7 @@ internal class ServerModeCompressionTest {
         // Override dynamic properties
         expectedCap.setMetadata(
             "processingTime",
-            actualCap.getStringMetadata("processingTime") ?: ""
+            actualCap.getStringMetadata("processingTime") ?: "",
         )
 
         Assertions.assertEquals(expectedCap, actualCap)

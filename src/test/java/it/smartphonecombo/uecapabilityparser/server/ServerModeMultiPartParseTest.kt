@@ -160,7 +160,7 @@ internal class ServerModeMultiPartParseTest {
             files =
                 listOf(
                     "$inputPath/wiresharkMrdcSplit_0.txt",
-                    "$inputPath/wiresharkMrdcSplit_1.txt"
+                    "$inputPath/wiresharkMrdcSplit_1.txt",
                 ),
             oraclePath = "$oraclePath/wiresharkMrdcSplit.json",
         )
@@ -254,7 +254,7 @@ internal class ServerModeMultiPartParseTest {
                 listOf(
                     "$inputPath/ueCapHexMrdcSplit_eutra-nr.hex",
                     "$inputPath/ueCapHexMrdcSplit_nr.hex",
-                    "$inputPath/ueCapHexMrdcSplit_eutra.hex"
+                    "$inputPath/ueCapHexMrdcSplit_eutra.hex",
                 ),
             oraclePath = "$oraclePath/ueCapHexMrdcSplit.json",
         )
@@ -440,7 +440,7 @@ internal class ServerModeMultiPartParseTest {
                     "$inputPath/scat.sdm",
                     "$inputPath/scat.dlf",
                     "$inputPath/scat.qmdl",
-                    "$inputPath/scat.hdf"
+                    "$inputPath/scat.hdf",
                 ),
             oraclePath = "$oraclePath/scat.json",
         )
@@ -476,7 +476,7 @@ internal class ServerModeMultiPartParseTest {
                     }
                 },
             files = listOf("$inputPath/shannonLteUeCap.binarypb"),
-            oraclePath = "$oraclePath/shannonLteUeCap.json"
+            oraclePath = "$oraclePath/shannonLteUeCap.json",
         )
     }
 

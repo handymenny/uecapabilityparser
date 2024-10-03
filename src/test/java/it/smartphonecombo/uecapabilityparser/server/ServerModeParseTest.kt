@@ -28,7 +28,7 @@ internal class ServerModeParseTest {
                     put("type", "C")
                     put("input", fileToBase64("$path/input/carrierPolicy.xml"))
                 },
-            oraclePath = "$path/oracleJson/carrierPolicy.json"
+            oraclePath = "$path/oracleJson/carrierPolicy.json",
         )
     }
 
@@ -40,7 +40,7 @@ internal class ServerModeParseTest {
                     put("type", "Q")
                     put("input", fileToBase64("$path/input/0xB0CD.txt"))
                 },
-            oraclePath = "$path/oracleJson/0xB0CD.json"
+            oraclePath = "$path/oracleJson/0xB0CD.json",
         )
     }
 
@@ -52,7 +52,7 @@ internal class ServerModeParseTest {
                     put("type", "QLTE")
                     put("input", fileToBase64("$path/input/0xB0CDMultiHex.txt"))
                 },
-            oraclePath = "$path/oracleJson/0xB0CDMultiHex.json"
+            oraclePath = "$path/oracleJson/0xB0CDMultiHex.json",
         )
     }
 
@@ -64,7 +64,7 @@ internal class ServerModeParseTest {
                     put("type", "M")
                     put("input", fileToBase64("$path/input/mtkLte.txt"))
                 },
-            oraclePath = "$path/oracleJson/mtkLte.json"
+            oraclePath = "$path/oracleJson/mtkLte.json",
         )
     }
 
@@ -76,7 +76,7 @@ internal class ServerModeParseTest {
                     put("type", "E")
                     put("input", fileToBase64("$path/input/nvItem.bin"))
                 },
-            oraclePath = "$path/oracleJson/nvItem.json"
+            oraclePath = "$path/oracleJson/nvItem.json",
         )
     }
 
@@ -88,7 +88,7 @@ internal class ServerModeParseTest {
                     put("type", "QNR")
                     put("input", fileToBase64("$path/input/0xB826.hex"))
                 },
-            oraclePath = "$path/oracleJson/0xB826.json"
+            oraclePath = "$path/oracleJson/0xB826.json",
         )
     }
 
@@ -100,7 +100,7 @@ internal class ServerModeParseTest {
                     put("type", "QNR")
                     put("input", fileToBase64("$path/input/0xB826Multi.txt"))
                 },
-            oraclePath = "$path/oracleJson/0xB826Multi.json"
+            oraclePath = "$path/oracleJson/0xB826Multi.json",
         )
     }
 
@@ -112,7 +112,7 @@ internal class ServerModeParseTest {
                     put("type", "QNR")
                     put("input", fileToBase64("$path/input/0xB826MultiV14.txt"))
                 },
-            oraclePath = "$path/oracleJson/0xB826MultiV14.json"
+            oraclePath = "$path/oracleJson/0xB826MultiV14.json",
         )
     }
 
@@ -124,7 +124,7 @@ internal class ServerModeParseTest {
                     put("type", "QNR")
                     put("input", fileToBase64("$path/input/0xB826MultiScat.txt"))
                 },
-            oraclePath = "$path/oracleJson/0xB826MultiScat.json"
+            oraclePath = "$path/oracleJson/0xB826MultiScat.json",
         )
     }
 
@@ -136,7 +136,7 @@ internal class ServerModeParseTest {
                     put("type", "QNR")
                     put("input", fileToBase64("$path/input/0xB826Multi0x9801.txt"))
                 },
-            oraclePath = "$path/oracleJson/0xB826Multi0x9801.json"
+            oraclePath = "$path/oracleJson/0xB826Multi0x9801.json",
         )
     }
 
@@ -148,7 +148,7 @@ internal class ServerModeParseTest {
                     put("type", "CNR")
                     put("input", fileToBase64("$path/input/nrCapPrune.txt"))
                 },
-            oraclePath = "$path/oracleJson/nrCapPrune.json"
+            oraclePath = "$path/oracleJson/nrCapPrune.json",
         )
     }
 
@@ -160,7 +160,7 @@ internal class ServerModeParseTest {
                     put("type", "RF")
                     put("input", fileToBase64("$path/input/qctModemCap.txt"))
                 },
-            oraclePath = "$path/oracleJson/qctModemCap.json"
+            oraclePath = "$path/oracleJson/qctModemCap.json",
         )
     }
 
@@ -172,7 +172,7 @@ internal class ServerModeParseTest {
                     put("type", "SHNR")
                     put("input", fileToBase64("$path/input/shannonNrUeCap.binarypb"))
                 },
-            oraclePath = "$path/oracleJson/shannonNrUeCap.json"
+            oraclePath = "$path/oracleJson/shannonNrUeCap.json",
         )
     }
 
@@ -184,7 +184,7 @@ internal class ServerModeParseTest {
                     put("type", "W")
                     put("input", fileToBase64("$path/input/wiresharkEutra.txt"))
                 },
-            oraclePath = "$path/oracleJson/wiresharkEutra.json"
+            oraclePath = "$path/oracleJson/wiresharkEutra.json",
         )
     }
 
@@ -196,7 +196,7 @@ internal class ServerModeParseTest {
                     put("type", "W")
                     put("input", fileToBase64("$path/input/wiresharkNr.txt"))
                 },
-            oraclePath = "$path/oracleJson/wiresharkNr.json"
+            oraclePath = "$path/oracleJson/wiresharkNr.json",
         )
     }
 
@@ -208,7 +208,7 @@ internal class ServerModeParseTest {
                     put("type", "W")
                     put("input", fileToBase64("$path/input/wiresharkMrdc.txt"))
                 },
-            oraclePath = "$path/oracleJson/wiresharkMrdc.json"
+            oraclePath = "$path/oracleJson/wiresharkMrdc.json",
         )
     }
 
@@ -221,7 +221,7 @@ internal class ServerModeParseTest {
                     put("input", fileToBase64("$path/input/wiresharkMrdcSplit_0.txt"))
                     put("inputENDC", fileToBase64("$path/input/wiresharkMrdcSplit_1.txt"))
                 },
-            oraclePath = "$path/oracleJson/wiresharkMrdcSplit.json"
+            oraclePath = "$path/oracleJson/wiresharkMrdcSplit.json",
         )
     }
 
@@ -233,7 +233,7 @@ internal class ServerModeParseTest {
                     put("type", "N")
                     put("input", fileToBase64("$path/input/nsgEutra.txt"))
                 },
-            oraclePath = "$path/oracleJson/nsgEutra.json"
+            oraclePath = "$path/oracleJson/nsgEutra.json",
         )
     }
 
@@ -245,7 +245,7 @@ internal class ServerModeParseTest {
                     put("type", "N")
                     put("input", fileToBase64("$path/input/nsgNr.txt"))
                 },
-            oraclePath = "$path/oracleJson/nsgNr.json"
+            oraclePath = "$path/oracleJson/nsgNr.json",
         )
     }
 
@@ -257,7 +257,7 @@ internal class ServerModeParseTest {
                     put("type", "N")
                     put("input", fileToBase64("$path/input/nsgMrdc.txt"))
                 },
-            oraclePath = "$path/oracleJson/nsgMrdc.json"
+            oraclePath = "$path/oracleJson/nsgMrdc.json",
         )
     }
 
@@ -270,7 +270,7 @@ internal class ServerModeParseTest {
                     put("input", fileToBase64("$path/input/nsgMrdcSplit_0.txt"))
                     put("inputNR", fileToBase64("$path/input/nsgMrdcSplit_1.txt"))
                 },
-            oraclePath = "$path/oracleJson/nsgMrdcSplit.json"
+            oraclePath = "$path/oracleJson/nsgMrdcSplit.json",
         )
     }
 
@@ -282,7 +282,7 @@ internal class ServerModeParseTest {
                     put("type", "N")
                     put("input", fileToBase64("$path/input/nsgSul.txt"))
                 },
-            oraclePath = "$path/oracleJson/nsgSul.json"
+            oraclePath = "$path/oracleJson/nsgSul.json",
         )
     }
 
@@ -294,7 +294,7 @@ internal class ServerModeParseTest {
                     put("type", "O")
                     put("input", fileToBase64("$path/input/osixMrdc.txt"))
                 },
-            oraclePath = "$path/oracleJson/osixMrdc.json"
+            oraclePath = "$path/oracleJson/osixMrdc.json",
         )
     }
 
@@ -306,7 +306,7 @@ internal class ServerModeParseTest {
                     put("type", "H")
                     put("input", fileToBase64("$path/input/ueCapHexEutra.hex"))
                 },
-            oraclePath = "$path/oracleJson/ueCapHexEutra.json"
+            oraclePath = "$path/oracleJson/ueCapHexEutra.json",
         )
     }
 
@@ -318,7 +318,7 @@ internal class ServerModeParseTest {
                     put("type", "H")
                     put("inputNR", fileToBase64("$path/input/ueCapHexNr.hex"))
                 },
-            oraclePath = "$path/oracleJson/ueCapHexNr.json"
+            oraclePath = "$path/oracleJson/ueCapHexNr.json",
         )
     }
 
@@ -331,7 +331,7 @@ internal class ServerModeParseTest {
                     put("input", fileToBase64("$path/input/ueCapHexNr.hex"))
                     put("defaultNR", true)
                 },
-            oraclePath = "$path/oracleJson/ueCapHexNr.json"
+            oraclePath = "$path/oracleJson/ueCapHexNr.json",
         )
     }
 
@@ -345,7 +345,7 @@ internal class ServerModeParseTest {
                     put("inputNR", fileToBase64("$path/input/ueCapHexMrdcSplit_nr.hex"))
                     put("inputENDC", fileToBase64("$path/input/ueCapHexMrdcSplit_eutra-nr.hex"))
                 },
-            oraclePath = "$path/oracleJson/ueCapHexMrdcSplit.json"
+            oraclePath = "$path/oracleJson/ueCapHexMrdcSplit.json",
         )
     }
 
@@ -357,7 +357,7 @@ internal class ServerModeParseTest {
                     put("type", "H")
                     put("input", fileToBase64("$path/input/ueCapHexSegmented.hex"))
                 },
-            oraclePath = "$path/oracleJson/ueCapHexSegmented.json"
+            oraclePath = "$path/oracleJson/ueCapHexSegmented.json",
         )
     }
 
@@ -369,7 +369,7 @@ internal class ServerModeParseTest {
                     put("type", "QC")
                     put("input", fileToBase64("$path/input/qcatMrdc.txt"))
                 },
-            oraclePath = "$path/oracleJson/qcatMrdc.json"
+            oraclePath = "$path/oracleJson/qcatMrdc.json",
         )
     }
 
@@ -381,7 +381,7 @@ internal class ServerModeParseTest {
                     put("type", "QC")
                     put("input", fileToBase64("$path/input/qcatNrdc.txt"))
                 },
-            oraclePath = "$path/oracleJson/qcatNrdc.json"
+            oraclePath = "$path/oracleJson/qcatNrdc.json",
         )
     }
 
@@ -393,7 +393,7 @@ internal class ServerModeParseTest {
                     put("type", "T")
                     put("input", fileToBase64("$path/input/temsEutra.txt"))
                 },
-            oraclePath = "$path/oracleJson/temsEutra.json"
+            oraclePath = "$path/oracleJson/temsEutra.json",
         )
     }
 
@@ -406,7 +406,7 @@ internal class ServerModeParseTest {
                     put("input", fileToBase64("$path/input/temsMrdcSplit_0.txt"))
                     put("inputNR", fileToBase64("$path/input/temsMrdcSplit_1.txt"))
                 },
-            oraclePath = "$path/oracleJson/temsMrdcSplit.json"
+            oraclePath = "$path/oracleJson/temsMrdcSplit.json",
         )
     }
 
@@ -418,7 +418,7 @@ internal class ServerModeParseTest {
                     put("type", "A")
                     put("input", fileToBase64("$path/input/amarisoftEutra.txt"))
                 },
-            oraclePath = "$path/oracleJson/amarisoftEutra.json"
+            oraclePath = "$path/oracleJson/amarisoftEutra.json",
         )
     }
 
@@ -430,7 +430,7 @@ internal class ServerModeParseTest {
                     put("type", "A")
                     put("input", fileToBase64("$path/input/amarisoftNr.txt"))
                 },
-            oraclePath = "$path/oracleJson/amarisoftNr.json"
+            oraclePath = "$path/oracleJson/amarisoftNr.json",
         )
     }
 

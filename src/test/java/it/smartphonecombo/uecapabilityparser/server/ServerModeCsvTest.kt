@@ -18,7 +18,7 @@ internal class ServerModeCsvTest {
     fun lteCaCsvConversion() {
         javalinCsvTest(
             inputPath = "$path/inputForCsv/lteca.json",
-            oraclePath = "$path/oracleForCsv/lteca.csv"
+            oraclePath = "$path/oracleForCsv/lteca.csv",
         )
     }
 
@@ -26,7 +26,7 @@ internal class ServerModeCsvTest {
     fun lteCaCsvConversion2() {
         javalinCsvTest(
             inputPath = "$path/inputForCsv/ltecaNewFalse.json",
-            oraclePath = "$path/oracleForCsv/lteca.csv"
+            oraclePath = "$path/oracleForCsv/lteca.csv",
         )
     }
 
@@ -34,7 +34,7 @@ internal class ServerModeCsvTest {
     fun lteCaNewCsvConversion() {
         javalinCsvTest(
             inputPath = "$path/inputForCsv/ltecaNew.json",
-            oraclePath = "$path/oracleForCsv/ltecaNew.csv"
+            oraclePath = "$path/oracleForCsv/ltecaNew.csv",
         )
     }
 
@@ -42,7 +42,7 @@ internal class ServerModeCsvTest {
     fun enDcCsvConversion() {
         javalinCsvTest(
             inputPath = "$path/inputForCsv/endc.json",
-            oraclePath = "$path/oracleForCsv/endc.csv"
+            oraclePath = "$path/oracleForCsv/endc.csv",
         )
     }
 
@@ -50,7 +50,7 @@ internal class ServerModeCsvTest {
     fun nrCaCsvConversion() {
         javalinCsvTest(
             inputPath = "$path/inputForCsv/nrca.json",
-            oraclePath = "$path/oracleForCsv/nrca.csv"
+            oraclePath = "$path/oracleForCsv/nrca.csv",
         )
     }
 
@@ -58,7 +58,7 @@ internal class ServerModeCsvTest {
     fun nrDcCsvConversion() {
         javalinCsvTest(
             inputPath = "$path/inputForCsv/nrdc.json",
-            oraclePath = "$path/oracleForCsv/nrdc.csv"
+            oraclePath = "$path/oracleForCsv/nrdc.csv",
         )
     }
 

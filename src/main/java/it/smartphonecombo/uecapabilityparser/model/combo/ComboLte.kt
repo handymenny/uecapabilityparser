@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ComboLte(
     @SerialName("components") override val masterComponents: List<ComponentLte>,
-    override val bcs: BCS = EmptyBCS
+    override val bcs: BCS = EmptyBCS,
 ) : ICombo {
     override val secondaryComponents
         get() = emptyList<IComponent>()
@@ -24,15 +24,12 @@ data class ComboLte(
     /** Creates a [ComboLte] merging [dlComponents] and [ulComponents] and sorting them */
     constructor(
         dlComponents: List<ComponentLte>,
-        ulComponents: List<ComponentLte>
+        ulComponents: List<ComponentLte>,
     ) : this(mergeAndSort(dlComponents, ulComponents))
 
     override fun toCompactStr(): String {
         val lte =
-            masterComponents.joinToString(
-                separator = "-",
-                transform = IComponent::toCompactStr,
-            )
+            masterComponents.joinToString(separator = "-", transform = IComponent::toCompactStr)
         return if (bcs is EmptyBCS) lte else "$lte-${bcs.toCompactStr()}"
     }
 
@@ -43,7 +40,7 @@ data class ComboLte(
         nrDlCC: Int,
         nrUlCC: Int,
         nrDcDlCC: Int,
-        nrDcUlCC: Int
+        nrDcUlCC: Int,
     ): String {
         val compact = this.toCompactStr() + separator
 
@@ -122,7 +119,7 @@ data class ComboLte(
                 strUl,
                 strULmimo,
                 strDLmod,
-                strULmod
+                strULmod,
             )
         }
 
@@ -135,7 +132,7 @@ data class ComboLte(
                 strUl,
                 strULmimo,
                 strDLmod,
-                strULmod
+                strULmod,
             )
         }
 
@@ -146,7 +143,7 @@ data class ComboLte(
         /** Merge DL Components and UL Components */
         private fun mergeAndSort(
             dlComponents: List<ComponentLte>,
-            ulComponents: List<ComponentLte>
+            ulComponents: List<ComponentLte>,
         ): List<ComponentLte> {
             val components = dlComponents.map(ComponentLte::clone).toMutableList()
             for (ulComponent in ulComponents) {

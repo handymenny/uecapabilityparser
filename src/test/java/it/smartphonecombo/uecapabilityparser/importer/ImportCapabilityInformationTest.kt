@@ -38,7 +38,7 @@ internal class ImportCapabilityInformationTest {
     fun ueCapEutraCombinationReduced1024qam() {
         parse(
             "ueCapEutraCombinationReduced1024qam.json",
-            "ueCapEutraCombinationReduced1024qam.json"
+            "ueCapEutraCombinationReduced1024qam.json",
         )
     }
 
@@ -56,7 +56,7 @@ internal class ImportCapabilityInformationTest {
     fun ueCapEutraCombinationReducedMimoPerCC() {
         parse(
             "ueCapEutraCombinationReducedMimoPerCC.json",
-            "ueCapEutraCombinationReducedMimoPerCC.json"
+            "ueCapEutraCombinationReducedMimoPerCC.json",
         )
     }
 

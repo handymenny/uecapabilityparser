@@ -104,7 +104,7 @@ object Import0xB0CDBin : ImportCapabilities {
                 listCombo.joinToString(
                     prefix = "[",
                     postfix = "]",
-                    transform = ICombo::toCompactStr
+                    transform = ICombo::toCompactStr,
                 )
             )
         }

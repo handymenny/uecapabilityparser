@@ -111,7 +111,7 @@ internal class ComboNrFeaturesTest {
         bcsEutra: Long?,
         oracleBcsNr: BCS,
         oracleBcsIntraEndc: BCS,
-        oracleBcsEutra: BCS
+        oracleBcsEutra: BCS,
     ) {
         val combo = ComboNrFeatures(bcsNr, bcsIntraEndc, bcsEutra, null, null)
         assertEquals(oracleBcsNr, combo.bcsNr)

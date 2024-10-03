@@ -10,5 +10,5 @@ data class ServerStatus(
     val endpoints: List<String>,
     val logTypes: List<LogType>,
     val maxRequestSize: Long,
-    val searchableFields: List<SearchableField>
+    val searchableFields: List<SearchableField>,
 )

@@ -28,7 +28,7 @@ enum class FieldType {
     @SerialName("string") FieldString,
     @SerialName("strings") FieldStrings,
     @SerialName("bandDetails") FieldBandsDetails,
-    @SerialName("combos") FieldCombos
+    @SerialName("combos") FieldCombos,
 }
 
 enum class FieldNumber {

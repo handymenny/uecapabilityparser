@@ -10,7 +10,7 @@ object HelpMessage {
         get() =
             LogType.validEntries.joinToString(
                 prefix = "Type of capability. Valid values are: ",
-                transform = { "${it.name} (${it.description})" }
+                transform = { "${it.name} (${it.description})" },
             )
 
     const val SUBTYPES =

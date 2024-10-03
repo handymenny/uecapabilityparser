@@ -23,7 +23,7 @@ data class ComponentNr(
     @SerialName("bw90mhzSupported") var channelBW90mhz: Boolean = false,
     @SerialName("maxScs") var scs: Int = 0,
     @SerialName("maxBwDl") var maxBandwidthDl: Bandwidth = EmptyBandwidth,
-    @SerialName("maxBwUl") var maxBandwidthUl: Bandwidth = EmptyBandwidth
+    @SerialName("maxBwUl") var maxBandwidthUl: Bandwidth = EmptyBandwidth,
 ) : IComponent {
 
     override fun compareTo(other: IComponent): Int {
@@ -38,7 +38,7 @@ data class ComponentNr(
                 { it.mimoUL },
                 { it.scs },
                 { it.maxBandwidthDl },
-                { it.maxBandwidthUl }
+                { it.maxBandwidthUl },
             )
         } else {
             // Component Nr is higher than ComponentLTE

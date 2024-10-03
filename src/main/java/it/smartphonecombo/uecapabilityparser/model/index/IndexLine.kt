@@ -18,7 +18,7 @@ data class IndexLine(
     var inputs: List<String> = emptyList(),
     var compressed: Boolean = false,
     var defaultNR: Boolean = false,
-    val parserVersion: String
+    val parserVersion: String,
 ) {
     // This is only used to extract description and defaultNR from capabilities JSON
     private var metadata: MutableMap<String, String>? = null

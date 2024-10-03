@@ -22,7 +22,7 @@ data class ShannonComboLte(
      */
     @ProtoNumber(2) @SerialName("bcs") private val rawBcs: Long? = null,
     @ProtoNumber(3) val unknown1: Long,
-    @ProtoNumber(4) val unknown2: Long
+    @ProtoNumber(4) val unknown2: Long,
 ) {
     val bcs
         get() =

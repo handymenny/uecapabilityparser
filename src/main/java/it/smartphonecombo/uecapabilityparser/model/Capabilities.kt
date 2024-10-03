@@ -32,7 +32,7 @@ data class Capabilities(
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),
     @Required @SerialName("logType") var logType: LogType = LogType.INVALID,
     @SerialName("ueCapFilters") var ueCapFilters: List<IUeCapabilityFilter> = emptyList(),
-    @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf()
+    @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf(),
 ) {
     @EncodeDefault(EncodeDefault.Mode.ALWAYS)
     @SerialName("id")

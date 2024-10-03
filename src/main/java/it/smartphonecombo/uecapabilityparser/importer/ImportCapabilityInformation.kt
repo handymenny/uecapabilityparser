@@ -90,7 +90,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     fun parse(
         eutraCapability: JsonObject?,
         eutraNrCapability: JsonObject?,
-        nrCapability: JsonObject?
+        nrCapability: JsonObject?,
     ): Capabilities {
         val comboList = Capabilities()
         var lteFeatures: FeatureSets? = null
@@ -145,7 +145,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         null,
                         nrFeatures,
                         null,
-                        nrBandsMap
+                        nrBandsMap,
                     )
                     .typedList()
             val nrDcCombos = getNrDcBandCombinations(nr, saCombos)
@@ -156,7 +156,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         null,
                         nrFeatures,
                         null,
-                        nrBandsMap
+                        nrBandsMap,
                     )
                     .typedList<ComboNr>()
             comboList.nrDcCombos =
@@ -178,7 +178,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         lteFeatures,
                         nrFeatures,
                         lteBandsMap,
-                        nrBandsMap
+                        nrBandsMap,
                     )
                     .typedList()
             filterList.add(getUeNrCapabilityFilters(mrdc))
@@ -194,7 +194,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 nrBandsMap,
                 comboList.enDcCombos,
                 comboList.nrCombos,
-                comboList.nrDcCombos
+                comboList.nrDcCombos,
             )
             comboList.nrBands = nrBandsMap.values.sorted()
             if (debug) {
@@ -209,7 +209,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getBandCombinations(
         eutraCapability: UEEutraCapabilityJson,
-        bandList: Map<Band, BandLteDetails>
+        bandList: Map<Band, BandLteDetails>,
     ): List<ComboLte> {
         val combinations =
             eutraCapability.eutraCapabilityV1020
@@ -275,7 +275,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getBandCombinationsAdd(
         eutraCapability: UEEutraCapabilityJson,
-        bandList: Map<Band, BandLteDetails>
+        bandList: Map<Band, BandLteDetails>,
     ): List<ComboLte> {
         val combinationsArray =
             eutraCapability.eutraCapabilityV1180?.getArrayAtPath(
@@ -323,7 +323,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getBandCombinationsReduced(
         eutraCapability: UEEutraCapabilityJson,
-        bandList: Map<Band, BandLteDetails>
+        bandList: Map<Band, BandLteDetails>,
     ): List<ComboLte> {
         val combinationsArray =
             eutraCapability.eutraCapabilityV1310?.getArrayAtPath(
@@ -357,7 +357,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun setModulationFromBandList(
         combinations: List<List<ComponentLte>>,
-        bandList: Map<Band, BandLteDetails>
+        bandList: Map<Band, BandLteDetails>,
     ) {
         combinations.flatten().forEach {
             it.modDL = bandList[it.band]?.modDL ?: EmptyModulation
@@ -369,7 +369,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun set256qamUL(
         supportedBandCombinationV1430: JsonArray,
-        combinations: List<List<ComponentLte>>
+        combinations: List<List<ComponentLte>>,
     ) {
         supportedBandCombinationV1430.forEachIndexed { i, bandParameterList ->
             bandParameterList.getArray("bandParameterList-v1430")?.forEachIndexed { j, bandParameter
@@ -398,7 +398,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun set1024qam(
         supportedBandCombinationV1530: JsonArray,
-        combinations: List<List<ComponentLte>>
+        combinations: List<List<ComponentLte>>,
     ) {
         supportedBandCombinationV1530.forEachIndexed { i, bandParameterList ->
             bandParameterList.getArray("bandParameterList-v1530")?.forEachIndexed { j, bandParameter
@@ -412,7 +412,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun parseCaMimoV10i0(
         supportedBandCombinationV10i0: List<JsonElement>,
-        combinations: List<List<ComponentLte>>
+        combinations: List<List<ComponentLte>>,
     ) {
         supportedBandCombinationV10i0.forEachIndexed { i, bandParameterList ->
             bandParameterList.getArray("bandParameterList-v10i0")?.forEachIndexed { j, it ->
@@ -426,7 +426,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun parseCaMimoV1270(
         supportedBandCombinationV1270: List<JsonElement>,
-        combinations: List<List<ComponentLte>>
+        combinations: List<List<ComponentLte>>,
     ) {
         for (i in supportedBandCombinationV1270.indices) {
             val bandParameterList =
@@ -446,7 +446,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun updateLteBandsCapabilities(
         bandList: Map<Band, BandLteDetails>,
-        listCombo: List<ComboLte>
+        listCombo: List<ComboLte>,
     ) {
         val lteComponents = listCombo.flatMap { it.masterComponents.toList() }.toHashSet()
         lteComponents.forEach {
@@ -472,7 +472,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         bandList: Map<Int, BandNrDetails>,
         enDcCombos: List<ComboEnDc>,
         nrCombos: List<ComboNr>,
-        nrDcCombos: List<ComboNrDc>
+        nrDcCombos: List<ComboNrDc>,
     ) {
         val nrComponents =
             enDcCombos.flatMap { it.componentsNr } +
@@ -611,7 +611,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         mimoUL = mimoUl.toMimo(),
                         modDL = ModulationOrder.QAM64.toModulation(),
                         modUL = defaultModUL.toModulation(),
-                        powerClass = defaultPowerClass
+                        powerClass = defaultPowerClass,
                     )
                 }
             } ?: return emptyList()
@@ -683,7 +683,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         lteFeatures: FeatureSets?,
         nrFeatures: FeatureSets?,
         lteBands: Map<Band, BandLteDetails>?,
-        nrBands: Map<Band, BandNrDetails>?
+        nrBands: Map<Band, BandNrDetails>?,
     ): List<ICombo> {
         val list = mutableListWithCapacity<ICombo>(combos.size)
 
@@ -699,7 +699,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         nrFeatures,
                         lteFeatures,
                         lteBands,
-                        nrBands
+                        nrBands,
                     )
                 }
             list.addAll(mergedCombos)
@@ -714,7 +714,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         nrFeatures: FeatureSets?,
         lteFeatures: FeatureSets?,
         lteBands: Map<Band, BandLteDetails>?,
-        nrBands: Map<Band, BandNrDetails>?
+        nrBands: Map<Band, BandNrDetails>?,
     ): ICombo {
         val newNrComponents: MutableList<ComponentNr>
         val newLteComponents: MutableList<ComponentLte>
@@ -761,7 +761,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     featureSet,
                     oldComponent,
                     features,
-                    bandDetails ?: BandLteDetails(0)
+                    bandDetails ?: BandLteDetails(0),
                 )
 
             if (newComponent is ComponentLte) {
@@ -782,14 +782,14 @@ object ImportCapabilityInformation : ImportCapabilities {
                     newNrComponents,
                     comboEnDc.bcsNr,
                     comboEnDc.bcsEutra,
-                    combo.bcsIntraEnDc
+                    combo.bcsIntraEnDc,
                 )
             combo.copy(
                 masterComponents = newLteComponents,
                 secondaryComponents = newNrComponents,
                 bcsNr = bcsNr,
                 bcsEutra = bcsEutra,
-                bcsIntraEnDc = bcsIntraEnDc
+                bcsIntraEnDc = bcsIntraEnDc,
             )
         } else {
             (combo as ComboNr).copy(masterComponents = newNrComponents)
@@ -800,7 +800,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         featureSet: FeatureIndex,
         component: IComponent,
         features: FeatureSets?,
-        bandDetails: IBandDetails
+        bandDetails: IBandDetails,
     ): IComponent? {
         val dlIndex = featureSet.downlinkIndex - 1
         val ulIndex = featureSet.uplinkIndex - 1
@@ -933,7 +933,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun getNrDcBandCombinations(
         nrCapability: UENrCapabilityJson,
-        nrCombos: List<ComboNr>
+        nrCombos: List<ComboNr>,
     ): List<ComboNr> {
         val bandCombinationsPath = "rf-Parameters.supportedBandCombinationList-v1560"
         val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
@@ -1105,7 +1105,7 @@ object ImportCapabilityInformation : ImportCapabilities {
     private fun parseNrBw(
         channelBWs: JsonObject?,
         componentNr: BandNrDetails,
-        isV1590: Boolean = false
+        isV1590: Boolean = false,
     ): BwMap {
         val freqRange = if (componentNr.isFR2) "fr2" else "fr1"
 
@@ -1215,7 +1215,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         qam = ModulationOrder.NONE,
                         scs = scs,
                         bw = bw,
-                        channelBW90mhz = channelBW90mhz
+                        channelBW90mhz = channelBW90mhz,
                     )
                 }
 
@@ -1267,7 +1267,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         qam = ModulationOrder.NONE,
                         scs = scs,
                         bw = bw,
-                        channelBW90mhz = channelBW90mhz
+                        channelBW90mhz = channelBW90mhz,
                     )
                 }
 
@@ -1299,7 +1299,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun parseBandParametersDL(
         bandParameters: JsonElement,
-        release: Int
+        release: Int,
     ): Pair<BwClass, Mimo> {
         val bandParametersDL =
             when (release) {
@@ -1347,10 +1347,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         return Pair(dlClass, resultMimo)
     }
 
-    private fun parseMimoR12(
-        intraBandCCInfoList: JsonArray,
-        defaultMimo: Mimo,
-    ): Mimo {
+    private fun parseMimoR12(intraBandCCInfoList: JsonArray, defaultMimo: Mimo): Mimo {
         if (intraBandCCInfoList.size < 2) {
             return defaultMimo
         }
@@ -1374,7 +1371,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun parseBandParametersUL(
         bandParameters: JsonElement,
-        release: Int
+        release: Int,
     ): Pair<BwClass, Mimo> {
         val bandParametersUL =
             when (release) {
@@ -1541,7 +1538,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
     private fun parseReceivedFilters(
         receivedFilters: JsonObject,
-        ueCapFilter: IUeCapabilityFilter
+        ueCapFilter: IUeCapabilityFilter,
     ) {
         val filterCommon = receivedFilters.getObject("capabilityRequestFilterCommon")
         if (filterCommon != null) {

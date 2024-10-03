@@ -197,6 +197,7 @@ object ImportMTKLte : ImportCapabilities {
     }
 
     private val arrayRegex = """Array\[(\d+)]""".toRegex()
+
     /** Get the size of the array from the given line */
     private fun extractArraySize(line: String): Int {
         return arrayRegex.find(line)?.groupValues?.get(1)?.toInt() ?: 0

@@ -13,7 +13,7 @@ import kotlinx.serialization.Transient
 data class ComboNrDc(
     @SerialName("componentsFr1") override val masterComponents: List<ComponentNr>,
     @SerialName("componentsFr2") override val secondaryComponents: List<ComponentNr>,
-    override val bcs: BCS = EmptyBCS
+    override val bcs: BCS = EmptyBCS,
 ) : ICombo {
     @Transient
     override var featureSet: Int = 0
@@ -29,23 +29,16 @@ data class ComboNrDc(
         masterComponents: List<ComponentNr>,
         secondaryComponents: List<ComponentNr>,
         featureSet: Int,
-        bcs: BCS
+        bcs: BCS,
     ) : this(masterComponents, secondaryComponents, bcs) {
         this.featureSet = featureSet
     }
 
     override fun toCompactStr(): String {
-        val nr =
-            componentsNr.joinToString(
-                separator = "-",
-                transform = IComponent::toCompactStr,
-            )
+        val nr = componentsNr.joinToString(separator = "-", transform = IComponent::toCompactStr)
 
         val nrDc =
-            componentsNrDc.joinToString(
-                separator = "-",
-                transform = IComponent::toCompactStr,
-            )
+            componentsNrDc.joinToString(separator = "-", transform = IComponent::toCompactStr)
 
         val bcsString = if (bcs == EmptyBCS) "" else "-${bcs.toCompactStr()}"
         return "${nr}_${nrDc}$bcsString"
@@ -58,7 +51,7 @@ data class ComboNrDc(
         nrDlCC: Int,
         nrUlCC: Int,
         nrDcDlCC: Int,
-        nrDcUlCC: Int
+        nrDcUlCC: Int,
     ): String {
         val compact = this.toCompactStr() + separator
 
@@ -78,7 +71,7 @@ data class ComboNrDc(
             nrMimoUl,
             nrDlCC,
             nrUlCC,
-            separator
+            separator,
         )
 
         componentsNrDc.populateCsvStringBuilders(
@@ -88,7 +81,7 @@ data class ComboNrDc(
             nrDcMimoUl,
             nrDcDlCC,
             nrDcUlCC,
-            separator
+            separator,
         )
 
         return "$compact$nrBandBwScs$nrDcBandBwScs$nrUlBwScsMod$nrDcUlBwScsMod$nrMimoDl$nrDcMimoDl$nrMimoUl$nrDcMimoUl$bcs"

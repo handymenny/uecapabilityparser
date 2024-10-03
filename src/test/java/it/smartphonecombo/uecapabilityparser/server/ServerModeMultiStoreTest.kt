@@ -100,18 +100,12 @@ internal class ServerModeMultiStoreTest {
                     }
                     addJsonObject {
                         put("type", "QLTE")
-                        put(
-                            "inputIndexes",
-                            buildJsonArray { add(3) },
-                        )
+                        put("inputIndexes", buildJsonArray { add(3) })
                         put("description", "This is a multi test")
                     }
                     addJsonObject {
                         put("type", "QNR")
-                        put(
-                            "inputIndexes",
-                            buildJsonArray { add(4) },
-                        )
+                        put("inputIndexes", buildJsonArray { add(4) })
                         put("description", "This is a multi-test")
                     }
                 },
@@ -170,7 +164,7 @@ internal class ServerModeMultiStoreTest {
         Config["store"] = "$resourcesPath/oracleForMultiStore"
         getTestError(
             "${endpointStore}getMultiItem?id=${UUID.randomUUID()}",
-            HttpStatus.NOT_FOUND.code
+            HttpStatus.NOT_FOUND.code,
         )
     }
 
@@ -179,7 +173,7 @@ internal class ServerModeMultiStoreTest {
         Config["store"] = "$resourcesPath/oracleForMultiStore"
         getTest(
             "${endpointStore}getMultiItem?id=${storedMultiId}",
-            "$resourcesPath/oracleForMultiStore/multi/${storedMultiId}.json"
+            "$resourcesPath/oracleForMultiStore/multi/${storedMultiId}.json",
         )
     }
 
@@ -217,7 +211,7 @@ internal class ServerModeMultiStoreTest {
         Config["store"] = "$resourcesPath/oracleForMultiStore"
         getTestError(
             "${endpointStore}getMultiOutput?id=../output/$storedMultiId",
-            HttpStatus.BAD_REQUEST.code
+            HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -226,7 +220,7 @@ internal class ServerModeMultiStoreTest {
         Config["store"] = "$resourcesPath/oracleForMultiStore"
         getTestError(
             "${endpointStore}getMultiOutput?idd=../output/$storedMultiId",
-            HttpStatus.BAD_REQUEST.code
+            HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -235,7 +229,7 @@ internal class ServerModeMultiStoreTest {
         Config["store"] = "$resourcesPath/oracleForMultiStore"
         getTestError(
             "${endpointStore}getMultiOutput?id=${UUID.randomUUID()}",
-            HttpStatus.NOT_FOUND.code
+            HttpStatus.NOT_FOUND.code,
         )
     }
 
@@ -260,7 +254,7 @@ internal class ServerModeMultiStoreTest {
         url: String,
         request: JsonElement,
         files: List<String>,
-        oraclePath: String
+        oraclePath: String,
     ) =
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response =

@@ -37,7 +37,7 @@ internal class ServerModeOthersTest {
             "/store/getMultiOutput",
             "/store/getInput",
             "/store/list/filtered",
-            "/status"
+            "/status",
         )
 
     private val scatTypes = arrayOf("HDF", "SDM", "DLF", "QMDL")
@@ -65,7 +65,7 @@ internal class ServerModeOthersTest {
                 "DLF",
                 "QMDL",
                 "HDF",
-                "SDM"
+                "SDM",
             )
             .filter { scatAvailable || it !in scatTypes }
             .map(LogType::of)

@@ -49,7 +49,7 @@ class Tshark {
     private fun callTshark(
         strTsharkPath: String,
         strProtocol: String,
-        pcapFileName: String
+        pcapFileName: String,
     ): String {
         val tsharkCmd = strTsharkPath + "tshark"
         var userdltsString =
