@@ -1,3 +1,4 @@
+import com.diffplug.gradle.spotless.SpotlessDiagnoseTask
 import com.diffplug.spotless.LineEnding
 import java.util.*
 
@@ -115,6 +116,15 @@ spotless {
     kotlin { ktfmt().kotlinlangStyle() }
 
     kotlinGradle { ktfmt().kotlinlangStyle() }
+
+    // all src files have linux line endings
+    lineEndings = LineEnding.UNIX
+}
+
+tasks.withType<SpotlessDiagnoseTask>().configureEach {
+    notCompatibleWithConfigurationCache(
+        "Spotless Diagnose doesn't support the configuration cache."
+    )
 }
 
 distributions {
@@ -138,11 +148,6 @@ distributions {
             }
         }
     }
-}
-
-spotless {
-    // Workaround: https://github.com/diffplug/spotless/issues/1644
-    lineEndings = LineEnding.UNIX
 }
 
 publishing { publications { create<MavenPublication>("maven") { from(components["java"]) } } }
