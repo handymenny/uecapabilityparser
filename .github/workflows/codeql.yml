@@ -34,7 +34,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Edit kotlin version
-      run: sed -i 's/\(val kotlinVersion =\).*/\1 "2.0.0"/' build.gradle.kts
+      run: sed -i 's/\(val kotlinVersion =\).*/\1 "2.0.20"/' build.gradle.kts
 
     - name: Setup jdk11
       uses: actions/setup-java@v4
