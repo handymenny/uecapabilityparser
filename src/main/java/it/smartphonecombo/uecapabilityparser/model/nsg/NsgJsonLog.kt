@@ -19,7 +19,7 @@ data class NsgJsonLog(
     @SerialName("PCAPHeader")
     @Serializable(with = HexSerializer::class)
     val pcapHeader: ByteArrayDeepEquals,
-    @SerialName("data") val data: List<NsgDataItem> = emptyList()
+    @SerialName("data") val data: List<NsgDataItem> = emptyList(),
 )
 
 @Serializable
@@ -28,7 +28,7 @@ data class NsgDevice(val index: Int, val name: String, val subscription: Int, va
 @Serializable
 data class NsgDataItem(
     // We only care about messages
-    val messages: List<NsgMessage> = emptyList(),
+    val messages: List<NsgMessage> = emptyList()
 )
 
 @Serializable
@@ -37,7 +37,7 @@ data class NsgMessage(
     @SerialName("PCAPPacket")
     @Serializable(with = HexSerializer::class)
     val pcapPacket: ByteArrayDeepEquals? = null,
-    @SerialName("Title") val title: String = ""
+    @SerialName("Title") val title: String = "",
 ) {
     fun isUeCap() = title.contains("UE Cap", true) || title.contains("Segment", true)
 }

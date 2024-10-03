@@ -43,14 +43,14 @@ class RequestParse(
     @Serializable(with = InputSourceBase64Serializer::class) val inputENDC: InputSource? = null,
     val defaultNR: Boolean = false,
     val type: LogType,
-    val description: String = ""
+    val description: String = "",
 ) {
     companion object {
         fun buildRequest(
             vararg inputs: InputSource,
             type: LogType,
             description: String,
-            ratList: List<Rat>
+            ratList: List<Rat>,
         ): RequestParse {
             val inputIndex = ratList.indexOf(Rat.EUTRA)
             val inputNrIndex = ratList.indexOf(Rat.NR)
@@ -68,7 +68,7 @@ class RequestParse(
                 inputENDC,
                 ratList.first() == Rat.NR,
                 type,
-                description
+                description,
             )
         }
     }
@@ -79,5 +79,5 @@ class RequestMultiPart(
     val inputIndexes: List<Int>,
     val type: LogType,
     val subTypes: List<String> = emptyList(),
-    val description: String = ""
+    val description: String = "",
 )

@@ -11,5 +11,5 @@ import kotlinx.serialization.protobuf.ProtoNumber
 @SerialName("FeatureNr")
 data class ShannonFeatureNr(
     /** Intraband Freq Separation is stored as unsigned int */
-    @ProtoNumber(1) private val intrabandFreqSeparation: Long? = null,
+    @ProtoNumber(1) private val intrabandFreqSeparation: Long? = null
 )

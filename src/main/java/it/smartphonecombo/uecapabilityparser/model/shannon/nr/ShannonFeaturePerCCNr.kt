@@ -95,7 +95,7 @@ data class ShannonFeatureDlPerCCNr(
     @ProtoNumber(2) @SerialName("maxMimo") override val rawMaxMimo: Int,
     @ProtoNumber(3) override val maxBw: Long,
     @ProtoNumber(4) @SerialName("maxModOrder") override val rawMaxModOrder: Int,
-    @ProtoNumber(5) override val bw90MHzSupported: Boolean
+    @ProtoNumber(5) override val bw90MHzSupported: Boolean,
 ) : ShannonFeaturePerCCNr() {
     override val maxMimo
         get() =
@@ -116,7 +116,7 @@ data class ShannonFeatureUlPerCCNr(
     @ProtoNumber(4) @SerialName("maxModOrder") override val rawMaxModOrder: Int,
     @ProtoNumber(5) override val bw90MHzSupported: Boolean,
     /** MaxNumberSRS-ResourcePerSet is stored as unsigned int */
-    @ProtoNumber(6) @SerialName("maxNumSRSResPerSet") val maxNumSRSResPerSet: Long
+    @ProtoNumber(6) @SerialName("maxNumSRSResPerSet") val maxNumSRSResPerSet: Long,
 ) : ShannonFeaturePerCCNr() {
     override val maxMimo
         get() =

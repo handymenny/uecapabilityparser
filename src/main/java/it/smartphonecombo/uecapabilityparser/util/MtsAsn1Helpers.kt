@@ -33,7 +33,7 @@ object MtsAsn1Helpers {
             parseTreeList(
                 basePath = "/definition/lte-rrc/",
                 "EUTRA-RRC-Definitions.asn",
-                "EUTRA-InterNodeDefinitions.asn"
+                "EUTRA-InterNodeDefinitions.asn",
             )
         }
 
@@ -42,7 +42,7 @@ object MtsAsn1Helpers {
             parseTreeList(
                 basePath = "/definition/nr-rrc/",
                 "NR-RRC-Definitions.asn",
-                "NR-InterNodeDefinitions.asn"
+                "NR-InterNodeDefinitions.asn",
             )
         }
 
@@ -55,7 +55,7 @@ object MtsAsn1Helpers {
                 "S1AP-Containers.asn",
                 "S1AP-IEs.asn",
                 "S1AP-PDU-Contents.asn",
-                "S1AP-PDU-Descriptions.asn"
+                "S1AP-PDU-Descriptions.asn",
             )
         }
 
@@ -68,7 +68,7 @@ object MtsAsn1Helpers {
                 "NGAP-Containers.asn",
                 "NGAP-IEs.asn",
                 "NGAP-PDU-Descriptions.asn",
-                "NGAP-PDU-Contents.asn"
+                "NGAP-PDU-Contents.asn",
             )
         }
 

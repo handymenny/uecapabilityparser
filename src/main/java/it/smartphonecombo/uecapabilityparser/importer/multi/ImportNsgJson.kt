@@ -45,7 +45,7 @@ object ImportNsgJson : ImportMultiCapabilities {
 
     private fun writeToByteArray(
         header: ByteArrayDeepEquals,
-        pkts: List<ByteArrayDeepEquals>
+        pkts: List<ByteArrayDeepEquals>,
     ): ByteArray {
         val outputStream = ByteArrayOutputStream()
 

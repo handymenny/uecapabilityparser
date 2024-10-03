@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class BwsNr(
     val scs: Int,
     @SerialName("bandwidthsDl") val bwsDL: IntArray,
-    @SerialName("bandwidthsUl") val bwsUL: IntArray
+    @SerialName("bandwidthsUl") val bwsUL: IntArray,
 ) {
     constructor(scs: Int, bwsDlUL: IntArray) : this(scs, bwsDlUL, bwsDlUL)
 

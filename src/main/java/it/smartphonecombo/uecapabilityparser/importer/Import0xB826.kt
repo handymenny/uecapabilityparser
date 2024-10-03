@@ -102,7 +102,7 @@ object Import0xB826 : ImportCapabilities {
                 listCombo.joinToString(
                     prefix = "[",
                     postfix = "]",
-                    transform = ICombo::toCompactStr
+                    transform = ICombo::toCompactStr,
                 )
             )
         }
@@ -126,10 +126,7 @@ object Import0xB826 : ImportCapabilities {
      *
      * Supported for 0xB826 v4 and above.
      */
-    private fun getSource(
-        version: Int,
-        stream: InputStream,
-    ): String? {
+    private fun getSource(version: Int, stream: InputStream): String? {
         if (version <= 3) {
             return null
         }
@@ -162,11 +159,7 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /** Parses a combo */
-    private fun parseCombo(
-        stream: InputStream,
-        version: Int,
-        source: String?,
-    ): ICombo {
+    private fun parseCombo(stream: InputStream, version: Int, source: String?): ICombo {
         if (version >= 8) {
             stream.skipBytes(3)
         }

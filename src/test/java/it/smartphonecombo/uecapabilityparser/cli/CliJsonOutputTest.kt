@@ -20,7 +20,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "carrierPolicy.json"
+            oracleFilename = "carrierPolicy.json",
         )
     }
 
@@ -34,7 +34,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "0xB0CD.json"
+            oracleFilename = "0xB0CD.json",
         )
     }
 
@@ -48,7 +48,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "0xB0CDMultiHex.json"
+            oracleFilename = "0xB0CDMultiHex.json",
         )
     }
 
@@ -62,7 +62,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "mtkLte.json"
+            oracleFilename = "mtkLte.json",
         )
     }
 
@@ -76,7 +76,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nvItem.json"
+            oracleFilename = "nvItem.json",
         )
     }
 
@@ -90,7 +90,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "0xB826.json"
+            oracleFilename = "0xB826.json",
         )
     }
 
@@ -104,7 +104,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "0xB826Multi.json"
+            oracleFilename = "0xB826Multi.json",
         )
     }
 
@@ -118,7 +118,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "0xB826MultiV14.json"
+            oracleFilename = "0xB826MultiV14.json",
         )
     }
 
@@ -132,7 +132,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "0xB826MultiScat.json"
+            oracleFilename = "0xB826MultiScat.json",
         )
     }
 
@@ -146,7 +146,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "0xB826Multi0x9801.json"
+            oracleFilename = "0xB826Multi0x9801.json",
         )
     }
 
@@ -160,7 +160,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nrCapPrune.json"
+            oracleFilename = "nrCapPrune.json",
         )
     }
 
@@ -174,7 +174,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "qctModemCap.json"
+            oracleFilename = "qctModemCap.json",
         )
     }
 
@@ -188,7 +188,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "shannonNrUeCap.json"
+            oracleFilename = "shannonNrUeCap.json",
         )
     }
 
@@ -202,7 +202,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "shannonLteUeCap.json"
+            oracleFilename = "shannonLteUeCap.json",
         )
     }
 
@@ -271,7 +271,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgEutra.json"
+            oracleFilename = "nsgEutra.json",
         )
     }
 
@@ -299,7 +299,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgMrdc.json"
+            oracleFilename = "nsgMrdc.json",
         )
     }
 
@@ -326,7 +326,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgSul.json"
+            oracleFilename = "nsgSul.json",
         )
     }
 
@@ -340,7 +340,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "osixMrdc.json"
+            oracleFilename = "osixMrdc.json",
         )
     }
 
@@ -417,7 +417,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "qcatMrdc.json"
+            oracleFilename = "qcatMrdc.json",
         )
     }
 
@@ -431,7 +431,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "qcatNrdc.json"
+            oracleFilename = "qcatNrdc.json",
         )
     }
 
@@ -445,7 +445,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "temsEutra.json"
+            oracleFilename = "temsEutra.json",
         )
     }
 
@@ -459,7 +459,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "temsMrdcSplit.json"
+            oracleFilename = "temsMrdcSplit.json",
         )
     }
 
@@ -473,7 +473,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "amarisoftEutra.json"
+            oracleFilename = "amarisoftEutra.json",
         )
     }
 
@@ -487,7 +487,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
-            oracleFilename = "amarisoftNr.json"
+            oracleFilename = "amarisoftNr.json",
         )
     }
 

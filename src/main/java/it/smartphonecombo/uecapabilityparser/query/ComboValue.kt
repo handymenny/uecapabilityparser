@@ -17,7 +17,7 @@ sealed interface IComboValue {
 @SerialName("simple")
 data class ComboValue(
     @SerialName("dl") val dlComponents: List<IComponentValue>,
-    @SerialName("ul") val ulComponents: List<IComponentValue>
+    @SerialName("ul") val ulComponents: List<IComponentValue>,
 ) : IComboValue {
     override fun matches(combo: ICombo): Boolean {
         val components = combo.masterComponents
@@ -33,7 +33,7 @@ data class ComboMrDcValue(
     @SerialName("dlMaster") val dlMasterComponents: List<IComponentValue>,
     @SerialName("ulMaster") val ulMasterComponents: List<IComponentValue>,
     @SerialName("dlSecondary") val dlSecondaryComponents: List<IComponentValue>,
-    @SerialName("ulSecondary") val ulSecondaryComponents: List<IComponentValue>
+    @SerialName("ulSecondary") val ulSecondaryComponents: List<IComponentValue>,
 ) : IComboValue {
     override fun matches(combo: ICombo): Boolean {
         val masterComponents = combo.masterComponents
@@ -50,7 +50,7 @@ data class ComboMrDcValue(
 internal fun componentsCheck(
     components: List<IComponent>,
     dlCriteria: List<IComponentValue>,
-    ulCriteria: List<IComponentValue>
+    ulCriteria: List<IComponentValue>,
 ): Boolean {
     return if (components.size < ulCriteria.size || components.size < dlCriteria.size) {
         false
@@ -61,7 +61,7 @@ internal fun componentsCheck(
 
 internal fun meetsCriteriaReduced(
     criteria: List<IComponentValue>,
-    components: List<IComponent>
+    components: List<IComponent>,
 ): Boolean {
     val indexes =
         criteria.map {

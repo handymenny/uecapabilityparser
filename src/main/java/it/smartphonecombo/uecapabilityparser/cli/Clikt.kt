@@ -129,7 +129,7 @@ object Cli : CliktCommand(name = "cli") {
                 inputsSource,
                 typeList.map(LogType::of),
                 subTypesList,
-                jsonFormat = jsonFormat
+                jsonFormat = jsonFormat,
             )
 
         val parsingList = multiParsing.parsingList
@@ -156,7 +156,7 @@ object Cli : CliktCommand(name = "cli") {
                     parsing.capabilities,
                     csvOutput,
                     parsing.capabilities.logType,
-                    newCsvFormat
+                    newCsvFormat,
                 )
             }
         }
@@ -168,12 +168,12 @@ object Cli : CliktCommand(name = "cli") {
                 val parsedCapabilities = parsingList.map(Parsing::capabilities)
                 IOUtils.outputFileOrStdout(
                     jsonFormat.encodeToString(parsedCapabilities),
-                    jsonOutput
+                    jsonOutput,
                 )
             } else {
                 IOUtils.outputFileOrStdout(
                     jsonFormat.encodeToString(parsingList.first().capabilities),
-                    jsonOutput
+                    jsonOutput,
                 )
             }
         }
@@ -188,28 +188,28 @@ object Cli : CliktCommand(name = "cli") {
         if (lteCombos.isNotEmpty()) {
             IOUtils.outputFileOrStdout(
                 IOUtils.toCsv(lteCombos, newFmt),
-                csvPath?.appendBeforeExtension("-LTECA")
+                csvPath?.appendBeforeExtension("-LTECA"),
             )
         }
         val nrCombos = cap.nrCombos
         if (nrCombos.isNotEmpty()) {
             IOUtils.outputFileOrStdout(
                 IOUtils.toCsv(nrCombos),
-                csvPath?.appendBeforeExtension("-NRCA")
+                csvPath?.appendBeforeExtension("-NRCA"),
             )
         }
         val enDcCombos = cap.enDcCombos
         if (enDcCombos.isNotEmpty()) {
             IOUtils.outputFileOrStdout(
                 IOUtils.toCsv(enDcCombos),
-                csvPath?.appendBeforeExtension("-ENDC")
+                csvPath?.appendBeforeExtension("-ENDC"),
             )
         }
         val nrDcCombos = cap.nrDcCombos
         if (nrDcCombos.isNotEmpty()) {
             IOUtils.outputFileOrStdout(
                 IOUtils.toCsv(nrDcCombos),
-                csvPath?.appendBeforeExtension("-NRDC")
+                csvPath?.appendBeforeExtension("-NRDC"),
             )
         }
     }

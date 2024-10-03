@@ -19,7 +19,7 @@ data class ComboEnDc(
     @SerialName("componentsNr") override val secondaryComponents: List<ComponentNr>,
     @SerialName("bcsNr") val bcsNr: BCS = EmptyBCS,
     @SerialName("bcsEutra") val bcsEutra: BCS = EmptyBCS,
-    @SerialName("bcsIntraEndc") val bcsIntraEnDc: BCS = EmptyBCS
+    @SerialName("bcsIntraEndc") val bcsIntraEnDc: BCS = EmptyBCS,
 ) : ICombo {
     @Transient
     override var featureSet: Int = 0
@@ -40,22 +40,14 @@ data class ComboEnDc(
         featureSet: Int,
         bcsNr: BCS,
         bcsEutra: BCS,
-        bcsIntraEnDc: BCS
+        bcsIntraEnDc: BCS,
     ) : this(masterComponents, secondaryComponents, bcsNr, bcsEutra, bcsIntraEnDc) {
         this.featureSet = featureSet
     }
 
     override fun toCompactStr(): String {
-        val lte =
-            componentsLte.joinToString(
-                separator = "-",
-                transform = IComponent::toCompactStr,
-            )
-        val nr =
-            componentsNr.joinToString(
-                separator = "-",
-                transform = IComponent::toCompactStr,
-            )
+        val lte = componentsLte.joinToString(separator = "-", transform = IComponent::toCompactStr)
+        val nr = componentsNr.joinToString(separator = "-", transform = IComponent::toCompactStr)
 
         var bcsString = ""
         if (bcs != EmptyBCS) {
@@ -81,7 +73,7 @@ data class ComboEnDc(
         nrDlCC: Int,
         nrUlCC: Int,
         nrDcDlCC: Int,
-        nrDcUlCC: Int
+        nrDcUlCC: Int,
     ): String {
         val compact = this.toCompactStr() + separator
 
@@ -97,7 +89,7 @@ data class ComboEnDc(
             nrMimoUl,
             nrDlCC,
             nrUlCC,
-            separator
+            separator,
         )
 
         val lteDl = StringBuilder()

@@ -32,7 +32,7 @@ internal object TsTypesGenerator {
                 RequestCsv.serializer(),
                 RequestParse.serializer(),
                 RequestMultiPart.serializer(),
-                Query.serializer()
+                Query.serializer(),
             )
         val tsDefFixed =
             typescriptDefinitions.replace(" = \"\"", "INVALID = \"\"") // fix empty enum

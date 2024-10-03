@@ -94,7 +94,7 @@ data class SCTPContainer(private val pkt: SctpPacket) : PduContainer(pkt) {
     */
     private fun mergeSctpFragments(
         chunk: SctpDataChunk,
-        prevSctpFragments: List<SCTPContainer>
+        prevSctpFragments: List<SCTPContainer>,
     ): List<SCTPContainer> {
         val notFragmented = chunk.isEndingFragment && chunk.isBeginningFragment
 

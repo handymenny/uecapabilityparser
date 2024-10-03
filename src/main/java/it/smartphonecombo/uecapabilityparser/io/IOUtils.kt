@@ -138,7 +138,7 @@ object IOUtils {
         nrDlCC: Int,
         nrUlCC: Int,
         nrDcDlCC: Int,
-        nrDcUlCC: Int
+        nrDcUlCC: Int,
     ): String {
         val separator = ";"
         val header = StringBuilder("combo;")

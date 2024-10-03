@@ -12,7 +12,7 @@ data class DedicatedMessageSegment(
     private val pkt: Packet,
     private val isNrRrc: Boolean,
     private val arfcn: Int,
-    private val ip: String?
+    private val ip: String?,
 ) : PduContainer(pkt) {
     override var capabilityPayload: ByteArray = byteArrayOf()
     override var needDefragmentation: Boolean = true

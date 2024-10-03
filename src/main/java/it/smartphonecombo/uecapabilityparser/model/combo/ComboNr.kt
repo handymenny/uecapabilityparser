@@ -12,7 +12,7 @@ import kotlinx.serialization.Transient
 @Serializable
 data class ComboNr(
     @SerialName("components") override val masterComponents: List<ComponentNr>,
-    override val bcs: BCS = EmptyBCS
+    override val bcs: BCS = EmptyBCS,
 ) : ICombo {
     @Transient
     override var featureSet: Int = 0
@@ -21,7 +21,7 @@ data class ComboNr(
     constructor(
         masterComponents: List<ComponentNr>,
         featureSet: Int,
-        bcs: BCS
+        bcs: BCS,
     ) : this(masterComponents, bcs) {
         this.featureSet = featureSet
     }
@@ -33,11 +33,7 @@ data class ComboNr(
         get() = masterComponents
 
     override fun toCompactStr(): String {
-        val nr =
-            componentsNr.joinToString(
-                separator = "-",
-                transform = IComponent::toCompactStr,
-            )
+        val nr = componentsNr.joinToString(separator = "-", transform = IComponent::toCompactStr)
 
         val bcsString = if (bcs == EmptyBCS) "" else "-${bcs.toCompactStr()}"
         return "$nr$bcsString"
@@ -50,7 +46,7 @@ data class ComboNr(
         nrDlCC: Int,
         nrUlCC: Int,
         nrDcDlCC: Int,
-        nrDcUlCC: Int
+        nrDcUlCC: Int,
     ): String {
         val compact = this.toCompactStr() + separator
 
@@ -66,7 +62,7 @@ data class ComboNr(
             nrMimoUl,
             nrDlCC,
             nrUlCC,
-            separator
+            separator,
         )
 
         return "$compact$nrBandBwScs$nrUlBwScsMod$nrMimoDl$nrMimoUl$bcs"

@@ -22,7 +22,7 @@ object ImportCapabilitiesHelpers {
         input: InputSource,
         inputNR: InputSource?,
         inputENDC: InputSource?,
-        defaultRat: Rat
+        defaultRat: Rat,
     ): JsonObject {
         val ratContainerMap =
             if (type == LogType.H) {
@@ -109,17 +109,9 @@ object ImportCapabilitiesHelpers {
             val end = list.getOrNull(i + 1)?.second ?: input.length
             when (rat) {
                 Rat.EUTRA ->
-                    eutra =
-                        input.substring(
-                            start + eutraIdentifier.toString().length - 1,
-                            end,
-                        )
+                    eutra = input.substring(start + eutraIdentifier.toString().length - 1, end)
                 Rat.EUTRA_NR ->
-                    eutraNr =
-                        input.substring(
-                            start + mrdcIdentifier.toString().length - 1,
-                            end,
-                        )
+                    eutraNr = input.substring(start + mrdcIdentifier.toString().length - 1, end)
                 Rat.NR -> nr = input.substring(start + nrIdentifier.toString().length - 1, end)
                 else -> {
                     // Do nothing
@@ -128,11 +120,7 @@ object ImportCapabilitiesHelpers {
         }
         if (eutra.isNotBlank()) {
             MtsAsn1Helpers.getAsn1Converter(Rat.EUTRA, converter)
-                .convert(
-                    Rat.EUTRA.ratCapabilityIdentifier,
-                    eutra.byteInputStream(),
-                    formatWriter,
-                )
+                .convert(Rat.EUTRA.ratCapabilityIdentifier, eutra.byteInputStream(), formatWriter)
             formatWriter.jsonNode?.let { ratContainerMap.put(Rat.EUTRA.toString(), it) }
         }
         if (eutraNr.isNotBlank() || nr.isNotBlank()) {
@@ -161,7 +149,7 @@ object ImportCapabilitiesHelpers {
         inputMainText: InputSource,
         inputNRText: InputSource?,
         inputENDCText: InputSource?,
-        defaultRat: Rat
+        defaultRat: Rat,
     ): Map<String, JsonElement> {
         val ratContainerMap = mutableMapOf<String, JsonElement>()
         ratContainerMap += MtsAsn1Helpers.getUeCapabilityJsonFromHex(defaultRat, inputMainText)

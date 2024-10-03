@@ -59,7 +59,7 @@ object Routes {
         ctx.attachFile(
             IOUtils.toCsv(comboList, newFmt).toInputSource(),
             "${type}-${date}.csv",
-            ContentType.TEXT_CSV
+            ContentType.TEXT_CSV,
         )
     }
 
@@ -72,7 +72,7 @@ object Routes {
                 endpoints,
                 logTypes,
                 maxRequestSize,
-                SearchableField.getAllSearchableFields()
+                SearchableField.getAllSearchableFields(),
             )
         ctx.json(status)
     }

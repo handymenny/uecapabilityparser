@@ -74,26 +74,26 @@ internal class ServerModeStoreTest {
                     put("inputENDC", fileToBase64(input2))
                     put("description", "This is a test")
                 },
-            oraclePath = oracle
+            oraclePath = oracle,
         )
 
         assumeTrue(pushedCap != null)
         val id = pushedCap?.id ?: ""
         capabilitiesAssertEquals(
             File(oracle).readText(),
-            File("$tmpStorePath/output/$id.json").readText()
+            File("$tmpStorePath/output/$id.json").readText(),
         )
         Assertions.assertLinesMatch(
             File(input0).readLines(),
-            File("$tmpStorePath/input/$id-0").readLines()
+            File("$tmpStorePath/input/$id-0").readLines(),
         )
         Assertions.assertLinesMatch(
             File(input1).readLines(),
-            File("$tmpStorePath/input/$id-1").readLines()
+            File("$tmpStorePath/input/$id-1").readLines(),
         )
         Assertions.assertLinesMatch(
             File(input2).readLines(),
-            File("$tmpStorePath/input/$id-2").readLines()
+            File("$tmpStorePath/input/$id-2").readLines(),
         )
     }
 
@@ -127,7 +127,7 @@ internal class ServerModeStoreTest {
         Config["store"] = "$resourcesPath/oracleForStore"
         getTest(
             "${endpointStore}getOutput?id=$storedId",
-            "$resourcesPath/oracleForStore/output/$storedId.json"
+            "$resourcesPath/oracleForStore/output/$storedId.json",
         )
     }
 
@@ -136,7 +136,7 @@ internal class ServerModeStoreTest {
         Config["store"] = "$resourcesPath/oracleForStore"
         getTestError(
             "${endpointStore}getOutput?id=../output/$storedId",
-            HttpStatus.BAD_REQUEST.code
+            HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -145,7 +145,7 @@ internal class ServerModeStoreTest {
         Config["store"] = "$resourcesPath/oracleForStore"
         getTestError(
             "${endpointStore}getOutput?idd=../output/$storedId",
-            HttpStatus.BAD_REQUEST.code
+            HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -161,7 +161,7 @@ internal class ServerModeStoreTest {
         getTest(
             "${endpointStore}getInput?id=$storedId-0",
             "$resourcesPath/oracleForStore/input/$storedId-0",
-            false
+            false,
         )
     }
 
@@ -170,7 +170,7 @@ internal class ServerModeStoreTest {
         Config["store"] = "$resourcesPath/oracleForStore"
         getTestError(
             "${endpointStore}getInput?id=../input/$storedId-0",
-            HttpStatus.BAD_REQUEST.code
+            HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -223,7 +223,7 @@ internal class ServerModeStoreTest {
         // Override dynamic properties
         expectedCap.setMetadata(
             "processingTime",
-            actualCap.getStringMetadata("processingTime") ?: ""
+            actualCap.getStringMetadata("processingTime") ?: "",
         )
 
         Assertions.assertEquals(expectedCap, actualCap)

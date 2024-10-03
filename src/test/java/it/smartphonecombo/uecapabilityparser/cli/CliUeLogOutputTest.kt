@@ -19,7 +19,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "wiresharkEutra.json"
+            oracleFilename = "wiresharkEutra.json",
         )
     }
 
@@ -33,7 +33,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "wiresharkNr.json"
+            oracleFilename = "wiresharkNr.json",
         )
     }
 
@@ -47,7 +47,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "wiresharkMrdc.json"
+            oracleFilename = "wiresharkMrdc.json",
         )
     }
 
@@ -61,7 +61,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "wiresharkMrdcSplit.json"
+            oracleFilename = "wiresharkMrdcSplit.json",
         )
     }
 
@@ -75,7 +75,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgEutra.json"
+            oracleFilename = "nsgEutra.json",
         )
     }
 
@@ -89,7 +89,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgNr.json"
+            oracleFilename = "nsgNr.json",
         )
     }
 
@@ -103,7 +103,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgMrdc.json"
+            oracleFilename = "nsgMrdc.json",
         )
     }
 
@@ -117,7 +117,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgMrdcSplit.json"
+            oracleFilename = "nsgMrdcSplit.json",
         )
     }
 
@@ -131,7 +131,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "nsgSul.json"
+            oracleFilename = "nsgSul.json",
         )
     }
 
@@ -145,7 +145,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "osixMrdc.json"
+            oracleFilename = "osixMrdc.json",
         )
     }
 
@@ -161,7 +161,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "ueCapHexEutra.json"
+            oracleFilename = "ueCapHexEutra.json",
         )
     }
 
@@ -177,7 +177,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "ueCapHexNr.json"
+            oracleFilename = "ueCapHexNr.json",
         )
     }
 
@@ -193,7 +193,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "ueCapHexMrdcSplit.json"
+            oracleFilename = "ueCapHexMrdcSplit.json",
         )
     }
 
@@ -223,7 +223,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "qcatMrdc.json"
+            oracleFilename = "qcatMrdc.json",
         )
     }
 
@@ -237,7 +237,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "qcatNrdc.json"
+            oracleFilename = "qcatNrdc.json",
         )
     }
 
@@ -251,7 +251,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "temsEutra.json"
+            oracleFilename = "temsEutra.json",
         )
     }
 
@@ -265,7 +265,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "amarisoftEutra.json"
+            oracleFilename = "amarisoftEutra.json",
         )
     }
 
@@ -279,7 +279,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "amarisoftNr.json"
+            oracleFilename = "amarisoftNr.json",
         )
     }
 
@@ -293,7 +293,7 @@ internal class CliUeLogOutputTest {
             "-l",
             "-",
             "--json-pretty-print",
-            oracleFilename = "temsMrdcSplit.json"
+            oracleFilename = "temsMrdcSplit.json",
         )
     }
 

@@ -18,6 +18,6 @@ sealed interface ICombo {
         nrDlCC: Int,
         nrUlCC: Int,
         nrDcDlCC: Int,
-        nrDcUlCC: Int
+        nrDcUlCC: Int,
     ): String
 }

@@ -22,7 +22,7 @@ sealed interface Criteria {
 data class CriteriaNumber(
     override val field: FieldNumber,
     override val comparator: Comparator,
-    override val value: Long
+    override val value: Long,
 ) : Criteria {
     override fun evaluateCriteria(item: Capabilities): Boolean {
         val field = field.extractField(item)
@@ -43,7 +43,7 @@ data class CriteriaNumber(
 data class CriteriaString(
     override val field: FieldString,
     override val comparator: Comparator,
-    override val value: String? = null
+    override val value: String? = null,
 ) : Criteria {
     override fun evaluateCriteria(item: Capabilities): Boolean {
         val field = field.extractField(item)
@@ -66,7 +66,7 @@ data class CriteriaString(
 data class CriteriaStrings(
     override val field: FieldStrings,
     override val comparator: Comparator,
-    override val value: List<String>? = null
+    override val value: List<String>? = null,
 ) : Criteria {
     private val valueUpperCase
         get() = value?.map { it.uppercase() } ?: emptyList()
@@ -91,7 +91,7 @@ data class CriteriaStrings(
 data class CriteriaBands(
     override val field: FieldBandsDetails,
     override val comparator: Comparator,
-    override val value: List<IBandDetailsValue>? = null
+    override val value: List<IBandDetailsValue>? = null,
 ) : Criteria {
 
     override fun evaluateCriteria(item: Capabilities): Boolean {
@@ -114,7 +114,7 @@ data class CriteriaBands(
 data class CriteriaCombos(
     override val field: FieldCombos,
     override val comparator: Comparator,
-    override val value: List<IComboValue>? = null
+    override val value: List<IComboValue>? = null,
 ) : Criteria {
 
     override fun evaluateCriteria(item: Capabilities): Boolean {

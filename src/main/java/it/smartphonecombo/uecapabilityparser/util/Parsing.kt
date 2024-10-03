@@ -28,7 +28,7 @@ class Parsing(
     private val defaultRat: Rat = Rat.EUTRA,
     private val type: LogType,
     private val description: String = "",
-    private val jsonFormat: Json = Json
+    private val jsonFormat: Json = Json,
 ) {
     private var jsonUeCap: JsonObject? = null
     val capabilities = parseCapabilitiesAndSetMetadata()
@@ -102,7 +102,7 @@ class Parsing(
                 inputsPath,
                 compression,
                 capabilities.getStringMetadata("defaultNR").toBoolean(),
-                capabilities.parserVersion
+                capabilities.parserVersion,
             )
         libraryIndex?.addLine(indexLine)
         return indexLine
@@ -128,7 +128,7 @@ class Parsing(
                 if (defaultRat == Rat.EUTRA_NR) null else req.inputENDC,
                 defaultRat,
                 req.type,
-                req.description
+                req.description,
             )
         }
     }

@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 data class MultiCapabilities(
     @SerialName("capabilitiesList") val capabilities: List<Capabilities> = emptyList(),
     @SerialName("description") val description: String = "",
-    @Required @SerialName("id") var id: String = UUID.randomUUID().toString()
+    @Required @SerialName("id") var id: String = UUID.randomUUID().toString(),
 )

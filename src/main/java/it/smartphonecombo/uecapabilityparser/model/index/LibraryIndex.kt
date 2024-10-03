@@ -26,7 +26,7 @@ import kotlinx.serialization.json.Json
 data class LibraryIndex(
     private val items: MutableList<IndexLine>,
     private val multiItems: MutableList<MultiIndexLine> = mutableListOf(),
-    @Transient private val outputCacheSize: Int? = 0
+    @Transient private val outputCacheSize: Int? = 0,
 ) {
     @Transient private val lock = Any()
     @Transient private val outputCache = LruCache<String, Capabilities>(outputCacheSize)

@@ -17,7 +17,7 @@ data class ComponentLte(
     @SerialName("mimoDl") override var mimoDL: Mimo = EmptyMimo,
     @SerialName("mimoUl") override var mimoUL: Mimo = EmptyMimo,
     @SerialName("modulationDl") override var modDL: Modulation = EmptyModulation,
-    @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation
+    @SerialName("modulationUl") override var modUL: Modulation = EmptyModulation,
 ) : IComponent {
 
     override fun compareTo(other: IComponent): Int {
@@ -28,7 +28,7 @@ data class ComponentLte(
             { it.classDL },
             { it.classUL },
             { it.mimoDL },
-            { it.mimoUL }
+            { it.mimoUL },
         )
     }
 

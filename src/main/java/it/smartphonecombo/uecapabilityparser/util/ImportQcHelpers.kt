@@ -97,7 +97,7 @@ object ImportQcHelpers {
                 enDcCombos = enDcCombos,
                 nrCombos = nrCombos,
                 nrDcCombos = nrDcCombos,
-                metadata = metadataList.firstOrNull() ?: mutableMapOf()
+                metadata = metadataList.firstOrNull() ?: mutableMapOf(),
             )
 
         if (metadataList.size > 1) {

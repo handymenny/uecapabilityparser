@@ -110,7 +110,7 @@ class JavalinApp {
         strategy: String,
         store: String,
         index: LibraryIndex,
-        compression: Boolean
+        compression: Boolean,
     ) {
         val parserVersion = Config.getOrDefault("project.version", "")
         val auto = strategy !== "force"
@@ -142,7 +142,7 @@ class JavalinApp {
                     IOUtils.inputSourceAndMove(
                         "$store/input/$it",
                         "$store/backup/input/$it",
-                        compressed
+                        compressed,
                     )
                 }
 
@@ -151,7 +151,7 @@ class JavalinApp {
                     *inputMap.toTypedArray(),
                     type = capabilities.logType,
                     description = indexLine.description,
-                    ratList = guessRats(capabilities, inputMap.size)
+                    ratList = guessRats(capabilities, inputMap.size),
                 )
 
             Parsing.fromRequest(request)?.let {

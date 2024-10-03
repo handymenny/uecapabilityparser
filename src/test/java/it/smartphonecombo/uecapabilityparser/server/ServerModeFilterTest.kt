@@ -55,7 +55,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            oraclePath = "$path/oracleForQuery/empty.json"
+            oraclePath = "$path/oracleForQuery/empty.json",
         )
     }
 
@@ -84,7 +84,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            oraclePath = "$path/oracleForQuery/singleResult.json"
+            oraclePath = "$path/oracleForQuery/singleResult.json",
         )
     }
 
@@ -97,13 +97,13 @@ internal class ServerModeFilterTest {
                     CriteriaBands(
                         FieldBandsDetails.NR_BANDS,
                         Comparator.HAS_ANY,
-                        listOf(BandNrDetailsValue(78))
-                    )
+                        listOf(BandNrDetailsValue(78)),
+                    ),
                 )
             )
         javalinTest(
             request = Json.encodeToJsonElement(query).jsonObject,
-            oraclePath = "$path/oracleForQuery/multiResult.json"
+            oraclePath = "$path/oracleForQuery/multiResult.json",
         )
     }
 
@@ -120,21 +120,21 @@ internal class ServerModeFilterTest {
                                 dlMasterComponents = listOf(LteComponentDlValue(3)),
                                 ulMasterComponents = listOf(LteComponentUlValue(1)),
                                 dlSecondaryComponents = listOf(NrComponentDlValue(78)),
-                                ulSecondaryComponents = listOf(NrComponentUlValue(78))
+                                ulSecondaryComponents = listOf(NrComponentUlValue(78)),
                             )
-                        )
+                        ),
                     ),
                     CriteriaBands(
                         FieldBandsDetails.LTE_BANDS,
                         Comparator.HAS_NONE,
-                        listOf(BandLteDetailsValue(20))
-                    )
+                        listOf(BandLteDetailsValue(20)),
+                    ),
                 )
             )
 
         javalinTest(
             request = Json.encodeToJsonElement(query).jsonObject,
-            oraclePath = "$path/oracleForQuery/multiResult2.json"
+            oraclePath = "$path/oracleForQuery/multiResult2.json",
         )
     }
 
@@ -151,9 +151,9 @@ internal class ServerModeFilterTest {
                                 dlMasterComponents = listOf(LteComponentDlValue(78)),
                                 ulMasterComponents = listOf(),
                                 dlSecondaryComponents = listOf(NrComponentDlValue(257)),
-                                ulSecondaryComponents = listOf()
+                                ulSecondaryComponents = listOf(),
                             )
-                        )
+                        ),
                     ),
                     CriteriaCombos(
                         FieldCombos.NR_COMBOS,
@@ -161,16 +161,16 @@ internal class ServerModeFilterTest {
                         listOf(
                             ComboValue(
                                 dlComponents = listOf(NrComponentDlValue(78)),
-                                ulComponents = listOf()
+                                ulComponents = listOf(),
                             )
-                        )
-                    )
+                        ),
+                    ),
                 )
             )
 
         javalinTest(
             request = Json.encodeToJsonElement(query).jsonObject,
-            oraclePath = "$path/oracleForQuery/multiResult3.json"
+            oraclePath = "$path/oracleForQuery/multiResult3.json",
         )
     }
 
@@ -188,7 +188,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            errorCode = HttpStatus.BAD_REQUEST.code
+            errorCode = HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -206,7 +206,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            errorCode = HttpStatus.BAD_REQUEST.code
+            errorCode = HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -224,7 +224,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            errorCode = HttpStatus.BAD_REQUEST.code
+            errorCode = HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -245,7 +245,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            errorCode = HttpStatus.BAD_REQUEST.code
+            errorCode = HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -262,7 +262,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            errorCode = HttpStatus.BAD_REQUEST.code
+            errorCode = HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -279,7 +279,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            errorCode = HttpStatus.BAD_REQUEST.code
+            errorCode = HttpStatus.BAD_REQUEST.code,
         )
     }
 
@@ -296,7 +296,7 @@ internal class ServerModeFilterTest {
                         }
                     }
                 },
-            errorCode = HttpStatus.BAD_REQUEST.code
+            errorCode = HttpStatus.BAD_REQUEST.code,
         )
     }
 
