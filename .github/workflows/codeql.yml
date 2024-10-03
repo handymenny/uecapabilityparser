@@ -36,6 +36,8 @@ jobs:
 
     - name: Setup gradle
       uses: gradle/actions/setup-gradle@v4
+      with:
+        cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
