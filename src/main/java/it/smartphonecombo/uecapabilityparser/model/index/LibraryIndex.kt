@@ -37,6 +37,15 @@ data class LibraryIndex(
         }
     }
 
+    fun replaceLine(line: IndexLine): Boolean {
+        synchronized(lock) {
+            items.removeIf { it.id == line.id }
+            items.add(line)
+            outputCache.remove(line.id)
+        }
+        return true
+    }
+
     fun addMultiLine(line: MultiIndexLine): Boolean {
         synchronized(lock) {
             return multiItems.add(line)

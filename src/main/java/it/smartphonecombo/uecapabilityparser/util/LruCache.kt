@@ -21,6 +21,12 @@ class LruCache<K, V>(private val maxCapacity: Int? = null) {
 
     operator fun set(key: K, value: V) = put(key, value)
 
+    fun remove(key: K): V? {
+        synchronized(lock) {
+            return internalMap.remove(key)
+        }
+    }
+
     fun put(key: K, value: V, skipIfFull: Boolean = false): Boolean {
         if (maxCapacity == 0 || skipIfFull && full()) return false
         synchronized(lock) { internalMap[key] = value }

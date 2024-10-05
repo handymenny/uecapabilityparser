@@ -53,8 +53,6 @@ class JavalinApp {
             if (reparseStrategy != "off") {
                 CoroutineScope(Dispatchers.IO).launch {
                     reparseLibrary(reparseStrategy, store, index, compression)
-                    // Rebuild index
-                    index = LibraryIndex.buildIndex(store, maxOutputCache)
                 }
             }
         }
@@ -123,12 +121,17 @@ class JavalinApp {
             index
                 .getAll()
                 .filterNot { auto && it.parserVersion == parserVersion }
-                .map { async { reparseItem(it, store, compression) } }
+                .map { async { reparseItem(it, index, store, compression) } }
                 .awaitAll()
         }
     }
 
-    private fun reparseItem(indexLine: IndexLine, store: String, compression: Boolean) {
+    private fun reparseItem(
+        indexLine: IndexLine,
+        index: LibraryIndex,
+        store: String,
+        compression: Boolean,
+    ) {
         val compressed = indexLine.compressed
         val capPath = "/output/${indexLine.id}.json"
         try {
@@ -160,6 +163,9 @@ class JavalinApp {
                 it.capabilities.timestamp = capabilities.timestamp
                 it.store(null, store, compression)
             } ?: throw NullPointerException("Reparsed Capabilities is null")
+
+            val newLine = indexLine.copy(compressed = compression)
+            index.replaceLine(newLine)
         } catch (ex: Exception) {
             echoSafe("Error re-parsing ${indexLine.id}:\t${ex.message}", true)
             try {
