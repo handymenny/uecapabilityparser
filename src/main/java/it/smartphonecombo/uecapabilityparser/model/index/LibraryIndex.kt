@@ -70,7 +70,10 @@ data class LibraryIndex(
     }
 
     /** return an immutable list of all single-capability indexes */
-    fun getAll() = items.values.toList()
+    fun getAll() = synchronized(lock) { items.values.toList() }
+
+    /** return an immutable list of all multi-capability indexes */
+    fun getMultiIndexes() = synchronized(lock) { multiItems.values.toList() }
 
     fun getOutput(id: String, libraryPath: String, cacheIfFull: Boolean = true): Capabilities? {
         val cached = outputCache[id]
@@ -91,7 +94,7 @@ data class LibraryIndex(
 
         // immutable copies of items and multi items
         val itemsList = getAll()
-        val multiItemsList = multiItems.values.toList()
+        val multiItemsList = getMultiIndexes()
 
         val validIdsDeferred =
             CoroutineScope(dispatcher).async {
