@@ -28,14 +28,12 @@ import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class JavalinApp {
     private val hasSubmodules = {}.javaClass.getResourceAsStream("/web") != null
     private val html404 = {}.javaClass.getResourceAsStream("/web/404.html")?.use { it.readBytes() }
@@ -44,7 +42,7 @@ class JavalinApp {
     private val compression = Config["compression"] == "true"
     private val maxOutputCache = Config.getOrDefault("cache", "0").toInt().takeIf { it >= 0 }
     private val store = Config["store"]
-    private var index = LibraryIndex(mutableListOf())
+    private var index = LibraryIndex()
 
     init {
         if (store != null) {
