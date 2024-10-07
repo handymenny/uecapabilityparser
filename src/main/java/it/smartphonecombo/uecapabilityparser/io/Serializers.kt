@@ -3,10 +3,14 @@ package it.smartphonecombo.uecapabilityparser.io
 import it.smartphonecombo.uecapabilityparser.extension.decodeHex
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.ByteArrayDeepEquals
+import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
+import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
 import java.time.Instant
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -64,4 +68,37 @@ object DateTimeSerializer : KSerializer<Long> {
         val formatter = DateTimeFormatter.ISO_DATE_TIME
         return Instant.from(formatter.parse(string)).toEpochMilli()
     }
+}
+
+sealed class MapAsListSerializer<K : Any, V : Any>(dataSerializer: KSerializer<V>) :
+    KSerializer<MutableMap<K, V>> {
+    protected val delegateSerializer = ListSerializer(dataSerializer)
+    protected abstract val associateFunction: (V) -> K
+    abstract override val descriptor: SerialDescriptor
+
+    override fun serialize(encoder: Encoder, value: MutableMap<K, V>) {
+        val data = value.values.toList()
+        encoder.encodeSerializableValue(delegateSerializer, data)
+    }
+
+    override fun deserialize(decoder: Decoder): MutableMap<K, V> {
+        val list = decoder.decodeSerializableValue(delegateSerializer)
+
+        return list.associateBy(associateFunction).toMutableMap()
+    }
+}
+
+object IndexLineMapAsList : MapAsListSerializer<String, IndexLine>(IndexLine.serializer()) {
+    override val associateFunction: (IndexLine) -> String = { it.id }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    override val descriptor = SerialDescriptor("IndexLineList", delegateSerializer.descriptor)
+}
+
+object MultiIndexLineMapAsList :
+    MapAsListSerializer<String, MultiIndexLine>(MultiIndexLine.serializer()) {
+    override val associateFunction: (MultiIndexLine) -> String = { it.id }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    override val descriptor = SerialDescriptor("MultiIndexLineList", delegateSerializer.descriptor)
 }

@@ -8,6 +8,8 @@ import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
+import it.smartphonecombo.uecapabilityparser.io.IndexLineMapAsList
+import it.smartphonecombo.uecapabilityparser.io.MultiIndexLineMapAsList
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.util.LruCache
@@ -15,57 +17,60 @@ import it.smartphonecombo.uecapabilityparser.util.optimize
 import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
 
 @Serializable
 data class LibraryIndex(
-    private val items: MutableList<IndexLine>,
-    private val multiItems: MutableList<MultiIndexLine> = mutableListOf(),
+    @Serializable(with = IndexLineMapAsList::class)
+    @Required
+    private val items: MutableMap<String, IndexLine> = mutableMapOf(),
+    @Serializable(with = MultiIndexLineMapAsList::class)
+    private val multiItems: MutableMap<String, MultiIndexLine> = mutableMapOf(),
     @Transient private val outputCacheSize: Int? = 0,
 ) {
     @Transient private val lock = Any()
     @Transient private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
 
-    fun addLine(line: IndexLine): Boolean {
-        synchronized(lock) {
-            return items.add(line)
-        }
+    constructor(
+        items: List<IndexLine>,
+        multiItems: List<MultiIndexLine>,
+        outputCacheSize: Int? = 0,
+    ) : this(
+        items.associateBy { it.id }.toMutableMap(),
+        multiItems.associateBy { it.id }.toMutableMap(),
+        outputCacheSize,
+    )
+
+    fun addLine(line: IndexLine) {
+        synchronized(lock) { items[line.id] = line }
     }
 
-    fun replaceLine(line: IndexLine): Boolean {
+    fun replaceLine(line: IndexLine) {
         synchronized(lock) {
-            items.removeIf { it.id == line.id }
-            items.add(line)
+            items[line.id] = line
             outputCache.remove(line.id)
         }
-        return true
     }
 
-    fun addMultiLine(line: MultiIndexLine): Boolean {
-        synchronized(lock) {
-            return multiItems.add(line)
-        }
+    fun addMultiLine(line: MultiIndexLine) {
+        synchronized(lock) { multiItems[line.id] = line }
     }
 
-    fun find(id: String): IndexLine? {
-        return items.find { it.id == id }
-    }
+    fun find(id: String): IndexLine? = items[id]
 
-    fun findMulti(id: String): MultiIndexLine? {
-        return multiItems.find { it.id == id }
-    }
+    fun findMulti(id: String): MultiIndexLine? = multiItems[id]
 
     fun findByInput(id: String): IndexLine? {
-        return items.find { item -> item.inputs.any { it == id } }
+        return getAll().find { item -> item.inputs.any { it == id } }
     }
 
-    /** return a list of all single-capability indexes */
-    fun getAll() = items.toList()
+    /** return an immutable list of all single-capability indexes */
+    fun getAll() = items.values.toList()
 
     fun getOutput(id: String, libraryPath: String, cacheIfFull: Boolean = true): Capabilities? {
         val cached = outputCache[id]
@@ -80,14 +85,17 @@ data class LibraryIndex(
         return res
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     fun filterByQuery(query: Query, libraryPath: String): LibraryIndex {
         val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 4)
         val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
 
+        // immutable copies of items and multi items
+        val itemsList = getAll()
+        val multiItemsList = multiItems.values.toList()
+
         val validIdsDeferred =
             CoroutineScope(dispatcher).async {
-                items.mapAsync { cap ->
+                itemsList.mapAsync { cap ->
                     val res = getOutput(cap.id, libraryPath, false)?.let { query.evaluateQuery(it) }
                     if (res == true) cap.id else null
                 }
@@ -96,10 +104,10 @@ data class LibraryIndex(
         val validIds = runBlocking { validIdsDeferred.await().filterNotNull().toSet() }
 
         val multiItemsFiltered =
-            multiItems.filter { it.indexLineIds.any { id -> validIds.contains(id) } }
-        val itemsFiltered = items.filter { validIds.contains(it.id) }
+            multiItemsList.filter { it.indexLineIds.any { id -> validIds.contains(id) } }
+        val itemsFiltered = itemsList.filter { validIds.contains(it.id) }
 
-        return LibraryIndex(itemsFiltered.toMutableList(), multiItemsFiltered.toMutableList())
+        return LibraryIndex(itemsFiltered, multiItemsFiltered)
     }
 
     companion object {
