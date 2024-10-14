@@ -1,7 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.server
 
 import it.smartphonecombo.uecapabilityparser.io.InputSource
-import it.smartphonecombo.uecapabilityparser.io.InputSourceBase64Serializer
 import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
@@ -36,11 +35,10 @@ sealed interface RequestCsv {
     data class EnDc(override val input: List<ComboEnDc>) : RequestCsv
 }
 
-@Serializable
 class RequestParse(
-    @Serializable(with = InputSourceBase64Serializer::class) val input: InputSource? = null,
-    @Serializable(with = InputSourceBase64Serializer::class) val inputNR: InputSource? = null,
-    @Serializable(with = InputSourceBase64Serializer::class) val inputENDC: InputSource? = null,
+    val input: InputSource? = null,
+    val inputNR: InputSource? = null,
+    val inputENDC: InputSource? = null,
     val defaultNR: Boolean = false,
     val type: LogType,
     val description: String = "",

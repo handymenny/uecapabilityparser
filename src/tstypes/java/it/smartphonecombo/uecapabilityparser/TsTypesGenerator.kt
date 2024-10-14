@@ -8,7 +8,6 @@ import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.server.RequestCsv
 import it.smartphonecombo.uecapabilityparser.server.RequestMultiPart
-import it.smartphonecombo.uecapabilityparser.server.RequestParse
 import it.smartphonecombo.uecapabilityparser.server.ServerStatus
 
 internal object TsTypesGenerator {
@@ -30,7 +29,6 @@ internal object TsTypesGenerator {
                 MultiCapabilities.serializer(),
                 ServerStatus.serializer(),
                 RequestCsv.serializer(),
-                RequestParse.serializer(),
                 RequestMultiPart.serializer(),
                 Query.serializer(),
             )
