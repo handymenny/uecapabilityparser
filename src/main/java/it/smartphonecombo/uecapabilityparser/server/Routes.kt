@@ -17,7 +17,6 @@ import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.query.SearchableField
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
-import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -32,13 +31,6 @@ object Routes {
     private fun validateId(id: String?) {
         kotlin.contracts.contract { returns() implies (id != null) }
         if (id?.matches(idRegex) != true) throw IllegalArgumentException("Wrong id")
-    }
-
-    fun parse(ctx: Context, store: String?, index: LibraryIndex, compression: Boolean) {
-        val request = ctx.bodyAsClassEfficient<RequestParse>()
-        val parsed = Parsing.fromRequest(request)!!
-        ctx.json(parsed.capabilities)
-        if (store != null) parsed.store(index, store, compression)
     }
 
     fun parseMultiPart(ctx: Context, store: String?, index: LibraryIndex, compression: Boolean) {

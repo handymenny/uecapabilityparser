@@ -27,7 +27,6 @@ internal class ServerModeOthersTest {
             "/swagger/openapi.json",
             "custom.js",
             "custom.css",
-            "/parse",
             "/parse/multiPart",
             "/csv",
             "/store/list",
