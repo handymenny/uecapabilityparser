@@ -1,12 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.extension
 
-import io.javalin.config.SizeUnit
 import io.javalin.http.ContentType
 import io.javalin.http.Context
 import io.javalin.http.HttpResponseException
 import io.javalin.http.HttpStatus
-import io.javalin.http.bodyAsClass
-import io.javalin.http.bodyStreamAsClass
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.io.InputSource
 
@@ -39,14 +36,5 @@ internal fun Context.throwContentTooLargeIfContentTooLarge(maxRequestSize: Long)
             HttpStatus.CONTENT_TOO_LARGE,
             HttpStatus.CONTENT_TOO_LARGE.message,
         )
-    }
-}
-
-/** Use bodyStreamAsClass for body > 1MiB, bodyAsClass for body <= 1MiB. */
-internal inline fun <reified T : Any> Context.bodyAsClassEfficient(): T {
-    return if (req().contentLengthLong > SizeUnit.MB.multiplier) {
-        bodyStreamAsClass<T>()
-    } else {
-        bodyAsClass<T>()
     }
 }

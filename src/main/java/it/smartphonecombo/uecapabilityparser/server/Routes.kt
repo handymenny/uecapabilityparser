@@ -2,8 +2,8 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.ContentType
 import io.javalin.http.Context
+import io.javalin.http.bodyAsClass
 import it.smartphonecombo.uecapabilityparser.extension.attachFile
-import it.smartphonecombo.uecapabilityparser.extension.bodyAsClassEfficient
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.notFound
@@ -43,7 +43,7 @@ object Routes {
     }
 
     fun csv(ctx: Context) {
-        val request = ctx.bodyAsClassEfficient<RequestCsv>()
+        val request = ctx.bodyAsClass<RequestCsv>()
         val comboList = request.input
         val type = request.type
         val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
@@ -123,7 +123,7 @@ object Routes {
     }
 
     fun storeListFiltered(ctx: Context, index: LibraryIndex, store: String) {
-        val request = ctx.bodyAsClassEfficient<Query>()
+        val request = ctx.bodyAsClass<Query>()
         val result = index.filterByQuery(request, store)
         ctx.json(result)
     }
