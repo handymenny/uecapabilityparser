@@ -1,6 +1,9 @@
 package it.smartphonecombo.uecapabilityparser
 
+import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
+import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
@@ -12,7 +15,8 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import okhttp3.MultipartBody
 import okhttp3.Request
-import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.junit.jupiter.api.Assertions
 
 object UtilityForTests {
 
@@ -57,7 +61,12 @@ object UtilityForTests {
         return result
     }
 
-    internal fun multiPartRequest(url: String, json: JsonElement, files: List<String>): Request {
+    internal fun multiPartRequest(
+        url: String,
+        json: JsonElement,
+        files: List<String>,
+        gzip: Boolean = false,
+    ): Request {
 
         val bodyBuilder =
             MultipartBody.Builder().apply {
@@ -65,7 +74,8 @@ object UtilityForTests {
                 addFormDataPart("requests", Json.encodeToString(json))
                 files.forEach {
                     val file = File(it)
-                    addFormDataPart("file", file.name, file.asRequestBody())
+                    val bytes = file.toInputSource(gzip).readBytes()
+                    addFormDataPart("file", file.name, bytes.toRequestBody())
                 }
             }
         val reqBuilder =
@@ -74,6 +84,29 @@ object UtilityForTests {
                 post(bodyBuilder.build())
             }
         return reqBuilder.build()
+    }
+
+    internal fun capabilitiesAssertEquals(
+        expectedSingle: String,
+        actual: String,
+        actualIsMulti: Boolean = false,
+    ): Capabilities {
+        val actualCap =
+            if (actualIsMulti) {
+                Json.decodeFromString<MultiCapabilities>(actual).capabilities.first()
+            } else {
+                Json.decodeFromString<Capabilities>(actual)
+            }
+        val expectedCap = Json.decodeFromString<Capabilities>(expectedSingle)
+
+        // Override dynamic properties
+        expectedCap.setMetadata(
+            "processingTime",
+            actualCap.getStringMetadata("processingTime") ?: "",
+        )
+
+        Assertions.assertEquals(expectedCap, actualCap)
+        return actualCap
     }
 
     val scatAvailable = ImportScat.isScatAvailable() == 1

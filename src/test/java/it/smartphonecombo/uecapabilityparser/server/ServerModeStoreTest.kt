@@ -2,6 +2,8 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.capabilitiesAssertEquals
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.multiPartRequest
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
@@ -10,10 +12,13 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.add
+import kotlinx.serialization.json.addJsonObject
+import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
+import kotlinx.serialization.json.putJsonArray
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assumptions.assumeTrue
@@ -22,8 +27,7 @@ import org.junit.jupiter.api.Test
 
 internal class ServerModeStoreTest {
     private val resourcesPath = "src/test/resources/server"
-    private val base64 = Base64.getEncoder()
-    private val endpointParse = arrayOf("/parse/", "/parse").random()
+    private val endpointParse = arrayOf("/parse/multiPart/", "/parse/multiPart").random()
     private val endpointStore = "/store/"
     private val tmpStorePath = UUID.randomUUID().toString() + "-tmp"
     private val storedId = "65bafa64-2e00-4525-a277-5f1d71992efb"
@@ -67,13 +71,23 @@ internal class ServerModeStoreTest {
         storeTest(
             url = endpointParse,
             request =
-                buildJsonObject {
-                    put("type", "H")
-                    put("input", fileToBase64(input0))
-                    put("inputNR", fileToBase64(input1))
-                    put("inputENDC", fileToBase64(input2))
-                    put("description", "This is a test")
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "H")
+                        putJsonArray("inputIndexes") {
+                            add(0)
+                            add(1)
+                            add(2)
+                        }
+                        putJsonArray("subTypes") {
+                            add("LTE")
+                            add("NR")
+                            add("ENDC")
+                        }
+                        put("description", "This is a test")
+                    }
                 },
+            files = listOf(input0, input1, input2),
             oraclePath = oracle,
         )
 
@@ -208,30 +222,22 @@ internal class ServerModeStoreTest {
             Assertions.assertEquals(statusCode, response.code)
         }
 
-    private fun storeTest(url: String, request: JsonObject, oraclePath: String) =
+    private fun storeTest(
+        url: String,
+        request: JsonArray,
+        files: List<String>,
+        oraclePath: String,
+    ) =
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
-            val response = client.post(url, request)
+            val response = client.request(multiPartRequest(client.origin + url, request, files))
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            capabilitiesAssertEquals(File(oraclePath).readText(), response.body?.string() ?: "")
+            pushedCap =
+                capabilitiesAssertEquals(
+                    File(oraclePath).readText(),
+                    response.body?.string() ?: "",
+                    true,
+                )
         }
-
-    private fun capabilitiesAssertEquals(expected: String, actual: String) {
-        val actualCap = Json.decodeFromString<Capabilities>(actual)
-        pushedCap = actualCap
-        val expectedCap = Json.decodeFromString<Capabilities>(expected)
-
-        // Override dynamic properties
-        expectedCap.setMetadata(
-            "processingTime",
-            actualCap.getStringMetadata("processingTime") ?: "",
-        )
-
-        Assertions.assertEquals(expectedCap, actualCap)
-    }
-
-    private fun fileToBase64(path: String): String {
-        return base64.encodeToString(File(path).readBytes())
-    }
 
     private fun deleteDirectory(path: String) {
         return Files.walk(Paths.get(path))

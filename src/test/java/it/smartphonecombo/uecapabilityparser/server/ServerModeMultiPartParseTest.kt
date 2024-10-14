@@ -100,6 +100,21 @@ internal class ServerModeMultiPartParseTest {
     }
 
     @Test
+    fun b826() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "QNR")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/0xB826.hex"),
+            oraclePath = "$oraclePath/0xB826.json",
+        )
+    }
+
+    @Test
     fun b826Multi() {
         javalinJsonTest(
             request =
@@ -111,6 +126,51 @@ internal class ServerModeMultiPartParseTest {
                 },
             files = listOf("$inputPath/0xB826Multi.txt"),
             oraclePath = "$oraclePath/0xB826Multi.json",
+        )
+    }
+
+    @Test
+    fun b826MultiV14() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "QNR")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/0xB826MultiV14.txt"),
+            oraclePath = "$oraclePath/0xB826MultiV14.json",
+        )
+    }
+
+    @Test
+    fun b826MultiScat() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "QNR")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/0xB826MultiScat.txt"),
+            oraclePath = "$oraclePath/0xB826MultiScat.json",
+        )
+    }
+
+    @Test
+    fun b826Multi0x9801() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "QNR")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/0xB826Multi0x9801.txt"),
+            oraclePath = "$oraclePath/0xB826Multi0x9801.json",
         )
     }
 
@@ -145,6 +205,66 @@ internal class ServerModeMultiPartParseTest {
     }
 
     @Test
+    fun shannonNrUeCap() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "SHNR")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/shannonNrUeCap.binarypb"),
+            oraclePath = "$oraclePath/shannonNrUeCap.json",
+        )
+    }
+
+    @Test
+    fun wiresharkEutra() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "W")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/wiresharkEutra.txt"),
+            oraclePath = "$oraclePath/wiresharkEutra.json",
+        )
+    }
+
+    @Test
+    fun wiresharkNr() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "W")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/wiresharkNr.txt"),
+            oraclePath = "$oraclePath/wiresharkNr.json",
+        )
+    }
+
+    @Test
+    fun wiresharkMrdc() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "W")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/wiresharkMrdc.txt"),
+            oraclePath = "$oraclePath/wiresharkMrdc.json",
+        )
+    }
+
+    @Test
     fun wiresharkMrdcSplit() {
         javalinJsonTest(
             request =
@@ -167,6 +287,51 @@ internal class ServerModeMultiPartParseTest {
     }
 
     @Test
+    fun nsgEutra() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "N")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/nsgEutra.txt"),
+            oraclePath = "$oraclePath/nsgEutra.json",
+        )
+    }
+
+    @Test
+    fun nsgNr() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "N")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/nsgNr.txt"),
+            oraclePath = "$oraclePath/nsgNr.json",
+        )
+    }
+
+    @Test
+    fun nsgMrdc() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "N")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/nsgMrdc.txt"),
+            oraclePath = "$oraclePath/nsgMrdc.json",
+        )
+    }
+
+    @Test
     fun nsgMrdcSplit() {
         javalinJsonTest(
             request =
@@ -181,6 +346,21 @@ internal class ServerModeMultiPartParseTest {
                 },
             files = listOf("$inputPath/nsgMrdcSplit_0.txt", "$inputPath/nsgMrdcSplit_1.txt"),
             oraclePath = "$oraclePath/nsgMrdcSplit.json",
+        )
+    }
+
+    @Test
+    fun nsgSul() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "N")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/nsgSul.txt"),
+            oraclePath = "$oraclePath/nsgSul.json",
         )
     }
 
@@ -293,6 +473,21 @@ internal class ServerModeMultiPartParseTest {
     }
 
     @Test
+    fun qcatMrdc() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "QC")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/qcatMrdc.txt"),
+            oraclePath = "$oraclePath/qcatMrdc.json",
+        )
+    }
+
+    @Test
     fun qcatNrdc() {
         javalinJsonTest(
             request =
@@ -304,6 +499,21 @@ internal class ServerModeMultiPartParseTest {
                 },
             files = listOf("$inputPath/qcatNrdc.txt"),
             oraclePath = "$oraclePath/qcatNrdc.json",
+        )
+    }
+
+    @Test
+    fun temsEutra() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "T")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/temsEutra.txt"),
+            oraclePath = "$oraclePath/temsEutra.json",
         )
     }
 
@@ -322,6 +532,36 @@ internal class ServerModeMultiPartParseTest {
                 },
             files = listOf("$inputPath/temsMrdcSplit_0.txt", "$inputPath/temsMrdcSplit_1.txt"),
             oraclePath = "$oraclePath/temsMrdcSplit.json",
+        )
+    }
+
+    @Test
+    fun amarisoftEutra() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "A")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/amarisoftEutra.txt"),
+            oraclePath = "$oraclePath/amarisoftEutra.json",
+        )
+    }
+
+    @Test
+    fun amarisoftNr() {
+        javalinJsonTest(
+            request =
+                buildJsonArray {
+                    addJsonObject {
+                        put("type", "A")
+                        putJsonArray("inputIndexes") { add(0) }
+                    }
+                },
+            files = listOf("$inputPath/amarisoftNr.txt"),
+            oraclePath = "$oraclePath/amarisoftNr.json",
         )
     }
 
