@@ -2,8 +2,8 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.ContentType
 import io.javalin.http.Context
+import io.javalin.http.bodyAsClass
 import it.smartphonecombo.uecapabilityparser.extension.attachFile
-import it.smartphonecombo.uecapabilityparser.extension.bodyAsClassEfficient
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.notFound
@@ -17,7 +17,6 @@ import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.query.SearchableField
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
-import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -34,13 +33,6 @@ object Routes {
         if (id?.matches(idRegex) != true) throw IllegalArgumentException("Wrong id")
     }
 
-    fun parse(ctx: Context, store: String?, index: LibraryIndex, compression: Boolean) {
-        val request = ctx.bodyAsClassEfficient<RequestParse>()
-        val parsed = Parsing.fromRequest(request)!!
-        ctx.json(parsed.capabilities)
-        if (store != null) parsed.store(index, store, compression)
-    }
-
     fun parseMultiPart(ctx: Context, store: String?, index: LibraryIndex, compression: Boolean) {
         val requestsStr = ctx.formParam("requests")!!
         val requestsJson = Json.custom().decodeFromString<List<RequestMultiPart>>(requestsStr)
@@ -51,7 +43,7 @@ object Routes {
     }
 
     fun csv(ctx: Context) {
-        val request = ctx.bodyAsClassEfficient<RequestCsv>()
+        val request = ctx.bodyAsClass<RequestCsv>()
         val comboList = request.input
         val type = request.type
         val date = dataFormatter.format(ZonedDateTime.now(ZoneOffset.UTC))
@@ -131,7 +123,7 @@ object Routes {
     }
 
     fun storeListFiltered(ctx: Context, index: LibraryIndex, store: String) {
-        val request = ctx.bodyAsClassEfficient<Query>()
+        val request = ctx.bodyAsClass<Query>()
         val result = index.filterByQuery(request, store)
         ctx.json(result)
     }

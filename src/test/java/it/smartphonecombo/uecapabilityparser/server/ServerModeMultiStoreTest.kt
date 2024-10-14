@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test
 
 internal class ServerModeMultiStoreTest {
     private val resourcesPath = "src/test/resources/server"
-    private val base64 = Base64.getEncoder()
     private val endpointParse = arrayOf("/parse/multiPart/", "/parse/multiPart").random()
     private val endpointStore = "/store/"
     private val tmpStorePath = UUID.randomUUID().toString() + "-tmp"
@@ -308,10 +307,6 @@ internal class ServerModeMultiStoreTest {
         Assertions.assertEquals(expectedObj.compressed, actualObj.compressed)
         Assertions.assertEquals(expectedObj.description, actualObj.description)
         Assertions.assertEquals(expectedObj.indexLineIds.size, actualObj.indexLineIds.size)
-    }
-
-    private fun fileToBase64(path: String): String {
-        return base64.encodeToString(File(path).readBytes())
     }
 
     private fun deleteDirectory(path: String) {

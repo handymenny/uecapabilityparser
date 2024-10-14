@@ -228,7 +228,6 @@ class JavalinApp {
             addStaticGet("custom.js", Config["customJs"], ContentType.TEXT_JS)
             addStaticGet("custom.css", Config["customCss"], ContentType.TEXT_CSS)
 
-            addRoute("/parse", post = true) { Routes.parse(it, store, index, compression) }
             addRoute("/parse/multiPart", post = true) {
                 Routes.parseMultiPart(it, store, index, compression)
             }
