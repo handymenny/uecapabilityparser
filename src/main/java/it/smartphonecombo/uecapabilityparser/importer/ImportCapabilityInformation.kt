@@ -12,7 +12,6 @@ import it.smartphonecombo.uecapabilityparser.extension.getObjectAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getString
 import it.smartphonecombo.uecapabilityparser.extension.merge
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
-import it.smartphonecombo.uecapabilityparser.extension.step
 import it.smartphonecombo.uecapabilityparser.extension.typedList
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.io.InputSource
@@ -957,10 +956,11 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun getNrBands(nrCapability: UENrCapabilityJson): List<BandNrDetails> {
-        val qam256Fr1DL =
-            nrCapability.rootJson
-                .getObjectAtPath("phy-Parameters.phy-ParametersFR1")
-                ?.getString("pdsch-256QAM-FR1") != null
+        val phyParametersFr1 =
+            nrCapability.rootJson.getObjectAtPath("phy-Parameters.phy-ParametersFR1")
+        val qam256Fr1DL = phyParametersFr1?.getString("pdsch-256QAM-FR1") != null
+
+        val scs60Fr1 = phyParametersFr1?.getString("scs-60kHz") != null
 
         val bandsList =
             nrCapability.rootJson.getArrayAtPath("rf-Parameters.supportedBandListNR")?.mapNotNull {
@@ -1034,7 +1034,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentNr.rateMatchingLteCrs =
                     supportedBandNr.getString("rateMatchingLTE-CRS") != null
 
-                parseNRChannelBWs(supportedBandNr, componentNr)
+                parseNRChannelBWs(supportedBandNr, componentNr, scs60Fr1)
 
                 componentNr
             }
@@ -1042,7 +1042,11 @@ object ImportCapabilityInformation : ImportCapabilities {
         return bandsList ?: emptyList()
     }
 
-    private fun parseNRChannelBWs(supportedBandNr: JsonElement, componentNr: BandNrDetails) {
+    private fun parseNRChannelBWs(
+        supportedBandNr: JsonElement,
+        componentNr: BandNrDetails,
+        scs60Fr1Supported: Boolean,
+    ) {
         val channelBWsDL = supportedBandNr.getObject("channelBWs-DL")
         val channelBWsUL = supportedBandNr.getObject("channelBWs-UL")
         val channelBWsDlV1590 = supportedBandNr.getObject("channelBWs-DL-v1590")
@@ -1052,10 +1056,10 @@ object ImportCapabilityInformation : ImportCapabilities {
         val bandwidthsUL = parseNrBw(channelBWsUL, componentNr, false)
 
         val scsRange =
-            if (componentNr.isFR2) {
-                60..120 step { it * 2 }
-            } else {
-                15..60 step { it * 2 }
+            when {
+                componentNr.isFR2 -> listOf(60, 120)
+                scs60Fr1Supported -> listOf(15, 30, 60)
+                else -> listOf(15, 30)
             }
 
         /*
