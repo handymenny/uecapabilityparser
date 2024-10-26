@@ -154,4 +154,9 @@ internal class ImportCapabilityInformationTest {
     fun ueCapNrSegAllowed() {
         parse("ueCapNrSegAllowed.json", "ueCapNrSegAllowed.json")
     }
+
+    @Test
+    fun ueCapNrDc1024qam() {
+        parse("ueCapNrDc1024qam.json", "ueCapNrDc1024qam.json")
+    }
 }
