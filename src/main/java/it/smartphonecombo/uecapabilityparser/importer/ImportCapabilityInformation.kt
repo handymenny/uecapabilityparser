@@ -977,9 +977,13 @@ object ImportCapabilityInformation : ImportCapabilities {
                         supportedBandNr.getString("pdsch-256QAM-FR2") != null
                     }
 
+                val qam1024Dl =
+                    !componentNr.isFR2 && supportedBandNr.getString("pdsch-1024QAM-FR1-r17") != null
+
                 componentNr.modDL =
                     when {
                         duplex == Duplex.SUL -> ModulationOrder.NONE
+                        qam1024Dl -> ModulationOrder.QAM1024
                         qam256Dl -> ModulationOrder.QAM256
                         else -> ModulationOrder.QAM64
                     }.toModulation()
