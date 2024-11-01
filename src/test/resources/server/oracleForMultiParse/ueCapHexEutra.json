@@ -2314,6 +2314,13 @@
                     "maxCCsUl": 2
                 }
             ],
+            "ratCapabilities": [
+                {
+                    "type": "RatCapabilitiesLte",
+                    "release": 15,
+                    "rat": "EUTRA"
+                }
+            ],
             "metadata": {},
             "id": "",
             "parserVersion": "staging",

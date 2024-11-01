@@ -14245,6 +14245,18 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            },
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 15,
+                "rat": "NR"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from PCAP, Timestamps: 1682792056438752, 1682792057039412, 1682792057039816"
         },
@@ -22438,6 +22450,18 @@
                         "band": 78
                     }
                 ]
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            },
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 15,
+                "rat": "NR"
             }
         ],
         "metadata": {
@@ -32113,6 +32137,13 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from PCAP, Timestamps: 1682792378969015"
         },
@@ -32175,6 +32206,13 @@
                         "band": 7
                     }
                 ]
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
             }
         ],
         "metadata": {
@@ -41415,6 +41453,13 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from PCAP, Timestamps: 1682792473371431"
         },
@@ -41478,6 +41523,13 @@
                     }
                 ],
                 "skipFallbackCombRequested": true
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
             }
         ],
         "metadata": {
@@ -41564,6 +41616,13 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from PCAP, Timestamps: 1682792554912219"
         },
@@ -41646,6 +41705,13 @@
                         "band": 7
                     }
                 ]
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
             }
         ],
         "metadata": {

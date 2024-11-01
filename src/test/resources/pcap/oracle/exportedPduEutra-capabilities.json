@@ -4338,6 +4338,13 @@
                 "maxCCsUl": 2
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from PCAP, Timestamps: 1670593060602816"
         },

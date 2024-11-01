@@ -8471,6 +8471,18 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            },
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 15,
+                "rat": "NR"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from PCAP, Timestamps: 1570202304846856, 1570202304878834"
         },

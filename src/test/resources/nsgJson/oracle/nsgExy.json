@@ -293,6 +293,13 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 15,
+                "rat": "NR"
+            }
+        ],
         "metadata": {
             "description": "UE NR Cap from NSG, Timestamps: 1727632521830058",
             "deviceName": "Google Pixel 7 Pro",
@@ -21035,6 +21042,18 @@
                         "band": 78
                     }
                 ]
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            },
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 15,
+                "rat": "NR"
             }
         ],
         "metadata": {

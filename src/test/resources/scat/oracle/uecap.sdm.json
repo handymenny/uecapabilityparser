@@ -1010,6 +1010,13 @@
                 "rat": "EUTRA"
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 10,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from SDM, Timestamps: 1591378346163000"
         },
