@@ -2,11 +2,13 @@ package it.smartphonecombo.uecapabilityparser
 
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
+import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 import java.util.stream.Collectors
 import kotlin.io.path.Path
 import kotlin.math.abs
@@ -87,7 +89,7 @@ object UtilityForTests {
     }
 
     internal fun capabilitiesAssertEquals(
-        expectedSingle: String,
+        expectedPathSingle: String,
         actual: String,
         actualIsMulti: Boolean = false,
     ): Capabilities {
@@ -97,17 +99,110 @@ object UtilityForTests {
             } else {
                 Json.decodeFromString<Capabilities>(actual)
             }
-        val expectedCap = Json.decodeFromString<Capabilities>(expectedSingle)
+
+        if (RECREATE_ORACLES)
+            recreateCapabilitiesOracles(
+                expectedPathSingle,
+                actualCap,
+                prettyPrint = false,
+                preserveMetadata = true,
+            )
+
+        val expectedInputSource =
+            File(expectedPathSingle).toInputSource(gzip = expectedPathSingle.endsWith(".gz"))
+        val expectedCap = Json.decodeFromString<Capabilities>(expectedInputSource.readText())
 
         // Override dynamic properties
-        expectedCap.setMetadata(
-            "processingTime",
-            actualCap.getStringMetadata("processingTime") ?: "",
-        )
+        actualCap.getStringMetadata("processingTime")?.let {
+            expectedCap.setMetadata("processingTime", it)
+        }
 
         Assertions.assertEquals(expectedCap, actualCap)
         return actualCap
     }
 
+    internal fun recreateCapabilitiesOracles(
+        oraclePath: String,
+        cap: Capabilities,
+        prettyPrint: Boolean = true,
+        preserveMetadata: Boolean = false,
+    ) {
+        val json = if (prettyPrint) jsonPrettyPrint else Json
+        val isGz = oraclePath.endsWith(".gz")
+
+        val clonedCap = cap.copy()
+
+        if (!preserveMetadata) {
+            // reset id, timestamp, processingTime
+            clonedCap.id = ""
+            clonedCap.timestamp = 0
+            clonedCap.metadata.remove("processingTime")
+        } else {
+            // copy current id, timestamp, processingTime
+            val inputSource = File(oraclePath).toInputSource(gzip = isGz)
+            val prev = json.decodeFromString<Capabilities>(inputSource.readText())
+            clonedCap.id = prev.id
+            clonedCap.timestamp = prev.timestamp
+            prev.getStringMetadata("processingTime")?.let {
+                clonedCap.setMetadata("processingTime", it)
+            }
+        }
+
+        val string = json.encodeToString(clonedCap) + "\n"
+
+        val outputFilePath = oraclePath.removeSuffix(".gz")
+
+        IOUtils.outputFile(string.toByteArray(), outputFilePath, isGz)
+    }
+
+    internal fun recreateCapabilitiesListOracles(oraclePath: String, capList: List<Capabilities>) {
+        // reset id, timestamp, processingTime
+        for (cap in capList) {
+            cap.id = ""
+            cap.timestamp = 0
+            cap.metadata.remove("processingTime")
+        }
+
+        val string = jsonPrettyPrint.encodeToString(capList) + "\n"
+
+        IOUtils.outputFileOrStdout(string, oraclePath)
+    }
+
+    internal fun recreateMultiCapabilitiesOracles(oraclePath: String, multiCap: MultiCapabilities) {
+        // reset id, timestamp, processingTime
+        multiCap.id = ""
+        for (cap in multiCap.capabilities) {
+            cap.id = ""
+            cap.timestamp = 0
+            cap.metadata.remove("processingTime")
+        }
+
+        val string = jsonPrettyPrint.encodeToString(multiCap) + "\n"
+
+        IOUtils.outputFileOrStdout(string, oraclePath)
+    }
+
+    internal fun recreateDirOracles(oraclePath: String, actualPath: String) {
+        deleteDirectory(oraclePath)
+        copyDirectory(actualPath, oraclePath)
+    }
+
+    internal fun deleteDirectory(path: String) {
+        return Files.walk(Paths.get(path))
+            .sorted(java.util.Comparator.reverseOrder())
+            .map(Path::toFile)
+            .forEach(File::delete)
+    }
+
+    internal fun copyDirectory(src: String, dst: String) {
+        val srcFile = File(src)
+        val dstFile = File(dst)
+
+        srcFile.copyRecursively(dstFile)
+    }
+
+    // not supported by all test classes
+    const val RECREATE_ORACLES = false
     val scatAvailable = ImportScat.isScatAvailable() == 1
+    private val jsonPrettyPrint = Json { prettyPrint = true }
 }

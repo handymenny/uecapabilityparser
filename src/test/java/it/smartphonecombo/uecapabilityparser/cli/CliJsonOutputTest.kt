@@ -1,6 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.testing.test
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.RECREATE_ORACLES
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateCapabilitiesOracles
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
 import kotlinx.serialization.json.Json
@@ -496,9 +498,14 @@ internal class CliJsonOutputTest {
 
         val result = Cli.test(*args)
         val actual = Json.decodeFromString<Capabilities>(result.stdout)
+
+        if (RECREATE_ORACLES) recreateCapabilitiesOracles(oraclePath, actual)
+
         val expected = Json.decodeFromString<Capabilities>(File(oraclePath).readText())
 
-        expected.setMetadata("processingTime", actual.getStringMetadata("processingTime") ?: "")
+        actual.getStringMetadata("processingTime")?.let {
+            expected.setMetadata("processingTime", it)
+        }
 
         Assertions.assertEquals(expected, actual)
     }

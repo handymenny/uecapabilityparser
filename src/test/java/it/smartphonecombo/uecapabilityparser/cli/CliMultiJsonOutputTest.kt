@@ -1,6 +1,8 @@
 package it.smartphonecombo.uecapabilityparser.cli
 
 import com.github.ajalt.clikt.testing.test
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.RECREATE_ORACLES
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateCapabilitiesListOracles
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
@@ -104,8 +106,11 @@ internal class CliMultiJsonOutputTest {
         val oraclePath = "$path/oracleMultiJson/$oracleFilename"
 
         val result = Cli.test(*args)
-        val actual = Json.decodeFromString<Array<Capabilities>>(result.stdout)
-        val expected = Json.decodeFromString<Array<Capabilities>>(File(oraclePath).readText())
+        val actual = Json.decodeFromString<List<Capabilities>>(result.stdout)
+
+        if (RECREATE_ORACLES) recreateCapabilitiesListOracles(oraclePath, actual)
+
+        val expected = Json.decodeFromString<List<Capabilities>>(File(oraclePath).readText())
 
         // Check size
         Assertions.assertEquals(expected.size, actual.size)
@@ -116,10 +121,10 @@ internal class CliMultiJsonOutputTest {
             val capA = actual[i]
             val capE = expected[i]
 
-            capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
+            capA.getStringMetadata("processingTime")?.let { capE.setMetadata("processingTime", it) }
         }
 
         // check files
-        Assertions.assertArrayEquals(expected, actual)
+        Assertions.assertEquals(expected, actual)
     }
 }

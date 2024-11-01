@@ -2,7 +2,9 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.RECREATE_ORACLES
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.multiPartRequest
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateMultiCapabilitiesOracles
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
@@ -728,6 +730,9 @@ internal class ServerModeMultiPartParseTest {
 
             val string = response.body?.string()
             val actual = Json.custom().decodeFromString<MultiCapabilities>(string ?: "")
+
+            if (RECREATE_ORACLES) recreateMultiCapabilitiesOracles(oraclePath, actual)
+
             val expected =
                 Json.custom().decodeFromString<MultiCapabilities>(File(oraclePath).readText())
 
@@ -739,10 +744,9 @@ internal class ServerModeMultiPartParseTest {
                 val actualCapability = actual.capabilities[i]
                 val expectedCapability = expected.capabilities[i]
 
-                expectedCapability.setMetadata(
-                    "processingTime",
-                    actualCapability.getStringMetadata("processingTime") ?: "",
-                )
+                actualCapability.getStringMetadata("processingTime")?.let {
+                    expectedCapability.setMetadata("processingTime", it)
+                }
             }
             expected.id = actual.id
 

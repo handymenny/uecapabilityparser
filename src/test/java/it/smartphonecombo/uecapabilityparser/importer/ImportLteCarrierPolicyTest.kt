@@ -1,25 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.extension.toInputSource
-import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import java.io.File
-import kotlinx.serialization.json.Json
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class ImportLteCarrierPolicyTest {
-    private val path = "src/test/resources/carrierPolicy/"
-
-    private fun parse(inputFilename: String, oracleFilename: String) {
-        val filePath = "$path/input/$inputFilename"
-        val actual = ImportLteCarrierPolicy.parse(File(filePath).toInputSource())
-
-        val expected =
-            Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
-
-        Assertions.assertEquals(expected, actual)
-    }
-
+internal class ImportLteCarrierPolicyTest :
+    AbstractImportCapabilities(ImportLteCarrierPolicy, "src/test/resources/carrierPolicy/") {
     @Test
     fun parseNoMimo() {
         parse("noMimo.xml", "noMimo.json")

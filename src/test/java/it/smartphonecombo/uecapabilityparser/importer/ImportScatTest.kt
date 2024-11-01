@@ -1,58 +1,32 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.scatAvailable
-import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
-import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.LogType
-import java.io.File
-import kotlinx.serialization.json.Json
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assumptions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 
-internal class ImportScatTest {
-    private val path = "src/test/resources/scat/"
-
+internal class ImportScatTest :
+    AbstractImportMultiCapabilities(ImportScat, "src/test/resources/scat/") {
     @Test
     fun testDLF() {
-        testLog(LogType.DLF, "$path/input/uecap.dlf", "$path/oracle/uecap.dlf.json")
+        parse("uecap.dlf", "uecap.dlf.json", LogType.DLF)
     }
 
     @Test
     fun testQMDL() {
-        testLog(LogType.QMDL, "$path/input/hwcombos.qmdl", "$path/oracle/hwcombos.qmdl.json")
+        parse("hwcombos.qmdl", "hwcombos.qmdl.json", LogType.QMDL)
     }
 
     @Test
     fun testHDF() {
-        testLog(LogType.HDF, "$path/input/hwcombos.hdf", "$path/oracle/hwcombos.hdf.json")
+        parse("hwcombos.hdf", "hwcombos.hdf.json", LogType.HDF)
     }
 
     @Test
     fun testSDM() {
-        testLog(LogType.SDM, "$path/input/uecap.sdm", "$path/oracle/uecap.sdm.json")
-    }
-
-    private fun testLog(scatLogType: LogType, path: String, oracle: String) {
-        val multi = ImportScat.parse(File(path).toInputSource(), scatLogType)
-
-        val actual = multi?.parsingList?.map { it.capabilities }!!
-        val expected = Json.decodeFromString<List<Capabilities>>(File(oracle).readText())
-
-        // Check size
-        Assertions.assertEquals(expected.size, actual.size)
-
-        // override dynamic properties
-        for (i in expected.indices) {
-            val capA = actual[i]
-            val capE = expected[i]
-
-            capE.setMetadata("processingTime", capA.getStringMetadata("processingTime") ?: "")
-        }
-
-        Assertions.assertEquals(expected, actual)
+        parse("uecap.sdm", "uecap.sdm.json", LogType.SDM)
     }
 
     companion object {

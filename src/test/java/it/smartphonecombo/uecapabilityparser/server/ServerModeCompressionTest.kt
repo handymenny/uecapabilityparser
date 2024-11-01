@@ -3,14 +3,12 @@ package it.smartphonecombo.uecapabilityparser.server
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.capabilitiesAssertEquals
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.deleteDirectory
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.multiPartRequest
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
 import java.util.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -77,7 +75,7 @@ internal class ServerModeCompressionTest {
         assumeTrue(pushedCap != null)
         val id = pushedCap?.id ?: ""
         capabilitiesAssertEquals(
-            File(oracle).toInputSource(true).readText(),
+            oracle,
             File("$tmpStorePath/output/$id.json.gz").toInputSource(true).readText(),
         )
         Assertions.assertLinesMatch(
@@ -156,18 +154,6 @@ internal class ServerModeCompressionTest {
             val response =
                 client.request(multiPartRequest(client.origin + url, request, files, true))
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            pushedCap =
-                capabilitiesAssertEquals(
-                    File(oraclePath).toInputSource(true).readText(),
-                    response.body?.string() ?: "",
-                    true,
-                )
+            pushedCap = capabilitiesAssertEquals(oraclePath, response.body?.string() ?: "", true)
         }
-
-    private fun deleteDirectory(path: String) {
-        return Files.walk(Paths.get(path))
-            .sorted(Comparator.reverseOrder())
-            .map(Path::toFile)
-            .forEach(File::delete)
-    }
 }
