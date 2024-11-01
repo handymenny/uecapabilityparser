@@ -1,24 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.extension.toInputSource
-import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import java.io.File
-import kotlinx.serialization.json.Json
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class ImportCapPruneTest {
-    private val path = "src/test/resources/nrCapPrune/"
-
-    private fun parse(inputFilename: String, oracleFilename: String) {
-        val filePath = "$path/input/$inputFilename"
-        val actual = ImportNrCapPrune.parse(File(filePath).toInputSource())
-        val expected =
-            Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
-
-        Assertions.assertEquals(expected, actual)
-    }
-
+internal class ImportCapPruneTest :
+    AbstractImportCapabilities(ImportNrCapPrune, "src/test/resources/nrCapPrune/") {
     @Test
     fun parseNoMimoFR1() {
         parse("noMimoFR1.txt", "noMimoFR1.json")

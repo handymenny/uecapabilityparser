@@ -1,24 +1,9 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
-import it.smartphonecombo.uecapabilityparser.extension.toInputSource
-import it.smartphonecombo.uecapabilityparser.model.Capabilities
-import java.io.File
-import kotlinx.serialization.json.Json
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class Import0xB826Test {
-    private val path = "src/test/resources/0xB826/"
-
-    private fun parse(inputFilename: String, oracleFilename: String) {
-        val filePath = "$path/input/$inputFilename"
-        val actual = Import0xB826.parse(File(filePath).toInputSource())
-        val expected =
-            Json.decodeFromString<Capabilities>(File("$path/oracle/$oracleFilename").readText())
-
-        Assertions.assertEquals(expected, actual)
-    }
-
+internal class Import0xB826Test :
+    AbstractImportCapabilities(Import0xB826, "src/test/resources/0xB826/") {
     @Test
     fun parseV2NSA() {
         // Modulation UL invalid
