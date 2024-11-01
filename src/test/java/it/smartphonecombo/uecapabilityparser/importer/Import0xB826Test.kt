@@ -108,6 +108,11 @@ internal class Import0xB826Test {
     }
 
     @Test
+    fun parseV7NSAInvalidBw() {
+        parse("0xB826-v7-NSA-invalidBw.bin", "0xB826-v7-NSA-invalidBw.json")
+    }
+
+    @Test
     fun parseV8NSA() {
         parse("0xB826-v8-NSA.bin", "0xB826-v8-NSA.json")
     }
