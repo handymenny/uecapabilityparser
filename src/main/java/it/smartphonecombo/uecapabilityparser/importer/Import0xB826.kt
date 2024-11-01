@@ -280,11 +280,11 @@ object Import0xB826 : ImportCapabilities {
 
             if (version >= 6) {
                 val bwIndex = short.readNBits(5, offset = 6)
-                nrBand.maxBandwidthDl = getBWFromIndexV6(bwIndex).toBandwidth()
+                nrBand.maxBandwidthDl = getBWFromIndexV6(bwIndex)
 
                 if (component.classUL != BwClass.NONE) {
                     val bwIndexUl = short.readNBits(5, offset = 11)
-                    nrBand.maxBandwidthUl = getBWFromIndexV6(bwIndexUl).toBandwidth()
+                    nrBand.maxBandwidthUl = getBWFromIndexV6(bwIndexUl)
                 }
             } else {
                 // v2-v5 stores the max bw as a 10 bit integer
@@ -524,23 +524,34 @@ object Import0xB826 : ImportCapabilities {
      *
      * Some values are guessed, so they can be wrong or incomplete.
      */
-    private fun getBWFromIndexV6(index: Int): Int {
-        return when (index) {
-            5 -> 5
-            6 -> 15
-            in 1..4,
-            7 -> 20
-            8 -> 25
-            9 -> 30
-            10 -> 40
-            11,
-            in 15..18 -> 50
-            12 -> 60
-            13 -> 80
-            14,
-            in 19..26 -> 100
-            else -> index
+    private fun getBWFromIndexV6(index: Int): Bandwidth {
+        // index 19 is mixed 100_60
+        if (index == 19) {
+            return Bandwidth.from(listOf(100, 60))
         }
+
+        val single =
+            when (index) {
+                5 -> 5
+                6 -> 15
+                in 1..4,
+                7 -> 20
+                8 -> 25
+                9 -> 30
+                10 -> 40
+                11,
+                in 15..18 -> 50
+                12 -> 60
+                13 -> 80
+                14,
+                in 20..26 -> 100
+                else -> {
+                    echoSafe("Warning: 0xB826 BW index is above 26: $index", err = true)
+                    0
+                }
+            }
+
+        return single.toBandwidth()
     }
 
     /**
