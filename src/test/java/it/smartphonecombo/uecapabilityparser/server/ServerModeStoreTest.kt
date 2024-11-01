@@ -93,10 +93,7 @@ internal class ServerModeStoreTest {
 
         assumeTrue(pushedCap != null)
         val id = pushedCap?.id ?: ""
-        capabilitiesAssertEquals(
-            File(oracle).readText(),
-            File("$tmpStorePath/output/$id.json").readText(),
-        )
+        capabilitiesAssertEquals(oracle, File("$tmpStorePath/output/$id.json").readText())
         Assertions.assertLinesMatch(
             File(input0).readLines(),
             File("$tmpStorePath/input/$id-0").readLines(),
@@ -231,12 +228,7 @@ internal class ServerModeStoreTest {
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.request(multiPartRequest(client.origin + url, request, files))
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            pushedCap =
-                capabilitiesAssertEquals(
-                    File(oraclePath).readText(),
-                    response.body?.string() ?: "",
-                    true,
-                )
+            pushedCap = capabilitiesAssertEquals(oraclePath, response.body?.string() ?: "", true)
         }
 
     private fun deleteDirectory(path: String) {

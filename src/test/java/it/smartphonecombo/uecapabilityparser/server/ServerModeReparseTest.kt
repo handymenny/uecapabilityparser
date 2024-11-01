@@ -2,14 +2,17 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.mockk.every
 import io.mockk.mockkStatic
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.RECREATE_ORACLES
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.copyDirectory
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.deleteDirectory
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.dirsSimilar
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateDirOracles
 import it.smartphonecombo.uecapabilityparser.cli.Main
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
 import java.nio.file.Files
-import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
 import kotlin.io.path.extension
@@ -119,24 +122,13 @@ internal class ServerModeReparseTest {
         )
     }
 
-    fun test(args: Array<String>, storePath: String, oraclePath: String) {
+    fun test(args: Array<String>, oraclePath: String, storePath: String) {
         Main.main(args)
         dispatcher.scheduler.advanceUntilIdle()
+
+        if (RECREATE_ORACLES) recreateDirOracles(oraclePath, storePath)
+
         assertTrue(dirsSimilar(oraclePath, storePath))
-    }
-
-    private fun deleteDirectory(path: String) {
-        return Files.walk(Paths.get(path))
-            .sorted(Comparator.reverseOrder())
-            .map(Path::toFile)
-            .forEach(File::delete)
-    }
-
-    private fun copyDirectory(src: String, dst: String) {
-        val srcFile = File(src)
-        val dstFile = File(dst)
-
-        srcFile.copyRecursively(dstFile)
     }
 
     private fun createMultiDir(path: String) {

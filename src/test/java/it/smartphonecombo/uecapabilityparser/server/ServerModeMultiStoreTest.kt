@@ -3,7 +3,7 @@ package it.smartphonecombo.uecapabilityparser.server
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.UtilityForTests
-import it.smartphonecombo.uecapabilityparser.model.Capabilities
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.capabilitiesAssertEquals
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
 import it.smartphonecombo.uecapabilityparser.util.Config
@@ -120,10 +120,7 @@ internal class ServerModeMultiStoreTest {
             val output = outputOracles[i]
             val inputs = oracleInputs[i]
 
-            capabilitiesAssertEquals(
-                File(output).readText(),
-                File("$tmpStorePath/output/$id.json").readText(),
-            )
+            capabilitiesAssertEquals(output, File("$tmpStorePath/output/$id.json").readText())
             for (j in inputs.indices) {
                 Assertions.assertLinesMatch(
                     File(inputs[j]).readLines(),
@@ -285,19 +282,6 @@ internal class ServerModeMultiStoreTest {
 
             Assertions.assertEquals(expectedCap, actualCap)
         }
-    }
-
-    private fun capabilitiesAssertEquals(expected: String, actual: String) {
-        val actualCap = Json.decodeFromString<Capabilities>(actual)
-        val expectedCap = Json.decodeFromString<Capabilities>(expected)
-
-        // Override dynamic properties
-        expectedCap.setMetadata(
-            "processingTime",
-            actualCap.getStringMetadata("processingTime") ?: "",
-        )
-
-        Assertions.assertEquals(expectedCap, actualCap)
     }
 
     private fun multiIndexAssertEquals(expected: String, actual: String) {

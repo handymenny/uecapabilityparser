@@ -1,5 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.RECREATE_ORACLES
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateCapabilitiesOracles
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import java.io.File
@@ -17,6 +19,9 @@ abstract class AbstractImportCapabilities(
         val oraclePath = "$path/$oracleSubDir/$oracleFilename"
 
         val actual = parser.parse(File(filePath).toInputSource())
+
+        if (RECREATE_ORACLES) recreateCapabilitiesOracles(oraclePath, actual)
+
         val expected = Json.decodeFromString<Capabilities>(File(oraclePath).readText())
 
         Assertions.assertEquals(expected, actual)

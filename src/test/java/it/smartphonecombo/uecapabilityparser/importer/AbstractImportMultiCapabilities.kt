@@ -1,5 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.importer
 
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.RECREATE_ORACLES
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateCapabilitiesListOracles
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportMultiCapabilities
 import it.smartphonecombo.uecapabilityparser.importer.multi.ImportScat
@@ -28,6 +30,8 @@ abstract class AbstractImportMultiCapabilities(
             }
 
         val actual = multi?.parsingList?.map { it.capabilities }!!
+
+        if (RECREATE_ORACLES) recreateCapabilitiesListOracles(oraclePath, actual)
 
         val expected = Json.decodeFromString<List<Capabilities>>(File(oraclePath).readText())
 
