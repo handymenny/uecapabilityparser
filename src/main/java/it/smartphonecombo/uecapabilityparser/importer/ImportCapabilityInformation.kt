@@ -60,6 +60,9 @@ import it.smartphonecombo.uecapabilityparser.model.modulation.EmptyModulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.Modulation
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
+import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.IRatCapabilities
+import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.RatCapabilitiesLte
+import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.RatCapabilitiesNr
 import it.smartphonecombo.uecapabilityparser.model.toMimo
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
@@ -97,6 +100,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         var nrBandsMap: Map<Band, BandNrDetails>? = null
         var lteBandsMap: Map<Band, BandLteDetails>? = null
         val filterList = mutableListWithCapacity<IUeCapabilityFilter>(3)
+        val ratCapabilitiesList = mutableListWithCapacity<IRatCapabilities>(3)
 
         if (eutraCapability != null) {
             val eutra = UEEutraCapabilityJson(eutraCapability)
@@ -129,6 +133,8 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
             filterList.add(getUeLteCapabilityFilters(eutra))
             comboList.altTbsIndexes = parseAltTbsIndexes(eutra)
+            val release = parseAccessRelease(eutraCapability)
+            ratCapabilitiesList.add(RatCapabilitiesLte(release))
         }
 
         if (nrCapability != null) {
@@ -164,6 +170,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                     ComboNrDc(fr1, fr2, combo.featureSet, combo.bcs)
                 }
             filterList.add(getUeNrCapabilityFilters(nr))
+            val release = parseAccessRelease(nrCapability)
+            ratCapabilitiesList.add(RatCapabilitiesNr(release))
         }
 
         if (eutraNrCapability != null) {
@@ -202,6 +210,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         comboList.ueCapFilters = filterList
+        comboList.ratCapabilities = ratCapabilitiesList
 
         return comboList
     }
@@ -1595,5 +1604,13 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         return tbsAltIndex
+    }
+
+    private fun parseAccessRelease(capability: JsonObject): Int? {
+        val release = capability.getString("accessStratumRelease")
+
+        val releaseInt = release?.removePrefix("rel")?.toIntOrNull()
+
+        return releaseInt
     }
 }
