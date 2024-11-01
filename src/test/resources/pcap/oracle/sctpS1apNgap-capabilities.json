@@ -307,6 +307,13 @@
                 "rat": "EUTRA"
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 11,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE Cap Info Indication from PCAP, Timestamp: 2199273418"
         },
@@ -5799,6 +5806,13 @@
         "ueCapFilters": [
             {
                 "type": "UeCapabilityFilterLte",
+                "rat": "EUTRA"
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
                 "rat": "EUTRA"
             }
         ],
@@ -12154,6 +12168,13 @@
                 "rat": "EUTRA"
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE Cap Info Indication from PCAP, Timestamp: 2763646425"
         },
@@ -14536,6 +14557,13 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE Cap Info Indication from PCAP, Timestamp: 3180673193"
         },
@@ -14830,6 +14858,13 @@
                         "band": 78
                     }
                 ]
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 15,
+                "rat": "NR"
             }
         ],
         "metadata": {
@@ -43623,6 +43658,18 @@
                 ]
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
+            },
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 15,
+                "rat": "NR"
+            }
+        ],
         "metadata": {
             "description": "UE Cap Info Indication from PCAP, Timestamp: 3446033151"
         },
@@ -44879,6 +44926,13 @@
                         "band": 20
                     }
                 ]
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
             }
         ],
         "metadata": {
@@ -47434,6 +47488,13 @@
                 "maxCCsUl": 2
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 16,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE Cap Info Indication from PCAP, Timestamp: 3597048247"
         },
@@ -47550,6 +47611,13 @@
         "ueCapFilters": [
             {
                 "type": "UeCapabilityFilterLte",
+                "rat": "EUTRA"
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 11,
                 "rat": "EUTRA"
             }
         ],
@@ -48807,6 +48875,13 @@
                         "band": 7
                     }
                 ]
+            }
+        ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 15,
+                "rat": "EUTRA"
             }
         ],
         "metadata": {

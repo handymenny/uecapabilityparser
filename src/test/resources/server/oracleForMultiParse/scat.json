@@ -188,6 +188,13 @@
                     ]
                 }
             ],
+            "ratCapabilities": [
+                {
+                    "type": "RatCapabilitiesLte",
+                    "release": 15,
+                    "rat": "EUTRA"
+                }
+            ],
             "metadata": {
                 "description": "UE LTE Cap from DLF, Timestamps: 1638043858674893"
             },
@@ -1203,6 +1210,13 @@
             "ueCapFilters": [
                 {
                     "type": "UeCapabilityFilterLte",
+                    "rat": "EUTRA"
+                }
+            ],
+            "ratCapabilities": [
+                {
+                    "type": "RatCapabilitiesLte",
+                    "release": 10,
                     "rat": "EUTRA"
                 }
             ],

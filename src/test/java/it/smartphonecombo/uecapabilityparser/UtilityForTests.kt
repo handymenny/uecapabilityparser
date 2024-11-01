@@ -168,16 +168,44 @@ object UtilityForTests {
         IOUtils.outputFileOrStdout(string, oraclePath)
     }
 
-    internal fun recreateMultiCapabilitiesOracles(oraclePath: String, multiCap: MultiCapabilities) {
-        // reset id, timestamp, processingTime
-        multiCap.id = ""
-        for (cap in multiCap.capabilities) {
-            cap.id = ""
-            cap.timestamp = 0
-            cap.metadata.remove("processingTime")
+    internal fun recreateMultiCapabilitiesOracles(
+        oraclePath: String,
+        multiCap: MultiCapabilities,
+        prettyPrint: Boolean = true,
+        preserveMetadata: Boolean = false,
+    ) {
+        val json = if (prettyPrint) jsonPrettyPrint else Json
+        val prevMultiCap = json.decodeFromString<MultiCapabilities>(File(oraclePath).readText())
+        val prevCapsIterator = prevMultiCap.capabilities.listIterator()
+
+        val clonedCaps =
+            multiCap.capabilities.map {
+                val clone = it.copy()
+                if (!preserveMetadata) {
+                    // reset id, timestamp, processingTime
+                    clone.id = ""
+                    clone.timestamp = 0
+                    clone.metadata.remove("processingTime")
+                } else {
+                    val prevCap = prevCapsIterator.next()
+                    clone.id = prevCap.id
+                    clone.timestamp = prevCap.timestamp
+                    prevCap.getStringMetadata("processingTime")?.let {
+                        clone.setMetadata("processingTime", it)
+                    }
+                }
+                clone
+            }
+
+        val multiCloned = multiCap.copy(clonedCaps)
+
+        if (!preserveMetadata) {
+            multiCloned.id = ""
+        } else {
+            multiCloned.id = prevMultiCap.id
         }
 
-        val string = jsonPrettyPrint.encodeToString(multiCap) + "\n"
+        val string = json.encodeToString(multiCloned) + "\n"
 
         IOUtils.outputFileOrStdout(string, oraclePath)
     }

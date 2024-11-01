@@ -9497,6 +9497,13 @@
             "uplinkTxSwitchRequest": true
         }
     ],
+    "ratCapabilities": [
+        {
+            "type": "RatCapabilitiesNr",
+            "release": 17,
+            "rat": "NR"
+        }
+    ],
     "metadata": {},
     "id": "",
     "parserVersion": "staging",

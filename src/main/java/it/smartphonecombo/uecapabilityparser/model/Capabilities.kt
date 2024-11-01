@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboLte
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.filter.IUeCapabilityFilter
+import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.IRatCapabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.util.UUID
 import kotlinx.serialization.EncodeDefault
@@ -32,6 +33,7 @@ data class Capabilities(
     @SerialName("nrdc") var nrDcCombos: List<ComboNrDc> = emptyList(),
     @Required @SerialName("logType") var logType: LogType = LogType.INVALID,
     @SerialName("ueCapFilters") var ueCapFilters: List<IUeCapabilityFilter> = emptyList(),
+    @SerialName("ratCapabilities") var ratCapabilities: List<IRatCapabilities> = emptyList(),
     @Required @SerialName("metadata") val metadata: MutableMap<String, String> = mutableMapOf(),
 ) {
     @EncodeDefault(EncodeDefault.Mode.ALWAYS)

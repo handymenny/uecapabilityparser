@@ -4404,6 +4404,13 @@
                 "maxCCsUl": 2
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesLte",
+                "release": 16,
+                "rat": "EUTRA"
+            }
+        ],
         "metadata": {
             "description": "UE LTE Cap from NSG, Timestamps: 1708175715402271",
             "deviceName": "",

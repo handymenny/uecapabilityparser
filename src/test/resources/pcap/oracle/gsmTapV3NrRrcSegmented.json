@@ -80324,6 +80324,13 @@
                 "segAllowed": true
             }
         ],
+        "ratCapabilities": [
+            {
+                "type": "RatCapabilitiesNr",
+                "release": 17,
+                "rat": "NR"
+            }
+        ],
         "metadata": {
             "description": "UE NR Cap from PCAP, Timestamps: 315965578030978"
         },

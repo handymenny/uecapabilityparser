@@ -3,7 +3,9 @@ package it.smartphonecombo.uecapabilityparser.server
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
 import it.smartphonecombo.uecapabilityparser.UtilityForTests
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.RECREATE_ORACLES
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.capabilitiesAssertEquals
+import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateMultiCapabilitiesOracles
 import it.smartphonecombo.uecapabilityparser.model.MultiCapabilities
 import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
 import it.smartphonecombo.uecapabilityparser.util.Config
@@ -259,12 +261,18 @@ internal class ServerModeMultiStoreTest {
                 )
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val result = response.body?.string() ?: ""
-            multiCapabilitiesAssertEquals(File(oraclePath).readText(), result)
+            multiCapabilitiesAssertEquals(oraclePath, result)
         }
 
-    private fun multiCapabilitiesAssertEquals(expected: String, actual: String) {
+    private fun multiCapabilitiesAssertEquals(expectedPath: String, actual: String) {
+
         val actualCaps = Json.decodeFromString<MultiCapabilities>(actual)
         pushedCaps = actualCaps
+
+        if (RECREATE_ORACLES)
+            recreateMultiCapabilitiesOracles(expectedPath, actualCaps, prettyPrint = false, true)
+
+        val expected = File(expectedPath).readText()
         val expectedCaps = Json.decodeFromString<MultiCapabilities>(expected)
 
         // size check
@@ -275,10 +283,9 @@ internal class ServerModeMultiStoreTest {
             val actualCap = actualCaps.capabilities[i]
 
             // Override dynamic properties
-            expectedCap.setMetadata(
-                "processingTime",
-                actualCap.getStringMetadata("processingTime") ?: "",
-            )
+            actualCap.getStringMetadata("processingTime")?.let {
+                expectedCap.setMetadata("processingTime", it)
+            }
 
             Assertions.assertEquals(expectedCap, actualCap)
         }

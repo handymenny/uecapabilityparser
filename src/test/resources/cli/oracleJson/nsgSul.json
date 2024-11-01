@@ -2880,6 +2880,18 @@
             ]
         }
     ],
+    "ratCapabilities": [
+        {
+            "type": "RatCapabilitiesLte",
+            "release": 13,
+            "rat": "EUTRA"
+        },
+        {
+            "type": "RatCapabilitiesNr",
+            "release": 15,
+            "rat": "NR"
+        }
+    ],
     "metadata": {},
     "id": "",
     "parserVersion": "staging",

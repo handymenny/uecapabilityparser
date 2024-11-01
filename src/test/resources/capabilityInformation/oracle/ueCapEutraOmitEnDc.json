@@ -1044,6 +1044,13 @@
             "omitEnDc": true
         }
     ],
+    "ratCapabilities": [
+        {
+            "type": "RatCapabilitiesLte",
+            "release": 15,
+            "rat": "EUTRA"
+        }
+    ],
     "metadata": {},
     "id": "",
     "parserVersion": "staging",
