@@ -7,7 +7,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("RatCapabilitiesLte")
-data class RatCapabilitiesLte(@SerialName("release") override val release: Int? = null) :
-    IRatCapabilities {
+data class RatCapabilitiesLte(
+    @SerialName("release") override val release: Int? = null,
+    @SerialName("ueCapSegmentationSupported")
+    override val ueCapSegmentationSupported: Boolean? = null,
+) : IRatCapabilities {
     @Required @SerialName("rat") override val rat: Rat = Rat.EUTRA
 }

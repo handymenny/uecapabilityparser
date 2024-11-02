@@ -7,4 +7,5 @@ import kotlinx.serialization.Serializable
 sealed interface IRatCapabilities {
     val rat: Rat
     val release: Int?
+    val ueCapSegmentationSupported: Boolean?
 }

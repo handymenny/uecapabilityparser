@@ -134,7 +134,8 @@ object ImportCapabilityInformation : ImportCapabilities {
             filterList.add(getUeLteCapabilityFilters(eutra))
             comboList.altTbsIndexes = parseAltTbsIndexes(eutra)
             val release = parseAccessRelease(eutraCapability)
-            ratCapabilitiesList.add(RatCapabilitiesLte(release))
+            val segSupported = parseSegSupportedEutra(eutra, release)
+            ratCapabilitiesList.add(RatCapabilitiesLte(release, segSupported))
         }
 
         if (nrCapability != null) {
@@ -171,7 +172,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                 }
             filterList.add(getUeNrCapabilityFilters(nr))
             val release = parseAccessRelease(nrCapability)
-            ratCapabilitiesList.add(RatCapabilitiesNr(release))
+            val segSupported = parseSegSupportedNr(nr, release)
+            ratCapabilitiesList.add(RatCapabilitiesNr(release, segSupported))
         }
 
         if (eutraNrCapability != null) {
@@ -1612,5 +1614,22 @@ object ImportCapabilityInformation : ImportCapabilities {
         val releaseInt = release?.removePrefix("rel")?.toIntOrNull()
 
         return releaseInt
+    }
+
+    private fun parseSegSupportedEutra(capability: UEEutraCapabilityJson, release: Int?): Boolean? {
+        val otherV1690 = capability.eutraCapabilityV1690?.getObject("other-Parameters-v1690")
+        return parseSegSupported(otherV1690, release)
+    }
+
+    private fun parseSegSupportedNr(capability: UENrCapabilityJson, release: Int?): Boolean? {
+        return parseSegSupported(capability.nrRrcCapabilityV1690, release)
+    }
+
+    private fun parseSegSupported(capabilityV1690: JsonObject?, release: Int?): Boolean? {
+        // For rel16, absence of ul-RRC-Segmentation-r16 doesn't indicate the UE doesn't support it
+        val default = if (compareValues(release, 16) > 0) false else null
+        val segSupported = capabilityV1690?.getString("ul-RRC-Segmentation-r16") != null
+
+        return if (segSupported) true else default
     }
 }
