@@ -1,0 +1,328 @@
+{
+    "nr": {
+        "accessStratumRelease": "rel17",
+        "pdcp-Parameters": {
+            "supportedROHC-Profiles": {
+                "profile0x0000": true,
+                "profile0x0001": true,
+                "profile0x0002": true,
+                "profile0x0003": false,
+                "profile0x0004": true,
+                "profile0x0006": false,
+                "profile0x0101": false,
+                "profile0x0102": false,
+                "profile0x0103": false,
+                "profile0x0104": false
+            },
+            "maxNumberROHC-ContextSessions": "cs16",
+            "outOfOrderDelivery": "supported",
+            "shortSN": "supported",
+            "extendedDiscardTimer-r16": "supported",
+            "longSN-RedCap-r17": "supported"
+        },
+        "rlc-Parameters": {
+            "am-WithShortSN": "supported",
+            "um-WithShortSN": "supported",
+            "um-WithLongSN": "supported",
+            "extendedT-PollRetransmit-r16": "supported",
+            "extendedT-StatusProhibit-r16": "supported",
+            "am-WithLongSN-RedCap-r17": "supported"
+        },
+        "mac-Parameters": {
+            "mac-ParametersXDD-Diff": {
+                "longDRX-Cycle": "supported",
+                "shortDRX-Cycle": "supported",
+                "enhancedSkipUplinkTxDynamic-r16": "supported",
+                "enhancedSkipUplinkTxConfigured-r16": "supported"
+            }
+        },
+        "phy-Parameters": {
+            "phy-ParametersCommon": {
+                "dynamicHARQ-ACK-Codebook": "supported",
+                "dynamicBetaOffsetInd-HARQ-ACK-CSI": "supported",
+                "ra-Type0-PUSCH": "supported",
+                "dynamicSwitchRA-Type0-1-PDSCH": "supported",
+                "dynamicSwitchRA-Type0-1-PUSCH": "supported",
+                "pdsch-MappingTypeA": "supported",
+                "pdsch-MappingTypeB": "supported",
+                "interleavingVRB-ToPRB-PDSCH": "supported",
+                "pusch-RepetitionMultiSlots": "supported",
+                "pdsch-RepetitionMultiSlots": "supported",
+                "configuredUL-GrantType1": "supported",
+                "configuredUL-GrantType2": "supported",
+                "rateMatchingResrcSetSemi-Static": "supported",
+                "rateMatchingResrcSetDynamic": "supported",
+                "bwp-SwitchingDelay": "type1",
+                "rateMatchingCtrlResrcSetDynamic": "supported",
+                "maxLayersMIMO-Indication": "supported",
+                "twoStepRACH-r16": "supported",
+                "pusch-RepetitionTypeA-r16": {
+                    "non-SharedSpectrumChAccess-r16": "supported"
+                }
+            },
+            "phy-ParametersFRX-Diff": {
+                "twoFL-DMRS": "11",
+                "supportedDMRS-TypeDL": "type1And2",
+                "supportedDMRS-TypeUL": "type1And2",
+                "onePortsPTRS": "11",
+                "pucch-F2-WithFH": "supported",
+                "pucch-F3-WithFH": "supported",
+                "pucch-F4-WithFH": "supported",
+                "pusch-HalfPi-BPSK": "supported",
+                "pucch-F3-4-HalfPi-BPSK": "supported",
+                "mux-SR-HARQ-ACK-CSI-PUCCH-OncePerSlot": {
+                    "sameSymbol": "supported"
+                },
+                "mux-SR-HARQ-ACK-PUCCH": "supported",
+                "dl-SchedulingOffset-PDSCH-TypeA": "supported",
+                "dl-SchedulingOffset-PDSCH-TypeB": "supported",
+                "ul-SchedulingOffset": "supported",
+                "dl-64QAM-MCS-TableAlt": "supported",
+                "ul-64QAM-MCS-TableAlt": "supported",
+                "cqi-TableAlt": "supported",
+                "oneFL-DMRS-TwoAdditionalDMRS-UL": "supported",
+                "twoFL-DMRS-TwoAdditionalDMRS-UL": "supported",
+                "oneFL-DMRS-ThreeAdditionalDMRS-UL": "supported",
+                "maxLayersMIMO-Adaptation-r16": "supported"
+            },
+            "phy-ParametersFR1": {
+                "pdsch-256QAM-FR1": "supported"
+            }
+        },
+        "rf-Parameters": {
+            "supportedBandListNR": [
+                {
+                    "bandNR": 7,
+                    "mimo-ParametersPerBand": {
+                        "pusch-TransCoherence": "fullCoherent",
+                        "beamManagementSSB-CSI-RS": {
+                            "maxNumberSSB-CSI-RS-ResourceOneTx": "n32",
+                            "maxNumberCSI-RS-Resource": "n0",
+                            "maxNumberCSI-RS-ResourceTwoTx": "n0",
+                            "maxNumberAperiodicCSI-RS-Resource": "n0"
+                        },
+                        "codebookParameters": {
+                            "type1": {
+                                "singlePanel": {
+                                    "supportedCSI-RS-ResourceList": [
+                                        {
+                                            "maxNumberTxPortsPerResource": "p32",
+                                            "maxNumberResourcesPerBand": 1,
+                                            "totalNumberTxPortsPerBand": 32
+                                        }
+                                    ],
+                                    "modes": "mode1andMode2",
+                                    "maxNumberCSI-RS-PerResourceSet": 1
+                                }
+                            }
+                        },
+                        "csi-RS-IM-ReceptionForFeedback": {
+                            "maxConfigNumberNZP-CSI-RS-PerCC": 8,
+                            "maxConfigNumberPortsAcrossNZP-CSI-RS-PerCC": 32,
+                            "maxConfigNumberCSI-IM-PerCC": "n4",
+                            "maxNumberSimultaneousNZP-CSI-RS-PerCC": 8,
+                            "totalNumberPortsSimultaneousNZP-CSI-RS-PerCC": 64
+                        },
+                        "csi-ReportFramework": {
+                            "maxNumberPeriodicCSI-PerBWP-ForCSI-Report": 1,
+                            "maxNumberAperiodicCSI-PerBWP-ForCSI-Report": 1,
+                            "maxNumberSemiPersistentCSI-PerBWP-ForCSI-Report": 0,
+                            "maxNumberPeriodicCSI-PerBWP-ForBeamReport": 1,
+                            "maxNumberAperiodicCSI-PerBWP-ForBeamReport": 1,
+                            "maxNumberAperiodicCSI-triggeringStatePerCC": "n3",
+                            "maxNumberSemiPersistentCSI-PerBWP-ForBeamReport": 0,
+                            "simultaneousCSI-ReportsPerCC": 5
+                        },
+                        "supportInter-slotTDM-r16": {
+                            "supportRepNumPDSCH-TDRA-r16": "n16",
+                            "maxTBS-Size-r16": "noRestriction",
+                            "maxNumberTCI-states-r16": 1
+                        }
+                    },
+                    "bwp-WithoutRestriction": "supported",
+                    "bwp-SameNumerology": "upto4",
+                    "pusch-256QAM": "supported",
+                    "rateMatchingLTE-CRS": "supported",
+                    "channelBWs-DL": {
+                        "fr1": {
+                            "scs-15kHz": "1111000000",
+                            "scs-30kHz": "0000000000",
+                            "scs-60kHz": "0000000000"
+                        }
+                    },
+                    "channelBWs-UL": {
+                        "fr1": {
+                            "scs-15kHz": "1111000000",
+                            "scs-30kHz": "0000000000",
+                            "scs-60kHz": "0000000000"
+                        }
+                    },
+                    "maxNumberPUSCH-TypeA-Repetition-r17": "supported",
+                    "puschTypeA-RepetitionsAvailSlot-r17": "supported",
+                    "bwp-WithoutCD-SSB-OrNCD-SSB-RedCap-r17": "supported"
+                }
+            ],
+            "supportedBandCombinationList": [
+                {
+                    "bandList": [
+                        {
+                            "nr": {
+                                "bandNR": 7,
+                                "ca-BandwidthClassDL-NR": "a",
+                                "ca-BandwidthClassUL-NR": "a"
+                            }
+                        }
+                    ],
+                    "featureSetCombination": 0
+                }
+            ],
+            "appliedFreqBandListFilter": [
+                {
+                    "bandInformationNR": {
+                        "bandNR": 7
+                    }
+                }
+            ],
+            "supportedBandCombinationList-v1540": [
+                {
+                    "bandList-v1540": [
+                        {
+                            "srs-TxSwitch": {
+                                "supportedSRS-TxPortSwitch": "notSupported"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "measAndMobParameters": {
+            "measAndMobParametersCommon": {
+                "nr-NeedForGap-Reporting-r16": "supported"
+            }
+        },
+        "featureSets": {
+            "featureSetsDownlink": [
+                {
+                    "featureSetListPerDownlinkCC": [
+                        1
+                    ]
+                }
+            ],
+            "featureSetsDownlinkPerCC": [
+                {
+                    "supportedSubcarrierSpacingDL": "kHz15",
+                    "supportedBandwidthDL": {
+                        "fr1": "mhz20"
+                    },
+                    "maxNumberMIMO-LayersPDSCH": "twoLayers",
+                    "supportedModulationOrderDL": "qam256"
+                }
+            ],
+            "featureSetsUplink": [
+                {
+                    "featureSetListPerUplinkCC": [
+                        1
+                    ],
+                    "supportedSRS-Resources": {
+                        "maxNumberAperiodicSRS-PerBWP": "n16",
+                        "maxNumberAperiodicSRS-PerBWP-PerSlot": 6,
+                        "maxNumberPeriodicSRS-PerBWP": "n16",
+                        "maxNumberPeriodicSRS-PerBWP-PerSlot": 6,
+                        "maxNumberSemiPersistentSRS-PerBWP": "n16",
+                        "maxNumberSemiPersistentSRS-PerBWP-PerSlot": 6,
+                        "maxNumberSRS-Ports-PerResource": "n1"
+                    }
+                }
+            ],
+            "featureSetsUplinkPerCC": [
+                {
+                    "supportedSubcarrierSpacingUL": "kHz15",
+                    "supportedBandwidthUL": {
+                        "fr1": "mhz20"
+                    },
+                    "mimo-CB-PUSCH": {
+                        "maxNumberMIMO-LayersCB-PUSCH": "oneLayer",
+                        "maxNumberSRS-ResourcePerSet": 1
+                    },
+                    "maxNumberMIMO-LayersNonCB-PUSCH": "oneLayer",
+                    "supportedModulationOrderUL": "qam256"
+                }
+            ],
+            "featureSetsDownlink-v1540": [
+                {
+                    "oneFL-DMRS-TwoAdditionalDMRS-DL": "supported",
+                    "additionalDMRS-DL-Alt": "supported",
+                    "twoFL-DMRS-TwoAdditionalDMRS-DL": "supported",
+                    "oneFL-DMRS-ThreeAdditionalDMRS-DL": "supported"
+                }
+            ],
+            "featureSetsUplinkPerCC-v1540": [
+                {
+                    "mimo-NonCB-PUSCH": {
+                        "maxNumberSRS-ResourcePerSet": 1,
+                        "maxNumberSimultaneousSRS-ResourceTx": 1
+                    }
+                }
+            ]
+        },
+        "featureSetCombinations": [
+            [
+                [
+                    {
+                        "nr": {
+                            "downlinkSetNR": 1,
+                            "uplinkSetNR": 1
+                        }
+                    }
+                ]
+            ]
+        ],
+        "nonCriticalExtension": {
+            "nonCriticalExtension": {
+                "ims-Parameters": {
+                    "ims-ParametersFRX-Diff": {
+                        "voiceOverNR": "supported"
+                    }
+                },
+                "nonCriticalExtension": {
+                    "nonCriticalExtension": {
+                        "receivedFilters": {
+                            "nonCriticalExtension": {
+                                "rrc-SegAllowed-r16": "enabled"
+                            }
+                        },
+                        "nonCriticalExtension": {
+                            "nonCriticalExtension": {
+                                "dl-DedicatedMessageSegmentation-r16": "supported",
+                                "powSav-Parameters-r16": {
+                                    "powSav-ParametersCommon-r16": {
+                                        "maxCC-Preference-r16": "supported",
+                                        "releasePreference-r16": "supported"
+                                    },
+                                    "powSav-ParametersFRX-Diff-r16": {
+                                        "maxMIMO-LayerPreference-r16": "supported"
+                                    }
+                                },
+                                "nonCriticalExtension": {
+                                    "nonCriticalExtension": {
+                                        "nonCriticalExtension": {
+                                            "ul-RRC-Segmentation-r16": "supported",
+                                            "nonCriticalExtension": {
+                                                "measAndMobParameters-v1700": {},
+                                                "redCapParameters-r17": {
+                                                    "supportOfRedCap-r17": "supported",
+                                                    "supportOf16DRB-RedCap-r17": "supported"
+                                                },
+                                                "mbs-Parameters-r17": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,8 +2,9 @@ package it.smartphonecombo.uecapabilityparser.model.bandwidth
 
 import it.smartphonecombo.uecapabilityparser.extension.Band
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
+import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.UeType
 
-class BwsBitMap(bwsBinaryString: String, band: Band, scs: Int, isV1590: Boolean) {
+class BwsBitMap(bwsBinaryString: String, band: Band, scs: Int, isV1590: Boolean, ueType: UeType) {
     val bws: IntArray
 
     init {
@@ -27,15 +28,16 @@ class BwsBitMap(bwsBinaryString: String, band: Band, scs: Int, isV1590: Boolean)
 
         /* According to TS 38.306 v16.6.0 there's no 100MHz field for n41, n48, n77, n78, n79, n90
          * So we assume that it's supported by default:
-         * - for scs 30kHz
-         * - for scs 60kHz if bwsList isn't empy.
-         * Add 100 MHz only for channelBWs (not for its extensions) to avoid duplicates.
+         * - for EMBB UEs that supports scs 30kHz
+         * - for EMBB UEs that supports scs 60kHz && bwsList not empty.
+         * Add 100 MHz only fo only channelBWs (not for its extensions) to avoid duplicates.
          */
-        if (
-            !isV1590 && band in bandsDefault100 && (scs == 30 || scs == 60 && bwsList.isNotEmpty())
-        ) {
-            bwsList.add(100)
-        }
+        val shouldAdd100MHz =
+            ueType == UeType.EMBB &&
+                !isV1590 &&
+                band in bandsDefault100 &&
+                (scs == 30 || scs == 60 && bwsList.isNotEmpty())
+        if (shouldAdd100MHz) bwsList.add(100)
 
         bws = bwsList.toIntArray()
     }

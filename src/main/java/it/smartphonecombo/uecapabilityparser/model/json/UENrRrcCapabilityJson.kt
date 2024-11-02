@@ -1,5 +1,6 @@
 package it.smartphonecombo.uecapabilityparser.model.json
 
+import it.smartphonecombo.uecapabilityparser.extension.getObject
 import it.smartphonecombo.uecapabilityparser.extension.getObjectAtPath
 import it.smartphonecombo.uecapabilityparser.extension.repeat
 import kotlinx.serialization.json.JsonElement
@@ -21,4 +22,6 @@ class UENrCapabilityJson(override val rootJson: JsonObject) : UENrRrcCapabilityJ
 
     val nrRrcCapabilityV1690 =
         nrRrcCapabilityV1560?.getObjectAtPath("nonCriticalExtension".repeat(5, "."))
+
+    val nrRrcCapabilityV1700 = nrRrcCapabilityV1690?.getObject("nonCriticalExtension")
 }
