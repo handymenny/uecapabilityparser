@@ -141,7 +141,8 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (nrCapability != null) {
             val nr = UENrCapabilityJson(nrCapability)
-            nrBandsMap = getNrBands(nr).associateBy({ it.band }, { it })
+            val ueType = getUeType(nr)
+            nrBandsMap = getNrBands(nr, ueType).associateBy({ it.band }, { it })
             nrFeatures = getNRFeatureSet(nr)
             val featureSetCombination = getFeatureSetCombinations(nr)
             val saCombos = getNrBandCombinations(nr).typedList<ComboNr>()
@@ -174,7 +175,6 @@ object ImportCapabilityInformation : ImportCapabilities {
             filterList.add(getUeNrCapabilityFilters(nr))
             val release = parseAccessRelease(nrCapability)
             val segSupported = parseSegSupportedNr(nr, release)
-            val ueType = getUeType(nr)
             ratCapabilitiesList.add(RatCapabilitiesNr(release, segSupported, ueType))
         }
 
@@ -968,7 +968,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         return list
     }
 
-    private fun getNrBands(nrCapability: UENrCapabilityJson): List<BandNrDetails> {
+    private fun getNrBands(nrCapability: UENrCapabilityJson, ueType: UeType): List<BandNrDetails> {
         val phyParametersFr1 =
             nrCapability.rootJson.getObjectAtPath("phy-Parameters.phy-ParametersFR1")
         val qam256Fr1DL = phyParametersFr1?.getString("pdsch-256QAM-FR1") != null
@@ -1051,7 +1051,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                 componentNr.rateMatchingLteCrs =
                     supportedBandNr.getString("rateMatchingLTE-CRS") != null
 
-                parseNRChannelBWs(supportedBandNr, componentNr, scs60Fr1)
+                parseNRChannelBWs(supportedBandNr, componentNr, scs60Fr1, ueType)
 
                 componentNr
             }
@@ -1063,14 +1063,15 @@ object ImportCapabilityInformation : ImportCapabilities {
         supportedBandNr: JsonElement,
         componentNr: BandNrDetails,
         scs60Fr1Supported: Boolean,
+        ueType: UeType,
     ) {
         val channelBWsDL = supportedBandNr.getObject("channelBWs-DL")
         val channelBWsUL = supportedBandNr.getObject("channelBWs-UL")
         val channelBWsDlV1590 = supportedBandNr.getObject("channelBWs-DL-v1590")
         val channelBWsUlV1590 = supportedBandNr.getObject("channelBWs-UL-v1590")
 
-        val bandwidthsDL = parseNrBw(channelBWsDL, componentNr, false)
-        val bandwidthsUL = parseNrBw(channelBWsUL, componentNr, false)
+        val bandwidthsDL = parseNrBw(channelBWsDL, componentNr, false, ueType)
+        val bandwidthsUL = parseNrBw(channelBWsUL, componentNr, false, ueType)
 
         val scsRange =
             when {
@@ -1094,8 +1095,8 @@ object ImportCapabilityInformation : ImportCapabilities {
             }
         }
 
-        bandwidthsDL.merge(parseNrBw(channelBWsDlV1590, componentNr, true))
-        bandwidthsUL.merge(parseNrBw(channelBWsUlV1590, componentNr, true))
+        bandwidthsDL.merge(parseNrBw(channelBWsDlV1590, componentNr, true, ueType))
+        bandwidthsUL.merge(parseNrBw(channelBWsUlV1590, componentNr, true, ueType))
 
         // Sort bws array and add to bwsList
         val bwsList = mutableListWithCapacity<BwsNr>(scsRange.count())
@@ -1126,7 +1127,8 @@ object ImportCapabilityInformation : ImportCapabilities {
     private fun parseNrBw(
         channelBWs: JsonObject?,
         componentNr: BandNrDetails,
-        isV1590: Boolean = false,
+        isV1590: Boolean,
+        ueType: UeType,
     ): BwMap {
         val freqRange = if (componentNr.isFR2) "fr2" else "fr1"
 
@@ -1134,7 +1136,7 @@ object ImportCapabilityInformation : ImportCapabilities {
         channelBWs?.getObject(freqRange)?.forEach { (scsKey, element) ->
             val scs = scsKey.removePrefix("scs-").removeSuffix("kHz").toInt()
             (element as? JsonPrimitive)?.contentOrNull?.let { bwString ->
-                bandWidthMap[scs] = BwsBitMap(bwString, componentNr.band, scs, isV1590).bws
+                bandWidthMap[scs] = BwsBitMap(bwString, componentNr.band, scs, isV1590, ueType).bws
             }
         }
         return bandWidthMap
