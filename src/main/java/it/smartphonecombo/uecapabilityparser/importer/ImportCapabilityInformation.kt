@@ -63,6 +63,7 @@ import it.smartphonecombo.uecapabilityparser.model.modulation.toModulation
 import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.IRatCapabilities
 import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.RatCapabilitiesLte
 import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.RatCapabilitiesNr
+import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.UeType
 import it.smartphonecombo.uecapabilityparser.model.toMimo
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
@@ -173,7 +174,8 @@ object ImportCapabilityInformation : ImportCapabilities {
             filterList.add(getUeNrCapabilityFilters(nr))
             val release = parseAccessRelease(nrCapability)
             val segSupported = parseSegSupportedNr(nr, release)
-            ratCapabilitiesList.add(RatCapabilitiesNr(release, segSupported))
+            val ueType = getUeType(nr)
+            ratCapabilitiesList.add(RatCapabilitiesNr(release, segSupported, ueType))
         }
 
         if (eutraNrCapability != null) {
@@ -1631,5 +1633,13 @@ object ImportCapabilityInformation : ImportCapabilities {
         val segSupported = capabilityV1690?.getString("ul-RRC-Segmentation-r16") != null
 
         return if (segSupported) true else default
+    }
+
+    private fun getUeType(cap: UENrCapabilityJson): UeType {
+        val defaultType = UeType.EMBB
+        val redCapParameters = cap.nrRrcCapabilityV1700?.getObject("redCapParameters-r17")
+        val isRedCap = redCapParameters?.getString("supportOfRedCap-r17") != null
+
+        return if (isRedCap) UeType.RED_CAP_R17 else defaultType
     }
 }
