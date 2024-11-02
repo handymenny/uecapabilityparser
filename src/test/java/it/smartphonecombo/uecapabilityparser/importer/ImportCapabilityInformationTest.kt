@@ -59,6 +59,16 @@ internal class ImportCapabilityInformationTest :
     }
 
     @Test
+    fun ueCapEutraSegSupported() {
+        parse("ueCapEutraSegSupported.json", "ueCapEutraSegSupported.json")
+    }
+
+    @Test
+    fun ueCapEutraSegNotSupported() {
+        parse("ueCapEutraSegNotSupported.json", "ueCapEutraSegNotSupported.json")
+    }
+
+    @Test
     fun ueCapNrOneCC() {
         parse("ueCapNrOneCC.json", "ueCapNrOneCC.json")
     }
@@ -146,5 +156,10 @@ internal class ImportCapabilityInformationTest :
     @Test
     fun ueCapNrDc1024qam() {
         parse("ueCapNrDc1024qam.json", "ueCapNrDc1024qam.json")
+    }
+
+    @Test
+    fun ueCapNrSegNotSupported() {
+        parse("ueCapNrSegNotSupported.json", "ueCapNrSegNotSupported.json")
     }
 }

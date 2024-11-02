@@ -18,4 +18,7 @@ class UEMrdcCapabilityJson(override val rootJson: JsonObject) : UENrRrcCapabilit
 class UENrCapabilityJson(override val rootJson: JsonObject) : UENrRrcCapabilityJson {
     override val nrRrcCapabilityV1560 =
         rootJson.getObjectAtPath("nonCriticalExtension".repeat(4, "."))
+
+    val nrRrcCapabilityV1690 =
+        nrRrcCapabilityV1560?.getObjectAtPath("nonCriticalExtension".repeat(5, "."))
 }
