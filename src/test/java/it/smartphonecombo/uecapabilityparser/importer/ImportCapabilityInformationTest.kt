@@ -159,7 +159,17 @@ internal class ImportCapabilityInformationTest :
     }
 
     @Test
-    fun ueCapNrSegNotSupported() {
-        parse("ueCapNrSegNotSupported.json", "ueCapNrSegNotSupported.json")
+    fun ueRedCapSegNotSupported() {
+        parse("ueRedCapSegNotSupported.json", "ueRedCapSegNotSupported.json")
+    }
+
+    @Test
+    fun ueRedCapFDD() {
+        parse("ueRedCapFDD.json", "ueRedCapFDD.json")
+    }
+
+    @Test
+    fun ueRedCapTDD() {
+        parse("ueRedCapTDD.json", "ueRedCapTDD.json")
     }
 }

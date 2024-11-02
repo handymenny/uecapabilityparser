@@ -509,11 +509,9 @@
                 {
                     "scs": 30,
                     "bandwidthsDl": [
-                        100,
                         20
                     ],
                     "bandwidthsUl": [
-                        100,
                         20
                     ]
                 }
@@ -534,13 +532,11 @@
                 {
                     "scs": 30,
                     "bandwidthsDl": [
-                        100,
                         20,
                         15,
                         10
                     ],
                     "bandwidthsUl": [
-                        100,
                         20,
                         15,
                         10
@@ -675,13 +671,11 @@
                 {
                     "scs": 30,
                     "bandwidthsDl": [
-                        100,
                         20,
                         15,
                         10
                     ],
                     "bandwidthsUl": [
-                        100,
                         20,
                         15,
                         10
@@ -704,11 +698,9 @@
                 {
                     "scs": 30,
                     "bandwidthsDl": [
-                        100,
                         20
                     ],
                     "bandwidthsUl": [
-                        100,
                         20
                     ]
                 }
@@ -729,11 +721,9 @@
                 {
                     "scs": 30,
                     "bandwidthsDl": [
-                        100,
                         20
                     ],
                     "bandwidthsUl": [
-                        100,
                         20
                     ]
                 }
@@ -798,6 +788,7 @@
             "type": "RatCapabilitiesNr",
             "release": 17,
             "ueCapSegmentationSupported": false,
+            "ueType": "RedCap_R17",
             "rat": "NR"
         }
     ],

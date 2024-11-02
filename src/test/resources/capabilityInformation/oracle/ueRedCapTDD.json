@@ -1,0 +1,146 @@
+{
+    "nrBands": [
+        {
+            "band": 78,
+            "mimoDl": {
+                "type": "single",
+                "value": 2
+            },
+            "mimoUl": {
+                "type": "single",
+                "value": 1
+            },
+            "modulationDl": {
+                "type": "single",
+                "value": "qam256"
+            },
+            "modulationUl": {
+                "type": "single",
+                "value": "qam256"
+            },
+            "powerClass": "pc3",
+            "bandwidths": [
+                {
+                    "scs": 30,
+                    "bandwidthsDl": [
+                        20,
+                        15,
+                        10
+                    ],
+                    "bandwidthsUl": [
+                        20,
+                        15,
+                        10
+                    ]
+                }
+            ]
+        }
+    ],
+    "nrca": [
+        {
+            "components": [
+                {
+                    "band": 78,
+                    "bwClassDl": "A",
+                    "bwClassUl": "A",
+                    "mimoDl": {
+                        "type": "single",
+                        "value": 2
+                    },
+                    "mimoUl": {
+                        "type": "single",
+                        "value": 1
+                    },
+                    "modulationDl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "modulationUl": {
+                        "type": "single",
+                        "value": "qam256"
+                    },
+                    "maxScs": 30,
+                    "maxBwDl": {
+                        "type": "single",
+                        "value": 20
+                    },
+                    "maxBwUl": {
+                        "type": "single",
+                        "value": 20
+                    }
+                }
+            ],
+            "bcs": {
+                "type": "single",
+                "value": 0
+            }
+        }
+    ],
+    "logType": "",
+    "ueCapFilters": [
+        {
+            "type": "UeCapabilityFilterNr",
+            "rat": "NR",
+            "nrBands": [
+                {
+                    "band": 78,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 1,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 77,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 80,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 81,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 82,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 83,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 84,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                },
+                {
+                    "band": 86,
+                    "maxCCsDl": 1,
+                    "maxCCsUl": 1
+                }
+            ]
+        }
+    ],
+    "ratCapabilities": [
+        {
+            "type": "RatCapabilitiesNr",
+            "release": 17,
+            "ueCapSegmentationSupported": false,
+            "ueType": "RedCap_R17",
+            "rat": "NR"
+        }
+    ],
+    "metadata": {},
+    "id": "",
+    "parserVersion": "staging",
+    "timestamp": 0
+}
