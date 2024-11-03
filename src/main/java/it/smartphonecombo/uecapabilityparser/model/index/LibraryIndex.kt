@@ -106,15 +106,19 @@ class LibraryIndex(
     }
 
     fun toImmutableIndex(): LibraryIndexImmutable {
-        val itemsList: List<IndexLine>
-        val multiItemsList: List<MultiIndexLine>
+        val itemsArray: Array<IndexLine>
+        val multiItemsArray: Array<MultiIndexLine>
 
         synchronized(lock) {
-            itemsList = items.values.toList()
-            multiItemsList = multiItems.values.toList()
+            itemsArray = items.values.toTypedArray()
+            multiItemsArray = multiItems.values.toTypedArray()
         }
 
-        return LibraryIndexImmutable(itemsList, multiItemsList)
+        // stable sorting
+        itemsArray.sortWith(compareBy<IndexLine>({ it.timestamp }, { it.id }).reversed())
+        multiItemsArray.sortWith(compareBy<MultiIndexLine>({ it.timestamp }, { it.id }).reversed())
+
+        return LibraryIndexImmutable(itemsArray.toList(), multiItemsArray.toList())
     }
 
     companion object {
