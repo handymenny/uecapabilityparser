@@ -8,8 +8,6 @@ import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
-import it.smartphonecombo.uecapabilityparser.io.IndexLineMapAsList
-import it.smartphonecombo.uecapabilityparser.io.MultiIndexLineMapAsList
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.util.LruCache
@@ -20,31 +18,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Required
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class LibraryIndex(
-    @Serializable(with = IndexLineMapAsList::class)
-    @Required
-    private val items: MutableMap<String, IndexLine> = mutableMapOf(),
-    @Serializable(with = MultiIndexLineMapAsList::class)
-    private val multiItems: MutableMap<String, MultiIndexLine> = mutableMapOf(),
-    @Transient private val outputCacheSize: Int? = 0,
-) {
-    @Transient private val lock = Any()
-    @Transient private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
+@SerialName("LibraryIndex")
+data class LibraryIndexImmutable(
+    @Required val items: List<IndexLine>,
+    val multiItems: List<MultiIndexLine> = emptyList(),
+)
 
-    constructor(
-        items: List<IndexLine>,
-        multiItems: List<MultiIndexLine>,
-        outputCacheSize: Int? = 0,
-    ) : this(
-        items.associateBy { it.id }.toMutableMap(),
-        multiItems.associateBy { it.id }.toMutableMap(),
-        outputCacheSize,
-    )
+class LibraryIndex(
+    private val items: MutableMap<String, IndexLine> = mutableMapOf(),
+    private val multiItems: MutableMap<String, MultiIndexLine> = mutableMapOf(),
+    outputCacheSize: Int? = 0,
+) {
+    private val lock = Any()
+    private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
 
     fun addLine(line: IndexLine) {
         synchronized(lock) { items[line.id] = line }
@@ -70,10 +61,10 @@ data class LibraryIndex(
     }
 
     /** return an immutable list of all single-capability indexes */
-    fun getAll() = synchronized(lock) { items.values.toList() }
+    fun getAll() = toImmutableIndex().items
 
     /** return an immutable list of all multi-capability indexes */
-    fun getMultiIndexes() = synchronized(lock) { multiItems.values.toList() }
+    fun getMultiIndexes() = toImmutableIndex().multiItems
 
     fun getOutput(id: String, libraryPath: String, cacheIfFull: Boolean = true): Capabilities? {
         val cached = outputCache[id]
@@ -88,13 +79,14 @@ data class LibraryIndex(
         return res
     }
 
-    fun filterByQuery(query: Query, libraryPath: String): LibraryIndex {
+    fun filterByQuery(query: Query, libraryPath: String): LibraryIndexImmutable {
         val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 4)
         val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
 
         // immutable copies of items and multi items
-        val itemsList = getAll()
-        val multiItemsList = getMultiIndexes()
+        val immutable = toImmutableIndex()
+        val multiItemsList = immutable.multiItems
+        val itemsList = immutable.items
 
         val validIdsDeferred =
             CoroutineScope(dispatcher).async {
@@ -110,7 +102,19 @@ data class LibraryIndex(
             multiItemsList.filter { it.indexLineIds.any { id -> validIds.contains(id) } }
         val itemsFiltered = itemsList.filter { validIds.contains(it.id) }
 
-        return LibraryIndex(itemsFiltered, multiItemsFiltered)
+        return LibraryIndexImmutable(itemsFiltered, multiItemsFiltered)
+    }
+
+    fun toImmutableIndex(): LibraryIndexImmutable {
+        val itemsList: List<IndexLine>
+        val multiItemsList: List<MultiIndexLine>
+
+        synchronized(lock) {
+            itemsList = items.values.toList()
+            multiItemsList = multiItems.values.toList()
+        }
+
+        return LibraryIndexImmutable(itemsList, multiItemsList)
     }
 
     companion object {
@@ -174,7 +178,10 @@ data class LibraryIndex(
             items.sortBy { it.timestamp }
             multiItems.sortBy { it.timestamp }
 
-            return LibraryIndex(items, multiItems, outputCacheSize)
+            val itemMap = items.associateBy { it.id }.toMutableMap()
+            val multiMap = multiItems.associateBy { it.id }.toMutableMap()
+
+            return LibraryIndex(itemMap, multiMap, outputCacheSize)
         }
     }
 }

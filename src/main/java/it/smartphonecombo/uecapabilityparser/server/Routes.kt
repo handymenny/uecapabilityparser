@@ -70,7 +70,7 @@ object Routes {
     }
 
     fun storeList(ctx: Context, index: LibraryIndex) {
-        ctx.json(index)
+        ctx.json(index.toImmutableIndex())
     }
 
     fun storeGetItem(ctx: Context, index: LibraryIndex) {
