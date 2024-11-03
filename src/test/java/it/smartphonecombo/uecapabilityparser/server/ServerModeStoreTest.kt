@@ -6,6 +6,7 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.capabilitiesAssertEquals
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.multiPartRequest
+import it.smartphonecombo.uecapabilityparser.io.Custom
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
@@ -44,8 +45,8 @@ internal class ServerModeStoreTest {
         @JvmStatic
         @BeforeAll
         fun mockDispatchers() {
-            mockkStatic(Dispatchers::class)
-            every { Dispatchers.IO } returns dispatcher
+            mockkStatic(Dispatchers::Custom)
+            every { Dispatchers.Custom } returns dispatcher
         }
     }
 
