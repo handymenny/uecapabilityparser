@@ -15,6 +15,7 @@ import it.smartphonecombo.uecapabilityparser.extension.hasRat
 import it.smartphonecombo.uecapabilityparser.extension.internalError
 import it.smartphonecombo.uecapabilityparser.extension.throwContentTooLargeIfContentTooLarge
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.Custom
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import it.smartphonecombo.uecapabilityparser.io.NullInputSource
@@ -92,7 +93,7 @@ class JavalinApp {
         server.events { event ->
             event.serverStarted {
                 if (store != null && !storeInitialized) {
-                    CoroutineScope(Dispatchers.IO).launch { initializeStore(store) }
+                    CoroutineScope(Dispatchers.Custom).launch { initializeStore(store) }
                 }
             }
         }
@@ -125,10 +126,8 @@ class JavalinApp {
     ) {
         val parserVersion = Config.getOrDefault("project.version", "")
         val auto = strategy !== "force"
-        val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 2)
-        val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
 
-        withContext(dispatcher) {
+        withContext(Dispatchers.Custom) {
             IOUtils.createDirectories("$store/backup/output/")
             IOUtils.createDirectories("$store/backup/input/")
             index

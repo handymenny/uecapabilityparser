@@ -249,6 +249,11 @@ object Server : CliktCommand(name = "server") {
             .long()
             .default(256 * 1000 * 1000)
 
+    private val maxThreads by
+        option("-t", "--max-threads", metavar = "Threads", help = HelpMessage.MAX_THREADS)
+            .int()
+            .default(2)
+
     private val customCss by
         option("--custom-css", metavar = "FILE", help = HelpMessage.CUSTOM_CSS)
             .file(mustExist = true, canBeDir = false, mustBeReadable = true)
@@ -265,6 +270,7 @@ object Server : CliktCommand(name = "server") {
         // Set debug
         if (debug) Config["debug"] = debug.toString()
         Config["maxRequestSize"] = maxRequestSize.toString()
+        Config["maxThreads"] = maxThreads.toString()
         Config["customCss"] = customCss?.path ?: ""
         Config["customJs"] = customJs?.path ?: ""
 

@@ -8,6 +8,7 @@ import it.smartphonecombo.uecapabilityparser.UtilityForTests.capabilitiesAssertE
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.deleteDirectory
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.multiPartRequest
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.Custom
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
@@ -43,8 +44,8 @@ internal class ServerModeCompressionTest {
         @JvmStatic
         @BeforeAll
         fun mockDispatchers() {
-            mockkStatic(Dispatchers::class)
-            every { Dispatchers.IO } returns dispatcher
+            mockkStatic(Dispatchers::Custom)
+            every { Dispatchers.Custom } returns dispatcher
         }
     }
 

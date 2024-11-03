@@ -2,10 +2,11 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
-import io.mockk.clearStaticMockk
 import io.mockk.every
 import io.mockk.mockkStatic
+import io.mockk.unmockkAll
 import it.smartphonecombo.uecapabilityparser.extension.custom
+import it.smartphonecombo.uecapabilityparser.io.Custom
 import it.smartphonecombo.uecapabilityparser.query.BandLteDetailsValue
 import it.smartphonecombo.uecapabilityparser.query.BandNrDetailsValue
 import it.smartphonecombo.uecapabilityparser.query.ComboMrDcValue
@@ -337,14 +338,14 @@ internal class ServerModeFilterTest {
             app = JavalinApp()
 
             // initialize library, library is initialized only after server.start()
-            mockkStatic(Dispatchers::class)
-            every { Dispatchers.IO } returns dispatcher
+            mockkStatic(Dispatchers::Custom)
+            every { Dispatchers.Custom } returns dispatcher
             app.newServer().run {
                 start()
                 dispatcher.scheduler.advanceUntilIdle()
                 stop()
             }
-            clearStaticMockk(Dispatchers::class)
+            unmockkAll()
         }
 
         @JvmStatic

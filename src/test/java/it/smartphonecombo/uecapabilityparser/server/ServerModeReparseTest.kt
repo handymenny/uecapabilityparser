@@ -9,6 +9,7 @@ import it.smartphonecombo.uecapabilityparser.UtilityForTests.dirsSimilar
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.recreateDirOracles
 import it.smartphonecombo.uecapabilityparser.cli.Main
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
+import it.smartphonecombo.uecapabilityparser.io.Custom
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
@@ -158,8 +159,8 @@ internal class ServerModeReparseTest {
         @JvmStatic
         @BeforeAll
         fun mockDispatchers() {
-            mockkStatic(Dispatchers::class)
-            every { Dispatchers.IO } returns dispatcher
+            mockkStatic(Dispatchers::Custom)
+            every { Dispatchers.Custom } returns dispatcher
         }
     }
 }
