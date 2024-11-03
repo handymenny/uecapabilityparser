@@ -2,9 +2,8 @@ package it.smartphonecombo.uecapabilityparser.model.index
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
+import it.smartphonecombo.uecapabilityparser.extension.forAsync
 import it.smartphonecombo.uecapabilityparser.extension.mapAsync
-import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
-import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
@@ -15,8 +14,11 @@ import it.smartphonecombo.uecapabilityparser.util.optimize
 import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -29,13 +31,11 @@ data class LibraryIndexImmutable(
     val multiItems: List<MultiIndexLine> = emptyList(),
 )
 
-class LibraryIndex(
-    private val items: MutableMap<String, IndexLine> = mutableMapOf(),
-    private val multiItems: MutableMap<String, MultiIndexLine> = mutableMapOf(),
-    outputCacheSize: Int? = 0,
-) {
-    private val lock = Any()
+class LibraryIndex(outputCacheSize: Int?) {
+    private val items: MutableMap<String, IndexLine> = mutableMapOf()
+    private val multiItems: MutableMap<String, MultiIndexLine> = mutableMapOf()
     private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
+    private val lock = Any()
 
     fun addLine(line: IndexLine) {
         synchronized(lock) { items[line.id] = line }
@@ -121,71 +121,45 @@ class LibraryIndex(
         return LibraryIndexImmutable(itemsArray.toList(), multiItemsArray.toList())
     }
 
-    companion object {
-        fun buildIndex(path: String, outputCacheSize: Int?): LibraryIndex {
-            val outputDir = "$path/output"
-            val inputDir = "$path/input"
-            val multiDir = "$path/multi"
+    suspend fun populateIndexAsync(path: String) {
+        val outputDir = "$path/output"
+        val inputDir = "$path/input"
+        val multiDir = "$path/multi"
 
-            // Create directories if they don't exist
-            arrayOf(outputDir, inputDir, multiDir).forEach { createDirectories(it) }
+        // Create directories if they don't exist
+        arrayOf(outputDir, inputDir, multiDir).forEach { createDirectories(it) }
+        // Read all files
+        val inputFiles = File(inputDir).listFiles()?.sorted() ?: emptyList()
+        val outputFiles = File(outputDir).listFiles()?.toList() ?: emptyList()
+        val multiFiles = File(multiDir).listFiles()?.toList() ?: emptyList()
 
-            val outputFiles = File(outputDir).listFiles() ?: emptyArray()
-            val inputFiles = File(inputDir).listFiles() ?: emptyArray()
-            val multiFiles = File(multiDir).listFiles() ?: emptyArray()
+        val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 2)
+        val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
+        val jobs = mutableListOf<Job>()
 
-            // Sort files to make library consistent
-            arrayOf(outputFiles, inputFiles, multiFiles).forEach { it.sort() }
-
-            val items =
-                outputFiles
-                    .mapNotNull { outputFile ->
-                        try {
-                            val compressed = outputFile.extension == "gz"
-
-                            val capTxt = outputFile.toInputSource(compressed)
-
-                            // Drop any extension
-                            val id = outputFile.nameWithoutAnyExtension()
-
-                            val inputs =
-                                inputFiles
-                                    .filter { it.name.startsWith(id) }
-                                    .map(File::nameWithoutAnyExtension)
-
-                            val index = Json.custom().decodeFromInputSource<IndexLine>(capTxt)
-                            index.compressed = compressed
-                            index.inputs = inputs
-
-                            return@mapNotNull index
-                        } catch (ex: Exception) {
-                            echoSafe("Error ${ex.localizedMessage}", true)
-                            null
-                        }
+        withContext(dispatcher) {
+            val outputJobs =
+                outputFiles.forAsync {
+                    try {
+                        val newIndex = IndexLine.fromFile(it, inputFiles)
+                        addLine(newIndex)
+                    } catch (ex: Exception) {
+                        echoSafe("Error reading $it: $ex", true)
                     }
-                    .toMutableList()
+                }
+            jobs.addAll(outputJobs)
 
-            val multiItems =
-                multiFiles
-                    .mapNotNull { multiFile ->
-                        try {
-                            val compressed = multiFile.extension == "gz"
-                            val jsonTxt = multiFile.toInputSource(compressed)
-                            Json.custom().decodeFromInputSource<MultiIndexLine>(jsonTxt)
-                        } catch (ex: Exception) {
-                            echoSafe("Error ${ex.localizedMessage}", true)
-                            null
-                        }
+            val multiJobs =
+                multiFiles.forAsync {
+                    try {
+                        val newMultiIndex = MultiIndexLine.fromFile(it)
+                        addMultiLine(newMultiIndex)
+                    } catch (ex: Exception) {
+                        echoSafe("Error reading $it: $ex", true)
                     }
-                    .toMutableList()
-
-            items.sortBy { it.timestamp }
-            multiItems.sortBy { it.timestamp }
-
-            val itemMap = items.associateBy { it.id }.toMutableMap()
-            val multiMap = multiItems.associateBy { it.id }.toMutableMap()
-
-            return LibraryIndex(itemMap, multiMap, outputCacheSize)
+                }
+            jobs.addAll(multiJobs)
         }
+        joinAll(*jobs.toTypedArray())
     }
 }
