@@ -26,6 +26,7 @@ import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.io.File
+import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -42,19 +43,8 @@ class JavalinApp {
     private val compression = Config["compression"] == "true"
     private val maxOutputCache = Config.getOrDefault("cache", "0").toInt().takeIf { it >= 0 }
     private val store = Config["store"]
-    private var index = LibraryIndex()
-
-    init {
-        if (store != null) {
-            index = LibraryIndex.buildIndex(store, maxOutputCache)
-            val reparseStrategy = Config.getOrDefault("reparse", "off")
-            if (reparseStrategy != "off") {
-                CoroutineScope(Dispatchers.IO).launch {
-                    reparseLibrary(reparseStrategy, store, index, compression)
-                }
-            }
-        }
-    }
+    private val index = LibraryIndex(maxOutputCache)
+    private var storeInitialized = false
 
     fun newServer(): Javalin {
         val server =
@@ -99,7 +89,32 @@ class JavalinApp {
             }
         }
 
+        server.events { event ->
+            event.serverStarted {
+                if (store != null && !storeInitialized) {
+                    CoroutineScope(Dispatchers.IO).launch { initializeStore(store) }
+                }
+            }
+        }
+
         return server
+    }
+
+    private suspend fun initializeStore(store: String) {
+        // populate index
+        val elapsedTimeIndex = measureTimeMillis { index.populateIndexAsync(store) }
+        echoSafe("Index build took $elapsedTimeIndex ms")
+
+        // reparse index
+        val reparseStrategy = Config.getOrDefault("reparse", "off")
+        if (reparseStrategy != "off") {
+            echoSafe("Reparsing...")
+            val elapsedTimeReparse = measureTimeMillis {
+                reparseLibrary(reparseStrategy, store, index, compression)
+            }
+            echoSafe("Reparsing took $elapsedTimeReparse ms")
+        }
+        storeInitialized = true
     }
 
     private suspend fun reparseLibrary(

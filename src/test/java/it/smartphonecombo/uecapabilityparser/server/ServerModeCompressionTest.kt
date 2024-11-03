@@ -2,6 +2,8 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import io.mockk.every
+import io.mockk.mockkStatic
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.capabilitiesAssertEquals
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.deleteDirectory
 import it.smartphonecombo.uecapabilityparser.UtilityForTests.multiPartRequest
@@ -10,6 +12,8 @@ import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
 import java.util.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.add
@@ -21,6 +25,7 @@ import kotlinx.serialization.json.putJsonArray
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assumptions.assumeTrue
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -33,6 +38,14 @@ internal class ServerModeCompressionTest {
 
     companion object {
         private var pushedCap: Capabilities? = null
+        private val dispatcher = StandardTestDispatcher()
+
+        @JvmStatic
+        @BeforeAll
+        fun mockDispatchers() {
+            mockkStatic(Dispatchers::class)
+            every { Dispatchers.IO } returns dispatcher
+        }
     }
 
     @BeforeEach
@@ -128,6 +141,7 @@ internal class ServerModeCompressionTest {
         gzip: Boolean = false,
     ) =
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
+            dispatcher.scheduler.advanceUntilIdle()
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val actualText = response.body?.string() ?: ""
@@ -151,6 +165,7 @@ internal class ServerModeCompressionTest {
         oraclePath: String,
     ) =
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
+            dispatcher.scheduler.advanceUntilIdle()
             val response =
                 client.request(multiPartRequest(client.origin + url, request, files, true))
             Assertions.assertEquals(HttpStatus.OK.code, response.code)

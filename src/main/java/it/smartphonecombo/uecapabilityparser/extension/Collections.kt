@@ -7,9 +7,11 @@ import it.smartphonecombo.uecapabilityparser.model.filter.IUeCapabilityFilter
 import java.util.Collections
 import java.util.Enumeration
 import kotlin.collections.ArrayList
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 internal fun <E : Comparable<E>> Array<E>.indexOfMin(): Int {
     if (isEmpty()) {
@@ -66,6 +68,11 @@ internal fun BwMap.merge(other: BwMap) {
 internal suspend fun <T, R> List<T>.mapAsync(transform: suspend (T) -> R): List<R> =
     coroutineScope {
         map { async { transform(it) } }.awaitAll()
+    }
+
+internal suspend fun <T, R> List<T>.forAsync(transform: suspend (T) -> R): List<Job> =
+    coroutineScope {
+        map { launch { transform(it) } }
     }
 
 internal fun List<IUeCapabilityFilter>.hasRat(rat: Rat) = any { it.rat == rat }
