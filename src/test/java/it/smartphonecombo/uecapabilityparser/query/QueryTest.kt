@@ -23,6 +23,7 @@ import java.text.ParseException
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
@@ -39,7 +40,9 @@ internal class QueryTest {
         @BeforeAll
         fun loadLibrary() {
             val store = resourcesPath
-            val index = LibraryIndex.buildIndex(store, outputCacheSize = 10000)
+            val index = LibraryIndex(10000)
+            runBlocking { index.populateIndexAsync(store) }
+
             val capabilities =
                 index.getAll().mapNotNull { indexLine ->
                     val id = indexLine.id

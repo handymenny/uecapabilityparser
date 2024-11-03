@@ -2,6 +2,9 @@ package it.smartphonecombo.uecapabilityparser.server
 
 import io.javalin.http.HttpStatus
 import io.javalin.testtools.JavalinTest
+import io.mockk.clearStaticMockk
+import io.mockk.every
+import io.mockk.mockkStatic
 import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.query.BandLteDetailsValue
 import it.smartphonecombo.uecapabilityparser.query.BandNrDetailsValue
@@ -21,6 +24,8 @@ import it.smartphonecombo.uecapabilityparser.query.NrComponentUlValue
 import it.smartphonecombo.uecapabilityparser.query.Query
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.io.File
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.add
@@ -322,6 +327,7 @@ internal class ServerModeFilterTest {
     companion object {
         private val path = "src/test/resources/server/"
         private lateinit var app: JavalinApp
+        private val dispatcher = StandardTestDispatcher()
 
         @JvmStatic
         @BeforeAll
@@ -329,6 +335,16 @@ internal class ServerModeFilterTest {
             Config["store"] = "$path/inputForQuery/"
             Config["cache"] = "100"
             app = JavalinApp()
+
+            // initialize library, library is initialized only after server.start()
+            mockkStatic(Dispatchers::class)
+            every { Dispatchers.IO } returns dispatcher
+            app.newServer().run {
+                start()
+                dispatcher.scheduler.advanceUntilIdle()
+                stop()
+            }
+            clearStaticMockk(Dispatchers::class)
         }
 
         @JvmStatic
