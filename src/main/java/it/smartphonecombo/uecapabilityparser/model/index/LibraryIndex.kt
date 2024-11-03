@@ -4,6 +4,7 @@ import it.smartphonecombo.uecapabilityparser.extension.custom
 import it.smartphonecombo.uecapabilityparser.extension.decodeFromInputSource
 import it.smartphonecombo.uecapabilityparser.extension.forAsync
 import it.smartphonecombo.uecapabilityparser.extension.mapAsync
+import it.smartphonecombo.uecapabilityparser.io.Custom
 import it.smartphonecombo.uecapabilityparser.io.IOUtils
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.createDirectories
 import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
@@ -80,16 +81,13 @@ class LibraryIndex(outputCacheSize: Int?) {
     }
 
     fun filterByQuery(query: Query, libraryPath: String): LibraryIndexImmutable {
-        val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 4)
-        val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
-
         // immutable copies of items and multi items
         val immutable = toImmutableIndex()
         val multiItemsList = immutable.multiItems
         val itemsList = immutable.items
 
         val validIdsDeferred =
-            CoroutineScope(dispatcher).async {
+            CoroutineScope(Dispatchers.Custom).async {
                 itemsList.mapAsync { cap ->
                     val res = getOutput(cap.id, libraryPath, false)?.let { query.evaluateQuery(it) }
                     if (res == true) cap.id else null
@@ -133,11 +131,9 @@ class LibraryIndex(outputCacheSize: Int?) {
         val outputFiles = File(outputDir).listFiles()?.toList() ?: emptyList()
         val multiFiles = File(multiDir).listFiles()?.toList() ?: emptyList()
 
-        val threadCount = minOf(Runtime.getRuntime().availableProcessors(), 2)
-        val dispatcher = Dispatchers.IO.limitedParallelism(threadCount)
         val jobs = mutableListOf<Job>()
 
-        withContext(dispatcher) {
+        withContext(Dispatchers.Custom) {
             val outputJobs =
                 outputFiles.forAsync {
                     try {
