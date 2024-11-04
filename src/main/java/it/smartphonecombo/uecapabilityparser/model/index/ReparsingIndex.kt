@@ -32,7 +32,7 @@ class ReparsingIndex {
                 list.forEach {
                     val str = Json.custom().encodeToString(it)
                     out.write(str)
-                    out.newLine()
+                    out.write("\n")
                 }
             }
         } catch (_: Exception) {}
