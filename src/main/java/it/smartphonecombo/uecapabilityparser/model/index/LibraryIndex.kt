@@ -36,6 +36,7 @@ data class LibraryIndexImmutable(
 }
 
 class LibraryIndex(outputCacheSize: Int?) {
+    val reparsingIndex: ReparsingIndex = ReparsingIndex()
     private val items: MutableMap<String, IndexLine> = mutableMapOf()
     private val multiItems: MutableMap<String, MultiIndexLine> = mutableMapOf()
     private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
@@ -132,6 +133,7 @@ class LibraryIndex(outputCacheSize: Int?) {
         val outputDir = "$path/output"
         val inputDir = "$path/input"
         val multiDir = "$path/multi"
+        val reparsingIndexFile = "$path/reparsing.json"
 
         // Create directories if they don't exist
         arrayOf(outputDir, inputDir, multiDir).forEach { createDirectories(it) }
@@ -165,6 +167,10 @@ class LibraryIndex(outputCacheSize: Int?) {
                 }
             jobs.addAll(multiJobs)
         }
+
+        // read reparsingIndex
+        ReparsingIndex.fromFile(reparsingIndexFile).getAll().let { reparsingIndex.putAll(it) }
+
         joinAll(*jobs.toTypedArray())
     }
 }

@@ -37,8 +37,8 @@ object HelpMessage {
     const val REPARSE =
         """Re-parse stored capabilities with the given strategy. 
             Valid values are "off" (feature disabled), 
-            "force" (re-parse all),
-            "auto" (re-parse when parser version differs).
+            "force" (always re-parse),
+            "auto" (re-parse when parser version and resulting capabilities differs).
             A backup of the re-parsed data is kept in the backup folder.
             Note: --compression affects the capabilities re-parsed."""
     const val ERROR_TYPE_INPUT_MISMATCH = "A --type must be provided for each --input."

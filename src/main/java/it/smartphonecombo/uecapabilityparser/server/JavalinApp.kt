@@ -24,6 +24,7 @@ import it.smartphonecombo.uecapabilityparser.model.LogType
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.index.IndexLine
 import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
+import it.smartphonecombo.uecapabilityparser.model.index.ReparsingIndexLine
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.io.File
@@ -135,9 +136,25 @@ class JavalinApp {
             IOUtils.createDirectories("$store/backup/input/")
             index
                 .getAll()
-                .filterNot { auto && it.parserVersion == parserVersion }
-                .map { async { reparseItem(it, index, store, compression) } }
+                .filter { shouldReparse(it, index, !auto, parserVersion) }
+                .map { async { reparseItem(it, index, store, compression, !auto) } }
                 .awaitAll()
+
+            index.reparsingIndex.store("$store/reparsing.json")
+        }
+    }
+
+    private fun shouldReparse(
+        indexLine: IndexLine,
+        indexLibrary: LibraryIndex,
+        force: Boolean,
+        parserVersion: String,
+    ): Boolean {
+        return when {
+            force -> true
+            indexLine.parserVersion == parserVersion -> false
+            indexLibrary.reparsingIndex[indexLine.id]?.parserVersion == parserVersion -> false
+            else -> true
         }
     }
 
@@ -146,11 +163,15 @@ class JavalinApp {
         index: LibraryIndex,
         store: String,
         compression: Boolean,
+        force: Boolean,
     ) {
+        val id = indexLine.id
         val oldCapCompressed = indexLine.compressed
-        val capPath = "/output/${indexLine.id}.json"
-        val parsingResult: Parsing
+        val capPath = "/output/$id.json"
+
         val oldCapabilities: Capabilities
+        val newCapabilities: Capabilities
+        val parsingResult: Parsing
 
         try {
             val capText =
@@ -173,20 +194,36 @@ class JavalinApp {
 
             parsingResult =
                 Parsing.fromRequest(request)
-                    ?: throw NullPointerException("Reparsed ${indexLine.id} Capabilities is null")
+                    ?: throw NullPointerException("Reparsed $id Capabilities is null")
 
-            // Reset capabilities id and timestamp
-            parsingResult.capabilities.id = oldCapabilities.id
-            parsingResult.capabilities.timestamp = oldCapabilities.timestamp
+            newCapabilities = parsingResult.capabilities
+            // Reset capabilities id, timestamp and processingTime
+            newCapabilities.id = id
+            newCapabilities.timestamp = oldCapabilities.timestamp
+            val newProcessingTime = newCapabilities.getStringMetadata("processingTime")
+            oldCapabilities.getStringMetadata("processingTime")?.let {
+                newCapabilities.setMetadata("processingTime", it)
+            }
 
-            // store in temp
-            parsingResult.store(index, "$store/temp", compression)
+            val capChanged = oldCapabilities != newCapabilities
+            if (capChanged) echoSafe("Capabilities $id changed")
+
+            index.reparsingIndex.put(ReparsingIndexLine(id))
+
+            if (!force && !capChanged) return // skip storage
+
+            // restore newProcessingTime
+            newProcessingTime?.let { newCapabilities.setMetadata("processingTime", it) }
         } catch (ex: Exception) {
             echoSafe("Error re-parsing ${indexLine.id}:\t${ex.message}", true)
+            index.reparsingIndex.put(ReparsingIndexLine(id, error = ex.message))
             return
         }
 
         try {
+            // store in temp
+            parsingResult.store(index, "$store/temp", compression)
+
             val newIndex = index.find(oldCapabilities.id)!!
 
             // Move old -> bak
@@ -202,6 +239,7 @@ class JavalinApp {
             }
         } catch (ex: Exception) {
             echoSafe("Error storing reparsed ${indexLine.id}:\t${ex.message}", true)
+            index.reparsingIndex.put(ReparsingIndexLine(id, error = ex.message))
         }
     }
 

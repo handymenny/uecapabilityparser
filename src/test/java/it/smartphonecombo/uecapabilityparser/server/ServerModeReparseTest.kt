@@ -40,6 +40,7 @@ internal class ServerModeReparseTest {
             createEmptyDirs("$resourcesPath/oracleForReparse")
             copyDirectory("$resourcesPath/inputForReparse", tmpStorePath)
             replaceVersion("$tmpStorePath/good", "staging", parserVersion)
+            replaceVersion("$tmpStorePath/withIndex", "staging", parserVersion)
         } catch (_: Exception) {}
     }
 
@@ -120,6 +121,24 @@ internal class ServerModeReparseTest {
             ),
             "$resourcesPath/oracleForReparse/forceBad",
             "$tmpStorePath/bad",
+        )
+    }
+
+    @Test
+    fun testReparseAutoWithIndex() {
+        test(
+            arrayOf(
+                "server",
+                "-p",
+                "0",
+                "--store",
+                "$tmpStorePath/withIndex",
+                "--reparse",
+                "auto",
+                "--compression",
+            ),
+            "$resourcesPath/oracleForReparse/autoWithIndex",
+            "$tmpStorePath/withIndex",
         )
     }
 
