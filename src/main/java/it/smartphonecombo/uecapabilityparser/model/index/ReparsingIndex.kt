@@ -51,6 +51,7 @@ class ReparsingIndex {
                             DecodeSequenceMode.WHITESPACE_SEPARATED,
                         )
                 new.putAll(list.toList())
+                inputStream.close()
             } catch (_: Exception) {}
             return new
         }
