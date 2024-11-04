@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
@@ -30,27 +31,37 @@ import kotlinx.serialization.json.Json
 data class LibraryIndexImmutable(
     @Required val items: List<IndexLine>,
     val multiItems: List<MultiIndexLine> = emptyList(),
-)
+) {
+    val jsonString by lazy { Json.custom().encodeToString(this) }
+}
 
 class LibraryIndex(outputCacheSize: Int?) {
     private val items: MutableMap<String, IndexLine> = mutableMapOf()
     private val multiItems: MutableMap<String, MultiIndexLine> = mutableMapOf()
     private val outputCache = LruCache<String, Capabilities>(outputCacheSize)
+    private var cachedImmutable: LibraryIndexImmutable? = null
     private val lock = Any()
 
     fun addLine(line: IndexLine) {
-        synchronized(lock) { items[line.id] = line }
+        synchronized(lock) {
+            items[line.id] = line
+            cachedImmutable = null
+        }
     }
 
     fun replaceLine(line: IndexLine) {
         synchronized(lock) {
             items[line.id] = line
             outputCache.remove(line.id)
+            cachedImmutable = null
         }
     }
 
     fun addMultiLine(line: MultiIndexLine) {
-        synchronized(lock) { multiItems[line.id] = line }
+        synchronized(lock) {
+            multiItems[line.id] = line
+            cachedImmutable = null
+        }
     }
 
     fun find(id: String): IndexLine? = items[id]
@@ -104,19 +115,24 @@ class LibraryIndex(outputCacheSize: Int?) {
     }
 
     fun toImmutableIndex(): LibraryIndexImmutable {
-        val itemsArray: Array<IndexLine>
-        val multiItemsArray: Array<MultiIndexLine>
-
-        synchronized(lock) {
-            itemsArray = items.values.toTypedArray()
-            multiItemsArray = multiItems.values.toTypedArray()
+        // check if we've a cached valid value
+        cachedImmutable?.let {
+            return it
         }
 
-        // stable sorting
-        itemsArray.sortWith(compareBy<IndexLine>({ it.timestamp }, { it.id }).reversed())
-        multiItemsArray.sortWith(compareBy<MultiIndexLine>({ it.timestamp }, { it.id }).reversed())
+        synchronized(lock) {
+            val items = items.values.toTypedArray()
+            val multiItems = multiItems.values.toTypedArray()
 
-        return LibraryIndexImmutable(itemsArray.toList(), multiItemsArray.toList())
+            // stable sorting
+            items.sortWith(compareBy<IndexLine>({ it.timestamp }, { it.id }).reversed())
+            multiItems.sortWith(compareBy<MultiIndexLine>({ it.timestamp }, { it.id }).reversed())
+
+            val newImmutableIndex = LibraryIndexImmutable(items.toList(), multiItems.toList())
+            cachedImmutable = newImmutableIndex
+
+            return newImmutableIndex
+        }
     }
 
     suspend fun populateIndexAsync(path: String) {
