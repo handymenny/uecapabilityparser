@@ -131,7 +131,7 @@ class MultiParsing(
 
         val encodedString = Json.custom().encodeToString(multiIndexLine)
         IOUtils.outputFile(encodedString.toByteArray(), outputPath, compression)
-        libraryIndex.addMultiLine(multiIndexLine)
+        libraryIndex.putMultiLine(multiIndexLine)
 
         return multiIndexLine
     }

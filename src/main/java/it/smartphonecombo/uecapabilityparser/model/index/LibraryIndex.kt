@@ -42,14 +42,7 @@ class LibraryIndex(outputCacheSize: Int?) {
     private var cachedImmutable: LibraryIndexImmutable? = null
     private val lock = Any()
 
-    fun addLine(line: IndexLine) {
-        synchronized(lock) {
-            items[line.id] = line
-            cachedImmutable = null
-        }
-    }
-
-    fun replaceLine(line: IndexLine) {
+    fun putLine(line: IndexLine) {
         synchronized(lock) {
             items[line.id] = line
             outputCache.remove(line.id)
@@ -57,7 +50,7 @@ class LibraryIndex(outputCacheSize: Int?) {
         }
     }
 
-    fun addMultiLine(line: MultiIndexLine) {
+    fun putMultiLine(line: MultiIndexLine) {
         synchronized(lock) {
             multiItems[line.id] = line
             cachedImmutable = null
@@ -154,7 +147,7 @@ class LibraryIndex(outputCacheSize: Int?) {
                 outputFiles.forAsync {
                     try {
                         val newIndex = IndexLine.fromFile(it, inputFiles)
-                        addLine(newIndex)
+                        putLine(newIndex)
                     } catch (ex: Exception) {
                         echoSafe("Error reading $it: $ex", true)
                     }
@@ -165,7 +158,7 @@ class LibraryIndex(outputCacheSize: Int?) {
                 multiFiles.forAsync {
                     try {
                         val newMultiIndex = MultiIndexLine.fromFile(it)
-                        addMultiLine(newMultiIndex)
+                        putMultiLine(newMultiIndex)
                     } catch (ex: Exception) {
                         echoSafe("Error reading $it: $ex", true)
                     }

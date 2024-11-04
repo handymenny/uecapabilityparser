@@ -104,7 +104,7 @@ class Parsing(
                 capabilities.getStringMetadata("defaultNR").toBoolean(),
                 capabilities.parserVersion,
             )
-        libraryIndex?.addLine(indexLine)
+        libraryIndex?.putLine(indexLine)
         return indexLine
     }
 
