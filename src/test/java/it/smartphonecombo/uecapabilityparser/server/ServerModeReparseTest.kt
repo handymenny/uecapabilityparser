@@ -37,7 +37,7 @@ internal class ServerModeReparseTest {
             deleteDirectory(tmpStorePath)
         } catch (_: Exception) {}
         try {
-            createMultiDir("$resourcesPath/oracleForReparse")
+            createEmptyDirs("$resourcesPath/oracleForReparse")
             copyDirectory("$resourcesPath/inputForReparse", tmpStorePath)
             replaceVersion("$tmpStorePath/good", "staging", parserVersion)
         } catch (_: Exception) {}
@@ -132,9 +132,13 @@ internal class ServerModeReparseTest {
         assertTrue(dirsSimilar(oraclePath, storePath))
     }
 
-    private fun createMultiDir(path: String) {
+    private fun createEmptyDirs(path: String) {
         File(path).listFiles()?.filter(File::isDirectory)?.forEach {
             IOUtils.createDirectories(it.absolutePath + "/multi")
+            IOUtils.createDirectories(it.absolutePath + "/backup/input")
+            IOUtils.createDirectories(it.absolutePath + "/backup/output")
+            IOUtils.createDirectories(it.absolutePath + "/temp/input")
+            IOUtils.createDirectories(it.absolutePath + "/temp/output")
         }
     }
 

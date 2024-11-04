@@ -27,6 +27,7 @@ import it.smartphonecombo.uecapabilityparser.model.index.LibraryIndex
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.Parsing
 import java.io.File
+import java.io.FileNotFoundException
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -128,6 +129,8 @@ class JavalinApp {
         val auto = strategy !== "force"
 
         withContext(Dispatchers.Custom) {
+            IOUtils.createDirectories("$store/temp/output/")
+            IOUtils.createDirectories("$store/temp/input/")
             IOUtils.createDirectories("$store/backup/output/")
             IOUtils.createDirectories("$store/backup/input/")
             index
@@ -144,48 +147,61 @@ class JavalinApp {
         store: String,
         compression: Boolean,
     ) {
-        val compressed = indexLine.compressed
+        val oldCapCompressed = indexLine.compressed
         val capPath = "/output/${indexLine.id}.json"
+        val parsingResult: Parsing
+        val oldCapabilities: Capabilities
+
         try {
             val capText =
-                IOUtils.inputSourceAndMove("$store$capPath", "$store/backup$capPath", compressed)
-                    ?: NullInputSource
+                IOUtils.getInputSource("$store$capPath", oldCapCompressed)
+                    ?: throw FileNotFoundException("$capPath not found")
 
-            val capabilities = Json.custom().decodeFromInputSource<Capabilities>(capText)
+            oldCapabilities = Json.custom().decodeFromInputSource<Capabilities>(capText)
             val inputMap =
                 indexLine.inputs.mapNotNull {
-                    IOUtils.inputSourceAndMove(
-                        "$store/input/$it",
-                        "$store/backup/input/$it",
-                        compressed,
-                    )
+                    IOUtils.getInputSource("$store/input/$it", oldCapCompressed)
                 }
 
             val request =
                 RequestParse.buildRequest(
                     *inputMap.toTypedArray(),
-                    type = capabilities.logType,
+                    type = oldCapabilities.logType,
                     description = indexLine.description,
-                    ratList = guessRats(capabilities, inputMap.size),
+                    ratList = guessRats(oldCapabilities, inputMap.size),
                 )
 
-            Parsing.fromRequest(request)?.let {
-                // Reset capabilities id and timestamp
-                it.capabilities.id = capabilities.id
-                it.capabilities.timestamp = capabilities.timestamp
-                it.store(index, store, compression)
-            } ?: throw NullPointerException("Reparsed Capabilities is null")
+            parsingResult =
+                Parsing.fromRequest(request)
+                    ?: throw NullPointerException("Reparsed ${indexLine.id} Capabilities is null")
+
+            // Reset capabilities id and timestamp
+            parsingResult.capabilities.id = oldCapabilities.id
+            parsingResult.capabilities.timestamp = oldCapabilities.timestamp
+
+            // store in temp
+            parsingResult.store(index, "$store/temp", compression)
         } catch (ex: Exception) {
             echoSafe("Error re-parsing ${indexLine.id}:\t${ex.message}", true)
-            try {
-                // restore prev version
-                IOUtils.copy("$store/backup$capPath", "$store$capPath", compressed)
-                indexLine.inputs.forEach {
-                    IOUtils.copy("$store/backup/input/$it", "$store/input/$it", compressed)
-                }
-            } catch (ex: Exception) {
-                ex.printStackTrace()
+            return
+        }
+
+        try {
+            val newIndex = index.find(oldCapabilities.id)!!
+
+            // Move old -> bak
+            IOUtils.move("$store$capPath", "$store/backup$capPath", oldCapCompressed)
+            indexLine.inputs.forEach { input ->
+                IOUtils.move("$store/input/$input", "$store/backup/input/$input", oldCapCompressed)
             }
+
+            // Move tmp -> store
+            IOUtils.move("$store/temp$capPath", "$store$capPath", compression)
+            newIndex.inputs.forEach { input ->
+                IOUtils.move("$store/temp/input/$input", "$store/input/$input", compression)
+            }
+        } catch (ex: Exception) {
+            echoSafe("Error storing reparsed ${indexLine.id}:\t${ex.message}", true)
         }
     }
 
