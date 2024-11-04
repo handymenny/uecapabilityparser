@@ -173,11 +173,8 @@ class JavalinApp {
                 // Reset capabilities id and timestamp
                 it.capabilities.id = capabilities.id
                 it.capabilities.timestamp = capabilities.timestamp
-                it.store(null, store, compression)
+                it.store(index, store, compression)
             } ?: throw NullPointerException("Reparsed Capabilities is null")
-
-            val newLine = indexLine.copy(compressed = compression)
-            index.replaceLine(newLine)
         } catch (ex: Exception) {
             echoSafe("Error re-parsing ${indexLine.id}:\t${ex.message}", true)
             try {
