@@ -14,6 +14,7 @@ import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.Bandwidth
+import it.smartphonecombo.uecapabilityparser.model.bandwidth.InvalidBandwidth
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboEnDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ComboNr
@@ -414,6 +415,7 @@ object Import0xB826 : ImportCapabilities {
 
         val single =
             when (index) {
+                0 -> 0
                 1 -> 5
                 2 -> 10
                 3 -> 15
@@ -428,10 +430,10 @@ object Import0xB826 : ImportCapabilities {
                 19 -> 80
                 20 -> 90
                 in 21..29 -> 100
-                else -> index
+                else -> null
             }
 
-        return single.toBandwidth()
+        return single?.toBandwidth() ?: InvalidBandwidth
     }
 
     /**
@@ -487,10 +489,10 @@ object Import0xB826 : ImportCapabilities {
                 51 -> 15
                 55 -> 5
                 56 -> 80
-                else -> index
+                else -> null
             }
 
-        return single.toBandwidth()
+        return single?.toBandwidth() ?: InvalidBandwidth
     }
 
     /**
@@ -512,11 +514,11 @@ object Import0xB826 : ImportCapabilities {
                 65 -> listOf(100, 80)
                 else -> {
                     echoSafe("Warning: 0xB826 BW index is above 65: $index", err = true)
-                    emptyList()
+                    null
                 }
             }
 
-        return Bandwidth.from(mixed)
+        return mixed?.let { Bandwidth.from(it) } ?: InvalidBandwidth
     }
 
     /**
@@ -532,6 +534,7 @@ object Import0xB826 : ImportCapabilities {
 
         val single =
             when (index) {
+                0 -> 0
                 5 -> 5
                 6 -> 15
                 in 1..4,
@@ -547,11 +550,11 @@ object Import0xB826 : ImportCapabilities {
                 in 20..26 -> 100
                 else -> {
                     echoSafe("Warning: 0xB826 BW index is above 26: $index", err = true)
-                    0
+                    null
                 }
             }
 
-        return single.toBandwidth()
+        return single?.toBandwidth() ?: InvalidBandwidth
     }
 
     /**
