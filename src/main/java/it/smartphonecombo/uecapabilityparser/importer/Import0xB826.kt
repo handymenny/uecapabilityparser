@@ -579,12 +579,7 @@ object Import0xB826 : ImportCapabilities {
      * Some values are guessed, so they can be wrong or incomplete.
      */
     private fun getSCSFromIndex(index: Int): Int {
-        return when (index) {
-            1 -> 15
-            2 -> 30
-            3 -> 60
-            4 -> 120
-            else -> index
-        }
+        val shiftAmount = index - 1
+        return (1 shl shiftAmount) * 15
     }
 }
