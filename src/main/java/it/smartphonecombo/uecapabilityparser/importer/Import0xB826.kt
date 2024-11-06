@@ -569,7 +569,7 @@ object Import0xB826 : ImportCapabilities {
             3 -> "RF_ENDC"
             4 -> "RF_NRCA"
             5 -> "RF_NRDC"
-            else -> index.toString()
+            else -> "UNKNOWN_SOURCE_$index"
         }
     }
 
