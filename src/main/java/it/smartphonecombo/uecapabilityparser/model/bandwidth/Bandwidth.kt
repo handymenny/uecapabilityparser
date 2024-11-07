@@ -68,4 +68,14 @@ data class MixedBandwidth(@SerialName("value") private val list: List<Int>) : Ba
     override fun max(): Int = list.max()
 }
 
+@Serializable
+@SerialName("invalid")
+object InvalidBandwidth : Bandwidth {
+    override fun toString(): String = "?"
+
+    override fun average(): Double = 0.0
+
+    override fun max(): Int = 0
+}
+
 fun Int.toBandwidth(): Bandwidth = Bandwidth.from(this)
