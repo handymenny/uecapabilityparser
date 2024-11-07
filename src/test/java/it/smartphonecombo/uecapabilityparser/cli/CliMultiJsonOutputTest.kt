@@ -24,6 +24,7 @@ internal class CliMultiJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "pcap.json",
         )
     }
@@ -38,6 +39,7 @@ internal class CliMultiJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "segmented.json",
         )
     }
@@ -55,6 +57,7 @@ internal class CliMultiJsonOutputTest {
             "Q",
             "-j",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826-0xB0CD.json",
         )
     }
@@ -81,6 +84,7 @@ internal class CliMultiJsonOutputTest {
             "QMDL",
             "-j",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "scat.json",
         )
     }
@@ -98,6 +102,7 @@ internal class CliMultiJsonOutputTest {
             "NSG",
             "-j",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgJson.json",
         )
     }

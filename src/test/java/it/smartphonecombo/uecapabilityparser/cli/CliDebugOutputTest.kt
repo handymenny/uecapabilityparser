@@ -25,6 +25,7 @@ internal class CliDebugOutputTest {
             "-t",
             "QLTE",
             "-d",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB0CDMultiHex.txt",
         )
     }
@@ -37,6 +38,7 @@ internal class CliDebugOutputTest {
             "-t",
             "QNR",
             "--debug",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826Multi.txt",
         )
     }
@@ -49,6 +51,7 @@ internal class CliDebugOutputTest {
             "-t",
             "W",
             "-d",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkMrdc.txt",
         )
     }
