@@ -19,13 +19,23 @@ internal class CliCsvOutputTest {
             "C",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "carrierPolicy.csv",
         )
     }
 
     @Test
     fun test0xB0CD() {
-        test("-i", "$path/input/0xB0CD.txt", "-t", "Q", "-c", "-", oracleFilename = "0xB0CD.csv")
+        test(
+            "-i",
+            "$path/input/0xB0CD.txt",
+            "-t",
+            "Q",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "0xB0CD.csv",
+        )
     }
 
     @Test
@@ -37,23 +47,51 @@ internal class CliCsvOutputTest {
             "QLTE",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB0CDMultiHex.csv",
         )
     }
 
     @Test
     fun testMtkLte() {
-        test("-i", "$path/input/mtkLte.txt", "-t", "M", "-c", "-", oracleFilename = "mtkLte.csv")
+        test(
+            "-i",
+            "$path/input/mtkLte.txt",
+            "-t",
+            "M",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "mtkLte.csv",
+        )
     }
 
     @Test
     fun testNvItem() {
-        test("-i", "$path/input/nvItem.bin", "-t", "E", "-c", "-", oracleFilename = "nvItem.csv")
+        test(
+            "-i",
+            "$path/input/nvItem.bin",
+            "-t",
+            "E",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "nvItem.csv",
+        )
     }
 
     @Test
     fun test0xB826() {
-        test("-i", "$path/input/0xB826.hex", "-t", "QNR", "-c", "-", oracleFilename = "0xB826.csv")
+        test(
+            "-i",
+            "$path/input/0xB826.hex",
+            "-t",
+            "QNR",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "0xB826.csv",
+        )
     }
 
     @Test
@@ -65,6 +103,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826Multi.csv",
         )
     }
@@ -78,6 +117,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826MultiV14.csv",
         )
     }
@@ -91,6 +131,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826MultiScat.csv",
         )
     }
@@ -104,6 +145,7 @@ internal class CliCsvOutputTest {
             "QNR",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826MultiScat0x9801.csv",
         )
     }
@@ -117,6 +159,7 @@ internal class CliCsvOutputTest {
             "CNR",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "nrCapPrune.csv",
         )
     }
@@ -130,6 +173,7 @@ internal class CliCsvOutputTest {
             "RF",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "qctModemCap.csv",
         )
     }
@@ -143,6 +187,7 @@ internal class CliCsvOutputTest {
             "SHNR",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "shannonNrUeCap.csv",
         )
     }
@@ -156,6 +201,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkEutra.csv",
         )
     }
@@ -169,6 +215,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkNr.csv",
         )
     }
@@ -182,6 +229,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkMrdc.csv",
         )
     }
@@ -195,6 +243,7 @@ internal class CliCsvOutputTest {
             "W",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkMrdcSplit.csv",
         )
     }
@@ -208,18 +257,37 @@ internal class CliCsvOutputTest {
             "N",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgEutra.csv",
         )
     }
 
     @Test
     fun testNsgNr() {
-        test("-i", "$path/input/nsgNr.txt", "-t", "N", "-c", "-", oracleFilename = "nsgNr.csv")
+        test(
+            "-i",
+            "$path/input/nsgNr.txt",
+            "-t",
+            "N",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "nsgNr.csv",
+        )
     }
 
     @Test
     fun testNsgMrdc() {
-        test("-i", "$path/input/nsgMrdc.txt", "-t", "N", "-c", "-", oracleFilename = "nsgMrdc.csv")
+        test(
+            "-i",
+            "$path/input/nsgMrdc.txt",
+            "-t",
+            "N",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "nsgMrdc.csv",
+        )
     }
 
     @Test
@@ -231,13 +299,23 @@ internal class CliCsvOutputTest {
             "N",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgMrdcSplit.csv",
         )
     }
 
     @Test
     fun testNsgSul() {
-        test("-i", "$path/input/nsgSul.txt", "-t", "N", "-c", "-", oracleFilename = "nsgSul.csv")
+        test(
+            "-i",
+            "$path/input/nsgSul.txt",
+            "-t",
+            "N",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "nsgSul.csv",
+        )
     }
 
     @Test
@@ -249,6 +327,7 @@ internal class CliCsvOutputTest {
             "O",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "osixMrdc.csv",
         )
     }
@@ -264,6 +343,7 @@ internal class CliCsvOutputTest {
             "LTE",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexEutra.csv",
         )
     }
@@ -279,6 +359,7 @@ internal class CliCsvOutputTest {
             "NR",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexNr.csv",
         )
     }
@@ -294,6 +375,7 @@ internal class CliCsvOutputTest {
             "LTE,NR,ENDC",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexMrdcSplit.csv",
         )
     }
@@ -309,6 +391,7 @@ internal class CliCsvOutputTest {
             "H",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexSegmented.csv",
         )
     }
@@ -322,6 +405,7 @@ internal class CliCsvOutputTest {
             "QC",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "qcatMrdc.csv",
         )
     }
@@ -335,6 +419,7 @@ internal class CliCsvOutputTest {
             "QC",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "qcatNrdc.csv",
         )
     }
@@ -348,6 +433,7 @@ internal class CliCsvOutputTest {
             "T",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "temsEutra.csv",
         )
     }
@@ -361,6 +447,7 @@ internal class CliCsvOutputTest {
             "T",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "temsMrdcSplit.csv",
         )
     }
@@ -374,6 +461,7 @@ internal class CliCsvOutputTest {
             "A",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "amarisoftEutra.csv",
         )
     }
@@ -387,13 +475,23 @@ internal class CliCsvOutputTest {
             "A",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "amarisoftNr.csv",
         )
     }
 
     @Test
     fun testPcap() {
-        test("-i", "$path/input/pcap.pcap", "-t", "P", "-c", "-", oracleFilename = "pcap.txt")
+        test(
+            "-i",
+            "$path/input/pcap.pcap",
+            "-t",
+            "P",
+            "-c",
+            "-",
+            "--suppress-annoying-messages",
+            oracleFilename = "pcap.txt",
+        )
     }
 
     @Test
@@ -405,6 +503,7 @@ internal class CliCsvOutputTest {
             "P",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "segmented.txt",
         )
     }
@@ -422,6 +521,7 @@ internal class CliCsvOutputTest {
             "Q",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826-0xB0CD.csv",
         )
     }
@@ -448,6 +548,7 @@ internal class CliCsvOutputTest {
             "QMDL",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "scat.csv",
         )
     }
@@ -465,6 +566,7 @@ internal class CliCsvOutputTest {
             "NSG",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgJson.txt",
         )
     }

@@ -58,4 +58,16 @@ object HelpMessage {
     const val CUSTOM_JS = "Inject custom js in Web UI"
     const val LIBRARY_CACHE =
         "Number of items to cache, each items occupies ~4-80KB of RAM. 0 = disabled, -1 = unlimited."
+    const val ANNOYING_MESSAGE_OPTION = "Don't ask to support the project"
+    val ANNOYING_MESSAGE =
+        """
+            ----------------------------------------------------
+            | Found UE Capability Parser useful?               |
+            | Support its development!                         |
+            | More info on GitHub:                             |
+            | https://github.com/handymenny/uecapabilityparser |
+            ----------------------------------------------------
+
+        """
+            .trimIndent()
 }

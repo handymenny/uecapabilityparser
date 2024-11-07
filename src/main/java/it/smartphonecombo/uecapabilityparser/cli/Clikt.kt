@@ -112,11 +112,16 @@ object Cli : CliktCommand(name = "cli") {
 
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
+    private val suppressAnnoyingMessage by
+        option("--suppress-annoying-messages", help = HelpMessage.ANNOYING_MESSAGE_OPTION).flag()
+
     private lateinit var jsonFormat: Json
 
     override fun help(context: Context) = "Starts ue capability parser in cli mode"
 
     override fun run() {
+        if (!suppressAnnoyingMessage) echo(HelpMessage.ANNOYING_MESSAGE)
+
         // Set debug
         if (debug) Config["debug"] = debug.toString()
 
@@ -264,9 +269,14 @@ object Server : CliktCommand(name = "server") {
 
     private val debug by option("-d", "--debug", help = HelpMessage.DEBUG).flag()
 
+    private val suppressAnnoyingMessage by
+        option("--suppress-annoying-messages", help = HelpMessage.ANNOYING_MESSAGE_OPTION).flag()
+
     override fun help(context: Context) = "Starts ue capability parser in server mode"
 
     override fun run() {
+        if (!suppressAnnoyingMessage) echo(HelpMessage.ANNOYING_MESSAGE)
+
         // Set debug
         if (debug) Config["debug"] = debug.toString()
         Config["maxRequestSize"] = maxRequestSize.toString()

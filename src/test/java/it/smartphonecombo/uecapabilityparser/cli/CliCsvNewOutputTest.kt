@@ -19,6 +19,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "carrierPolicy.csv",
         )
     }
@@ -34,6 +35,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB0CD.csv",
         )
     }
@@ -49,6 +51,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "mtkLte.csv",
         )
     }
@@ -64,6 +67,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "nvItem.csv",
         )
     }
@@ -79,6 +83,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "qctModemCap.csv",
         )
     }
@@ -94,6 +99,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkEutra.csv",
         )
     }
@@ -109,6 +115,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgEutra.csv",
         )
     }
@@ -124,6 +131,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "temsEutra.csv",
         )
     }
@@ -139,6 +147,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "amarisoftEutra.csv",
         )
     }
@@ -156,6 +165,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexEutra.csv",
         )
     }
@@ -175,6 +185,7 @@ internal class CliCsvNewOutputTest {
             "-",
             "--new-csv-format",
             "true",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826-0xB0CD.csv",
         )
     }
@@ -188,6 +199,7 @@ internal class CliCsvNewOutputTest {
             "SHLTE",
             "-c",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "shannonLteUeCap.csv",
         )
     }

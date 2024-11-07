@@ -22,6 +22,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "carrierPolicy.json",
         )
     }
@@ -36,6 +37,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB0CD.json",
         )
     }
@@ -50,6 +52,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB0CDMultiHex.json",
         )
     }
@@ -64,6 +67,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "mtkLte.json",
         )
     }
@@ -78,6 +82,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "nvItem.json",
         )
     }
@@ -92,6 +97,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826.json",
         )
     }
@@ -106,6 +112,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826Multi.json",
         )
     }
@@ -120,6 +127,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826MultiV14.json",
         )
     }
@@ -134,6 +142,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826MultiScat.json",
         )
     }
@@ -148,6 +157,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "0xB826Multi0x9801.json",
         )
     }
@@ -162,6 +172,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "nrCapPrune.json",
         )
     }
@@ -176,6 +187,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "qctModemCap.json",
         )
     }
@@ -190,6 +202,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "shannonNrUeCap.json",
         )
     }
@@ -204,6 +217,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "shannonLteUeCap.json",
         )
     }
@@ -218,6 +232,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkEutra.json",
         )
     }
@@ -232,6 +247,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkNr.json",
         )
     }
@@ -246,6 +262,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkMrdc.json",
         )
     }
@@ -259,6 +276,7 @@ internal class CliJsonOutputTest {
             "W",
             "-j",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "wiresharkMrdcSplit.json",
         )
     }
@@ -273,6 +291,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgEutra.json",
         )
     }
@@ -287,6 +306,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgNr.json",
         )
     }
@@ -301,6 +321,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgMrdc.json",
         )
     }
@@ -314,6 +335,7 @@ internal class CliJsonOutputTest {
             "N",
             "-j",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgMrdcSplit.json",
         )
     }
@@ -328,6 +350,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "nsgSul.json",
         )
     }
@@ -342,6 +365,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "osixMrdc.json",
         )
     }
@@ -358,6 +382,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexEutra.json",
         )
     }
@@ -374,6 +399,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexNr.json",
         )
     }
@@ -389,6 +415,7 @@ internal class CliJsonOutputTest {
             "H",
             "-j",
             "-",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexMrdcSplit.json",
         )
     }
@@ -405,6 +432,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "ueCapHexSegmented.json",
         )
     }
@@ -419,6 +447,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "qcatMrdc.json",
         )
     }
@@ -433,6 +462,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "qcatNrdc.json",
         )
     }
@@ -447,6 +477,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "temsEutra.json",
         )
     }
@@ -461,6 +492,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "temsMrdcSplit.json",
         )
     }
@@ -475,6 +507,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "amarisoftEutra.json",
         )
     }
@@ -489,6 +522,7 @@ internal class CliJsonOutputTest {
             "-j",
             "-",
             "--json-pretty-print",
+            "--suppress-annoying-messages",
             oracleFilename = "amarisoftNr.json",
         )
     }
