@@ -1211,7 +1211,10 @@ object ImportCapabilityInformation : ImportCapabilities {
         var uplink = emptyList<FeatureSet>()
 
         nrCapability.rootJson.getObject("featureSets")?.let { featureSets ->
-            val downlinkPerCC =
+            val downlinkPerCC = mutableListOf<FeaturePerCCNr>()
+            val uplinkPerCC = mutableListOf<FeaturePerCCNr>()
+
+            val downlinkPerCCr15 =
                 featureSets.getArray("featureSetsDownlinkPerCC")?.map {
                     val scs =
                         it.getString("supportedSubcarrierSpacingDL")
@@ -1242,6 +1245,25 @@ object ImportCapabilityInformation : ImportCapabilities {
                     )
                 }
 
+            downlinkPerCCr15?.let { downlinkPerCC.addAll(it) }
+
+            // r17 bw
+            featureSets.getArray("featureSetsDownlinkPerCC-v1700")?.forEachIndexed { index, it ->
+                val supportedBandwidthDL = it.getObject("supportedBandwidthDL-v1710")
+                val bwFr1OrFr2 =
+                    supportedBandwidthDL?.getString("fr1-r17")
+                        ?: supportedBandwidthDL?.getString("fr2-r17")
+
+                val bwR17 = parseBw(bwFr1OrFr2)
+
+                if (bwR17 != 0) {
+                    val curr = downlinkPerCC[index]
+                    val bw90MHzSupported = bwR17 >= 90 && curr.channelBW90mhz
+                    val new = curr.copy(bw = bwR17, channelBW90mhz = bw90MHzSupported)
+                    downlinkPerCC[index] = new
+                }
+            }
+
             downlink =
                 featureSets.getArray("featureSetsDownlink")?.mapNotNull { featureSetPerCCList ->
                     val list =
@@ -1259,7 +1281,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     }
                 } ?: downlink
 
-            val uplinkPerCC =
+            val uplinkPerCCr15 =
                 featureSets.getArray("featureSetsUplinkPerCC")?.map {
                     val scs =
                         it.getString("supportedSubcarrierSpacingUL")
@@ -1293,6 +1315,25 @@ object ImportCapabilityInformation : ImportCapabilities {
                         channelBW90mhz = channelBW90mhz,
                     )
                 }
+
+            uplinkPerCCr15?.let { uplinkPerCC.addAll(it) }
+
+            // r17 bw
+            featureSets.getArray("featureSetsUplinkPerCC-v1700")?.forEachIndexed { index, it ->
+                val supportedBandwidthDL = it.getObject("supportedBandwidthUL-v1710")
+                val bwFr1OrFr2 =
+                    supportedBandwidthDL?.getString("fr1-r17")
+                        ?: supportedBandwidthDL?.getString("fr2-r17")
+
+                val bwR17 = parseBw(bwFr1OrFr2)
+
+                if (bwR17 != 0) {
+                    val curr = uplinkPerCC[index]
+                    val bw90MHzSupported = bwR17 >= 90 && curr.channelBW90mhz
+                    val new = curr.copy(bw = bwR17, channelBW90mhz = bw90MHzSupported)
+                    uplinkPerCC[index] = new
+                }
+            }
 
             uplink =
                 featureSets.getArray("featureSetsUplink")?.mapNotNull { featureSetPerCCList ->
