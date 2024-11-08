@@ -159,6 +159,11 @@ internal class ImportCapabilityInformationTest :
     }
 
     @Test
+    fun ueCapNr35MHzR15() {
+        parse("ueCapNr35MHzR15.json", "ueCapNr35MHzR15.json")
+    }
+
+    @Test
     fun ueRedCapSegNotSupported() {
         parse("ueRedCapSegNotSupported.json", "ueRedCapSegNotSupported.json")
     }
