@@ -177,4 +177,14 @@ internal class ImportCapabilityInformationTest :
     fun ueRedCapTDD() {
         parse("ueRedCapTDD.json", "ueRedCapTDD.json")
     }
+
+    @Test
+    fun ueCapNrUlTxSwitchR16() {
+        parse("ueCapNrUlTxSwitchR16.json", "ueCapNrUlTxSwitchR16.json")
+    }
+
+    @Test
+    fun ueCapNrUlTxSwitchR16_2() {
+        parse("ueCapNrUlTxSwitchR16_2.json", "ueCapNrUlTxSwitchR16_2.json")
+    }
 }

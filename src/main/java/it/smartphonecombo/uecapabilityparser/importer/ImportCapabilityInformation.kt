@@ -10,6 +10,7 @@ import it.smartphonecombo.uecapabilityparser.extension.getInt
 import it.smartphonecombo.uecapabilityparser.extension.getObject
 import it.smartphonecombo.uecapabilityparser.extension.getObjectAtPath
 import it.smartphonecombo.uecapabilityparser.extension.getString
+import it.smartphonecombo.uecapabilityparser.extension.isSUL
 import it.smartphonecombo.uecapabilityparser.extension.merge
 import it.smartphonecombo.uecapabilityparser.extension.mutableListWithCapacity
 import it.smartphonecombo.uecapabilityparser.extension.typedList
@@ -25,6 +26,9 @@ import it.smartphonecombo.uecapabilityparser.model.Mimo
 import it.smartphonecombo.uecapabilityparser.model.PowerClass
 import it.smartphonecombo.uecapabilityparser.model.Rat
 import it.smartphonecombo.uecapabilityparser.model.SingleBCS
+import it.smartphonecombo.uecapabilityparser.model.UplinkTxSwitchConfig
+import it.smartphonecombo.uecapabilityparser.model.UplinkTxSwitchOption
+import it.smartphonecombo.uecapabilityparser.model.UplinkTxSwitchType
 import it.smartphonecombo.uecapabilityparser.model.band.BandBoxed
 import it.smartphonecombo.uecapabilityparser.model.band.BandLteDetails
 import it.smartphonecombo.uecapabilityparser.model.band.BandNrDetails
@@ -145,7 +149,9 @@ object ImportCapabilityInformation : ImportCapabilities {
             nrBandsMap = getNrBands(nr, ueType).associateBy({ it.band }, { it })
             nrFeatures = getNRFeatureSet(nr)
             val featureSetCombination = getFeatureSetCombinations(nr)
-            val saCombos = getNrBandCombinations(nr).typedList<ComboNr>()
+            val nrCaCombos = getNrBandCombinations(nr).typedList<ComboNr>()
+            val saUlTxSwitchCombos = getUlTxSwitchBandCombinations(nr)
+            val saCombos = nrCaCombos + saUlTxSwitchCombos
             comboList.nrCombos =
                 linkFeaturesAndCarrier(
                         saCombos,
@@ -156,7 +162,8 @@ object ImportCapabilityInformation : ImportCapabilities {
                         nrBandsMap,
                     )
                     .typedList()
-            val nrDcCombos = getNrDcBandCombinations(nr, saCombos)
+
+            val nrDcCombos = getNrDcBandCombinations(nr, nrCaCombos)
             val nrDcComboWithFeatures =
                 linkFeaturesAndCarrier(
                         nrDcCombos,
@@ -172,6 +179,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                     val (fr2, fr1) = combo.masterComponents.partition { it.isFR2 }
                     ComboNrDc(fr1, fr2, combo.featureSet, combo.bcs)
                 }
+
             filterList.add(getUeNrCapabilityFilters(nr))
             val release = parseAccessRelease(nrCapability)
             val segSupported = parseSegSupportedNr(nr, release)
@@ -1598,6 +1606,66 @@ object ImportCapabilityInformation : ImportCapabilities {
         }
 
         return ueCapFilter
+    }
+
+    // R16 ul tx switch NRCA parsing. NRDC, ENDC, ul tx switch R17 and R18 not supported for lack of
+    // samples
+    private fun getUlTxSwitchBandCombinations(nrCapability: UENrCapabilityJson): List<ComboNr> {
+        val bandCombinationsPath = "rf-Parameters.supportedBandCombinationList-UplinkTxSwitch-r16"
+        val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
+
+        if (bandCombinationsList == null) return emptyList()
+
+        val list = mutableListWithCapacity<ComboNr>(bandCombinationsList.size)
+        for (bandCombination in bandCombinationsList) {
+            val bandCombinationR16 = bandCombination.getObject("bandCombination-r16")
+            val bandList = bandCombinationR16?.getArray("bandList") ?: continue
+            val nrBands = mutableListWithCapacity<ComponentNr>(bandList.size)
+
+            for (bandParameters in bandList) {
+                val component = parse5gBandParameters(bandParameters)
+                if (component is ComponentNr) {
+                    nrBands.add(component)
+                }
+            }
+
+            val featureSetCombination = bandCombinationR16.getInt("featureSetCombination") ?: 0
+            val bcsString = bandCombinationR16.getString("supportedBandwidthCombinationSet") ?: "1"
+            val bcs = BCS.fromBinaryString(bcsString)
+
+            val bandPairs = bandCombination.getArray("supportedBandPairListNR-r16") ?: continue
+            val optionR16Str = bandCombination.getString("uplinkTxSwitching-OptionSupport-r16")
+            val optionR16 = UplinkTxSwitchOption.valueOf(optionR16Str)
+
+            for (pairs in bandPairs) {
+                // -1 because index start from 1
+                val ul1 = pairs.getInt("bandIndexUL1-r16")?.minus(1)
+                val ul2 = pairs.getInt("bandIndexUL2-r16")?.minus(1)
+
+                if (ul1 == null || ul2 == null) continue
+
+                var isSUL = false
+                val newBands =
+                    nrBands.mapIndexed { index, band ->
+                        if (index == ul1 || index == ul2) {
+                            if (band.isSUL) isSUL = true
+                            band.copy(ulTxSwitch = true)
+                        } else {
+                            band
+                        }
+                    }
+
+                // sul supports only option 1
+                val ulTxSwitchOption = if (isSUL) UplinkTxSwitchOption.SWITCHED_UL else optionR16
+
+                val type = UplinkTxSwitchType.R16
+                val ulTxSwitchConfig = UplinkTxSwitchConfig(type, ulTxSwitchOption)
+
+                val combo = ComboNr(newBands, featureSetCombination, bcs, listOf(ulTxSwitchConfig))
+                list.add(combo)
+            }
+        }
+        return list
     }
 
     private fun parseReceivedFilters(

@@ -3,6 +3,7 @@ package it.smartphonecombo.uecapabilityparser.model.combo
 import it.smartphonecombo.uecapabilityparser.extension.populateCsvStringBuilders
 import it.smartphonecombo.uecapabilityparser.model.BCS
 import it.smartphonecombo.uecapabilityparser.model.EmptyBCS
+import it.smartphonecombo.uecapabilityparser.model.UplinkTxSwitchConfig
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import kotlinx.serialization.SerialName
@@ -13,6 +14,7 @@ import kotlinx.serialization.Transient
 data class ComboNr(
     @SerialName("components") override val masterComponents: List<ComponentNr>,
     override val bcs: BCS = EmptyBCS,
+    val uplinkTxSwitch: List<UplinkTxSwitchConfig> = emptyList(),
 ) : ICombo {
     @Transient
     override var featureSet: Int = 0
@@ -22,7 +24,8 @@ data class ComboNr(
         masterComponents: List<ComponentNr>,
         featureSet: Int,
         bcs: BCS,
-    ) : this(masterComponents, bcs) {
+        uplinkTxSwitch: List<UplinkTxSwitchConfig> = emptyList(),
+    ) : this(masterComponents, bcs, uplinkTxSwitch) {
         this.featureSet = featureSet
     }
 
