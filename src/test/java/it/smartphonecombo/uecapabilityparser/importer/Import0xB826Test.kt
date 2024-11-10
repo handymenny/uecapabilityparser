@@ -203,6 +203,11 @@ internal class Import0xB826Test :
     }
 
     @Test
+    fun parseV13SAulTxSwitch() {
+        parse("0xB826-v13-SA-ulTxSwitch.bin", "0xB826-v13-SA-ulTxSwitch.json")
+    }
+
+    @Test
     fun parseV13NRDC() {
         parse("0xB826-v13-NRDC.bin", "0xB826-v13-NRDC.json")
     }
@@ -218,6 +223,11 @@ internal class Import0xB826Test :
     }
 
     @Test
+    fun parseV14SAulTxSwitch() {
+        parse("0xB826-v14-SA-ulTxSwitch.bin", "0xB826-v14-SA-ulTxSwitch.json")
+    }
+
+    @Test
     fun parseV17NSA() {
         parse("0xB826-v17-NSA.bin", "0xB826-v17-NSA.json")
     }
@@ -228,8 +238,8 @@ internal class Import0xB826Test :
     }
 
     @Test
-    fun parseV17SA2() {
-        parse("0xB826-v17-SA2.bin", "0xB826-v17-SA2.json")
+    fun parseV17SAulTxSwitch() {
+        parse("0xB826-v17-SA-ulTxSwitch.bin", "0xB826-v17-SA-ulTxSwitch.json")
     }
 
     @Test
