@@ -13,6 +13,9 @@ import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.BwClass
 import it.smartphonecombo.uecapabilityparser.model.Capabilities
 import it.smartphonecombo.uecapabilityparser.model.Mimo
+import it.smartphonecombo.uecapabilityparser.model.UplinkTxSwitchConfig
+import it.smartphonecombo.uecapabilityparser.model.UplinkTxSwitchOption
+import it.smartphonecombo.uecapabilityparser.model.UplinkTxSwitchType
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.Bandwidth
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.InvalidBandwidth
 import it.smartphonecombo.uecapabilityparser.model.bandwidth.toBandwidth
@@ -164,17 +167,22 @@ object Import0xB826 : ImportCapabilities {
         if (version >= 8) {
             stream.skipBytes(3)
         }
+
         val numComponents = getNumComponents(stream, version)
         val bands = mutableListWithCapacity<ComponentLte>(numComponents)
         var nrBands = mutableListWithCapacity<ComponentNr>(numComponents)
         var nrDcBands = mutableListWithCapacity<ComponentNr>(numComponents)
+        val ulTxSwitchConfig = if (version >= 13) parseUlTxSwitch(stream) else null
+
         when (version) {
             6,
             8 -> stream.skipBytes(1)
             7 -> stream.skipBytes(3)
-            in 9..13 -> stream.skipBytes(9)
-            in 14..Int.MAX_VALUE -> stream.skipBytes(25)
+            in 9..12 -> stream.skipBytes(9)
+            13 -> stream.skipBytes(8)
+            in 14..Int.MAX_VALUE -> stream.skipBytes(24)
         }
+
         for (i in 0 until numComponents) {
             val component = parseComponent(stream, version)
             if (component is ComponentNr) {
@@ -206,6 +214,8 @@ object Import0xB826 : ImportCapabilities {
             ComboEnDc(bands, nrBands)
         } else if (nrDcBands.isNotEmpty()) {
             ComboNrDc(nrBands, nrDcBands)
+        } else if (ulTxSwitchConfig != null) {
+            ComboNr(nrBands, uplinkTxSwitch = listOf(ulTxSwitchConfig))
         } else {
             ComboNr(nrBands)
         }
@@ -581,5 +591,18 @@ object Import0xB826 : ImportCapabilities {
     private fun getSCSFromIndex(index: Int): Int {
         val shiftAmount = index - 1
         return (1 shl shiftAmount) * 15
+    }
+
+    private fun parseUlTxSwitch(stream: InputStream): UplinkTxSwitchConfig? {
+        val ulTxSwitch = stream.readUByte().readNBits(2, offset = 2)
+        val ulTxSwitchOption =
+            when (ulTxSwitch) {
+                1 -> UplinkTxSwitchOption.SWITCHED_UL
+                2 -> UplinkTxSwitchOption.DUAL_UL
+                3 -> UplinkTxSwitchOption.BOTH
+                else -> return null
+            }
+
+        return UplinkTxSwitchConfig(UplinkTxSwitchType.R16, ulTxSwitchOption)
     }
 }
