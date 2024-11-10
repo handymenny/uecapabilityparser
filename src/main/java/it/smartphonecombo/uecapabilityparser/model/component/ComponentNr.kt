@@ -24,6 +24,7 @@ data class ComponentNr(
     @SerialName("maxScs") var scs: Int = 0,
     @SerialName("maxBwDl") var maxBandwidthDl: Bandwidth = EmptyBandwidth,
     @SerialName("maxBwUl") var maxBandwidthUl: Bandwidth = EmptyBandwidth,
+    @SerialName("ulTxSwitch") var ulTxSwitch: Boolean = false,
 ) : IComponent {
 
     override fun compareTo(other: IComponent): Int {
