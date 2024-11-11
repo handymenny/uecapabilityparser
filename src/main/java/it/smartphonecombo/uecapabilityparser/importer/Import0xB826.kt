@@ -50,10 +50,8 @@ object Import0xB826 : ImportCapabilities {
      *
      * It supports 0xB826 with or without header.
      *
-     * It has been tested with the following 0xB826 versions: 2, 3, 4, 6, 7, 8, 9, 10, 13, 14, 17.
-     *
-     * If you have a 0xB826 of a different version, please share it with info at smartphonecombo dot
-     * it.
+     * It has been tested with the following 0xB826 versions: 2, 3, 4, 6, 7, 8, 9, 10, 13, 14,
+     * 17, 21.
      */
     override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
