@@ -23,17 +23,15 @@ data class IndexLine(
     @EncodeDefault(EncodeDefault.Mode.ALWAYS) var description: String = "",
     var inputs: List<String> = emptyList(),
     var compressed: Boolean = false,
-    var defaultNR: Boolean = false,
     val parserVersion: String,
 ) {
-    // This is only used to extract description and defaultNR from capabilities JSON
+    // This is only used to extract description from capabilities JSON
     private var metadata: MutableMap<String, String>? = null
 
     init {
-        // if metadata is set, extract description and default nr from that
+        // if metadata is set, extract description from that
         metadata?.let {
             description = it["description"] ?: ""
-            defaultNR = it["defaultNR"].toBoolean()
             // unset metadata to free resources
             metadata = null
         }

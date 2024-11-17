@@ -42,15 +42,34 @@ class Parsing(
         capabilities.logType = type
         capabilities.timestamp = Instant.now().toEpochMilli()
         capabilities.setMetadata("processingTime", "${processTime}ms")
-        if (defaultRat == Rat.NR) capabilities.setMetadata("defaultNR", "true")
 
         // Set description
         if (description.isNotEmpty()) {
             capabilities.setMetadata("description", description)
         }
 
+        if (type == LogType.H) {
+            // set subtypes
+            val subTypes =
+                getInputs().mapNotNull {
+                    when (it) {
+                        input -> defaultRat
+                        inputNR -> Rat.NR
+                        inputENDC -> Rat.EUTRA_NR
+                        else -> null
+                    }
+                }
+
+            if (subTypes.isNotEmpty()) {
+                capabilities.addMetadata("subTypes", subTypes.joinToString(", "))
+            }
+        }
+
         return capabilities
     }
+
+    private fun getInputs(): List<InputSource?> =
+        arrayOf(input, inputNR, inputENDC).filterNot { it == null || it.size() == 0L }
 
     private fun parseCapabilities(): Capabilities {
         val imports = LogType.getImporter(type) ?: return Capabilities()
@@ -79,16 +98,12 @@ class Parsing(
         val inputDir = "$path/input"
         val outputDir = "$path/output"
         val id = capabilities.id
-        val inputs = arrayOf(input, inputNR, inputENDC)
-        val inputsPath = mutableListOf<String>()
-
-        inputs
-            .filterNot { it == null || it.size() == 0L }
-            .forEachIndexed { index, data ->
+        val inputsPath =
+            getInputs().mapIndexed { index, data ->
                 val fileName = "$id-$index"
                 val inputPath = "$inputDir/$fileName"
                 IOUtils.outputFile(data!!.readBytes(), inputPath, compression)
-                inputsPath.add(fileName)
+                fileName
             }
 
         val encodedString = Json.custom().encodeToString(capabilities)
@@ -101,7 +116,6 @@ class Parsing(
                 capabilities.getStringMetadata("description") ?: "",
                 inputsPath,
                 compression,
-                capabilities.getStringMetadata("defaultNR").toBoolean(),
                 capabilities.parserVersion,
             )
         libraryIndex?.putLine(indexLine)
@@ -112,7 +126,7 @@ class Parsing(
         fun fromRequest(req: RequestParse): Parsing? {
             val defaultRat =
                 when {
-                    req.defaultNR || req.input == null && req.inputNR != null -> Rat.NR
+                    req.input == null && req.inputNR != null -> Rat.NR
                     req.input == null && req.inputENDC != null -> Rat.EUTRA_NR
                     req.input != null -> Rat.EUTRA
                     else -> null
