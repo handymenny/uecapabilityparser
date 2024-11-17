@@ -39,7 +39,6 @@ class RequestParse(
     val input: InputSource? = null,
     val inputNR: InputSource? = null,
     val inputENDC: InputSource? = null,
-    val defaultNR: Boolean = false,
     val type: LogType,
     val description: String = "",
 ) {
@@ -60,14 +59,7 @@ class RequestParse(
 
             require(ratList.size >= inputs.size) { "Something weird, inputs list >= rat List" }
 
-            return RequestParse(
-                input,
-                inputNR,
-                inputENDC,
-                ratList.first() == Rat.NR,
-                type,
-                description,
-            )
+            return RequestParse(input, inputNR, inputENDC, type, description)
         }
     }
 }

@@ -126,7 +126,7 @@ class Parsing(
         fun fromRequest(req: RequestParse): Parsing? {
             val defaultRat =
                 when {
-                    req.defaultNR || req.input == null && req.inputNR != null -> Rat.NR
+                    req.input == null && req.inputNR != null -> Rat.NR
                     req.input == null && req.inputENDC != null -> Rat.EUTRA_NR
                     req.input != null -> Rat.EUTRA
                     else -> null
