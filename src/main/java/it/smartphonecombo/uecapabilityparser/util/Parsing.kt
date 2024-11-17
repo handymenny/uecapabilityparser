@@ -117,7 +117,6 @@ class Parsing(
                 capabilities.getStringMetadata("description") ?: "",
                 inputsPath,
                 compression,
-                capabilities.getStringMetadata("defaultNR").toBoolean(),
                 capabilities.parserVersion,
             )
         libraryIndex?.putLine(indexLine)
