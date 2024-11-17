@@ -42,7 +42,6 @@ class Parsing(
         capabilities.logType = type
         capabilities.timestamp = Instant.now().toEpochMilli()
         capabilities.setMetadata("processingTime", "${processTime}ms")
-        if (defaultRat == Rat.NR) capabilities.setMetadata("defaultNR", "true")
 
         // Set description
         if (description.isNotEmpty()) {
