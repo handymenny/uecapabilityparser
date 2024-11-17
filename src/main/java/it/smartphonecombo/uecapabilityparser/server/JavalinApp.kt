@@ -248,6 +248,12 @@ class JavalinApp {
             return listOf(Rat.EUTRA)
         }
 
+        // if there's subTypes in metadata return that
+        val subTypes = capabilities.getStringMetadata("subTypes")
+        if (!subTypes.isNullOrEmpty()) {
+            return subTypes.split(", ").mapNotNull(Rat::of)
+        }
+
         val defaultRatList = listOf(Rat.EUTRA, Rat.NR, Rat.EUTRA_NR)
 
         if (inputsLength == 3) {
