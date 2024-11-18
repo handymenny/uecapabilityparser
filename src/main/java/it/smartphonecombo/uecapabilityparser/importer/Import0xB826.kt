@@ -50,8 +50,8 @@ object Import0xB826 : ImportCapabilities {
      *
      * It supports 0xB826 with or without header.
      *
-     * It has been tested with the following 0xB826 versions: 2, 3, 4, 6, 7, 8, 9, 10, 13, 14,
-     * 17, 21.
+     * It has been tested with the following 0xB826 versions: 2, 3, 4, 6, 7, 8, 9, 10, 13, 14, 17,
+     * 21, 22.
      */
     override fun parse(input: InputSource): Capabilities {
         val capabilities = Capabilities()
@@ -162,7 +162,7 @@ object Import0xB826 : ImportCapabilities {
 
     /** Parses a combo */
     private fun parseCombo(stream: InputStream, version: Int, source: String?): ICombo {
-        if (version >= 8) {
+        if (version >= 8 && version < 22) {
             stream.skipBytes(3)
         }
 
@@ -170,7 +170,8 @@ object Import0xB826 : ImportCapabilities {
         val bands = mutableListWithCapacity<ComponentLte>(numComponents)
         var nrBands = mutableListWithCapacity<ComponentNr>(numComponents)
         var nrDcBands = mutableListWithCapacity<ComponentNr>(numComponents)
-        val ulTxSwitchConfig = if (version >= 13) parseUlTxSwitch(stream) else null
+        // TODO V22 UL TX Switch
+        val ulTxSwitchConfig = if (version >= 13 && version < 22) parseUlTxSwitch(stream) else null
 
         when (version) {
             6,
@@ -178,7 +179,8 @@ object Import0xB826 : ImportCapabilities {
             7 -> stream.skipBytes(3)
             in 9..12 -> stream.skipBytes(9)
             13 -> stream.skipBytes(8)
-            in 14..Int.MAX_VALUE -> stream.skipBytes(24)
+            in 14..21 -> stream.skipBytes(24)
+            in 22..Int.MAX_VALUE -> stream.skipBytes(13)
         }
 
         for (i in 0 until numComponents) {
@@ -221,15 +223,19 @@ object Import0xB826 : ImportCapabilities {
 
     /** Return the num of components of a combo. */
     private fun getNumComponents(stream: InputStream, version: Int): Int {
-        val numBands = stream.readUByte()
+        val numBands =
+            if (version >= 22) {
+                stream.readUShortLE()
+            } else {
+                stream.readUByte()
+            }
 
         val offset =
-            if (version < 3) {
-                0
-            } else if (version <= 7) {
-                1
-            } else {
-                3
+            when (version) {
+                in 3..7 -> 1
+                in 8..21 -> 3
+                in 22..Int.MAX_VALUE -> 6
+                else -> 0
             }
 
         return numBands.readNBits(4, offset)
@@ -357,12 +363,16 @@ object Import0xB826 : ImportCapabilities {
             val byte4 = stream.readUByte()
             val byte5 = stream.readUByte()
 
-            val scsLeft = byte4.readNBits(2)
-            val scsRight = byte3.readNBits(1, offset = 7)
-            val scsIndex = scsRight.insert(scsLeft, 1)
-            nrBand.scs = getSCSFromIndex(scsIndex)
+            if (version < 22) {
+                val scsLeft = byte4.readNBits(2)
+                val scsRight = byte3.readNBits(1, offset = 7)
+                val scsIndex = scsRight.insert(scsLeft, 1)
+                nrBand.scs = getSCSFromIndex(scsIndex)
+            }
 
-            if (version >= 17) {
+            if (version >= 22) {
+                // TODO V22 BW
+            } else if (version >= 17) {
                 val maxBWindex = byte4.readNBits(6, offset = 2).insert(byte5.readNBits(1), 6)
                 nrBand.maxBandwidthDl = getBWFromIndexV17(maxBWindex)
                 val maxBwIndexUl = byte5.readNBits(7, offset = 1)
@@ -383,7 +393,9 @@ object Import0xB826 : ImportCapabilities {
         } else {
             stream.skipBytes(3)
         }
-        if (version >= 17) {
+        if (version >= 22) {
+            stream.skipBytes(2)
+        } else if (version >= 17) {
             stream.skipBytes(1)
         }
         return component
