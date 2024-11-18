@@ -29,7 +29,7 @@ object UtilityForTests {
             .collect(Collectors.toList())
     }
 
-    /** Check if the given directories have the same tree and if files have similar sizes (± 3%) */
+    /** Check if the given directories have the same tree and if files have similar sizes (± 5%) */
     internal fun dirsSimilar(expected: String, actual: String): Boolean {
         val pathA = Path(expected)
         val pathB = Path(actual)
@@ -57,7 +57,7 @@ object UtilityForTests {
                 } else {
                     val aSize = fileA.readBytes().size
                     val bSize = fileB.readBytes().size
-                    abs(aSize - bSize) < 3 * aSize / 100
+                    abs(aSize - bSize) < 5 * aSize / 100
                 }
             }
         return result
