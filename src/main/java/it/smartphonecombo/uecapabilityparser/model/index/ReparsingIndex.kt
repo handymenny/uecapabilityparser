@@ -64,4 +64,5 @@ data class ReparsingIndexLine(
     @Required val timestamp: Long = Instant.now().toEpochMilli(),
     @Required val parserVersion: String = Config.getOrDefault("project.version", ""),
     val error: String? = null,
+    var processingTimeMs: Long = 0,
 )

@@ -137,7 +137,14 @@ class JavalinApp {
             index
                 .getAll()
                 .filter { shouldReparse(it, index, !auto, parserVersion) }
-                .map { async { reparseItem(it, index, store, compression, !auto) } }
+                .map {
+                    async {
+                        val elapsedTime = measureTimeMillis {
+                            reparseItem(it, index, store, compression, !auto)
+                        }
+                        index.reparsingIndex[it.id]?.processingTimeMs = elapsedTime
+                    }
+                }
                 .awaitAll()
 
             index.reparsingIndex.store("$store/reparsing.json")
