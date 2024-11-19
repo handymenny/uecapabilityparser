@@ -371,7 +371,10 @@ object Import0xB826 : ImportCapabilities {
             }
 
             if (version >= 22) {
-                // TODO V22 BW
+                val maxBWindex = byte3.readNBits(1, offset = 7).insert(byte4.readNBits(6), 1)
+                nrBand.maxBandwidthDl = getBWFromIndexV17(maxBWindex)
+                var maxBwIndexUl = byte4.readNBits(2, offset = 6).insert(byte5.readNBits(5), 2)
+                nrBand.maxBandwidthUl = getBWFromIndexV17(maxBwIndexUl)
             } else if (version >= 17) {
                 val maxBWindex = byte4.readNBits(6, offset = 2).insert(byte5.readNBits(1), 6)
                 nrBand.maxBandwidthDl = getBWFromIndexV17(maxBWindex)
