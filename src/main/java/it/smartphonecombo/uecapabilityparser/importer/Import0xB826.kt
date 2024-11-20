@@ -166,19 +166,16 @@ object Import0xB826 : ImportCapabilities {
             stream.skipBytes(3)
         }
 
-        val numComponents = getNumComponents(stream, version)
+        val comboFeaturesBits = if (version >= 6) stream.readUShortLE() else stream.readUByte()
+        val numComponents = getNumComponents(comboFeaturesBits, version)
         val bands = mutableListWithCapacity<ComponentLte>(numComponents)
         var nrBands = mutableListWithCapacity<ComponentNr>(numComponents)
         var nrDcBands = mutableListWithCapacity<ComponentNr>(numComponents)
-        // TODO V22 UL TX Switch
-        val ulTxSwitchConfig = if (version >= 13 && version < 22) parseUlTxSwitch(stream) else null
+        val ulTxSwitchConfig = parseUlTxSwitch(comboFeaturesBits, version)
 
         when (version) {
-            6,
-            8 -> stream.skipBytes(1)
-            7 -> stream.skipBytes(3)
-            in 9..12 -> stream.skipBytes(9)
-            13 -> stream.skipBytes(8)
+            7 -> stream.skipBytes(2)
+            in 9..13 -> stream.skipBytes(8)
             in 14..21 -> stream.skipBytes(24)
             in 22..Int.MAX_VALUE -> stream.skipBytes(13)
         }
@@ -222,14 +219,7 @@ object Import0xB826 : ImportCapabilities {
     }
 
     /** Return the num of components of a combo. */
-    private fun getNumComponents(stream: InputStream, version: Int): Int {
-        val numBands =
-            if (version >= 22) {
-                stream.readUShortLE()
-            } else {
-                stream.readUByte()
-            }
-
+    private fun getNumComponents(bytes: Int, version: Int): Int {
         val offset =
             when (version) {
                 in 3..7 -> 1
@@ -238,7 +228,7 @@ object Import0xB826 : ImportCapabilities {
                 else -> 0
             }
 
-        return numBands.readNBits(4, offset)
+        return bytes.readNBits(4, offset)
     }
 
     /**
@@ -606,8 +596,12 @@ object Import0xB826 : ImportCapabilities {
         return (1 shl shiftAmount) * 15
     }
 
-    private fun parseUlTxSwitch(stream: InputStream): UplinkTxSwitchConfig? {
-        val ulTxSwitch = stream.readUByte().readNBits(2, offset = 2)
+    private fun parseUlTxSwitch(bytes: Int, version: Int): UplinkTxSwitchConfig? {
+        if (version < 13) return null
+
+        val offset = if (version < 22) 10 else 13
+
+        val ulTxSwitch = bytes.readNBits(2, offset = offset)
         val ulTxSwitchOption =
             when (ulTxSwitch) {
                 1 -> UplinkTxSwitchOption.SWITCHED_UL
