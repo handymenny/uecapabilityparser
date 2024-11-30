@@ -1,6 +1,7 @@
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.extension.indexOfMin
+import it.smartphonecombo.uecapabilityparser.io.IOUtils.echoSafe
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -47,6 +48,18 @@ sealed interface Mimo : Comparable<Mimo> {
          * The sequence generator is guessed, so it can be wrong or incomplete.
          */
         fun fromQcIndex(index: Int): Mimo {
+            // for index > 80 we can't use generator
+            if (index > 80) {
+                return when (index) {
+                    81 -> SingleMimo(8)
+                    85 -> SingleMimo(6)
+                    else -> {
+                        echoSafe("Unknown Qc Mimo index $index", err = true)
+                        EmptyMimo
+                    }
+                }
+            }
+
             /*
                 Some examples:
                 0 -> 0
@@ -64,7 +77,7 @@ sealed interface Mimo : Comparable<Mimo> {
                 72 -> 2_2_2_2_2_2_2_2
             */
             var result = intArrayOf(0)
-            for (i in 1..index) {
+            repeat(index) {
                 val indexOfMin = result.indexOfMin()
                 when (result[indexOfMin]) {
                     4 -> result = IntArray(result.size + 1) { 1 }
