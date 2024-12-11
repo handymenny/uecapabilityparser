@@ -271,4 +271,19 @@ internal class Import0xB826Test :
     fun parseV21SAulTxSwitch() {
         parse("0xB826-v21-SA-ulTxSwitch.bin", "0xB826-v21-SA-ulTxSwitch.json")
     }
+
+    @Test
+    fun parseV22NSA() {
+        parse("0xB826-v22-NSA.bin", "0xB826-v22-NSA.json")
+    }
+
+    @Test
+    fun parseV22SA() {
+        parse("0xB826-v22-SA.bin", "0xB826-v22-SA.json")
+    }
+
+    @Test
+    fun parseV22SAulTxSwitch() {
+        parse("0xB826-v22-SA-ulTxSwitch.bin", "0xB826-v22-SA-ulTxSwitch.json")
+    }
 }
