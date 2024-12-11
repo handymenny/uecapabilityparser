@@ -13,7 +13,7 @@ RUN gradle build --no-daemon -x check
 
 FROM eclipse-temurin:21-jre-noble AS deploy
 
-ARG SCAT_TAG=b2c9253
+ARG SCAT_TAG=90be06a
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH="${PATH}:/scat/bin"
