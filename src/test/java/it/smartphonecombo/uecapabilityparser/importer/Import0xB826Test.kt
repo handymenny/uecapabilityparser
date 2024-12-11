@@ -243,6 +243,11 @@ internal class Import0xB826Test :
     }
 
     @Test
+    fun parseV17SA6rx8rx() {
+        parse("0xB826-v17-SA-6rx8rx.bin", "0xB826-v17-SA-6rx8rx.json")
+    }
+
+    @Test
     fun parseV17NRDC() {
         parse("0xB826-v17-NRDC.bin", "0xB826-v17-NRDC.json")
     }
