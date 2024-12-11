@@ -57,7 +57,7 @@ object UtilityForTests {
                 } else {
                     val aSize = fileA.readBytes().size
                     val bSize = fileB.readBytes().size
-                    abs(aSize - bSize) < 5 * aSize / 100
+                    abs(aSize - bSize) < maxOf(3 * aSize / 100, 128)
                 }
             }
         return result
