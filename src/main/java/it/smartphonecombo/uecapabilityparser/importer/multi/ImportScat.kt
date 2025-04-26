@@ -79,16 +79,21 @@ object ImportScat : ImportMultiCapabilities {
     // try-state 1 = ok, 0 = not found, -1 = too old
     fun isScatAvailable(): Int {
         try {
-            var process = Runtime.getRuntime().exec(arrayOf("scat", "-h"))
+            var process =
+                ProcessBuilder("scat", "-h").redirectOutput(ProcessBuilder.Redirect.DISCARD).start()
             process.waitFor()
 
             // check if it's too old, scat < 1.3.0 doesn't have --version
             if (process.exitValue() == 0) {
-                process = Runtime.getRuntime().exec(arrayOf("scat", "--version"))
+                process =
+                    ProcessBuilder("scat", "--version")
+                        .redirectOutput(ProcessBuilder.Redirect.DISCARD)
+                        .start()
+
                 process.waitFor()
                 return if (process.exitValue() == 0) 1 else -1
             }
-        } catch (ignored: Exception) {}
+        } catch (_: Exception) {}
         return 0
     }
 }
