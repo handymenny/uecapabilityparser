@@ -29,7 +29,7 @@ val tstypesImplementation: Configuration by
     configurations.getting { extendsFrom(configurations.implementation.get()) }
 
 dependencies {
-    val mtsAsn1Version = "3800c8a165"
+    val mtsAsn1Version = "5bd77b9"
     val javalinVersion = "6.6.0"
     val coroutinesVersion = "1.10.2"
     val kotlinxSerializationVer = "1.8.1"
