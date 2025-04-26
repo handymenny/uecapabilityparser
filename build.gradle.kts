@@ -31,7 +31,7 @@ val tstypesImplementation: Configuration by
 dependencies {
     val mtsAsn1Version = "3800c8a165"
     val javalinVersion = "6.6.0"
-    val coroutinesVersion = "1.9.0"
+    val coroutinesVersion = "1.10.2"
     val kotlinxSerializationVer = "1.7.3"
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
