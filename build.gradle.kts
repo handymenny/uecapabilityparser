@@ -3,7 +3,7 @@ import com.diffplug.spotless.LineEnding
 import java.util.*
 
 plugins {
-    val kotlinVersion = "2.1.20"
+    val kotlinVersion = "2.2.0"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("com.gradleup.shadow") version "8.3.6"
