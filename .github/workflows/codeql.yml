@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Edit kotlin version
       run: sed -i 's/\(val kotlinVersion =\).*/\1 "2.0.20"/' build.gradle.kts
