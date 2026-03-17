@@ -6,6 +6,7 @@ import it.smartphonecombo.uecapabilityparser.importer.Import0xB826
 import it.smartphonecombo.uecapabilityparser.importer.ImportCapabilityInformation
 import it.smartphonecombo.uecapabilityparser.importer.ImportLteCarrierPolicy
 import it.smartphonecombo.uecapabilityparser.importer.ImportMTKLte
+import it.smartphonecombo.uecapabilityparser.importer.ImportMtkNr
 import it.smartphonecombo.uecapabilityparser.importer.ImportNrCapPrune
 import it.smartphonecombo.uecapabilityparser.importer.ImportNvItem
 import it.smartphonecombo.uecapabilityparser.importer.ImportQctModemCap
@@ -28,6 +29,7 @@ enum class LogType(val description: String) {
     QLTE("0xB0CD hexdump"),
     QNR("0xB826 hexdump"),
     M("MEDIATEK CA_COMB_INFO"),
+    MNR("MEDIATEK NR Trace Log"),
     O("OSIX UE Capability Information"),
     QC("QCAT UE Capability Information"),
     T("TEMS UE Capability Information"),
@@ -64,7 +66,7 @@ enum class LogType(val description: String) {
         val multiImporter = validEntries.intersect(listOf(P, DLF, QMDL, HDF, SDM, NSG))
         /** One input -> multi or single capability * */
         val singleInput =
-            validEntries.intersect(listOf(E, SHNR, SHLTE, P, DLF, QMDL, HDF, SDM, NSG))
+            validEntries.intersect(listOf(E, SHNR, SHLTE, MNR, P, DLF, QMDL, HDF, SDM, NSG))
 
         /** Return [INVALID] if conversion fails * */
         fun of(string: String?): LogType {
@@ -83,6 +85,7 @@ enum class LogType(val description: String) {
                 Q -> Import0xB0CD
                 QLTE -> Import0xB0CDBin
                 M -> ImportMTKLte
+                MNR -> ImportMtkNr
                 QNR -> Import0xB826
                 RF -> ImportQctModemCap
                 SHLTE -> ImportShannonLteUeCap
