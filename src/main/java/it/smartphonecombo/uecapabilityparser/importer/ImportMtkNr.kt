@@ -12,6 +12,7 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ComboNrDc
 import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
+import it.smartphonecombo.uecapabilityparser.model.component.IComponent
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCLte
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
@@ -155,44 +156,23 @@ object ImportMtkNr : ImportCapabilities {
         return capabilities
     }
 
-    /** Data class holding a parsed NR DL/UL per-CC feature. */
-    private data class NrFspcc(
-        val scs: Int,
-        val bw: Int,
-        val bw90: Boolean,
-        val mimo: Int,
-        val mod: ModulationOrder,
-    )
-
-    /** Data class holding a parsed EUTRA DL/UL per-CC feature. */
-    private data class EutraFspcc(val mimo: Int)
-
     /**
-     * Data class holding a parsed FSC entry with SCS variants.
+     * Data class holding a parsed FSC entry with variants.
      *
-     * Some devices emit multiple FSC lines with the same FSC number but different FS references,
-     * corresponding to different sub-carrier spacings (SCS15 for FDD bands, SCS30 for TDD bands).
+     * Some devices emit multiple FSC lines with the same FSC number but different FS references.
      * Each variant is a list of (dlFsRef, ulFsRef) per component.
      */
     private data class FscEntry(val variants: List<List<Pair<String, String>>>)
 
-    /** Data class holding a parsed combo. */
-    private data class MtkCombo(val components: List<MtkComponent>, val fscNum: Int)
-
-    /** Data class holding a parsed component from combo DL/UL strings. */
-    private data class MtkComponent(
-        val isNr: Boolean,
-        val band: Int,
-        val bwClassDl: Char,
-        val bwClassUl: Char?, // null if no UL
-    )
+    /** Data class holding a parsed combo with its associated FSC number. */
+    private data class MtkCombo(val components: List<IComponent>, val fscNum: Int)
 
     /** Container for all parsed trace data. */
     private data class ParsedTrace(
-        val nrDlFspcc: Map<Int, NrFspcc>,
-        val nrUlFspcc: Map<Int, NrFspcc>,
-        val eutraDlFspcc: Map<Int, EutraFspcc>,
-        val eutraUlFspcc: Map<Int, EutraFspcc>,
+        val nrDlFspcc: Map<Int, FeaturePerCCNr>,
+        val nrUlFspcc: Map<Int, FeaturePerCCNr>,
+        val eutraDlFspcc: Map<Int, FeaturePerCCLte>,
+        val eutraUlFspcc: Map<Int, FeaturePerCCLte>,
         val nrDlFs: Map<Int, List<Int>>,
         val nrUlFs: Map<Int, List<Int>>,
         val eutraDlFs: Map<Int, List<Int>>,
@@ -203,10 +183,10 @@ object ImportMtkNr : ImportCapabilities {
 
     /** Parse all capability structures from the trace log lines. */
     private fun parseTraceLog(lines: List<String>): ParsedTrace {
-        val nrDlFspcc = mutableMapOf<Int, NrFspcc>()
-        val nrUlFspcc = mutableMapOf<Int, NrFspcc>()
-        val eutraDlFspcc = mutableMapOf<Int, EutraFspcc>()
-        val eutraUlFspcc = mutableMapOf<Int, EutraFspcc>()
+        val nrDlFspcc = mutableMapOf<Int, FeaturePerCCNr>()
+        val nrUlFspcc = mutableMapOf<Int, FeaturePerCCNr>()
+        val eutraDlFspcc = mutableMapOf<Int, FeaturePerCCLte>()
+        val eutraUlFspcc = mutableMapOf<Int, FeaturePerCCLte>()
         val nrDlFs = mutableMapOf<Int, List<Int>>()
         val nrUlFs = mutableMapOf<Int, List<Int>>()
         val eutraDlFs = mutableMapOf<Int, List<Int>>()
@@ -243,37 +223,47 @@ object ImportMtkNr : ImportCapabilities {
     }
 
     /** Parse a NR DL FSpCC definition line. */
-    private fun parseNrDlFspccLine(line: String, map: MutableMap<Int, NrFspcc>): Unit? {
+    private fun parseNrDlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCNr>): Unit? {
         val m = reNrDlFspcc.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
+        val scs = parseMtkScs(m.groupValues[2])
+        val bwRaw = parseMtkBw(m.groupValues[3])
+        val bw90 = m.groupValues[4] == "NL1_CAP_SUPPORT"
+        val bw = if (bw90 && bwRaw == 80) 90 else bwRaw
         map[idx] =
-            NrFspcc(
-                scs = parseMtkScs(m.groupValues[2]),
-                bw = parseMtkBw(m.groupValues[3]),
-                bw90 = m.groupValues[4] == "NL1_CAP_SUPPORT",
-                mimo = parseMtkDlMimo(m.groupValues[5]),
-                mod = parseMtkModulation(m.groupValues[6]),
+            FeaturePerCCNr(
+                type = LinkDirection.DOWNLINK,
+                mimo = parseMtkDlMimo(m.groupValues[5]).toMimo(),
+                qam = parseMtkModulation(m.groupValues[6]),
+                bw = bw,
+                scs = scs,
+                channelBW90mhz = bw90,
             )
         return Unit
     }
 
     /** Parse a NR UL FSpCC definition line. */
-    private fun parseNrUlFspccLine(line: String, map: MutableMap<Int, NrFspcc>): Unit? {
+    private fun parseNrUlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCNr>): Unit? {
         val m = reNrUlFspcc.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
+        val scs = parseMtkScs(m.groupValues[2])
+        val bwRaw = parseMtkBw(m.groupValues[3])
+        val bw90 = m.groupValues[4] == "NL1_CAP_SUPPORT"
+        val bw = if (bw90 && bwRaw == 80) 90 else bwRaw
         map[idx] =
-            NrFspcc(
-                scs = parseMtkScs(m.groupValues[2]),
-                bw = parseMtkBw(m.groupValues[3]),
-                bw90 = m.groupValues[4] == "NL1_CAP_SUPPORT",
-                mimo = parseMtkUlMimo(m.groupValues[5]),
-                mod = parseMtkModulation(m.groupValues[6]),
+            FeaturePerCCNr(
+                type = LinkDirection.UPLINK,
+                mimo = parseMtkUlMimo(m.groupValues[5]).toMimo(),
+                qam = parseMtkModulation(m.groupValues[6]),
+                bw = bw,
+                scs = scs,
+                channelBW90mhz = bw90,
             )
         return Unit
     }
 
     /** Parse a EUTRA DL FSpCC definition line. */
-    private fun parseEutraDlFspccLine(line: String, map: MutableMap<Int, EutraFspcc>): Unit? {
+    private fun parseEutraDlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCLte>): Unit? {
         val m = reEutraDlFspcc.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
         val mimoStr = m.groupValues[2]
@@ -283,12 +273,12 @@ object ImportMtkNr : ImportCapabilities {
                 "TWO_LAYER" in mimoStr -> 2
                 else -> 0
             }
-        map[idx] = EutraFspcc(mimo)
+        map[idx] = FeaturePerCCLte(type = LinkDirection.DOWNLINK, mimo = mimo.toMimo())
         return Unit
     }
 
     /** Parse a EUTRA UL FSpCC definition line. */
-    private fun parseEutraUlFspccLine(line: String, map: MutableMap<Int, EutraFspcc>): Unit? {
+    private fun parseEutraUlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCLte>): Unit? {
         val m = reEutraUlFspcc.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
         val mimoStr = m.groupValues[2]
@@ -298,7 +288,7 @@ object ImportMtkNr : ImportCapabilities {
                 "ONE_LAYER" in mimoStr -> 1
                 else -> 0
             }
-        map[idx] = EutraFspcc(mimo)
+        map[idx] = FeaturePerCCLte(type = LinkDirection.UPLINK, mimo = mimo.toMimo())
         return Unit
     }
 
@@ -338,7 +328,7 @@ object ImportMtkNr : ImportCapabilities {
         return Unit
     }
 
-    /** Parse an FSC definition line. Collects all SCS variants for each FSC number. */
+    /** Parse an FSC definition line. Collects all variants for each FSC number. */
     private fun parseFscLine(line: String, map: MutableMap<Int, FscEntry>): Unit? {
         val m = reFsc.find(line) ?: return null
         val fscNum = m.groupValues[1].toInt()
@@ -354,7 +344,7 @@ object ImportMtkNr : ImportCapabilities {
 
         val existing = map[fscNum]
         if (existing != null) {
-            // Add as another SCS variant
+            // Add as another variant
             map[fscNum] = FscEntry(existing.variants + listOf(pairs))
         } else {
             map[fscNum] = FscEntry(listOf(pairs))
@@ -382,7 +372,7 @@ object ImportMtkNr : ImportCapabilities {
      * DL and UL strings are underscore-separated with positional matching. For example: DL:
      * B1A_B3A_N78A__0_... UL: B1A__0__N78A__0_...
      */
-    private fun parseComboComponents(dlStr: String, ulStr: String): List<MtkComponent> {
+    private fun parseComboComponents(dlStr: String, ulStr: String): List<IComponent> {
         val dlParts = dlStr.split("_")
         val ulParts = ulStr.split("_")
 
@@ -421,7 +411,7 @@ object ImportMtkNr : ImportCapabilities {
         }
 
         // Merge: for each DL component, find matching UL by position first, then by band
-        val result = mutableListOf<MtkComponent>()
+        val result = mutableListOf<IComponent>()
         val usedUl = mutableSetOf<Int>() // indices into ulEntries that have been matched
 
         for (dl in dlEntries) {
@@ -450,7 +440,16 @@ object ImportMtkNr : ImportCapabilities {
                 }
             }
 
-            result.add(MtkComponent(dl.isNr, dl.band, dl.bwClass, ulBwClass))
+            val classDlBw = BwClass.valueOf(dl.bwClass.toString())
+            val classUlBw =
+                if (ulBwClass != null) BwClass.valueOf(ulBwClass.toString()) else BwClass.NONE
+
+            if (dl.isNr) {
+                result.add(ComponentNr(dl.band, classDlBw, classUlBw))
+            } else {
+                val mimoUl = if (classUlBw != BwClass.NONE) 1.toMimo() else EmptyMimo
+                result.add(ComponentLte(dl.band, classDlBw, classUlBw, mimoUL = mimoUl))
+            }
         }
 
         return result
@@ -523,220 +522,67 @@ object ImportMtkNr : ImportCapabilities {
         return Pair(m.groupValues[1][0], m.groupValues[2].toInt())
     }
 
-    /** NR FDD band numbers — use SCS 15 kHz features for these. */
-    private val nrFddBands =
-        setOf(
-            1,
-            2,
-            3,
-            5,
-            7,
-            8,
-            12,
-            13,
-            14,
-            18,
-            20,
-            24,
-            25,
-            26,
-            28,
-            30,
-            31,
-            65,
-            66,
-            68,
-            70,
-            71,
-            72,
-            74,
-            75,
-            85,
-            87,
-            88,
-            91,
-            92,
-            93,
-            94,
-            100,
-            105,
-            106,
-            109,
-            110,
-        )
-
-    /** NR TDD band numbers — use SCS 30 kHz features for these. */
-    private val nrTddBands =
-        setOf(34, 38, 39, 40, 41, 46, 47, 48, 50, 53, 77, 78, 79, 90, 96, 101, 102, 104)
-
-    /** Return the preferred SCS (15 or 30) for the given NR band number. */
-    private fun preferredScsForBand(band: Int): Int {
-        return if (band in nrTddBands) 30 else 15
-    }
-
-    /**
-     * Resolve the SCS of a specific NR DL FS reference.
-     *
-     * Returns 0 if the SCS cannot be determined.
-     */
-    private fun resolveNrFsScs(dlFsStr: String, parsed: ParsedTrace): Int {
-        val (fsType, fsNum) = parseFsRef(dlFsStr)
-        if (fsType != 'N' || fsNum <= 0) return 0
-        val fspccIds = parsed.nrDlFs[fsNum] ?: return 0
-        val firstFspccId = fspccIds.firstOrNull() ?: return 0
-        val fspcc = parsed.nrDlFspcc[firstFspccId] ?: return 0
-        return fspcc.scs
-    }
-
-    /**
-     * Build the best FSC pair list for the given combo components by selecting, for each component
-     * position, the FS reference pair whose SCS matches that band's duplex mode (FDD → SCS 15 kHz,
-     * TDD → SCS 30 kHz).
-     *
-     * FSC variants are a cartesian product of per-component SCS options. For example FSC[12] with
-     * N3(FDD)+N78(TDD) may have 4 variants: (SCS15,SCS15), (SCS15,SCS30), (SCS30,SCS15),
-     * (SCS30,SCS30). The correct pick is (SCS15, SCS30) → N3 at SCS15, N78 at SCS30.
-     *
-     * Falls back to the first variant if only one variant exists.
-     */
-    private fun selectFscPairs(
-        fscEntry: FscEntry,
-        components: List<MtkComponent>,
-        parsed: ParsedTrace,
-    ): List<Pair<String, String>> {
-        if (fscEntry.variants.size <= 1) return fscEntry.variants.first()
-
-        val pairCount = fscEntry.variants.first().size
-        val result = mutableListWithCapacity<Pair<String, String>>(pairCount)
-
-        for (i in 0 until pairCount) {
-            // Collect all unique (dl, ul) candidates at position i across all variants
-            val candidates = fscEntry.variants.map { it[i] }.distinct()
-
-            if (candidates.size <= 1 || i >= components.size) {
-                result.add(candidates.first())
-                continue
-            }
-
-            val comp = components[i]
-            if (!comp.isNr) {
-                // EUTRA components don't vary by SCS
-                result.add(candidates.first())
-                continue
-            }
-
-            // Pick the candidate whose DL FS resolves to the preferred SCS for this band
-            val preferredScs = preferredScsForBand(comp.band)
-            val best =
-                candidates.firstOrNull { resolveNrFsScs(it.first, parsed) == preferredScs }
-                    ?: candidates.first()
-            result.add(best)
-        }
-
-        return result
-    }
-
     /** Build Capabilities combos from parsed trace data. */
     private fun buildCombos(parsed: ParsedTrace): List<ICombo> {
         val combos = mutableListWithCapacity<ICombo>(parsed.combos.size)
 
-        // Build NR per-CC feature lists (indexed directly by FSpCC ID)
-        val nrFeaturesPerCCDl = buildNrFeaturesPerCC(parsed.nrDlFspcc, LinkDirection.DOWNLINK)
-        val nrFeaturesPerCCUl = buildNrFeaturesPerCC(parsed.nrUlFspcc, LinkDirection.UPLINK)
-
-        // Build EUTRA per-CC feature lists (indexed directly by FSpCC ID)
-        val eutraFeaturesPerCCDl =
-            buildEutraFeaturesPerCC(parsed.eutraDlFspcc, LinkDirection.DOWNLINK)
-        val eutraFeaturesPerCCUl =
-            buildEutraFeaturesPerCC(parsed.eutraUlFspcc, LinkDirection.UPLINK)
-
         // Build EUTRA Feature Sets: FS number -> FeatureSet (list of per-CC features)
         val eutraDlFeatureSets =
-            buildEutraFeatureSets(parsed.eutraDlFs, eutraFeaturesPerCCDl, LinkDirection.DOWNLINK)
+            buildEutraFeatureSets(parsed.eutraDlFs, parsed.eutraDlFspcc, LinkDirection.DOWNLINK)
         val eutraUlFeatureSets =
-            buildEutraFeatureSets(parsed.eutraUlFs, eutraFeaturesPerCCUl, LinkDirection.UPLINK)
+            buildEutraFeatureSets(parsed.eutraUlFs, parsed.eutraUlFspcc, LinkDirection.UPLINK)
 
         for (combo in parsed.combos) {
             val fscEntry = parsed.fscDefs[combo.fscNum] ?: continue
             val components = combo.components
 
-            // Select the correct SCS-matched FS pairs for this combo's bands
-            val fscPairs = selectFscPairs(fscEntry, components, parsed)
+            // Emit one combo per FSC variant (all variants are listed)
+            for (variant in fscEntry.variants) {
+                // FSC pairs might not exactly match component count; align by min
+                val count = minOf(variant.size, components.size)
+                if (count == 0) continue
 
-            // FSC pairs might not exactly match component count; align by min
-            val count = minOf(fscPairs.size, components.size)
-            if (count == 0) continue
+                val nrComponents = mutableListOf<ComponentNr>()
+                val lteComponents = mutableListOf<ComponentLte>()
 
-            val nrComponents = mutableListOf<ComponentNr>()
-            val lteComponents = mutableListOf<ComponentLte>()
+                for (i in 0 until count) {
+                    val comp = components[i]
+                    val (dlFsStr, ulFsStr) = variant[i]
+                    val (dlFsType, dlFsNum) = parseFsRef(dlFsStr)
+                    val (ulFsType, ulFsNum) = parseFsRef(ulFsStr)
 
-            for (i in 0 until count) {
-                val comp = components[i]
-                val (dlFsStr, ulFsStr) = fscPairs[i]
-                val (dlFsType, dlFsNum) = parseFsRef(dlFsStr)
-                val (ulFsType, ulFsNum) = parseFsRef(ulFsStr)
-
-                if (comp.isNr) {
-                    val nrComp =
-                        buildNrComponent(
-                            comp,
-                            dlFsType,
-                            dlFsNum,
-                            ulFsType,
-                            ulFsNum,
-                            parsed,
-                            nrFeaturesPerCCDl,
-                            nrFeaturesPerCCUl,
-                        )
-                    nrComponents.add(nrComp)
-                } else {
-                    val lteComp =
-                        buildLteComponent(
-                            comp,
-                            dlFsType,
-                            dlFsNum,
-                            ulFsType,
-                            ulFsNum,
-                            eutraDlFeatureSets,
-                            eutraUlFeatureSets,
-                        )
-                    lteComponents.add(lteComp)
+                    if (comp is ComponentNr) {
+                        val nrComp =
+                            buildNrComponent(
+                                comp,
+                                dlFsType,
+                                dlFsNum,
+                                ulFsType,
+                                ulFsNum,
+                                parsed,
+                            )
+                        nrComponents.add(nrComp)
+                    } else if (comp is ComponentLte) {
+                        val lteComp =
+                            buildLteComponent(
+                                comp,
+                                dlFsType,
+                                dlFsNum,
+                                ulFsType,
+                                ulFsNum,
+                                eutraDlFeatureSets,
+                                eutraUlFeatureSets,
+                            )
+                        lteComponents.add(lteComp)
+                    }
                 }
-            }
 
-            val icombo = assembleCombo(lteComponents, nrComponents)
-            if (icombo != null) combos.add(icombo)
+                val icombo = assembleCombo(lteComponents, nrComponents)
+                if (icombo != null) combos.add(icombo)
+            }
         }
 
         return combos
-    }
-
-    /** Build a map of FSpCC ID -> FeaturePerCCNr for NR features. */
-    private fun buildNrFeaturesPerCC(
-        fspccMap: Map<Int, NrFspcc>,
-        direction: LinkDirection,
-    ): Map<Int, FeaturePerCCNr> {
-        return fspccMap.mapValues { (_, fspcc) ->
-            val bw = if (fspcc.bw90 && fspcc.bw == 80) 90 else fspcc.bw
-            FeaturePerCCNr(
-                type = direction,
-                mimo = fspcc.mimo.toMimo(),
-                qam = fspcc.mod,
-                bw = bw,
-                scs = fspcc.scs,
-                channelBW90mhz = fspcc.bw90,
-            )
-        }
-    }
-
-    /** Build a map of FSpCC ID -> FeaturePerCCLte for EUTRA features. */
-    private fun buildEutraFeaturesPerCC(
-        fspccMap: Map<Int, EutraFspcc>,
-        direction: LinkDirection,
-    ): Map<Int, FeaturePerCCLte> {
-        return fspccMap.mapValues { (_, fspcc) ->
-            FeaturePerCCLte(type = direction, mimo = fspcc.mimo.toMimo())
-        }
     }
 
     /**
@@ -756,25 +602,20 @@ object ImportMtkNr : ImportCapabilities {
 
     /** Build an NR ComponentNr from parsed component data, resolving features via FSC. */
     private fun buildNrComponent(
-        comp: MtkComponent,
+        comp: ComponentNr,
         dlFsType: Char?,
         dlFsNum: Int,
         ulFsType: Char?,
         ulFsNum: Int,
         parsed: ParsedTrace,
-        nrFeaturesPerCCDl: Map<Int, FeaturePerCCNr>,
-        nrFeaturesPerCCUl: Map<Int, FeaturePerCCNr>,
     ): ComponentNr {
-        val classDl = BwClass.valueOf(comp.bwClassDl.toString())
-        val classUl =
-            if (comp.bwClassUl != null) BwClass.valueOf(comp.bwClassUl.toString()) else BwClass.NONE
-        val baseComponent = ComponentNr(comp.band, classDl, classUl)
+        val baseComponent = comp.copy()
 
         // Resolve DL per-CC features: FS -> FSpCC IDs -> FeaturePerCCNr
         val dlFeature: List<FeaturePerCCNr> =
             if (dlFsType == 'N' && dlFsNum > 0) {
                 val fspccIds = parsed.nrDlFs[dlFsNum] ?: emptyList()
-                fspccIds.mapNotNull { nrFeaturesPerCCDl[it] }
+                fspccIds.mapNotNull { parsed.nrDlFspcc[it] }
             } else {
                 emptyList()
             }
@@ -783,7 +624,7 @@ object ImportMtkNr : ImportCapabilities {
         val ulFeature: List<FeaturePerCCNr> =
             if (ulFsType == 'N' && ulFsNum > 0) {
                 val fspccIds = parsed.nrUlFs[ulFsNum] ?: emptyList()
-                fspccIds.mapNotNull { nrFeaturesPerCCUl[it] }
+                fspccIds.mapNotNull { parsed.nrUlFspcc[it] }
             } else {
                 emptyList()
             }
@@ -794,7 +635,7 @@ object ImportMtkNr : ImportCapabilities {
 
     /** Build an LTE ComponentLte from parsed component data, resolving features via FSC. */
     private fun buildLteComponent(
-        comp: MtkComponent,
+        comp: ComponentLte,
         dlFsType: Char?,
         dlFsNum: Int,
         ulFsType: Char?,
@@ -802,11 +643,7 @@ object ImportMtkNr : ImportCapabilities {
         eutraDlFeatureSets: Map<Int, FeatureSet>,
         eutraUlFeatureSets: Map<Int, FeatureSet>,
     ): ComponentLte {
-        val classDl = BwClass.valueOf(comp.bwClassDl.toString())
-        val classUl =
-            if (comp.bwClassUl != null) BwClass.valueOf(comp.bwClassUl.toString()) else BwClass.NONE
-        val mimoUl = if (classUl != BwClass.NONE) 1.toMimo() else EmptyMimo
-        val baseComponent = ComponentLte(comp.band, classDl, classUl, mimoUL = mimoUl)
+        val baseComponent = comp.copy()
 
         // Resolve DL features from EUTRA FS
         val dlFeature: List<IFeaturePerCC>? =
