@@ -23,7 +23,7 @@ data class ComboNr(
     constructor(
         masterComponents: List<ComponentNr>,
         featureSet: Int,
-        bcs: BCS,
+        bcs: BCS = EmptyBCS,
         uplinkTxSwitch: List<UplinkTxSwitchConfig> = emptyList(),
     ) : this(masterComponents, bcs, uplinkTxSwitch) {
         this.featureSet = featureSet

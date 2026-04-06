@@ -164,9 +164,6 @@ object ImportMtkNr : ImportCapabilities {
      */
     private data class FscEntry(val variants: List<List<Pair<String, String>>>)
 
-    /** Data class holding a parsed combo with its associated FSC number. */
-    private data class MtkCombo(val components: List<IComponent>, val fscNum: Int)
-
     /** Container for all parsed trace data. */
     private data class ParsedTrace(
         val nrDlFspcc: Map<Int, FeaturePerCCNr>,
@@ -178,7 +175,7 @@ object ImportMtkNr : ImportCapabilities {
         val eutraDlFs: Map<Int, List<Int>>,
         val eutraUlFs: Map<Int, List<Int>>,
         val fscDefs: Map<Int, FscEntry>,
-        val combos: List<MtkCombo>,
+        val combos: List<ICombo>,
     )
 
     /** Parse all capability structures from the trace log lines. */
@@ -192,7 +189,7 @@ object ImportMtkNr : ImportCapabilities {
         val eutraDlFs = mutableMapOf<Int, List<Int>>()
         val eutraUlFs = mutableMapOf<Int, List<Int>>()
         val fscDefs = mutableMapOf<Int, FscEntry>()
-        val combos = mutableListOf<MtkCombo>()
+        val combos = mutableListOf<ICombo>()
 
         for (line in lines) {
             // Try each pattern - at most one will match per line
@@ -353,7 +350,7 @@ object ImportMtkNr : ImportCapabilities {
     }
 
     /** Parse a combo definition line. Tries new format first, then old format. */
-    private fun parseComboLine(line: String, list: MutableList<MtkCombo>): Unit? {
+    private fun parseComboLine(line: String, list: MutableList<ICombo>): Unit? {
         val m = reComboNew.find(line) ?: reComboOld.find(line) ?: return null
         val dlStr = m.groupValues[3]
         val ulStr = m.groupValues[4]
@@ -361,7 +358,14 @@ object ImportMtkNr : ImportCapabilities {
 
         val components = parseComboComponents(dlStr, ulStr)
         if (components.isNotEmpty()) {
-            list.add(MtkCombo(components, fscNum))
+            val lteComponents = components.filterIsInstance<ComponentLte>()
+            val nrComponents = components.filterIsInstance<ComponentNr>()
+            val combo = if (lteComponents.isEmpty()) {
+                ComboNr(nrComponents, featureSet = fscNum)
+            } else {
+                ComboEnDc(lteComponents, nrComponents, featureSet = fscNum)
+            }
+            list.add(combo)
         }
         return Unit
     }
@@ -533,8 +537,8 @@ object ImportMtkNr : ImportCapabilities {
             buildEutraFeatureSets(parsed.eutraUlFs, parsed.eutraUlFspcc, LinkDirection.UPLINK)
 
         for (combo in parsed.combos) {
-            val fscEntry = parsed.fscDefs[combo.fscNum] ?: continue
-            val components = combo.components
+            val fscEntry = parsed.fscDefs[combo.featureSet] ?: continue
+            val components = combo.masterComponents + combo.secondaryComponents
 
             // Emit one combo per FSC variant (all variants are listed)
             for (variant in fscEntry.variants) {
