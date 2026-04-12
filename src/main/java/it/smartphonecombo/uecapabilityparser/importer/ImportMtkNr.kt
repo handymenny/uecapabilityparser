@@ -192,17 +192,23 @@ object ImportMtkNr : ImportCapabilities {
         val combos = mutableListOf<ICombo>()
 
         for (line in lines) {
-            // Try each pattern - at most one will match per line
-            parseNrDlFspccLine(line, nrDlFspcc)
-                ?: parseNrUlFspccLine(line, nrUlFspcc)
-                ?: parseEutraDlFspccLine(line, eutraDlFspcc)
-                ?: parseEutraUlFspccLine(line, eutraUlFspcc)
-                ?: parseNrDlFsLine(line, nrDlFs)
-                ?: parseNrUlFsLine(line, nrUlFs)
-                ?: parseEutraDlFsLine(line, eutraDlFs)
-                ?: parseEutraUlFsLine(line, eutraUlFs)
-                ?: parseFscLine(line, fscDefs)
-                ?: parseComboLine(line, combos)
+            val tag = extractTag(line)
+
+            when (tag) {
+                "CA idx" -> parseComboLine(line, combos)
+                "NR DL FSpCC" -> parseNrDlFspccLine(line, nrDlFspcc)
+                "NR UL FSpCC" -> parseNrUlFspccLine(line, nrUlFspcc)
+                "EUTRA DL FSpCC" -> parseEutraDlFspccLine(line, eutraDlFspcc)
+                "EUTRA UL FSpCC" -> parseEutraUlFspccLine(line, eutraUlFspcc)
+                "NR DL FS" -> parseNrDlFsLine(line, nrDlFs)
+                "NR UL FS" -> parseNrUlFsLine(line, nrUlFs)
+                "EUTRA DL FS" -> parseEutraDlFsLine(line, eutraDlFs)
+                "EUTRA UL FS" -> parseEutraUlFsLine(line, eutraUlFs)
+                "FSC" -> parseFscLine(line, fscDefs)
+                else -> {
+                    // do nothing
+                }
+            }
         }
 
         return ParsedTrace(
@@ -217,6 +223,27 @@ object ImportMtkNr : ImportCapabilities {
             fscDefs,
             combos,
         )
+    }
+
+    /**
+     * Extract the tag, that is reported in the line after the &#91;CAP&#93; header and before the
+     * index number. If the line doesn't contain the word &#91;CAP&#93; it returns an empty string.
+     *
+     * Example: "211987, 156011, 9956508, 16:33:37:615 2026/03/14, 16:33:37:716544 2026/03/14,
+     * MOD_NRRC_MAIN, MOD_NRRC_MAIN_BASELINE_TRACE_INFO_H, &#91;MAIN&#93; &#91;CAP&#93; CA idx [17]"
+     * -> tag CA idx
+     */
+    private fun extractTag(line: String): String {
+        // Extract text After [MAIN][CAP]/[CAP]
+        var tag = line.substringAfter("[CAP]", "")
+
+        // remove [index number] and text after index number
+        tag = tag.split("[").first()
+
+        // trim
+        tag = tag.trim()
+
+        return tag
     }
 
     /** Parse a NR DL FSpCC definition line. */
