@@ -17,6 +17,7 @@ import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCLte
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
 import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
+import it.smartphonecombo.uecapabilityparser.model.fromLiteral
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.toMimo
 
@@ -262,8 +263,9 @@ object ImportMtkNr : ImportCapabilities {
         map[idx] =
             FeaturePerCCNr(
                 type = direction,
-                mimo = parseMtkMimo(m.groupValues[5]).toMimo(),
-                qam = parseMtkModulation(m.groupValues[6]),
+                // XXX_ONE_LAYER -> 1, XXX_TWO_LAYER -> 2...
+                mimo = Int.fromLiteral(m.groupValues[5]).toMimo(),
+                qam = ModulationOrder.of(m.groupValues[6]),
                 bw = bw,
                 scs = scs,
                 channelBW90mhz = bw90,
@@ -280,15 +282,9 @@ object ImportMtkNr : ImportCapabilities {
         val regex = if (direction == LinkDirection.DOWNLINK) reEutraDlFspcc else reEutraUlFspcc
         val m = regex.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
-        val mimoStr = m.groupValues[2]
-        val mimo =
-            when {
-                "FOUR_LAYER" in mimoStr -> 4
-                "TWO_LAYER" in mimoStr -> 2
-                "ONE_LAYER" in mimoStr -> 1
-                else -> 0
-            }
-        map[idx] = FeaturePerCCLte(type = direction, mimo = mimo.toMimo())
+        // XXX_ONE_LAYER -> 1, XXX_TWO_LAYER -> 2...
+        val mimo = Int.fromLiteral(m.groupValues[2]).toMimo()
+        map[idx] = FeaturePerCCLte(type = direction, mimo = mimo)
         return Unit
     }
 
@@ -484,29 +480,6 @@ object ImportMtkNr : ImportCapabilities {
     private fun parseMtkBw(bwStr: String): Int {
         val m = Regex("""NL1_CAP_BW(\d+)""").find(bwStr)
         return m?.groupValues?.get(1)?.toInt() ?: 0
-    }
-
-    /** Convert MTK MIMO enum string to layer count. */
-    private fun parseMtkMimo(mimoStr: String): Int {
-        return when (mimoStr) {
-            "NL1_CAP_DL_TWO_LAYER" -> 2
-            "NL1_CAP_DL_FOUR_LAYER" -> 4
-            "NL1_CAP_DL_EIGHT_LAYER" -> 8
-            "NL1_CAP_UL_ONE_LAYER" -> 1
-            "NL1_CAP_UL_TWO_LAYER" -> 2
-            "NL1_CAP_UL_FOUR_LAYER" -> 4
-            else -> 0
-        }
-    }
-
-    /** Convert MTK modulation enum string to ModulationOrder. */
-    private fun parseMtkModulation(modStr: String): ModulationOrder {
-        return when (modStr) {
-            "NL1_CAP_64QAM" -> ModulationOrder.QAM64
-            "NL1_CAP_256QAM" -> ModulationOrder.QAM256
-            "NL1_CAP_1024QAM" -> ModulationOrder.QAM1024
-            else -> ModulationOrder.NONE
-        }
     }
 
     /** Parse an FS reference string like 'N7', 'E1', '_0' into type and number. */
