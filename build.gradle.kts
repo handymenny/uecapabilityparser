@@ -43,16 +43,16 @@ dependencies {
     implementation("com.github.handymenny.mts-asn1:mts-asn1-kotlinx-json:$mtsAsn1Version")
     implementation("org.slf4j:slf4j-nop:2.0.17")
     implementation("com.github.ajalt.clikt:clikt:5.0.3")
-
     implementation("io.javalin:javalin:$javalinVersion")
+    implementation("com.github.handymenny.pkts:pkts-core:8f78357")
+
     testImplementation("io.javalin:javalin-testtools:$javalinVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
     testImplementation("io.mockk:mockk:1.14.9")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     tstypesImplementation("dev.adamko.kxstsgen:kxs-ts-gen-core:0.2.4")
-
-    implementation("com.github.handymenny.pkts:pkts-core:8f78357")
 }
 
 group = "parser"
