@@ -196,14 +196,14 @@ object ImportMtkNr : ImportCapabilities {
 
             when (tag) {
                 "CA idx" -> parseComboLine(line, combos)
-                "NR DL FSpCC" -> parseNrDlFspccLine(line, nrDlFspcc)
-                "NR UL FSpCC" -> parseNrUlFspccLine(line, nrUlFspcc)
-                "EUTRA DL FSpCC" -> parseEutraDlFspccLine(line, eutraDlFspcc)
-                "EUTRA UL FSpCC" -> parseEutraUlFspccLine(line, eutraUlFspcc)
-                "NR DL FS" -> parseNrDlFsLine(line, nrDlFs)
-                "NR UL FS" -> parseNrUlFsLine(line, nrUlFs)
-                "EUTRA DL FS" -> parseEutraDlFsLine(line, eutraDlFs)
-                "EUTRA UL FS" -> parseEutraUlFsLine(line, eutraUlFs)
+                "NR DL FSpCC" -> parseNrFspccLine(line, nrDlFspcc, LinkDirection.DOWNLINK)
+                "NR UL FSpCC" -> parseNrFspccLine(line, nrUlFspcc, LinkDirection.UPLINK)
+                "EUTRA DL FSpCC" -> parseEutraFspccLine(line, eutraDlFspcc, LinkDirection.DOWNLINK)
+                "EUTRA UL FSpCC" -> parseEutraFspccLine(line, eutraUlFspcc, LinkDirection.UPLINK)
+                "NR DL FS" -> parseNrFsLine(line, nrDlFs, LinkDirection.DOWNLINK)
+                "NR UL FS" -> parseNrFsLine(line, nrUlFs, LinkDirection.UPLINK)
+                "EUTRA DL FS" -> parseEutraFsLine(line, eutraDlFs, LinkDirection.DOWNLINK)
+                "EUTRA UL FS" -> parseEutraFsLine(line, eutraUlFs, LinkDirection.UPLINK)
                 "FSC" -> parseFscLine(line, fscDefs)
                 else -> {
                     // do nothing
@@ -246,9 +246,14 @@ object ImportMtkNr : ImportCapabilities {
         return tag
     }
 
-    /** Parse a NR DL FSpCC definition line. */
-    private fun parseNrDlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCNr>): Unit? {
-        val m = reNrDlFspcc.find(line) ?: return null
+    /** Parse a NR DL/UL FSpCC definition line. */
+    private fun parseNrFspccLine(
+        line: String,
+        map: MutableMap<Int, FeaturePerCCNr>,
+        direction: LinkDirection,
+    ): Unit? {
+        val regex = if (direction == LinkDirection.DOWNLINK) reNrDlFspcc else reNrUlFspcc
+        val m = regex.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
         val scs = parseMtkScs(m.groupValues[2])
         val bwRaw = parseMtkBw(m.groupValues[3])
@@ -256,8 +261,8 @@ object ImportMtkNr : ImportCapabilities {
         val bw = if (bw90 && bwRaw == 80) 90 else bwRaw
         map[idx] =
             FeaturePerCCNr(
-                type = LinkDirection.DOWNLINK,
-                mimo = parseMtkDlMimo(m.groupValues[5]).toMimo(),
+                type = direction,
+                mimo = parseMtkMimo(m.groupValues[5]).toMimo(),
                 qam = parseMtkModulation(m.groupValues[6]),
                 bw = bw,
                 scs = scs,
@@ -266,86 +271,50 @@ object ImportMtkNr : ImportCapabilities {
         return Unit
     }
 
-    /** Parse a NR UL FSpCC definition line. */
-    private fun parseNrUlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCNr>): Unit? {
-        val m = reNrUlFspcc.find(line) ?: return null
-        val idx = m.groupValues[1].toInt()
-        val scs = parseMtkScs(m.groupValues[2])
-        val bwRaw = parseMtkBw(m.groupValues[3])
-        val bw90 = m.groupValues[4] == "NL1_CAP_SUPPORT"
-        val bw = if (bw90 && bwRaw == 80) 90 else bwRaw
-        map[idx] =
-            FeaturePerCCNr(
-                type = LinkDirection.UPLINK,
-                mimo = parseMtkUlMimo(m.groupValues[5]).toMimo(),
-                qam = parseMtkModulation(m.groupValues[6]),
-                bw = bw,
-                scs = scs,
-                channelBW90mhz = bw90,
-            )
-        return Unit
-    }
-
-    /** Parse a EUTRA DL FSpCC definition line. */
-    private fun parseEutraDlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCLte>): Unit? {
-        val m = reEutraDlFspcc.find(line) ?: return null
+    /** Parse a EUTRA DL/UL FSpCC definition line. */
+    private fun parseEutraFspccLine(
+        line: String,
+        map: MutableMap<Int, FeaturePerCCLte>,
+        direction: LinkDirection,
+    ): Unit? {
+        val regex = if (direction == LinkDirection.DOWNLINK) reEutraDlFspcc else reEutraUlFspcc
+        val m = regex.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
         val mimoStr = m.groupValues[2]
         val mimo =
             when {
                 "FOUR_LAYER" in mimoStr -> 4
                 "TWO_LAYER" in mimoStr -> 2
-                else -> 0
-            }
-        map[idx] = FeaturePerCCLte(type = LinkDirection.DOWNLINK, mimo = mimo.toMimo())
-        return Unit
-    }
-
-    /** Parse a EUTRA UL FSpCC definition line. */
-    private fun parseEutraUlFspccLine(line: String, map: MutableMap<Int, FeaturePerCCLte>): Unit? {
-        val m = reEutraUlFspcc.find(line) ?: return null
-        val idx = m.groupValues[1].toInt()
-        val mimoStr = m.groupValues[2]
-        val mimo =
-            when {
-                "TWO_LAYER" in mimoStr -> 2
                 "ONE_LAYER" in mimoStr -> 1
                 else -> 0
             }
-        map[idx] = FeaturePerCCLte(type = LinkDirection.UPLINK, mimo = mimo.toMimo())
+        map[idx] = FeaturePerCCLte(type = direction, mimo = mimo.toMimo())
         return Unit
     }
 
-    /** Parse a NR DL FS -> FSpCC ID mapping line. */
-    private fun parseNrDlFsLine(line: String, map: MutableMap<Int, List<Int>>): Unit? {
-        val m = reNrDlFs.find(line) ?: return null
+    /** Parse a NR DL/UL FS -> FSpCC ID mapping line. */
+    private fun parseNrFsLine(
+        line: String,
+        map: MutableMap<Int, List<Int>>,
+        direction: LinkDirection,
+    ): Unit? {
+        val regex = if (direction == LinkDirection.DOWNLINK) reNrDlFs else reNrUlFs
+        val endGroup = if (direction == LinkDirection.DOWNLINK) 9 else 5
+        val m = regex.find(line) ?: return null
         val fsNum = m.groupValues[1].toInt()
-        val ids = extractFspccIds(m, startGroup = 2, endGroup = 9)
+        val ids = extractFspccIds(m, startGroup = 2, endGroup = endGroup)
         map[fsNum] = ids
         return Unit
     }
 
-    /** Parse a NR UL FS -> FSpCC ID mapping line. */
-    private fun parseNrUlFsLine(line: String, map: MutableMap<Int, List<Int>>): Unit? {
-        val m = reNrUlFs.find(line) ?: return null
-        val fsNum = m.groupValues[1].toInt()
-        val ids = extractFspccIds(m, startGroup = 2, endGroup = 5)
-        map[fsNum] = ids
-        return Unit
-    }
-
-    /** Parse an EUTRA DL FS -> FSpCC ID mapping line. */
-    private fun parseEutraDlFsLine(line: String, map: MutableMap<Int, List<Int>>): Unit? {
-        val m = reEutraDlFs.find(line) ?: return null
-        val fsNum = m.groupValues[1].toInt()
-        val ids = extractFspccIds(m, startGroup = 2, endGroup = 6)
-        map[fsNum] = ids
-        return Unit
-    }
-
-    /** Parse an EUTRA UL FS -> FSpCC ID mapping line. */
-    private fun parseEutraUlFsLine(line: String, map: MutableMap<Int, List<Int>>): Unit? {
-        val m = reEutraUlFs.find(line) ?: return null
+    /** Parse an EUTRA DL/UL FS -> FSpCC ID mapping line. */
+    private fun parseEutraFsLine(
+        line: String,
+        map: MutableMap<Int, List<Int>>,
+        direction: LinkDirection,
+    ): Unit? {
+        val regex = if (direction == LinkDirection.DOWNLINK) reEutraDlFs else reEutraUlFs
+        val m = regex.find(line) ?: return null
         val fsNum = m.groupValues[1].toInt()
         val ids = extractFspccIds(m, startGroup = 2, endGroup = 6)
         map[fsNum] = ids
@@ -517,19 +486,12 @@ object ImportMtkNr : ImportCapabilities {
         return m?.groupValues?.get(1)?.toInt() ?: 0
     }
 
-    /** Convert MTK DL MIMO enum string to layer count. */
-    private fun parseMtkDlMimo(mimoStr: String): Int {
+    /** Convert MTK MIMO enum string to layer count. */
+    private fun parseMtkMimo(mimoStr: String): Int {
         return when (mimoStr) {
             "NL1_CAP_DL_TWO_LAYER" -> 2
             "NL1_CAP_DL_FOUR_LAYER" -> 4
             "NL1_CAP_DL_EIGHT_LAYER" -> 8
-            else -> 0
-        }
-    }
-
-    /** Convert MTK UL MIMO enum string to layer count. */
-    private fun parseMtkUlMimo(mimoStr: String): Int {
-        return when (mimoStr) {
             "NL1_CAP_UL_ONE_LAYER" -> 1
             "NL1_CAP_UL_TWO_LAYER" -> 2
             "NL1_CAP_UL_FOUR_LAYER" -> 4
