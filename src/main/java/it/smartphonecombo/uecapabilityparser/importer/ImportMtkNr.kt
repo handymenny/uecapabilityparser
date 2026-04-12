@@ -13,9 +13,9 @@ import it.smartphonecombo.uecapabilityparser.model.combo.ICombo
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentLte
 import it.smartphonecombo.uecapabilityparser.model.component.ComponentNr
 import it.smartphonecombo.uecapabilityparser.model.component.IComponent
+import it.smartphonecombo.uecapabilityparser.model.feature.FeatureIndex
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCLte
 import it.smartphonecombo.uecapabilityparser.model.feature.FeaturePerCCNr
-import it.smartphonecombo.uecapabilityparser.model.feature.FeatureSet
 import it.smartphonecombo.uecapabilityparser.model.feature.IFeaturePerCC
 import it.smartphonecombo.uecapabilityparser.model.fromLiteral
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
@@ -161,9 +161,9 @@ object ImportMtkNr : ImportCapabilities {
      * Data class holding a parsed FSC entry with variants.
      *
      * Some devices emit multiple FSC lines with the same FSC number but different FS references.
-     * Each variant is a list of (dlFsRef, ulFsRef) per component.
+     * Each variant is a FeatureIndex
      */
-    private data class FscEntry(val variants: List<List<Pair<String, String>>>)
+    private data class FscEntry(val variants: List<List<FeatureIndex>>)
 
     /** Container for all parsed trace data. */
     private data class ParsedTrace(
@@ -211,7 +211,12 @@ object ImportMtkNr : ImportCapabilities {
                     parseEutraFsLine(line, LinkDirection.DOWNLINK)?.let { eutraDlFs += it }
                 "EUTRA UL FS" ->
                     parseEutraFsLine(line, LinkDirection.UPLINK)?.let { eutraUlFs += it }
-                "FSC" -> parseFscLine(line, fscDefs)
+                "FSC" ->
+                    parseFscLine(line)?.let { (key, value) ->
+                        // Merge current variants with new variants
+                        val currentVariants = fscDefs[key]?.variants ?: emptyList()
+                        fscDefs[key] = FscEntry(currentVariants + listOf(value))
+                    }
                 else -> {
                     // do nothing
                 }
@@ -331,28 +336,30 @@ object ImportMtkNr : ImportCapabilities {
         return fsNum to ids
     }
 
-    /** Parse an FSC definition line. Collects all variants for each FSC number. */
-    private fun parseFscLine(line: String, map: MutableMap<Int, FscEntry>): Unit? {
+    /**
+     * Parse an FSC definition line.
+     *
+     * Return a Pair FSC Num -> FeatureIndex list.
+     */
+    private fun parseFscLine(line: String): Pair<Int, List<FeatureIndex>>? {
         val m = reFsc.find(line) ?: return null
         val fscNum = m.groupValues[1].toInt()
 
         val pairsStr = m.groupValues[2]
-        val pairs = mutableListOf<Pair<String, String>>()
+        val indexesList = mutableListOf<FeatureIndex>()
         for (pm in reDuPair.findAll(pairsStr)) {
             val dl = pm.groupValues[1].trim()
             val ul = pm.groupValues[2].trim()
             if (dl == "_0" && ul == "_0") continue // Skip empty slots
-            pairs.add(Pair(dl, ul))
+            val (dlType, dlIndex) = parseFsRef(dl)
+            val (ulType, ulIndex) = parseFsRef(ul)
+            val isNr = dlType == 'N' || ulType == 'N'
+
+            val featureIndex = FeatureIndex(isNr, dlIndex, ulIndex)
+            indexesList.add(featureIndex)
         }
 
-        val existing = map[fscNum]
-        if (existing != null) {
-            // Add as another variant
-            map[fscNum] = FscEntry(existing.variants + listOf(pairs))
-        } else {
-            map[fscNum] = FscEntry(listOf(pairs))
-        }
-        return Unit
+        return fscNum to indexesList
     }
 
     /**
@@ -511,14 +518,9 @@ object ImportMtkNr : ImportCapabilities {
     private fun buildCombos(parsed: ParsedTrace): List<ICombo> {
         val combos = mutableListWithCapacity<ICombo>(parsed.combos.size)
 
-        // Build EUTRA Feature Sets: FS number -> FeatureSet (list of per-CC features)
-        val eutraDlFeatureSets =
-            buildEutraFeatureSets(parsed.eutraDlFs, parsed.eutraDlFspcc, LinkDirection.DOWNLINK)
-        val eutraUlFeatureSets =
-            buildEutraFeatureSets(parsed.eutraUlFs, parsed.eutraUlFspcc, LinkDirection.UPLINK)
-
         for (combo in parsed.combos) {
             val fscEntry = parsed.fscDefs[combo.featureSet] ?: continue
+            // Master is before secondary in FSC lines
             val components = combo.masterComponents + combo.secondaryComponents
 
             // Emit one combo per FSC variant (all variants are listed)
@@ -527,131 +529,63 @@ object ImportMtkNr : ImportCapabilities {
                 val count = minOf(variant.size, components.size)
                 if (count == 0) continue
 
-                val nrComponents = mutableListOf<ComponentNr>()
-                val lteComponents = mutableListOf<ComponentLte>()
-
+                val newComponents = mutableListOf<IComponent>()
                 for (i in 0 until count) {
                     val comp = components[i]
-                    val (dlFsStr, ulFsStr) = variant[i]
-                    val (dlFsType, dlFsNum) = parseFsRef(dlFsStr)
-                    val (ulFsType, ulFsNum) = parseFsRef(ulFsStr)
-
-                    if (comp is ComponentNr) {
-                        val nrComp =
-                            buildNrComponent(comp, dlFsType, dlFsNum, ulFsType, ulFsNum, parsed)
-                        nrComponents.add(nrComp)
-                    } else if (comp is ComponentLte) {
-                        val lteComp =
-                            buildLteComponent(
-                                comp,
-                                dlFsType,
-                                dlFsNum,
-                                ulFsType,
-                                ulFsNum,
-                                eutraDlFeatureSets,
-                                eutraUlFeatureSets,
-                            )
-                        lteComponents.add(lteComp)
-                    }
+                    val featureIndex = variant[i]
+                    val newComponent = mergeFeatureAndComponent(comp, featureIndex, parsed)
+                    newComponents.add(newComponent)
                 }
 
-                val icombo = assembleCombo(lteComponents, nrComponents)
-                if (icombo != null) combos.add(icombo)
+                val newLteComponents = newComponents.filterIsInstance<ComponentLte>()
+                val newNrComponents = newComponents.filterIsInstance<ComponentNr>()
+                val newCombo = assembleCombo(newLteComponents, newNrComponents)
+
+                if (newCombo != null) combos.add(newCombo)
             }
         }
 
         return combos
     }
 
-    /**
-     * Build EUTRA Feature Sets: map from FS number to FeatureSet, resolving FSpCC IDs to actual
-     * per-CC features.
-     */
-    private fun buildEutraFeatureSets(
-        fsMap: Map<Int, List<Int>>,
-        fspccFeatures: Map<Int, FeaturePerCCLte>,
-        direction: LinkDirection,
-    ): Map<Int, FeatureSet> {
-        return fsMap.mapValues { (_, fspccIds) ->
-            val perCCList = fspccIds.mapNotNull { fspccFeatures[it] }
-            FeatureSet(perCCList, direction)
-        }
-    }
-
-    /** Build an NR ComponentNr from parsed component data, resolving features via FSC. */
-    private fun buildNrComponent(
-        comp: ComponentNr,
-        dlFsType: Char?,
-        dlFsNum: Int,
-        ulFsType: Char?,
-        ulFsNum: Int,
+    /** Build an IComponent from parsed component data, resolving features via FSC. */
+    private fun mergeFeatureAndComponent(
+        comp: IComponent,
+        featureIndex: FeatureIndex,
         parsed: ParsedTrace,
-    ): ComponentNr {
-        val baseComponent = comp.copy()
+    ): IComponent {
+        val downlinkIndex = featureIndex.downlinkIndex
+        val uplinkIndex = featureIndex.uplinkIndex
 
-        // Resolve DL per-CC features: FS -> FSpCC IDs -> FeaturePerCCNr
-        val dlFeature: List<FeaturePerCCNr> =
-            if (dlFsType == 'N' && dlFsNum > 0) {
-                val fspccIds = parsed.nrDlFs[dlFsNum] ?: emptyList()
-                fspccIds.mapNotNull { parsed.nrDlFspcc[it] }
-            } else {
-                emptyList()
-            }
+        var dlFeatures: List<IFeaturePerCC>? = null
+        var ulFeatures: List<IFeaturePerCC>? = null
 
-        // Resolve UL per-CC features
-        val ulFeature: List<FeaturePerCCNr> =
-            if (ulFsType == 'N' && ulFsNum > 0) {
-                val fspccIds = parsed.nrUlFs[ulFsNum] ?: emptyList()
-                fspccIds.mapNotNull { parsed.nrUlFspcc[it] }
-            } else {
-                emptyList()
-            }
+        if (featureIndex.isNR && comp is ComponentNr) {
+            // Resolve DL per-CC features: FS -> FSpCC IDs -> FeaturePerCCNr
+            dlFeatures = parsed.nrDlFs[downlinkIndex]?.mapNotNull { parsed.nrDlFspcc[it] }
+            // Resolve UL per-CC features
+            ulFeatures = parsed.nrUlFs[uplinkIndex]?.mapNotNull { parsed.nrUlFspcc[it] }
+        } else if (!featureIndex.isNR && comp is ComponentLte) {
+            // Resolve DL features from EUTRA FS
+            dlFeatures = parsed.eutraDlFs[downlinkIndex]?.mapNotNull { parsed.eutraDlFspcc[it] }
 
-        return mergeComponentAndFeaturePerCC(baseComponent, dlFeature, ulFeature, null)
-            as ComponentNr
-    }
+            // Resolve UL features from EUTRA FS
+            ulFeatures = parsed.eutraUlFs[uplinkIndex]?.mapNotNull { parsed.eutraUlFspcc[it] }
+        }
 
-    /** Build an LTE ComponentLte from parsed component data, resolving features via FSC. */
-    private fun buildLteComponent(
-        comp: ComponentLte,
-        dlFsType: Char?,
-        dlFsNum: Int,
-        ulFsType: Char?,
-        ulFsNum: Int,
-        eutraDlFeatureSets: Map<Int, FeatureSet>,
-        eutraUlFeatureSets: Map<Int, FeatureSet>,
-    ): ComponentLte {
-        val baseComponent = comp.copy()
-
-        // Resolve DL features from EUTRA FS
-        val dlFeature: List<IFeaturePerCC>? =
-            if (dlFsType == 'E' && dlFsNum > 0) {
-                eutraDlFeatureSets[dlFsNum]?.featureSetsPerCC
-            } else {
-                null
-            }
-
-        // Resolve UL features from EUTRA FS
-        val ulFeature: List<IFeaturePerCC>? =
-            if (ulFsType == 'E' && ulFsNum > 0) {
-                eutraUlFeatureSets[ulFsNum]?.featureSetsPerCC
-            } else {
-                null
-            }
-
-        return mergeComponentAndFeaturePerCC(baseComponent, dlFeature, ulFeature, null)
-            as ComponentLte
+        // The function return a copy of component
+        return mergeComponentAndFeaturePerCC(comp, dlFeatures, ulFeatures, null)
     }
 
     /** Assemble the final combo (NR-CA, NR-DC, or EN-DC) from component lists. */
     private fun assembleCombo(
-        lteComponents: List<ComponentLte>,
-        nrComponents: List<ComponentNr>,
+        lteComponents: List<IComponent>,
+        nrComponents: List<IComponent>,
     ): ICombo? {
         if (nrComponents.isEmpty() && lteComponents.isEmpty()) return null
 
-        val sortedNr = nrComponents.sortedDescending()
-        val sortedLte = lteComponents.sortedDescending()
+        val sortedNr = nrComponents.sortedDescending().filterIsInstance<ComponentNr>()
+        val sortedLte = lteComponents.sortedDescending().filterIsInstance<ComponentLte>()
 
         return if (sortedLte.isEmpty()) {
             // NR-CA or NR-DC
