@@ -38,9 +38,9 @@ data class ComboEnDc(
         masterComponents: List<ComponentLte>,
         secondaryComponents: List<ComponentNr>,
         featureSet: Int,
-        bcsNr: BCS,
-        bcsEutra: BCS,
-        bcsIntraEnDc: BCS,
+        bcsNr: BCS = EmptyBCS,
+        bcsEutra: BCS = EmptyBCS,
+        bcsIntraEnDc: BCS = EmptyBCS,
     ) : this(masterComponents, secondaryComponents, bcsNr, bcsEutra, bcsIntraEnDc) {
         this.featureSet = featureSet
     }

@@ -137,14 +137,18 @@ fun Int.toMimo(): Mimo = Mimo.from(this)
  * - 4 if [string] contains "four"
  * - 8 if [string] contains "eight"
  * - 0 otherwise
+ *
+ * The function is case-insensitive.
  */
 internal fun Int.Companion.fromLiteral(string: String?): Int {
+    val lowerCaseString = string?.lowercase()
+
     return when {
-        string == null -> 0
-        "one" in string -> 1
-        "two" in string -> 2
-        "four" in string -> 4
-        "eight" in string -> 8
+        lowerCaseString == null -> 0
+        "one" in lowerCaseString -> 1
+        "two" in lowerCaseString -> 2
+        "four" in lowerCaseString -> 4
+        "eight" in lowerCaseString -> 8
         else -> 0
     }
 }

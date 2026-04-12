@@ -52,6 +52,7 @@ internal class ServerModeOthersTest {
                 "QLTE",
                 "QNR",
                 "M",
+                "MNR",
                 "O",
                 "QC",
                 "T",
