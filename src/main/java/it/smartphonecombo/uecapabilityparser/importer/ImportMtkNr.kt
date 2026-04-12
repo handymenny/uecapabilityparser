@@ -360,11 +360,12 @@ object ImportMtkNr : ImportCapabilities {
         if (components.isNotEmpty()) {
             val lteComponents = components.filterIsInstance<ComponentLte>()
             val nrComponents = components.filterIsInstance<ComponentNr>()
-            val combo = if (lteComponents.isEmpty()) {
-                ComboNr(nrComponents, featureSet = fscNum)
-            } else {
-                ComboEnDc(lteComponents, nrComponents, featureSet = fscNum)
-            }
+            val combo =
+                if (lteComponents.isEmpty()) {
+                    ComboNr(nrComponents, featureSet = fscNum)
+                } else {
+                    ComboEnDc(lteComponents, nrComponents, featureSet = fscNum)
+                }
             list.add(combo)
         }
         return Unit
@@ -557,14 +558,7 @@ object ImportMtkNr : ImportCapabilities {
 
                     if (comp is ComponentNr) {
                         val nrComp =
-                            buildNrComponent(
-                                comp,
-                                dlFsType,
-                                dlFsNum,
-                                ulFsType,
-                                ulFsNum,
-                                parsed,
-                            )
+                            buildNrComponent(comp, dlFsType, dlFsNum, ulFsType, ulFsNum, parsed)
                         nrComponents.add(nrComp)
                     } else if (comp is ComponentLte) {
                         val lteComp =
