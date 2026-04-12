@@ -103,7 +103,7 @@ tasks {
 
 application { mainClass.set("it.smartphonecombo.uecapabilityparser.cli.Main") }
 
-kotlin { jvmToolchain(11) }
+kotlin { jvmToolchain(17) }
 
 spotless {
     format("misc") {

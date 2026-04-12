@@ -13,11 +13,11 @@ jobs:
         with:
           fetch-depth: 0 # Required to count the commits
           submodules: true
-      - name: Setup jdk11
+      - name: Setup jdk17
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
       - name: Get new commits
         run: echo "NEW_COMMIT_COUNT=$(git log --oneline --since '24 hours ago' | wc -l)" >> $GITHUB_ENV
       - name: Get current date

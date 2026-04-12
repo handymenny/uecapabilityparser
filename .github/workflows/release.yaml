@@ -12,11 +12,11 @@ jobs:
         uses: actions/checkout@v6
         with:
           submodules: true
-      - name: Setup jdk11
+      - name: Setup jdk17
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
       - name: Set Version
         run: |
           sed -i "s/\(project.version=\).*/\1${GITHUB_REF#refs/*/v}/g" src/main/resources/application.properties
