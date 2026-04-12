@@ -61,12 +61,12 @@ object HelpMessage {
     const val ANNOYING_MESSAGE_OPTION = "Don't ask to support the project"
     val ANNOYING_MESSAGE =
         """
-            ----------------------------------------------------
-            | Found UE Capability Parser useful?               |
-            | Support its development!                         |
-            | More info on GitHub:                             |
-            | https://github.com/handymenny/uecapabilityparser |
-            ----------------------------------------------------
+        ----------------------------------------------------
+        | Found UE Capability Parser useful?               |
+        | Support its development!                         |
+        | More info on GitHub:                             |
+        | https://github.com/handymenny/uecapabilityparser |
+        ----------------------------------------------------
 
         """
             .trimIndent()

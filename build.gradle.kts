@@ -109,7 +109,7 @@ spotless {
     format("misc") {
         target("*.md", ".gitignore", "**/*.csv")
         trimTrailingWhitespace()
-        indentWithSpaces()
+        leadingTabsToSpaces()
         endWithNewline()
     }
 
