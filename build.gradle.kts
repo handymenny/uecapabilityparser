@@ -6,7 +6,7 @@ plugins {
     val kotlinVersion = "2.3.20"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
-    id("com.gradleup.shadow") version "8.3.6"
+    id("com.gradleup.shadow") version "9.4.1"
     id("com.diffplug.spotless") version "8.4.0"
     id("org.jetbrains.kotlinx.kover") version "0.9.8"
     id("maven-publish")
