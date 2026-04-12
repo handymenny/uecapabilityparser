@@ -13,7 +13,8 @@ sealed interface Modulation : Comparable<Modulation> {
 
     companion object {
         // pre-compute all SingleModulations
-        private val singleModulations =
+        // by lazy is needed because EmptyModulation could be null
+        private val singleModulations by lazy {
             ModulationOrder.entries.map {
                 // SingleModulation(ModulationOrder.NONE) == EmptyModulation
                 if (it == ModulationOrder.NONE) {
@@ -22,6 +23,7 @@ sealed interface Modulation : Comparable<Modulation> {
                     SingleModulation(it)
                 }
             }
+        }
 
         fun from(modulationOrder: ModulationOrder) = singleModulations[modulationOrder.ordinal]
 
