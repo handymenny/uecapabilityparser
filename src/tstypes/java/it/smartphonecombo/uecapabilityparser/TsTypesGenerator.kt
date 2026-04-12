@@ -19,8 +19,7 @@ internal object TsTypesGenerator {
             """
             |// Automatically generated. Don't edit.
             |// Run gradlew genTsTypes to update this file.
-            |
-            """
+            |"""
                 .trimMargin()
         val typescriptDefinitions =
             tsGenerator.generate(
