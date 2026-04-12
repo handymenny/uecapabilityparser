@@ -196,15 +196,21 @@ object ImportMtkNr : ImportCapabilities {
             val tag = extractTag(line)
 
             when (tag) {
-                "CA idx" -> parseComboLine(line, combos)
-                "NR DL FSpCC" -> parseNrFspccLine(line, nrDlFspcc, LinkDirection.DOWNLINK)
-                "NR UL FSpCC" -> parseNrFspccLine(line, nrUlFspcc, LinkDirection.UPLINK)
-                "EUTRA DL FSpCC" -> parseEutraFspccLine(line, eutraDlFspcc, LinkDirection.DOWNLINK)
-                "EUTRA UL FSpCC" -> parseEutraFspccLine(line, eutraUlFspcc, LinkDirection.UPLINK)
-                "NR DL FS" -> parseNrFsLine(line, nrDlFs, LinkDirection.DOWNLINK)
-                "NR UL FS" -> parseNrFsLine(line, nrUlFs, LinkDirection.UPLINK)
-                "EUTRA DL FS" -> parseEutraFsLine(line, eutraDlFs, LinkDirection.DOWNLINK)
-                "EUTRA UL FS" -> parseEutraFsLine(line, eutraUlFs, LinkDirection.UPLINK)
+                "CA idx" -> parseComboLine(line)?.let { combos.add(it) }
+                "NR DL FSpCC" ->
+                    parseNrFspccLine(line, LinkDirection.DOWNLINK)?.let { nrDlFspcc += it }
+                "NR UL FSpCC" ->
+                    parseNrFspccLine(line, LinkDirection.UPLINK)?.let { nrUlFspcc += it }
+                "EUTRA DL FSpCC" ->
+                    parseEutraFspccLine(line, LinkDirection.DOWNLINK)?.let { eutraDlFspcc += it }
+                "EUTRA UL FSpCC" ->
+                    parseEutraFspccLine(line, LinkDirection.UPLINK)?.let { eutraUlFspcc += it }
+                "NR DL FS" -> parseNrFsLine(line, LinkDirection.DOWNLINK)?.let { nrDlFs += it }
+                "NR UL FS" -> parseNrFsLine(line, LinkDirection.UPLINK)?.let { nrUlFs += it }
+                "EUTRA DL FS" ->
+                    parseEutraFsLine(line, LinkDirection.DOWNLINK)?.let { eutraDlFs += it }
+                "EUTRA UL FS" ->
+                    parseEutraFsLine(line, LinkDirection.UPLINK)?.let { eutraUlFs += it }
                 "FSC" -> parseFscLine(line, fscDefs)
                 else -> {
                     // do nothing
@@ -247,12 +253,15 @@ object ImportMtkNr : ImportCapabilities {
         return tag
     }
 
-    /** Parse a NR DL/UL FSpCC definition line. */
+    /**
+     * Parse a NR DL/UL FSpCC definition line.
+     *
+     * Return the Pair(Idx, FeaturePerCCNr) or null.
+     */
     private fun parseNrFspccLine(
         line: String,
-        map: MutableMap<Int, FeaturePerCCNr>,
         direction: LinkDirection,
-    ): Unit? {
+    ): Pair<Int, FeaturePerCCNr>? {
         val regex = if (direction == LinkDirection.DOWNLINK) reNrDlFspcc else reNrUlFspcc
         val m = regex.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
@@ -260,7 +269,7 @@ object ImportMtkNr : ImportCapabilities {
         val bwRaw = parseMtkBw(m.groupValues[3])
         val bw90 = m.groupValues[4] == "NL1_CAP_SUPPORT"
         val bw = if (bw90 && bwRaw == 80) 90 else bwRaw
-        map[idx] =
+        val feature =
             FeaturePerCCNr(
                 type = direction,
                 // XXX_ONE_LAYER -> 1, XXX_TWO_LAYER -> 2...
@@ -270,51 +279,56 @@ object ImportMtkNr : ImportCapabilities {
                 scs = scs,
                 channelBW90mhz = bw90,
             )
-        return Unit
+
+        return idx to feature
     }
 
-    /** Parse a EUTRA DL/UL FSpCC definition line. */
+    /**
+     * Parse a EUTRA DL/UL FSpCC definition line.
+     *
+     * Return the Pair(Idx, FeaturePerCCLte) or null.
+     */
     private fun parseEutraFspccLine(
         line: String,
-        map: MutableMap<Int, FeaturePerCCLte>,
         direction: LinkDirection,
-    ): Unit? {
+    ): Pair<Int, FeaturePerCCLte>? {
         val regex = if (direction == LinkDirection.DOWNLINK) reEutraDlFspcc else reEutraUlFspcc
         val m = regex.find(line) ?: return null
         val idx = m.groupValues[1].toInt()
         // XXX_ONE_LAYER -> 1, XXX_TWO_LAYER -> 2...
         val mimo = Int.fromLiteral(m.groupValues[2]).toMimo()
-        map[idx] = FeaturePerCCLte(type = direction, mimo = mimo)
-        return Unit
+        val feature = FeaturePerCCLte(type = direction, mimo = mimo)
+
+        return idx to feature
     }
 
-    /** Parse a NR DL/UL FS -> FSpCC ID mapping line. */
-    private fun parseNrFsLine(
-        line: String,
-        map: MutableMap<Int, List<Int>>,
-        direction: LinkDirection,
-    ): Unit? {
+    /**
+     * Parse a NR DL/UL FS -> FSpCC ID mapping line.
+     *
+     * Return the Pair(FSNum, id List) or null.
+     */
+    private fun parseNrFsLine(line: String, direction: LinkDirection): Pair<Int, List<Int>>? {
         val regex = if (direction == LinkDirection.DOWNLINK) reNrDlFs else reNrUlFs
         val endGroup = if (direction == LinkDirection.DOWNLINK) 9 else 5
         val m = regex.find(line) ?: return null
         val fsNum = m.groupValues[1].toInt()
         val ids = extractFspccIds(m, startGroup = 2, endGroup = endGroup)
-        map[fsNum] = ids
-        return Unit
+
+        return fsNum to ids
     }
 
-    /** Parse an EUTRA DL/UL FS -> FSpCC ID mapping line. */
-    private fun parseEutraFsLine(
-        line: String,
-        map: MutableMap<Int, List<Int>>,
-        direction: LinkDirection,
-    ): Unit? {
+    /**
+     * Parse an EUTRA DL/UL FS -> FSpCC ID mapping line.
+     *
+     * Return the Pair(FSNum, id List) or null.
+     */
+    private fun parseEutraFsLine(line: String, direction: LinkDirection): Pair<Int, List<Int>>? {
         val regex = if (direction == LinkDirection.DOWNLINK) reEutraDlFs else reEutraUlFs
         val m = regex.find(line) ?: return null
         val fsNum = m.groupValues[1].toInt()
         val ids = extractFspccIds(m, startGroup = 2, endGroup = 6)
-        map[fsNum] = ids
-        return Unit
+
+        return fsNum to ids
     }
 
     /** Parse an FSC definition line. Collects all variants for each FSC number. */
@@ -341,8 +355,12 @@ object ImportMtkNr : ImportCapabilities {
         return Unit
     }
 
-    /** Parse a combo definition line. Tries new format first, then old format. */
-    private fun parseComboLine(line: String, list: MutableList<ICombo>): Unit? {
+    /**
+     * Parse a combo definition line. Tries new format first, then old format.
+     *
+     * Return the parsed ICombo or null.
+     */
+    private fun parseComboLine(line: String): ICombo? {
         val m = reComboNew.find(line) ?: reComboOld.find(line) ?: return null
         val dlStr = m.groupValues[3]
         val ulStr = m.groupValues[4]
@@ -358,9 +376,9 @@ object ImportMtkNr : ImportCapabilities {
                 } else {
                     ComboEnDc(lteComponents, nrComponents, featureSet = fscNum)
                 }
-            list.add(combo)
+            return combo
         }
-        return Unit
+        return null
     }
 
     /**
