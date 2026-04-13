@@ -3,6 +3,8 @@ package it.smartphonecombo.uecapabilityparser.server
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder
 import io.javalin.apibuilder.EndpointGroup
+import io.javalin.compression.CompressionStrategy
+import io.javalin.compression.Gzip
 import io.javalin.config.SizeUnit
 import io.javalin.http.ContentType
 import io.javalin.http.Handler
@@ -52,7 +54,7 @@ class JavalinApp {
     fun newServer(): Javalin {
         val server =
             Javalin.create { config ->
-                config.http.gzipOnlyCompression(4)
+                config.http.compressionStrategy = CompressionStrategy(gzip = Gzip(4))
                 config.http.prefer405over404 = true
 
                 // align all request size limits
@@ -62,7 +64,7 @@ class JavalinApp {
                 config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
 
                 config.router.treatMultipleSlashesAsSingleSlash = true
-                config.router.apiBuilder(buildRoutes(store, index, compression))
+                config.routes.apiBuilder(buildRoutes(store, index, compression))
                 config.jsonMapper(CustomJsonMapper)
                 config.bundledPlugins.enableCors { cors -> cors.addRule { it.anyHost() } }
 
@@ -74,31 +76,29 @@ class JavalinApp {
                         staticFiles.location = Location.CLASSPATH
                     }
                 }
-            }
 
-        server.exception(Exception::class.java) { e, ctx ->
-            e.printStackTrace()
-            if (e is IllegalArgumentException || e is NullPointerException) {
-                ctx.badRequest()
-            } else {
-                ctx.internalError()
-            }
-        }
+                config.routes.exception(Exception::class.java) { e, ctx ->
+                    e.printStackTrace()
+                    if (e is IllegalArgumentException || e is NullPointerException) {
+                        ctx.badRequest()
+                    } else {
+                        ctx.internalError()
+                    }
+                }
 
-        server.error(HttpStatus.NOT_FOUND) { ctx ->
-            if (html404 != null) {
-                ctx.contentType(ContentType.HTML)
-                ctx.result(html404)
-            }
-        }
+                config.routes.error(HttpStatus.NOT_FOUND) { ctx ->
+                    if (html404 != null) {
+                        ctx.contentType(ContentType.HTML)
+                        ctx.result(html404)
+                    }
+                }
 
-        server.events { event ->
-            event.serverStarted {
-                if (store != null && !storeInitialized) {
-                    CoroutineScope(Dispatchers.Custom).launch { initializeStore(store) }
+                config.events.serverStarted {
+                    if (store != null && !storeInitialized) {
+                        CoroutineScope(Dispatchers.Custom).launch { initializeStore(store) }
+                    }
                 }
             }
-        }
 
         return server
     }
@@ -127,7 +127,7 @@ class JavalinApp {
         compression: Boolean,
     ) {
         val parserVersion = Config.getOrDefault("project.version", "")
-        val auto = strategy !== "force"
+        val auto = strategy != "force"
 
         withContext(Dispatchers.Custom) {
             IOUtils.createDirectories("$store/temp/output/")
