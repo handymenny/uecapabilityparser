@@ -16,7 +16,7 @@ internal class ImportMtkNrTest :
     }
 
     @Test
-    fun parseRedmi7MtkNrTrace() {
-        parse("redmi7MtkNrTrace.txt", "redmi7MtkNrTrace.json")
+    fun parseRealme75gMtkNrTrace() {
+        parse("realme75gMtkNrTrace.txt", "realme75gMtkNrTrace.json")
     }
 }
