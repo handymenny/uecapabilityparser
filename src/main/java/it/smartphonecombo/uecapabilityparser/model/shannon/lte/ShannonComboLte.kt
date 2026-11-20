@@ -21,8 +21,15 @@ data class ShannonComboLte(
      * bit in the BitString. 0 means default i.e. only BCS 0 supported (if applicable).
      */
     @ProtoNumber(2) @SerialName("bcs") private val rawBcs: Long? = null,
-    @ProtoNumber(3) val unknown1: Long,
-    @ProtoNumber(4) val unknown2: Long,
+    /**
+     * Bitmask for conf_id values 0 through 63, as defined by ap_plmn_mapping.
+     *
+     * Each bit position corresponds to a PLMN conf_id such as VZW, TMO, TELIA_NO, APAC_COMMON etc.
+     * A set bit means that the combo is allowed for that conf_id.
+     */
+    @ProtoNumber(3) val confId0To63: Long,
+    /** Bitmask for conf_id values 64 through 95. See [confId0To63] */
+    @ProtoNumber(4) val confId64To95: Long,
 ) {
     val bcs
         get() =
