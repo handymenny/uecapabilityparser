@@ -23,9 +23,9 @@ message Combo {
      Each bit position corresponds to a plmn conf_id such as VZW, TMO, TELIA_NO, APAC_COMMON etc. 
      A set bit means that the combo is allowed for that conf_id.
    */
-  required uint64 conf_id0to63 = 3;
+  required uint64 confId0To63 = 3;
   // Continuation bitmask for conf_id 64 to 95
-  required uint32 conf_id64to95 = 4;
+  required uint32 confId64To95 = 4;
 }
 
 message Component {
