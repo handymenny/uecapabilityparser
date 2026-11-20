@@ -84,12 +84,13 @@ internal class TsharkTest {
                 ) {
                     null
                 } else if (it.contains("maxNumberConfiguredTCIstatesPerCC")) {
-                    it.replace(
-                        "maxNumberConfiguredTCIstatesPerCC",
-                        "maxNumberConfiguredTCI-StatesPerCC",
-                    )
+                    it.trim()
+                        .replace(
+                            "maxNumberConfiguredTCIstatesPerCC",
+                            "maxNumberConfiguredTCI-StatesPerCC",
+                        )
                 } else {
-                    it
+                    it.trim()
                 }
             }
     }
