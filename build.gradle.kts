@@ -32,7 +32,7 @@ dependencies {
     val mtsAsn1Version = "5bd77b9"
     val javalinVersion = "7.2.4"
     val coroutinesVersion = "1.11.0"
-    val kotlinxSerializationVer = "1.11.0"
+    val kotlinxSerializationVer = "1.13.0"
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVer")
