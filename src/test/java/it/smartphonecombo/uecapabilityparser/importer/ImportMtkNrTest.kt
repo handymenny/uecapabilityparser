@@ -14,4 +14,9 @@ internal class ImportMtkNrTest :
     fun parseMtkNrTraceOld() {
         parse("mtkNrTraceOld.txt", "mtkNrTraceOld.json")
     }
+
+    @Test
+    fun parseMtkNrTraceNoCaIdx() {
+        parse("mtkNrTraceNoCaIdx.txt", "mtkNrTraceNoCaIdx.json")
+    }
 }
