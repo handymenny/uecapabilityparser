@@ -61,12 +61,12 @@ enum class LogType(val description: String) {
         /** Name of all entries except [INVALID] */
         val names = validEntries.map { it.name }.toTypedArray()
         /** Entries that only supports LTE-CA */
-        val lteOnlyTypes = listOf(C, E, Q, QLTE, M, RF)
+        val lteOnlyTypes = setOf(C, E, Q, QLTE, M, RF)
         /** One input -> multi capabilities * */
-        val multiImporter = validEntries.intersect(listOf(P, DLF, QMDL, HDF, SDM, NSG))
+        val multiImporter = validEntries.intersect(setOf(P, DLF, QMDL, HDF, SDM, NSG))
         /** One input -> multi or single capability * */
         val singleInput =
-            validEntries.intersect(listOf(E, SHNR, SHLTE, MNR, P, DLF, QMDL, HDF, SDM, NSG))
+            validEntries.intersect(setOf(E, SHNR, SHLTE, MNR, P, DLF, QMDL, HDF, SDM, NSG))
 
         /** Return [INVALID] if conversion fails * */
         fun of(string: String?): LogType {

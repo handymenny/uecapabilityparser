@@ -22,7 +22,6 @@ import it.smartphonecombo.uecapabilityparser.model.index.MultiIndexLine
 import it.smartphonecombo.uecapabilityparser.server.RequestMultiPart
 import java.time.Instant
 import java.util.*
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class MultiParsing(

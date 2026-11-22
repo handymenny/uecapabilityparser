@@ -251,7 +251,7 @@ internal class ServerModeMultiStoreTest {
             dispatcher.scheduler.advanceUntilIdle()
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            val actualText = response.body?.string() ?: ""
+            val actualText = response.body.string()
             val expectedText = File(oraclePath).readText()
 
             if (json) {
@@ -277,7 +277,7 @@ internal class ServerModeMultiStoreTest {
                     UtilityForTests.multiPartRequest(client.origin + url, request, files),
                 )
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            val result = response.body?.string() ?: ""
+            val result = response.body.string()
             multiCapabilitiesAssertEquals(oraclePath, result)
         }
 

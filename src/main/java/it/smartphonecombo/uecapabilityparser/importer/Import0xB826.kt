@@ -162,7 +162,7 @@ object Import0xB826 : ImportCapabilities {
 
     /** Parses a combo */
     private fun parseCombo(stream: InputStream, version: Int, source: String?): ICombo {
-        if (version >= 8 && version < 22) {
+        if (version in 8..<22) {
             stream.skipBytes(3)
         }
 
@@ -363,7 +363,7 @@ object Import0xB826 : ImportCapabilities {
             if (version >= 22) {
                 val maxBWindex = byte3.readNBits(1, offset = 7).insert(byte4.readNBits(6), 1)
                 nrBand.maxBandwidthDl = getBWFromIndexV17(maxBWindex)
-                var maxBwIndexUl = byte4.readNBits(2, offset = 6).insert(byte5.readNBits(5), 2)
+                val maxBwIndexUl = byte4.readNBits(2, offset = 6).insert(byte5.readNBits(5), 2)
                 nrBand.maxBandwidthUl = getBWFromIndexV17(maxBwIndexUl)
             } else if (version >= 17) {
                 val maxBWindex = byte4.readNBits(6, offset = 2).insert(byte5.readNBits(1), 6)

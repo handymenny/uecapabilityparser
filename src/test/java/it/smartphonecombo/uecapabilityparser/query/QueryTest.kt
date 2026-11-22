@@ -24,7 +24,6 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
@@ -34,7 +33,7 @@ internal class QueryTest {
 
     companion object {
         val capabilities = mutableListOf<Capabilities>()
-        private val resourcesPath = "src/test/resources/server/inputForQuery"
+        private const val resourcesPath = "src/test/resources/server/inputForQuery"
 
         @JvmStatic
         @BeforeAll

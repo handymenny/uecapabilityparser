@@ -124,7 +124,7 @@ internal class ServerModeOthersTest {
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            val actualText = response.body?.string() ?: ""
+            val actualText = response.body.string()
             val actual = Json.parseToJsonElement(actualText)
             Assertions.assertEquals(oracle.jsonObject, actual.jsonObject)
         }
@@ -134,7 +134,7 @@ internal class ServerModeOthersTest {
         JavalinTest.test(JavalinApp().newServer()) { _, client ->
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            val actualText = response.body?.string() ?: ""
+            val actualText = response.body.string()
             Assertions.assertEquals(oracle, actualText)
         }
     }

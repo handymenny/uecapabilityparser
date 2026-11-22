@@ -236,7 +236,7 @@ object Import0xB0CDBin : ImportCapabilities {
         val decodeVersion = capabilities.getStringMetadata("version")?.toIntOrNull() ?: -1
 
         // downgrade doesn't make sense
-        if (decodeVersion < 24 || decodeVersion > 41) return null
+        if (decodeVersion !in 24..41) return null
 
         return when (decodeVersion) {
             32 -> 24

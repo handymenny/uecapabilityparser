@@ -15,6 +15,10 @@ object Config : HashMap<String, String>() {
         importFromFile()
     }
 
+    // Serializable object must implement readResolve to preserve singleton identity during
+    // deserialization
+    @Suppress("unused") private fun readResolve(): Any = Config
+
     private fun importFromFile() {
         javaClass.getResourceAsStream(CONFIG_FILE)?.let {
             val properties = Properties()

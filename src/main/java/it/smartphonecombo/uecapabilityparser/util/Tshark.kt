@@ -53,7 +53,7 @@ class Tshark {
     ): String {
         val tsharkCmd = strTsharkPath + "tshark"
         var userdltsString =
-            ("uat:user_dlts:\"User 0 (DLT=147)\",\"" + strProtocol + "\",\"0\",\"\",\"0\",\"\"")
+            ("uat:user_dlts:\"User 0 (DLT=147)\",\"$strProtocol\",\"0\",\"\",\"0\",\"\"")
         if (OsType.CURRENT == OsType.WINDOWS) {
             userdltsString = userdltsString.replace("\"".toRegex(), "\\\\\"")
         }

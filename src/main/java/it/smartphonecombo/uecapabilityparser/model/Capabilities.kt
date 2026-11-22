@@ -12,13 +12,11 @@ import it.smartphonecombo.uecapabilityparser.model.ratcapabilities.IRatCapabilit
 import it.smartphonecombo.uecapabilityparser.util.Config
 import java.util.UUID
 import kotlinx.serialization.EncodeDefault
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@OptIn(ExperimentalSerializationApi::class)
 data class Capabilities(
     @SerialName("lteca") var lteCombos: List<ComboLte> = emptyList(),
     @SerialName("lteBands") var lteBands: List<BandLteDetails> = emptyList(),

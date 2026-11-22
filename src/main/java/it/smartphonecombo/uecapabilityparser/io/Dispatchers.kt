@@ -7,5 +7,6 @@ import kotlinx.coroutines.Dispatchers.IO
 
 private val customDispatcher = IO.limitedParallelism(Config.getOrDefault("maxThreads", "2").toInt())
 
+@Suppress("UnusedReceiverParameter")
 val Dispatchers.Custom: CoroutineDispatcher
     get() = customDispatcher

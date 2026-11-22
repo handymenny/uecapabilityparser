@@ -1,21 +1,17 @@
 package it.smartphonecombo.uecapabilityparser.util
 
 class LruCache<K, V>(private val maxCapacity: Int? = null) {
-    private val internalMap: LinkedHashMap<K, V>
-    private val lock = Any()
-
-    init {
+    private val internalMap: LinkedHashMap<K, V> =
         if (maxCapacity == null) {
-            internalMap = LinkedHashMap()
+            LinkedHashMap()
         } else {
-            internalMap =
-                object : LinkedHashMap<K, V>(minOf(16, maxCapacity + 1), 0.75f, true) {
-                    override fun removeEldestEntry(eldest: Map.Entry<K, V>): Boolean {
-                        return size > maxCapacity
-                    }
+            object : LinkedHashMap<K, V>(minOf(16, maxCapacity + 1), 0.75f, true) {
+                override fun removeEldestEntry(eldest: Map.Entry<K, V>): Boolean {
+                    return size > maxCapacity
                 }
+            }
         }
-    }
+    private val lock = Any()
 
     operator fun get(key: K): V? = internalMap[key]
 

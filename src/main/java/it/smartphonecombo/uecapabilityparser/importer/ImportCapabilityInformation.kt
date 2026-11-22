@@ -129,7 +129,11 @@ object ImportCapabilityInformation : ImportCapabilities {
             val listCombo = getBandCombinations(eutra, lteBandsMap)
             val listComboAdd = getBandCombinationsAdd(eutra, lteBandsMap)
             val listComboReduced = getBandCombinationsReduced(eutra, lteBandsMap)
-            val totalLteCombos = listCombo + listComboAdd + listComboReduced
+            val totalLteCombos = buildList {
+                addAll(listCombo)
+                addAll(listComboAdd)
+                addAll(listComboReduced)
+            }
             comboList.lteCombos = totalLteCombos
 
             if (eutraNrCapability != null) {
@@ -489,10 +493,11 @@ object ImportCapabilityInformation : ImportCapabilities {
         nrCombos: List<ComboNr>,
         nrDcCombos: List<ComboNrDc>,
     ) {
-        val nrComponents =
-            enDcCombos.flatMap { it.componentsNr } +
-                nrCombos.flatMap { it.componentsNr } +
-                nrDcCombos.flatMap { it.componentsNr + it.componentsNrDc }
+        val nrComponents = buildList {
+            enDcCombos.flatMapTo(this) { it.componentsNr }
+            nrCombos.flatMapTo(this) { it.componentsNr }
+            nrDcCombos.flatMapTo(this) { it.componentsNr + it.componentsNrDc }
+        }
 
         for (component in nrComponents.toHashSet()) {
             val band = bandList[component.band] ?: continue
@@ -1271,7 +1276,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                             index ->
                             index.asIntOrNull()?.let {
                                 // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
-                                downlinkPerCC?.getOrNull(it - 1)
+                                downlinkPerCC.getOrNull(it - 1)
                             }
                         }
                     if (list != null) {
@@ -1342,7 +1347,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                             index ->
                             index.asIntOrNull()?.let {
                                 // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
-                                uplinkPerCC?.getOrNull(it - 1)
+                                uplinkPerCC.getOrNull(it - 1)
                             }
                         }
                     if (list != null) {
@@ -1602,9 +1607,8 @@ object ImportCapabilityInformation : ImportCapabilities {
     // samples
     private fun getUlTxSwitchBandCombinations(nrCapability: UENrCapabilityJson): List<ComboNr> {
         val bandCombinationsPath = "rf-Parameters.supportedBandCombinationList-UplinkTxSwitch-r16"
-        val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
-
-        if (bandCombinationsList == null) return emptyList()
+        val bandCombinationsList =
+            nrCapability.rootJson.getArrayAtPath(bandCombinationsPath) ?: return emptyList()
 
         val list = mutableListWithCapacity<ComboNr>(bandCombinationsList.size)
         for (bandCombination in bandCombinationsList) {

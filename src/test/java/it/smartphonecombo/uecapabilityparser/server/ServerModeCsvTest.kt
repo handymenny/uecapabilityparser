@@ -68,8 +68,7 @@ internal class ServerModeCsvTest {
             val response = client.post(endpoint, request)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
 
-            val actual =
-                response.body?.string()?.lines()?.dropLastWhile { it.isBlank() } ?: emptyList()
+            val actual = response.body.string().lines().dropLastWhile { it.isBlank() }
             val expected = File(oraclePath).readLines().dropLastWhile { it.isBlank() }
 
             // check input combos size = output combos size
