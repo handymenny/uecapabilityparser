@@ -17,7 +17,6 @@ import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers.parseMultiple0
 import it.smartphonecombo.uecapabilityparser.util.ImportQcHelpers.parseMultiple0xBOCD
 import java.time.Instant
 import kotlin.system.measureTimeMillis
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 

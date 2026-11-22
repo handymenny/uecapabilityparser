@@ -29,7 +29,6 @@ import it.smartphonecombo.uecapabilityparser.server.ServerMode
 import it.smartphonecombo.uecapabilityparser.util.Config
 import it.smartphonecombo.uecapabilityparser.util.MultiParsing
 import it.smartphonecombo.uecapabilityparser.util.Parsing
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 object Clikt : CliktCommand(name = "uecapabilityparser") {
