@@ -105,7 +105,7 @@ object Import0xB0CDBin : ImportCapabilities {
                     prefix = "[",
                     postfix = "]",
                     transform = ICombo::toCompactStr,
-                )
+                ),
             )
         }
 

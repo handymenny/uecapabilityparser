@@ -101,8 +101,9 @@ class LibraryIndex(outputCacheSize: Int?) {
 
         val validIds = runBlocking { validIdsDeferred.await().filterNotNull().toSet() }
 
-        val multiItemsFiltered =
-            multiItemsList.filter { it.indexLineIds.any { id -> validIds.contains(id) } }
+        val multiItemsFiltered = multiItemsList.filter {
+            it.indexLineIds.any { id -> validIds.contains(id) }
+        }
         val itemsFiltered = itemsList.filter { validIds.contains(it.id) }
 
         return LibraryIndexImmutable(itemsFiltered, multiItemsFiltered)
@@ -145,26 +146,24 @@ class LibraryIndex(outputCacheSize: Int?) {
         val jobs = mutableListOf<Job>()
 
         withContext(Dispatchers.Custom) {
-            val outputJobs =
-                outputFiles.forAsync {
-                    try {
-                        val newIndex = IndexLine.fromFile(it, inputFiles)
-                        putLine(newIndex)
-                    } catch (ex: Exception) {
-                        echoSafe("Error reading $it: $ex", true)
-                    }
+            val outputJobs = outputFiles.forAsync {
+                try {
+                    val newIndex = IndexLine.fromFile(it, inputFiles)
+                    putLine(newIndex)
+                } catch (ex: Exception) {
+                    echoSafe("Error reading $it: $ex", true)
                 }
+            }
             jobs.addAll(outputJobs)
 
-            val multiJobs =
-                multiFiles.forAsync {
-                    try {
-                        val newMultiIndex = MultiIndexLine.fromFile(it)
-                        putMultiLine(newMultiIndex)
-                    } catch (ex: Exception) {
-                        echoSafe("Error reading $it: $ex", true)
-                    }
+            val multiJobs = multiFiles.forAsync {
+                try {
+                    val newMultiIndex = MultiIndexLine.fromFile(it)
+                    putMultiLine(newMultiIndex)
+                } catch (ex: Exception) {
+                    echoSafe("Error reading $it: $ex", true)
                 }
+            }
             jobs.addAll(multiJobs)
         }
 

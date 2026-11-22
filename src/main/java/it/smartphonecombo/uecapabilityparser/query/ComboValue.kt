@@ -63,12 +63,11 @@ internal fun meetsCriteriaReduced(
     criteria: List<IComponentValue>,
     components: List<IComponent>,
 ): Boolean {
-    val indexes =
-        criteria.map {
-            val res = it.allIndexes(components)
-            if (res.isEmpty()) return false
-            res
-        }
+    val indexes = criteria.map {
+        val res = it.allIndexes(components)
+        if (res.isEmpty()) return false
+        res
+    }
 
     return reducedResult(indexes)
 }

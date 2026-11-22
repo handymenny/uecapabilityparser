@@ -130,8 +130,9 @@ object ImportShannonNrUeCap : ImportCapabilities {
         featureSetsDl: List<FeatureSet>,
         featureSetsUl: List<FeatureSet>,
     ): List<ComponentLte> {
-        val components =
-            shComponents.map { processShannonComponentLte(it, featureSetsDl, featureSetsUl) }
+        val components = shComponents.map {
+            processShannonComponentLte(it, featureSetsDl, featureSetsUl)
+        }
 
         return components.sortedDescending()
     }
@@ -141,8 +142,9 @@ object ImportShannonNrUeCap : ImportCapabilities {
         featuresPerCCDl: List<FeaturePerCCNr>,
         featuresPerCCUl: List<FeaturePerCCNr>,
     ): List<ComponentNr> {
-        val components =
-            shComponents.map { processShannonComponentNr(it, featuresPerCCDl, featuresPerCCUl) }
+        val components = shComponents.map {
+            processShannonComponentNr(it, featuresPerCCDl, featuresPerCCUl)
+        }
 
         return components.sortedDescending()
     }

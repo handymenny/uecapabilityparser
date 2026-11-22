@@ -49,18 +49,17 @@ object UtilityForTests {
 
         val zip = filesA.zip(filesB)
 
-        val result =
-            zip.all { (fileA, fileB) ->
-                if (fileA.relativeTo(dirA) != fileB.relativeTo(dirB)) {
-                    false
-                } else if (fileA.isDirectory && fileB.isDirectory) {
-                    true
-                } else {
-                    val aSize = fileA.readBytes().size
-                    val bSize = fileB.readBytes().size
-                    abs(aSize - bSize) < maxOf(3 * aSize / 100, 128)
-                }
+        val result = zip.all { (fileA, fileB) ->
+            if (fileA.relativeTo(dirA) != fileB.relativeTo(dirB)) {
+                false
+            } else if (fileA.isDirectory && fileB.isDirectory) {
+                true
+            } else {
+                val aSize = fileA.readBytes().size
+                val bSize = fileB.readBytes().size
+                abs(aSize - bSize) < maxOf(3 * aSize / 100, 128)
             }
+        }
         return result
     }
 
@@ -86,7 +85,7 @@ object UtilityForTests {
                 partHeader(
                     "Content-Disposition: form-data; name=\"requests\"",
                     "Content-Type: text/plain; charset=UTF-8",
-                )
+                ),
             )
             add(BodyPublishers.ofString(Json.encodeToString(json) + crlf, StandardCharsets.UTF_8))
 
@@ -96,7 +95,7 @@ object UtilityForTests {
                     partHeader(
                         """Content-Disposition: form-data; name="file"; filename="${file.name}"""",
                         "Content-Type: application/octet-stream",
-                    )
+                    ),
                 )
                 add(BodyPublishers.ofByteArray(file.toInputSource(gzip).readBytes()))
                 add(BodyPublishers.ofString(crlf, StandardCharsets.UTF_8))

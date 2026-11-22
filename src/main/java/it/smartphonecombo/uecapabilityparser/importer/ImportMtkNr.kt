@@ -44,7 +44,7 @@ object ImportMtkNr : ImportCapabilities {
             MAIN_CAP +
                 """NR DL FSpCC\[(\d+)],\s*""" +
                 """scs\[(\w+)],\s*bw\[(\w+)],\s*bw90m\[(\w+)],\s*""" +
-                """mimo\[(\w+)],\s*modulation\[(\w+)]"""
+                """mimo\[(\w+)],\s*modulation\[(\w+)]""",
         )
 
     // Regex for NR UL FSpCC definitions
@@ -53,7 +53,7 @@ object ImportMtkNr : ImportCapabilities {
             MAIN_CAP +
                 """NR UL FSpCC\[(\d+)],\s*""" +
                 """scs\[(\w+)],\s*bw\[(\w+)],\s*bw90m\[(\w+)],\s*""" +
-                """cb_mimo\[(\w+)],.*?modulation\[(\w+)]"""
+                """cb_mimo\[(\w+)],.*?modulation\[(\w+)]""",
         )
 
     // Regex for EUTRA DL FSpCC definitions
@@ -76,7 +76,7 @@ object ImportMtkNr : ImportCapabilities {
                 """(?:\[([^\]]*)])?""" +
                 """(?:\[([^\]]*)])?""" +
                 """(?:\[([^\]]*)])?""" +
-                """(?:\[([^\]]*)])?"""
+                """(?:\[([^\]]*)])?""",
         )
 
     // Regex for NR UL Feature Set -> FSpCC ID mappings
@@ -87,7 +87,7 @@ object ImportMtkNr : ImportCapabilities {
                 """\[([^\]]*)]""" +
                 """(?:\[([^\]]*)])?""" +
                 """(?:\[([^\]]*)])?""" +
-                """(?:\[([^\]]*)])?"""
+                """(?:\[([^\]]*)])?""",
         )
 
     // Regex for EUTRA DL Feature Set -> FSpCC ID mappings
@@ -99,7 +99,7 @@ object ImportMtkNr : ImportCapabilities {
                 """(?:\[([^\]]*)])?""" +
                 """(?:\[([^\]]*)])?""" +
                 """(?:\[([^\]]*)])?""" +
-                """(?:\[([^\]]*)])?"""
+                """(?:\[([^\]]*)])?""",
         )
 
     // Regex for EUTRA UL Feature Set -> FSpCC ID mappings
@@ -111,7 +111,7 @@ object ImportMtkNr : ImportCapabilities {
                 """(?:\[([^\]]*)])?""" +
                 """(?:\[([^\]]*)])?""" +
                 """(?:\[([^\]]*)])?""" +
-                """(?:\[([^\]]*)])?"""
+                """(?:\[([^\]]*)])?""",
         )
 
     // Regex for FSC definitions
@@ -129,19 +129,19 @@ object ImportMtkNr : ImportCapabilities {
         Regex(
             CAP +
                 """CA idx \[\d+] NL1 bc, num\[(\d+)]\s+""" +
-                """DL:\s+([\w_]+)\s+UL:\s+([\w_]+)\s+FSC\[(\d+)]"""
+                """DL:\s+([\w_]+)\s+UL:\s+([\w_]+)\s+FSC\[(\d+)]""",
         )
     private val reComboOld =
         Regex(
             MAIN_CAP +
                 """CA idx \[\d+],\s*NL1 CA band comb,\s*band num\[(\d+)],\s*""" +
-                """DL:\s+([\w_]+),\s*UL:\s+([\w_]+),\s*FSC\[(\d+)]"""
+                """DL:\s+([\w_]+),\s*UL:\s+([\w_]+),\s*FSC\[(\d+)]""",
         )
     private val reComboNoCaIdx =
         Regex(
             MAIN_CAP +
                 """NL1 CA band comb,\s*band num\[(\d+)],\s*""" +
-                """DL:\s+([\w_]+),\s*UL:\s+([\w_]+),\s*FSC\[(\d+)]"""
+                """DL:\s+([\w_]+),\s*UL:\s+([\w_]+),\s*FSC\[(\d+)]""",
         )
 
     // Regex for individual band component in DL/UL strings
@@ -425,7 +425,7 @@ object ImportMtkNr : ImportCapabilities {
                     band = bm.groupValues[2].toInt(),
                     bwClass = bm.groupValues[3][0],
                     pos = i,
-                )
+                ),
             )
         }
 
@@ -442,7 +442,7 @@ object ImportMtkNr : ImportCapabilities {
                     band = bm.groupValues[2].toInt(),
                     bwClass = bm.groupValues[3][0],
                     pos = i,
-                )
+                ),
             )
         }
 
@@ -453,10 +453,9 @@ object ImportMtkNr : ImportCapabilities {
         for (dl in dlEntries) {
             // Try positional match first
             var ulBwClass: Char? = null
-            val posMatch =
-                ulEntries.indexOfFirst {
-                    it.pos == dl.pos && it !in usedUl.map { idx -> ulEntries[idx] }
-                }
+            val posMatch = ulEntries.indexOfFirst {
+                it.pos == dl.pos && it !in usedUl.map { idx -> ulEntries[idx] }
+            }
             if (
                 posMatch >= 0 &&
                     ulEntries[posMatch].band == dl.band &&

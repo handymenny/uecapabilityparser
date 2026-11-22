@@ -25,8 +25,9 @@ sourceSets {
     }
 }
 
-val tstypesImplementation: Configuration by
-    configurations.getting { extendsFrom(configurations.implementation.get()) }
+val tstypesImplementation: Configuration by configurations.getting {
+    extendsFrom(configurations.implementation.get())
+}
 
 dependencies {
     val mtsAsn1Version = "5bd77b9"
@@ -123,7 +124,7 @@ spotless {
 
 tasks.withType<SpotlessDiagnoseTask>().configureEach {
     notCompatibleWithConfigurationCache(
-        "Spotless Diagnose doesn't support the configuration cache."
+        "Spotless Diagnose doesn't support the configuration cache.",
     )
 }
 

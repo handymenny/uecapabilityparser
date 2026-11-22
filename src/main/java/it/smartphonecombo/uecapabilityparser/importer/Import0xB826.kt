@@ -105,7 +105,7 @@ object Import0xB826 : ImportCapabilities {
                     prefix = "[",
                     postfix = "]",
                     transform = ICombo::toCompactStr,
-                )
+                ),
             )
         }
 

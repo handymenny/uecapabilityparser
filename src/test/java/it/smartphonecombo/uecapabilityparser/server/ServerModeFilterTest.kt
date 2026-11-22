@@ -105,7 +105,7 @@ internal class ServerModeFilterTest {
                         Comparator.HAS_ANY,
                         listOf(BandNrDetailsValue(78)),
                     ),
-                )
+                ),
             )
         javalinTest(
             request = Json.encodeToJsonElement(query).jsonObject,
@@ -127,7 +127,7 @@ internal class ServerModeFilterTest {
                                 ulMasterComponents = listOf(LteComponentUlValue(1)),
                                 dlSecondaryComponents = listOf(NrComponentDlValue(78)),
                                 ulSecondaryComponents = listOf(NrComponentUlValue(78)),
-                            )
+                            ),
                         ),
                     ),
                     CriteriaBands(
@@ -135,7 +135,7 @@ internal class ServerModeFilterTest {
                         Comparator.HAS_NONE,
                         listOf(BandLteDetailsValue(20)),
                     ),
-                )
+                ),
             )
 
         javalinTest(
@@ -158,7 +158,7 @@ internal class ServerModeFilterTest {
                                 ulMasterComponents = listOf(),
                                 dlSecondaryComponents = listOf(NrComponentDlValue(257)),
                                 ulSecondaryComponents = listOf(),
-                            )
+                            ),
                         ),
                     ),
                     CriteriaCombos(
@@ -168,10 +168,10 @@ internal class ServerModeFilterTest {
                             ComboValue(
                                 dlComponents = listOf(NrComponentDlValue(78)),
                                 ulComponents = listOf(),
-                            )
+                            ),
                         ),
                     ),
-                )
+                ),
             )
 
         javalinTest(

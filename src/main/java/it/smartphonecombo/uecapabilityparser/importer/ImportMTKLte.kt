@@ -110,29 +110,27 @@ object ImportMTKLte : ImportCapabilities {
 
         // mimo
         mimoReversedLines.add(firstLine)
-        var line =
-            otherLines.firstOrNull {
-                if (it.startsWith("band_param = Array")) {
-                    true
-                } else {
-                    mimoReversedLines.add(it)
-                    false
-                }
+        var line = otherLines.firstOrNull {
+            if (it.startsWith("band_param = Array")) {
+                true
+            } else {
+                mimoReversedLines.add(it)
+                false
             }
+        }
 
         if (line == null) return null
 
         // bands
         bandReveredLines.add(line)
-        line =
-            otherLines.firstOrNull {
-                if (it.startsWith("band_param_num =")) {
-                    true
-                } else {
-                    bandReveredLines.add(it)
-                    false
-                }
+        line = otherLines.firstOrNull {
+            if (it.startsWith("band_param_num =")) {
+                true
+            } else {
+                bandReveredLines.add(it)
+                false
             }
+        }
 
         if (line == null) return null
 

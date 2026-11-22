@@ -80,8 +80,9 @@ internal class ServerModeMultiStoreTest {
         Config["store"] = tmpStorePath
         val inputPrefix = "$resourcesPath/oracleForMultiStore/input/"
 
-        val outputOracles =
-            storedIds.map { storedId -> "$resourcesPath/oracleForMultiStore/output/$storedId.json" }
+        val outputOracles = storedIds.map { storedId ->
+            "$resourcesPath/oracleForMultiStore/output/$storedId.json"
+        }
         val multiOracle = "$resourcesPath/oracleForMultiStore/multi/$storedMultiId.json"
 
         val oracleInputs =
@@ -273,7 +274,7 @@ internal class ServerModeMultiStoreTest {
             dispatcher.scheduler.advanceUntilIdle()
             val response =
                 client.request(
-                    UtilityForTests.multiPartRequest(client.origin + url, request, files)
+                    UtilityForTests.multiPartRequest(client.origin + url, request, files),
                 )
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
             val result = response.body?.string() ?: ""

@@ -499,7 +499,7 @@ internal class QueryTest {
                                 ulComponents = listOf(LteComponentUlValue(28)),
                             ),
                         ),
-                )
+                ),
             )
 
         val oracleList =
@@ -531,9 +531,9 @@ internal class QueryTest {
                                         LteComponentDlValue(1, minMimo = 4),
                                     ),
                                 ulComponents = listOf(LteComponentUlValue(3)),
-                            )
+                            ),
                         ),
-                )
+                ),
             )
 
         val oracleList =
@@ -574,9 +574,9 @@ internal class QueryTest {
                                         ),
                                     ),
                                 ulComponents = listOf(LteComponentUlValue(3)),
-                            )
+                            ),
                         ),
-                )
+                ),
             )
 
         val oracleList = listOf("ef2a3675-3e28-4ee9-aee9-85e427edcbc5")
@@ -601,9 +601,9 @@ internal class QueryTest {
                                         LteComponentDlValue(42, minBwClass = "C".toBwClass()),
                                     ),
                                 ulComponents = listOf(),
-                            )
+                            ),
                         ),
-                )
+                ),
             )
 
         val oracleList =
@@ -633,9 +633,9 @@ internal class QueryTest {
                                         LteComponentDlValue(20),
                                     ),
                                 ulComponents = listOf(),
-                            )
+                            ),
                         ),
-                )
+                ),
             )
 
         val oracleList =
@@ -692,7 +692,7 @@ internal class QueryTest {
                                 ulComponents = listOf(),
                             ),
                         ),
-                )
+                ),
             )
 
         val oracleList =
@@ -725,7 +725,7 @@ internal class QueryTest {
                                             minMimo = 2,
                                             minMaxBwPerCC = 100,
                                             minBwClass = "I".toBwClass(),
-                                        )
+                                        ),
                                     ),
                                 ulComponents =
                                     listOf(
@@ -733,11 +733,11 @@ internal class QueryTest {
                                             257,
                                             minMimo = 2,
                                             minBwClass = "I".toBwClass(),
-                                        )
+                                        ),
                                     ),
-                            )
+                            ),
                         ),
-                )
+                ),
             )
 
         val oracleList = listOf("c65d642a-83c3-4df8-9138-4a969577ce05")
@@ -757,7 +757,9 @@ internal class QueryTest {
                             ComboValue(
                                 dlComponents = listOf(),
                                 ulComponents =
-                                    listOf(NrComponentUlValue(78, minMimo = 2, minMaxBwPerCC = 200)),
+                                    listOf(
+                                        NrComponentUlValue(78, minMimo = 2, minMaxBwPerCC = 200),
+                                    ),
                             ),
                             ComboValue(
                                 dlComponents =
@@ -767,12 +769,12 @@ internal class QueryTest {
                                             minMimo = 2,
                                             minBwClass = "B".toBwClass(),
                                             minMaxBwPerCC = 40,
-                                        )
+                                        ),
                                     ),
                                 ulComponents = listOf(),
                             ),
                         ),
-                )
+                ),
             )
 
         val oracleList = listOf("3da2cb67-e263-4f3f-b9b0-d30abbb2bd4e")
@@ -793,7 +795,9 @@ internal class QueryTest {
                             ComboValue(
                                 dlComponents = listOf(),
                                 ulComponents =
-                                    listOf(NrComponentUlValue(78, minMimo = 2, minMaxBwPerCC = 200)),
+                                    listOf(
+                                        NrComponentUlValue(78, minMimo = 2, minMaxBwPerCC = 200),
+                                    ),
                             ),
                             ComboValue(
                                 dlComponents =
@@ -803,12 +807,12 @@ internal class QueryTest {
                                             minMimo = 2,
                                             minBwClass = "B".toBwClass(),
                                             minMaxBwPerCC = 40,
-                                        )
+                                        ),
                                     ),
                                 ulComponents = listOf(),
                             ),
                         ),
-                )
+                ),
             )
 
         // Replace bw class B with b
@@ -835,7 +839,7 @@ internal class QueryTest {
                                 ulMasterComponents = listOf(),
                                 dlSecondaryComponents =
                                     listOf(
-                                        NrComponentDlValue(257, minMimo = 2, minMaxBwPerCC = 100)
+                                        NrComponentDlValue(257, minMimo = 2, minMaxBwPerCC = 100),
                                     ),
                                 ulSecondaryComponents =
                                     listOf(
@@ -843,11 +847,11 @@ internal class QueryTest {
                                             257,
                                             minMimo = 2,
                                             minBwClass = "I".toBwClass(),
-                                        )
+                                        ),
                                     ),
-                            )
+                            ),
                         ),
-                )
+                ),
             )
 
         val oracleList =
@@ -870,7 +874,7 @@ internal class QueryTest {
                                 ulMasterComponents = listOf(),
                                 dlSecondaryComponents =
                                     listOf(
-                                        NrComponentDlValue(257, minMimo = 2, minMaxBwPerCC = 100)
+                                        NrComponentDlValue(257, minMimo = 2, minMaxBwPerCC = 100),
                                     ),
                                 ulSecondaryComponents =
                                     listOf(
@@ -878,11 +882,11 @@ internal class QueryTest {
                                             257,
                                             minMimo = 2,
                                             minBwClass = "I".toBwClass(),
-                                        )
+                                        ),
                                     ),
-                            )
+                            ),
                         ),
-                )
+                ),
             )
 
         val oracleList =
