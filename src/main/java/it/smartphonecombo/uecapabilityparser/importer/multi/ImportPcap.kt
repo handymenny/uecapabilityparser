@@ -96,12 +96,14 @@ object ImportPcap : ImportMultiCapabilities {
             if (distinct0xB826.isNotEmpty()) {
                 inputsList += listOf(distinct0xB826.toInputSource())
                 typeList += LogType.QNR
+                @Suppress("RemoveExplicitTypeArguments") // Needed
                 subTypesList += emptyList<List<String>>()
                 descriptions += "0xB826 packets from $srcName"
             }
             if (distinct0xB0Cd.isNotEmpty()) {
                 inputsList += listOf(distinct0xB0Cd.toInputSource())
                 typeList += LogType.QLTE
+                @Suppress("RemoveExplicitTypeArguments") // Needed
                 subTypesList += emptyList<List<String>>()
                 descriptions += "0xB0CD packets from $srcName"
             }
