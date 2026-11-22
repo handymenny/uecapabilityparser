@@ -326,7 +326,7 @@ internal class ServerModeFilterTest {
     }
 
     companion object {
-        private val path = "src/test/resources/server/"
+        private const val path = "src/test/resources/server/"
         private lateinit var app: JavalinApp
         private val dispatcher = StandardTestDispatcher()
 

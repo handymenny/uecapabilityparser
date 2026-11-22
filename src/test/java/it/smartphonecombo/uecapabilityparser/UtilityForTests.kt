@@ -202,8 +202,8 @@ object UtilityForTests {
         val prevCapsIterator = prevMultiCap.capabilities.listIterator()
 
         val clonedCaps =
-            multiCap.capabilities.map {
-                val clone = it.copy()
+            multiCap.capabilities.map { capabilities ->
+                val clone = capabilities.copy()
                 if (!preserveMetadata) {
                     // reset id, timestamp, processingTime
                     clone.id = ""
@@ -220,7 +220,7 @@ object UtilityForTests {
                 clone
             }
 
-        val multiCloned = multiCap.copy(clonedCaps)
+        val multiCloned = multiCap.copy(capabilities = clonedCaps)
 
         if (!preserveMetadata) {
             multiCloned.id = ""

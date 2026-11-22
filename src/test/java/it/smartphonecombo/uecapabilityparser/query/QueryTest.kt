@@ -33,7 +33,7 @@ internal class QueryTest {
 
     companion object {
         val capabilities = mutableListOf<Capabilities>()
-        private val resourcesPath = "src/test/resources/server/inputForQuery"
+        private const val resourcesPath = "src/test/resources/server/inputForQuery"
 
         @JvmStatic
         @BeforeAll

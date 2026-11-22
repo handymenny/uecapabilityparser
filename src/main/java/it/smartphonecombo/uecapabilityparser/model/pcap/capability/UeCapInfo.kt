@@ -12,22 +12,18 @@ class UeCapInfo(
     val arfcn: Int,
     val ip: String?,
 ) {
-    private val _ratTypes = ratTypes.toMutableSet()
-    private val _data = mutableListOf(data)
-    private val _timestamps = mutableListOf(timestamp)
-
     val ratTypes: Set<Rat>
-        get() = _ratTypes
+        field = ratTypes.toMutableSet()
 
     val data: List<ByteArrayDeepEquals>
-        get() = _data
+        field = mutableListOf(data)
 
     val timestamps: List<Long>
-        get() = _timestamps
+        field = mutableListOf(timestamp)
 
     fun addData(data: List<ByteArrayDeepEquals>, ratTypes: Set<Rat>, timestamp: Long) {
-        this._data.addAll(data)
-        this._ratTypes.addAll(ratTypes)
-        this._timestamps.add(timestamp)
+        this.data.addAll(data)
+        this.ratTypes.addAll(ratTypes)
+        timestamps.add(timestamp)
     }
 }
