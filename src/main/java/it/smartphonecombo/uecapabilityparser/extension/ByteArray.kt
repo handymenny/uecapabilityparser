@@ -11,7 +11,7 @@ internal fun ByteArray.isLteUlDcchSegment() = getOrNull(0)?.toUnsignedInt() in 0
 
 internal fun ByteArray.isNrUlDcchSegment() = getOrNull(0)?.toUnsignedInt() in 0x80..0x81
 
-@OptIn(ExperimentalStdlibApi::class) internal fun ByteArray.toHex() = this.toHexString()
+internal fun ByteArray.toHex() = this.toHexString()
 
 /** Compress bytearray to gzip * */
 internal fun ByteArray.gzipCompress(): ByteArray {

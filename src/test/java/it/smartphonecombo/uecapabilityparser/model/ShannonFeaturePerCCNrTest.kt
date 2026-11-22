@@ -1,11 +1,8 @@
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package it.smartphonecombo.uecapabilityparser.model
 
 import it.smartphonecombo.uecapabilityparser.model.modulation.ModulationOrder
 import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeatureDlPerCCNr
 import it.smartphonecombo.uecapabilityparser.model.shannon.nr.ShannonFeatureUlPerCCNr
-import kotlinx.serialization.ExperimentalSerializationApi
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

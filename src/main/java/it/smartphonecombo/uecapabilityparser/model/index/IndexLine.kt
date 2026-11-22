@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package it.smartphonecombo.uecapabilityparser.model.index
 
 import it.smartphonecombo.uecapabilityparser.extension.custom
@@ -8,7 +6,6 @@ import it.smartphonecombo.uecapabilityparser.extension.nameWithoutAnyExtension
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import java.io.File
 import kotlinx.serialization.EncodeDefault
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
