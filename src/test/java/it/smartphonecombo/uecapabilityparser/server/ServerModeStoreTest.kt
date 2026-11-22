@@ -216,7 +216,7 @@ internal class ServerModeStoreTest {
             dispatcher.scheduler.advanceUntilIdle()
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            val actualText = response.body?.string() ?: ""
+            val actualText = response.body.string()
             val expectedText = File(oraclePath).readText()
 
             if (json) {
@@ -245,7 +245,7 @@ internal class ServerModeStoreTest {
             dispatcher.scheduler.advanceUntilIdle()
             val response = client.request(multiPartRequest(client.origin + url, request, files))
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            pushedCap = capabilitiesAssertEquals(oraclePath, response.body?.string() ?: "", true)
+            pushedCap = capabilitiesAssertEquals(oraclePath, response.body.string(), true)
         }
 
     private fun deleteDirectory(path: String) {

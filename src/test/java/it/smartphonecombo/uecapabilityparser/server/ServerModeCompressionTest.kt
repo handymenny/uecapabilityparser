@@ -145,7 +145,7 @@ internal class ServerModeCompressionTest {
             dispatcher.scheduler.advanceUntilIdle()
             val response = client.get(url)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            val actualText = response.body?.string() ?: ""
+            val actualText = response.body.string()
             val expectedText =
                 if (gzip) File(oraclePath).toInputSource(true).readText()
                 else File(oraclePath).readText()
@@ -170,6 +170,6 @@ internal class ServerModeCompressionTest {
             val response =
                 client.request(multiPartRequest(client.origin + url, request, files, true))
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
-            pushedCap = capabilitiesAssertEquals(oraclePath, response.body?.string() ?: "", true)
+            pushedCap = capabilitiesAssertEquals(oraclePath, response.body.string(), true)
         }
 }

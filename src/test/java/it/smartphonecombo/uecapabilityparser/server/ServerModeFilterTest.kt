@@ -311,7 +311,7 @@ internal class ServerModeFilterTest {
             val response = client.post(endpoint, request)
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
 
-            val actual = Json.custom().parseToJsonElement(response.body?.string() ?: "")
+            val actual = Json.custom().parseToJsonElement(response.body.string())
             val expected = Json.custom().parseToJsonElement(File(oraclePath).readText())
 
             Assertions.assertEquals(expected, actual)

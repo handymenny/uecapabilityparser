@@ -1271,7 +1271,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                             index ->
                             index.asIntOrNull()?.let {
                                 // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
-                                downlinkPerCC?.getOrNull(it - 1)
+                                downlinkPerCC.getOrNull(it - 1)
                             }
                         }
                     if (list != null) {
@@ -1342,7 +1342,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                             index ->
                             index.asIntOrNull()?.let {
                                 // NR PerCC-ID is 1..1024 while LTE PerCC-ID is 0..32
-                                uplinkPerCC?.getOrNull(it - 1)
+                                uplinkPerCC.getOrNull(it - 1)
                             }
                         }
                     if (list != null) {

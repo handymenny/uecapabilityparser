@@ -728,8 +728,8 @@ internal class ServerModeMultiPartParseTest {
                 client.request(multiPartRequest(client.origin + endpoint, request, files))
             Assertions.assertEquals(HttpStatus.OK.code, response.code)
 
-            val string = response.body?.string()
-            val actual = Json.custom().decodeFromString<MultiCapabilities>(string ?: "")
+            val string = response.body.string()
+            val actual = Json.custom().decodeFromString<MultiCapabilities>(string)
 
             if (RECREATE_ORACLES) recreateMultiCapabilitiesOracles(oraclePath, actual)
 
