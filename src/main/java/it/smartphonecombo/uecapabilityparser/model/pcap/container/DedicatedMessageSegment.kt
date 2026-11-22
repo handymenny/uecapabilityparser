@@ -62,7 +62,7 @@ data class DedicatedMessageSegment(
     }
 
     private fun mergeFragments(
-        prevSegments: List<DedicatedMessageSegment>
+        prevSegments: List<DedicatedMessageSegment>,
     ): List<DedicatedMessageSegment> {
         return when {
             // 1st segment

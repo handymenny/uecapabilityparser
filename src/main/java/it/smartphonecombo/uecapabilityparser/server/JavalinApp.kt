@@ -52,53 +52,52 @@ class JavalinApp {
     private var storeInitialized = false
 
     fun newServer(): Javalin {
-        val server =
-            Javalin.create { config ->
-                config.http.compressionStrategy = CompressionStrategy(gzip = Gzip(4))
-                config.http.prefer405over404 = true
+        val server = Javalin.create { config ->
+            config.http.compressionStrategy = CompressionStrategy(gzip = Gzip(4))
+            config.http.prefer405over404 = true
 
-                // align all request size limits
-                config.http.maxRequestSize = maxRequestSize
-                config.jetty.multipartConfig.maxFileSize(maxRequestSize, SizeUnit.BYTES)
-                config.jetty.multipartConfig.maxTotalRequestSize(maxRequestSize, SizeUnit.MB)
-                config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
+            // align all request size limits
+            config.http.maxRequestSize = maxRequestSize
+            config.jetty.multipartConfig.maxFileSize(maxRequestSize, SizeUnit.BYTES)
+            config.jetty.multipartConfig.maxTotalRequestSize(maxRequestSize, SizeUnit.MB)
+            config.jetty.multipartConfig.maxInMemoryFileSize(20, SizeUnit.MB)
 
-                config.router.treatMultipleSlashesAsSingleSlash = true
-                config.routes.apiBuilder(buildRoutes(store, index, compression))
-                config.jsonMapper(CustomJsonMapper)
-                config.bundledPlugins.enableCors { cors -> cors.addRule { it.anyHost() } }
+            config.router.treatMultipleSlashesAsSingleSlash = true
+            config.routes.apiBuilder(buildRoutes(store, index, compression))
+            config.jsonMapper(CustomJsonMapper)
+            config.bundledPlugins.enableCors { cors -> cors.addRule { it.anyHost() } }
 
-                if (hasSubmodules) {
-                    config.staticFiles.add("/web", Location.CLASSPATH)
-                    config.staticFiles.add { staticFiles ->
-                        staticFiles.hostedPath = "/swagger"
-                        staticFiles.directory = "/swagger"
-                        staticFiles.location = Location.CLASSPATH
-                    }
-                }
-
-                config.routes.exception(Exception::class.java) { e, ctx ->
-                    e.printStackTrace()
-                    if (e is IllegalArgumentException || e is NullPointerException) {
-                        ctx.badRequest()
-                    } else {
-                        ctx.internalError()
-                    }
-                }
-
-                config.routes.error(HttpStatus.NOT_FOUND) { ctx ->
-                    if (html404 != null) {
-                        ctx.contentType(ContentType.HTML)
-                        ctx.result(html404)
-                    }
-                }
-
-                config.events.serverStarted {
-                    if (store != null && !storeInitialized) {
-                        CoroutineScope(Dispatchers.Custom).launch { initializeStore(store) }
-                    }
+            if (hasSubmodules) {
+                config.staticFiles.add("/web", Location.CLASSPATH)
+                config.staticFiles.add { staticFiles ->
+                    staticFiles.hostedPath = "/swagger"
+                    staticFiles.directory = "/swagger"
+                    staticFiles.location = Location.CLASSPATH
                 }
             }
+
+            config.routes.exception(Exception::class.java) { e, ctx ->
+                e.printStackTrace()
+                if (e is IllegalArgumentException || e is NullPointerException) {
+                    ctx.badRequest()
+                } else {
+                    ctx.internalError()
+                }
+            }
+
+            config.routes.error(HttpStatus.NOT_FOUND) { ctx ->
+                if (html404 != null) {
+                    ctx.contentType(ContentType.HTML)
+                    ctx.result(html404)
+                }
+            }
+
+            config.events.serverStarted {
+                if (store != null && !storeInitialized) {
+                    CoroutineScope(Dispatchers.Custom).launch { initializeStore(store) }
+                }
+            }
+        }
 
         return server
     }

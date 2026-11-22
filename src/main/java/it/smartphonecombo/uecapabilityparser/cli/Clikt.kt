@@ -72,8 +72,9 @@ object Cli : CliktCommand(name = "cli") {
             .validate {
                 require(it.size == inputsList.size) { HelpMessage.ERROR_TYPE_INPUT_MISMATCH }
                 val singleType = LogType.singleInput
-                val singleInputs =
-                    inputsList.filterIndexed { index, _ -> LogType.of(it[index]) in singleType }
+                val singleInputs = inputsList.filterIndexed { index, _ ->
+                    LogType.of(it[index]) in singleType
+                }
                 require(singleInputs.all { inputs -> inputs.size == 1 }) {
                     HelpMessage.ERROR_MULTIPLE_INPUTS_UNSUPPORTED
                 }

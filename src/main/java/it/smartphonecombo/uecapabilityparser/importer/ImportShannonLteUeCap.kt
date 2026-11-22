@@ -42,7 +42,7 @@ object ImportShannonLteUeCap : ImportCapabilities {
     }
 
     private fun processShannonComponentsLte(
-        shComponents: List<ShannonComponentLte>
+        shComponents: List<ShannonComponentLte>,
     ): List<ComponentLte> {
         val components = shComponents.map { processShannonComponentLte(it) }
 

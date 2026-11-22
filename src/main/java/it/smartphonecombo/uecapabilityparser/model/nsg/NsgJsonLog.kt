@@ -28,7 +28,7 @@ data class NsgDevice(val index: Int, val name: String, val subscription: Int, va
 @Serializable
 data class NsgDataItem(
     // We only care about messages
-    val messages: List<NsgMessage> = emptyList()
+    val messages: List<NsgMessage> = emptyList(),
 )
 
 @Serializable

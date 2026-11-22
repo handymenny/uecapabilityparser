@@ -10,7 +10,7 @@ class UEEutraCapabilityJson(val rootJson: JsonObject) {
         rootJson.getObjectAtPath(
             "nonCriticalExtension.".repeat(2) +
                 "lateNonCriticalExtension" +
-                ".nonCriticalExtension".repeat(3)
+                ".nonCriticalExtension".repeat(3),
         )
 
     val eutraCapabilityV10i0 =

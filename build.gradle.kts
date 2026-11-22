@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("com.gradleup.shadow") version "9.4.1"
-    id("com.diffplug.spotless") version "8.4.0"
+    id("com.diffplug.spotless") version "8.11.0"
     id("org.jetbrains.kotlinx.kover") version "0.9.11"
     id("maven-publish")
     application
@@ -25,8 +25,9 @@ sourceSets {
     }
 }
 
-val tstypesImplementation: Configuration by
-    configurations.getting { extendsFrom(configurations.implementation.get()) }
+val tstypesImplementation: Configuration by configurations.getting {
+    extendsFrom(configurations.implementation.get())
+}
 
 dependencies {
     val mtsAsn1Version = "5bd77b9"
@@ -123,7 +124,7 @@ spotless {
 
 tasks.withType<SpotlessDiagnoseTask>().configureEach {
     notCompatibleWithConfigurationCache(
-        "Spotless Diagnose doesn't support the configuration cache."
+        "Spotless Diagnose doesn't support the configuration cache.",
     )
 }
 

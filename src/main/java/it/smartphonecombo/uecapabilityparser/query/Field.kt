@@ -16,7 +16,7 @@ data class SearchableField(val name: String, val type: FieldType) {
             addAll(
                 FieldBandsDetails.entries.map {
                     SearchableField(it.name, FieldType.FieldBandsDetails)
-                }
+                },
             )
             addAll(FieldCombos.entries.map { SearchableField(it.name, FieldType.FieldCombos) })
         }

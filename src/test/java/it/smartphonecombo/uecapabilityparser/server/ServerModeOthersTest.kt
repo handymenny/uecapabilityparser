@@ -90,8 +90,9 @@ internal class ServerModeOthersTest {
 
     @Test
     fun testStatusStoreOff() {
-        val endpointsNoStore =
-            endpoints.filterNot { it.startsWith("/store") && !it.endsWith("status") }
+        val endpointsNoStore = endpoints.filterNot {
+            it.startsWith("/store") && !it.endsWith("status")
+        }
         val status =
             ServerStatus(parserVersion, endpointsNoStore, logTypes, 256000000, searchableFields)
         getTest("/status", Json.encodeToJsonElement(status))

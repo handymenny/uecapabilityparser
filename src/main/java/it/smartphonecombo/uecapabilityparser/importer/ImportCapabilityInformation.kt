@@ -119,10 +119,10 @@ object ImportCapabilityInformation : ImportCapabilities {
 
             if (debug) {
                 echoSafe(
-                    "NR NSA bands (from eutra capability): [${comboList.nrNSAbands.joinToString(transform = {it.band.toString()})}]"
+                    "NR NSA bands (from eutra capability): [${comboList.nrNSAbands.joinToString(transform = {it.band.toString()})}]",
                 )
                 echoSafe(
-                    "NR SA bands (from eutra capability): [${comboList.nrSAbands.joinToString(transform = {it.band.toString()})}]"
+                    "NR SA bands (from eutra capability): [${comboList.nrSAbands.joinToString(transform = {it.band.toString()})}]",
                 )
             }
 
@@ -174,11 +174,10 @@ object ImportCapabilityInformation : ImportCapabilities {
                         nrBandsMap,
                     )
                     .typedList<ComboNr>()
-            comboList.nrDcCombos =
-                nrDcComboWithFeatures.map { combo ->
-                    val (fr2, fr1) = combo.masterComponents.partition { it.isFR2 }
-                    ComboNrDc(fr1, fr2, combo.featureSet, combo.bcs)
-                }
+            comboList.nrDcCombos = nrDcComboWithFeatures.map { combo ->
+                val (fr2, fr1) = combo.masterComponents.partition { it.isFR2 }
+                ComboNrDc(fr1, fr2, combo.featureSet, combo.bcs)
+            }
 
             filterList.add(getUeNrCapabilityFilters(nr))
             val release = parseAccessRelease(nrCapability)
@@ -281,14 +280,13 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         val supportedBandCombinationExtR10 =
             eutraCapability.eutraCapabilityV1060?.getArrayAtPath(
-                "rf-Parameters-v1060.supportedBandCombinationExt-r10"
+                "rf-Parameters-v1060.supportedBandCombinationExt-r10",
             ) ?: emptyList()
-        val bcsList =
-            supportedBandCombinationExtR10.map { combinationParameters ->
-                combinationParameters.getString("supportedBandwidthCombinationSet-r10")?.let {
-                    BCS.fromBinaryString(it)
-                } ?: SingleBCS(0)
-            }
+        val bcsList = supportedBandCombinationExtR10.map { combinationParameters ->
+            combinationParameters.getString("supportedBandwidthCombinationSet-r10")?.let {
+                BCS.fromBinaryString(it)
+            } ?: SingleBCS(0)
+        }
 
         return combinations.mergeBcs(bcsList)
     }
@@ -299,20 +297,19 @@ object ImportCapabilityInformation : ImportCapabilities {
     ): List<ComboLte> {
         val combinationsArray =
             eutraCapability.eutraCapabilityV1180?.getArrayAtPath(
-                "rf-Parameters-v1180.supportedBandCombinationAdd-r11"
+                "rf-Parameters-v1180.supportedBandCombinationAdd-r11",
             ) ?: return emptyList()
         val bcsList = mutableListWithCapacity<BCS>(combinationsArray.size)
 
-        val combinations =
-            combinationsArray.mapNotNull { bandCombination ->
-                val bcs =
-                    bandCombination.getString("supportedBandwidthCombinationSet-r11")
-                        ?: "1" // 1 -> only bcs 0
-                bcsList.add(BCS.fromBinaryString(bcs))
-                val bandParametersList = bandCombination.getArrayAtPath("bandParameterList-r11")
+        val combinations = combinationsArray.mapNotNull { bandCombination ->
+            val bcs =
+                bandCombination.getString("supportedBandwidthCombinationSet-r11")
+                    ?: "1" // 1 -> only bcs 0
+            bcsList.add(BCS.fromBinaryString(bcs))
+            val bandParametersList = bandCombination.getArrayAtPath("bandParameterList-r11")
 
-                bandParametersList?.map { parseBandParameters(it, 11) }
-            }
+            bandParametersList?.map { parseBandParameters(it, 11) }
+        }
 
         // Some devices don't report 4layers in supportedMIMO-CapabilityDL-r10
         // Use CA-MIMO-ParametersDL-v10i0 if we haven't yet found any bands with 4rx or 8rx
@@ -347,19 +344,18 @@ object ImportCapabilityInformation : ImportCapabilities {
     ): List<ComboLte> {
         val combinationsArray =
             eutraCapability.eutraCapabilityV1310?.getArrayAtPath(
-                "rf-Parameters-v1310.supportedBandCombinationReduced-r13"
+                "rf-Parameters-v1310.supportedBandCombinationReduced-r13",
             ) ?: return emptyList()
         val bcsList = mutableListWithCapacity<BCS>(combinationsArray.size)
-        val combinations =
-            combinationsArray.mapNotNull { bandCombination ->
-                val bcs =
-                    bandCombination.getString("supportedBandwidthCombinationSet-r13")
-                        ?: "1" // 1 -> only bcs 0
-                bcsList.add(BCS.fromBinaryString(bcs))
+        val combinations = combinationsArray.mapNotNull { bandCombination ->
+            val bcs =
+                bandCombination.getString("supportedBandwidthCombinationSet-r13")
+                    ?: "1" // 1 -> only bcs 0
+            bcsList.add(BCS.fromBinaryString(bcs))
 
-                val bandParametersList = bandCombination.getArray("bandParameterList-r13")
-                bandParametersList?.map { parseBandParameters(it, 13) }
-            }
+            val bandParametersList = bandCombination.getArray("bandParameterList-r13")
+            bandParametersList?.map { parseBandParameters(it, 13) }
+        }
 
         // Basic Modulation - set 256qam or 64qam from bandList
         setModulationFromBandList(combinations, bandList)
@@ -399,14 +395,13 @@ object ImportCapabilityInformation : ImportCapabilities {
                 } else {
                     val perCCInfoList = bandParameter.getArray("ul-256QAM-perCC-InfoList-r14")
                     val defaultMod = combinations[i][j].modUL.maxModulationOrder()
-                    val mixedModulation =
-                        perCCInfoList?.map {
-                            if (it.getString("ul-256QAM-perCC-r14") != null) {
-                                ModulationOrder.QAM256
-                            } else {
-                                defaultMod
-                            }
+                    val mixedModulation = perCCInfoList?.map {
+                        if (it.getString("ul-256QAM-perCC-r14") != null) {
+                            ModulationOrder.QAM256
+                        } else {
+                            defaultMod
                         }
+                    }
 
                     if (!mixedModulation.isNullOrEmpty()) {
                         combinations[i][j].modUL = Modulation.from(mixedModulation)
@@ -677,11 +672,11 @@ object ImportCapabilityInformation : ImportCapabilities {
         val supportedBandListNR =
             if (endc) {
                 eutraCapability.eutraCapabilityV1510?.getArrayAtPath(
-                    "irat-ParametersNR-r15.supportedBandListEN-DC-r15"
+                    "irat-ParametersNR-r15.supportedBandListEN-DC-r15",
                 )
             } else {
                 eutraCapability.eutraCapabilityV1540?.getArrayAtPath(
-                    "irat-ParametersNR-v1540.supportedBandListNR-SA-r15"
+                    "irat-ParametersNR-v1540.supportedBandListNR-SA-r15",
                 )
             }
 
@@ -710,18 +705,17 @@ object ImportCapabilityInformation : ImportCapabilities {
         for (combo in combos) {
             val featureSetsPerBand = featureSetCombinations.getOrNull(combo.featureSet) ?: continue
             val indices = featureSetsPerBand.firstOrNull()?.indices ?: IntRange.EMPTY
-            val mergedCombos =
-                indices.map { index ->
-                    mergeComboNrAndIndexedFeature(
-                        combo,
-                        featureSetsPerBand,
-                        index,
-                        nrFeatures,
-                        lteFeatures,
-                        lteBands,
-                        nrBands,
-                    )
-                }
+            val mergedCombos = indices.map { index ->
+                mergeComboNrAndIndexedFeature(
+                    combo,
+                    featureSetsPerBand,
+                    index,
+                    nrFeatures,
+                    lteFeatures,
+                    lteBands,
+                    nrBands,
+                )
+            }
             list.addAll(mergedCombos)
         }
         return list
@@ -856,31 +850,30 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun getFeatureSetCombinations(
-        nrCapability: UENrRrcCapabilityJson
+        nrCapability: UENrRrcCapabilityJson,
     ): List<List<List<FeatureIndex>>> {
         val featureSetCombinations = nrCapability.rootJson.getArray("featureSetCombinations")
-        val list =
-            featureSetCombinations?.mapNotNull { featureSetCombination ->
-                (featureSetCombination as? JsonArray)?.mapNotNull { featureSetsPerBand ->
-                    (featureSetsPerBand as? JsonArray)?.mapNotNull { featureSet ->
-                        val eutra = featureSet.getObject("eutra")
-                        val nr = featureSet.getObject("nr")
-                        if (nr != null) {
-                            val dl = nr.getInt("downlinkSetNR") ?: 0
-                            val ul = nr.getInt("uplinkSetNR") ?: 0
+        val list = featureSetCombinations?.mapNotNull { featureSetCombination ->
+            (featureSetCombination as? JsonArray)?.mapNotNull { featureSetsPerBand ->
+                (featureSetsPerBand as? JsonArray)?.mapNotNull { featureSet ->
+                    val eutra = featureSet.getObject("eutra")
+                    val nr = featureSet.getObject("nr")
+                    if (nr != null) {
+                        val dl = nr.getInt("downlinkSetNR") ?: 0
+                        val ul = nr.getInt("uplinkSetNR") ?: 0
 
-                            FeatureIndex(true, dl, ul)
-                        } else if (eutra != null) {
-                            val dl = eutra.getInt("downlinkSetEUTRA") ?: 0
-                            val ul = eutra.getInt("uplinkSetEUTRA") ?: 0
+                        FeatureIndex(true, dl, ul)
+                    } else if (eutra != null) {
+                        val dl = eutra.getInt("downlinkSetEUTRA") ?: 0
+                        val ul = eutra.getInt("uplinkSetEUTRA") ?: 0
 
-                            FeatureIndex(false, dl, ul)
-                        } else {
-                            null
-                        }
+                        FeatureIndex(false, dl, ul)
+                    } else {
+                        null
                     }
                 }
             }
+        }
         return list ?: emptyList()
     }
 
@@ -897,38 +890,37 @@ object ImportCapabilityInformation : ImportCapabilities {
                 .getArrayAtPath("rf-ParametersMRDC.supportedBandCombinationList-v1590")
                 ?.iterator()
         val bandCombinationsList = nrCapability.rootJson.getArrayAtPath(bandCombinationsPath)
-        val list =
-            bandCombinationsList?.mapNotNull { bandCombination ->
-                val bandList = bandCombination.getArray("bandList") ?: return@mapNotNull null
-                val lteBands = mutableListWithCapacity<ComponentLte>(bandList.size)
-                val nrBands = mutableListWithCapacity<ComponentNr>(bandList.size)
-                for (bandParameters in bandList) {
-                    val component = parse5gBandParameters(bandParameters)
-                    if (component is ComponentNr) {
-                        nrBands.add(component)
-                    } else if (component is ComponentLte) {
-                        lteBands.add(component)
-                    }
-                }
-                val featureSetCombination = bandCombination.getInt("featureSetCombination") ?: 0
-                val bcsString = bandCombination.getString("supportedBandwidthCombinationSet") ?: "1"
-                val bcs = BCS.fromBinaryString(bcsString)
-                if (endc) {
-                    val bcsEutraString =
-                        bandCombination
-                            .getObject("ca-ParametersEUTRA")
-                            ?.getString("supportedBandwidthCombinationSetEUTRA-v1530") ?: "1"
-                    val bcsEutra = BCS.fromBinaryString(bcsEutraString)
-                    val bcsIntraEnDcString =
-                        bandCombinationsListv1590
-                            ?.next()
-                            ?.getString("supportedBandwidthCombinationSetIntraENDC") ?: "1"
-                    val bcsIntraEnDc = BCS.fromBinaryString(bcsIntraEnDcString)
-                    ComboEnDc(lteBands, nrBands, featureSetCombination, bcs, bcsEutra, bcsIntraEnDc)
-                } else {
-                    ComboNr(nrBands, featureSetCombination, bcs)
+        val list = bandCombinationsList?.mapNotNull { bandCombination ->
+            val bandList = bandCombination.getArray("bandList") ?: return@mapNotNull null
+            val lteBands = mutableListWithCapacity<ComponentLte>(bandList.size)
+            val nrBands = mutableListWithCapacity<ComponentNr>(bandList.size)
+            for (bandParameters in bandList) {
+                val component = parse5gBandParameters(bandParameters)
+                if (component is ComponentNr) {
+                    nrBands.add(component)
+                } else if (component is ComponentLte) {
+                    lteBands.add(component)
                 }
             }
+            val featureSetCombination = bandCombination.getInt("featureSetCombination") ?: 0
+            val bcsString = bandCombination.getString("supportedBandwidthCombinationSet") ?: "1"
+            val bcs = BCS.fromBinaryString(bcsString)
+            if (endc) {
+                val bcsEutraString =
+                    bandCombination
+                        .getObject("ca-ParametersEUTRA")
+                        ?.getString("supportedBandwidthCombinationSetEUTRA-v1530") ?: "1"
+                val bcsEutra = BCS.fromBinaryString(bcsEutraString)
+                val bcsIntraEnDcString =
+                    bandCombinationsListv1590
+                        ?.next()
+                        ?.getString("supportedBandwidthCombinationSetIntraENDC") ?: "1"
+                val bcsIntraEnDc = BCS.fromBinaryString(bcsIntraEnDcString)
+                ComboEnDc(lteBands, nrBands, featureSetCombination, bcs, bcsEutra, bcsIntraEnDc)
+            } else {
+                ComboNr(nrBands, featureSetCombination, bcs)
+            }
+        }
         return list ?: emptyList()
     }
 
@@ -1025,7 +1017,7 @@ object ImportCapabilityInformation : ImportCapabilities {
                         }
                         else -> {
                             PowerClass.valueOf(
-                                supportedBandNr.getString("ue-PowerClass")?.uppercase() ?: "PC3"
+                                supportedBandNr.getString("ue-PowerClass")?.uppercase() ?: "PC3",
                             )
                         }
                     }
@@ -1426,16 +1418,15 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         var allDefault = true
         val default = defaultMimo.average().toInt()
-        val mixedMimoList =
-            intraBandCCInfoList.map {
-                val str = it.getString("supportedMIMO-CapabilityDL-r12")
-                if (str == null) {
-                    default
-                } else {
-                    allDefault = false
-                    Int.fromLiteral(str)
-                }
+        val mixedMimoList = intraBandCCInfoList.map {
+            val str = it.getString("supportedMIMO-CapabilityDL-r12")
+            if (str == null) {
+                default
+            } else {
+                allDefault = false
+                Int.fromLiteral(str)
             }
+        }
 
         // Don't override mimo if all are = to default
         return if (allDefault) defaultMimo else Mimo.from(mixedMimoList)
@@ -1505,26 +1496,25 @@ object ImportCapabilityInformation : ImportCapabilities {
                 "rf-Parameters.appliedFreqBandListFilter"
             }
         val freqBandFilter = capability.rootJson.getArrayAtPath(bandListFilterPath)
-        val freqBandFilterList =
-            freqBandFilter?.mapNotNull { bandInfo ->
-                val eutra = bandInfo.getObject("bandInformationEUTRA")
-                val nr = bandInfo.getObject("bandInformationNR")
-                if (nr != null) {
-                    val band = nr.getInt("bandNR") ?: 0
-                    val maxBwDl = parseBw(nr.getString("maxBandwidthRequestedDL"))
-                    val maxBwUl = parseBw(nr.getString("maxBandwidthRequestedUL"))
-                    val maxCCsDl = nr.getInt("maxCarriersRequestedDL") ?: 0
-                    val maxCCsUl = nr.getInt("maxCarriersRequestedUL") ?: 0
-                    BandFilterNr(band, maxBwDl, maxBwUl, maxCCsDl, maxCCsUl)
-                } else if (eutra != null) {
-                    val band = eutra.getInt("bandEUTRA") ?: 0
-                    val classDl = BwClass.valueOf(eutra.getString("ca-BandwidthClassDL-EUTRA"))
-                    val classUl = BwClass.valueOf(eutra.getString("ca-BandwidthClassUL-EUTRA"))
-                    BandFilterLte(band, classDl, classUl)
-                } else {
-                    null
-                }
+        val freqBandFilterList = freqBandFilter?.mapNotNull { bandInfo ->
+            val eutra = bandInfo.getObject("bandInformationEUTRA")
+            val nr = bandInfo.getObject("bandInformationNR")
+            if (nr != null) {
+                val band = nr.getInt("bandNR") ?: 0
+                val maxBwDl = parseBw(nr.getString("maxBandwidthRequestedDL"))
+                val maxBwUl = parseBw(nr.getString("maxBandwidthRequestedUL"))
+                val maxCCsDl = nr.getInt("maxCarriersRequestedDL") ?: 0
+                val maxCCsUl = nr.getInt("maxCarriersRequestedUL") ?: 0
+                BandFilterNr(band, maxBwDl, maxBwUl, maxCCsDl, maxCCsUl)
+            } else if (eutra != null) {
+                val band = eutra.getInt("bandEUTRA") ?: 0
+                val classDl = BwClass.valueOf(eutra.getString("ca-BandwidthClassDL-EUTRA"))
+                val classUl = BwClass.valueOf(eutra.getString("ca-BandwidthClassUL-EUTRA"))
+                BandFilterLte(band, classDl, classUl)
+            } else {
+                null
             }
+        }
 
         if (freqBandFilterList != null) {
             val (lteBands, nrBands) = freqBandFilterList.partition { it is BandFilterLte }
@@ -1552,21 +1542,22 @@ object ImportCapabilityInformation : ImportCapabilities {
     }
 
     private fun getUeLteCapabilityFilters(
-        capability: UEEutraCapabilityJson
+        capability: UEEutraCapabilityJson,
     ): UeCapabilityFilterLte {
         val ueCapFilter = UeCapabilityFilterLte()
 
         val requestedBands =
             capability.eutraCapabilityV1180?.getArrayAtPath(
-                "rf-Parameters-v1180.requestedBands-r11"
+                "rf-Parameters-v1180.requestedBands-r11",
             ) ?: emptyList()
-        val requestedBandsList =
-            requestedBands.mapNotNull { band -> band.asIntOrNull()?.let { BandBoxed(it) } }
+        val requestedBandsList = requestedBands.mapNotNull { band ->
+            band.asIntOrNull()?.let { BandBoxed(it) }
+        }
         ueCapFilter.lteBands = requestedBandsList
 
         val enbRequestR13 =
             capability.eutraCapabilityV1310?.getObjectAtPath(
-                "rf-Parameters-v1310.eNB-RequestedParameters-r13"
+                "rf-Parameters-v1310.eNB-RequestedParameters-r13",
             )
         if (enbRequestR13 != null) {
             ueCapFilter.reducedIntNonContComb =
@@ -1579,15 +1570,14 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         val requestedDiffFallbackCombList =
             capability.eutraCapabilityV1430?.getArrayAtPath(
-                "rf-Parameters-v1430.eNB-RequestedParameters-v1430.requestedDiffFallbackCombList-r14"
+                "rf-Parameters-v1430.eNB-RequestedParameters-v1430.requestedDiffFallbackCombList-r14",
             )
 
-        val diffFallbackCombList =
-            requestedDiffFallbackCombList?.mapNotNull { combination ->
-                val componentsArray = combination.asArrayOrNull() ?: return@mapNotNull null
-                val components = componentsArray.map { parseBandParameters(it, 14) }
-                ComboLte(components.sortedDescending())
-            }
+        val diffFallbackCombList = requestedDiffFallbackCombList?.mapNotNull { combination ->
+            val componentsArray = combination.asArrayOrNull() ?: return@mapNotNull null
+            val components = componentsArray.map { parseBandParameters(it, 14) }
+            ComboLte(components.sortedDescending())
+        }
 
         ueCapFilter.diffFallbackCombList = diffFallbackCombList ?: emptyList()
 
@@ -1599,7 +1589,7 @@ object ImportCapabilityInformation : ImportCapabilities {
 
         if (
             capability.eutraCapabilityV1310?.getArrayAtPath(
-                "rf-Parameters-v1310.supportedBandCombinationReduced-r13"
+                "rf-Parameters-v1310.supportedBandCombinationReduced-r13",
             ) != null
         ) {
             ueCapFilter.reducedFormat = true
@@ -1645,15 +1635,14 @@ object ImportCapabilityInformation : ImportCapabilities {
                 if (ul1 == null || ul2 == null) continue
 
                 var isSUL = false
-                val newBands =
-                    nrBands.mapIndexed { index, band ->
-                        if (index == ul1 || index == ul2) {
-                            if (band.isSUL) isSUL = true
-                            band.copy(ulTxSwitch = true)
-                        } else {
-                            band
-                        }
+                val newBands = nrBands.mapIndexed { index, band ->
+                    if (index == ul1 || index == ul2) {
+                        if (band.isSUL) isSUL = true
+                        band.copy(ulTxSwitch = true)
+                    } else {
+                        band
                     }
+                }
 
                 // sul supports only option 1
                 val ulTxSwitchOption = if (isSUL) UplinkTxSwitchOption.SWITCHED_UL else optionR16
