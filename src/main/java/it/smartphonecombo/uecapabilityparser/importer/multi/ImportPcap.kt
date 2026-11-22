@@ -2,7 +2,6 @@ package it.smartphonecombo.uecapabilityparser.importer.multi
 
 import io.pkts.Pcap
 import it.smartphonecombo.uecapabilityparser.extension.getString
-import it.smartphonecombo.uecapabilityparser.extension.toHex
 import it.smartphonecombo.uecapabilityparser.extension.toInputSource
 import it.smartphonecombo.uecapabilityparser.io.InputSource
 import it.smartphonecombo.uecapabilityparser.model.LogType
@@ -75,7 +74,9 @@ object ImportPcap : ImportMultiCapabilities {
 
             val inputsList: MutableList<List<InputSource>> =
                 distinctInputs
-                    .map { it.data.map { packet -> packet.byteArray.toHex().toInputSource() } }
+                    .map {
+                        it.data.map { packet -> packet.byteArray.toHexString().toInputSource() }
+                    }
                     .toMutableList()
             val typeList = List(inputsList.size) { LogType.H }.toMutableList()
             val subTypesList =
