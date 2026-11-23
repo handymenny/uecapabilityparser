@@ -109,6 +109,11 @@ internal class ImportCapabilityInformationTest :
     }
 
     @Test
+    fun ueCapMrdcFake90mhzBis() {
+        parse("ueCapMrdcFake90mhzBis.json", "ueCapMrdcFake90mhzBis.json")
+    }
+
+    @Test
     fun ueCapEutraNrOnlyIntraBcsAll() {
         parse("ueCapEutraNrOnlyIntraBcsAll.json", "ueCapEutraNrOnlyIntraBcsAll.json")
     }

@@ -105,12 +105,10 @@ private fun applyNrFeaturesPerCC(
     val bw: Bandwidth
     val mod: Modulation
 
-    // These are "single" features and shared between DL and UL
+    // Scs is "single" feature and shared between DL and UL
     // So we take the current value into account
     val scs = feature.maxOf(FeaturePerCCNr::scs)
     component.scs = maxOf(scs, component.scs)
-    component.channelBW90mhz =
-        component.channelBW90mhz || feature.any(FeaturePerCCNr::channelBW90mhz)
 
     val maxBwBand =
         bandDetails
@@ -124,6 +122,12 @@ private fun applyNrFeaturesPerCC(
                 }
             }
             ?.maxOrNull() ?: Int.MAX_VALUE
+
+    // channelBW90mhz is "single" feature and shared between DL and UL
+    // So we take the current value into account
+    // we ignore channelBW90mhz if maxBwBand < 80
+    component.channelBW90mhz =
+        component.channelBW90mhz || (maxBwBand >= 80 && feature.any(FeaturePerCCNr::channelBW90mhz))
 
     if (feature.size > 1) {
         mimo = Mimo.from(feature.map { it.mimo.average().toInt() })
